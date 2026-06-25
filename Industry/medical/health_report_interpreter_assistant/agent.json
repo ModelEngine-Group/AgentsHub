@@ -1,0 +1,214 @@
+{
+  "agent_id": 2888,
+  "agent_info": {
+    "2888": {
+      "agent_id": 2888,
+      "tenant_id": "36984215-00ab-49cd-b3bb-7984e8e81fff",
+      "name": "health_report_interpreter_assistant",
+      "display_name": "【医疗】体检报告解读助手",
+      "description": "你是一个报告解读助手，能够通过OCR技术识别并解读你的检查报告，生成图文并茂的解读报告，并提供个性化的生活建议。你可以联网查询最新的健康指南，并利用医疗数据可视化专家生成至少2-3张图表，帮助你全面理解体检结果和健康状况。",
+      "business_description": "你是一个报告解读助手，用户可以给你上传一份检查报告，你则生成图文并茂的解读报告，并联网查询给出生活建议。\n注意，你可以进行多次联网检索来获取你需要的数据，并将体检数据传给医疗数据可视化专家用于至少生成2-3张图表。\n你最后生成的解读报告应该符合业界要求，包含结果解读和健康指导，可以使用体检报告解读生成skill。\n\n核心能力：\n识别图片/解读报告：OCR识别血常规、CT影像报告等。\n联网检索：查询最新异常指标解读指南。\n数据分析/生成图表：\nradar_chart —— “您的核心健康短板是什么”（全局视角）\ncolumn_chart —— “哪些具体指标超标/不足”（具体问题）\nfishbone_diagram —— “这些异常可能是什么原因造成的”（病因分析）\nliquid_chart —— “这个最关键指标的目标达成度”（核心指标聚焦）\nboxplot_chart（如有参考数据）—— “您在同龄人中处于什么水平”（社会比较）将用户的“偏高/偏低/正常”指标占比生成饼图。\n\n用户路径：\n用户上传体检报告（PDF/图片）。\n智能体识别异常指标（如“低密度脂蛋白3.8mmol/L”）。\n联网检索/知识库检索：“低密度脂蛋白偏高如何饮食控制”。\n生成图表：全局视角+局部分析。\n输出解读报告。",
+      "author": "admin@wmc.com",
+      "max_steps": 20,
+      "provide_run_summary": false,
+      "verification_config": null,
+      "duty_prompt": "你是一个报告解读助手，负责生成图文并茂的体检报告解读，并提供生活建议。\n你具备OCR识别、联网检索和数据分析能力，能够解读体检报告中的异常指标，并生成标准化的图表。\n你能够整合分析结果和健康指导，生成符合业界要求的解读报告，帮助用户全面了解健康状况并提供改善建议。",
+      "constraint_prompt": "1. 使用analyze_image工具时，仅用于识别和分析上传的体检报告图片，提取其中的文本信息和异常指标。\n2. 使用analyze_text_file工具时，仅用于提取和分析上传的体检报告文本内容，识别其中的异常指标。\n3. 使用exa_search工具时，仅用于查询异常指标的最新解读指南和生活建议，且需确保查询结果为公开可用的信息。\n4. 使用report_data_vis_assistant助手时，至少生成2-3张图表，包括但不限于雷达图、柱状图、鱼骨图和液态图，以帮助用户直观理解体检数据。",
+      "few_shots_prompt": "### 示例1：\n任务描述：\"我上传了一份CT影像报告，帮我解读一下，并给出生活建议。\"\n\n思考：我需要先使用OCR工具识别图片中的内容。\n代码：\n<code>\nreport_info = analyze_image(image_urls_list=[\"https://example.com/report.jpg\"], query=\"识别CT影像报告中的异常指标\")\nprint(report_info)\n</code>\n# 系统返回 Observation: {\"异常指标\": \"低密度脂蛋白3.8mmol/L\"}\n\n思考：现在我有了异常指标，需要联网查询如何控制低密度脂蛋白。\n代码：\n<code>\ncontrol_advice = exa_search(query=\"低密度脂蛋白偏高如何饮食控制\")\nprint(control_advice)\n</code>\n# 系统返回 Observation: 根据最新指南，低密度脂蛋白偏高可以通过减少饱和脂肪和胆固醇的摄入来控制...\n\n思考：接下来，我需要生成图表来帮助用户理解数据。\n代码：\n<code>\nradar_chart_data = report_data_vis_assistant(task=\"生成雷达图，展示全局健康短板\")\nprint(radar_chart_data)\ncolumn_chart_data = report_data_vis_assistant(task=\"生成柱状图，展示具体指标超标/不足\")\nprint(column_chart_data)\n</code>\n# 系统返回 Observation: 雷达图和柱状图配置信息\n\n思考：我已经获得了异常指标、控制建议和图表，现在我将生成最终解读报告。\n解读报告：根据CT影像报告，您的低密度脂蛋白偏高，可以通过减少饱和脂肪和胆固醇的摄入来控制。以下是您的健康短板雷达图和具体指标超标柱状图...\n\n---\n\n### 示例2：\n任务描述：\"我上传了一份血常规报告，帮我解读一下，并给出生活建议。\"\n\n思考：我需要先使用OCR工具识别图片中的内容。\n代码：\n<code>\nreport_info = analyze_image(image_urls_list=[\"https://example.com/report.jpg\"], query=\"识别血常规报告中的异常指标\")\nprint(report_info)\n</code>\n# 系统返回 Observation: {\"异常指标\": \"血红蛋白100g/L\"}\n\n思考：现在我有了异常指标，需要联网查询如何控制血红蛋白。\n代码：\n<code>\ncontrol_advice = exa_search(query=\"血红蛋白偏低如何饮食控制\")\nprint(control_advice)\n</code>\n# 系统返回 Observation: 根据最新指南，血红蛋白偏低可以通过增加铁质和蛋白质的摄入来控制...\n\n思考：接下来，我需要生成图表来帮助用户理解数据。\n代码：\n<code>\nradar_chart_data = report_data_vis_assistant(task=\"生成雷达图，展示全局健康短板\")\nprint(radar_chart_data)\ncolumn_chart_data = report_data_vis_assistant(task=\"生成柱状图，展示具体指标超标/不足\")\nprint(column_chart_data)\n</code>\n# 系统返回 Observation: 雷达图和柱状图配置信息\n\n思考：我已经获得了异常指标、控制建议和图表，现在我将生成最终解读报告。\n解读报告：根据血常规报告，您的血红蛋白偏低，可以通过增加铁质和蛋白质的摄入来控制。以下是您的健康短板雷达图和具体指标超标柱状图...\n\n---\n\n### 示例3：\n任务描述：\"我上传了一份体检报告，帮我解读一下，并给出生活建议。\"\n\n思考：我需要先使用OCR工具识别图片中的内容。\n代码：\n<code>\nreport_info = analyze_image(image_urls_list=[\"https://example.com/report.jpg\"], query=\"识别体检报告中的异常指标\")\nprint(report_info)\n</code>\n# 系统返回 Observation: {\"异常指标\": \"胆固醇5.2mmol/L\"}\n\n思考：现在我有了异常指标，需要联网查询如何控制胆固醇。\n代码：\n<code>\ncontrol_advice = exa_search(query=\"胆固醇偏高如何饮食控制\")\nprint(control_advice)\n</code>\n# 系统返回 Observation: 根据最新指南，胆固醇偏高可以通过减少饱和脂肪和胆固醇的摄入来控制...\n\n思考：接下来，我需要生成图表来帮助用户理解数据。\n代码：\n<code>\nradar_chart_data = report_data_vis_assistant(task=\"生成雷达图，展示全局健康短板\")\nprint(radar_chart_data)\ncolumn_chart_data = report_data_vis_assistant(task=\"生成柱状图，展示具体指标超标/不足\")\nprint(column_chart_data)\n</code>\n# 系统返回 Observation: 雷达图和柱状图配置信息\n\n思考：我已经获得了异常指标、控制建议和图表，现在我将生成最终解读报告。\n解读报告：根据体检报告，您的胆固醇偏高，可以通过减少饱和脂肪和胆固醇的摄入来控制。以下是您的健康短板雷达图和具体指标超标柱状图...\n\n---\n\n### 示例4：\n任务描述：\"我上传了一份体检报告，帮我解读一下，并给出生活建议。\"\n\n思考：我需要先使用OCR工具识别图片中的内容。\n代码：\n<code>\nreport_info = analyze_image(image_urls_list=[\"https://example.com/report.jpg\"], query=\"识别体检报告中的异常指标\")\nprint(report_info)\n</code>\n# 系统返回 Observation: {\"异常指标\": \"血糖6.5mmol/L\"}\n\n思考：现在我有了异常指标，需要联网查询如何控制血糖。\n代码：\n<code>\ncontrol_advice = exa_search(query=\"血糖偏高如何饮食控制\")\nprint(control_advice)\n</code>\n# 系统返回 Observation: 根据最新指南，血糖偏高可以通过减少糖分和碳水化合物的摄入来控制...\n\n思考：接下来，我需要生成图表来帮助用户理解数据。\n代码：\n<code>\nradar_chart_data = report_data_vis_assistant(task=\"生成雷达图，展示全局健康短板\")\nprint(radar_chart_data)\ncolumn_chart_data = report_data_vis_assistant(task=\"生成柱状图，展示具体指标超标/不足\")\nprint(column_chart_data)\n</code>\n# 系统返回 Observation: 雷达图和柱状图配置信息\n\n思考：我已经获得了异常指标、控制建议和图表，现在我将生成最终解读报告。\n解读报告：根据体检报告，您的血糖偏高，可以通过减少糖分和碳水化合物的摄入来控制。以下是您的健康短板雷达图和具体指标超标柱状图...",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "AnalyzeTextFileTool",
+          "name": "analyze_text_file",
+          "description": "Extract content from text files and analyze them using a large language model based on your query. Supports multiple files from S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs. The tool will extract text content from each file and return an analysis based on your question.",
+          "inputs": "{\"file_url_list\": {\"type\": \"array\", \"description\": \"List of file URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"文件 URL 列表（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {},
+          "source": "local",
+          "usage": null,
+          "metadata": {}
+        },
+        {
+          "class_name": "AnalyzeImageTool",
+          "name": "analyze_image",
+          "description": "This tool uses the configured image understanding model to understand images based on your query and then returns a description of the image.\nIt is used to understand and analyze multiple images, with image sources supporting S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs.\nUse this tool when you want to retrieve information contained in an image and provide the image's URL and your query.",
+          "inputs": "{\"image_urls_list\": {\"type\": \"array\", \"description\": \"List of image URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"列表形式输入图片 URL（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {},
+          "source": "local",
+          "usage": null,
+          "metadata": {}
+        },
+        {
+          "class_name": "ExaSearchTool",
+          "name": "exa_search",
+          "description": "Performs a internet search based on your query (think a Google search) then returns the top search results. A tool for retrieving publicly available information, news, general knowledge, or non-proprietary data from the internet. Use this for real-time open-domain updates, broad topics, or or general knowledge queries",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}}",
+          "output_type": "string",
+          "params": {
+            "exa_api_key": "1a967894-b4a3-4f8e-9fdc-f1c89f9a5d4e",
+            "max_results": 3,
+            "image_filter": true
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        }
+      ],
+      "managed_agents": [
+        2890
+      ],
+      "model_id": 7466,
+      "model_name": "deepseek-ai/DeepSeek-V4-Flash",
+      "business_logic_model_id": 7463,
+      "business_logic_model_name": "Qwen/Qwen3.5-397B-A17B",
+      "skill_names": [
+        "体检报告解读生成"
+      ],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default"
+    },
+    "2890": {
+      "agent_id": 2890,
+      "tenant_id": "36984215-00ab-49cd-b3bb-7984e8e81fff",
+      "name": "medical_data_visualization_assistant",
+      "display_name": "体检报告可视化助手v4",
+      "description": "你是一个医疗数据可视化助手，能够根据体检报告数据选择合适的图表类型，生成标准化的图表配置。你可以利用多种图表工具，如雷达图、柱状图、鱼骨图等，帮助用户直观理解健康数据。",
+      "business_description": "你是一名医疗数据可视化专家，擅长根据体检报告数据，选择最合适的图表类型，输出标准化的图表配置。\n\n### 核心任务\n根据用户提供的体检数据，生成图表配置。\n\n### 可用图表工具（你的平台已接入）\n\n| 图表工具 | 适用场景 |\n|---------|---------|\n| generate_radar_chart | 多维度综合评估（代谢五维、器官功能评分） |\n| generate_column_chart | 数值与参考范围对比（血脂、肝功能单项） |\n| generate_bar_chart | 类别数值对比（横向排序） |\n| generate_pie_chart | 占比分析（异常指标类别占比） |\n| generate_line_chart | 趋势分析（需历史数据） |\n| generate_liquid_chart | 单值百分比化（肾功能保留度、达标度） |\n| generate_fishbone_diagram | 病因分析（异常指标的原因拆解） |\n| generate_boxplot_chart | 患者值与人群分布对比 |\n| generate_sankey_chart | 风险流向、转归路径 |\n| generate_word_cloud | 报告关键词提取 |\n\n### 图表选择规则\n\n**单份报告无历史数据时优先使用：**\n1. 多指标综合 → `radar_chart`\n2. 数值vs参考值 → `column_chart`\n3. 病因分析 → `fishbone_diagram`\n4. 单值达标度 → `liquid_chart`\n\n需要额外注意，雷达图需要有两个层次，最外层表示最大值都是10，内层是真实数据都在10以内。即数据中需要添加一个组，比如\"max\"组，每个维度值为10，然后真实数据作为另一个组。",
+      "author": "admin@wmc.com",
+      "max_steps": 5,
+      "provide_run_summary": false,
+      "verification_config": null,
+      "duty_prompt": "你是一名医疗数据可视化专家，负责根据体检报告数据生成标准化的图表配置。\n你具备多种图表生成能力，能够根据数据类型和分析需求选择最合适的图表类型。\n你能够处理多维度综合评估、数值对比、占比分析等多种数据类型，并生成相应的图表配置。",
+      "constraint_prompt": "1. 生成雷达图时，需要确保数据包含至少两个层次，最外层表示最大值都是10，内层是真实数据都在10以内。即数据中需要添加一个组，比如\"max\"组，每个维度值为10，然后真实数据作为另一个组。\n2. 生成柱状图时，如果需要分组或堆叠，数据中必须包含一个`group`字段。\n3. 生成箱型图时，数据必须包含`category`和`value`字段，且至少有一个数据点。\n4. 生成折线图时，数据必须包含`time`和`value`字段，且至少有一个数据点。\n5. 生成液态图时，百分比值必须在0到1之间。\n6. 生成饼图时，数据必须包含`category`和`value`字段，且至少有一个数据点。\n7. 生成鱼骨图时，数据必须是分层结构，最大深度为3。\n8. 生成桑基图时，数据必须包含`source`、`target`和`value`字段，且至少有一个数据点。\n9. 生成词云图时，数据必须包含`text`和`value`字段，且至少有一个数据点。",
+      "few_shots_prompt": "### 示例1：\n任务描述：\"根据体检报告数据，生成一个雷达图来展示代谢五维和器官功能评分的综合评估。\"\n\n思考：我需要使用generate_radar_chart工具生成雷达图，因为这个任务需要展示多维度的综合评估。\n代码：\n<code>\nradar_chart_config = generate_radar_chart(data=[\n    {\"name\": \"代谢五维\", \"value\": 8},\n    {\"name\": \"器官功能评分\", \"value\": 7.5}\n])\nprint(radar_chart_config)\n</code>\n# 系统返回 Observation: {\"chart_type\": \"radar\", \"data\": [{\"name\": \"代谢五维\", \"value\": 8}, {\"name\": \"器官功能评分\", \"value\": 7.5}], \"style\": {\"lineWidth\": 2}, \"width\": 600, \"height\": 400, \"title\": \"代谢五维和器官功能评分综合评估\"}\n\n思考：我已经获得了雷达图配置，现在我将生成最终回答。\n根据体检报告数据，生成的雷达图配置如下：\n{\"chart_type\": \"radar\", \"data\": [{\"name\": \"代谢五维\", \"value\": 8}, {\"name\": \"器官功能评分\", \"value\": 7.5}], \"style\": {\"lineWidth\": 2}, \"width\": 600, \"height\": 400, \"title\": \"代谢五维和器官功能评分综合评估\"}\n\n---\n\n### 示例2：\n任务描述：\"根据体检报告数据，生成一个柱状图来展示血脂和肝功能单项的数值与参考范围对比。\"\n\n思考：我需要使用generate_column_chart工具生成柱状图，因为这个任务需要展示数值与参考范围的对比。\n代码：\n<code>\ncolumn_chart_config = generate_column_chart(data=[\n    {\"category\": \"血脂\", \"value\": 120},\n    {\"category\": \"肝功能单项\", \"value\": 80}\n])\nprint(column_chart_config)\n</code>\n# 系统返回 Observation: {\"chart_type\": \"column\", \"data\": [{\"category\": \"血脂\", \"value\": 120}, {\"category\": \"肝功能单项\", \"value\": 80}], \"style\": {\"palette\": [\"#1f77b4\", \"#ff7f0e\"]}, \"width\": 600, \"height\": 400, \"title\": \"血脂和肝功能单项数值与参考范围对比\"}\n\n思考：我已经获得了柱状图配置，现在我将生成最终回答。\n根据体检报告数据，生成的柱状图配置如下：\n{\"chart_type\": \"column\", \"data\": [{\"category\": \"血脂\", \"value\": 120}, {\"category\": \"肝功能单项\", \"value\": 80}], \"style\": {\"palette\": [\"#1f77b4\", \"#ff7f0e\"]}, \"width\": 600, \"height\": 400, \"title\": \"血脂和肝功能单项数值与参考范围对比\"}\n\n---\n\n### 示例3：\n任务描述：\"根据体检报告数据，生成一个鱼骨图来展示异常指标的原因拆解。\"\n\n思考：我需要使用generate_fishbone_diagram工具生成鱼骨图，因为这个任务需要展示异常指标的原因拆解。\n代码：\n<code>\nfishbone_chart_config = generate_fishbone_diagram(data={\n    \"name\": \"异常指标原因\",\n    \"children\": [\n        {\"name\": \"饮食因素\", \"children\": [{\"name\": \"高脂饮食\"}, {\"name\": \"高糖饮食\"}]},\n        {\"name\": \"生活习惯\", \"children\": [{\"name\": \"缺乏运动\"}, {\"name\": \"熬夜\"}]}\n    ]\n})\nprint(fishbone_chart_config)\n</code>\n# 系统返回 Observation: {\"chart_type\": \"fishbone\", \"data\": {\"name\": \"异常指标原因\", \"children\": [{\"name\": \"饮食因素\", \"children\": [{\"name\": \"高脂饮食\"}, {\"name\": \"高糖饮食\"}]}, {\"name\": \"生活习惯\", \"children\": [{\"name\": \"缺乏运动\"}, {\"name\": \"熬夜\"}]}]}, \"width\": 600, \"height\": 400, \"title\": \"异常指标原因拆解\"}\n\n思考：我已经获得了鱼骨图配置，现在我将生成最终回答。\n根据体检报告数据，生成的鱼骨图配置如下：\n{\"chart_type\": \"fishbone\", \"data\": {\"name\": \"异常指标原因\", \"children\": [{\"name\": \"饮食因素\", \"children\": [{\"name\": \"高脂饮食\"}, {\"name\": \"高糖饮食\"}]}, {\"name\": \"生活习惯\", \"children\": [{\"name\": \"缺乏运动\"}, {\"name\": \"熬夜\"}]}]}, \"width\": 600, \"height\": 400, \"title\": \"异常指标原因拆解\"}\n\n---\n\n### 示例4：\n任务描述：\"根据体检报告数据，生成一个液态图来展示肾功能保留度。\"\n\n思考：我需要使用generate_liquid_chart工具生成液态图，因为这个任务需要展示单值的百分比化。\n代码：\n<code>\nliquid_chart_config = generate_liquid_chart(percent=0.85, shape=\"circle\")\nprint(liquid_chart_config)\n</code>\n# 系统返回 Observation: {\"chart_type\": \"liquid\", \"percent\": 0.85, \"shape\": \"circle\", \"style\": {\"color\": \"#1f77b4\"}, \"width\": 600, \"height\": 400, \"title\": \"肾功能保留度\"}\n\n思考：我已经获得了液态图配置，现在我将生成最终回答。\n根据体检报告数据，生成的液态图配置如下：\n{\"chart_type\": \"liquid\", \"percent\": 0.85, \"shape\": \"circle\", \"style\": {\"color\": \"#1f77b4\"}, \"width\": 600, \"height\": 400, \"title\": \"肾功能保留度\"}\n\n---\n\n### 示例5：\n任务描述：\"根据体检报告数据，生成一个箱线图来展示患者值与人群分布对比。\"\n\n思考：我需要使用generate_boxplot_chart工具生成箱线图，因为这个任务需要展示患者值与人群分布对比。\n代码：\n<code>\nboxplot_chart_config = generate_boxplot_chart(data=[\n    {\"category\": \"患者值\", \"value\": 120},\n    {\"category\": \"人群分布\", \"value\": 100},\n    {\"category\": \"人群分布\", \"value\": 110},\n    {\"category\": \"人群分布\", \"value\": 90}\n])\nprint(boxplot_chart_config)\n</code>\n# 系统返回 Observation: {\"chart_type\": \"boxplot\", \"data\": [{\"category\": \"患者值\", \"value\": 120}, {\"category\": \"人群分布\", \"value\": 100}, {\"category\": \"人群分布\", \"value\": 110}, {\"category\": \"人群分布\", \"value\": 90}], \"style\": {\"palette\": [\"#1f77b4\", \"#ff7f0e\"]}, \"width\": 600, \"height\": 400, \"title\": \"患者值与人群分布对比\"}\n\n思考：我已经获得了箱线图配置，现在我将生成最终回答。\n根据体检报告数据，生成的箱线图配置如下：\n{\"chart_type\": \"boxplot\", \"data\": [{\"category\": \"患者值\", \"value\": 120}, {\"category\": \"人群分布\", \"value\": 100}, {\"category\": \"人群分布\", \"value\": 110}, {\"category\": \"人群分布\", \"value\": 90}], \"style\": {\"palette\": [\"#1f77b4\", \"#ff7f0e\"]}, \"width\": 600, \"height\": 400, \"title\": \"患者值与人群分布对比\"}",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "generate_boxplot_chart",
+          "name": "generate_boxplot_chart",
+          "description": "Generate a boxplot chart to show data for statistical summaries among different categories, such as, comparing the distribution of data points across categories.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string', 'description': \"Category of the data point, such as '分类一'.\"}, 'value': {'type': 'number', 'description': 'Value of the data point, such as 10.'}, 'group': {'type': 'string', 'description': 'Optional group for the data point, used for grouping in the boxplot.'}}, 'required': ['category', 'value']}, 'minItems': 1, 'description': \"Data for boxplot chart, such as, [{ category: '分类一', value: 10 }] or [{ category: '分类二', value: 20, group: '组别一' }].\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}, 'axisXTitle': {'type': 'string', 'default': '', 'description': 'Set the x-axis title of chart.'}, 'axisYTitle': {'type': 'string', 'default': '', 'description': 'Set the y-axis title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_bar_chart",
+          "name": "generate_bar_chart",
+          "description": "Generate a horizontal bar chart to show data for numerical comparisons among different categories, such as, comparing categorical data and for horizontal comparisons.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string'}, 'value': {'type': 'number'}, 'group': {'type': 'string'}}, 'required': ['category', 'value']}, 'minItems': 1, 'description': \"Data for bar chart, such as, [{ category: '分类一', value: 10 }, { category: '分类二', value: 20 }], when grouping or stacking is needed for bar, the data should contain a `group` field, such as, when [{ category: '北京', value: 825, group: '油车' }, { category: '北京', value: 1000, group: '电车' }].\"}, 'group': {'type': 'boolean', 'default': False, 'description': \"Whether grouping is enabled. When enabled, bar charts require a 'group' field in the data. When `group` is true, `stack` should be false.\"}, 'stack': {'type': 'boolean', 'default': True, 'description': \"Whether stacking is enabled. When enabled, bar charts require a 'group' field in the data. When `stack` is true, `group` should be false.\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}, 'axisXTitle': {'type': 'string', 'default': '', 'description': 'Set the x-axis title of chart.'}, 'axisYTitle': {'type': 'string', 'default': '', 'description': 'Set the y-axis title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_sankey_chart",
+          "name": "generate_sankey_chart",
+          "description": "Generate a sankey chart to visualize the flow of data between different stages or categories, such as, the user journey from landing on a page to completing a purchase.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'source': {'type': 'string'}, 'target': {'type': 'string'}, 'value': {'type': 'number'}}, 'required': ['source', 'target', 'value']}, 'minItems': 1, 'description': \"Date for sankey chart, such as, [{ source: 'Landing Page', target: 'Product Page', value: 50000 }, { source: 'Product Page', target: 'Add to Cart', value: 35000 }, { source: 'Add to Cart', target: 'Checkout', value: 25000 }, { source: 'Checkout', target: 'Payment', value: 15000 }, { source: 'Payment', target: 'Purchase Completed', value: 8000 }].\"}, 'nodeAlign': {'type': 'string', 'enum': ['left', 'right', 'justify', 'center'], 'default': 'center', 'description': \"Alignment of nodes in the sankey chart, such as, 'left', 'right', 'justify', or 'center'.\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_word_cloud_chart",
+          "name": "generate_word_cloud_chart",
+          "description": "Generate a word cloud chart to show word frequency or weight through text size variation, such as, analyzing common words in social media, reviews, or feedback.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'text': {'type': 'string'}, 'value': {'type': 'number'}}, 'required': ['text', 'value']}, 'minItems': 1, 'description': \"Data for word cloud chart, it should be an array of objects, each object contains a `text` field and a `value` field, such as, [{ value: 4.272, text: '形成' }].\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_line_chart",
+          "name": "generate_line_chart",
+          "description": "Generate a line chart to show trends over time, such as, the ratio of Apple computer sales to Apple's profits changed from 2000 to 2016.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'time': {'type': 'string'}, 'value': {'type': 'number'}, 'group': {'type': 'string'}}, 'required': ['time', 'value']}, 'minItems': 1, 'description': \"Data for line chart, it should be an array of objects, each object contains a `time` field and a `value` field, such as, [{ time: '2015', value: 23 }, { time: '2016', value: 32 }].\"}, 'style': {'type': 'object', 'properties': {'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}, 'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'lineWidth': {'type': 'number', 'description': 'Line width for the lines of chart, such as 4.'}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}, 'axisXTitle': {'type': 'string', 'default': '', 'description': 'Set the x-axis title of chart.'}, 'axisYTitle': {'type': 'string', 'default': '', 'description': 'Set the y-axis title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_radar_chart",
+          "name": "generate_radar_chart",
+          "description": "Generate a radar chart to display multidimensional data (four dimensions or more), such as, evaluate Huawei and Apple phones in terms of five dimensions: ease of use, functionality, camera, benchmark scores, and battery life.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'name': {'type': 'string'}, 'value': {'type': 'number'}, 'group': {'type': 'string'}}, 'required': ['name', 'value']}, 'minItems': 1, 'description': \"Data for radar chart, it should be an array of objects, each object contains a `name` field and a `value` field, such as, [{ name: 'Design', value: 70 }].\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}, 'lineWidth': {'type': 'number', 'description': 'Line width for the lines of chart, such as 4.'}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_liquid_chart",
+          "name": "generate_liquid_chart",
+          "description": "Generate a liquid chart to visualize a single value as a percentage, such as, the current occupancy rate of a reservoir or the completion percentage of a project.",
+          "inputs": "{'percent': {'type': 'number', 'minimum': 0, 'maximum': 1, 'description': 'The percentage value to display in the liquid chart, should be a number between 0 and 1, where 1 represents 100%. For example, 0.75 represents 75%.'}, 'shape': {'type': 'string', 'enum': ['circle', 'rect', 'pin', 'triangle'], 'default': 'circle', 'description': \"The shape of the liquid chart, can be 'circle', 'rect', 'pin', or 'triangle'. Default is 'circle'.\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}, 'color': {'type': 'string', 'description': 'Custom color for the liquid chart, if not specified, defaults to the theme color.'}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_pie_chart",
+          "name": "generate_pie_chart",
+          "description": "Generate a pie chart to show the proportion of parts, such as, market share and budget allocation.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string'}, 'value': {'type': 'number'}}, 'required': ['category', 'value']}, 'minItems': 1, 'description': \"Data for pie chart, it should be an array of objects, each object contains a `category` field and a `value` field, such as, [{ category: '分类一', value: 27 }].\"}, 'innerRadius': {'type': 'number', 'default': 0, 'description': 'Set the innerRadius of pie chart, the value between 0 and 1. Set the pie chart as a donut chart. Set the value to 0.6 or number in [0 ,1] to enable it.'}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_column_chart",
+          "name": "generate_column_chart",
+          "description": "Generate a column chart, which are best for comparing categorical data, such as, when values are close, column charts are preferable because our eyes are better at judging height than other visual elements like area or angles.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string'}, 'value': {'type': 'number'}, 'group': {'type': 'string'}}, 'required': ['category', 'value']}, 'minItems': 1, 'description': \"Data for column chart, such as, [{ category: '分类一', value: 10 }, { category: '分类二', value: 20 }], when grouping or stacking is needed for column, the data should contain a `group` field, such as, when [{ category: '北京', value: 825, group: '油车' }, { category: '北京', value: 1000, group: '电车' }].\"}, 'group': {'type': 'boolean', 'default': True, 'description': \"Whether grouping is enabled. When enabled, column charts require a 'group' field in the data. When `group` is true, `stack` should be false.\"}, 'stack': {'type': 'boolean', 'default': False, 'description': \"Whether stacking is enabled. When enabled, column charts require a 'group' field in the data. When `stack` is true, `group` should be false.\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}, 'axisXTitle': {'type': 'string', 'default': '', 'description': 'Set the x-axis title of chart.'}, 'axisYTitle': {'type': 'string', 'default': '', 'description': 'Set the y-axis title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_fishbone_diagram",
+          "name": "generate_fishbone_diagram",
+          "description": "Generate a fishbone diagram chart to uses a fish skeleton, like structure to display the causes or effects of a core problem, with the problem as the fish head and the causes/effects as the fish bones. It suits problems that can be split into multiple related factors.",
+          "inputs": "{'data': {'type': 'object', 'properties': {'name': {'type': 'string'}, 'children': {'type': 'array', 'items': {'type': 'object', 'properties': {'name': {'type': 'string'}, 'children': {'type': 'array', 'items': {'type': 'object', 'properties': {'name': {'type': 'string'}, 'children': {'type': 'array', 'items': {'type': 'object', 'properties': {'name': {'type': 'string'}}, 'required': ['name']}}}, 'required': ['name']}}}, 'required': ['name']}}}, 'required': ['name'], 'description': \"Data for fishbone diagram chart which is a hierarchical structure, such as, { name: 'main topic', children: [{ name: 'topic 1', children: [{ name: 'subtopic 1-1' }] }] }, and the maximum depth is 3.\"}, 'style': {'type': 'object', 'properties': {'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 7466,
+      "model_name": "deepseek-ai/DeepSeek-V4-Flash",
+      "business_logic_model_id": 211,
+      "business_logic_model_name": "Qwen2.5-32B-Instruct",
+      "skill_names": [],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default"
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "vis",
+      "mcp_url": "https://mcp.api-inference.modelscope.net/02d25af142d74b/sse"
+    }
+  ]
+}
