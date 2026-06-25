@@ -1,0 +1,111 @@
+{
+  "agent_id": 2992,
+  "agent_info": {
+    "2992": {
+      "agent_id": 2992,
+      "tenant_id": "36984215-00ab-49cd-b3bb-7984e8e81fff",
+      "name": "portfolio_analysis_assistant",
+      "display_name": "【金融】持仓分析助手",
+      "description": "你是一个投资持仓分析助手，具备提取持仓明细、计算收益与风险指标以及生成可视化图表的能力。你可以根据用户的持仓数据生成资产配置与行业分布饼图，并联网检索重大事件以提供风险预警。",
+      "business_description": "用户上传：基金/股票账户持仓截图（或手动输入/授权读取）\n\n识别智能体：提取持有产品名称、份额、成本、当前市值\n\n分析智能体：\n\n计算持仓集中度（前3大仓位占比）\n\n生成资产配置饼图（股票型/债券型/混合型/货币型占比）\n\n生成行业分布饼图（是否过度集中在某一行业）\n\n计算最大回撤、年化收益（持有期）\n\n联网检索：检查是否有重大事件（如基金经理离职、产品清盘风险）",
+      "author": "837833609@qq.com",
+      "max_steps": 10,
+      "provide_run_summary": false,
+      "verification_config": null,
+      "duty_prompt": "你是一个智能持仓分析助手，专门负责为用户提供全面的投资组合诊断与风险评估。你具备持仓数据提取、量化指标计算、可视化图表生成及实时资讯检索能力。你能够解析用户的投资持仓信息，计算收益与风险指标，直观展示资产与行业分布，并结合市场重大事件提供深度的持仓分析报告。",
+      "constraint_prompt": "1. 必须使用 `generate_pie_chart` 工具生成“资产配置饼图”和“行业分布饼图”，严禁使用柱状图、条形图或雷达图来展示占比类数据。\n2. 必须使用 `exa_search` 工具检索持仓产品的重大事件，查询词必须包含具体的持有产品名称及风险事件关键词（如“基金经理离职”、“清盘”等），禁止搜索与用户持仓无关的内容。\n3. 在调用 `generate_pie_chart` 时，输入的数据必须严格基于分析计算得出的资产配置比例或行业分布比例，确保图表展示的数据准确无误。\n4. 除非有明确的对比展示需求且饼图无法表达，否则禁止随意调用 `generate_bar_chart`、`generate_column_chart` 和 `generate_radar_chart` 工具。\n5. 涉及持仓集中度、最大回撤、年化收益等纯数值计算任务时，应通过自身逻辑计算完成，不得调用图表工具或搜索工具进行数值计算。",
+      "few_shots_prompt": "任务1：\"我目前持有招商中证白酒指数基金5万元，易方达稳健收益债券基金3万元，天弘余额宝货币基金2万元，请帮我生成资产配置饼图。\"\n\n思考：用户提供了持仓信息，我需要根据基金类型分类并生成资产配置饼图。招商中证白酒属于股票型，易方达稳健收益属于债券型，天弘余额宝属于货币型。我将调用generate_pie_chart工具生成饼图。\n代码：\n<code>\nchart_result = generate_pie_chart(data=[{\"category\": \"股票型\", \"value\": 50000}, {\"category\": \"债券型\", \"value\": 30000}, {\"category\": \"货币型\", \"value\": 20000}], title=\"资产配置饼图\")\nprint(chart_result)\n</code>\n# 系统返回 Observation: 饼图已生成：https://example.com/asset_allocation.png\n\n思考：我已经生成了资产配置饼图，现在我将生成最终回答。\n您的资产配置饼图已生成。其中股票型占比50%，债券型占比30%，货币型占比20%。\n\n---\n\n任务2：\"我的持仓包括：腾讯控股10万，贵州茅台15万，中国平安5万，招商银行10万。请帮我生成行业分布饼图，看看是否过度集中。\"\n\n思考：用户提供了持仓股票，我需要根据股票所属行业分类并生成行业分布饼图。腾讯属于互联网科技，贵州茅台属于消费白酒，中国平安和招商银行属于金融。我将调用generate_pie_chart工具生成行业分布饼图。\n代码：\n<code>\nchart_result = generate_pie_chart(data=[{\"category\": \"互联网科技\", \"value\": 100000}, {\"category\": \"消费白酒\", \"value\": 150000}, {\"category\": \"金融\", \"value\": 150000}], title=\"行业分布饼图\")\nprint(chart_result)\n</code>\n# 系统返回 Observation: 饼图已生成：https://example.com/industry_distribution.png\n\n思考：我已经生成了行业分布饼图，现在我将生成最终回答。\n您的行业分布饼图已生成。从饼图可以看出，您的持仓主要集中在消费白酒和金融行业，占比各为37.5%，互联网科技占比25%，存在一定的行业集中度风险。\n\n---\n\n任务3：\"我的持仓市值分别是：A基金20万，B基金15万，C基金10万，D基金5万。帮我计算前3大仓位占比，并用柱状图展示。\"\n\n思考：总市值为50万，前3大仓位分别为A、B、C，占比分别为40%、30%、20%，合计90%。我将调用generate_column_chart工具生成柱状图展示前3大仓位的占比。\n代码：\n<code>\nchart_result = generate_column_chart(data=[{\"category\": \"A基金\", \"value\": 40}, {\"category\": \"B基金\", \"value\": 30}, {\"category\": \"C基金\", \"value\": 20}], title=\"前3大仓位占比(%)\", axisYTitle=\"占比(%)\")\nprint(chart_result)\n</code>\n# 系统返回 Observation: 柱状图已生成：https://example.com/top3_position.png\n\n思考：我已经生成了前3大仓位占比的柱状图，现在我将生成最终回答。\n您的前3大仓位占比已计算完成，A基金占比40%，B基金占比30%，C基金占比20%，合计占比90%，持仓集中度较高。柱状图已为您生成。\n\n---\n\n任务4：\"我重仓了中欧医疗健康混合基金，帮我查查最近有没有什么重大事件，比如基金经理离职或者清盘风险？\"\n\n思考：我需要使用exa_search工具搜索中欧医疗健康混合基金近期的重大事件。\n代码：\n<code>\nsearch_result = exa_search(query=\"中欧医疗健康混合基金 基金经理离职 清盘风险 重大事件\")\nprint(search_result)\n</code>\n# 系统返回 Observation: 近期中欧医疗健康混合基金无基金经理离职或清盘风险等重大事件，基金经理仍为葛兰，运作正常。\n\n思考：我已经获取了该基金的重大事件信息，现在我将生成最终回答。\n根据联网搜索结果，中欧医疗健康混合基金近期没有基金经理离职或清盘风险等重大事件，目前运作正常。\n\n---\n\n任务5：\"我持有诺安成长混合10万，富国天惠成长混合5万，景顺长城新兴成长混合5万。请帮我分析资产配置，并查一下诺安成长混合最近有没有风险事件。\"\n\n思考：首先，这三只基金都属于混合型，我将调用generate_pie_chart生成资产配置饼图。\n代码：\n<code>\nchart_result = generate_pie_chart(data=[{\"category\": \"混合型\", \"value\": 200000}], title=\"资产配置饼图\")\nprint(chart_result)\n</code>\n# 系统返回 Observation: 饼图已生成：https://example.com/mixed_allocation.png\n\n思考：资产配置饼图已生成，显示全部为混合型基金。接下来我需要使用exa_search查询诺安成长混合的风险事件。\n代码：\n<code>\nsearch_result = exa_search(query=\"诺安成长混合 风险事件 基金经理离职 清盘\")\nprint(search_result)\n</code>\n# 系统返回 Observation: 近期诺安成长混合无清盘风险，但基金经理蔡嵩松离职传闻引发关注，需注意波动风险。\n\n思考：我已经获取了风险事件信息，现在我将生成最终回答。\n根据分析，您的资产配置全部为混合型基金，缺乏债券型和货币型资产，配置较为激进。另外，根据联网搜索，诺安成长混合近期有基金经理离职传闻，需注意短期波动风险。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "generate_pie_chart",
+          "name": "generate_pie_chart",
+          "description": "Generate a pie chart to show the proportion of parts, such as, market share and budget allocation.",
+          "inputs": "{'data': {'minItems': 1, 'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string'}, 'value': {'type': 'number'}}, 'required': ['category', 'value']}, 'description': \"Data for pie chart, it should be an array of objects, each object contains a `category` field and a `value` field, such as, [{ category: '分类一', value: 27 }].\"}, 'innerRadius': {'default': 0, 'description': 'Set the innerRadius of pie chart, the value between 0 and 1. Set the pie chart as a donut chart. Set the value to 0.6 or number in [0 ,1] to enable it.', 'type': 'number'}, 'style': {'description': 'Style configuration for the chart with a JSON object, optional.', 'type': 'object', 'properties': {'backgroundColor': {'description': \"Background color of the chart, such as, '#fff'.\", 'type': 'string'}, 'palette': {'description': 'Color palette for the chart, it is a collection of colors.', 'type': 'array', 'items': {'type': 'string'}}, 'texture': {'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\", 'type': 'string', 'enum': ['default', 'rough']}}}, 'theme': {'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\", 'type': 'string', 'enum': ['default', 'academy', 'dark']}, 'width': {'default': 600, 'description': 'Set the width of chart, default is 600.', 'type': 'number'}, 'height': {'default': 400, 'description': 'Set the height of chart, default is 400.', 'type': 'number'}, 'title': {'default': '', 'description': 'Set the title of chart.', 'type': 'string'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "chart",
+          "metadata": null
+        },
+        {
+          "class_name": "AnalyzeImageTool",
+          "name": "analyze_image",
+          "description": "This tool uses the configured image understanding model to understand images based on your query and then returns a description of the image.\nIt is used to understand and analyze multiple images, with image sources supporting S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs.\nUse this tool when you want to retrieve information contained in an image and provide the image's URL and your query.",
+          "inputs": "{\"image_urls_list\": {\"type\": \"array\", \"description\": \"List of image URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"列表形式输入图片 URL（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {},
+          "source": "local",
+          "usage": null,
+          "metadata": {}
+        },
+        {
+          "class_name": "generate_bar_chart",
+          "name": "generate_bar_chart",
+          "description": "Generate a horizontal bar chart to show data for numerical comparisons among different categories, such as, comparing categorical data and for horizontal comparisons.",
+          "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string'}, 'value': {'type': 'number'}, 'group': {'type': 'string'}}, 'required': ['category', 'value']}, 'minItems': 1, 'description': \"Data for bar chart, such as, [{ category: '分类一', value: 10 }, { category: '分类二', value: 20 }], when grouping or stacking is needed for bar, the data should contain a `group` field, such as, when [{ category: '北京', value: 825, group: '油车' }, { category: '北京', value: 1000, group: '电车' }].\"}, 'group': {'type': 'boolean', 'default': False, 'description': \"Whether grouping is enabled. When enabled, bar charts require a 'group' field in the data. When `group` is true, `stack` should be false.\"}, 'stack': {'type': 'boolean', 'default': True, 'description': \"Whether stacking is enabled. When enabled, bar charts require a 'group' field in the data. When `stack` is true, `group` should be false.\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Custom style configuration for the chart.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}, 'axisXTitle': {'type': 'string', 'default': '', 'description': 'Set the x-axis title of chart.'}, 'axisYTitle': {'type': 'string', 'default': '', 'description': 'Set the y-axis title of chart.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "vis",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_radar_chart",
+          "name": "generate_radar_chart",
+          "description": "Generate a radar chart to display multidimensional data (four dimensions or more), such as, evaluate Huawei and Apple phones in terms of five dimensions: ease of use, functionality, camera, benchmark scores, and battery life.",
+          "inputs": "{'data': {'minItems': 1, 'type': 'array', 'items': {'type': 'object', 'properties': {'name': {'type': 'string'}, 'value': {'type': 'number'}, 'group': {'type': 'string'}}, 'required': ['name', 'value']}, 'description': \"Data for radar chart, it should be an array of objects, each object contains a `name` field and a `value` field, such as, [{ name: 'Design', value: 70 }], when the data is grouped by `group`, the `group` field is required, such as, [{ name: 'Design', value: 70, group: 'Huawei' }].\"}, 'style': {'description': 'Style configuration for the chart with a JSON object, optional.', 'type': 'object', 'properties': {'backgroundColor': {'description': \"Background color of the chart, such as, '#fff'.\", 'type': 'string'}, 'palette': {'description': 'Color palette for the chart, it is a collection of colors.', 'type': 'array', 'items': {'type': 'string'}}, 'texture': {'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\", 'type': 'string', 'enum': ['default', 'rough']}, 'lineWidth': {'description': 'Line width for the lines of chart, such as 4.', 'type': 'number'}}}, 'theme': {'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\", 'type': 'string', 'enum': ['default', 'academy', 'dark']}, 'width': {'default': 600, 'description': 'Set the width of chart, default is 600.', 'type': 'number'}, 'height': {'default': 400, 'description': 'Set the height of chart, default is 400.', 'type': 'number'}, 'title': {'default': '', 'description': 'Set the title of chart.', 'type': 'string'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "chart",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_column_chart",
+          "name": "generate_column_chart",
+          "description": "Generate a column chart, which are best for comparing categorical data, such as, when values are close, column charts are preferable because our eyes are better at judging height than other visual elements like area or angles.",
+          "inputs": "{'data': {'minItems': 1, 'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string'}, 'value': {'type': 'number'}, 'group': {'type': 'string'}}, 'required': ['category', 'value']}, 'description': \"Data for column chart, such as, [{ category: 'Category A', value: 10 }, { category: 'Category B', value: 20 }], when grouping or stacking is needed for column, the data should contain a 'group' field, such as, [{ category: 'Beijing', value: 825, group: 'Gas Car' }, { category: 'Beijing', value: 1000, group: 'Electric Car' }].\"}, 'group': {'default': True, 'description': \"Whether grouping is enabled. When enabled, column charts require a 'group' field in the data. When `group` is true, `stack` should be false.\", 'type': 'boolean'}, 'stack': {'default': False, 'description': \"Whether stacking is enabled. When enabled, column charts require a 'group' field in the data. When `stack` is true, `group` should be false.\", 'type': 'boolean'}, 'style': {'description': 'Style configuration for the chart with a JSON object, optional.', 'type': 'object', 'properties': {'backgroundColor': {'description': \"Background color of the chart, such as, '#fff'.\", 'type': 'string'}, 'palette': {'description': 'Color palette for the chart, it is a collection of colors.', 'type': 'array', 'items': {'type': 'string'}}, 'texture': {'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\", 'type': 'string', 'enum': ['default', 'rough']}}}, 'theme': {'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\", 'type': 'string', 'enum': ['default', 'academy', 'dark']}, 'width': {'default': 600, 'description': 'Set the width of chart, default is 600.', 'type': 'number'}, 'height': {'default': 400, 'description': 'Set the height of chart, default is 400.', 'type': 'number'}, 'title': {'default': '', 'description': 'Set the title of chart.', 'type': 'string'}, 'axisXTitle': {'default': '', 'description': 'Set the x-axis title of chart.', 'type': 'string'}, 'axisYTitle': {'default': '', 'description': 'Set the y-axis title of chart.', 'type': 'string'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "chart",
+          "metadata": null
+        },
+        {
+          "class_name": "ExaSearchTool",
+          "name": "exa_search",
+          "description": "Performs a internet search based on your query (think a Google search) then returns the top search results. A tool for retrieving publicly available information, news, general knowledge, or non-proprietary data from the internet. Use this for real-time open-domain updates, broad topics, or or general knowledge queries",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}}",
+          "output_type": "string",
+          "params": {
+            "exa_api_key": "7bfe0786-3911-47b2-8ed3-9ad4baeb322c",
+            "max_results": 3,
+            "image_filter": true
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 7533,
+      "model_name": "glm-5.1",
+      "business_logic_model_id": 0,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default"
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "vis",
+      "mcp_url": "https://mcp.api-inference.modelscope.net/02d25af142d74b/sse"
+    },
+    {
+      "mcp_server_name": "chart",
+      "mcp_url": "https://mcp.api-inference.modelscope.net/7b5431c3d3aa45/mcp"
+    }
+  ]
+}
