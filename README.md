@@ -121,16 +121,16 @@ my-agent/
 2. 按目录结构放置智能体文件：
    ```
    AgentsHub/
-   ├── General/
-   │   ├── research_and_analysis/
+   ├── 通用智能体/
+   │   ├── 研究与分析/
    │   │   └── my-research-agent/
-   │   ├── coding_and_development/
+   │   ├──开发与编程/
    │   │   └── my-dev-agent/
    │   └── ...
-   └── Industry/
-       ├── medical/
-       ├── finance/
-       └── government/
+   └── 行业智能体/
+       ├── 医疗/
+       ├──金融/
+       └── 政务/
    ```
 3. 确保 `agent.json` 完整、目录结构正确
 4. 如有自定义依赖，确保 `skills/` 或 `mcps/` 目录齐全
