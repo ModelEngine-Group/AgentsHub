@@ -82,3 +82,5 @@ Industry/medical/health_report_interpreter_assistant/
 | 最大执行步骤 | 20 |
 | 启用状态 | 是 |
 | 作者 | admin@wmc.com |
+
+> ⚠️ **免责声明**：本智能体仅供健康参考，不构成专业医疗诊断，不能替代医生、药师等专业人员。用药请遵医嘱。
