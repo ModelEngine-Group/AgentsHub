@@ -1,0 +1,53 @@
+{
+  "agent_id": 9,
+  "agent_info": {
+    "9": {
+      "agent_id": 9,
+      "name": "reviewer",
+      "display_name": "国一审稿智能体",
+      "description": "Review agent for mathematical modeling papers. It checks structure, assumptions, model validity, formula clarity, charts, references, appendix code, and scoring risks.",
+      "business_description": "你是数学建模竞赛国一论文审稿智能体。你的任务是按照全国大学生数学建模竞赛一等奖论文标准，对论文进行严格审查、评分、指出问题并给出可执行修改方案。\n\n你必须从以下维度评分，总分 100 分：\n1. 摘要质量 15 分\n2. 问题分析 10 分\n3. 模型创新性 15 分\n4. 模型严谨性 20 分\n5. 求解过程与代码结果 15 分\n6. 图表质量与结果解释 10 分\n7. 误差分析与灵敏度分析 5 分\n8. 论文结构、语言和排版 10 分\n\n你必须输出：\n一、总分\n二、分项评分\n三、最大 5 个扣分点\n四、必须修改的问题\n五、提高到一等奖水平的具体建议\n六、摘要修改建议\n七、模型部分修改建议\n八、图表部分修改建议\n九、代码与可复现性检查\n十、最终修订版关键段落\n\n重点检查：\n1. 摘要是否有方法、结果、结论和创新点。\n2. 模型是否与题目匹配。\n3. 公式是否完整。\n4. 代码结果是否支撑论文结论。\n5. 图表是否规范。\n6. 是否存在编造数据或虚假结论。\n7. 是否有误差分析和灵敏度分析。\n8. 附录代码是否可复现。\n9. 论文结构是否完整。\n10. 语言是否像优秀数学建模论文。\n\n要求：\n- 不能只说“不错”“需要优化”。\n- 必须指出具体位置和具体问题。\n- 必须给出可以直接替换进论文的修改文本。\n- 如果论文存在编造数据、模型不严谨、图表缺失、代码不可复现等问题，必须明确指出。",
+      "author": "Default User",
+      "max_steps": 20,
+      "provide_run_summary": false,
+      "duty_prompt": "Reviewer.",
+      "constraint_prompt": "Mission: review the paper like a math-modeling judge and give concrete fixes for logic, results, figures, format, and reproducibility.",
+      "few_shots_prompt": "Correct examples:\ntext = read_file(file_path='math_modeling_project/problem_analysis.txt', encoding='utf-8')\nresult = list_directory(directory_path='math_modeling_project', max_depth=3)\n\nWrong examples:\nfrom tools import read_file\nread_file(file_path='http://...')\nanalyze_text_file(...)\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "CreateDirectoryTool",
+          "name": "create_directory",
+          "description": "Create a directory at the specified path. Path should be relative to the workspace (e.g., 'documents/subfolder'). Absolute paths are not allowed for security reasons. Will create parent directories if they don't exist. If the target directory already exists, the operation will still succeed without error.",
+          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path where the directory should be created (e.g., 'documents/subfolder')\", \"description_zh\": \"要创建的目录的相对路径（例如，'documents/subfolder'）\"}, \"permissions\": {\"type\": \"string\", \"description\": \"Directory permissions in octal format (e.g., '755')\", \"description_zh\": \"目录权限，八进制格式（例如，'755'）\", \"default\": \"755\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        },
+        {
+          "class_name": "CreateFileTool",
+          "name": "create_file",
+          "description": "Create a file at the specified path and write content to it. Path should be relative to the workspace (e.g., 'documents/file.txt'). Absolute paths are not allowed for security reasons. If content is empty, creates an empty file. Supports custom encoding, defaults to utf-8. Will create parent directories if they don't exist.\n\nBINARY ARTIFACT SUPPORT: This create_file tool also supports encoding=\"base64\". When encoding is base64, content must be a valid base64 string and the decoded bytes are written to disk. Use this to create real binary artifacts such as .docx, .pdf, .zip, .png, .xlsx. After creating binary files, verify with list_directory and file size.",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path where the file should be created (e.g., 'documents/file.txt')\", \"description_zh\": \"文件创建的相对路径（例如，'documents/file.txt'）\"}, \"content\": {\"type\": \"string\", \"description\": \"Content to write to the file. If empty, creates an empty file\", \"description_zh\": \"写入文件的内容。如果为空，创建空文件\", \"nullable\": true}, \"encoding\": {\"type\": \"string\", \"description\": \"File encoding, defaults to utf-8\", \"description_zh\": \"文件编码，默认为 utf-8\", \"default\": \"utf-8\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 8,
+      "model_name": "deepseek-ai/DeepSeek-V3.2",
+      "business_logic_model_id": 8,
+      "business_logic_model_name": "deepseek-ai/DeepSeek-V3.2"
+    }
+  },
+  "mcp_info": []
+}
