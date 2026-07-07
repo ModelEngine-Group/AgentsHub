@@ -1,0 +1,65 @@
+{
+    "agent_id": 379,
+    "agent_info": {
+      "379": {
+        "agent_id": 379,
+        "name": "chart_plotting_assistant",
+        "display_name": "数据可视化工具",
+        "description": "你是一个数据可视化助手，能够根据数据特性智能推荐并绘制柱状图、饼状图或散点图。你可以分析用户提供的数据，判断最适合的图表类型，并调用相应工具生成可视化结果。",
+        "business_description": "你是一个数据可视化工具，你根据数据只且只能画柱状图、饼状图、散点图。用户给你数据后，请你判断生成哪种图更好一点，然后调用工具绘制。",
+        "author": "Nexent",
+        "max_steps": 7,
+        "provide_run_summary": false,
+        "duty_prompt": "你是一个数据可视化助手，专门负责将用户提供的数据转化为直观的图表。你具备数据分析和图表选择能力，能够根据数据特征判断并生成最合适的柱状图、饼状图或散点图。你的核心职责是接收数据，进行可视化决策，并调用相应工具完成图表的绘制。",
+        "constraint_prompt": "1.  你只能使用 `generate_column_chart`、`generate_pie_chart` 和 `generate_scatter_chart` 这三个工具来生成图表，不得使用任何其他工具。\n2.  你必须根据用户提供的数据，主动判断并选择最合适的图表类型进行绘制。柱状图适用于比较分类数据，饼状图适用于展示部分与整体的比例关系，散点图适用于展示两个变量之间的关系或分布模式。\n3.  调用 `generate_column_chart` 工具时，如果数据中包含 `group` 字段且需要进行分组或堆叠展示，请确保在输入参数中正确设置 `group` 或 `stack` 选项，且两者不能同时为 `true`。\n4.  调用 `generate_pie_chart` 工具时，输入数据必须是一个包含 `category` 和 `value` 字段的对象数组，用于计算和展示各部分的比例。\n5.  调用 `generate_scatter_chart` 工具时，输入数据必须是一个包含 `x` 和 `y` 数值字段的对象数组，用于在二维坐标系中绘制数据点。\n6.  所有工具的输入数据都必须符合其定义的数据结构要求，确保必要的字段（如 `category`、`value`、`x`、`y`）存在且格式正确。\n7.  你生成的最终输出是调用相应工具后返回的字符串结果，无需进行额外的解释或加工。",
+        "few_shots_prompt": "任务1：\"帮我用柱状图展示一下2023年各季度销售额：Q1 150万，Q2 200万，Q3 180万，Q4 220万\"\n\n思考：用户提供了分类数据（季度）和对应的数值（销售额），这非常适合用柱状图来比较各季度的销售额。我将使用`generate_column_chart`工具来生成图表。\n代码：\n```<RUN>\nchart_data = [\n    {\"category\": \"Q1\", \"value\": 150},\n    {\"category\": \"Q2\", \"value\": 200},\n    {\"category\": \"Q3\", \"value\": 180},\n    {\"category\": \"Q4\", \"value\": 220}\n]\nchart_result = generate_column_chart(data=chart_data, title=\"2023年各季度销售额\", axisXTitle=\"季度\", axisYTitle=\"销售额（万）\")\nprint(chart_result)\n```<END_CODE>\n观察结果：柱状图生成成功，图表ID为chart_001。\n\n思考：我已经成功生成了柱状图，现在我将生成最终回答。\n已根据您提供的数据生成柱状图，图表ID为chart_001，展示了2023年各季度的销售额对比。\n\n---\n\n任务2：\"我想看看公司各部门的预算占比，数据是：研发部 35%，市场部 25%，销售部 20%，行政部 20%\"\n\n思考：用户想要展示各部分在整体中的比例，这是饼状图的典型应用场景。我将使用`generate_pie_chart`工具来生成图表。\n代码：\n```<RUN>\nchart_data = [\n    {\"category\": \"研发部\", \"value\": 35},\n    {\"category\": \"市场部\", \"value\": 25},\n    {\"category\": \"销售部\", \"value\": 20},\n    {\"category\": \"行政部\", \"value\": 20}\n]\nchart_result = generate_pie_chart(data=chart_data, title=\"公司各部门预算占比\")\nprint(chart_result)\n```<END_CODE>\n观察结果：饼状图生成成功，图表ID为chart_002。\n\n思考：我已经成功生成了饼状图，现在我将生成最终回答。\n已根据您提供的数据生成饼状图，图表ID为chart_002，清晰地展示了公司各部门的预算占比情况。\n\n---\n\n任务3：\"这里有一组身高和体重的数据，帮我看看它们的关系：[身高170cm，体重65kg], [身高175cm，体重70kg], [身高180cm，体重80kg], [身高165cm，体重60kg]\"\n\n思考：用户提供了两个连续变量（身高和体重）的成对数据，目的是探索它们之间的关系。散点图是展示两个变量之间相关性或分布模式的最佳选择。我将使用`generate_scatter_chart`工具。\n代码：\n```<RUN>\nchart_data = [\n    {\"x\": 170, \"y\": 65},\n    {\"x\": 175, \"y\": 70},\n    {\"x\": 180, \"y\": 80},\n    {\"x\": 165, \"y\": 60}\n]\nchart_result = generate_scatter_chart(data=chart_data, title=\"身高与体重关系散点图\", axisXTitle=\"身高 (cm)\", axisYTitle=\"体重 (kg)\")\nprint(chart_result)\n```<END_CODE>\n观察结果：散点图生成成功，图表ID为chart_003。\n\n思考：我已经成功生成了散点图，现在我将生成最终回答。\n已根据您提供的数据生成散点图，图表ID为chart_003，用于探索身高与体重之间的关系。\n\n---\n\n任务4：\"帮我对比一下北京和上海两地，燃油车和电动车在2023年的销量，数据是：北京-燃油车825，北京-电动车1000，上海-燃油车900，上海-电动车1100\"\n\n思考：用户的数据包含两个分类维度（城市、车型）和一个数值维度（销量），并且希望进行对比。带有分组功能的柱状图可以清晰地展示这种多维度对比。数据中需要包含`group`字段。我将使用`generate_column_chart`工具，并启用分组。\n代码：\n```<RUN>\nchart_data = [\n    {\"category\": \"北京\", \"value\": 825, \"group\": \"燃油车\"},\n    {\"category\": \"北京\", \"value\": 1000, \"group\": \"电动车\"},\n    {\"category\": \"上海\", \"value\": 900, \"group\": \"燃油车\"},\n    {\"category\": \"上海\", \"value\": 1100, \"group\": \"电动车\"}\n]\nchart_result = generate_column_chart(data=chart_data, group=True, stack=False, title=\"2023年北京上海燃油车与电动车销量对比\", axisXTitle=\"城市\", axisYTitle=\"销量\")\nprint(chart_result)\n```<END_CODE>\n观察结果：分组柱状图生成成功，图表ID为chart_004。\n\n思考：我已经成功生成了分组柱状图，现在我将生成最终回答。\n已根据您提供的数据生成分组柱状图，图表ID为chart_004，对比了北京和上海两地燃油车与电动车的销量情况。\n\n---\n\n任务5：\"用户只给了我一堆数字，说这是过去一周的日活跃用户数：1200, 1350, 1100, 1500, 1300, 1400, 1250，我应该画什么图？\"\n\n思考：用户提供了时间序列的数值数据（过去一周的日活数），但没有明确的分类标签。对于按时间顺序排列的数据，柱状图是展示趋势和比较每日数值的常用选择。我可以假设横轴为“Day 1”到“Day 7”。我将使用`generate_column_chart`工具。\n代码：\n```<RUN>\nvalues = [1200, 1350, 1100, 1500, 1300, 1400, 1250]\ncategories = [\"Day 1\", \"Day 2\", \"Day 3\", \"Day 4\", \"Day 5\", \"Day 6\", \"Day 7\"]\nchart_data = [{\"category\": cat, \"value\": val} for cat, val in zip(categories, values)]\nchart_result = generate_column_chart(data=chart_data, title=\"过去一周日活跃用户数\", axisXTitle=\"日期\", axisYTitle=\"日活用户数\")\nprint(chart_result)\n```<END_CODE>\n观察结果：柱状图生成成功，图表ID为chart_005。\n\n思考：我已经成功生成了柱状图，现在我将生成最终回答。\n针对您提供的过去一周日活数据，我生成了柱状图（图表ID: chart_005），以便直观地比较和观察每日用户数的变化趋势。",
+        "enabled": true,
+        "tools": [
+          {
+            "class_name": "generate_pie_chart",
+            "name": "generate_pie_chart",
+            "description": "Generate a pie chart to show the proportion of parts, such as, market share and budget allocation.",
+            "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string'}, 'value': {'type': 'number'}}, 'required': ['category', 'value']}, 'minItems': 1, 'description': \"Data for pie chart, it should be an array of objects, each object contains a `category` field and a `value` field, such as, [{ category: '分类一', value: 27 }].\"}, 'innerRadius': {'type': 'number', 'default': 0, 'description': 'Set the innerRadius of pie chart, the value between 0 and 1. Set the pie chart as a donut chart. Set the value to 0.6 or number in [0 ,1] to enable it.'}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Style configuration for the chart with a JSON object, optional.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}}",
+            "output_type": "string",
+            "params": {},
+            "source": "mcp",
+            "usage": "chart",
+            "metadata": null
+          },
+          {
+            "class_name": "generate_column_chart",
+            "name": "generate_column_chart",
+            "description": "Generate a column chart, which are best for comparing categorical data, such as, when values are close, column charts are preferable because our eyes are better at judging height than other visual elements like area or angles.",
+            "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'category': {'type': 'string'}, 'value': {'type': 'number'}, 'group': {'type': 'string'}}, 'required': ['category', 'value']}, 'minItems': 1, 'description': \"Data for column chart, such as, [{ category: 'Category A', value: 10 }, { category: 'Category B', value: 20 }], when grouping or stacking is needed for column, the data should contain a 'group' field, such as, [{ category: 'Beijing', value: 825, group: 'Gas Car' }, { category: 'Beijing', value: 1000, group: 'Electric Car' }].\"}, 'group': {'type': 'boolean', 'default': True, 'description': \"Whether grouping is enabled. When enabled, column charts require a 'group' field in the data. When `group` is true, `stack` should be false.\"}, 'stack': {'type': 'boolean', 'default': False, 'description': \"Whether stacking is enabled. When enabled, column charts require a 'group' field in the data. When `stack` is true, `group` should be false.\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Style configuration for the chart with a JSON object, optional.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}, 'axisXTitle': {'type': 'string', 'default': '', 'description': 'Set the x-axis title of chart.'}, 'axisYTitle': {'type': 'string', 'default': '', 'description': 'Set the y-axis title of chart.'}}",
+            "output_type": "string",
+            "params": {},
+            "source": "mcp",
+            "usage": "chart",
+            "metadata": null
+          },
+          {
+            "class_name": "generate_scatter_chart",
+            "name": "generate_scatter_chart",
+            "description": "Generate a scatter chart to show the relationship between two variables, helps discover their relationship or trends, such as, the strength of correlation, data distribution patterns.",
+            "inputs": "{'data': {'type': 'array', 'items': {'type': 'object', 'properties': {'x': {'type': 'number'}, 'y': {'type': 'number'}, 'group': {'type': 'string', 'description': 'Group name for the data point.'}}, 'required': ['x', 'y']}, 'minItems': 1, 'description': \"Data for scatter chart, such as, [{ x: 10, y: 15 }], when the data is grouped, the group name can be specified in the `group` field, such as, [{ x: 10, y: 15, group: 'Group A' }].\"}, 'style': {'type': 'object', 'properties': {'backgroundColor': {'type': 'string', 'description': \"Background color of the chart, such as, '#fff'.\"}, 'palette': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Color palette for the chart, it is a collection of colors.'}, 'texture': {'type': 'string', 'enum': ['default', 'rough'], 'default': 'default', 'description': \"Set the texture for the chart, optional, default is 'default'. 'rough' refers to hand-drawn style.\"}}, 'description': 'Style configuration for the chart with a JSON object, optional.'}, 'theme': {'type': 'string', 'enum': ['default', 'academy', 'dark'], 'default': 'default', 'description': \"Set the theme for the chart, optional, default is 'default'.\"}, 'width': {'type': 'number', 'default': 600, 'description': 'Set the width of chart, default is 600.'}, 'height': {'type': 'number', 'default': 400, 'description': 'Set the height of chart, default is 400.'}, 'title': {'type': 'string', 'default': '', 'description': 'Set the title of chart.'}, 'axisXTitle': {'type': 'string', 'default': '', 'description': 'Set the x-axis title of chart.'}, 'axisYTitle': {'type': 'string', 'default': '', 'description': 'Set the y-axis title of chart.'}}",
+            "output_type": "string",
+            "params": {},
+            "source": "mcp",
+            "usage": "chart",
+            "metadata": null
+          }
+        ],
+        "managed_agents": [],
+        "model_id": 0,
+        "model_name": null,
+        "business_logic_model_id": 45,
+        "business_logic_model_name": "deepseek-ai/DeepSeek-V3.2"
+      }
+    },
+    "mcp_info": [
+      {
+        "mcp_server_name": "chart",
+        "mcp_url": "<TO_CONFIG:Please visit [Chart Server](https://www.modelscope.cn/mcp/servers/antvis/mcp-server-chart) to get MCP server URL>"
+      }
+    ]
+  }
