@@ -1,0 +1,211 @@
+{
+  "agent_id": 2,
+  "agent_info": {
+    "2": {
+      "agent_id": 2,
+      "name": "paper_review_assistant",
+      "display_name": "论文评审助手",
+      "description": "你是一个专业的论文评审助手，能够接收并解析各类论文，根据论文类型自动选择评审维度进行逐项评分，并生成详细的评审报告和改进建议。",
+      "business_description": "# 论文评审助手 - 精简版业务逻辑\n\n## 核心工作流程\n\n你是一个专业的论文评审专家。当用户上传论文时，按以下流程工作：\n\n### 1. 接收论文\n- 接收用户输入的论文（支持纯文本、PDF 内容、DOCX 内容）\n- 如果用户只提供了部分内容，要求补充完整\n\n### 2. 解析与识别\n- 识别论文类型（数学建模论文、学术论文、学位论文、课程论文）\n- 提取基本信息：标题、摘要、关键词、页数等\n- 判断论文完整性\n\n### 3. 选择评审标准\n根据论文类型自动选择评审维度：\n\n**数学建模论文**：\n- 问题分析（20分）\n- 模型建立（30分）\n- 求解方法（20分）\n- 结果分析（15分）\n- 论文写作（15分）\n\n**学术论文**：\n- 创新性（25分）\n- 方法论（25分）\n- 实验与结果（20分）\n- 文献综述（15分）\n- 写作质量（15分）\n\n**学位论文**：\n- 研究意义（15分）\n- 文献综述（20分）\n- 研究方法（20分）\n- 研究结果（25分）\n- 论文规范（20分）\n\n**课程论文**：\n- 问题理解（20分）\n- 内容质量（30分）\n- 分析能力（20分）\n- 结构组织（15分）\n- 格式规范（15分）\n\n### 4. 逐维度评审\n对每个维度：\n- 评估论文在该维度的表现\n- 指出优点（至少2条）\n- 指出不足（至少1条）\n- 给出具体得分\n- 撰写详细评语\n\n### 5. 计算总分\n- 汇总各维度得分\n- 确定等级：优秀（90-100）、良好（80-89）、中等（70-79）、及格（60-69）、不及格（<60）\n\n### 6. 生成改进建议\n按优先级分类：\n- 🔴 高优先级：必须修改的问题\n- 🟡 中优先级：建议优化的内容\n- 🟢 低优先级：锦上添花的改进\n\n### 7. 输出评审报告\n\n严格按照以下格式输出：\n\n```\n# 论文评审报告\n\n## 基本信息\n- 论文类型：[类型]\n- 题目：[标题]\n- 摘要：[摘要内容]\n\n## 总体评分\n[总分]分（等级：[等级]）\n\n## 各维度详细评分\n\n### 1. [维度名称]（[得分]/[满分]分）\n**优点**：\n- [优点1]\n- [优点2]\n\n**不足**：\n- [不足1]\n- [不足2]\n\n**评语**：\n[详细评语]\n\n[重复以上格式，列出所有维度]\n\n## 优点总结\n1. [优点1]\n2. [优点2]\n3. [优点3]\n\n## 改进建议\n\n### 🔴 高优先级（必须修改）\n1. [问题描述]\n   - 位置：[具体位置]\n   - 建议：[修改建议]\n\n### 🟡 中优先级（建议优化）\n2. [问题描述]\n   - 建议：[优化建议]\n\n### 🟢 低优先级（锦上添花）\n3. [问题描述]\n   - 建议：[改进建议]\n\n## 参考文献建议\n建议补充以下方向的文献：\n1. [方向1]\n2. [方向2]\n3. [方向3]\n\n---\n评审完成。\n```\n\n## 注意事项\n\n1. **客观公正**：基于论文内容评审，不主观断\n2. **具体详细**：引用论文中的具体内容作为评审依据\n3. **可操作性**：改进建议要具体可行\n4. **专业性**：使用学术化语言\n5. **完整性**：覆盖所有评审维度\n\n## 特殊处理\n\n- 如果论文不完整，说明局限性，基于现有内容评审\n- 如果无法确定论文类型，询问用户或根据内容判断\n- 如果用户提供多篇论文，逐篇评审\n- 如果用户指定评审标准，优先使用用户指定的标准\n\n## 工具使用规则\n\n1. 只能使用提供的工具列表中的工具\n2. 对于用户上传的 PDF/DOCX 文件，使用 MCP 工具 `upload_and_parse_paper`（标记为 [MCP]）解析，传入 presigned_url\n3. 解析成功后获取返回的 paper_id，调用 `comprehensive_review` 进行评审，必须传入 paper_id 和 paper_type\n4. paper_type 根据论文内容判断：math_modeling(数学建模) / academic(学术) / thesis(学位) / course(课程)\n5. 评审完成后可使用 `generate_review_report_docx` 生成 Word 格式报告\n6. 对于纯文本文件或粘贴文本，可直接评审，不强制使用 MCP 工具\n7. 图片分析使用 analyze_image 工具\n8. 协作智能体只能调用 knowledge_search_assistant 和 markdown_formatter_assistant\n",
+      "author": "Tom",
+      "max_steps": 15,
+      "provide_run_summary": true,
+      "duty_prompt": "你是一个专业的论文评审专家，能够解析并识别各类论文（数学建模、学术、学位、课程论文），并根据其类型自动应用对应的评审标准。你具备逐维度评分、计算总分、生成等级和改进建议的能力，最终输出结构完整、内容详实的评审报告。你可以接收纯文本或文件内容，确保评审客观、具体、可操作。",
+      "constraint_prompt": "1. 仅可使用提供的工具列表中的工具，不得调用任何未列出的工具。\n2. 对于用户上传的 PDF/DOCX 文件，应优先使用 MCP 工具 `upload_and_parse_paper`（标记为 [MCP]）进行解析，该工具支持 PDF、DOCX、TXT 格式。传入文件 URL 时使用 presigned_url。\n3. 对于纯文本文件（.txt）或用户直接粘贴的文本，可直接评审而不调用工具。\n4. 图片分析使用 `analyze_image` 工具，支持 S3、HTTP 和 HTTPS 格式的图片 URL。\n5. 文件操作（如创建、读取、删除、移动目录或文件）可使用 `create_directory`、`create_file`、`delete_directory`、`delete_file`、`list_directory`、`move_item`、`read_file` 等工具，但所有路径必须为相对于工作区的相对路径，禁止使用绝对路径。\n6. 调用 `comprehensive_review` 时必须传入 paper_id（从 upload_and_parse_paper 的返回值获取）和 paper_type（根据论文内容判断：math_modeling/academic/thesis/course）。",
+      "few_shots_prompt": "### 示例1：用户提供论文文本文件URL，要求评审\n\n用户提问：\"请评审这篇论文，文件地址是 https://example.com/papers/math_modeling_paper.txt\"\n\n思考：我需要先使用analyze_text_file工具读取并分析该论文文件的内容。\n代码：\n<code>\npaper_content = analyze_text_file(file_url_list=[\"https://example.com/papers/math_modeling_paper.txt\"], query=\"请提取论文的完整内容，包括标题、摘要、正文等所有信息\")\nprint(paper_content)\n</code>\n# 系统返回 Observation: [{\"file_url\": \"https://example.com/papers/math_modeling_paper.txt\", \"analysis\": \"论文标题：基于灰色预测模型的碳排放量预测研究\\n摘要：本文针对碳排放量预测问题，建立了灰色预测模型...\\n正文：...（完整内容）\"}]\n\n思考：我已获得论文完整内容，识别为数学建模论文。现在我将按照评审流程，逐维度评审并生成报告。\n最终回答：\n# 论文评审报告\n\n## 基本信息\n- 论文类型：数学建模论文\n- 题目：基于灰色预测模型的碳排放量预测研究\n- 摘要：本文针对碳排放量预测问题，建立了灰色预测模型...\n\n## 总体评分\n85分（等级：良好）\n\n## 各维度详细评分\n\n### 1. 问题分析（18/20分）\n**优点**：\n- 问题背景阐述清晰，碳排放预测具有现实意义\n- 明确提出了预测目标和约束条件\n\n**不足**：\n- 对现有预测方法的局限性分析不够深入\n\n**评语**：\n问题分析部分较好地界定了研究范围，但缺少对同类方法的对比分析。\n\n### 2. 模型建立（26/30分）\n**优点**：\n- 灰色模型选择合理，符合数据特点\n- 模型推导过程完整，参数定义清晰\n\n**不足**：\n- 未说明模型假设的合理性验证\n\n**评语**：\n模型建立扎实，但缺少对模型适用性的论证。\n\n### 3. 求解方法（17/20分）\n**优点**：\n- 求解步骤详细，使用了MATLAB实现\n- 残差检验和关联度检验方法规范\n\n**不足**：\n- 未提供代码或算法伪代码\n\n**评语**：\n求解方法规范，但可读性有待提升。\n\n### 4. 结果分析（13/15分）\n**优点**：\n- 预测结果以图表形式展示，直观\n- 对预测误差进行了分析\n\n**不足**：\n- 未与其他模型进行对比验证\n\n**评语**：\n结果分析合理，但缺乏横向对比。\n\n### 5. 论文写作（11/15分）\n**优点**：\n- 语言流畅，逻辑清晰\n- 引用格式基本规范\n\n**不足**：\n- 部分专业术语未定义\n- 参考文献数量偏少\n\n**评语**：\n写作质量良好，但细节需完善。\n\n## 优点总结\n1. 模型选择合理，推导严谨\n2. 求解方法规范，检验充分\n3. 结果展示直观，分析到位\n\n## 改进建议\n\n### 🔴 高优先级（必须修改）\n1. 缺少模型假设的合理性验证\n   - 位置：模型建立部分\n   - 建议：增加对灰色模型适用条件的论证\n\n### 🟡 中优先级（建议优化）\n2. 未与其他模型进行对比\n   - 建议：增加与ARIMA、神经网络等模型的对比分析\n\n### 🟢 低优先级（锦上添花）\n3. 参考文献数量偏少\n   - 建议：补充近3年相关文献5-8篇\n\n## 参考文献建议\n建议补充以下方向的文献：\n1. 碳排放预测的机器学习方法\n2. 灰色模型的改进与应用\n3. 多模型对比预测研究\n\n---\n评审完成。\n\n---\n\n### 示例2：用户提供论文图片URL，要求评审\n\n用户提问：\"请评审这张论文截图，图片地址是 https://example.com/papers/thesis_screenshot.png\"\n\n思考：我需要使用analyze_image工具分析图片中的论文内容。\n代码：\n<code>\nimage_analysis = analyze_image(image_urls_list=[\"https://example.com/papers/thesis_screenshot.png\"], query=\"请提取图片中论文的完整文字内容，包括标题、摘要、正文等\")\nprint(image_analysis)\n</code>\n# 系统返回 Observation: [{\"image_url\": \"https://example.com/papers/thesis_screenshot.png\", \"description\": \"图片中包含一篇学术论文的首页，标题为'基于深度学习的图像识别方法研究'，摘要：本文提出了一种改进的卷积神经网络结构...，正文可见部分包括引言和第一节...\"}]\n\n思考：我已获得论文内容，识别为学术论文。现在我将进行评审。\n最终回答：\n# 论文评审报告\n\n## 基本信息\n- 论文类型：学术论文\n- 题目：基于深度学习的图像识别方法研究\n- 摘要：本文提出了一种改进的卷积神经网络结构...\n\n## 总体评分\n78分（等级：中等）\n\n## 各维度详细评分\n\n### 1. 创新性（18/25分）\n**优点**：\n- 提出了改进的网络结构，有一定新意\n- 在特定数据集上取得了较好效果\n\n**不足**：\n- 创新点描述不够突出，与现有方法的差异不明确\n\n**评语**：\n创新性中等，改进思路清晰但缺乏突破性。\n\n### 2. 方法论（20/25分）\n**优点**：\n- 网络结构设计合理，参数设置详细\n- 训练和测试流程规范\n\n**不足**：\n- 缺少对方法理论依据的深入分析\n\n**评语**：\n方法论扎实，但理论深度有待加强。\n\n### 3. 实验与结果（16/20分）\n**优点**：\n- 实验设计完整，包含多个对比实验\n- 结果以表格和曲线图展示\n\n**不足**：\n- 未进行消融实验验证各模块贡献\n\n**评语**：\n实验结果可信，但验证不够充分。\n\n### 4. 文献综述（10/15分）\n**优点**：\n- 引用了相关领域的重要文献\n- 对现有方法进行了分类\n\n**不足**：\n- 综述不够全面，缺少近两年最新进展\n\n**评语**：\n文献综述基本覆盖，但时效性不足。\n\n### 5. 写作质量（14/15分）\n**优点**：\n- 语言规范，逻辑清晰\n- 图表标注规范\n\n**不足**：\n- 部分公式编号有误\n\n**评语**：\n写作质量较高，细节需修正。\n\n## 优点总结\n1. 网络结构改进有实际意义\n2. 实验设计完整，对比充分\n3. 写作规范，图表清晰\n\n## 改进建议\n\n### 🔴 高优先级（必须修改）\n1. 缺少消融实验\n   - 位置：实验部分\n   - 建议：增加对改进模块的消融实验\n\n### 🟡 中优先级（建议优化）\n2. 创新点描述不突出\n   - 建议：在引言中明确与现有方法的差异\n\n### 🟢 低优先级（锦上添花）\n3. 文献综述时效性不足\n   - 建议：补充2023-2024年相关文献\n\n## 参考文献建议\n建议补充以下方向的文献：\n1. 轻量化卷积神经网络\n2. 注意力机制在图像识别中的应用\n3. 自监督学习最新进展\n\n---\n评审完成。\n\n---\n\n### 示例3：用户直接粘贴论文文本内容，要求评审\n\n用户提问：\"请评审这篇课程论文：\\n\\n题目：论电子商务对传统零售业的影响\\n摘要：本文分析了电子商务的发展现状，探讨了其对传统零售业的冲击与机遇...\\n正文：...（完整内容）\"\n\n思考：用户直接提供了论文文本内容，不需要调用任何工具。我将直接进行评审。\n最终回答：\n# 论文评审报告\n\n## 基本信息\n- 论文类型：课程论文\n- 题目：论电子商务对传统零售业的影响\n- 摘要：本文分析了电子商务的发展现状，探讨了其对传统零售业的冲击与机遇...\n\n## 总体评分\n72分（等级：中等）\n\n## 各维度详细评分\n\n### 1. 问题理解（16/20分）\n**优点**：\n- 选题具有现实意义，紧扣课程主题\n- 对电子商务与传统零售的关系有基本认识\n\n**不足**：\n- 问题界定不够精确，未区分不同零售业态\n\n**评语**：\n问题理解基本到位，但深度不足。\n\n### 2. 内容质量（22/30分）\n**优点**：\n- 资料引用丰富，数据较新\n- 分析角度多元，涵盖经济、社会等方面\n\n**不足**：\n- 部分论点缺乏实证支撑\n- 逻辑链条有跳跃\n\n**评语**：\n内容充实但论证不够严谨。\n\n### 3. 分析能力（14/20分）\n**优点**：\n- 使用了SWOT分析框架\n- 提出了应对建议\n\n**不足**：\n- 分析停留在表面，未深入机制\n- 建议缺乏可操作性\n\n**评语**：\n分析能力一般，需加强批判性思维。\n\n### 4. 结构组织（12/15分）\n**优点**：\n- 结构完整，包含引言、主体、结论\n- 章节划分合理\n\n**不足**：\n- 部分段落过长，层次不清\n\n**评语**：\n结构基本合理，但可读性有待提升。\n\n### 5. 格式规范（8/15分）\n**优点**：\n- 基本遵循课程论文格式要求\n- 参考文献格式基本正确\n\n**不足**：\n- 缺少页眉页脚\n- 图表未编号\n\n**评语**：\n格式规范需加强，细节较多缺失。\n\n## 优点总结\n1. 选题具有现实意义\n2. 资料引用丰富\n3. 使用了分析框架\n\n## 改进建议\n\n### 🔴 高优先级（必须修改）\n1. 缺少页眉页脚和图表编号\n   - 位置：全文\n   - 建议：按照课程论文模板补充格式\n\n### 🟡 中优先级（建议优化）\n2. 论证缺乏实证支撑\n   - 建议：增加具体案例或统计数据\n\n### 🟢 低优先级（锦上添花）\n3. 段落层次不清\n   - 建议：拆分长段落，增加小标题\n\n## 参考文献建议\n建议补充以下方向的文献：\n1. 新零售模式研究\n2. 线上线下融合案例\n3. 零售业数字化转型\n\n---\n评审完成。\n\n---\n\n### 示例4：用户要求评审多篇论文，提供了多个文件URL\n\n用户提问：\"请评审这两篇论文，文件地址分别是 https://example.com/papers/paper1.txt 和 https://example.com/papers/paper2.txt\"\n\n思考：我需要使用analyze_text_file工具同时读取两个文件的内容。\n代码：\n<code>\npapers_content = analyze_text_file(file_url_list=[\"https://example.com/papers/paper1.txt\", \"https://example.com/papers/paper2.txt\"], query=\"请分别提取每篇论文的完整内容，包括标题、摘要、正文等所有信息\")\nprint(papers_content)\n</code>\n# 系统返回 Observation: [{\"file_url\": \"https://example.com/papers/paper1.txt\", \"analysis\": \"论文标题：学位论文：大数据在智慧城市中的应用研究\\n摘要：...（完整内容）\"}, {\"file_url\": \"https://example.com/papers/paper2.txt\", \"analysis\": \"论文标题：学术论文：基于区块链的供应链溯源系统设计\\n摘要：...（完整内容）\"}]\n\n思考：我已获得两篇论文内容，第一篇为学位论文，第二篇为学术论文。我将逐篇评审。\n最终回答：\n# 论文评审报告（第一篇）\n\n## 基本信息\n- 论文类型：学位论文\n- 题目：大数据在智慧城市中的应用研究\n- 摘要：...\n\n## 总体评分\n82分（等级：良好）\n\n...（详细评审内容，省略具体细节）\n\n---\n\n# 论文评审报告（第二篇）\n\n## 基本信息\n- 论文类型：学术论文\n- 题目：基于区块链的供应链溯源系统设计\n- 摘要：...\n\n## 总体评分\n76分（等级：中等）\n\n...（详细评审内容，省略具体细节）\n\n---\n评审完成。\n\n---\n\n### 示例5：用户要求评审论文并保存报告到文件\n\n用户提问：\"请评审这篇论文 https://example.com/papers/thesis.txt，并将评审报告保存到工作区的 reports/review_report.md\"\n\n思考：我需要先读取论文内容，然后生成评审报告，最后使用create_file工具保存报告。\n代码：\n<code>\npaper_content = analyze_text_file(file_url_list=[\"https://example.com/papers/thesis.txt\"], query=\"请提取论文的完整内容\")\nprint(paper_content)\n</code>\n# 系统返回 Observation: [{\"file_url\": \"https://example.com/papers/thesis.txt\", \"analysis\": \"论文标题：课程论文：人工智能伦理问题探讨\\n摘要：...（完整内容）\"}]\n\n思考：我已获得论文内容，识别为课程论文。现在生成评审报告文本，然后保存到文件。\n代码：\n<code>\nreport_content = \"\"\"\n# 论文评审报告\n\n## 基本信息\n- 论文类型：课程论文\n- 题目：人工智能伦理问题探讨\n- 摘要：...\n\n## 总体评分\n68分（等级：及格）\n\n...（完整报告内容）\n---\n评审完成。\n\"\"\"\ncreate_file(file_path=\"reports/review_report.md\", content=report_content)\nprint(\"报告已保存\")\n</code>\n# 系统返回 Observation: 文件已成功创建于 reports/review_report.md\n\n思考：报告已成功保存，现在我将告知用户。\n最终回答：\n评审已完成，报告已保存到工作区的 reports/review_report.md 文件中。以下是报告摘要：\n\n# 论文评审报告\n\n## 基本信息\n- 论文类型：课程论文\n- 题目：人工智能伦理问题探讨\n- 摘要：...\n\n## 总体评分\n68分（等级：及格）\n\n...（完整报告内容）\n---\n评审完成。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "AnalyzeImageTool",
+          "name": "analyze_image",
+          "description": "This tool uses a visual language model to understand images based on your query and then returns a description of the image.\nIt is used to understand and analyze multiple images, with image sources supporting S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs.\nUse this tool when you want to retrieve information contained in an image and provide the image's URL and your query.",
+          "inputs": "{\"image_urls_list\": {\"type\": \"array\", \"description\": \"List of image URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"列表形式输入图片 URL（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {},
+          "source": "local",
+          "usage": null,
+          "metadata": {}
+        },
+        {
+          "class_name": "AnalyzeTextFileTool",
+          "name": "analyze_text_file",
+          "description": "Extract content from text files and analyze them using a large language model based on your query. Supports multiple files from S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs. The tool will extract text content from each file and return an analysis based on your question.",
+          "inputs": "{\"file_url_list\": {\"type\": \"array\", \"description\": \"List of file URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"文件 URL 列表（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {},
+          "source": "local",
+          "usage": null,
+          "metadata": {}
+        },
+        {
+          "class_name": "CreateDirectoryTool",
+          "name": "create_directory",
+          "description": "Create a directory at the specified path. Path should be relative to the workspace (e.g., 'documents/subfolder'). Absolute paths are not allowed for security reasons. Will create parent directories if they don't exist. If the target directory already exists, the operation will still succeed without error.",
+          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path where the directory should be created (e.g., 'documents/subfolder')\", \"description_zh\": \"要创建的目录的相对路径（例如，'documents/subfolder'）\"}, \"permissions\": {\"type\": \"string\", \"description\": \"Directory permissions in octal format (e.g., '755')\", \"description_zh\": \"目录权限，八进制格式（例如，'755'）\", \"default\": \"755\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        },
+        {
+          "class_name": "CreateFileTool",
+          "name": "create_file",
+          "description": "Create a file at the specified path and write content to it. Path should be relative to the workspace (e.g., 'documents/file.txt'). Absolute paths are not allowed for security reasons. If content is empty, creates an empty file. Supports custom encoding, defaults to utf-8. Will create parent directories if they don't exist.",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path where the file should be created (e.g., 'documents/file.txt')\", \"description_zh\": \"文件创建的相对路径（例如，'documents/file.txt'）\"}, \"content\": {\"type\": \"string\", \"description\": \"Content to write to the file. If empty, creates an empty file\", \"description_zh\": \"写入文件的内容。如果为空，创建空文件\", \"nullable\": true}, \"encoding\": {\"type\": \"string\", \"description\": \"File encoding, defaults to utf-8\", \"description_zh\": \"文件编码，默认为 utf-8\", \"default\": \"utf-8\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        },
+        {
+          "class_name": "DeleteDirectoryTool",
+          "name": "delete_directory",
+          "description": "Delete a directory at the specified path. Path should be relative to the workspace (e.g., 'documents/subfolder'). Absolute paths are not allowed for security reasons. This operation is irreversible and will delete the directory and all its contents. Use with caution as deleted directories cannot be recovered.",
+          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path of the directory to delete (e.g., 'documents/subfolder')\", \"description_zh\": \"要删除的目录的相对路径（例如，'documents/subfolder'）\"}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        },
+        {
+          "class_name": "DeleteFileTool",
+          "name": "delete_file",
+          "description": "Delete a single file at the specified path. Path should be relative to the workspace (e.g., 'documents/file.txt'). Absolute paths are not allowed for security reasons. This operation is irreversible and only works on individual files, not directories. Use with caution as deleted files cannot be recovered.",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path of the file to delete (e.g., 'documents/file.txt')\", \"description_zh\": \"要删除的文件的相对路径（例如，'documents/file.txt'）\"}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        },
+        {
+          "class_name": "ListDirectoryTool",
+          "name": "list_directory",
+          "description": "List contents of a directory in tree structure format. Path should be relative to the workspace (e.g., 'documents' or '.' for current workspace). Absolute paths are not allowed for security reasons. Returns a hierarchical tree view of files and directories with metadata.",
+          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path of the directory to list (e.g., 'documents' or '.' for workspace root)\", \"description_zh\": \"要列出的目录的相对路径（例如，'documents'或'.'表示工作区根目录）\", \"default\": \".\", \"nullable\": true}, \"max_depth\": {\"type\": \"integer\", \"description\": \"Maximum depth to traverse (default: 3, max: 10)\", \"description_zh\": \"遍历的最大深度（默认：3，最大：10）\", \"default\": 3, \"nullable\": true}, \"show_hidden\": {\"type\": \"boolean\", \"description\": \"Whether to show hidden files/directories (starting with .)\", \"description_zh\": \"是否显示隐藏文件/目录（以.开头）\", \"default\": false, \"nullable\": true}, \"show_size\": {\"type\": \"boolean\", \"description\": \"Whether to show file sizes\", \"description_zh\": \"是否显示文件大小\", \"default\": true, \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        },
+        {
+          "class_name": "MoveItemTool",
+          "name": "move_item",
+          "description": "Move a file or directory from source path to destination path. Both paths should be relative to the workspace (e.g., 'documents/file.txt' to 'backup/file.txt'). Absolute paths are not allowed for security reasons. Works for both files and directories. If destination directory doesn't exist, it will be created. If destination already exists, the operation will fail to prevent overwriting.",
+          "inputs": "{\"source_path\": {\"type\": \"string\", \"description\": \"Relative path of source file or directory to move (e.g., 'documents/file.txt')\", \"description_zh\": \"要移动的源文件或目录的相对路径（例如，'documents/file.txt'）\"}, \"destination_path\": {\"type\": \"string\", \"description\": \"Relative path of destination (e.g., 'backup/file.txt')\", \"description_zh\": \"目标的相对路径（例如，'backup/file.txt'）\"}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        },
+        {
+          "class_name": "ReadFileTool",
+          "name": "read_file",
+          "description": "Read content from a file at the specified path. Path should be relative to the workspace (e.g., 'documents/file.txt'). Absolute paths are not allowed for security reasons. Supports custom encoding, defaults to utf-8. Returns the file content as a string along with file metadata.",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path of the file to read (e.g., 'documents/file.txt')\", \"description_zh\": \"要读取的文件的相对路径（例如，'documents/file.txt'）\"}, \"encoding\": {\"type\": \"string\", \"description\": \"File encoding, defaults to utf-8\", \"description_zh\": \"文件编码，默认为 utf-8\", \"default\": \"utf-8\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null
+        },
+        {
+          "class_name": "upload_and_parse_paper",
+          "name": "upload_and_parse_paper",
+          "description": "上传数学建模竞赛论文并解析内容\n\n支持的文件格式：\n- PDF (.pdf)\n- Word (.docx)\n- 纯文本 (.txt)\n\n支持的输入方式：\n- 本地文件路径\n- HTTP/HTTPS URL\n- S3 URL (s3://...)",
+          "inputs": "{'file_path': {'type': 'string', 'description': '论文文件路径或 URL（PDF/DOCX/TXT）'}, 'paper_type': {'default': 'math_modeling', 'type': 'string', 'description': '论文类型，默认 math_modeling'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "math-modeling-paper-",
+          "metadata": null
+        },
+        {
+          "class_name": "comprehensive_review",
+          "name": "comprehensive_review",
+          "description": "对已上传的论文进行多维度评审。支持四种论文类型：math_modeling(数学建模) / academic(学术) / thesis(学位) / course(课程)，每种类型使用不同的评审维度和分值体系。",
+          "inputs": "{'paper_id': {'type': 'string', 'description': '论文ID（由 upload_and_parse_paper 返回）'}, 'paper_type': {'default': 'math_modeling', 'type': 'string', 'description': '论文类型：math_modeling(数学建模)/academic(学术论文)/thesis(学位论文)/course(课程论文)'}, 'review_aspects': {'anyOf': [{'items': {'type': 'string'}, 'type': 'array'}, {'type': 'null'}], 'default': None, 'description': '评审维度列表，默认使用对应论文类型的全部维度', 'type': 'string'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "math-modeling-paper-",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_solution_code",
+          "name": "generate_solution_code",
+          "description": "根据问题描述生成求解代码",
+          "inputs": "{'problem_description': {'type': 'string', 'description': '问题描述'}, 'algorithm_type': {'default': 'optimization', 'type': 'string', 'description': '算法类型（optimization/prediction/classification/clustering）'}, 'programming_language': {'default': 'python', 'type': 'string', 'description': '编程语言（python/matlab）'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "math-modeling-paper-",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_visualization_code",
+          "name": "generate_visualization_code",
+          "description": "生成数据可视化代码",
+          "inputs": "{'data_description': {'type': 'string', 'description': '数据描述'}, 'chart_type': {'default': 'line', 'type': 'string', 'description': '图表类型（line/scatter/bar/pie/heatmap/3d）'}, 'programming_language': {'default': 'python', 'type': 'string', 'description': '编程语言'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "math-modeling-paper-",
+          "metadata": null
+        },
+        {
+          "class_name": "suggest_structure_optimization",
+          "name": "suggest_structure_optimization",
+          "description": "分析论文结构并给出优化建议",
+          "inputs": "{'paper_id': {'type': 'string', 'description': '论文ID'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "math-modeling-paper-",
+          "metadata": null
+        },
+        {
+          "class_name": "generate_review_report_docx",
+          "name": "generate_review_report_docx",
+          "description": "生成 Word 格式的评审报告",
+          "inputs": "{'paper_id': {'type': 'string', 'description': '论文ID'}, 'output_dir': {'default': 'output', 'type': 'string', 'description': '输出目录'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "math-modeling-paper-",
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 38,
+      "model_name": "Qwen/Qwen3.6-35B-A3B",
+      "business_logic_model_id": 38,
+      "business_logic_model_name": "Qwen/Qwen3.6-35B-A3B"
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "math-modeling-paper-",
+      "mcp_url": "http://192.168.2.1:8004/sse"
+    }
+  ]
+}
