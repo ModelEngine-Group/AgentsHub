@@ -1,0 +1,132 @@
+{
+    "agent_id":  1,
+    "agent_info":  {
+                       "1":  {
+                                 "agent_id":  1,
+                                 "tenant_id":  "fad315ca-eb0d-4a38-a5e1-cabe13a4d57a",
+                                 "name":  "medgraph_insight_agent",
+                                 "display_name":  "MedGraph Insight Agent",
+                                 "description":  "离线优先的医疗数据处理、知识图谱问答与图谱分析智能体。",
+                                 "business_description":  "将医疗样例数据转换为带证据的知识图谱，并提供图谱查询、医疗知识问答、统计分析、性能报告和质量审计。",
+                                 "author":  "李佳斌（OS战队）",
+                                 "max_steps":  12,
+                                 "requested_output_tokens":  null,
+                                 "is_main_agent":  true,
+                                 "provide_run_summary":  true,
+                                 "verification_config":  null,
+                                 "context_policy":  null,
+                                 "duty_prompt":  "你是 MedGraph Insight Agent，负责把医疗数据转化为可核验的知识图谱和分析结果。你应根据用户任务选择数据处理、图谱查询、证据问答、统计分析或质量审计工具，并以结构化、可追溯的方式汇报结果。",
+                                 "constraint_prompt":  "1. 涉及数据处理时必须先调用 run_pipeline，不得声称处理了未实际读取的数据。\n2. 医疗知识回答必须调用 answer_medical_question，并明确列出图谱证据；证据不足时如实说明。\n3. 统计问题使用 run_analysis，不得编造 SQL 结果、图表数据或性能指标。\n4. 质量结论必须来自 get_quality_report；硬件性能和可用性必须来自 get_benchmark。\n5. 本智能体仅用于数据处理、技术研究和演示，不提供诊断、处方或治疗决策；医疗相关输出必须提示由专业人员复核。\n6. 不上传输入数据，不索取患者身份信息、账号、密码或访问令牌。",
+                                 "few_shots_prompt":  "任务1：处理医疗样例并检查质量。\n思考：先调用 run_pipeline，再调用 get_quality_report，最后汇报图谱规模和门禁结果。\n\n任务2：高血压有哪些症状和治疗证据？\n思考：调用 answer_medical_question，只依据返回的 evidence 回答，并附医疗安全提示。\n\n任务3：统计关系类型分布。\n思考：调用 run_analysis，将返回的 rows 整理为表格或图表数据，不补写不存在的数值。",
+                                 "enabled":  true,
+                                 "tools":  [
+                                               {
+                                                   "class_name":  "run_pipeline",
+                                                   "name":  "run_pipeline",
+                                                   "description":  "Clean medical records and build the evidence-linked knowledge graph.",
+                                                   "inputs":  "{\u0027task\u0027: {\u0027default\u0027: \u0027构建医疗数据知识图谱\u0027, \u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}, \u0027source\u0027: {\u0027default\u0027: \u0027\u0027, \u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}, \u0027output_dir\u0027: {\u0027default\u0027: \u0027\u0027, \u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}}",
+                                                   "output_type":  "string",
+                                                   "params":  {
+
+                                                              },
+                                                   "source":  "mcp",
+                                                   "usage":  "MedGraphInsight",
+                                                   "metadata":  null,
+                                                   "labels":  null
+                                               },
+                                               {
+                                                   "class_name":  "query_graph",
+                                                   "name":  "query_graph",
+                                                   "description":  "Return the latest graph and its entity and relation statistics.",
+                                                   "inputs":  "{\u0027output_dir\u0027: {\u0027default\u0027: \u0027\u0027, \u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}}",
+                                                   "output_type":  "string",
+                                                   "params":  {
+
+                                                              },
+                                                   "source":  "mcp",
+                                                   "usage":  "MedGraphInsight",
+                                                   "metadata":  null,
+                                                   "labels":  null
+                                               },
+                                               {
+                                                   "class_name":  "answer_medical_question",
+                                                   "name":  "answer_medical_question",
+                                                   "description":  "Answer a medical knowledge question using graph evidence; not for diagnosis.",
+                                                   "inputs":  "{\u0027question\u0027: {\u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}, \u0027output_dir\u0027: {\u0027default\u0027: \u0027\u0027, \u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}}",
+                                                   "output_type":  "string",
+                                                   "params":  {
+
+                                                              },
+                                                   "source":  "mcp",
+                                                   "usage":  "MedGraphInsight",
+                                                   "metadata":  null,
+                                                   "labels":  null
+                                               },
+                                               {
+                                                   "class_name":  "run_analysis",
+                                                   "name":  "run_analysis",
+                                                   "description":  "Run NL2SQL-style graph analysis and return chart-ready rows.",
+                                                   "inputs":  "{\u0027question\u0027: {\u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}, \u0027output_dir\u0027: {\u0027default\u0027: \u0027\u0027, \u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}}",
+                                                   "output_type":  "string",
+                                                   "params":  {
+
+                                                              },
+                                                   "source":  "mcp",
+                                                   "usage":  "MedGraphInsight",
+                                                   "metadata":  null,
+                                                   "labels":  null
+                                               },
+                                               {
+                                                   "class_name":  "get_benchmark",
+                                                   "name":  "get_benchmark",
+                                                   "description":  "Report measured CPU performance and CUDA or Ascend NPU availability.",
+                                                   "inputs":  "{\u0027source\u0027: {\u0027default\u0027: \u0027\u0027, \u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}, \u0027repeat\u0027: {\u0027default\u0027: 20, \u0027type\u0027: \u0027integer\u0027, \u0027description\u0027: \u0027see tool description\u0027}}",
+                                                   "output_type":  "string",
+                                                   "params":  {
+
+                                                              },
+                                                   "source":  "mcp",
+                                                   "usage":  "MedGraphInsight",
+                                                   "metadata":  null,
+                                                   "labels":  null
+                                               },
+                                               {
+                                                   "class_name":  "get_quality_report",
+                                                   "name":  "get_quality_report",
+                                                   "description":  "Audit schema validity, evidence coverage and graph integrity.",
+                                                   "inputs":  "{\u0027output_dir\u0027: {\u0027default\u0027: \u0027\u0027, \u0027type\u0027: \u0027string\u0027, \u0027description\u0027: \u0027see tool description\u0027}}",
+                                                   "output_type":  "string",
+                                                   "params":  {
+
+                                                              },
+                                                   "source":  "mcp",
+                                                   "usage":  "MedGraphInsight",
+                                                   "metadata":  null,
+                                                   "labels":  null
+                                               }
+                                           ],
+                                 "managed_agents":  [
+
+                                                    ],
+                                 "model_ids":  [
+
+                                               ],
+                                 "model_names":  [
+
+                                                 ],
+                                 "business_logic_model_id":  null,
+                                 "business_logic_model_name":  null,
+                                 "skill_names":  [
+
+                                                 ],
+                                 "prompt_template_id":  0,
+                                 "prompt_template_name":  "system_default"
+                             }
+                   },
+    "mcp_info":  [
+                     {
+                         "mcp_server_name":  "MedGraphInsight",
+                         "mcp_url":  "http://host.docker.internal:8100/sse"
+                     }
+                 ]
+}

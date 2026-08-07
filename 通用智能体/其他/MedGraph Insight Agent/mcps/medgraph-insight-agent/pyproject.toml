@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medgraph-insight-agent"
+version = "1.0.0"
+description = "Offline-first MCP service for medical data processing, knowledge graph QA, and graph-driven analysis."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "Li Jiabin", email = "lijabin@whu.edu.cn" },
+  { name = "Li Jiahe" },
+  { name = "Yao Shuwen" },
+]
+keywords = ["ModelEngine", "Nexent", "DataMate", "knowledge-graph", "medical-agent", "BI"]
+dependencies = [
+  "fastapi==0.138.1",
+  "fastmcp==3.4.6",
+  "uvicorn[standard]==0.49.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx==0.28.1",
+  "pytest==9.1.1"
+]
+
+[project.scripts]
+medgraph = "medgraph_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+medgraph_agent = ["web/static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "-q"
+filterwarnings = [
+  "ignore:Using `httpx` with `starlette.testclient` is deprecated"
+]

@@ -1,0 +1,33 @@
+{
+  "name": "medgraph_insight_pipeline",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Li Jiabin; Li Jiahe; Yao Shuwen",
+  "description": "DataMate-compatible custom operator for medical data cleaning, entity extraction, relation extraction, triple validation, and graph artifact export.",
+  "entrypoint": "medgraph_agent.integrations.datamate_adapter:run_datamate_operator",
+  "inputs": {
+    "source": {
+      "type": "string",
+      "required": true,
+      "description": "Path to JSONL, CSV, TXT, or directory input."
+    },
+    "task": {
+      "type": "string",
+      "required": false,
+      "description": "Natural-language data processing task."
+    },
+    "output_dir": {
+      "type": "string",
+      "required": false,
+      "default": "outputs/datamate"
+    }
+  },
+  "outputs": {
+    "run": "Pipeline run metadata and operator status.",
+    "graph": "Knowledge graph JSON with entities and relations.",
+    "sqlite": "SQLite database used by NL2SQL and BI analysis.",
+    "quality": "Graph quality audit with schema, evidence, alias, and false-triple checks."
+  },
+  "entity_types": ["disease", "symptom", "drug", "test", "treatment", "department", "risk_factor"],
+  "relation_types": ["has_symptom", "treated_by", "diagnosed_by", "complicates", "contraindicated_with", "belongs_to_department", "has_risk_factor"]
+}
