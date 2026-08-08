@@ -1,0 +1,34 @@
+.git
+.github
+.env
+.venv
+.venv-neural
+venv
+env
+__pycache__
+**/__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+.coverage
+htmlcov
+
+# Runtime data and results are bind-mounted by compose.yaml.
+data
+outputs
+
+# Large or platform-specific artifacts are not required by MCP/A2A images.
+finetune/outputs
+NPU
+datamate_ops/dist
+演示视频录制与截图
+
+# Local/transient files.
+*.log
+*.tmp
+*.bak
+dist
+.idea
+.vscode
+.DS_Store
+Thumbs.db

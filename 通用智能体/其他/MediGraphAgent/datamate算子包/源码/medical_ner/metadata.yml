@@ -1,0 +1,68 @@
+name: '医学实体识别'
+description: 'DataMate 轻量自包含版医学实体识别：基于 OpenAI 兼容 LLM 抽取疾病、症状、药物、检查、标志物、基因等实体，并输出版本与 DataMate_LLM 路由。神经 GPLinker 主力路径由 Nexent/MCP 提供。'
+language: 'python'
+vendor: 'custom'
+raw_id: 'MedicalNER'
+version: '2.0.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'annotation'
+release:
+  - '2.0.0：同步 MediGraph 2.0；输出 operator_version/backend/routing，明确与 Nexent/MCP neural GPLinker 主力路径的分工'
+  - '1.1.0：支持上游医疗文本切块，逐块抽取并合并去重'
+  - '1.0.1：为下游关系抽取保留原始文本；API 异常不再静默产空结果'
+  - '首次发布'
+  - '支持 OpenAI 兼容 API（硅基流动/百炼/本地vLLM），本体约束抽取'
+metrics:
+  - name: '内存使用'
+    metric: '< 128 MB'
+  - name: '单块处理延时'
+    metric: '约 1-3 s/块（取决于API）'
+  - name: '网页端路线'
+    metric: 'DataMate_LLM；神经 L1 指标由 Nexent MCP inspect_extraction_models 展示'
+runtime:
+  memory: 134217728
+  cpu: 0.2
+  gpu: 0
+  npu: 0
+settings:
+  apiBase:
+    name: 'API Base URL'
+    description: 'OpenAI 兼容的 API 地址，例如 https://api.siliconflow.cn/v1'
+    type: 'input'
+    defaultVal: 'https://api.siliconflow.cn/v1'
+    required: true
+  apiKey:
+    name: 'API Key'
+    description: 'LLM 服务访问密钥'
+    type: 'input'
+    defaultVal: ''
+    required: true
+  model:
+    name: '模型名称'
+    description: '调用的模型名，如 Qwen/Qwen3.6-35B-A3B、qwen-plus'
+    type: 'input'
+    defaultVal: 'Qwen/Qwen3.6-35B-A3B'
+    required: false
+  temperature:
+    name: '生成温度'
+    description: '越低越稳定，抽取任务建议 0.0-0.3'
+    type: 'slider'
+    defaultVal: 0.2
+    min: 0
+    max: 2
+    step: 0.1
+  maxChars:
+    name: '单次最大字符数'
+    description: '超长文本截断长度'
+    type: 'input'
+    defaultVal: '4000'
+    required: false
+  maxChunks:
+    name: '最大处理块数'
+    description: '存在上游切块结果时最多调用多少个文本块，0表示不限制'
+    type: 'input'
+    defaultVal: '8'
+    required: false

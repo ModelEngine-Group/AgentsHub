@@ -1,0 +1,43 @@
+name: '医疗文本切块'
+description: '按Markdown/中文标题、段落和字符上限将长医疗文本切成语义连贯的文本块；块列表可继续传给医学实体与关系抽取算子。'
+language: 'python'
+vendor: 'custom'
+raw_id: 'MedicalChunker'
+version: '1.0.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+  - 'consolidate'
+release:
+  - '1.0.0：首次发布；支持五算子流水线内部 chunks 透传'
+metrics:
+  - name: '内存使用'
+    metric: '< 64 MB'
+  - name: '处理延时'
+    metric: '亚毫秒~毫秒级（CPU规则）'
+runtime:
+  memory: 67108864
+  cpu: 0.05
+  gpu: 0
+  npu: 0
+settings:
+  maxChars:
+    name: '单块最大字符数'
+    description: '每个文本块的目标字符上限'
+    type: 'input'
+    defaultVal: '1200'
+    required: false
+  overlap:
+    name: '硬切分重叠字符数'
+    description: '超长单段硬切分时相邻块的重叠字符数'
+    type: 'input'
+    defaultVal: '80'
+    required: false
+  maxChunks:
+    name: '最大处理块数'
+    description: '限制传给下游LLM算子的块数，0表示不限制'
+    type: 'input'
+    defaultVal: '8'
+    required: false

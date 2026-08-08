@@ -1,0 +1,105 @@
+{
+  "agent_id": 1,
+  "agent_info": {
+    "1": {
+      "agent_id": 1,
+      "tenant_id": "__TENANT_ID__",
+      "name": "medical_kg_qa_agent",
+      "display_name": "医疗知识图谱生成与问答智能体",
+      "description": "基于 Nexent 调用 MediGraph MCP：优先使用自训练 neural GPLinker L1，回退词典/LLM，构建可溯源医疗知识图谱并进行 GraphRAG 问答。",
+      "business_description": "自动编排 neural GPLinker/词典/LLM 级联抽取、实体链接、三元组治理与 GraphRAG 问答。",
+      "author": "MediGraph",
+      "max_steps": 4,
+      "provide_run_summary": false,
+      "duty_prompt": "你是医疗知识图谱生成与问答智能体。严格按用户意图选择工具：\\n1. 用户要求查看本体、图规模、样例、质量或性能指标时，只调用一次 inspect_medical_kg；默认 graph_name=graph.json。\\n2. 用户提供新的医疗文本并要求建图时，只调用一次 build_medical_kg。默认写入独立演示图，避免覆盖主图。\\n3. 用户提出医疗知识问答时，只调用一次 medical_kg_qa，并汇报 resolved_entities、intent_relations、evidence_total/evidence_used、answer 和 citations。\\n4. 只有用户明确要求单个底层步骤时，才调用 medical_ner、medical_re 或 triple_validator。\\n5. 工具返回后立即总结，禁止重复调用。",
+      "constraint_prompt": "只能依据工具真实返回作答；答案必须列出三元组、confidence 和 source。证据不足必须明确说明，不得用模型常识补全。每轮最多调用一次高层工具；不得覆盖 graph.json 主图；不得把固定流程冒充自动抽取结果。",
+      "few_shots_prompt": "示例：用户提供糖尿病文本要求建图→调用 build_medical_kg(graph_name=\"nexent_demo_graph.json\")；用户随后问检查和药物→调用 medical_kg_qa(graph_name=\"nexent_demo_graph.json\")，回答并列出来源三元组。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "MCPTool",
+          "name": "build_medical_kg",
+          "description": "端到端构建医疗知识图谱",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "medical_kg_qa",
+          "description": "图谱混合检索问答(带溯源)",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "inspect_medical_kg",
+          "description": "审计本体、图谱、质量与性能指标",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "inspect_extraction_models",
+          "description": "审计神经GPLinker、CMeIE指标、集成提升和抽取级联",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "medical_ner",
+          "description": "医疗实体识别核心算子",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "medical_re",
+          "description": "医疗关系抽取核心算子",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "triple_validator",
+          "description": "三元组校验治理核心算子",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 5,
+      "model_name": "deepseek-ai/DeepSeek-V4-Pro",
+      "business_logic_model_id": 5,
+      "business_logic_model_name": "deepseek-ai/DeepSeek-V4-Pro",
+      "skill_names": [],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default",
+      "verification_config": {
+        "enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true,
+        "llm_verification_enabled": false
+      }
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "MediGraphOperators",
+      "mcp_url": "http://host.docker.internal:8011/sse"
+    }
+  ]
+}

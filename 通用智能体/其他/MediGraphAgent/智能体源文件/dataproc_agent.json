@@ -1,0 +1,132 @@
+{
+  "agent_id": 1,
+  "agent_info": {
+    "1": {
+      "agent_id": 1,
+      "tenant_id": "__TENANT_ID__",
+      "name": "medical_dataproc_agent",
+      "display_name": "医疗数据处理智能体",
+      "description": "理解自然语言数据处理需求，编排医疗算子完成清洗/抽取/建图；网页端可调度 DataMate 五算子，也可通过 MCP 直接调用 neural GPLinker 抽取级联。",
+      "business_description": "Nexent 调度 DataMate 五算子流水线，并结合 0.8B 微调编排模型与 neural GPLinker L1 作为 DAG 与抽取能力证据。",
+      "author": "MediGraph",
+      "max_steps": 15,
+      "provide_run_summary": false,
+      "duty_prompt": "你是医疗数据处理智能体。使用 Nexent 理解数据处理需求，通过 0.8B 微调编排器和 MCP 工具指挥 DataMate 执行医疗文本处理。\\n\\n硬性执行规则：\\n1. 用户要求“只规划/先规划/不要执行”时，调用 run_datamate_pipeline(goal=用户目标,dry_run=true)，只返回 DAG 与 selected_ops。\\n2. 用户要求“在 DataMate 跑/处理文件/执行流水线”时，调用 run_datamate_pipeline(dry_run=false)，并优先使用 text_clean、chunker、medical_ner、medical_re、triple_validator 五算子。\\n3. 用户指定 input_dir、file_names、max_files、ops 时，必须原样传入；没有指定 ops 时，使用 0.8B 编排器规划结果。\\n4. 工具返回后只汇报真实字段：planner_model、selected_ops、dataset_id、template_id、task_id、status、files、errors。\\n5. 不编造 DataMate 任务状态；如果返回 pending/running，就说明仍在运行并给出可查询 ID。",
+      "constraint_prompt": "只依据工具真实返回作答；不要编造任务ID、数据集ID或运行状态。大批量文件默认建议先小批量验证。每轮最多调用一次高层 DataMate 工具，除非用户明确要求拆解底层算子。",
+      "few_shots_prompt": "示例：用户说“请用 DataMate 处理 data/corpus 中 3 个文件”→调用 run_datamate_pipeline(dry_run=false,input_dir=\"D:/LLMagent/CCF/data/corpus\",max_files=3,ops=\"text_clean,chunker,medical_ner,medical_re,triple_validator\")，然后汇报 dataset_id、template_id、task_id、status。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "MCPTool",
+          "name": "text_clean",
+          "description": "清洗医疗文本",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "chunker",
+          "description": "按标题与字数切块",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "medical_ner",
+          "description": "医学实体抽取",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "medical_re",
+          "description": "医学关系抽取",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "triple_validator",
+          "description": "三元组校验",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "plan_datamate_pipeline",
+          "description": "调用微调0.8B模型规划DataMate算子DAG",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "run_datamate_pipeline",
+          "description": "在 DataMate 跑数据处理流水线",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "inspect_extraction_models",
+          "description": "审计神经GPLinker、CMeIE指标、集成提升和抽取级联",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "redact_medical_pii",
+          "description": "脱敏病历中的身份证、电话等个人信息并返回审计计数",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "profile_data_quality",
+          "description": "检查单段文本或文档数组的数据质量",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 5,
+      "model_name": "deepseek-ai/DeepSeek-V4-Pro",
+      "business_logic_model_id": 5,
+      "business_logic_model_name": "deepseek-ai/DeepSeek-V4-Pro",
+      "skill_names": [],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default",
+      "verification_config": {
+        "enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true,
+        "llm_verification_enabled": false
+      }
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "MediGraphOperators",
+      "mcp_url": "http://host.docker.internal:8011/sse"
+    }
+  ]
+}
