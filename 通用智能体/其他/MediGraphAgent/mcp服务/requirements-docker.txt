@@ -1,0 +1,17 @@
+# Docker runtime: MCP/A2A and the deterministic local pipeline.
+# Neural GPLinker dependencies are optional; see requirements-docker-neural.txt.
+openai>=1.30.0
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+networkx>=3.0
+numpy>=1.26
+pyvis>=0.3.2
+tqdm>=4.66.0
+tenacity>=8.2.0
+pypdf>=4.0.0
+sqlglot>=25.0.0
+fastmcp>=0.2.0
+requests>=2.31.0
+fastapi>=0.110.0
+uvicorn>=0.27.0
+neo4j>=5.14.0

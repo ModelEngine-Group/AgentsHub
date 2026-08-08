@@ -1,0 +1,30 @@
+name: '医疗文本清洗'
+description: '清洗医疗/病理原始文本：去除网页噪声、页眉页脚、Markdown链接与图片、LaTeX残留和无意义短碎片，同时保护标题结构。'
+language: 'python'
+vendor: 'custom'
+raw_id: 'TextClean'
+version: '1.0.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+release:
+  - '1.0.0：首次发布；与 medigraph/operators/text_clean.py 规则保持一致'
+metrics:
+  - name: '内存使用'
+    metric: '< 64 MB'
+  - name: '处理延时'
+    metric: '亚毫秒~毫秒级（CPU规则）'
+runtime:
+  memory: 67108864
+  cpu: 0.05
+  gpu: 0
+  npu: 0
+settings:
+  minLineLength:
+    name: '最短保留行长度'
+    description: '短于该长度且不是标题、列表或完整句子的文本行将被移除'
+    type: 'input'
+    defaultVal: '8'
+    required: false

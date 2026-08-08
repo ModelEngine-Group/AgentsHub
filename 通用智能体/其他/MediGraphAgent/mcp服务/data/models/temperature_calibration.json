@@ -1,0 +1,8 @@
+{
+  "method": "temperature_scaling",
+  "temperature": 1.08829834,
+  "bias": -2.87724255,
+  "fitted_samples": 3070,
+  "nll_before": 1.43629456,
+  "nll_after": 0.55001601
+}
