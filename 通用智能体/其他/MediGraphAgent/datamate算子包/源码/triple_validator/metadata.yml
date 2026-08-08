@@ -1,0 +1,36 @@
+name: '三元组校验'
+description: '对候选关系三元组做质量治理：schema合法性校验、去重归一、置信度过滤、冲突检测，输出通过的三元组与每条拒因。纯规则、低时延、无需API。'
+language: 'python'
+vendor: 'custom'
+raw_id: 'TripleValidator'
+version: '1.1.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+  - 'annotation'
+release:
+  - '1.1.0：与五算子 DataMate 流水线版本同步'
+  - '1.0.1：与医学抽取流水线版本同步'
+  - '首次发布'
+  - 'schema约束 + 冲突检测 + 可解释拒因'
+metrics:
+  - name: '内存使用'
+    metric: '< 64 MB'
+  - name: '处理速度'
+    metric: '> 5000 三元组/秒（纯CPU规则）'
+runtime:
+  memory: 67108864
+  cpu: 0.05
+  gpu: 0
+  npu: 0
+settings:
+  minConfidence:
+    name: '最低置信度'
+    description: '低于该置信度的三元组将被过滤'
+    type: 'slider'
+    defaultVal: 0.5
+    min: 0
+    max: 1
+    step: 0.05

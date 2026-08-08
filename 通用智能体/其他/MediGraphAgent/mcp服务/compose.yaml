@@ -1,0 +1,72 @@
+name: medigraph
+
+x-medigraph-common: &medigraph-common
+  build:
+    context: .
+    dockerfile: Dockerfile
+    args:
+      PYTHON_VERSION: ${MEDIGRAPH_PYTHON_VERSION:-3.11}
+      INSTALL_NEURAL: ${MEDIGRAPH_INSTALL_NEURAL:-false}
+  image: medigraph-agent:${MEDIGRAPH_IMAGE_TAG:-local}
+  env_file:
+    - path: .env
+      required: false
+  environment:
+    PYTHONUNBUFFERED: "1"
+    DATAMATE_BASE: ${DATAMATE_DOCKER_BASE:-http://host.docker.internal:8080/api}
+    FINETUNED_ORCHESTRATOR_URL: ${FINETUNED_ORCHESTRATOR_DOCKER_URL:-http://host.docker.internal:18088/v1/chat/completions}
+    FINETUNED_ORCHESTRATOR_MODEL: ${FINETUNED_ORCHESTRATOR_MODEL:-qwen3p5-0p8b-orchestrator}
+  extra_hosts:
+    - host.docker.internal:host-gateway
+  volumes:
+    - ./data:/app/data:ro
+    - ./outputs:/app/outputs
+  restart: unless-stopped
+
+services:
+  mcp:
+    <<: *medigraph-common
+    container_name: medigraph-mcp
+    command: ["python", "-X", "utf8", "mcp_server/server.py"]
+    environment:
+      PYTHONUNBUFFERED: "1"
+      MEDIGRAPH_MCP_HOST: 0.0.0.0
+      MEDIGRAPH_MCP_PORT: "8011"
+      # Base URL the chat *user's browser* uses to open generated reports/graphs.
+      # Tools return links built from this, so a container path never leaks to the UI.
+      MEDIGRAPH_ARTIFACT_BASE_URL: ${MEDIGRAPH_ARTIFACT_BASE_URL:-http://localhost:8011}
+      DATAMATE_BASE: ${DATAMATE_DOCKER_BASE:-http://host.docker.internal:8080/api}
+      FINETUNED_ORCHESTRATOR_URL: ${FINETUNED_ORCHESTRATOR_DOCKER_URL:-http://host.docker.internal:18088/v1/chat/completions}
+      FINETUNED_ORCHESTRATOR_MODEL: ${FINETUNED_ORCHESTRATOR_MODEL:-qwen3p5-0p8b-orchestrator}
+    ports:
+      - "${MEDIGRAPH_MCP_PORT:-8011}:8011"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import socket; s=socket.create_connection(('127.0.0.1',8011),2); s.close()"
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 15s
+
+  a2a:
+    <<: *medigraph-common
+    container_name: medigraph-a2a
+    command: ["python", "-X", "utf8", "integration/a2a/a2a_server.py"]
+    environment:
+      PYTHONUNBUFFERED: "1"
+      MEDIGRAPH_A2A_PUBLIC_URL: ${MEDIGRAPH_A2A_PUBLIC_URL:-http://host.docker.internal:8100}
+    ports:
+      - "${MEDIGRAPH_A2A_PORT:-8100}:8100"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8100/.well-known/agent.json',timeout=2).read()"
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
