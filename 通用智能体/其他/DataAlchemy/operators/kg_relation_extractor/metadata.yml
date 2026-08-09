@@ -1,0 +1,31 @@
+name: '医疗关系抽取算子'
+description: '基于模式触发词+实体共现推理，从医疗文本中抽取导致/治疗/用于/禁忌4类关系'
+language: 'python'
+vendor: 'ccf-team'
+raw_id: 'KGRelationExtractor'
+version: '1.0.0'
+modal: 'text'
+inputs: 'table'
+outputs: 'table'
+types:
+  - 'cleaning'
+release:
+  - '首次发布'
+runtime:
+  memory: 20971520
+  cpu: 0.2
+  gpu: 0
+  npu: 0
+settings:
+  enablePatternMatch:
+    name: '启用模式匹配'
+    description: '是否使用触发词模式进行关系抽取'
+    type: 'switch'
+    defaultVal: true
+    required: false
+  enableCooccurrence:
+    name: '启用共现推理'
+    description: '是否基于实体共现进行关系推理（低置信度）'
+    type: 'switch'
+    defaultVal: true
+    required: false

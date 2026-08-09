@@ -1,0 +1,25 @@
+name: '医疗实体识别算子'
+description: '基于医疗词典+规则匹配，从文本中识别疾病/症状/药物/检查4类医疗实体，支持单条和批量输入'
+language: 'python'
+vendor: 'ccf-team'
+raw_id: 'KGEntityRecognizer'
+version: '1.0.0'
+modal: 'text'
+inputs: 'table'
+outputs: 'table'
+types:
+  - 'cleaning'
+release:
+  - '首次发布'
+runtime:
+  memory: 20971520
+  cpu: 0.2
+  gpu: 0
+  npu: 0
+settings:
+  enableDictMatch:
+    name: '启用词典匹配'
+    description: '是否使用内置医疗词典进行实体匹配'
+    type: 'switch'
+    defaultVal: true
+    required: false

@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 760" width="100%" role="img">
+  <title>Task 2 知识图谱问答智能体 v3.0 架构</title>
+  <desc>任务二KG问答：单Agent 5步自验证流程 + Schema关系网络图</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text class="th" x="340" y="26" text-anchor="middle" fill="#085041" font-size="15">Task 2: 知识图谱问答智能体 v3.0 -- 单 Agent + 内置自验证</text>
+
+  <!-- User -->
+  <g class="c-gray">
+    <rect x="200" y="42" width="280" height="30" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+    <text class="ts" x="340" y="57" text-anchor="middle" fill="#444441" font-size="11">用户医疗问题 (症状/用药/禁忌查询)</text>
+  </g>
+  <line x1="340" y1="72" x2="340" y2="88" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Agent -->
+  <g class="c-teal">
+    <rect x="100" y="92" width="480" height="52" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+    <text class="th" x="340" y="110" text-anchor="middle" fill="#085041" font-size="13">Nexent Agent: kg_qa_agent v3.0 (单体智能体)</text>
+    <text class="ts" x="340" y="128" text-anchor="middle" fill="#0F6E56" font-size="10">deepseek-v4-flash · max_steps=10 · 无managed_agents · v2.5双代理已合并为单体</text>
+  </g>
+  <line x1="340" y1="144" x2="340" y2="160" stroke="#0F6E56" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Step 1 -->
+  <g class="c-teal">
+    <rect x="120" y="164" width="440" height="42" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+    <text class="th" x="340" y="180" text-anchor="middle" fill="#085041" font-size="12">Step 1: 实体识别</text>
+    <text class="ts" x="340" y="196" text-anchor="middle" fill="#0F6E56" font-size="10">MCP: knowledge_graph_search · 100+医疗词典 · 首字哈希索引 · 最长匹配</text>
+  </g>
+  <line x1="340" y1="206" x2="340" y2="220" stroke="#0F6E56" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Step 2 -->
+  <g class="c-teal">
+    <rect x="120" y="224" width="440" height="42" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+    <text class="th" x="340" y="240" text-anchor="middle" fill="#085041" font-size="12">Step 2: 关系抽取</text>
+    <text class="ts" x="340" y="256" text-anchor="middle" fill="#0F6E56" font-size="10">MCP: entity_recognition · 触发词匹配 + 共现类型推断 (双通道)</text>
+  </g>
+  <line x1="340" y1="266" x2="340" y2="280" stroke="#0F6E56" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Step 3 -->
+  <g class="c-teal">
+    <rect x="120" y="284" width="440" height="42" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+    <text class="th" x="340" y="300" text-anchor="middle" fill="#085041" font-size="12">Step 3: 三元组生成</text>
+    <text class="ts" x="340" y="316" text-anchor="middle" fill="#0F6E56" font-size="10">MCP: relation_extraction · 去重 + Schema校验 + 两级冲突检测(直接+禁忌)</text>
+  </g>
+  <line x1="340" y1="326" x2="340" y2="340" stroke="#0F6E56" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: Self-verification -->
+  <g class="c-amber">
+    <rect x="40" y="344" width="600" height="68" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+    <text class="th" x="340" y="362" text-anchor="middle" fill="#633806" font-size="12">Step 4: 自查验证 (内置5项检查 -- v3.0核心创新)</text>
+
+    <rect x="55" y="372" width="108" height="30" rx="5" fill="#FAC775" stroke="#EF9F27" stroke-width="0.3"/>
+    <text class="ts" x="109" y="387" text-anchor="middle" fill="#633806" font-size="9">实体准确性</text>
+
+    <rect x="173" y="372" width="108" height="30" rx="5" fill="#FAC775" stroke="#EF9F27" stroke-width="0.3"/>
+    <text class="ts" x="227" y="387" text-anchor="middle" fill="#633806" font-size="9">关系一致性</text>
+
+    <rect x="291" y="372" width="108" height="30" rx="5" fill="#FAC775" stroke="#EF9F27" stroke-width="0.3"/>
+    <text class="ts" x="345" y="387" text-anchor="middle" fill="#633806" font-size="9">冲突检测</text>
+
+    <rect x="409" y="372" width="108" height="30" rx="5" fill="#FAC775" stroke="#EF9F27" stroke-width="0.3"/>
+    <text class="ts" x="463" y="387" text-anchor="middle" fill="#633806" font-size="9">安全性检查</text>
+
+    <rect x="527" y="372" width="98" height="30" rx="5" fill="#FAC775" stroke="#EF9F27" stroke-width="0.3"/>
+    <text class="ts" x="576" y="387" text-anchor="middle" fill="#633806" font-size="9">信息标注</text>
+  </g>
+  <line x1="340" y1="412" x2="340" y2="426" stroke="#BA7517" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Step 5 -->
+  <g class="c-green">
+    <rect x="120" y="430" width="440" height="42" rx="8" fill="#EAF3DE" stroke="#639922" stroke-width="0.5"/>
+    <text class="th" x="340" y="446" text-anchor="middle" fill="#27500A" font-size="12">Step 5: 综合回答</text>
+    <text class="ts" x="340" y="462" text-anchor="middle" fill="#3B6D11" font-size="10">结构化输出 + 来源标注 + 冲突解释 + 低置信度标注 + 禁忌警告</text>
+  </g>
+
+  <!-- KG Schema (integrated D) -->
+  <g class="c-blue">
+    <rect x="40" y="486" width="600" height="160" rx="10" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+    <text class="th" x="340" y="504" text-anchor="middle" fill="#0C447C" font-size="12">医疗知识图谱 Schema (4 实体 × 4 关系)</text>
+
+    <!-- Entity nodes -->
+    <rect x="80" y="516" width="100" height="32" rx="6" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text class="ts" x="130" y="532" text-anchor="middle" fill="#0C447C" font-size="11">disease (疾病)</text>
+
+    <rect x="280" y="516" width="100" height="32" rx="6" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text class="ts" x="330" y="532" text-anchor="middle" fill="#0C447C" font-size="11">symptom (症状)</text>
+
+    <rect x="480" y="516" width="100" height="32" rx="6" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text class="ts" x="530" y="532" text-anchor="middle" fill="#0C447C" font-size="11">drug (药物)</text>
+
+    <rect x="280" y="570" width="100" height="32" rx="6" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5"/>
+    <text class="ts" x="330" y="586" text-anchor="middle" fill="#0C447C" font-size="11">treatment (治疗)</text>
+
+    <!-- Relation lines -->
+    <line x1="180" y1="532" x2="280" y2="532" stroke="#378ADD" stroke-width="1" marker-end="url(#arrow)"/>
+    <text x="230" y="526" text-anchor="middle" fill="#185FA5" font-size="9">has_symptom</text>
+
+    <line x1="330" y1="602" x2="330" y2="548" stroke="#378ADD" stroke-width="1" marker-end="url(#arrow)"/>
+    <text x="370" y="575" fill="#185FA5" font-size="9">treat</text>
+
+    <line x1="480" y1="532" x2="380" y2="532" stroke="#E24B4A" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
+    <text x="430" y="526" text-anchor="middle" fill="#A32D2D" font-size="9">cause</text>
+
+    <line x1="530" y1="548" x2="180" y2="548" stroke="#E24B4A" stroke-width="1" stroke-dasharray="4,2"/>
+    <text x="355" y="544" text-anchor="middle" fill="#A32D2D" font-size="9">contra (禁忌)</text>
+
+    <!-- Example triple -->
+    <text class="ts" x="340" y="624" text-anchor="middle" fill="#0C447C" font-size="10">示例三元组: [阿司匹林] drug --cause--> [胃肠道出血] symptom</text>
+    <text class="ts" x="340" y="638" text-anchor="middle" fill="#0C447C" font-size="10">200+ 预构建三元组 · knowledge_graph_triples.json · drug_interactions.json</text>
+  </g>
+
+  <!-- Performance -->
+  <g class="c-green">
+    <rect x="40" y="658" width="600" height="34" rx="8" fill="#EAF3DE" stroke="#97C459" stroke-width="0.5"/>
+    <text class="ts" x="160" y="676" text-anchor="middle" fill="#3B6D11" font-size="10">管道延迟: 33.5 μs/条</text>
+    <text class="ts" x="340" y="676" text-anchor="middle" fill="#3B6D11" font-size="10">吞吐量: 29,648 条/秒</text>
+    <text class="ts" x="520" y="676" text-anchor="middle" fill="#3B6D11" font-size="10">15/15 测试通过 · 纯规则零LLM</text>
+  </g>
+
+  <!-- Legend -->
+  <g>
+    <rect x="140" y="704" width="12" height="10" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+    <text class="ts" x="158" y="712" fill="#5F5E5A" font-size="10">KG步骤</text>
+    <rect x="230" y="704" width="12" height="10" rx="3" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+    <text class="ts" x="248" y="712" fill="#5F5E5A" font-size="10">验证</text>
+    <rect x="310" y="704" width="12" height="10" rx="3" fill="#EAF3DE" stroke="#639922" stroke-width="0.5"/>
+    <text class="ts" x="328" y="712" fill="#5F5E5A" font-size="10">输出</text>
+    <rect x="390" y="704" width="12" height="10" rx="3" fill="#E6F1FB" stroke="#378ADD" stroke-width="0.5"/>
+    <text class="ts" x="408" y="712" fill="#5F5E5A" font-size="10">Schema</text>
+    <line x1="470" y1="709" x2="500" y2="709" stroke="#E24B4A" stroke-width="1" stroke-dasharray="4,2"/>
+    <text class="ts" x="510" y="712" fill="#5F5E5A" font-size="10">禁忌关系</text>
+  </g>
+</svg>

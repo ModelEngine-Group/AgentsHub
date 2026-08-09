@@ -1,0 +1,273 @@
+{
+  "metadata": {
+    "version": "2.5",
+    "created_at": "2026-05-16",
+    "total_queries": 15,
+    "query_types": ["symptom_query", "treatment_query", "medication_query", "test_query", "comprehensive_query"],
+    "difficulty_levels": ["simple", "medium", "complex"],
+    "purpose": "测试双代理验证系统的医疗问答能力"
+  },
+  "test_queries": [
+    {
+      "id": "query_001",
+      "type": "symptom_query",
+      "difficulty": "simple",
+      "query": "发热可能是什么原因？",
+      "patient_context": {},
+      "expected_answer_type": "症状原因列表",
+      "evaluation_criteria": ["覆盖常见原因", "按可能性排序", "包含严重程度提示"],
+      "notes": "测试超级节点过滤功能"
+    },
+    {
+      "id": "query_002",
+      "type": "symptom_query",
+      "difficulty": "medium",
+      "query": "我最近总是头痛，还伴有恶心，可能是什么问题？",
+      "patient_context": {
+        "age": 35,
+        "gender": "female",
+        "occupation": "办公室职员"
+      },
+      "expected_answer_type": "可能疾病及检查建议",
+      "evaluation_criteria": ["考虑多种可能性", "建议相关检查", "注意偏头痛和紧张性头痛区分"],
+      "notes": "测试症状组合分析能力"
+    },
+    {
+      "id": "query_003",
+      "type": "symptom_query",
+      "difficulty": "complex",
+      "query": "我父亲70岁，有高血压和糖尿病，最近出现胸闷、气短，可能是什么原因？",
+      "patient_context": {
+        "age": 70,
+        "gender": "male",
+        "comorbidities": ["高血压", "糖尿病"],
+        "medications": ["降压药", "降糖药"]
+      },
+      "expected_answer_type": "心血管疾病风险分析",
+      "evaluation_criteria": ["考虑年龄和基础病", "识别心血管风险", "建议紧急就医", "考虑药物相互作用"],
+      "notes": "测试复杂上下文约束推理"
+    },
+    {
+      "id": "query_004",
+      "type": "treatment_query",
+      "difficulty": "simple",
+      "query": "2型糖尿病怎么治疗？",
+      "patient_context": {},
+      "expected_answer_type": "治疗方案概述",
+      "evaluation_criteria": ["包含生活方式干预", "提及药物治疗", "说明监测要求"],
+      "notes": "测试基础治疗方案查询"
+    },
+    {
+      "id": "query_005",
+      "type": "treatment_query",
+      "difficulty": "medium",
+      "query": "我刚确诊高血压，应该怎么治疗？",
+      "patient_context": {
+        "age": 45,
+        "gender": "male",
+        "blood_pressure": "150/95 mmHg",
+        "lifestyle": "吸烟，饮酒"
+      },
+      "expected_answer_type": "个性化治疗方案",
+      "evaluation_criteria": ["考虑生活方式因素", "建议非药物治疗", "说明药物治疗时机", "强调生活方式改变"],
+      "notes": "测试个性化治疗方案生成"
+    },
+    {
+      "id": "query_006",
+      "type": "treatment_query",
+      "difficulty": "complex",
+      "query": "我母亲有类风湿关节炎，同时有胃溃疡病史，应该怎么治疗关节炎？",
+      "patient_context": {
+        "age": 60,
+        "gender": "female",
+        "comorbidities": ["类风湿关节炎", "胃溃疡"],
+        "medications": ["胃药"]
+      },
+      "expected_answer_type": "安全治疗方案",
+      "evaluation_criteria": ["考虑胃溃疡禁忌", "避免NSAIDs类药物", "推荐替代治疗方案", "强调胃肠保护"],
+      "notes": "测试药物禁忌和上下文约束"
+    },
+    {
+      "id": "query_007",
+      "type": "medication_query",
+      "difficulty": "simple",
+      "query": "二甲双胍怎么用？",
+      "patient_context": {},
+      "expected_answer_type": "用药指导",
+      "evaluation_criteria": ["说明用法用量", "提及常见副作用", "说明注意事项"],
+      "notes": "测试基础用药指导查询"
+    },
+    {
+      "id": "query_008",
+      "type": "medication_query",
+      "difficulty": "medium",
+      "query": "我正在服用华法林，最近感冒了，能吃什么感冒药？",
+      "patient_context": {
+        "age": 55,
+        "gender": "female",
+        "medications": ["华法林"],
+        "condition": "房颤"
+      },
+      "expected_answer_type": "安全用药建议",
+      "evaluation_criteria": ["考虑华法林相互作用", "避免影响INR的药物", "推荐安全替代药物", "建议监测INR"],
+      "notes": "测试药物相互作用知识"
+    },
+    {
+      "id": "query_009",
+      "type": "medication_query",
+      "difficulty": "complex",
+      "query": "我父亲有慢性肾病（CKD 3期），同时有糖尿病和高血压，应该用什么降糖药和降压药？",
+      "patient_context": {
+        "age": 65,
+        "gender": "male",
+        "comorbidities": ["慢性肾病", "糖尿病", "高血压"],
+        "renal_function": "eGFR 45",
+        "current_medications": ["胰岛素", "氨氯地平"]
+      },
+      "expected_answer_type": "肾脏安全用药方案",
+      "evaluation_criteria": ["考虑肾功能不全禁忌", "调整药物剂量", "避免肾毒性药物", "监测肾功能"],
+      "notes": "测试复杂慢性病用药管理"
+    },
+    {
+      "id": "query_010",
+      "type": "test_query",
+      "difficulty": "simple",
+      "query": "糖尿病需要做什么检查？",
+      "patient_context": {},
+      "expected_answer_type": "检查项目清单",
+      "evaluation_criteria": ["包含血糖相关检查", "提及并发症筛查", "说明检查频率"],
+      "notes": "测试基础检查建议查询"
+    },
+    {
+      "id": "query_011",
+      "type": "test_query",
+      "difficulty": "medium",
+      "query": "我体检发现血脂高，应该做哪些进一步检查？",
+      "patient_context": {
+        "age": 40,
+        "gender": "male",
+        "lipid_profile": "总胆固醇6.5，LDL-C 4.2",
+        "family_history": "父亲心梗"
+      },
+      "expected_answer_type": "心血管风险评估检查",
+      "evaluation_criteria": ["评估心血管风险", "建议相关检查", "考虑家族史", "提供监测建议"],
+      "notes": "测试风险评估导向的检查建议"
+    },
+    {
+      "id": "query_012",
+      "type": "test_query",
+      "difficulty": "complex",
+      "query": "我母亲有自身免疫性疾病，最近出现多系统症状，应该做哪些检查来明确诊断？",
+      "patient_context": {
+        "age": 50,
+        "gender": "female",
+        "symptoms": ["关节痛", "皮疹", "疲劳", "口干"],
+        "autoimmune_history": "甲状腺抗体阳性"
+      },
+      "expected_answer_type": "系统性检查方案",
+      "evaluation_criteria": ["考虑多种自身免疫病", "建议系统检查", "包括免疫学检查", "提供鉴别诊断思路"],
+      "notes": "测试复杂鉴别诊断检查建议"
+    },
+    {
+      "id": "query_013",
+      "type": "comprehensive_query",
+      "difficulty": "medium",
+      "query": "我父亲有糖尿病和高血压，最近血糖控制不好，血压也偏高，应该怎么管理？",
+      "patient_context": {
+        "age": 60,
+        "gender": "male",
+        "comorbidities": ["糖尿病", "高血压"],
+        "recent_values": {"blood_sugar": "空腹8.5", "blood_pressure": "155/95"},
+        "current_medications": ["二甲双胍", "氨氯地平"]
+      },
+      "expected_answer_type": "综合管理方案",
+      "evaluation_criteria": ["同时考虑血糖和血压", "调整药物治疗", "生活方式建议", "监测计划", "随访安排"],
+      "notes": "测试多病种综合管理能力"
+    },
+    {
+      "id": "query_014",
+      "type": "comprehensive_query",
+      "difficulty": "complex",
+      "query": "我妻子怀孕6个月，有妊娠期糖尿病，同时有轻度贫血，应该怎么管理？",
+      "patient_context": {
+        "age": 30,
+        "gender": "female",
+        "pregnancy_week": 24,
+        "comorbidities": ["妊娠期糖尿病", "贫血"],
+        "hemoglobin": "100g/L",
+        "blood_sugar": "餐后2小时8.5"
+      },
+      "expected_answer_type": "孕期综合管理方案",
+      "evaluation_criteria": ["考虑孕期特殊性", "避免致畸药物", "营养管理", "血糖监测", "贫血治疗", "胎儿监护"],
+      "notes": "测试孕期特殊情况管理"
+    },
+    {
+      "id": "query_015",
+      "type": "comprehensive_query",
+      "difficulty": "complex",
+      "query": "我爷爷85岁，有冠心病、房颤、慢性肾病和轻度认知障碍，长期服用多种药物，最近总说头晕，应该怎么评估和管理？",
+      "patient_context": {
+        "age": 85,
+        "gender": "male",
+        "comorbidities": ["冠心病", "房颤", "慢性肾病", "轻度认知障碍"],
+        "medications": ["阿司匹林", "华法林", "美托洛尔", "呋辛", "美金刚"],
+        "symptoms": ["头晕"],
+        "functional_status": "基本自理"
+      },
+      "expected_answer_type": "老年综合评估和管理",
+      "evaluation_criteria": ["多重用药评估", "头晕原因分析", "跌倒风险评估", "药物相互作用", "简化用药方案", "多学科管理"],
+      "notes": "测试老年复杂病例管理能力"
+    }
+  ],
+  "evaluation_framework": {
+    "quality_dimensions": [
+      {
+        "dimension": "准确性",
+        "weight": 0.3,
+        "criteria": ["基于证据", "无事实错误", "引用可靠来源"]
+      },
+      {
+        "dimension": "完整性",
+        "weight": 0.25,
+        "criteria": ["覆盖重要方面", "考虑多种可能性", "提供全面建议"]
+      },
+      {
+        "dimension": "安全性",
+        "weight": 0.25,
+        "criteria": ["识别风险", "避免有害建议", "提供安全警示"]
+      },
+      {
+        "dimension": "个性化",
+        "weight": 0.1,
+        "criteria": ["考虑患者特征", "定制化建议", "上下文相关"]
+      },
+      {
+        "dimension": "实用性",
+        "weight": 0.1,
+        "criteria": ["可操作性强", "具体明确", "易于理解"]
+      }
+    ],
+    "scoring_scale": {
+      "0.9-1.0": "优秀 - 超出预期",
+      "0.8-0.9": "良好 - 满足要求",
+      "0.7-0.8": "一般 - 基本满足",
+      "0.6-0.7": "较差 - 需要改进",
+      "0.0-0.6": "不合格 - 重大问题"
+    },
+    "passing_threshold": 0.7
+  },
+  "test_scenarios": {
+    "basic_functionality": ["query_001", "query_004", "query_007", "query_010"],
+    "context_awareness": ["query_002", "query_005", "query_008", "query_011"],
+    "complex_cases": ["query_003", "query_006", "query_009", "query_012", "query_013", "query_014", "query_015"],
+    "safety_critical": ["query_006", "query_008", "query_009", "query_014"],
+    "super_node_test": ["query_001", "query_002"],
+    "multi_condition": ["query_013", "query_014", "query_015"]
+  },
+  "expected_performance": {
+    "target_accuracy": 0.85,
+    "target_safety_score": 0.9,
+    "target_response_time": "5s",
+    "target_user_satisfaction": 0.8
+  }
+}

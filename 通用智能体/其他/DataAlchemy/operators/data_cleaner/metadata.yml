@@ -1,0 +1,62 @@
+name: '数据清洗算子'
+description: '支持去重、空值处理、格式标准化、隐私脱敏的结构化数据清洗算子'
+language: 'python'
+vendor: 'ccf-team'
+raw_id: 'DataCleaner'
+version: '1.0.0'
+modal: 'text'
+inputs: 'table'
+outputs: 'table'
+types:
+  - 'cleaning'
+release:
+  - '首次发布'
+runtime:
+  memory: 20971520
+  cpu: 0.2
+  gpu: 0
+  npu: 0
+settings:
+  removeDuplicates:
+    name: '删除重复行'
+    description: '是否删除数据中的重复行'
+    type: 'switch'
+    defaultVal: false
+    required: false
+  handleMissing:
+    name: '空值处理方式'
+    description: '选择空值的处理策略'
+    type: 'select'
+    defaultVal: 'drop'
+    required: false
+    options:
+      - label: '删除包含空值的行'
+        value: 'drop'
+      - label: '填充空值'
+        value: 'fill'
+      - label: '保留空值'
+        value: 'keep'
+  fillValue:
+    name: '填充值'
+    description: '当选择"填充空值"时使用的统一填充值（字段级填充在P2扩展）'
+    type: 'input'
+    defaultVal: ''
+    required: false
+  trimWhitespace:
+    name: '去除首尾空格'
+    description: '是否去除字符串字段的首尾空格'
+    type: 'switch'
+    defaultVal: true
+    required: false
+  standardizeFormat:
+    name: '格式标准化'
+    description: '是否标准化日期格式为YYYY-MM-DD'
+    type: 'switch'
+    defaultVal: false
+    required: false
+  privacyCheck:
+    name: '隐私脱敏'
+    description: '是否自动检测并脱敏手机号、身份证号、姓名等敏感信息'
+    type: 'switch'
+    defaultVal: false
+    required: false

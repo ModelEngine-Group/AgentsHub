@@ -1,0 +1,75 @@
+name: '数据加载算子'
+description: '支持 CSV/JSON 多文件批量加载、自动编码检测、合并策略、分块处理'
+language: 'python'
+vendor: 'ccf-team'
+raw_id: 'DataLoaderMapper'
+version: '2.2.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'data_loading'
+release:
+  - 'v2.2.0 - 新增大文件分块处理'
+runtime:
+  memory: 10485760
+  cpu: 0.1
+  gpu: 0
+  npu: 0
+settings:
+  file_paths:
+    name: '文件路径'
+    description: '要加载的文件路径列表，支持多个文件'
+    type: 'input'
+    defaultVal: ''
+    required: true
+  file_formats:
+    name: '文件格式'
+    description: '文件格式列表，如 csv, json'
+    type: 'input'
+    defaultVal: ''
+    required: false
+  encoding:
+    name: '编码'
+    description: '文件编码格式'
+    type: 'select'
+    defaultVal: 'utf-8'
+    required: false
+    options:
+      - label: 'UTF-8'
+        value: 'utf-8'
+      - label: 'GBK'
+        value: 'gbk'
+      - label: 'GB2312'
+        value: 'gb2312'
+  chunk_size:
+    name: '分块大小'
+    description: '大文件分块处理的每块行数，默认 10000'
+    type: 'input'
+    defaultVal: '10000'
+    required: false
+  merge_strategy:
+    name: '合并策略'
+    description: '多文件合并方式'
+    type: 'select'
+    defaultVal: 'concat'
+    required: false
+    options:
+      - label: '拼接（concat）'
+        value: 'concat'
+      - label: '关联（join）'
+        value: 'join'
+      - label: '去重合并（union）'
+        value: 'union'
+  max_errors:
+    name: '最大错误数'
+    description: '连续错误达到此数量时触发降级策略'
+    type: 'input'
+    defaultVal: '3'
+    required: false
+  fail_fast:
+    name: '快速失败'
+    description: '遇到错误立即停止处理'
+    type: 'switch'
+    defaultVal: false
+    required: false

@@ -1,0 +1,49 @@
+# ===== Nexent Environment Configuration =====
+# Copy this file to .env and fill in your own values
+
+# ===== Required: LLM Configuration =====
+NEXENT_ADMIN_EMAIL=admin@example.com
+NEXENT_ADMIN_PASSWORD=your-admin-password
+LLM_API_KEY=your-llm-api-key
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_MODEL_ID=gpt-4o
+
+# ===== Elasticsearch =====
+ELASTIC_PASSWORD=your-es-password
+ES_JAVA_OPTS="-Xms2g -Xmx2g"
+
+# ===== PostgreSQL =====
+POSTGRES_USER=root
+NEXENT_POSTGRES_PASSWORD=your-db-password
+POSTGRES_DB=nexent
+
+# ===== MinIO =====
+MINIO_ROOT_USER=nexent
+MINIO_ROOT_PASSWORD=your-minio-password
+MINIO_ACCESS_KEY=your-minio-access-key
+MINIO_SECRET_KEY=your-minio-secret-key
+MINIO_REGION=cn-north-1
+MINIO_DEFAULT_BUCKET=nexent
+
+# ===== Redis =====
+REDIS_URL=redis://redis:6379/0
+REDIS_BACKEND_URL=redis://redis:6379/1
+
+# ===== Docker Images =====
+NEXENT_IMAGE=nexent/nexent:v2.0.2
+NEXENT_WEB_IMAGE=nexent/nexent-web:v2.0.2
+NEXENT_MCP_DOCKER_IMAGE="nexent/nexent-mcp:v2.0.2"
+NEXENT_DATA_PROCESS_IMAGE=nexent/nexent-data-process:v2.0.2
+ELASTICSEARCH_IMAGE=docker.elastic.co/elasticsearch/elasticsearch:8.17.4
+POSTGRESQL_IMAGE=postgres:15-alpine
+REDIS_IMAGE=redis:alpine
+MINIO_IMAGE=quay.io/minio/minio:RELEASE.2023-12-20T01-00-02Z
+OPENSSH_SERVER_IMAGE=linuxserver/openssh-server:latest
+
+# ===== Volume Path =====
+ROOT_DIR=/mnt/nexent
+
+# ===== Proxy (Optional) =====
+# HTTP_PROXY=http://proxy-server:port
+# HTTPS_PROXY=http://proxy-server:port
+# NO_PROXY=localhost,127.0.0.1

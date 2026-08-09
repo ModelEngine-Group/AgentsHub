@@ -1,0 +1,96 @@
+{
+  "name": "医疗知识图谱Schema",
+  "version": "1.0.0",
+  "description": "用于医疗问答系统的知识图谱Schema定义",
+  
+  "entities": [
+    {
+      "type": "疾病",
+      "description": "医学疾病名称，如糖尿病、高血压、肺炎等",
+      "examples": ["糖尿病", "高血压", "冠心病", "肺炎"],
+      "properties": ["名称", "ICD编码", "科室", "严重程度"]
+    },
+    {
+      "type": "症状",
+      "description": "疾病的表现症状，如头痛、发热、咳嗽等",
+      "examples": ["头痛", "发热", "咳嗽", "胸闷"],
+      "properties": ["部位", "持续时间", "严重程度"]
+    },
+    {
+      "type": "药物",
+      "description": "药品名称，如阿司匹林、二甲双胍等",
+      "examples": ["阿司匹林", "二甲双胍", "布洛芬", "氨溴索"],
+      "properties": ["通用名", "商品名", "剂型", "规格"]
+    },
+    {
+      "type": "治疗",
+      "description": "治疗方法，如药物治疗、手术治疗等",
+      "examples": ["药物治疗", "手术治疗", "物理治疗", "中医治疗"],
+      "properties": ["方式", "适应症", "风险"]
+    },
+    {
+      "type": "检查",
+      "description": "医学检查项目，如血常规、X光等",
+      "examples": ["血常规", "尿常规", "X光", "CT", "MRI"],
+      "properties": ["项目名称", "检查部位", "费用"]
+    },
+    {
+      "type": "科室",
+      "description": "医院科室分类",
+      "examples": ["内科", "外科", "儿科", "心内科"],
+      "properties": ["科室名称", "上级科室"]
+    }
+  ],
+  
+  "relations": [
+    {
+      "type": "导致",
+      "description": "疾病导致症状或并发症",
+      "source": "疾病",
+      "target": "症状",
+      "examples": ["糖尿病 → 多饮多尿", "高血压 → 头痛"]
+    },
+    {
+      "type": "治疗",
+      "description": "药物或方法治疗疾病",
+      "source": "药物",
+      "target": "疾病",
+      "examples": ["二甲双胍 → 糖尿病"]
+    },
+    {
+      "type": "用于",
+      "description": "药物用于缓解症状",
+      "source": "药物",
+      "target": "症状",
+      "examples": ["布洛芬 → 退热"]
+    },
+    {
+      "type": "诊断",
+      "description": "检查项目用于诊断疾病",
+      "source": "检查",
+      "target": "疾病",
+      "examples": ["X光 → 肺炎"]
+    },
+    {
+      "type": "并发",
+      "description": "疾病之间的并发关系",
+      "source": "疾病",
+      "target": "疾病",
+      "examples": ["糖尿病 → 冠心病"]
+    },
+    {
+      "type": "属于",
+      "description": "实体归属关系",
+      "source": "疾病",
+      "target": "科室",
+      "examples": ["心脏病 → 心内科"]
+    }
+  ],
+  
+  "metadata": {
+    "max_entities": 10000,
+    "max_relations": 50000,
+    "supports_nlp_query": true,
+    "supports_graph_traversal": true
+  }
+}
