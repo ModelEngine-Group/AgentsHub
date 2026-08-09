@@ -1,0 +1,7 @@
+# MedGraph-Insight MCP 服务依赖（版本按验证通过的下界固定，避免不兼容漂移）
+mcp>=1.2.0
+networkx>=3.0
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+requests>=2.31

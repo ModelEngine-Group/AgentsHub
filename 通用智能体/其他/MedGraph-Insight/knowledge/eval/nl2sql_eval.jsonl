@@ -1,0 +1,40 @@
+{"question": "2型糖尿病有哪些症状", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='2型糖尿病' AND relation='HAS_SYMPTOM' ORDER BY tail"}
+{"question": "高血压用什么药", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='原发性高血压' AND relation='TREATED_BY_DRUG' ORDER BY tail"}
+{"question": "冠心病需要做哪些检查", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='冠心病' AND relation='DIAGNOSED_BY' ORDER BY tail"}
+{"question": "脑梗死怎么治", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='脑梗死' AND relation='TREATED_BY' ORDER BY tail"}
+{"question": "2型糖尿病有哪些并发症", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='2型糖尿病' AND relation='COMPLICATION_OF' ORDER BY tail"}
+{"question": "痛风好发于哪些人群", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='痛风' AND relation='HIGH_RISK_GROUP' ORDER BY tail"}
+{"question": "高血压累及哪些部位", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='原发性高血压' AND relation='AFFECTS' ORDER BY tail"}
+{"question": "图谱里有多少种药物", "gold_sql": "SELECT COUNT(*) AS cnt FROM entities WHERE etype='Drug'"}
+{"question": "图谱里有多少个疾病", "gold_sql": "SELECT COUNT(*) AS cnt FROM entities WHERE etype='Disease'"}
+{"question": "统计各类实体的数量", "gold_sql": "SELECT etype_zh, COUNT(*) AS cnt FROM entities GROUP BY etype_zh ORDER BY cnt DESC"}
+{"question": "哪个疾病的症状最多", "gold_sql": "SELECT head, COUNT(*) AS cnt FROM relations WHERE relation='HAS_SYMPTOM' GROUP BY head ORDER BY cnt DESC LIMIT 1"}
+{"question": "按用药数量排出前3的疾病", "gold_sql": "SELECT head, COUNT(*) AS cnt FROM relations WHERE relation='TREATED_BY_DRUG' GROUP BY head ORDER BY cnt DESC LIMIT 3"}
+{"question": "慢性肾脏病有哪些症状", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='慢性肾脏病' AND relation='HAS_SYMPTOM' ORDER BY tail"}
+{"question": "支气管哮喘用什么药", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='支气管哮喘' AND relation='TREATED_BY_DRUG' ORDER BY tail"}
+{"question": "甲状腺功能亢进症需要做什么检查", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='甲状腺功能亢进症' AND relation='DIAGNOSED_BY' ORDER BY tail"}
+{"question": "抑郁症有哪些症状", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='抑郁症' AND relation='HAS_SYMPTOM' ORDER BY tail"}
+{"question": "帕金森病怎么治", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='帕金森病' AND relation='TREATED_BY' ORDER BY tail"}
+{"question": "缺铁性贫血好发于哪些人群", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='缺铁性贫血' AND relation='HIGH_RISK_GROUP' ORDER BY tail"}
+{"question": "胃溃疡需要做哪些检查", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='胃溃疡' AND relation='DIAGNOSED_BY' ORDER BY tail"}
+{"question": "急性胰腺炎有哪些症状", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='急性胰腺炎' AND relation='HAS_SYMPTOM' ORDER BY tail"}
+{"question": "高脂血症累及哪些部位", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='高脂血症' AND relation='AFFECTS' ORDER BY tail"}
+{"question": "统计各种关系的数量", "gold_sql": "SELECT relation_zh, COUNT(*) AS cnt FROM relations GROUP BY relation_zh ORDER BY cnt DESC"}
+{"question": "哪个疾病的用药最多", "gold_sql": "SELECT head, COUNT(*) AS cnt FROM relations WHERE relation='TREATED_BY_DRUG' GROUP BY head ORDER BY cnt DESC LIMIT 1"}
+{"question": "图谱里有哪些疾病", "gold_sql": "SELECT name FROM entities WHERE etype='Disease' ORDER BY name"}
+{"question": "慢性阻塞性肺疾病有哪些症状", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='慢性阻塞性肺疾病' AND relation='HAS_SYMPTOM' ORDER BY tail"}
+{"question": "冠心病有多少种用药", "gold_sql": "SELECT COUNT(DISTINCT tail) AS cnt FROM relations WHERE head='冠心病' AND relation='TREATED_BY_DRUG'"}
+{"question": "按症状数量排出前5的疾病", "gold_sql": "SELECT head, COUNT(*) AS cnt FROM relations WHERE relation='HAS_SYMPTOM' GROUP BY head ORDER BY cnt DESC LIMIT 5"}
+{"question": "脑梗死需要做哪些检查", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='脑梗死' AND relation='DIAGNOSED_BY' ORDER BY tail"}
+{"question": "高血压有哪些并发症", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='原发性高血压' AND relation='COMPLICATION_OF' ORDER BY tail"}
+{"question": "痛风用什么药", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='痛风' AND relation='TREATED_BY_DRUG' ORDER BY tail"}
+{"question": "既有胸痛又有心悸的疾病有哪些", "gold_sql": "SELECT head FROM (SELECT head FROM relations WHERE relation='HAS_SYMPTOM' AND tail='胸痛' INTERSECT SELECT head FROM relations WHERE relation='HAS_SYMPTOM' AND tail='心悸') ORDER BY head"}
+{"question": "同时有多饮和多尿的疾病", "gold_sql": "SELECT head FROM (SELECT head FROM relations WHERE relation='HAS_SYMPTOM' AND tail='多饮' INTERSECT SELECT head FROM relations WHERE relation='HAS_SYMPTOM' AND tail='多尿') ORDER BY head"}
+{"question": "症状超过4个的疾病", "gold_sql": "SELECT head, COUNT(DISTINCT tail) AS cnt FROM relations WHERE relation='HAS_SYMPTOM' GROUP BY head HAVING cnt > 4 ORDER BY cnt DESC, head"}
+{"question": "用药至少3种的疾病", "gold_sql": "SELECT head, COUNT(DISTINCT tail) AS cnt FROM relations WHERE relation='TREATED_BY_DRUG' GROUP BY head HAVING cnt >= 3 ORDER BY cnt DESC, head"}
+{"question": "置信度大于0.85的用药关系", "gold_sql": "SELECT head, relation_zh, tail, confidence FROM relations WHERE confidence >= 0.85 AND relation='TREATED_BY_DRUG' ORDER BY confidence DESC, head"}
+{"question": "T2DM有哪些症状", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='2型糖尿病' AND relation='HAS_SYMPTOM' ORDER BY tail"}
+{"question": "冠心病的检查项目属于什么类型", "gold_sql": "SELECT r.tail, e.etype_zh FROM relations r JOIN entities e ON r.tail = e.name WHERE r.head='冠心病' AND r.relation='DIAGNOSED_BY' ORDER BY r.tail"}
+{"question": "哪些疾病会并发心力衰竭", "gold_sql": "SELECT DISTINCT head FROM relations WHERE tail='心力衰竭' ORDER BY head"}
+{"question": "心肌梗死有哪些并发症", "gold_sql": "SELECT DISTINCT tail FROM relations WHERE head='急性心肌梗死' AND relation='COMPLICATION_OF' ORDER BY tail"}
+{"question": "统计每类实体各有多少", "gold_sql": "SELECT etype_zh, COUNT(*) AS cnt FROM entities GROUP BY etype_zh ORDER BY cnt DESC"}
