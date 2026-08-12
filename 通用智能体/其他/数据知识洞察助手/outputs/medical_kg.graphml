@@ -1,0 +1,635 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d2" for="edge" attr.name="relation" attr.type="string" />
+  <key id="d1" for="node" attr.name="type" attr.type="string" />
+  <key id="d0" for="node" attr.name="label" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="肺炎">
+      <data key="d0">肺炎</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="发热">
+      <data key="d0">发热</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="咳嗽">
+      <data key="d0">咳嗽</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="咳痰">
+      <data key="d0">咳痰</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="胸痛">
+      <data key="d0">胸痛</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="呼吸困难">
+      <data key="d0">呼吸困难</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="阿莫西林">
+      <data key="d0">阿莫西林</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="头孢类抗生素">
+      <data key="d0">头孢类抗生素</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="左氧氟沙星">
+      <data key="d0">左氧氟沙星</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="胸部X线">
+      <data key="d0">胸部X线</data>
+      <data key="d1">Examination</data>
+    </node>
+    <node id="CT检查">
+      <data key="d0">CT检查</data>
+      <data key="d1">Examination</data>
+    </node>
+    <node id="呼吸机辅助通气">
+      <data key="d0">呼吸机辅助通气</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <node id="冠心病">
+      <data key="d0">冠心病</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="胸闷">
+      <data key="d0">胸闷</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="心悸">
+      <data key="d0">心悸</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="气短">
+      <data key="d0">气短</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="阿司匹林">
+      <data key="d0">阿司匹林</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="氯吡格雷">
+      <data key="d0">氯吡格雷</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="冠脉支架植入">
+      <data key="d0">冠脉支架植入</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <node id="搭桥手术">
+      <data key="d0">搭桥手术</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <node id="偏头痛">
+      <data key="d0">偏头痛</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="头痛">
+      <data key="d0">头痛</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="恶心">
+      <data key="d0">恶心</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="呕吐">
+      <data key="d0">呕吐</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="布洛芬">
+      <data key="d0">布洛芬</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="曲普坦类药物">
+      <data key="d0">曲普坦类药物</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="急性胃肠炎">
+      <data key="d0">急性胃肠炎</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="腹痛">
+      <data key="d0">腹痛</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="腹泻">
+      <data key="d0">腹泻</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="诺氟沙星">
+      <data key="d0">诺氟沙星</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="蒙脱石散">
+      <data key="d0">蒙脱石散</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="口服补液盐">
+      <data key="d0">口服补液盐</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="支气管炎">
+      <data key="d0">支气管炎</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="头孢克洛">
+      <data key="d0">头孢克洛</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="阿奇霉素">
+      <data key="d0">阿奇霉素</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="类风湿性关节炎">
+      <data key="d0">类风湿性关节炎</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="关节肿胀">
+      <data key="d0">关节肿胀</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="甲氨蝶呤">
+      <data key="d0">甲氨蝶呤</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="来氟米特">
+      <data key="d0">来氟米特</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="腰椎间盘突出">
+      <data key="d0">腰椎间盘突出</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="腰痛">
+      <data key="d0">腰痛</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="麻木">
+      <data key="d0">麻木</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="MRI检查">
+      <data key="d0">MRI检查</data>
+      <data key="d1">Examination</data>
+    </node>
+    <node id="物理治疗">
+      <data key="d0">物理治疗</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <node id="牵引">
+      <data key="d0">牵引</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <node id="多囊卵巢综合征">
+      <data key="d0">多囊卵巢综合征</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="月经不调">
+      <data key="d0">月经不调</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="多毛">
+      <data key="d0">多毛</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="痤疮">
+      <data key="d0">痤疮</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="炔雌醇环丙孕酮">
+      <data key="d0">炔雌醇环丙孕酮</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="二甲双胍">
+      <data key="d0">二甲双胍</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="超声">
+      <data key="d0">超声</data>
+      <data key="d1">Examination</data>
+    </node>
+    <node id="2型糖尿病">
+      <data key="d0">2型糖尿病</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="多饮">
+      <data key="d0">多饮</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="多尿">
+      <data key="d0">多尿</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="多食">
+      <data key="d0">多食</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="体重下降">
+      <data key="d0">体重下降</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="缺铁性贫血">
+      <data key="d0">缺铁性贫血</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="乏力">
+      <data key="d0">乏力</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="头晕">
+      <data key="d0">头晕</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="面色苍白">
+      <data key="d0">面色苍白</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="硫酸亚铁">
+      <data key="d0">硫酸亚铁</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="富马酸亚铁">
+      <data key="d0">富马酸亚铁</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="荨麻疹">
+      <data key="d0">荨麻疹</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="瘙痒">
+      <data key="d0">瘙痒</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="氯雷他定">
+      <data key="d0">氯雷他定</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="西替利嗪">
+      <data key="d0">西替利嗪</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="急性胆囊炎">
+      <data key="d0">急性胆囊炎</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="右上腹痛">
+      <data key="d0">右上腹痛</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="黄疸">
+      <data key="d0">黄疸</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="头孢曲松">
+      <data key="d0">头孢曲松</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="哌拉西林">
+      <data key="d0">哌拉西林</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="腹腔镜胆囊切除术">
+      <data key="d0">腹腔镜胆囊切除术</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <node id="尿路感染">
+      <data key="d0">尿路感染</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="尿频">
+      <data key="d0">尿频</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="尿急">
+      <data key="d0">尿急</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="尿痛">
+      <data key="d0">尿痛</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="呋喃妥因">
+      <data key="d0">呋喃妥因</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="急性心肌梗死">
+      <data key="d0">急性心肌梗死</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="心电图">
+      <data key="d0">心电图</data>
+      <data key="d1">Examination</data>
+    </node>
+    <node id="急诊PCI">
+      <data key="d0">急诊PCI</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <node id="溶栓治疗">
+      <data key="d0">溶栓治疗</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <node id="急性扁桃体炎">
+      <data key="d0">急性扁桃体炎</data>
+      <data key="d1">Disease</data>
+    </node>
+    <node id="吞咽困难">
+      <data key="d0">吞咽困难</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="咽痛">
+      <data key="d0">咽痛</data>
+      <data key="d1">Symptom</data>
+    </node>
+    <node id="青霉素V钾">
+      <data key="d0">青霉素V钾</data>
+      <data key="d1">Drug</data>
+    </node>
+    <node id="扁桃体切除术">
+      <data key="d0">扁桃体切除术</data>
+      <data key="d1">Treatment</data>
+    </node>
+    <edge source="肺炎" target="发热">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="肺炎" target="咳嗽">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="肺炎" target="咳痰">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="肺炎" target="胸痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="肺炎" target="呼吸困难">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="肺炎" target="阿莫西林">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="肺炎" target="头孢类抗生素">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="肺炎" target="左氧氟沙星">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="肺炎" target="胸部X线">
+      <data key="d2">requires_exam</data>
+    </edge>
+    <edge source="肺炎" target="CT检查">
+      <data key="d2">requires_exam</data>
+    </edge>
+    <edge source="肺炎" target="呼吸机辅助通气">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="冠心病" target="胸痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="冠心病" target="胸闷">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="冠心病" target="心悸">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="冠心病" target="气短">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="冠心病" target="阿司匹林">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="冠心病" target="氯吡格雷">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="冠心病" target="冠脉支架植入">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="冠心病" target="搭桥手术">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="偏头痛" target="头痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="偏头痛" target="恶心">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="偏头痛" target="呕吐">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="偏头痛" target="布洛芬">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="偏头痛" target="曲普坦类药物">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性胃肠炎" target="发热">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胃肠炎" target="恶心">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胃肠炎" target="呕吐">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胃肠炎" target="腹痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胃肠炎" target="腹泻">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胃肠炎" target="诺氟沙星">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性胃肠炎" target="蒙脱石散">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性胃肠炎" target="口服补液盐">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="支气管炎" target="发热">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="支气管炎" target="咳嗽">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="支气管炎" target="咳痰">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="支气管炎" target="头孢克洛">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="支气管炎" target="阿奇霉素">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="类风湿性关节炎" target="关节肿胀">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="类风湿性关节炎" target="布洛芬">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="类风湿性关节炎" target="甲氨蝶呤">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="类风湿性关节炎" target="来氟米特">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="腰椎间盘突出" target="腰痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="腰椎间盘突出" target="麻木">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="腰椎间盘突出" target="布洛芬">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="腰椎间盘突出" target="MRI检查">
+      <data key="d2">requires_exam</data>
+    </edge>
+    <edge source="腰椎间盘突出" target="物理治疗">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="腰椎间盘突出" target="牵引">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="多囊卵巢综合征" target="月经不调">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="多囊卵巢综合征" target="多毛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="多囊卵巢综合征" target="痤疮">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="多囊卵巢综合征" target="炔雌醇环丙孕酮">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="多囊卵巢综合征" target="二甲双胍">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="多囊卵巢综合征" target="超声">
+      <data key="d2">requires_exam</data>
+    </edge>
+    <edge source="2型糖尿病" target="多饮">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="2型糖尿病" target="多尿">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="2型糖尿病" target="多食">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="2型糖尿病" target="体重下降">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="2型糖尿病" target="二甲双胍">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="缺铁性贫血" target="乏力">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="缺铁性贫血" target="头晕">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="缺铁性贫血" target="面色苍白">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="缺铁性贫血" target="硫酸亚铁">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="缺铁性贫血" target="富马酸亚铁">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="荨麻疹" target="瘙痒">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="荨麻疹" target="氯雷他定">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="荨麻疹" target="西替利嗪">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性胆囊炎" target="发热">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胆囊炎" target="腹痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胆囊炎" target="右上腹痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胆囊炎" target="黄疸">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性胆囊炎" target="头孢曲松">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性胆囊炎" target="哌拉西林">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性胆囊炎" target="腹腔镜胆囊切除术">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="尿路感染" target="腹痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="尿路感染" target="多饮">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="尿路感染" target="尿频">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="尿路感染" target="尿急">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="尿路感染" target="尿痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="尿路感染" target="左氧氟沙星">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="尿路感染" target="呋喃妥因">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性心肌梗死" target="胸痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性心肌梗死" target="恶心">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性心肌梗死" target="阿司匹林">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性心肌梗死" target="氯吡格雷">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性心肌梗死" target="心电图">
+      <data key="d2">requires_exam</data>
+    </edge>
+    <edge source="急性心肌梗死" target="急诊PCI">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性心肌梗死" target="溶栓治疗">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性扁桃体炎" target="发热">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性扁桃体炎" target="吞咽困难">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性扁桃体炎" target="咽痛">
+      <data key="d2">has_symptom</data>
+    </edge>
+    <edge source="急性扁桃体炎" target="阿莫西林">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性扁桃体炎" target="青霉素V钾">
+      <data key="d2">treated_by</data>
+    </edge>
+    <edge source="急性扁桃体炎" target="扁桃体切除术">
+      <data key="d2">treated_by</data>
+    </edge>
+  </graph>
+</graphml>

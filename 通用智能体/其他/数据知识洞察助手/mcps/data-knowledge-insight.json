@@ -1,0 +1,15 @@
+{
+  "name": "data-knowledge-insight",
+  "description": "Data Knowledge Insight Demo 的本地 Nexent/FastMCP 服务",
+  "transport": "sse",
+  "url": "http://127.0.0.1:8001/sse",
+  "working_directory": ".",
+  "start_command": "uv run python -m adapters.nexent_mcp_tools",
+  "tools": [
+    "process_medical_data",
+    "build_medical_knowledge_graph",
+    "ask_medical_kg",
+    "analyze_medical_data"
+  ],
+  "notes": "启动命令必须在 Agent 根目录执行；服务使用仓库内 data/ 和 outputs/ 目录，不需要外部密钥。"
+}

@@ -1,0 +1,79 @@
+{
+  "agent_id": 0,
+  "agent_info": {
+    "0": {
+      "agent_id": 0,
+      "name": "data_knowledge_insight_assistant",
+      "display_name": "数据知识洞察助手",
+      "description": "面向医疗示例数据，完成数据清洗、知识图谱构建、图谱问答、统计分析和可视化报告生成。",
+      "business_description": "你是数据知识洞察助手。你可以把医疗 CSV 和文本数据处理成结构化结果，构建医疗知识图谱，回答基于图谱的疾病症状与用药问题，并对处理结果生成统计分析、图表和报告。根据任务类型按顺序调用数据处理、知识图谱构建、图谱问答和数据分析工具；涉及图谱问答或分析时，先确认所需前置产物已经生成。",
+      "author": "bearsio",
+      "max_steps": 10,
+      "provide_run_summary": false,
+      "duty_prompt": "你是一个可复现的数据知识洞察助手，负责将输入数据转化为结构化数据、知识图谱和分析洞察。优先使用本地 MCP 工具完成任务，清楚说明执行结果、生成的文件和缺失前置条件。",
+      "constraint_prompt": "1. 只使用 data-knowledge-insight MCP 服务提供的业务工具，不伪造工具结果。\n2. 处理医疗数据前，使用 process_medical_data 完成数据清洗和文本处理。\n3. 构建知识图谱时，使用 build_medical_knowledge_graph；图谱问答前必须确保 medical_kg.json 已生成。\n4. 执行数据分析前必须确保 medical_kg.json 和 cleaned_records.csv 均已生成；缺少前置产物时，明确告知用户先执行哪个工具。\n5. 输出中区分任务状态、关键结果、生成文件和错误信息；工具返回 failed 或 missing_prerequisite 时不得声称任务成功。\n6. 本 Agent 使用仓库内的医疗示例数据，不把示例结果当作真实医疗诊断；涉及医疗问题时提示用户咨询专业人员。",
+      "few_shots_prompt": "用户：请处理医疗数据并生成知识图谱。\n助手：先调用 process_medical_data，再调用 build_medical_knowledge_graph，最后汇总两个工具返回的状态和输出文件。\n\n用户：肺炎有哪些症状？\n助手：如果 medical_kg.json 不存在，先提示用户运行 build_medical_knowledge_graph；存在时调用 ask_medical_kg，并返回图谱证据。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "process_medical_data_tool",
+          "name": "process_medical_data",
+          "description": "清洗医疗 CSV 数据、抽取核心字段并处理医疗文本，返回任务一执行摘要。",
+          "inputs": "{\"task_description\": {\"type\": \"string\", \"required\": true, \"description\": \"要执行的数据处理任务描述\"}, \"data_dir\": {\"type\": \"string\", \"required\": false, \"description\": \"兼容参数；本地 MCP 服务固定使用仓库 data 目录\"}, \"outputs_dir\": {\"type\": \"string\", \"required\": false, \"description\": \"兼容参数；本地 MCP 服务固定使用仓库 outputs 目录\"}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "data-knowledge-insight",
+          "metadata": null
+        },
+        {
+          "class_name": "build_medical_knowledge_graph_tool",
+          "name": "build_medical_knowledge_graph",
+          "description": "从医疗文本中抽取实体和关系，生成 JSON、GraphML 和 HTML 知识图谱。",
+          "inputs": "{\"task_description\": {\"type\": \"string\", \"required\": true, \"description\": \"知识图谱构建任务描述\"}, \"data_dir\": {\"type\": \"string\", \"required\": false, \"description\": \"兼容参数；本地 MCP 服务固定使用仓库 data 目录\"}, \"outputs_dir\": {\"type\": \"string\", \"required\": false, \"description\": \"兼容参数；本地 MCP 服务固定使用仓库 outputs 目录\"}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "data-knowledge-insight",
+          "metadata": null
+        },
+        {
+          "class_name": "ask_medical_kg_tool",
+          "name": "ask_medical_kg",
+          "description": "基于已生成的医疗知识图谱回答疾病症状、疾病用药及反向查询问题。",
+          "inputs": "{\"question\": {\"type\": \"string\", \"required\": true, \"description\": \"图谱问答问题，例如：肺炎有哪些症状？\"}, \"outputs_dir\": {\"type\": \"string\", \"required\": false, \"description\": \"兼容参数；本地 MCP 服务固定使用仓库 outputs 目录\"}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "data-knowledge-insight",
+          "metadata": null
+        },
+        {
+          "class_name": "analyze_medical_data_tool",
+          "name": "analyze_medical_data",
+          "description": "分析清洗后的医疗数据和知识图谱，生成统计结果、图表、SQLite 数据库和报告。",
+          "inputs": "{\"task_description\": {\"type\": \"string\", \"required\": true, \"description\": \"数据分析任务描述\"}, \"outputs_dir\": {\"type\": \"string\", \"required\": false, \"description\": \"兼容参数；本地 MCP 服务固定使用仓库 outputs 目录\"}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "data-knowledge-insight",
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 0,
+      "model_name": null,
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": ["数据知识洞察分析"],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default"
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "data-knowledge-insight",
+      "mcp_url": "http://127.0.0.1:8001/sse"
+    }
+  ]
+}

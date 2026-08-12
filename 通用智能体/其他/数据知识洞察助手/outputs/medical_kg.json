@@ -1,0 +1,906 @@
+{
+  "nodes": [
+    {
+      "id": "肺炎",
+      "label": "肺炎",
+      "type": "Disease"
+    },
+    {
+      "id": "发热",
+      "label": "发热",
+      "type": "Symptom"
+    },
+    {
+      "id": "咳嗽",
+      "label": "咳嗽",
+      "type": "Symptom"
+    },
+    {
+      "id": "咳痰",
+      "label": "咳痰",
+      "type": "Symptom"
+    },
+    {
+      "id": "胸痛",
+      "label": "胸痛",
+      "type": "Symptom"
+    },
+    {
+      "id": "呼吸困难",
+      "label": "呼吸困难",
+      "type": "Symptom"
+    },
+    {
+      "id": "阿莫西林",
+      "label": "阿莫西林",
+      "type": "Drug"
+    },
+    {
+      "id": "头孢类抗生素",
+      "label": "头孢类抗生素",
+      "type": "Drug"
+    },
+    {
+      "id": "左氧氟沙星",
+      "label": "左氧氟沙星",
+      "type": "Drug"
+    },
+    {
+      "id": "胸部X线",
+      "label": "胸部X线",
+      "type": "Examination"
+    },
+    {
+      "id": "CT检查",
+      "label": "CT检查",
+      "type": "Examination"
+    },
+    {
+      "id": "呼吸机辅助通气",
+      "label": "呼吸机辅助通气",
+      "type": "Treatment"
+    },
+    {
+      "id": "冠心病",
+      "label": "冠心病",
+      "type": "Disease"
+    },
+    {
+      "id": "胸闷",
+      "label": "胸闷",
+      "type": "Symptom"
+    },
+    {
+      "id": "心悸",
+      "label": "心悸",
+      "type": "Symptom"
+    },
+    {
+      "id": "气短",
+      "label": "气短",
+      "type": "Symptom"
+    },
+    {
+      "id": "阿司匹林",
+      "label": "阿司匹林",
+      "type": "Drug"
+    },
+    {
+      "id": "氯吡格雷",
+      "label": "氯吡格雷",
+      "type": "Drug"
+    },
+    {
+      "id": "冠脉支架植入",
+      "label": "冠脉支架植入",
+      "type": "Treatment"
+    },
+    {
+      "id": "搭桥手术",
+      "label": "搭桥手术",
+      "type": "Treatment"
+    },
+    {
+      "id": "偏头痛",
+      "label": "偏头痛",
+      "type": "Disease"
+    },
+    {
+      "id": "头痛",
+      "label": "头痛",
+      "type": "Symptom"
+    },
+    {
+      "id": "恶心",
+      "label": "恶心",
+      "type": "Symptom"
+    },
+    {
+      "id": "呕吐",
+      "label": "呕吐",
+      "type": "Symptom"
+    },
+    {
+      "id": "布洛芬",
+      "label": "布洛芬",
+      "type": "Drug"
+    },
+    {
+      "id": "曲普坦类药物",
+      "label": "曲普坦类药物",
+      "type": "Drug"
+    },
+    {
+      "id": "急性胃肠炎",
+      "label": "急性胃肠炎",
+      "type": "Disease"
+    },
+    {
+      "id": "腹痛",
+      "label": "腹痛",
+      "type": "Symptom"
+    },
+    {
+      "id": "腹泻",
+      "label": "腹泻",
+      "type": "Symptom"
+    },
+    {
+      "id": "诺氟沙星",
+      "label": "诺氟沙星",
+      "type": "Drug"
+    },
+    {
+      "id": "蒙脱石散",
+      "label": "蒙脱石散",
+      "type": "Drug"
+    },
+    {
+      "id": "口服补液盐",
+      "label": "口服补液盐",
+      "type": "Drug"
+    },
+    {
+      "id": "支气管炎",
+      "label": "支气管炎",
+      "type": "Disease"
+    },
+    {
+      "id": "头孢克洛",
+      "label": "头孢克洛",
+      "type": "Drug"
+    },
+    {
+      "id": "阿奇霉素",
+      "label": "阿奇霉素",
+      "type": "Drug"
+    },
+    {
+      "id": "类风湿性关节炎",
+      "label": "类风湿性关节炎",
+      "type": "Disease"
+    },
+    {
+      "id": "关节肿胀",
+      "label": "关节肿胀",
+      "type": "Symptom"
+    },
+    {
+      "id": "甲氨蝶呤",
+      "label": "甲氨蝶呤",
+      "type": "Drug"
+    },
+    {
+      "id": "来氟米特",
+      "label": "来氟米特",
+      "type": "Drug"
+    },
+    {
+      "id": "腰椎间盘突出",
+      "label": "腰椎间盘突出",
+      "type": "Disease"
+    },
+    {
+      "id": "腰痛",
+      "label": "腰痛",
+      "type": "Symptom"
+    },
+    {
+      "id": "麻木",
+      "label": "麻木",
+      "type": "Symptom"
+    },
+    {
+      "id": "MRI检查",
+      "label": "MRI检查",
+      "type": "Examination"
+    },
+    {
+      "id": "物理治疗",
+      "label": "物理治疗",
+      "type": "Treatment"
+    },
+    {
+      "id": "牵引",
+      "label": "牵引",
+      "type": "Treatment"
+    },
+    {
+      "id": "多囊卵巢综合征",
+      "label": "多囊卵巢综合征",
+      "type": "Disease"
+    },
+    {
+      "id": "月经不调",
+      "label": "月经不调",
+      "type": "Symptom"
+    },
+    {
+      "id": "多毛",
+      "label": "多毛",
+      "type": "Symptom"
+    },
+    {
+      "id": "痤疮",
+      "label": "痤疮",
+      "type": "Symptom"
+    },
+    {
+      "id": "炔雌醇环丙孕酮",
+      "label": "炔雌醇环丙孕酮",
+      "type": "Drug"
+    },
+    {
+      "id": "二甲双胍",
+      "label": "二甲双胍",
+      "type": "Drug"
+    },
+    {
+      "id": "超声",
+      "label": "超声",
+      "type": "Examination"
+    },
+    {
+      "id": "2型糖尿病",
+      "label": "2型糖尿病",
+      "type": "Disease"
+    },
+    {
+      "id": "多饮",
+      "label": "多饮",
+      "type": "Symptom"
+    },
+    {
+      "id": "多尿",
+      "label": "多尿",
+      "type": "Symptom"
+    },
+    {
+      "id": "多食",
+      "label": "多食",
+      "type": "Symptom"
+    },
+    {
+      "id": "体重下降",
+      "label": "体重下降",
+      "type": "Symptom"
+    },
+    {
+      "id": "缺铁性贫血",
+      "label": "缺铁性贫血",
+      "type": "Disease"
+    },
+    {
+      "id": "乏力",
+      "label": "乏力",
+      "type": "Symptom"
+    },
+    {
+      "id": "头晕",
+      "label": "头晕",
+      "type": "Symptom"
+    },
+    {
+      "id": "面色苍白",
+      "label": "面色苍白",
+      "type": "Symptom"
+    },
+    {
+      "id": "硫酸亚铁",
+      "label": "硫酸亚铁",
+      "type": "Drug"
+    },
+    {
+      "id": "富马酸亚铁",
+      "label": "富马酸亚铁",
+      "type": "Drug"
+    },
+    {
+      "id": "荨麻疹",
+      "label": "荨麻疹",
+      "type": "Disease"
+    },
+    {
+      "id": "瘙痒",
+      "label": "瘙痒",
+      "type": "Symptom"
+    },
+    {
+      "id": "氯雷他定",
+      "label": "氯雷他定",
+      "type": "Drug"
+    },
+    {
+      "id": "西替利嗪",
+      "label": "西替利嗪",
+      "type": "Drug"
+    },
+    {
+      "id": "急性胆囊炎",
+      "label": "急性胆囊炎",
+      "type": "Disease"
+    },
+    {
+      "id": "右上腹痛",
+      "label": "右上腹痛",
+      "type": "Symptom"
+    },
+    {
+      "id": "黄疸",
+      "label": "黄疸",
+      "type": "Symptom"
+    },
+    {
+      "id": "头孢曲松",
+      "label": "头孢曲松",
+      "type": "Drug"
+    },
+    {
+      "id": "哌拉西林",
+      "label": "哌拉西林",
+      "type": "Drug"
+    },
+    {
+      "id": "腹腔镜胆囊切除术",
+      "label": "腹腔镜胆囊切除术",
+      "type": "Treatment"
+    },
+    {
+      "id": "尿路感染",
+      "label": "尿路感染",
+      "type": "Disease"
+    },
+    {
+      "id": "尿频",
+      "label": "尿频",
+      "type": "Symptom"
+    },
+    {
+      "id": "尿急",
+      "label": "尿急",
+      "type": "Symptom"
+    },
+    {
+      "id": "尿痛",
+      "label": "尿痛",
+      "type": "Symptom"
+    },
+    {
+      "id": "呋喃妥因",
+      "label": "呋喃妥因",
+      "type": "Drug"
+    },
+    {
+      "id": "急性心肌梗死",
+      "label": "急性心肌梗死",
+      "type": "Disease"
+    },
+    {
+      "id": "心电图",
+      "label": "心电图",
+      "type": "Examination"
+    },
+    {
+      "id": "急诊PCI",
+      "label": "急诊PCI",
+      "type": "Treatment"
+    },
+    {
+      "id": "溶栓治疗",
+      "label": "溶栓治疗",
+      "type": "Treatment"
+    },
+    {
+      "id": "急性扁桃体炎",
+      "label": "急性扁桃体炎",
+      "type": "Disease"
+    },
+    {
+      "id": "吞咽困难",
+      "label": "吞咽困难",
+      "type": "Symptom"
+    },
+    {
+      "id": "咽痛",
+      "label": "咽痛",
+      "type": "Symptom"
+    },
+    {
+      "id": "青霉素V钾",
+      "label": "青霉素V钾",
+      "type": "Drug"
+    },
+    {
+      "id": "扁桃体切除术",
+      "label": "扁桃体切除术",
+      "type": "Treatment"
+    }
+  ],
+  "edges": [
+    {
+      "source": "肺炎",
+      "target": "发热",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "肺炎",
+      "target": "咳嗽",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "肺炎",
+      "target": "咳痰",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "肺炎",
+      "target": "胸痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "肺炎",
+      "target": "呼吸困难",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "肺炎",
+      "target": "阿莫西林",
+      "relation": "treated_by"
+    },
+    {
+      "source": "肺炎",
+      "target": "头孢类抗生素",
+      "relation": "treated_by"
+    },
+    {
+      "source": "肺炎",
+      "target": "左氧氟沙星",
+      "relation": "treated_by"
+    },
+    {
+      "source": "肺炎",
+      "target": "胸部X线",
+      "relation": "requires_exam"
+    },
+    {
+      "source": "肺炎",
+      "target": "CT检查",
+      "relation": "requires_exam"
+    },
+    {
+      "source": "肺炎",
+      "target": "呼吸机辅助通气",
+      "relation": "treated_by"
+    },
+    {
+      "source": "冠心病",
+      "target": "胸痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "冠心病",
+      "target": "胸闷",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "冠心病",
+      "target": "心悸",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "冠心病",
+      "target": "气短",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "冠心病",
+      "target": "阿司匹林",
+      "relation": "treated_by"
+    },
+    {
+      "source": "冠心病",
+      "target": "氯吡格雷",
+      "relation": "treated_by"
+    },
+    {
+      "source": "冠心病",
+      "target": "冠脉支架植入",
+      "relation": "treated_by"
+    },
+    {
+      "source": "冠心病",
+      "target": "搭桥手术",
+      "relation": "treated_by"
+    },
+    {
+      "source": "偏头痛",
+      "target": "头痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "偏头痛",
+      "target": "恶心",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "偏头痛",
+      "target": "呕吐",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "偏头痛",
+      "target": "布洛芬",
+      "relation": "treated_by"
+    },
+    {
+      "source": "偏头痛",
+      "target": "曲普坦类药物",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性胃肠炎",
+      "target": "发热",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胃肠炎",
+      "target": "恶心",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胃肠炎",
+      "target": "呕吐",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胃肠炎",
+      "target": "腹痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胃肠炎",
+      "target": "腹泻",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胃肠炎",
+      "target": "诺氟沙星",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性胃肠炎",
+      "target": "蒙脱石散",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性胃肠炎",
+      "target": "口服补液盐",
+      "relation": "treated_by"
+    },
+    {
+      "source": "支气管炎",
+      "target": "发热",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "支气管炎",
+      "target": "咳嗽",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "支气管炎",
+      "target": "咳痰",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "支气管炎",
+      "target": "头孢克洛",
+      "relation": "treated_by"
+    },
+    {
+      "source": "支气管炎",
+      "target": "阿奇霉素",
+      "relation": "treated_by"
+    },
+    {
+      "source": "类风湿性关节炎",
+      "target": "关节肿胀",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "类风湿性关节炎",
+      "target": "布洛芬",
+      "relation": "treated_by"
+    },
+    {
+      "source": "类风湿性关节炎",
+      "target": "甲氨蝶呤",
+      "relation": "treated_by"
+    },
+    {
+      "source": "类风湿性关节炎",
+      "target": "来氟米特",
+      "relation": "treated_by"
+    },
+    {
+      "source": "腰椎间盘突出",
+      "target": "腰痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "腰椎间盘突出",
+      "target": "麻木",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "腰椎间盘突出",
+      "target": "布洛芬",
+      "relation": "treated_by"
+    },
+    {
+      "source": "腰椎间盘突出",
+      "target": "MRI检查",
+      "relation": "requires_exam"
+    },
+    {
+      "source": "腰椎间盘突出",
+      "target": "物理治疗",
+      "relation": "treated_by"
+    },
+    {
+      "source": "腰椎间盘突出",
+      "target": "牵引",
+      "relation": "treated_by"
+    },
+    {
+      "source": "多囊卵巢综合征",
+      "target": "月经不调",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "多囊卵巢综合征",
+      "target": "多毛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "多囊卵巢综合征",
+      "target": "痤疮",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "多囊卵巢综合征",
+      "target": "炔雌醇环丙孕酮",
+      "relation": "treated_by"
+    },
+    {
+      "source": "多囊卵巢综合征",
+      "target": "二甲双胍",
+      "relation": "treated_by"
+    },
+    {
+      "source": "多囊卵巢综合征",
+      "target": "超声",
+      "relation": "requires_exam"
+    },
+    {
+      "source": "2型糖尿病",
+      "target": "多饮",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "2型糖尿病",
+      "target": "多尿",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "2型糖尿病",
+      "target": "多食",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "2型糖尿病",
+      "target": "体重下降",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "2型糖尿病",
+      "target": "二甲双胍",
+      "relation": "treated_by"
+    },
+    {
+      "source": "缺铁性贫血",
+      "target": "乏力",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "缺铁性贫血",
+      "target": "头晕",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "缺铁性贫血",
+      "target": "面色苍白",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "缺铁性贫血",
+      "target": "硫酸亚铁",
+      "relation": "treated_by"
+    },
+    {
+      "source": "缺铁性贫血",
+      "target": "富马酸亚铁",
+      "relation": "treated_by"
+    },
+    {
+      "source": "荨麻疹",
+      "target": "瘙痒",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "荨麻疹",
+      "target": "氯雷他定",
+      "relation": "treated_by"
+    },
+    {
+      "source": "荨麻疹",
+      "target": "西替利嗪",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性胆囊炎",
+      "target": "发热",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胆囊炎",
+      "target": "腹痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胆囊炎",
+      "target": "右上腹痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胆囊炎",
+      "target": "黄疸",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性胆囊炎",
+      "target": "头孢曲松",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性胆囊炎",
+      "target": "哌拉西林",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性胆囊炎",
+      "target": "腹腔镜胆囊切除术",
+      "relation": "treated_by"
+    },
+    {
+      "source": "尿路感染",
+      "target": "腹痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "尿路感染",
+      "target": "多饮",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "尿路感染",
+      "target": "尿频",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "尿路感染",
+      "target": "尿急",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "尿路感染",
+      "target": "尿痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "尿路感染",
+      "target": "左氧氟沙星",
+      "relation": "treated_by"
+    },
+    {
+      "source": "尿路感染",
+      "target": "呋喃妥因",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性心肌梗死",
+      "target": "胸痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性心肌梗死",
+      "target": "恶心",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性心肌梗死",
+      "target": "阿司匹林",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性心肌梗死",
+      "target": "氯吡格雷",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性心肌梗死",
+      "target": "心电图",
+      "relation": "requires_exam"
+    },
+    {
+      "source": "急性心肌梗死",
+      "target": "急诊PCI",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性心肌梗死",
+      "target": "溶栓治疗",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性扁桃体炎",
+      "target": "发热",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性扁桃体炎",
+      "target": "吞咽困难",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性扁桃体炎",
+      "target": "咽痛",
+      "relation": "has_symptom"
+    },
+    {
+      "source": "急性扁桃体炎",
+      "target": "阿莫西林",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性扁桃体炎",
+      "target": "青霉素V钾",
+      "relation": "treated_by"
+    },
+    {
+      "source": "急性扁桃体炎",
+      "target": "扁桃体切除术",
+      "relation": "treated_by"
+    }
+  ]
+}

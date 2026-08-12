@@ -1,0 +1,124 @@
+[
+  {
+    "status": "success",
+    "question": "肺炎有哪些症状？",
+    "question_type": "disease_symptoms",
+    "entity": "肺炎",
+    "answers": [
+      "发热",
+      "咳嗽",
+      "咳痰",
+      "胸痛",
+      "呼吸困难"
+    ],
+    "answer": "肺炎 的相关症状包括：发热、咳嗽、咳痰、胸痛、呼吸困难。",
+    "evidence": [
+      {
+        "subject": "肺炎",
+        "predicate": "has_symptom",
+        "object": "发热"
+      },
+      {
+        "subject": "肺炎",
+        "predicate": "has_symptom",
+        "object": "咳嗽"
+      },
+      {
+        "subject": "肺炎",
+        "predicate": "has_symptom",
+        "object": "咳痰"
+      },
+      {
+        "subject": "肺炎",
+        "predicate": "has_symptom",
+        "object": "胸痛"
+      },
+      {
+        "subject": "肺炎",
+        "predicate": "has_symptom",
+        "object": "呼吸困难"
+      }
+    ]
+  },
+  {
+    "status": "success",
+    "question": "肺炎可以用什么药？",
+    "question_type": "disease_drugs",
+    "entity": "肺炎",
+    "answers": [
+      "阿莫西林",
+      "头孢类抗生素",
+      "左氧氟沙星"
+    ],
+    "answer": "肺炎 的相关治疗药物包括：阿莫西林、头孢类抗生素、左氧氟沙星。",
+    "evidence": [
+      {
+        "subject": "肺炎",
+        "predicate": "treated_by",
+        "object": "阿莫西林"
+      },
+      {
+        "subject": "肺炎",
+        "predicate": "treated_by",
+        "object": "头孢类抗生素"
+      },
+      {
+        "subject": "肺炎",
+        "predicate": "treated_by",
+        "object": "左氧氟沙星"
+      }
+    ]
+  },
+  {
+    "status": "success",
+    "question": "哪些疾病关联胸痛？",
+    "question_type": "symptom_diseases",
+    "entity": "胸痛",
+    "answers": [
+      "肺炎",
+      "冠心病",
+      "急性心肌梗死"
+    ],
+    "answer": "与 胸痛 相关的疾病包括：肺炎、冠心病、急性心肌梗死。",
+    "evidence": [
+      {
+        "subject": "肺炎",
+        "predicate": "has_symptom",
+        "object": "胸痛"
+      },
+      {
+        "subject": "冠心病",
+        "predicate": "has_symptom",
+        "object": "胸痛"
+      },
+      {
+        "subject": "急性心肌梗死",
+        "predicate": "has_symptom",
+        "object": "胸痛"
+      }
+    ]
+  },
+  {
+    "status": "success",
+    "question": "阿莫西林可以治疗哪些疾病？",
+    "question_type": "drug_diseases",
+    "entity": "阿莫西林",
+    "answers": [
+      "肺炎",
+      "急性扁桃体炎"
+    ],
+    "answer": "阿莫西林 在知识图谱中关联的疾病包括：肺炎、急性扁桃体炎。",
+    "evidence": [
+      {
+        "subject": "肺炎",
+        "predicate": "treated_by",
+        "object": "阿莫西林"
+      },
+      {
+        "subject": "急性扁桃体炎",
+        "predicate": "treated_by",
+        "object": "阿莫西林"
+      }
+    ]
+  }
+]
