@@ -1,0 +1,6 @@
+{
+  "name": "medinsight",
+  "transport": "sse",
+  "url": "http://host.docker.internal:18100/sse",
+  "description": "MedInsight Data-Knowledge-Insight MCP service"
+}

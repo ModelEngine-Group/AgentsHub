@@ -1,0 +1,112 @@
+{
+  "agent_id": 1,
+  "agent_info": {
+    "1": {
+      "agent_id": 1,
+      "tenant_id": "tenant_id",
+      "name": "medinsight_data_knowledge_insight_agent",
+      "display_name": "MedInsight 医疗数据知识洞察智能体",
+      "description": "基于 Nexent 编排数据处理、医疗知识图谱生成与问答、图谱驱动分析与 BI 可视化，形成‘数据—知识—洞察’闭环。",
+      "business_description": "面向医疗文本和结构化记录的端到端智能体。它先完成数据画像、规范化、清洗、切分和质量门控，再进行实体/关系抽取、三元组自校验和图谱构建，最后使用图谱感知 NL2SQL、指标计算和 BI 看板生成可追溯洞察。",
+      "author": "陈亿鑫",
+      "max_steps": 15,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": true,
+      "verification_config": null,
+      "context_policy": null,
+      "duty_prompt": "你是 MedInsight 医疗数据知识洞察智能体，运行在 Nexent 智能体框架中。\n\n你的核心职责是将用户的医疗数据任务拆解为‘数据处理—知识构建—分析洞察’三层流程，并调用 MedInsight MCP 工具执行。\n\n工作流：\n1. 如果输入是原始 JSON 记录，先调用 process_medical_data。\n2. 如果需要从处理后文本生成图谱，调用 build_medical_knowledge_graph。\n3. 如果用户询问疾病、症状、药物、检查或关系，调用 ask_medical_knowledge_graph。\n4. 如果用户需要统计、关联、完整度或中心性分析，调用 query_medical_graph_analysis。\n5. 如果用户需要完整指标、NL2SQL 评测、BI 看板和洞察报告，调用 analyze_medical_graph。\n6. 如果用户明确要求端到端执行，调用 run_data_knowledge_insight_pipeline。\n\n最终回答应说明任务理解、工具链、执行状态、质量指标、证据或 SQL，以及产物路径。",
+      "constraint_prompt": "1. 不得绕过工具臆测处理结果、知识图谱事实或统计指标。\n2. 医疗问答只能基于已生成图谱和工具返回的证据路径；无证据时明确说明图谱未覆盖。\n3. DataMate 未连接时，必须展示 fallback_used、fallback_reason 和 missing_services，不得宣称 DataMate 已执行全部处理。\n4. 不执行写入或破坏性 SQL；任务三仅允许经校验的 SELECT 查询。\n5. 不将用户的医疗文本上传至未授权的外部服务。\n6. 本智能体用于数据工程、知识组织和技术演示，不构成诊断、治疗或用药建议。",
+      "few_shots_prompt": "示例 1\n用户：请将这批 JSON 医疗文本清洗后构建知识图谱，并统计实体分布。\n动作：调用 run_data_knowledge_insight_pipeline，设置 analysis_question=‘统计实体分布’。\n回答：总结三个阶段的执行状态、质量门控、图谱节点/边数、SQL 和产物路径。\n\n示例 2\n用户：根据已生成的图谱，某疾病有哪些临床表现？\n动作：调用 ask_medical_knowledge_graph。\n回答：仅整理工具返回的图谱事实和证据路径；如未命中则说明知识缺口。\n\n示例 3\n用户：分析当前图谱中哪些疾病关系最多。\n动作：调用 query_medical_graph_analysis。\n回答：展示意图、经校验的只读 SQL、统计结果和证据摘要。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "process_medical_data",
+          "name": "process_medical_data",
+          "description": "Process JSON medical records and emit auditable Task1 artifacts.",
+          "inputs": "{'input_json': {'title': 'Input Json', 'type': 'string', 'description': 'see tool description'}, 'task': {'default': '清洗、规范化并切分医疗数据，输出质量报告。', 'title': 'Task', 'type': 'string', 'description': 'see tool description'}, 'run_id': {'default': 'task1-latest', 'title': 'Run Id', 'type': 'string', 'description': 'see tool description'}, 'require_datamate': {'default': False, 'title': 'Require Datamate', 'type': 'boolean', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medinsight",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "build_medical_knowledge_graph",
+          "name": "build_medical_knowledge_graph",
+          "description": "Extract entities and relations, validate triples, and build a medical graph.",
+          "inputs": "{'processed_data_json': {'title': 'Processed Data Json', 'type': 'string', 'description': 'see tool description'}, 'task': {'default': '从任务一处理后的医疗文本生成可问答知识图谱。', 'title': 'Task', 'type': 'string', 'description': 'see tool description'}, 'run_id': {'default': 'task2-latest', 'title': 'Run Id', 'type': 'string', 'description': 'see tool description'}, 'question': {'default': '', 'title': 'Question', 'type': 'string', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medinsight",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "ask_medical_knowledge_graph",
+          "name": "ask_medical_knowledge_graph",
+          "description": "Answer a medical question strictly from a generated graph and its evidence paths.",
+          "inputs": "{'question': {'title': 'Question', 'type': 'string', 'description': 'see tool description'}, 'graph_path': {'default': '', 'title': 'Graph Path', 'type': 'string', 'description': 'see tool description'}, 'max_facts': {'default': 10, 'title': 'Max Facts', 'type': 'integer', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medinsight",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "analyze_medical_graph",
+          "name": "analyze_medical_graph",
+          "description": "Profile a Task2 graph and generate graph-grounded analytical artifacts.",
+          "inputs": "{'graph_path': {'default': '', 'title': 'Graph Path', 'type': 'string', 'description': 'see tool description'}, 'task': {'default': '分析医疗知识图谱并生成指标、NL2SQL 评测、BI 看板和洞察报告。', 'title': 'Task', 'type': 'string', 'description': 'see tool description'}, 'run_id': {'default': 'task3-latest', 'title': 'Run Id', 'type': 'string', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medinsight",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "query_medical_graph_analysis",
+          "name": "query_medical_graph_analysis",
+          "description": "Map a natural-language analytical request to verified read-only SQL.",
+          "inputs": "{'question': {'title': 'Question', 'type': 'string', 'description': 'see tool description'}, 'graph_path': {'default': '', 'title': 'Graph Path', 'type': 'string', 'description': 'see tool description'}, 'run_id': {'default': 'task3-query-latest', 'title': 'Run Id', 'type': 'string', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medinsight",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "run_data_knowledge_insight_pipeline",
+          "name": "run_data_knowledge_insight_pipeline",
+          "description": "Run the complete Data -> Knowledge -> Insight pipeline.",
+          "inputs": "{'input_json': {'title': 'Input Json', 'type': 'string', 'description': 'see tool description'}, 'analysis_question': {'default': '统计实体分布', 'title': 'Analysis Question', 'type': 'string', 'description': 'see tool description'}, 'qa_question': {'default': '', 'title': 'Qa Question', 'type': 'string', 'description': 'see tool description'}, 'run_id': {'default': 'pipeline-latest', 'title': 'Run Id', 'type': 'string', 'description': 'see tool description'}, 'require_datamate': {'default': False, 'title': 'Require Datamate', 'type': 'boolean', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medinsight",
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [],
+      "model_names": [],
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default"
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "medinsight",
+      "mcp_url": "http://host.docker.internal:18100/sse"
+    }
+  ]
+}

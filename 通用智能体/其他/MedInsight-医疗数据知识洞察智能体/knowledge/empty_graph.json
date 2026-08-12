@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "name": "medinsight_empty_medical_graph",
+    "node_count": 0,
+    "edge_count": 0,
+    "description": "Empty graph template. Populate it through build_medical_knowledge_graph."
+  },
+  "schema": {
+    "entity_types": [],
+    "predicates": [],
+    "predicate_count": 0
+  },
+  "nodes": [],
+  "edges": []
+}

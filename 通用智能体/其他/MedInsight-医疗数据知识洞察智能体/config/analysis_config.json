@@ -1,0 +1,45 @@
+{
+  "task": "基于任务一处理结果和任务二知识图谱生成任务三图谱驱动洞察分析。",
+  "analysis_tasks": [
+    {
+      "name": "entity_distribution",
+      "question": "当前医疗知识图谱包含哪些实体类型？数量分别是多少？"
+    },
+    {
+      "name": "relation_distribution",
+      "question": "当前医疗知识图谱包含哪些关系类型？数量分别是多少？"
+    },
+    {
+      "name": "graph_centrality",
+      "question": "当前图谱中最核心的节点有哪些？"
+    },
+    {
+      "name": "drug_disease_association",
+      "question": "哪些药物关联的疾病数量最多？"
+    },
+    {
+      "name": "coverage_gap",
+      "question": "哪些疾病节点的知识结构不完整？"
+    },
+    {
+      "name": "data_to_knowledge_lineage",
+      "question": "任务一数据到任务二知识图谱的转化率怎么样？"
+    },
+    {
+      "name": "document_knowledge_contribution",
+      "question": "哪些任务一文档贡献的知识最多？"
+    },
+    {
+      "name": "graph_quality",
+      "question": "当前图谱质量怎么样？证据覆盖率如何？"
+    },
+    {
+      "name": "disease_relation_profile",
+      "question": "分析肺炎的关系结构"
+    },
+    {
+      "name": "insight_report",
+      "question": "请生成一份当前医疗知识图谱洞察报告"
+    }
+  ]
+}
