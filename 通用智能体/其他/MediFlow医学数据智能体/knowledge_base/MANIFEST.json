@@ -1,0 +1,58 @@
+{
+  "source": {
+    "project": "MediFlow",
+    "branch": "main",
+    "base_commit": "09a44c992954c27c8790cad9793fd7be6538f6f1"
+  },
+  "assets": [
+    {
+      "archive": "task2_medical_kg.db.zip",
+      "entry": "task2_medical_kg.db",
+      "target": "data/task2_medical_kg.db",
+      "bytes": 222486528,
+      "sha256": "8F99E317F4DA5C6239E03246762C4C171B71DED1AA38BA72ABB5602A345D0DD8"
+    },
+    {
+      "archive": "task3_analytics.db.zip",
+      "entry": "task3_analytics.db",
+      "target": "data/task3_analytics.db",
+      "bytes": 221937664,
+      "sha256": "157277244085A64CF5D953D89E2416EEF969D5858435FF351682631FC591A757"
+    },
+    {
+      "archive": "noise_kb.db.zip",
+      "entry": "noise_kb.db",
+      "target": "operators/llm_noise_filter/noise_kb.db",
+      "bytes": 27885568,
+      "sha256": "DBAB6AB72CE40AF1A526D86773363C4A83F66B8908AB68B66F30AD216C4D88E4"
+    },
+    {
+      "archive": "term_kb.db.zip",
+      "entry": "term_kb.db",
+      "target": "operators/medical_term_normalizer/term_kb.db",
+      "bytes": 53248,
+      "sha256": "403BE2D8B4E27A5510CCA98306E9D563B570AAE8D540C935B66862792B58EA6C"
+    },
+    {
+      "archive": "task2_assets.zip",
+      "entry": "entity_lexicon.json",
+      "target": "data/task2/entity_lexicon.json",
+      "bytes": 1079262,
+      "sha256": "DF1845DC3D94E776352B187D57866FF7701DECE665A30F8ED760ADC27224F366"
+    },
+    {
+      "archive": "task2_assets.zip",
+      "entry": "relation_pairs.json",
+      "target": "data/task2/relation_pairs.json",
+      "bytes": 499742,
+      "sha256": "268E246DA7B979F2B3B3CCE11AE1A3CBC90E0DBDC2E5070D6961EF44074CCD1F"
+    },
+    {
+      "archive": "task2_assets.zip",
+      "entry": "reliability_profile.json",
+      "target": "data/task2/reliability_profile.json",
+      "bytes": 8048,
+      "sha256": "B142DB2A333DC2A14D517955FE650A4D53BD54DAAD795FBA993C36C0F955A622"
+    }
+  ]
+}

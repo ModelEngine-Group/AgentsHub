@@ -1,0 +1,5 @@
+name: UnifiedJsonlExporter
+description: JSONL统一输出算子：将清洗后的文本、CSV表格、JSON/JSONL统一包装为 source_file、record_id、cleaned_text、noise_score、data_type 记录。
+version: 1.0.0
+inputs: text
+outputs: text

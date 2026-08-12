@@ -1,0 +1,9 @@
+requests>=2.31.0          # HTTP 调用（DataMate / Nexent API）
+markdown-it-py>=3.0.0     # MinerU Markdown 结果转为任务一纯文本输入
+pyyaml>=6.0               # 读配置
+loguru>=0.7.0             # 日志（与 DataMate 算子一致）
+fastmcp>=2.0.0            # MCP 协议服务
+pandas>=2.0.0             # 数据处理
+plotly>=5.18.0            # 交互式图表
+
+# 注：DataMate 算子运行时依赖 datamate.core（由 datamate-runtime 容器提供，本地不需装）

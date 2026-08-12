@@ -1,0 +1,5 @@
+name: TableColumnCleaner
+description: 结构化表格(CSV/Excel)列级清洗：保留列结构，按列名自动分类(医疗文本列/标识列/数值列)，对医疗文本列做术语标准化(term_kb)+规则去噪(noise_kb)，标识列与数值列原样保留。列级用规则不调LLM，适合大表批处理。
+version: 1.0.0
+inputs: text
+outputs: text

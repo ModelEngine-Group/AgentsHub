@@ -1,0 +1,5 @@
+name: MedicalRecordSplitter
+description: 多段医疗病历分段算子：将单个文本文件中的多位患者/多份病历切分为 JSONL 记录，输出 source_file、record_id、cleaned_text、noise_score、data_type。
+version: 1.0.0
+inputs: text
+outputs: text

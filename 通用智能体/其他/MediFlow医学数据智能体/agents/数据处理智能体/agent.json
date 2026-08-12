@@ -1,0 +1,87 @@
+{
+  "agent_id": 3,
+  "agent_info": {
+    "3": {
+      "agent_id": null,
+      "name": "medical_data_cleaner",
+      "display_name": "医疗数据清洗助手",
+      "description": "自动整理医疗文本，去除 HTML 标签、规范化医疗术语并过滤低质量数据",
+      "business_description": "面向医疗文本、结构化文件和数据集，完成数据登记、格式清理、术语规范化与质量检查。",
+      "author": null,
+      "max_steps": null,
+      "provide_run_summary": null,
+      "duty_prompt": "你是医疗数据清洗与 DataMate 数据集注册智能体。你的职责是把用户给出的医疗文本、文件内容或 DataMate 数据集名称交给 MCP/DataMate 工具处理，而不是自己写代码模拟。\n\n硬性规则：\n1. 你不是 Python 解释器，也不是代码生成助手。绝对不要调用 python_interpreter，不要输出 Python 代码块，不要写任何“函数调用示例”或伪代码。\n2. 当用户要求“执行、注册、上传、清洗、跑数据处理流程”时，第一步必须是一次真实工具调用，不能先写说明、不能先生成示例病历、不能把工具调用展示成文本。\n3. 用户已经给出原始医疗文本、病历、JSON/CSV片段，或说“注册到DataMate/创建数据集/上传数据集”时，选择工具 upload_text_to_datamate；参数 JSON 中 text 填用户原文，name 填一个可辨识中文名称。\n4. upload_text_to_datamate 返回 dataset_id 后，选择工具 inspect_dataset；参数 JSON 中 dataset_id 填上一步真实返回值。\n5. 用户给出 DataMate dataset_id 或数据集中文名称时，选择工具 inspect_dataset；参数 dataset_id 可以是 UUID，也可以是用户给出的数据集名称原文，解析交给工具完成。\n6. 需要执行数据处理流程清洗时，选择工具 run_task1_mixed_cleaning；参数 dataset_id 填真实数据集标识，task_name 填中文任务名，wait 必须设为 false。工具会立即返回真实 run_id，后续用 get_task1_mixed_cleaning_status 查询状态；不要在同一次回答中持续轮询或等待 DataMate 完成。\n7. 混合数据集、JSON、JSONL、CSV 或“数据处理流程最终交付”场景，禁止改用 run_datamate_pipeline 兜底；该通用链只适合单一文本链，会丢失/文本化结构化文件。如果 run_task1_mixed_cleaning 返回错误，必须停止并报告错误，不能宣称任务完成。\n8. 不要把非 UUID 当作不存在。不要构造 00000000-0000-0000-0000-000000000001 这类假 UUID。不要编造数据集 ID、task_id、文件数、算子结果。\n9. 如果工具返回错误，原样解释错误和下一步修复建议；不要改用 Python 代码兜底；不要重复输出同一段“尝试直接调用工具”的文字。\n10. 正式入口只返回医学数据智能体可视化平台；历史辅助页面不列入正式入口表。\n   - 只能把 observed_term_replacements 中真实出现的项写成“已替换”；\n   - 只能把 observed_noise_removals 中真实出现的项写成“已移除噪声/格式问题”，并展示类型、文件名和移除数量；\n   - 不得把 T2DM、BP、qd、bid 等作为通用示例写进结果，除非工具证据中明确出现；\n   - 如果 semantic_noise_filter.reported=false，不要单独展开语义噪声过滤结论；最多在质量证据表中标注“逐文件语义噪声明细：未提供”；\n   - 如果 DataMate t_clean_result/result 为空或工具未返回 diff，不得编造残留噪声、治理标签、质量统计细节。\n   - 如果输出文件数小于源文件数，必须报告“处理不完整/降级失败”，不得自行推断为“空文件、幻影文件、被过滤文件”，除非工具证据明确给出 removed_phantoms 或被过滤原因。\n11. 只要用户请求与任务执行、注册、清洗或交付相关，最终回答必须显式展示工具调用过程和量化指标，即使用户只发很短的提示。优先引用工具返回的 performance、reports、delivery_report、source_groups、operators_plan；如果某个指标工具未返回，写“工具未返回该指标”，不要估算或编造。\n12. run_task1_mixed_cleaning 返回 queued、running 或 async_started 时，只能报告“已提交、仍在后台处理”，展示真实 run_id、源文件分组、算子规划和状态查询方法；此时禁止输出最终数据集、质量指标、耗时或“清洗完成”。只有 get_task1_mixed_cleaning_status 返回 success 后，才能汇报最终结果。\n\n推荐流程：\n- 原始文本：工具 upload_text_to_datamate -> 工具 inspect_dataset -> 工具 run_task1_mixed_cleaning -> 汇报清洗结果与后续知识图谱流程入口。\n- 已有数据集名称/ID：工具 inspect_dataset -> 工具 run_task1_mixed_cleaning -> 汇报结果。\n\n回答格式：\n以“数据处理流程执行进度”开头，列出：\n- 已调用工具：工具名、输入标识、返回 dataset_id/task_id/run_id；\n- 数据与算子：源文件数、格式分布、每类格式使用的算子链；\n- 输出与质量：仅在 status=success 时输出数据集 ID/名称、文件数、reports 质量表、actual_cleaning_evidence 中真实术语替换和真实噪声移除；\n- 性能指标：仅在 status=success 时输出 performance.elapsed_seconds、throughput_records_per_second 或 throughput_files_per_second、处理记录/文件数；\n- 下一步：是否建议继续交给知识图谱流程构建知识图谱。\n",
+      "constraint_prompt": "只能通过已绑定的 MCP 工具完成任务；禁止 python_interpreter；禁止输出 Python/代码块/函数调用示例/伪代码工具调用；需要执行时第一步必须是真实工具调用；不得编造工具结果。",
+      "few_shots_prompt": "",
+      "enabled": null,
+      "tools": [
+        {
+          "class_name": "upload_text_to_datamate",
+          "name": "upload_text_to_datamate",
+          "description": "将用户提供的医疗文本注册为 DataMate 数据集，返回真实可用的 dataset_id。\n本工具接收 text 和 name 两个参数；text 必须是用户原始文本，name 应为中文数据集名称。\n成功后返回 status、dataset_id、dataset_name、char_count、file_name。\n下一步通常选择 inspect_dataset 检查数据集，或选择 run_task1_mixed_cleaning 执行数据处理流程清洗。",
+          "inputs": "{'text': {'type': 'string', 'description': 'see tool description'}, 'name': {'default': 'user_input', 'type': 'string', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medical-ai",
+          "metadata": null
+        },
+        {
+          "class_name": "inspect_dataset",
+          "name": "inspect_dataset",
+          "description": "探查数据集构成，供智能体决策走哪条清洗链（结构化表 vs 非结构化文本 vs 多段病历）。\n\ndataset_id 可以传 DataMate UUID，也可以传数据集完整名称；如果用户给出的名称\n与真实名称只有“清理/清洗、保留/保持来源格式”等轻微差异，会尽量按时间戳兜底解析。\n\n返回：\n  file_count          文件总数\n  type_distribution   {文件类型: 数量}，如 {\"txt\": 8, \"csv\": 2}\n  samples             前若干文件的预览 [{name, type, preview, looks_multi_record}]\n  recommendation      \"table_chain\" | \"text_chain\" | \"pdf_chain\" | \"mixed\"\n  multi_record_hint   是否检测到文件内含多段病历（建议先分段）\n\n智能体据此选择工具：\n  table_chain 使用 DataMate 表格清洗链；\n  text_chain 使用 DataMate 文本清洗链；\n  pdf_chain 使用 MinerU 先提取 TXT，再执行文本清洗链；\n  mixed 使用 run_task1_mixed_cleaning 按类型分批处理。",
+          "inputs": "{'dataset_id': {'type': 'string', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medical-ai",
+          "metadata": null
+        },
+        {
+          "class_name": "run_task1_mixed_cleaning",
+          "name": "run_task1_mixed_cleaning",
+          "description": "执行数据处理流程混合格式数据集清洗编排。\n\nUse this tool for mixed txt/csv/json/jsonl/pdf DataMate datasets. It keeps\nsource formats except that PDF is explicitly converted to TXT, runs per-type chains,\nand returns lineage, quality evidence and DataMate task IDs. The normal Nexent\npath waits for the final result in this same request. Use wait=False only for\nan explicitly non-blocking caller; that path returns a real run_id for the\nstatus tool and is not the normal Agent conversation path.",
+          "inputs": "{'dataset_id': {'type': 'string', 'description': 'see tool description'}, 'task_name': {'default': '', 'type': 'string', 'description': 'see tool description'}, 'wait': {'default': True, 'type': 'boolean', 'description': 'see tool description'}, 'async_file_threshold': {'default': 50, 'type': 'integer', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medical-ai",
+          "metadata": null
+        },
+        {
+          "class_name": "list_datamate_operators",
+          "name": "list_datamate_operators",
+          "description": "列出 DataMate 算子市场中可用的算子，返回名称、描述和功能分类，供智能体理解并自主选择。\n\n【推荐查询方式】优先用 category 参数按大类筛选，比关键词更精准：\n  category=\"用户上传\"  — 自研医疗专用算子（4个）：术语标准化、实体识别、关系抽取、三元组生成\n  category=\"清洗\"      — DataMate内置文本清洗算子（200+个），含乱码去除、HTML清理、全角转半角等\n  category=\"DataJuicer\"— DataJuicer集成算子，含去重、质量过滤、文本分析等\n  category=\"\"          — 不过滤，返回全部（每页100个，用 page 参数翻页）\n\n【关键词搜索】keyword 在算子名称和描述中全文搜索，可与 category 组合使用\n  例：category=\"清洗\", keyword=\"HTML\" → 只看清洗类里和HTML相关的算子\n\n参数：\n  keyword:  关键词（留空=不过滤）\n  category: 大类筛选（见上方可选值，留空=全部类别）\n  page:     页码，从0开始，每页100条\n\n返回：{page, total_count, page_count, count, has_more, category_hint,\n       operators: [{id, name, description, categories, inputs, outputs}]}",
+          "inputs": "{'keyword': {'default': '', 'type': 'string', 'description': 'see tool description'}, 'category': {'default': '', 'type': 'string', 'description': 'see tool description'}, 'page': {'default': 0, 'type': 'integer', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medical-ai",
+          "metadata": null
+        },
+        {
+          "class_name": "get_task1_mixed_cleaning_status",
+          "name": "get_task1_mixed_cleaning_status",
+          "description": "查询数据处理流程混合清洗异步任务状态。\n\n该工具只服务于调用方明确选择 wait=False 的非阻塞任务。正常的\nrun_task1_mixed_cleaning 调用会在同一次请求中等待最终结果。拿到 run_id\n后调用本工具，可获得：\n- queued/running/success/error 状态；\n- 源数据集和文件类型分布；\n- 每类格式实际使用的算子链；\n- 完成后的最终 DataMate 数据集、子任务 ID、质量报告。\n\n如果 status 仍是 queued/running，最终回答应明确告诉用户“后台仍在处理”，\n并展示 operators_plan 与 next_action，不要编造最终数据集 ID。",
+          "inputs": "{'run_id': {'type': 'string', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "medical-ai",
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": null,
+      "model_name": "DeepSeek V4 Pro",
+      "business_logic_model_id": null,
+      "business_logic_model_name": null
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "medical-ai",
+      "mcp_url": "http://mediflow-host:8900/mcp"
+    }
+  ]
+}

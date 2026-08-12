@@ -1,0 +1,48 @@
+name: '医疗三元组生成'
+name_en: 'Medical Triple Generator'
+description: '由离线或增强抽取结果生成知识图谱三元组，含置信度评分，用于构建医疗知识图谱'
+description_en: 'Generates validated knowledge graph triples from offline or enhanced extraction results with confidence scoring.'
+language: 'python'
+vendor: 'bjfuteam'
+raw_id: 'MedicalTripleGenerator'
+version: '1.0.0'
+types: ['kg']
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+settings:
+  backend:
+    name: '抽取后端'
+    type: 'select'
+    defaultVal: 'offline'
+    required: false
+    options: ['offline', 'hybrid', 'llm']
+  kgDbPath:
+    name: '本地KG数据库路径（可选）'
+    type: 'input'
+    defaultVal: '/opt/runtime/ccf_medical_ai/data/task2_medical_kg.db'
+    required: false
+  ollamaUrl:
+    name: 'LLM接口地址（hybrid/llm时使用）'
+    type: 'input'
+    defaultVal: 'https://api.deepseek.com/v1/chat/completions'
+    required: false
+  modelName:
+    name: '模型名称'
+    type: 'input'
+    defaultVal: 'deepseek-chat'
+    required: false
+  confidenceThreshold:
+    name: '置信度阈值'
+    type: 'slider'
+    defaultVal: 0.7
+    min: 0.5
+    max: 1.0
+    step: 0.05
+  timeoutSeconds:
+    name: '超时时间（秒）'
+    type: 'slider'
+    defaultVal: 120
+    min: 30
+    max: 300
+    step: 30

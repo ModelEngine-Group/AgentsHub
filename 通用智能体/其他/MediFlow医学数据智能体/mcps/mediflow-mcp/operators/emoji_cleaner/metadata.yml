@@ -1,0 +1,17 @@
+name: '颜文字/Emoji去除'
+name_en: 'Emoji Cleaner'
+description: '去除医疗文本中的 Emoji 表情符号、内部 URL 链接，并压缩重复标点，输出干净的纯文字病历。'
+description_en: 'Removes emoji characters, internal URL links, and redundant punctuation from medical text.'
+language: 'python'
+vendor: 'bjfuteam'
+raw_id: 'EmojiCleaner'
+version: '1.0.0'
+types:
+  - 'cleaning'
+modal: 'text'
+effect:
+  before: '患者胸闷 😫，血压 165/105mmHg 🔺，详见 http://hospital-inner.local/report！！！'
+  after: '患者胸闷，血压 165/105mmHg，详见！'
+inputs: 'text'
+outputs: 'text'
+settings: {}

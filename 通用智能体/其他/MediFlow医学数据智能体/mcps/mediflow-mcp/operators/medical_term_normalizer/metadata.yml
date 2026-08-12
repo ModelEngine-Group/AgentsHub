@@ -1,0 +1,37 @@
+name: '医疗术语标准化'
+name_en: 'Medical Term Normalizer'
+description: '调用 Ollama 大模型，将医疗文本中的缩写、别名、简称智能替换为规范中文术语。'
+description_en: 'Uses Ollama LLM to intelligently normalize medical abbreviations and aliases to standard terminology.'
+language: 'python'
+vendor: 'bjfuteam'
+raw_id: 'MedicalTermNormalizer'
+version: '2.0.0'
+types:
+  - 'cleaning'
+modal: 'text'
+effect:
+  before: '患者T2DM病史5年，心梗后服用阿斯匹林，HbA1c偏高。'
+  after: '患者2型糖尿病病史5年，心肌梗死后服用阿司匹林，糖化血红蛋白偏高。'
+inputs: 'text'
+outputs: 'text'
+settings:
+  ollamaUrl:
+    name: 'Ollama 接口地址'
+    description: 'Ollama OpenAI 兼容接口地址，默认使用本地部署。'
+    type: 'input'
+    defaultVal: 'http://localhost:11434/v1/chat/completions'
+    required: false
+  modelName:
+    name: '模型名称'
+    description: '使用的 Ollama 模型，需已在服务器拉取。'
+    type: 'input'
+    defaultVal: 'qwen3:32b'
+    required: false
+  timeoutSeconds:
+    name: '超时时间（秒）'
+    description: '单次 LLM 调用的最长等待时间。'
+    type: 'slider'
+    defaultVal: 120
+    min: 30
+    max: 300
+    step: 30

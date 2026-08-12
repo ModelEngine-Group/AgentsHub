@@ -1,0 +1,41 @@
+name: '医疗关系抽取'
+name_en: 'Medical Relation Extractor'
+description: '使用离线医学词典/规则抽取实体间关系，支持临床表现、治疗、病因、并发症等关系类型，可选LLM/Hybrid增强'
+description_en: 'Extracts validated CMeIE-style relations with an offline baseline and optional LLM/Hybrid enhancement.'
+language: 'python'
+vendor: 'bjfuteam'
+raw_id: 'MedicalRelationExtractor'
+version: '1.0.0'
+types: ['relation']
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+settings:
+  backend:
+    name: '抽取后端'
+    type: 'select'
+    defaultVal: 'offline'
+    required: false
+    options: ['offline', 'hybrid', 'llm']
+  kgDbPath:
+    name: '本地KG数据库路径（可选）'
+    type: 'input'
+    defaultVal: '/opt/runtime/ccf_medical_ai/data/task2_medical_kg.db'
+    required: false
+  ollamaUrl:
+    name: 'LLM接口地址（hybrid/llm时使用）'
+    type: 'input'
+    defaultVal: 'https://api.deepseek.com/v1/chat/completions'
+    required: false
+  modelName:
+    name: '模型名称'
+    type: 'input'
+    defaultVal: 'deepseek-chat'
+    required: false
+  timeoutSeconds:
+    name: '超时时间（秒）'
+    type: 'slider'
+    defaultVal: 120
+    min: 30
+    max: 300
+    step: 30

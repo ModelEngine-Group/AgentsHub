@@ -1,0 +1,5 @@
+name: LLMNoiseFilter
+description: LLM语义噪声过滤：清除感叹词/口语/无关生活描述/@mentions/系统导出废话/填表元数据。规则算子无法判断语义边界时的兜底算子，内置噪声信号检测，无信号时跳过LLM调用。
+version: 1.0.0
+inputs: text
+outputs: text
