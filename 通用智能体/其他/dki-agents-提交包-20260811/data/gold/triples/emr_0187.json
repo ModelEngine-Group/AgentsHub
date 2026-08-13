@@ -1,0 +1,72 @@
+[
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "气短",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "心悸",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "冠状动脉造影",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "心电图",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "心肌酶谱",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "心血管内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "阿托伐他汀",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "阿司匹林",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "硝酸甘油",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "冠心病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "经皮冠状动脉介入治疗",
+  "tail_type": "Treatment"
+ }
+]

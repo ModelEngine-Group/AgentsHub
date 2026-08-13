@@ -1,0 +1,51 @@
+[
+ {
+  "head": "尿路感染",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "尿频",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "尿路感染",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "发热",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "尿路感染",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "尿培养",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "尿路感染",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "泌尿外科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "尿路感染",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "慢性肾脏病",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "尿路感染",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "头孢克肟",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "尿路感染",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "左氧氟沙星",
+  "tail_type": "Drug"
+ }
+]

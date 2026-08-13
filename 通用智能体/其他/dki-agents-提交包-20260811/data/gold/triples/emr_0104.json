@@ -1,0 +1,72 @@
+[
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "呕血",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "头晕",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "黑便",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "胃镜检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "血常规",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "消化内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "贫血",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "生长抑素",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "奥美拉唑",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "消化道出血",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "内镜下止血术",
+  "tail_type": "Treatment"
+ }
+]

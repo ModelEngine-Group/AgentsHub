@@ -1,0 +1,2222 @@
+{
+ "diseases": {
+  "高血压": {
+   "aliases": [
+    "高血压病",
+    "原发性高血压"
+   ],
+   "department": "心血管内科",
+   "symptoms": [
+    "头痛",
+    "头晕",
+    "心悸",
+    "耳鸣"
+   ],
+   "drugs": [
+    "硝苯地平",
+    "缬沙坦",
+    "氨氯地平"
+   ],
+   "exams": [
+    "血压测量",
+    "动态血压监测",
+    "心电图"
+   ],
+   "treatments": [
+    "生活方式干预"
+   ],
+   "complications": [
+    "脑卒中",
+    "冠心病",
+    "慢性肾脏病"
+   ]
+  },
+  "冠心病": {
+   "aliases": [
+    "冠状动脉粥样硬化性心脏病",
+    "冠状动脉性心脏病"
+   ],
+   "department": "心血管内科",
+   "symptoms": [
+    "胸痛",
+    "胸闷",
+    "心悸",
+    "气短"
+   ],
+   "drugs": [
+    "阿司匹林",
+    "阿托伐他汀",
+    "硝酸甘油"
+   ],
+   "exams": [
+    "冠状动脉造影",
+    "心电图",
+    "心肌酶谱"
+   ],
+   "treatments": [
+    "经皮冠状动脉介入治疗",
+    "冠状动脉旁路移植术"
+   ],
+   "complications": [
+    "心肌梗死",
+    "心力衰竭",
+    "心律失常"
+   ]
+  },
+  "心肌梗死": {
+   "aliases": [
+    "心梗",
+    "急性心肌梗死",
+    "AMI"
+   ],
+   "department": "心血管内科",
+   "symptoms": [
+    "剧烈胸痛",
+    "大汗",
+    "濒死感",
+    "恶心"
+   ],
+   "drugs": [
+    "阿司匹林",
+    "氯吡格雷",
+    "阿托伐他汀"
+   ],
+   "exams": [
+    "心电图",
+    "心肌酶谱",
+    "肌钙蛋白检测"
+   ],
+   "treatments": [
+    "经皮冠状动脉介入治疗",
+    "溶栓治疗"
+   ],
+   "complications": [
+    "心力衰竭",
+    "心律失常"
+   ]
+  },
+  "心力衰竭": {
+   "aliases": [
+    "心衰",
+    "慢性心力衰竭"
+   ],
+   "department": "心血管内科",
+   "symptoms": [
+    "呼吸困难",
+    "下肢水肿",
+    "乏力",
+    "夜间阵发性呼吸困难"
+   ],
+   "drugs": [
+    "呋塞米",
+    "螺内酯",
+    "美托洛尔"
+   ],
+   "exams": [
+    "心脏超声",
+    "BNP检测",
+    "胸部X线"
+   ],
+   "treatments": [
+    "限盐限水"
+   ],
+   "complications": [
+    "心律失常",
+    "慢性肾脏病"
+   ]
+  },
+  "心律失常": {
+   "aliases": [
+    "心律不齐"
+   ],
+   "department": "心血管内科",
+   "symptoms": [
+    "心悸",
+    "头晕",
+    "乏力",
+    "晕厥"
+   ],
+   "drugs": [
+    "美托洛尔",
+    "胺碘酮"
+   ],
+   "exams": [
+    "心电图",
+    "动态心电图"
+   ],
+   "treatments": [
+    "射频消融术"
+   ],
+   "complications": [
+    "脑卒中",
+    "心力衰竭"
+   ]
+  },
+  "深静脉血栓形成": {
+   "aliases": [
+    "下肢深静脉血栓",
+    "DVT"
+   ],
+   "department": "心血管内科",
+   "symptoms": [
+    "下肢肿胀",
+    "下肢疼痛"
+   ],
+   "drugs": [
+    "低分子肝素",
+    "利伐沙班"
+   ],
+   "exams": [
+    "下肢血管超声",
+    "D-二聚体检测"
+   ],
+   "treatments": [
+    "抗凝治疗"
+   ],
+   "complications": [
+    "肺栓塞"
+   ]
+  },
+  "2型糖尿病": {
+   "aliases": [
+    "糖尿病",
+    "II型糖尿病",
+    "T2DM"
+   ],
+   "department": "内分泌科",
+   "symptoms": [
+    "多饮",
+    "多尿",
+    "多食",
+    "体重下降",
+    "乏力"
+   ],
+   "drugs": [
+    "二甲双胍",
+    "格列美脲",
+    "胰岛素"
+   ],
+   "exams": [
+    "空腹血糖检测",
+    "糖化血红蛋白检测",
+    "口服葡萄糖耐量试验"
+   ],
+   "treatments": [
+    "饮食控制",
+    "运动疗法"
+   ],
+   "complications": [
+    "糖尿病肾病",
+    "糖尿病视网膜病变",
+    "糖尿病周围神经病变"
+   ]
+  },
+  "糖尿病肾病": {
+   "aliases": [],
+   "department": "肾内科",
+   "symptoms": [
+    "蛋白尿",
+    "下肢水肿",
+    "乏力"
+   ],
+   "drugs": [
+    "缬沙坦",
+    "胰岛素"
+   ],
+   "exams": [
+    "尿微量白蛋白检测",
+    "肾功能检查"
+   ],
+   "treatments": [
+    "饮食控制"
+   ],
+   "complications": [
+    "慢性肾脏病"
+   ]
+  },
+  "糖尿病视网膜病变": {
+   "aliases": [],
+   "department": "眼科",
+   "symptoms": [
+    "视物模糊"
+   ],
+   "drugs": [],
+   "exams": [
+    "眼底检查"
+   ],
+   "treatments": [],
+   "complications": []
+  },
+  "糖尿病周围神经病变": {
+   "aliases": [],
+   "department": "内分泌科",
+   "symptoms": [
+    "下肢麻木",
+    "感觉异常"
+   ],
+   "drugs": [
+    "甲钴胺"
+   ],
+   "exams": [],
+   "treatments": [],
+   "complications": []
+  },
+  "甲状腺功能亢进症": {
+   "aliases": [
+    "甲亢"
+   ],
+   "department": "内分泌科",
+   "symptoms": [
+    "心悸",
+    "多汗",
+    "体重下降",
+    "手抖",
+    "易怒"
+   ],
+   "drugs": [
+    "甲巯咪唑",
+    "普萘洛尔"
+   ],
+   "exams": [
+    "甲状腺功能检查",
+    "甲状腺超声"
+   ],
+   "treatments": [
+    "放射性碘治疗"
+   ],
+   "complications": [
+    "心律失常",
+    "骨质疏松症"
+   ]
+  },
+  "甲状腺功能减退症": {
+   "aliases": [
+    "甲减"
+   ],
+   "department": "内分泌科",
+   "symptoms": [
+    "乏力",
+    "畏寒",
+    "体重增加",
+    "便秘"
+   ],
+   "drugs": [
+    "左甲状腺素钠"
+   ],
+   "exams": [
+    "甲状腺功能检查"
+   ],
+   "treatments": [],
+   "complications": [
+    "高脂血症"
+   ]
+  },
+  "高脂血症": {
+   "aliases": [
+    "血脂异常"
+   ],
+   "department": "内分泌科",
+   "symptoms": [
+    "头晕",
+    "乏力"
+   ],
+   "drugs": [
+    "阿托伐他汀",
+    "非诺贝特"
+   ],
+   "exams": [
+    "血脂检查"
+   ],
+   "treatments": [
+    "饮食控制",
+    "运动疗法"
+   ],
+   "complications": [
+    "冠心病",
+    "脑卒中",
+    "脂肪肝"
+   ]
+  },
+  "痛风": {
+   "aliases": [
+    "痛风性关节炎"
+   ],
+   "department": "风湿免疫科",
+   "symptoms": [
+    "关节疼痛",
+    "关节红肿",
+    "发热"
+   ],
+   "drugs": [
+    "秋水仙碱",
+    "别嘌醇",
+    "非布司他"
+   ],
+   "exams": [
+    "血尿酸检测",
+    "关节超声"
+   ],
+   "treatments": [
+    "饮食控制"
+   ],
+   "complications": [
+    "慢性肾脏病",
+    "尿路结石"
+   ]
+  },
+  "肺炎": {
+   "aliases": [
+    "社区获得性肺炎"
+   ],
+   "department": "呼吸内科",
+   "symptoms": [
+    "发热",
+    "咳嗽",
+    "咳痰",
+    "胸痛",
+    "气短"
+   ],
+   "drugs": [
+    "阿莫西林",
+    "左氧氟沙星",
+    "头孢曲松"
+   ],
+   "exams": [
+    "胸部CT",
+    "胸部X线",
+    "血常规"
+   ],
+   "treatments": [
+    "氧疗"
+   ],
+   "complications": [
+    "呼吸衰竭"
+   ]
+  },
+  "慢性阻塞性肺疾病": {
+   "aliases": [
+    "慢阻肺",
+    "COPD"
+   ],
+   "department": "呼吸内科",
+   "symptoms": [
+    "慢性咳嗽",
+    "咳痰",
+    "呼吸困难",
+    "气短"
+   ],
+   "drugs": [
+    "沙美特罗",
+    "噻托溴铵",
+    "布地奈德"
+   ],
+   "exams": [
+    "肺功能检查",
+    "胸部CT"
+   ],
+   "treatments": [
+    "氧疗",
+    "戒烟干预"
+   ],
+   "complications": [
+    "呼吸衰竭"
+   ]
+  },
+  "支气管哮喘": {
+   "aliases": [
+    "哮喘"
+   ],
+   "department": "呼吸内科",
+   "symptoms": [
+    "喘息",
+    "呼吸困难",
+    "咳嗽",
+    "胸闷"
+   ],
+   "drugs": [
+    "布地奈德",
+    "沙丁胺醇"
+   ],
+   "exams": [
+    "肺功能检查",
+    "过敏原检测"
+   ],
+   "treatments": [
+    "吸入治疗"
+   ],
+   "complications": [
+    "呼吸衰竭",
+    "慢性阻塞性肺疾病"
+   ]
+  },
+  "肺结核": {
+   "aliases": [
+    "结核病"
+   ],
+   "department": "感染科",
+   "symptoms": [
+    "咳嗽",
+    "咯血",
+    "低热",
+    "盗汗",
+    "体重下降"
+   ],
+   "drugs": [
+    "异烟肼",
+    "利福平",
+    "吡嗪酰胺"
+   ],
+   "exams": [
+    "胸部CT",
+    "结核菌素试验",
+    "痰涂片检查"
+   ],
+   "treatments": [],
+   "complications": [
+    "呼吸衰竭"
+   ]
+  },
+  "呼吸衰竭": {
+   "aliases": [],
+   "department": "呼吸内科",
+   "symptoms": [
+    "呼吸困难",
+    "发绀",
+    "意识障碍"
+   ],
+   "drugs": [
+    "氨茶碱"
+   ],
+   "exams": [
+    "动脉血气分析"
+   ],
+   "treatments": [
+    "机械通气",
+    "氧疗"
+   ],
+   "complications": [
+    "心律失常"
+   ]
+  },
+  "肺栓塞": {
+   "aliases": [
+    "肺血栓栓塞症"
+   ],
+   "department": "呼吸内科",
+   "symptoms": [
+    "呼吸困难",
+    "胸痛",
+    "咯血",
+    "晕厥"
+   ],
+   "drugs": [
+    "低分子肝素",
+    "利伐沙班"
+   ],
+   "exams": [
+    "肺动脉CTA",
+    "D-二聚体检测"
+   ],
+   "treatments": [
+    "溶栓治疗"
+   ],
+   "complications": [
+    "呼吸衰竭"
+   ]
+  },
+  "上呼吸道感染": {
+   "aliases": [
+    "感冒",
+    "急性上呼吸道感染"
+   ],
+   "department": "呼吸内科",
+   "symptoms": [
+    "发热",
+    "咳嗽",
+    "流涕",
+    "咽痛",
+    "鼻塞"
+   ],
+   "drugs": [
+    "对乙酰氨基酚",
+    "布洛芬"
+   ],
+   "exams": [
+    "血常规"
+   ],
+   "treatments": [],
+   "complications": [
+    "肺炎"
+   ]
+  },
+  "胃溃疡": {
+   "aliases": [],
+   "department": "消化内科",
+   "symptoms": [
+    "上腹痛",
+    "反酸",
+    "嗳气",
+    "恶心"
+   ],
+   "drugs": [
+    "奥美拉唑",
+    "阿莫西林",
+    "克拉霉素"
+   ],
+   "exams": [
+    "胃镜检查",
+    "幽门螺杆菌检测"
+   ],
+   "treatments": [],
+   "complications": [
+    "消化道出血"
+   ]
+  },
+  "慢性胃炎": {
+   "aliases": [],
+   "department": "消化内科",
+   "symptoms": [
+    "上腹痛",
+    "腹胀",
+    "恶心",
+    "食欲不振"
+   ],
+   "drugs": [
+    "奥美拉唑",
+    "铝碳酸镁"
+   ],
+   "exams": [
+    "胃镜检查",
+    "幽门螺杆菌检测"
+   ],
+   "treatments": [],
+   "complications": [
+    "胃溃疡"
+   ]
+  },
+  "反流性食管炎": {
+   "aliases": [
+    "胃食管反流病",
+    "GERD"
+   ],
+   "department": "消化内科",
+   "symptoms": [
+    "反酸",
+    "烧心",
+    "胸骨后疼痛"
+   ],
+   "drugs": [
+    "奥美拉唑",
+    "莫沙必利"
+   ],
+   "exams": [
+    "胃镜检查",
+    "食管pH监测"
+   ],
+   "treatments": [],
+   "complications": []
+  },
+  "消化道出血": {
+   "aliases": [
+    "上消化道出血"
+   ],
+   "department": "消化内科",
+   "symptoms": [
+    "呕血",
+    "黑便",
+    "头晕",
+    "乏力"
+   ],
+   "drugs": [
+    "奥美拉唑",
+    "生长抑素"
+   ],
+   "exams": [
+    "胃镜检查",
+    "血常规"
+   ],
+   "treatments": [
+    "内镜下止血术"
+   ],
+   "complications": [
+    "贫血"
+   ]
+  },
+  "肝硬化": {
+   "aliases": [],
+   "department": "消化内科",
+   "symptoms": [
+    "腹胀",
+    "乏力",
+    "黄疸",
+    "食欲不振"
+   ],
+   "drugs": [
+    "呋塞米",
+    "螺内酯"
+   ],
+   "exams": [
+    "腹部超声",
+    "肝功能检查"
+   ],
+   "treatments": [
+    "保肝治疗"
+   ],
+   "complications": [
+    "消化道出血",
+    "肝性脑病",
+    "肝癌"
+   ]
+  },
+  "脂肪肝": {
+   "aliases": [
+    "非酒精性脂肪性肝病"
+   ],
+   "department": "消化内科",
+   "symptoms": [
+    "乏力",
+    "腹胀"
+   ],
+   "drugs": [
+    "多烯磷脂酰胆碱"
+   ],
+   "exams": [
+    "腹部超声",
+    "肝功能检查"
+   ],
+   "treatments": [
+    "饮食控制",
+    "运动疗法"
+   ],
+   "complications": [
+    "肝硬化"
+   ]
+  },
+  "急性胰腺炎": {
+   "aliases": [],
+   "department": "消化内科",
+   "symptoms": [
+    "剧烈腹痛",
+    "恶心",
+    "呕吐",
+    "发热"
+   ],
+   "drugs": [
+    "生长抑素",
+    "奥美拉唑"
+   ],
+   "exams": [
+    "血淀粉酶检测",
+    "腹部CT"
+   ],
+   "treatments": [
+    "禁食"
+   ],
+   "complications": [
+    "呼吸衰竭"
+   ]
+  },
+  "病毒性肝炎": {
+   "aliases": [
+    "乙型肝炎",
+    "乙肝"
+   ],
+   "department": "感染科",
+   "symptoms": [
+    "乏力",
+    "食欲不振",
+    "黄疸",
+    "恶心"
+   ],
+   "drugs": [
+    "恩替卡韦",
+    "替诺福韦"
+   ],
+   "exams": [
+    "肝功能检查",
+    "乙肝五项检测"
+   ],
+   "treatments": [],
+   "complications": [
+    "肝硬化",
+    "肝癌"
+   ]
+  },
+  "肝癌": {
+   "aliases": [
+    "原发性肝癌"
+   ],
+   "department": "普通外科",
+   "symptoms": [
+    "腹痛",
+    "体重下降",
+    "乏力",
+    "黄疸"
+   ],
+   "drugs": [
+    "索拉非尼",
+    "仑伐替尼"
+   ],
+   "exams": [
+    "腹部CT",
+    "甲胎蛋白检测"
+   ],
+   "treatments": [
+    "肝切除术",
+    "介入治疗"
+   ],
+   "complications": [
+    "消化道出血",
+    "肝性脑病"
+   ]
+  },
+  "肝性脑病": {
+   "aliases": [],
+   "department": "消化内科",
+   "symptoms": [
+    "意识障碍",
+    "行为异常",
+    "扑翼样震颤"
+   ],
+   "drugs": [
+    "乳果糖"
+   ],
+   "exams": [
+    "血氨检测",
+    "肝功能检查"
+   ],
+   "treatments": [],
+   "complications": []
+  },
+  "脑卒中": {
+   "aliases": [
+    "中风",
+    "脑梗死",
+    "脑梗"
+   ],
+   "department": "神经内科",
+   "symptoms": [
+    "偏瘫",
+    "言语不清",
+    "口角歪斜",
+    "头晕",
+    "意识障碍"
+   ],
+   "drugs": [
+    "阿司匹林",
+    "氯吡格雷",
+    "阿托伐他汀"
+   ],
+   "exams": [
+    "头颅CT",
+    "头颅MRI"
+   ],
+   "treatments": [
+    "溶栓治疗",
+    "康复训练"
+   ],
+   "complications": [
+    "肺炎",
+    "癫痫",
+    "抑郁症"
+   ]
+  },
+  "偏头痛": {
+   "aliases": [],
+   "department": "神经内科",
+   "symptoms": [
+    "头痛",
+    "恶心",
+    "畏光",
+    "呕吐"
+   ],
+   "drugs": [
+    "布洛芬",
+    "佐米曲普坦"
+   ],
+   "exams": [
+    "头颅MRI"
+   ],
+   "treatments": [],
+   "complications": [
+    "脑卒中"
+   ]
+  },
+  "癫痫": {
+   "aliases": [
+    "羊癫疯"
+   ],
+   "department": "神经内科",
+   "symptoms": [
+    "抽搐",
+    "意识障碍",
+    "口吐白沫"
+   ],
+   "drugs": [
+    "丙戊酸钠",
+    "卡马西平"
+   ],
+   "exams": [
+    "脑电图",
+    "头颅MRI"
+   ],
+   "treatments": [],
+   "complications": [
+    "抑郁症"
+   ]
+  },
+  "帕金森病": {
+   "aliases": [
+    "震颤麻痹"
+   ],
+   "department": "神经内科",
+   "symptoms": [
+    "静止性震颤",
+    "肌强直",
+    "运动迟缓"
+   ],
+   "drugs": [
+    "左旋多巴",
+    "普拉克索"
+   ],
+   "exams": [
+    "头颅MRI"
+   ],
+   "treatments": [
+    "康复训练",
+    "脑深部电刺激术"
+   ],
+   "complications": [
+    "抑郁症"
+   ]
+  },
+  "慢性肾脏病": {
+   "aliases": [
+    "慢性肾功能不全",
+    "CKD"
+   ],
+   "department": "肾内科",
+   "symptoms": [
+    "乏力",
+    "下肢水肿",
+    "夜尿增多",
+    "食欲不振"
+   ],
+   "drugs": [
+    "缬沙坦",
+    "呋塞米"
+   ],
+   "exams": [
+    "肾功能检查",
+    "尿常规",
+    "泌尿系超声"
+   ],
+   "treatments": [
+    "血液透析",
+    "腹膜透析"
+   ],
+   "complications": [
+    "贫血",
+    "高血压",
+    "骨质疏松症"
+   ]
+  },
+  "尿路感染": {
+   "aliases": [
+    "泌尿系感染"
+   ],
+   "department": "泌尿外科",
+   "symptoms": [
+    "尿频",
+    "尿急",
+    "尿痛",
+    "发热"
+   ],
+   "drugs": [
+    "左氧氟沙星",
+    "头孢克肟"
+   ],
+   "exams": [
+    "尿常规",
+    "尿培养"
+   ],
+   "treatments": [],
+   "complications": [
+    "慢性肾脏病"
+   ]
+  },
+  "尿路结石": {
+   "aliases": [
+    "泌尿系结石",
+    "肾结石"
+   ],
+   "department": "泌尿外科",
+   "symptoms": [
+    "腰痛",
+    "血尿",
+    "恶心"
+   ],
+   "drugs": [
+    "坦索罗辛"
+   ],
+   "exams": [
+    "泌尿系超声",
+    "腹部CT"
+   ],
+   "treatments": [
+    "体外冲击波碎石术",
+    "经皮肾镜取石术"
+   ],
+   "complications": [
+    "尿路感染",
+    "慢性肾脏病"
+   ]
+  },
+  "贫血": {
+   "aliases": [
+    "缺铁性贫血"
+   ],
+   "department": "血液科",
+   "symptoms": [
+    "乏力",
+    "头晕",
+    "面色苍白",
+    "心悸"
+   ],
+   "drugs": [
+    "琥珀酸亚铁",
+    "叶酸"
+   ],
+   "exams": [
+    "血常规",
+    "铁代谢检查"
+   ],
+   "treatments": [],
+   "complications": [
+    "心力衰竭"
+   ]
+  },
+  "骨质疏松症": {
+   "aliases": [
+    "骨质疏松"
+   ],
+   "department": "骨科",
+   "symptoms": [
+    "腰背疼痛",
+    "乏力"
+   ],
+   "drugs": [
+    "碳酸钙",
+    "阿仑膦酸钠",
+    "骨化三醇"
+   ],
+   "exams": [
+    "骨密度检测"
+   ],
+   "treatments": [
+    "运动疗法"
+   ],
+   "complications": [
+    "骨折"
+   ]
+  },
+  "骨折": {
+   "aliases": [],
+   "department": "骨科",
+   "symptoms": [
+    "疼痛",
+    "肿胀",
+    "活动受限"
+   ],
+   "drugs": [
+    "布洛芬"
+   ],
+   "exams": [
+    "X线检查"
+   ],
+   "treatments": [
+    "手术复位内固定术",
+    "石膏固定"
+   ],
+   "complications": [
+    "深静脉血栓形成",
+    "肺炎"
+   ]
+  },
+  "类风湿关节炎": {
+   "aliases": [
+    "类风湿"
+   ],
+   "department": "风湿免疫科",
+   "symptoms": [
+    "关节疼痛",
+    "晨僵",
+    "关节肿胀"
+   ],
+   "drugs": [
+    "甲氨蝶呤",
+    "来氟米特",
+    "布洛芬"
+   ],
+   "exams": [
+    "类风湿因子检测",
+    "关节超声"
+   ],
+   "treatments": [],
+   "complications": [
+    "骨质疏松症"
+   ]
+  },
+  "腰椎间盘突出症": {
+   "aliases": [
+    "腰椎间盘突出",
+    "腰突症"
+   ],
+   "department": "骨科",
+   "symptoms": [
+    "腰痛",
+    "下肢麻木",
+    "下肢放射痛"
+   ],
+   "drugs": [
+    "布洛芬",
+    "甲钴胺"
+   ],
+   "exams": [
+    "腰椎MRI",
+    "腰椎CT"
+   ],
+   "treatments": [
+    "牵引治疗",
+    "椎间盘切除术"
+   ],
+   "complications": []
+  },
+  "抑郁症": {
+   "aliases": [
+    "抑郁障碍"
+   ],
+   "department": "精神心理科",
+   "symptoms": [
+    "情绪低落",
+    "兴趣减退",
+    "失眠",
+    "乏力"
+   ],
+   "drugs": [
+    "舍曲林",
+    "氟西汀"
+   ],
+   "exams": [
+    "心理评估量表"
+   ],
+   "treatments": [
+    "心理治疗"
+   ],
+   "complications": []
+  },
+  "失眠症": {
+   "aliases": [
+    "睡眠障碍"
+   ],
+   "department": "精神心理科",
+   "symptoms": [
+    "入睡困难",
+    "早醒",
+    "多梦"
+   ],
+   "drugs": [
+    "艾司唑仑",
+    "佐匹克隆"
+   ],
+   "exams": [
+    "多导睡眠监测"
+   ],
+   "treatments": [
+    "认知行为治疗"
+   ],
+   "complications": [
+    "抑郁症",
+    "高血压"
+   ]
+  }
+ },
+ "symptoms": {
+  "头痛": {
+   "aliases": [
+    "头部疼痛"
+   ]
+  },
+  "头晕": {
+   "aliases": [
+    "眩晕"
+   ]
+  },
+  "心悸": {
+   "aliases": [
+    "心慌"
+   ]
+  },
+  "耳鸣": {
+   "aliases": []
+  },
+  "胸痛": {
+   "aliases": [
+    "胸部疼痛"
+   ]
+  },
+  "胸闷": {
+   "aliases": []
+  },
+  "气短": {
+   "aliases": [
+    "气促"
+   ]
+  },
+  "剧烈胸痛": {
+   "aliases": []
+  },
+  "大汗": {
+   "aliases": [
+    "出大汗"
+   ]
+  },
+  "濒死感": {
+   "aliases": []
+  },
+  "恶心": {
+   "aliases": []
+  },
+  "呕吐": {
+   "aliases": []
+  },
+  "呼吸困难": {
+   "aliases": []
+  },
+  "下肢水肿": {
+   "aliases": [
+    "双下肢水肿"
+   ]
+  },
+  "乏力": {
+   "aliases": [
+    "疲乏",
+    "倦怠"
+   ]
+  },
+  "夜间阵发性呼吸困难": {
+   "aliases": []
+  },
+  "晕厥": {
+   "aliases": [
+    "昏厥"
+   ]
+  },
+  "多饮": {
+   "aliases": []
+  },
+  "多尿": {
+   "aliases": []
+  },
+  "多食": {
+   "aliases": []
+  },
+  "体重下降": {
+   "aliases": [
+    "消瘦"
+   ]
+  },
+  "蛋白尿": {
+   "aliases": []
+  },
+  "多汗": {
+   "aliases": []
+  },
+  "手抖": {
+   "aliases": [
+    "双手震颤"
+   ]
+  },
+  "易怒": {
+   "aliases": [
+    "烦躁易怒"
+   ]
+  },
+  "畏寒": {
+   "aliases": [
+    "怕冷"
+   ]
+  },
+  "体重增加": {
+   "aliases": []
+  },
+  "便秘": {
+   "aliases": []
+  },
+  "关节疼痛": {
+   "aliases": [
+    "关节痛"
+   ]
+  },
+  "关节红肿": {
+   "aliases": []
+  },
+  "发热": {
+   "aliases": [
+    "发烧"
+   ]
+  },
+  "咳嗽": {
+   "aliases": []
+  },
+  "咳痰": {
+   "aliases": []
+  },
+  "慢性咳嗽": {
+   "aliases": []
+  },
+  "喘息": {
+   "aliases": []
+  },
+  "咯血": {
+   "aliases": []
+  },
+  "低热": {
+   "aliases": []
+  },
+  "盗汗": {
+   "aliases": []
+  },
+  "上腹痛": {
+   "aliases": [
+    "上腹部疼痛"
+   ]
+  },
+  "反酸": {
+   "aliases": []
+  },
+  "嗳气": {
+   "aliases": []
+  },
+  "腹胀": {
+   "aliases": []
+  },
+  "食欲不振": {
+   "aliases": [
+    "纳差"
+   ]
+  },
+  "呕血": {
+   "aliases": []
+  },
+  "黑便": {
+   "aliases": []
+  },
+  "黄疸": {
+   "aliases": []
+  },
+  "腹痛": {
+   "aliases": []
+  },
+  "剧烈腹痛": {
+   "aliases": []
+  },
+  "腰痛": {
+   "aliases": [
+    "腰部疼痛"
+   ]
+  },
+  "血尿": {
+   "aliases": []
+  },
+  "尿频": {
+   "aliases": []
+  },
+  "尿急": {
+   "aliases": []
+  },
+  "尿痛": {
+   "aliases": []
+  },
+  "夜尿增多": {
+   "aliases": []
+  },
+  "面色苍白": {
+   "aliases": []
+  },
+  "偏瘫": {
+   "aliases": [
+    "一侧肢体无力"
+   ]
+  },
+  "言语不清": {
+   "aliases": [
+    "构音障碍"
+   ]
+  },
+  "口角歪斜": {
+   "aliases": []
+  },
+  "意识障碍": {
+   "aliases": [
+    "神志不清"
+   ]
+  },
+  "畏光": {
+   "aliases": []
+  },
+  "抽搐": {
+   "aliases": []
+  },
+  "口吐白沫": {
+   "aliases": []
+  },
+  "静止性震颤": {
+   "aliases": []
+  },
+  "肌强直": {
+   "aliases": []
+  },
+  "运动迟缓": {
+   "aliases": []
+  },
+  "情绪低落": {
+   "aliases": []
+  },
+  "兴趣减退": {
+   "aliases": []
+  },
+  "失眠": {
+   "aliases": []
+  },
+  "入睡困难": {
+   "aliases": []
+  },
+  "早醒": {
+   "aliases": []
+  },
+  "多梦": {
+   "aliases": []
+  },
+  "流涕": {
+   "aliases": [
+    "流鼻涕"
+   ]
+  },
+  "咽痛": {
+   "aliases": [
+    "咽喉疼痛"
+   ]
+  },
+  "鼻塞": {
+   "aliases": []
+  },
+  "烧心": {
+   "aliases": []
+  },
+  "胸骨后疼痛": {
+   "aliases": []
+  },
+  "下肢肿胀": {
+   "aliases": []
+  },
+  "下肢疼痛": {
+   "aliases": []
+  },
+  "下肢麻木": {
+   "aliases": []
+  },
+  "下肢放射痛": {
+   "aliases": []
+  },
+  "晨僵": {
+   "aliases": []
+  },
+  "关节肿胀": {
+   "aliases": []
+  },
+  "腰背疼痛": {
+   "aliases": []
+  },
+  "疼痛": {
+   "aliases": []
+  },
+  "肿胀": {
+   "aliases": []
+  },
+  "活动受限": {
+   "aliases": []
+  },
+  "行为异常": {
+   "aliases": []
+  },
+  "扑翼样震颤": {
+   "aliases": []
+  },
+  "发绀": {
+   "aliases": [
+    "紫绀"
+   ]
+  },
+  "视物模糊": {
+   "aliases": [
+    "视力下降"
+   ]
+  },
+  "感觉异常": {
+   "aliases": []
+  }
+ },
+ "drugs": {
+  "硝苯地平": {
+   "aliases": [
+    "硝苯地平缓释片"
+   ],
+   "contraindications": [
+    "心力衰竭"
+   ]
+  },
+  "缬沙坦": {
+   "aliases": [
+    "缬沙坦胶囊"
+   ],
+   "contraindications": []
+  },
+  "氨氯地平": {
+   "aliases": [
+    "络活喜"
+   ],
+   "contraindications": []
+  },
+  "阿司匹林": {
+   "aliases": [
+    "阿斯匹林",
+    "拜阿司匹灵",
+    "阿司匹林肠溶片"
+   ],
+   "contraindications": [
+    "胃溃疡",
+    "消化道出血"
+   ]
+  },
+  "阿托伐他汀": {
+   "aliases": [
+    "立普妥",
+    "阿托伐他汀钙片"
+   ],
+   "contraindications": [
+    "肝硬化"
+   ]
+  },
+  "硝酸甘油": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "氯吡格雷": {
+   "aliases": [
+    "波立维"
+   ],
+   "contraindications": [
+    "消化道出血"
+   ]
+  },
+  "呋塞米": {
+   "aliases": [
+    "速尿"
+   ],
+   "contraindications": [
+    "痛风"
+   ]
+  },
+  "螺内酯": {
+   "aliases": [],
+   "contraindications": [
+    "慢性肾脏病"
+   ]
+  },
+  "美托洛尔": {
+   "aliases": [
+    "倍他乐克",
+    "酒石酸美托洛尔"
+   ],
+   "contraindications": [
+    "支气管哮喘"
+   ]
+  },
+  "胺碘酮": {
+   "aliases": [],
+   "contraindications": [
+    "甲状腺功能亢进症"
+   ]
+  },
+  "二甲双胍": {
+   "aliases": [
+    "格华止",
+    "盐酸二甲双胍片"
+   ],
+   "contraindications": [
+    "慢性肾脏病"
+   ]
+  },
+  "格列美脲": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "胰岛素": {
+   "aliases": [
+    "门冬胰岛素",
+    "甘精胰岛素"
+   ],
+   "contraindications": []
+  },
+  "甲巯咪唑": {
+   "aliases": [
+    "赛治"
+   ],
+   "contraindications": []
+  },
+  "普萘洛尔": {
+   "aliases": [
+    "心得安"
+   ],
+   "contraindications": [
+    "支气管哮喘"
+   ]
+  },
+  "左甲状腺素钠": {
+   "aliases": [
+    "优甲乐"
+   ],
+   "contraindications": []
+  },
+  "非诺贝特": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "秋水仙碱": {
+   "aliases": [],
+   "contraindications": [
+    "慢性肾脏病"
+   ]
+  },
+  "别嘌醇": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "非布司他": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "阿莫西林": {
+   "aliases": [
+    "阿莫西林胶囊"
+   ],
+   "contraindications": []
+  },
+  "左氧氟沙星": {
+   "aliases": [
+    "可乐必妥"
+   ],
+   "contraindications": [
+    "癫痫"
+   ]
+  },
+  "头孢曲松": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "沙美特罗": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "噻托溴铵": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "布地奈德": {
+   "aliases": [
+    "普米克"
+   ],
+   "contraindications": []
+  },
+  "沙丁胺醇": {
+   "aliases": [
+    "万托林"
+   ],
+   "contraindications": []
+  },
+  "异烟肼": {
+   "aliases": [],
+   "contraindications": [
+    "病毒性肝炎"
+   ]
+  },
+  "利福平": {
+   "aliases": [],
+   "contraindications": [
+    "肝硬化"
+   ]
+  },
+  "吡嗪酰胺": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "奥美拉唑": {
+   "aliases": [
+    "洛赛克",
+    "奥美拉唑肠溶胶囊"
+   ],
+   "contraindications": []
+  },
+  "铝碳酸镁": {
+   "aliases": [
+    "达喜"
+   ],
+   "contraindications": []
+  },
+  "生长抑素": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "多烯磷脂酰胆碱": {
+   "aliases": [
+    "易善复"
+   ],
+   "contraindications": []
+  },
+  "恩替卡韦": {
+   "aliases": [
+    "博路定"
+   ],
+   "contraindications": []
+  },
+  "替诺福韦": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "索拉非尼": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "仑伐替尼": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "乳果糖": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "碳酸钙": {
+   "aliases": [
+    "钙尔奇"
+   ],
+   "contraindications": []
+  },
+  "阿仑膦酸钠": {
+   "aliases": [
+    "福善美"
+   ],
+   "contraindications": [
+    "反流性食管炎"
+   ]
+  },
+  "骨化三醇": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "布洛芬": {
+   "aliases": [
+    "芬必得",
+    "布洛芬缓释胶囊"
+   ],
+   "contraindications": [
+    "胃溃疡",
+    "消化道出血"
+   ]
+  },
+  "甲氨蝶呤": {
+   "aliases": [],
+   "contraindications": [
+    "病毒性肝炎",
+    "肝硬化"
+   ]
+  },
+  "来氟米特": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "甲钴胺": {
+   "aliases": [
+    "弥可保"
+   ],
+   "contraindications": []
+  },
+  "舍曲林": {
+   "aliases": [
+    "左洛复"
+   ],
+   "contraindications": []
+  },
+  "氟西汀": {
+   "aliases": [
+    "百忧解"
+   ],
+   "contraindications": []
+  },
+  "艾司唑仑": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "佐匹克隆": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "对乙酰氨基酚": {
+   "aliases": [
+    "扑热息痛",
+    "泰诺林"
+   ],
+   "contraindications": []
+  },
+  "佐米曲普坦": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "丙戊酸钠": {
+   "aliases": [
+    "德巴金"
+   ],
+   "contraindications": []
+  },
+  "卡马西平": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "左旋多巴": {
+   "aliases": [
+    "美多芭"
+   ],
+   "contraindications": []
+  },
+  "普拉克索": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "坦索罗辛": {
+   "aliases": [
+    "哈乐"
+   ],
+   "contraindications": []
+  },
+  "琥珀酸亚铁": {
+   "aliases": [
+    "速力菲"
+   ],
+   "contraindications": []
+  },
+  "叶酸": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "头孢克肟": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "低分子肝素": {
+   "aliases": [
+    "低分子量肝素"
+   ],
+   "contraindications": [
+    "消化道出血"
+   ]
+  },
+  "利伐沙班": {
+   "aliases": [
+    "拜瑞妥"
+   ],
+   "contraindications": [
+    "消化道出血"
+   ]
+  },
+  "克拉霉素": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "莫沙必利": {
+   "aliases": [],
+   "contraindications": []
+  },
+  "氨茶碱": {
+   "aliases": [],
+   "contraindications": []
+  }
+ },
+ "exams": {
+  "血压测量": {
+   "aliases": []
+  },
+  "动态血压监测": {
+   "aliases": []
+  },
+  "心电图": {
+   "aliases": [
+    "ECG",
+    "EKG"
+   ]
+  },
+  "动态心电图": {
+   "aliases": [
+    "Holter"
+   ]
+  },
+  "冠状动脉造影": {
+   "aliases": [
+    "冠脉造影"
+   ]
+  },
+  "心肌酶谱": {
+   "aliases": []
+  },
+  "肌钙蛋白检测": {
+   "aliases": []
+  },
+  "心脏超声": {
+   "aliases": [
+    "心脏彩超",
+    "超声心动图"
+   ]
+  },
+  "BNP检测": {
+   "aliases": []
+  },
+  "胸部X线": {
+   "aliases": [
+    "胸片"
+   ]
+  },
+  "空腹血糖检测": {
+   "aliases": [
+    "空腹血糖"
+   ]
+  },
+  "糖化血红蛋白检测": {
+   "aliases": [
+    "HbA1c检测",
+    "糖化血红蛋白"
+   ]
+  },
+  "口服葡萄糖耐量试验": {
+   "aliases": [
+    "OGTT"
+   ]
+  },
+  "尿微量白蛋白检测": {
+   "aliases": []
+  },
+  "肾功能检查": {
+   "aliases": [
+    "肾功能"
+   ]
+  },
+  "甲状腺功能检查": {
+   "aliases": [
+    "甲功",
+    "甲功五项"
+   ]
+  },
+  "甲状腺超声": {
+   "aliases": []
+  },
+  "血脂检查": {
+   "aliases": [
+    "血脂四项"
+   ]
+  },
+  "血尿酸检测": {
+   "aliases": [
+    "血尿酸"
+   ]
+  },
+  "关节超声": {
+   "aliases": []
+  },
+  "胸部CT": {
+   "aliases": []
+  },
+  "血常规": {
+   "aliases": []
+  },
+  "肺功能检查": {
+   "aliases": [
+    "肺功能"
+   ]
+  },
+  "过敏原检测": {
+   "aliases": []
+  },
+  "结核菌素试验": {
+   "aliases": [
+    "PPD试验"
+   ]
+  },
+  "痰涂片检查": {
+   "aliases": [
+    "痰涂片"
+   ]
+  },
+  "动脉血气分析": {
+   "aliases": [
+    "血气分析"
+   ]
+  },
+  "胃镜检查": {
+   "aliases": [
+    "胃镜"
+   ]
+  },
+  "幽门螺杆菌检测": {
+   "aliases": [
+    "Hp检测",
+    "碳13呼气试验"
+   ]
+  },
+  "腹部超声": {
+   "aliases": [
+    "腹部B超"
+   ]
+  },
+  "肝功能检查": {
+   "aliases": [
+    "肝功能"
+   ]
+  },
+  "血淀粉酶检测": {
+   "aliases": [
+    "血淀粉酶"
+   ]
+  },
+  "腹部CT": {
+   "aliases": []
+  },
+  "头颅CT": {
+   "aliases": []
+  },
+  "头颅MRI": {
+   "aliases": [
+    "颅脑磁共振",
+    "头颅磁共振"
+   ]
+  },
+  "脑电图": {
+   "aliases": []
+  },
+  "尿常规": {
+   "aliases": []
+  },
+  "尿培养": {
+   "aliases": []
+  },
+  "泌尿系超声": {
+   "aliases": []
+  },
+  "铁代谢检查": {
+   "aliases": []
+  },
+  "乙肝五项检测": {
+   "aliases": [
+    "乙肝两对半"
+   ]
+  },
+  "甲胎蛋白检测": {
+   "aliases": [
+    "AFP检测"
+   ]
+  },
+  "血氨检测": {
+   "aliases": []
+  },
+  "骨密度检测": {
+   "aliases": [
+    "骨密度"
+   ]
+  },
+  "X线检查": {
+   "aliases": [
+    "X光检查"
+   ]
+  },
+  "类风湿因子检测": {
+   "aliases": [
+    "类风湿因子"
+   ]
+  },
+  "腰椎MRI": {
+   "aliases": [
+    "腰椎磁共振"
+   ]
+  },
+  "腰椎CT": {
+   "aliases": []
+  },
+  "心理评估量表": {
+   "aliases": []
+  },
+  "多导睡眠监测": {
+   "aliases": []
+  },
+  "食管pH监测": {
+   "aliases": []
+  },
+  "下肢血管超声": {
+   "aliases": [
+    "下肢静脉彩超"
+   ]
+  },
+  "D-二聚体检测": {
+   "aliases": [
+    "D二聚体"
+   ]
+  },
+  "肺动脉CTA": {
+   "aliases": []
+  },
+  "眼底检查": {
+   "aliases": []
+  }
+ },
+ "treatments": {
+  "生活方式干预": {
+   "aliases": []
+  },
+  "经皮冠状动脉介入治疗": {
+   "aliases": [
+    "PCI",
+    "冠脉介入治疗",
+    "支架植入术"
+   ]
+  },
+  "冠状动脉旁路移植术": {
+   "aliases": [
+    "搭桥手术"
+   ]
+  },
+  "溶栓治疗": {
+   "aliases": []
+  },
+  "限盐限水": {
+   "aliases": []
+  },
+  "射频消融术": {
+   "aliases": []
+  },
+  "饮食控制": {
+   "aliases": [
+    "饮食调节"
+   ]
+  },
+  "运动疗法": {
+   "aliases": []
+  },
+  "放射性碘治疗": {
+   "aliases": [
+    "碘131治疗"
+   ]
+  },
+  "氧疗": {
+   "aliases": [
+    "吸氧治疗"
+   ]
+  },
+  "戒烟干预": {
+   "aliases": []
+  },
+  "吸入治疗": {
+   "aliases": []
+  },
+  "机械通气": {
+   "aliases": [
+    "呼吸机辅助通气"
+   ]
+  },
+  "内镜下止血术": {
+   "aliases": []
+  },
+  "保肝治疗": {
+   "aliases": []
+  },
+  "禁食": {
+   "aliases": []
+  },
+  "康复训练": {
+   "aliases": [
+    "康复治疗"
+   ]
+  },
+  "脑深部电刺激术": {
+   "aliases": [
+    "DBS手术"
+   ]
+  },
+  "血液透析": {
+   "aliases": [
+    "血透"
+   ]
+  },
+  "腹膜透析": {
+   "aliases": []
+  },
+  "体外冲击波碎石术": {
+   "aliases": []
+  },
+  "经皮肾镜取石术": {
+   "aliases": []
+  },
+  "肝切除术": {
+   "aliases": []
+  },
+  "介入治疗": {
+   "aliases": []
+  },
+  "手术复位内固定术": {
+   "aliases": [
+    "切开复位内固定术"
+   ]
+  },
+  "石膏固定": {
+   "aliases": []
+  },
+  "牵引治疗": {
+   "aliases": []
+  },
+  "椎间盘切除术": {
+   "aliases": []
+  },
+  "心理治疗": {
+   "aliases": []
+  },
+  "认知行为治疗": {
+   "aliases": [
+    "CBT"
+   ]
+  },
+  "抗凝治疗": {
+   "aliases": []
+  }
+ },
+ "departments": [
+  "心血管内科",
+  "内分泌科",
+  "呼吸内科",
+  "消化内科",
+  "神经内科",
+  "肾内科",
+  "泌尿外科",
+  "血液科",
+  "感染科",
+  "骨科",
+  "风湿免疫科",
+  "精神心理科",
+  "眼科",
+  "普通外科"
+ ]
+}

@@ -1,0 +1,56 @@
+[
+ {
+  "name": "头痛",
+  "type": "Symptom",
+  "mention": "头痛",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "腰椎间盘突出症",
+  "type": "Disease",
+  "mention": "腰椎间盘突出",
+  "span": null
+ },
+ {
+  "name": "慢性阻塞性肺疾病",
+  "type": "Disease",
+  "mention": "慢阻肺",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅MRI",
+  "span": null
+ },
+ {
+  "name": "偏头痛",
+  "type": "Disease",
+  "mention": "偏头痛",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "佐米曲普坦",
+  "type": "Drug",
+  "mention": "佐米曲普坦",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬缓释胶囊",
+  "span": null
+ }
+]

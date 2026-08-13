@@ -1,0 +1,30 @@
+name: '三元组生成与校验算子'
+description: '把关系抽取结果转为知识三元组：Schema 定义域/值域校验、自环检查、同键去重合并（保最高置信度并合并证据）、置信度阈值过滤，输出校验统计（候选/通过/淘汰原因分布）保证可解释。'
+language: 'python'
+vendor: 'dki'
+raw_id: 'TripleBuilderValidator'
+version: '0.1.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+release:
+  - '首次发布'
+metrics:
+  - name: '吞吐量'
+    metric: '见 outputs/bench/operator_bench.md（CPU 实测）'
+runtime:
+  memory: 10485760
+  cpu: 0.05
+  gpu: 0
+  npu: 0
+settings:
+  minConfidence:
+    name: '置信度阈值'
+    description: '低于该置信度的三元组被过滤'
+    type: 'slider'
+    defaultVal: 0.55
+    min: 0
+    max: 1
+    step: 0.05

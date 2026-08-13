@@ -1,0 +1,58 @@
+[
+ {
+  "head": "肝癌",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "乏力",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "肝癌",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "腹痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "肝癌",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "黄疸",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "肝癌",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "腹部CT",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "肝癌",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "甲胎蛋白检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "肝癌",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "普通外科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "肝癌",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "索拉非尼",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "肝癌",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "仑伐替尼",
+  "tail_type": "Drug"
+ }
+]

@@ -1,0 +1,74 @@
+[
+ {
+  "name": "黄疸",
+  "type": "Symptom",
+  "mention": "黄疸",
+  "span": null
+ },
+ {
+  "name": "腹胀",
+  "type": "Symptom",
+  "mention": "腹胀",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "食欲不振",
+  "type": "Symptom",
+  "mention": "食欲不振",
+  "span": null
+ },
+ {
+  "name": "肝癌",
+  "type": "Disease",
+  "mention": "肝癌",
+  "span": null
+ },
+ {
+  "name": "腹部超声",
+  "type": "Exam",
+  "mention": "腹部B超",
+  "span": null
+ },
+ {
+  "name": "肝功能检查",
+  "type": "Exam",
+  "mention": "肝功能检查",
+  "span": null
+ },
+ {
+  "name": "肝硬化",
+  "type": "Disease",
+  "mention": "肝硬化",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "肝性脑病",
+  "type": "Disease",
+  "mention": "肝性脑病",
+  "span": null
+ },
+ {
+  "name": "呋塞米",
+  "type": "Drug",
+  "mention": "呋塞米",
+  "span": null
+ },
+ {
+  "name": "螺内酯",
+  "type": "Drug",
+  "mention": "螺内酯",
+  "span": null
+ }
+]

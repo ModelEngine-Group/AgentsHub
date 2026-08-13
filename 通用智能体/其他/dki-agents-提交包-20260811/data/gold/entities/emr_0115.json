@@ -1,0 +1,86 @@
+[
+ {
+  "name": "晕厥",
+  "type": "Symptom",
+  "mention": "晕厥",
+  "span": null
+ },
+ {
+  "name": "呼吸困难",
+  "type": "Symptom",
+  "mention": "呼吸困难",
+  "span": null
+ },
+ {
+  "name": "胸痛",
+  "type": "Symptom",
+  "mention": "胸痛",
+  "span": null
+ },
+ {
+  "name": "咯血",
+  "type": "Symptom",
+  "mention": "咯血",
+  "span": null
+ },
+ {
+  "name": "支气管哮喘",
+  "type": "Disease",
+  "mention": "支气管哮喘",
+  "span": null
+ },
+ {
+  "name": "肺动脉CTA",
+  "type": "Exam",
+  "mention": "肺动脉CTA",
+  "span": null
+ },
+ {
+  "name": "D-二聚体检测",
+  "type": "Exam",
+  "mention": "D-二聚体检测",
+  "span": null
+ },
+ {
+  "name": "肺栓塞",
+  "type": "Disease",
+  "mention": "肺栓塞",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "呼吸衰竭",
+  "type": "Disease",
+  "mention": "呼吸衰竭",
+  "span": null
+ },
+ {
+  "name": "利伐沙班",
+  "type": "Drug",
+  "mention": "拜瑞妥",
+  "span": null
+ },
+ {
+  "name": "溶栓治疗",
+  "type": "Treatment",
+  "mention": "溶栓治疗",
+  "span": null
+ },
+ {
+  "name": "美托洛尔",
+  "type": "Drug",
+  "mention": "美托洛尔",
+  "span": null
+ },
+ {
+  "name": "支气管哮喘",
+  "type": "Disease",
+  "mention": "哮喘",
+  "span": null
+ }
+]

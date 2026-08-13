@@ -1,0 +1,50 @@
+[
+ {
+  "name": "情绪低落",
+  "type": "Symptom",
+  "mention": "情绪低落",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "心理评估量表",
+  "type": "Exam",
+  "mention": "心理评估量表",
+  "span": null
+ },
+ {
+  "name": "抑郁症",
+  "type": "Disease",
+  "mention": "抑郁症",
+  "span": null
+ },
+ {
+  "name": "精神心理科",
+  "type": "Department",
+  "mention": "精神心理科",
+  "span": null
+ },
+ {
+  "name": "舍曲林",
+  "type": "Drug",
+  "mention": "左洛复",
+  "span": null
+ },
+ {
+  "name": "氟西汀",
+  "type": "Drug",
+  "mention": "氟西汀",
+  "span": null
+ },
+ {
+  "name": "心理治疗",
+  "type": "Treatment",
+  "mention": "心理治疗",
+  "span": null
+ }
+]

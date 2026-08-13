@@ -1,0 +1,80 @@
+[
+ {
+  "name": "嗳气",
+  "type": "Symptom",
+  "mention": "嗳气",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "反酸",
+  "type": "Symptom",
+  "mention": "反酸",
+  "span": null
+ },
+ {
+  "name": "肝硬化",
+  "type": "Disease",
+  "mention": "肝硬化",
+  "span": null
+ },
+ {
+  "name": "帕金森病",
+  "type": "Disease",
+  "mention": "帕金森病",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "消化道出血",
+  "span": null
+ },
+ {
+  "name": "奥美拉唑",
+  "type": "Drug",
+  "mention": "洛赛克",
+  "span": null
+ },
+ {
+  "name": "阿莫西林",
+  "type": "Drug",
+  "mention": "阿莫西林",
+  "span": null
+ },
+ {
+  "name": "阿托伐他汀",
+  "type": "Drug",
+  "mention": "阿托伐他汀钙片",
+  "span": null
+ },
+ {
+  "name": "肝硬化",
+  "type": "Disease",
+  "mention": "肝硬化",
+  "span": null
+ }
+]

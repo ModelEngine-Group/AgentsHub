@@ -1,0 +1,802 @@
+{
+ "emr_0001": {
+  "disease": "高血压",
+  "department": "心血管内科"
+ },
+ "emr_0002": {
+  "disease": "甲状腺功能亢进症",
+  "department": "内分泌科"
+ },
+ "emr_0003": {
+  "disease": "贫血",
+  "department": "血液科"
+ },
+ "emr_0004": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0005": {
+  "disease": "腰椎间盘突出症",
+  "department": "骨科"
+ },
+ "emr_0006": {
+  "disease": "心律失常",
+  "department": "心血管内科"
+ },
+ "emr_0007": {
+  "disease": "心力衰竭",
+  "department": "心血管内科"
+ },
+ "emr_0008": {
+  "disease": "脂肪肝",
+  "department": "消化内科"
+ },
+ "emr_0009": {
+  "disease": "尿路结石",
+  "department": "泌尿外科"
+ },
+ "emr_0010": {
+  "disease": "偏头痛",
+  "department": "神经内科"
+ },
+ "emr_0011": {
+  "disease": "胃溃疡",
+  "department": "消化内科"
+ },
+ "emr_0012": {
+  "disease": "帕金森病",
+  "department": "神经内科"
+ },
+ "emr_0013": {
+  "disease": "肝硬化",
+  "department": "消化内科"
+ },
+ "emr_0014": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0015": {
+  "disease": "病毒性肝炎",
+  "department": "感染科"
+ },
+ "emr_0016": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0017": {
+  "disease": "抑郁症",
+  "department": "精神心理科"
+ },
+ "emr_0018": {
+  "disease": "慢性肾脏病",
+  "department": "肾内科"
+ },
+ "emr_0019": {
+  "disease": "病毒性肝炎",
+  "department": "感染科"
+ },
+ "emr_0020": {
+  "disease": "类风湿关节炎",
+  "department": "风湿免疫科"
+ },
+ "emr_0021": {
+  "disease": "偏头痛",
+  "department": "神经内科"
+ },
+ "emr_0022": {
+  "disease": "肺结核",
+  "department": "感染科"
+ },
+ "emr_0023": {
+  "disease": "呼吸衰竭",
+  "department": "呼吸内科"
+ },
+ "emr_0024": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0025": {
+  "disease": "病毒性肝炎",
+  "department": "感染科"
+ },
+ "emr_0026": {
+  "disease": "消化道出血",
+  "department": "消化内科"
+ },
+ "emr_0027": {
+  "disease": "帕金森病",
+  "department": "神经内科"
+ },
+ "emr_0028": {
+  "disease": "胃溃疡",
+  "department": "消化内科"
+ },
+ "emr_0029": {
+  "disease": "心肌梗死",
+  "department": "心血管内科"
+ },
+ "emr_0030": {
+  "disease": "甲状腺功能减退症",
+  "department": "内分泌科"
+ },
+ "emr_0031": {
+  "disease": "心律失常",
+  "department": "心血管内科"
+ },
+ "emr_0032": {
+  "disease": "慢性肾脏病",
+  "department": "肾内科"
+ },
+ "emr_0033": {
+  "disease": "慢性阻塞性肺疾病",
+  "department": "呼吸内科"
+ },
+ "emr_0034": {
+  "disease": "类风湿关节炎",
+  "department": "风湿免疫科"
+ },
+ "emr_0035": {
+  "disease": "甲状腺功能减退症",
+  "department": "内分泌科"
+ },
+ "emr_0036": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0037": {
+  "disease": "偏头痛",
+  "department": "神经内科"
+ },
+ "emr_0038": {
+  "disease": "抑郁症",
+  "department": "精神心理科"
+ },
+ "emr_0039": {
+  "disease": "心律失常",
+  "department": "心血管内科"
+ },
+ "emr_0040": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0041": {
+  "disease": "贫血",
+  "department": "血液科"
+ },
+ "emr_0042": {
+  "disease": "腰椎间盘突出症",
+  "department": "骨科"
+ },
+ "emr_0043": {
+  "disease": "消化道出血",
+  "department": "消化内科"
+ },
+ "emr_0044": {
+  "disease": "胃溃疡",
+  "department": "消化内科"
+ },
+ "emr_0045": {
+  "disease": "抑郁症",
+  "department": "精神心理科"
+ },
+ "emr_0046": {
+  "disease": "支气管哮喘",
+  "department": "呼吸内科"
+ },
+ "emr_0047": {
+  "disease": "高脂血症",
+  "department": "内分泌科"
+ },
+ "emr_0048": {
+  "disease": "尿路结石",
+  "department": "泌尿外科"
+ },
+ "emr_0049": {
+  "disease": "尿路感染",
+  "department": "泌尿外科"
+ },
+ "emr_0050": {
+  "disease": "病毒性肝炎",
+  "department": "感染科"
+ },
+ "emr_0051": {
+  "disease": "呼吸衰竭",
+  "department": "呼吸内科"
+ },
+ "emr_0052": {
+  "disease": "心肌梗死",
+  "department": "心血管内科"
+ },
+ "emr_0053": {
+  "disease": "类风湿关节炎",
+  "department": "风湿免疫科"
+ },
+ "emr_0054": {
+  "disease": "甲状腺功能亢进症",
+  "department": "内分泌科"
+ },
+ "emr_0055": {
+  "disease": "肺栓塞",
+  "department": "呼吸内科"
+ },
+ "emr_0056": {
+  "disease": "胃溃疡",
+  "department": "消化内科"
+ },
+ "emr_0057": {
+  "disease": "高血压",
+  "department": "心血管内科"
+ },
+ "emr_0058": {
+  "disease": "腰椎间盘突出症",
+  "department": "骨科"
+ },
+ "emr_0059": {
+  "disease": "深静脉血栓形成",
+  "department": "心血管内科"
+ },
+ "emr_0060": {
+  "disease": "脂肪肝",
+  "department": "消化内科"
+ },
+ "emr_0061": {
+  "disease": "腰椎间盘突出症",
+  "department": "骨科"
+ },
+ "emr_0062": {
+  "disease": "贫血",
+  "department": "血液科"
+ },
+ "emr_0063": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0064": {
+  "disease": "心力衰竭",
+  "department": "心血管内科"
+ },
+ "emr_0065": {
+  "disease": "2型糖尿病",
+  "department": "内分泌科"
+ },
+ "emr_0066": {
+  "disease": "脂肪肝",
+  "department": "消化内科"
+ },
+ "emr_0067": {
+  "disease": "肺结核",
+  "department": "感染科"
+ },
+ "emr_0068": {
+  "disease": "病毒性肝炎",
+  "department": "感染科"
+ },
+ "emr_0069": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0070": {
+  "disease": "尿路结石",
+  "department": "泌尿外科"
+ },
+ "emr_0071": {
+  "disease": "帕金森病",
+  "department": "神经内科"
+ },
+ "emr_0072": {
+  "disease": "痛风",
+  "department": "风湿免疫科"
+ },
+ "emr_0073": {
+  "disease": "深静脉血栓形成",
+  "department": "心血管内科"
+ },
+ "emr_0074": {
+  "disease": "帕金森病",
+  "department": "神经内科"
+ },
+ "emr_0075": {
+  "disease": "尿路感染",
+  "department": "泌尿外科"
+ },
+ "emr_0076": {
+  "disease": "肺炎",
+  "department": "呼吸内科"
+ },
+ "emr_0077": {
+  "disease": "上呼吸道感染",
+  "department": "呼吸内科"
+ },
+ "emr_0078": {
+  "disease": "上呼吸道感染",
+  "department": "呼吸内科"
+ },
+ "emr_0079": {
+  "disease": "心肌梗死",
+  "department": "心血管内科"
+ },
+ "emr_0080": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0081": {
+  "disease": "肝癌",
+  "department": "普通外科"
+ },
+ "emr_0082": {
+  "disease": "帕金森病",
+  "department": "神经内科"
+ },
+ "emr_0083": {
+  "disease": "2型糖尿病",
+  "department": "内分泌科"
+ },
+ "emr_0084": {
+  "disease": "骨折",
+  "department": "骨科"
+ },
+ "emr_0085": {
+  "disease": "尿路感染",
+  "department": "泌尿外科"
+ },
+ "emr_0086": {
+  "disease": "失眠症",
+  "department": "精神心理科"
+ },
+ "emr_0087": {
+  "disease": "抑郁症",
+  "department": "精神心理科"
+ },
+ "emr_0088": {
+  "disease": "2型糖尿病",
+  "department": "内分泌科"
+ },
+ "emr_0089": {
+  "disease": "抑郁症",
+  "department": "精神心理科"
+ },
+ "emr_0090": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0091": {
+  "disease": "肝硬化",
+  "department": "消化内科"
+ },
+ "emr_0092": {
+  "disease": "糖尿病周围神经病变",
+  "department": "内分泌科"
+ },
+ "emr_0093": {
+  "disease": "甲状腺功能减退症",
+  "department": "内分泌科"
+ },
+ "emr_0094": {
+  "disease": "失眠症",
+  "department": "精神心理科"
+ },
+ "emr_0095": {
+  "disease": "胃溃疡",
+  "department": "消化内科"
+ },
+ "emr_0096": {
+  "disease": "肝性脑病",
+  "department": "消化内科"
+ },
+ "emr_0097": {
+  "disease": "慢性肾脏病",
+  "department": "肾内科"
+ },
+ "emr_0098": {
+  "disease": "尿路感染",
+  "department": "泌尿外科"
+ },
+ "emr_0099": {
+  "disease": "骨折",
+  "department": "骨科"
+ },
+ "emr_0100": {
+  "disease": "肝癌",
+  "department": "普通外科"
+ },
+ "emr_0101": {
+  "disease": "甲状腺功能亢进症",
+  "department": "内分泌科"
+ },
+ "emr_0102": {
+  "disease": "支气管哮喘",
+  "department": "呼吸内科"
+ },
+ "emr_0103": {
+  "disease": "糖尿病肾病",
+  "department": "肾内科"
+ },
+ "emr_0104": {
+  "disease": "消化道出血",
+  "department": "消化内科"
+ },
+ "emr_0105": {
+  "disease": "心力衰竭",
+  "department": "心血管内科"
+ },
+ "emr_0106": {
+  "disease": "尿路结石",
+  "department": "泌尿外科"
+ },
+ "emr_0107": {
+  "disease": "甲状腺功能减退症",
+  "department": "内分泌科"
+ },
+ "emr_0108": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0109": {
+  "disease": "肝性脑病",
+  "department": "消化内科"
+ },
+ "emr_0110": {
+  "disease": "肺栓塞",
+  "department": "呼吸内科"
+ },
+ "emr_0111": {
+  "disease": "心律失常",
+  "department": "心血管内科"
+ },
+ "emr_0112": {
+  "disease": "甲状腺功能亢进症",
+  "department": "内分泌科"
+ },
+ "emr_0113": {
+  "disease": "糖尿病周围神经病变",
+  "department": "内分泌科"
+ },
+ "emr_0114": {
+  "disease": "痛风",
+  "department": "风湿免疫科"
+ },
+ "emr_0115": {
+  "disease": "肺栓塞",
+  "department": "呼吸内科"
+ },
+ "emr_0116": {
+  "disease": "胃溃疡",
+  "department": "消化内科"
+ },
+ "emr_0117": {
+  "disease": "糖尿病肾病",
+  "department": "肾内科"
+ },
+ "emr_0118": {
+  "disease": "心肌梗死",
+  "department": "心血管内科"
+ },
+ "emr_0119": {
+  "disease": "消化道出血",
+  "department": "消化内科"
+ },
+ "emr_0120": {
+  "disease": "呼吸衰竭",
+  "department": "呼吸内科"
+ },
+ "emr_0121": {
+  "disease": "抑郁症",
+  "department": "精神心理科"
+ },
+ "emr_0122": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0123": {
+  "disease": "心肌梗死",
+  "department": "心血管内科"
+ },
+ "emr_0124": {
+  "disease": "急性胰腺炎",
+  "department": "消化内科"
+ },
+ "emr_0125": {
+  "disease": "心律失常",
+  "department": "心血管内科"
+ },
+ "emr_0126": {
+  "disease": "甲状腺功能亢进症",
+  "department": "内分泌科"
+ },
+ "emr_0127": {
+  "disease": "慢性胃炎",
+  "department": "消化内科"
+ },
+ "emr_0128": {
+  "disease": "肝癌",
+  "department": "普通外科"
+ },
+ "emr_0129": {
+  "disease": "深静脉血栓形成",
+  "department": "心血管内科"
+ },
+ "emr_0130": {
+  "disease": "脑卒中",
+  "department": "神经内科"
+ },
+ "emr_0131": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0132": {
+  "disease": "高血压",
+  "department": "心血管内科"
+ },
+ "emr_0133": {
+  "disease": "慢性阻塞性肺疾病",
+  "department": "呼吸内科"
+ },
+ "emr_0134": {
+  "disease": "高脂血症",
+  "department": "内分泌科"
+ },
+ "emr_0135": {
+  "disease": "慢性胃炎",
+  "department": "消化内科"
+ },
+ "emr_0136": {
+  "disease": "尿路结石",
+  "department": "泌尿外科"
+ },
+ "emr_0137": {
+  "disease": "反流性食管炎",
+  "department": "消化内科"
+ },
+ "emr_0138": {
+  "disease": "骨折",
+  "department": "骨科"
+ },
+ "emr_0139": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0140": {
+  "disease": "脂肪肝",
+  "department": "消化内科"
+ },
+ "emr_0141": {
+  "disease": "胃溃疡",
+  "department": "消化内科"
+ },
+ "emr_0142": {
+  "disease": "冠心病",
+  "department": "心血管内科"
+ },
+ "emr_0143": {
+  "disease": "尿路感染",
+  "department": "泌尿外科"
+ },
+ "emr_0144": {
+  "disease": "消化道出血",
+  "department": "消化内科"
+ },
+ "emr_0145": {
+  "disease": "肺炎",
+  "department": "呼吸内科"
+ },
+ "emr_0146": {
+  "disease": "糖尿病周围神经病变",
+  "department": "内分泌科"
+ },
+ "emr_0147": {
+  "disease": "癫痫",
+  "department": "神经内科"
+ },
+ "emr_0148": {
+  "disease": "肺结核",
+  "department": "感染科"
+ },
+ "emr_0149": {
+  "disease": "痛风",
+  "department": "风湿免疫科"
+ },
+ "emr_0150": {
+  "disease": "病毒性肝炎",
+  "department": "感染科"
+ },
+ "emr_0151": {
+  "disease": "抑郁症",
+  "department": "精神心理科"
+ },
+ "emr_0152": {
+  "disease": "痛风",
+  "department": "风湿免疫科"
+ },
+ "emr_0153": {
+  "disease": "腰椎间盘突出症",
+  "department": "骨科"
+ },
+ "emr_0154": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0155": {
+  "disease": "肺结核",
+  "department": "感染科"
+ },
+ "emr_0156": {
+  "disease": "甲状腺功能亢进症",
+  "department": "内分泌科"
+ },
+ "emr_0157": {
+  "disease": "反流性食管炎",
+  "department": "消化内科"
+ },
+ "emr_0158": {
+  "disease": "贫血",
+  "department": "血液科"
+ },
+ "emr_0159": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0160": {
+  "disease": "心力衰竭",
+  "department": "心血管内科"
+ },
+ "emr_0161": {
+  "disease": "偏头痛",
+  "department": "神经内科"
+ },
+ "emr_0162": {
+  "disease": "糖尿病肾病",
+  "department": "肾内科"
+ },
+ "emr_0163": {
+  "disease": "消化道出血",
+  "department": "消化内科"
+ },
+ "emr_0164": {
+  "disease": "偏头痛",
+  "department": "神经内科"
+ },
+ "emr_0165": {
+  "disease": "慢性肾脏病",
+  "department": "肾内科"
+ },
+ "emr_0166": {
+  "disease": "甲状腺功能亢进症",
+  "department": "内分泌科"
+ },
+ "emr_0167": {
+  "disease": "贫血",
+  "department": "血液科"
+ },
+ "emr_0168": {
+  "disease": "糖尿病肾病",
+  "department": "肾内科"
+ },
+ "emr_0169": {
+  "disease": "脑卒中",
+  "department": "神经内科"
+ },
+ "emr_0170": {
+  "disease": "糖尿病肾病",
+  "department": "肾内科"
+ },
+ "emr_0171": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0172": {
+  "disease": "胃溃疡",
+  "department": "消化内科"
+ },
+ "emr_0173": {
+  "disease": "偏头痛",
+  "department": "神经内科"
+ },
+ "emr_0174": {
+  "disease": "肺结核",
+  "department": "感染科"
+ },
+ "emr_0175": {
+  "disease": "类风湿关节炎",
+  "department": "风湿免疫科"
+ },
+ "emr_0176": {
+  "disease": "帕金森病",
+  "department": "神经内科"
+ },
+ "emr_0177": {
+  "disease": "急性胰腺炎",
+  "department": "消化内科"
+ },
+ "emr_0178": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0179": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0180": {
+  "disease": "心律失常",
+  "department": "心血管内科"
+ },
+ "emr_0181": {
+  "disease": "肺炎",
+  "department": "呼吸内科"
+ },
+ "emr_0182": {
+  "disease": "反流性食管炎",
+  "department": "消化内科"
+ },
+ "emr_0183": {
+  "disease": "骨折",
+  "department": "骨科"
+ },
+ "emr_0184": {
+  "disease": "慢性胃炎",
+  "department": "消化内科"
+ },
+ "emr_0185": {
+  "disease": "慢性胃炎",
+  "department": "消化内科"
+ },
+ "emr_0186": {
+  "disease": "类风湿关节炎",
+  "department": "风湿免疫科"
+ },
+ "emr_0187": {
+  "disease": "冠心病",
+  "department": "心血管内科"
+ },
+ "emr_0188": {
+  "disease": "骨质疏松症",
+  "department": "骨科"
+ },
+ "emr_0189": {
+  "disease": "高脂血症",
+  "department": "内分泌科"
+ },
+ "emr_0190": {
+  "disease": "尿路感染",
+  "department": "泌尿外科"
+ },
+ "emr_0191": {
+  "disease": "消化道出血",
+  "department": "消化内科"
+ },
+ "emr_0192": {
+  "disease": "失眠症",
+  "department": "精神心理科"
+ },
+ "emr_0193": {
+  "disease": "脑卒中",
+  "department": "神经内科"
+ },
+ "emr_0194": {
+  "disease": "肝硬化",
+  "department": "消化内科"
+ },
+ "emr_0195": {
+  "disease": "慢性胃炎",
+  "department": "消化内科"
+ },
+ "emr_0196": {
+  "disease": "肝癌",
+  "department": "普通外科"
+ },
+ "emr_0197": {
+  "disease": "肺结核",
+  "department": "感染科"
+ },
+ "emr_0198": {
+  "disease": "糖尿病视网膜病变",
+  "department": "眼科"
+ },
+ "emr_0199": {
+  "disease": "癫痫",
+  "department": "神经内科"
+ },
+ "emr_0200": {
+  "disease": "肝硬化",
+  "department": "消化内科"
+ }
+}

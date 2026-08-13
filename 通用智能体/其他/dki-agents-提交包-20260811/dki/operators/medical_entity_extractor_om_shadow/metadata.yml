@@ -1,0 +1,58 @@
+name: '医疗实体识别 OM Shadow 算子'
+description: '独立 opt-in 的 BERT INT8 OM 影子验证；主输出保持签名后端，NPU/sidecar 故障不影响主链。'
+language: 'python'
+vendor: 'dki'
+raw_id: 'MedicalEntityExtractorOmShadow'
+catalog_visible: false
+version: '0.1.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+runtime:
+  memory: 268435456
+  cpu: 1
+  gpu: 0
+  npu: 1
+settings:
+  primaryBackend:
+    name: '权威主后端'
+    type: 'select'
+    defaultVal: 'dict'
+    required: false
+    options:
+      - label: '词典'
+        value: 'dict'
+      - label: 'PyTorch BERT'
+        value: 'bert'
+  shadowEnabled:
+    name: '启用影子推理'
+    type: 'boolean'
+    defaultVal: false
+    required: false
+  shadowRuntimeFactory:
+    name: 'Runtime 工厂 dotted path（目标机验收后配置）'
+    type: 'input'
+    defaultVal: ''
+    required: false
+  shadowHashSecretEnv:
+    name: 'sidecar HMAC 密钥环境变量名'
+    type: 'input'
+    defaultVal: 'DKI_SHADOW_HASH_KEY'
+    required: false
+  queueDepth:
+    name: '有界队列深度'
+    type: 'number'
+    defaultVal: 4
+    required: false
+  shadowTimeoutMs:
+    name: '影子请求超时(ms)'
+    type: 'number'
+    defaultVal: 1000
+    required: false
+  sidecarPath:
+    name: '脱敏 sidecar 路径'
+    type: 'input'
+    defaultVal: ''
+    required: false

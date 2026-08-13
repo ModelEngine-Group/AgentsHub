@@ -1,0 +1,50 @@
+[
+ {
+  "name": "体重下降",
+  "type": "Symptom",
+  "mention": "体重下降",
+  "span": null
+ },
+ {
+  "name": "咳嗽",
+  "type": "Symptom",
+  "mention": "咳嗽",
+  "span": null
+ },
+ {
+  "name": "咯血",
+  "type": "Symptom",
+  "mention": "咯血",
+  "span": null
+ },
+ {
+  "name": "结核菌素试验",
+  "type": "Exam",
+  "mention": "结核菌素试验",
+  "span": null
+ },
+ {
+  "name": "胸部CT",
+  "type": "Exam",
+  "mention": "胸部CT",
+  "span": null
+ },
+ {
+  "name": "肺结核",
+  "type": "Disease",
+  "mention": "结核病",
+  "span": null
+ },
+ {
+  "name": "感染科",
+  "type": "Department",
+  "mention": "感染科",
+  "span": null
+ },
+ {
+  "name": "异烟肼",
+  "type": "Drug",
+  "mention": "异烟肼",
+  "span": null
+ }
+]

@@ -1,0 +1,56 @@
+[
+ {
+  "name": "下肢麻木",
+  "type": "Symptom",
+  "mention": "下肢麻木",
+  "span": null
+ },
+ {
+  "name": "腰痛",
+  "type": "Symptom",
+  "mention": "腰痛",
+  "span": null
+ },
+ {
+  "name": "高血压",
+  "type": "Disease",
+  "mention": "高血压",
+  "span": null
+ },
+ {
+  "name": "肺结核",
+  "type": "Disease",
+  "mention": "肺结核",
+  "span": null
+ },
+ {
+  "name": "腰椎MRI",
+  "type": "Exam",
+  "mention": "腰椎MRI",
+  "span": null
+ },
+ {
+  "name": "腰椎间盘突出症",
+  "type": "Disease",
+  "mention": "腰椎间盘突出",
+  "span": null
+ },
+ {
+  "name": "骨科",
+  "type": "Department",
+  "mention": "骨科",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬",
+  "span": null
+ },
+ {
+  "name": "牵引治疗",
+  "type": "Treatment",
+  "mention": "牵引治疗",
+  "span": null
+ }
+]

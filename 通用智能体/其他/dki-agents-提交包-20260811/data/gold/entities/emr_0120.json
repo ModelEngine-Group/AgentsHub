@@ -1,0 +1,50 @@
+[
+ {
+  "name": "呼吸困难",
+  "type": "Symptom",
+  "mention": "呼吸困难",
+  "span": null
+ },
+ {
+  "name": "意识障碍",
+  "type": "Symptom",
+  "mention": "神志不清",
+  "span": null
+ },
+ {
+  "name": "发绀",
+  "type": "Symptom",
+  "mention": "发绀",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心力衰竭",
+  "span": null
+ },
+ {
+  "name": "动脉血气分析",
+  "type": "Exam",
+  "mention": "血气分析",
+  "span": null
+ },
+ {
+  "name": "呼吸衰竭",
+  "type": "Disease",
+  "mention": "呼吸衰竭",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "氨茶碱",
+  "type": "Drug",
+  "mention": "氨茶碱",
+  "span": null
+ }
+]

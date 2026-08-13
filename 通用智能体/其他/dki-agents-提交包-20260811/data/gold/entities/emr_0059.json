@@ -1,0 +1,62 @@
+[
+ {
+  "name": "下肢肿胀",
+  "type": "Symptom",
+  "mention": "下肢肿胀",
+  "span": null
+ },
+ {
+  "name": "下肢疼痛",
+  "type": "Symptom",
+  "mention": "下肢疼痛",
+  "span": null
+ },
+ {
+  "name": "失眠症",
+  "type": "Disease",
+  "mention": "失眠症",
+  "span": null
+ },
+ {
+  "name": "D-二聚体检测",
+  "type": "Exam",
+  "mention": "D二聚体",
+  "span": null
+ },
+ {
+  "name": "下肢血管超声",
+  "type": "Exam",
+  "mention": "下肢血管超声",
+  "span": null
+ },
+ {
+  "name": "深静脉血栓形成",
+  "type": "Disease",
+  "mention": "深静脉血栓形成",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "低分子肝素",
+  "type": "Drug",
+  "mention": "低分子肝素",
+  "span": null
+ },
+ {
+  "name": "利伐沙班",
+  "type": "Drug",
+  "mention": "利伐沙班",
+  "span": null
+ },
+ {
+  "name": "抗凝治疗",
+  "type": "Treatment",
+  "mention": "抗凝治疗",
+  "span": null
+ }
+]

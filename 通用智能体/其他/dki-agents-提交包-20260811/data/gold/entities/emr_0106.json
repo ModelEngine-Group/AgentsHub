@@ -1,0 +1,62 @@
+[
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "血尿",
+  "type": "Symptom",
+  "mention": "血尿",
+  "span": null
+ },
+ {
+  "name": "腰痛",
+  "type": "Symptom",
+  "mention": "腰痛",
+  "span": null
+ },
+ {
+  "name": "肝性脑病",
+  "type": "Disease",
+  "mention": "肝性脑病",
+  "span": null
+ },
+ {
+  "name": "糖尿病视网膜病变",
+  "type": "Disease",
+  "mention": "糖尿病视网膜病变",
+  "span": null
+ },
+ {
+  "name": "泌尿系超声",
+  "type": "Exam",
+  "mention": "泌尿系超声",
+  "span": null
+ },
+ {
+  "name": "尿路结石",
+  "type": "Disease",
+  "mention": "泌尿系结石",
+  "span": null
+ },
+ {
+  "name": "泌尿外科",
+  "type": "Department",
+  "mention": "泌尿外科",
+  "span": null
+ },
+ {
+  "name": "坦索罗辛",
+  "type": "Drug",
+  "mention": "坦索罗辛",
+  "span": null
+ },
+ {
+  "name": "体外冲击波碎石术",
+  "type": "Treatment",
+  "mention": "体外冲击波碎石术",
+  "span": null
+ }
+]

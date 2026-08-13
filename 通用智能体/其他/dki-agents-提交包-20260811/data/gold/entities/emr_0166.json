@@ -1,0 +1,56 @@
+[
+ {
+  "name": "体重下降",
+  "type": "Symptom",
+  "mention": "体重下降",
+  "span": null
+ },
+ {
+  "name": "手抖",
+  "type": "Symptom",
+  "mention": "手抖",
+  "span": null
+ },
+ {
+  "name": "慢性胃炎",
+  "type": "Disease",
+  "mention": "慢性胃炎",
+  "span": null
+ },
+ {
+  "name": "甲状腺超声",
+  "type": "Exam",
+  "mention": "甲状腺超声",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能亢进症",
+  "type": "Disease",
+  "mention": "甲状腺功能亢进症",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "甲巯咪唑",
+  "type": "Drug",
+  "mention": "甲巯咪唑",
+  "span": null
+ },
+ {
+  "name": "普萘洛尔",
+  "type": "Drug",
+  "mention": "心得安",
+  "span": null
+ },
+ {
+  "name": "放射性碘治疗",
+  "type": "Treatment",
+  "mention": "放射性碘治疗",
+  "span": null
+ }
+]

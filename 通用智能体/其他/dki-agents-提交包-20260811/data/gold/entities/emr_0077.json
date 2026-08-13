@@ -1,0 +1,50 @@
+[
+ {
+  "name": "流涕",
+  "type": "Symptom",
+  "mention": "流涕",
+  "span": null
+ },
+ {
+  "name": "发热",
+  "type": "Symptom",
+  "mention": "发烧",
+  "span": null
+ },
+ {
+  "name": "咳嗽",
+  "type": "Symptom",
+  "mention": "咳嗽",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "消化道出血",
+  "span": null
+ },
+ {
+  "name": "血常规",
+  "type": "Exam",
+  "mention": "血常规",
+  "span": null
+ },
+ {
+  "name": "上呼吸道感染",
+  "type": "Disease",
+  "mention": "上呼吸道感染",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "对乙酰氨基酚",
+  "type": "Drug",
+  "mention": "扑热息痛",
+  "span": null
+ }
+]

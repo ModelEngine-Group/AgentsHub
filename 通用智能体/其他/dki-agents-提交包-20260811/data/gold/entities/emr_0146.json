@@ -1,0 +1,38 @@
+[
+ {
+  "name": "下肢麻木",
+  "type": "Symptom",
+  "mention": "下肢麻木",
+  "span": null
+ },
+ {
+  "name": "感觉异常",
+  "type": "Symptom",
+  "mention": "感觉异常",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "糖尿病周围神经病变",
+  "type": "Disease",
+  "mention": "糖尿病周围神经病变",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "甲钴胺",
+  "type": "Drug",
+  "mention": "甲钴胺",
+  "span": null
+ }
+]

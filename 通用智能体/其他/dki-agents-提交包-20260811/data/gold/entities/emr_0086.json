@@ -1,0 +1,80 @@
+[
+ {
+  "name": "多梦",
+  "type": "Symptom",
+  "mention": "多梦",
+  "span": null
+ },
+ {
+  "name": "早醒",
+  "type": "Symptom",
+  "mention": "早醒",
+  "span": null
+ },
+ {
+  "name": "入睡困难",
+  "type": "Symptom",
+  "mention": "入睡困难",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心力衰竭",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾脏病",
+  "span": null
+ },
+ {
+  "name": "多导睡眠监测",
+  "type": "Exam",
+  "mention": "多导睡眠监测",
+  "span": null
+ },
+ {
+  "name": "失眠症",
+  "type": "Disease",
+  "mention": "睡眠障碍",
+  "span": null
+ },
+ {
+  "name": "精神心理科",
+  "type": "Department",
+  "mention": "精神心理科",
+  "span": null
+ },
+ {
+  "name": "高血压",
+  "type": "Disease",
+  "mention": "高血压",
+  "span": null
+ },
+ {
+  "name": "艾司唑仑",
+  "type": "Drug",
+  "mention": "艾司唑仑",
+  "span": null
+ },
+ {
+  "name": "佐匹克隆",
+  "type": "Drug",
+  "mention": "佐匹克隆",
+  "span": null
+ },
+ {
+  "name": "硝苯地平",
+  "type": "Drug",
+  "mention": "硝苯地平",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心力衰竭",
+  "span": null
+ }
+]

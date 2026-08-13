@@ -1,0 +1,68 @@
+[
+ {
+  "name": "晕厥",
+  "type": "Symptom",
+  "mention": "晕厥",
+  "span": null
+ },
+ {
+  "name": "咯血",
+  "type": "Symptom",
+  "mention": "咯血",
+  "span": null
+ },
+ {
+  "name": "呼吸困难",
+  "type": "Symptom",
+  "mention": "呼吸困难",
+  "span": null
+ },
+ {
+  "name": "胸痛",
+  "type": "Symptom",
+  "mention": "胸部疼痛",
+  "span": null
+ },
+ {
+  "name": "肺动脉CTA",
+  "type": "Exam",
+  "mention": "肺动脉CTA",
+  "span": null
+ },
+ {
+  "name": "D-二聚体检测",
+  "type": "Exam",
+  "mention": "D-二聚体检测",
+  "span": null
+ },
+ {
+  "name": "肺栓塞",
+  "type": "Disease",
+  "mention": "肺栓塞",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "利伐沙班",
+  "type": "Drug",
+  "mention": "利伐沙班",
+  "span": null
+ },
+ {
+  "name": "低分子肝素",
+  "type": "Drug",
+  "mention": "低分子肝素",
+  "span": null
+ },
+ {
+  "name": "溶栓治疗",
+  "type": "Treatment",
+  "mention": "溶栓治疗",
+  "span": null
+ }
+]

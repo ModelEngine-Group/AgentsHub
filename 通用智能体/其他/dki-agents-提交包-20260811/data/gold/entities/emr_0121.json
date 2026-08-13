@@ -1,0 +1,62 @@
+[
+ {
+  "name": "失眠",
+  "type": "Symptom",
+  "mention": "失眠",
+  "span": null
+ },
+ {
+  "name": "情绪低落",
+  "type": "Symptom",
+  "mention": "情绪低落",
+  "span": null
+ },
+ {
+  "name": "兴趣减退",
+  "type": "Symptom",
+  "mention": "兴趣减退",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "疲乏",
+  "span": null
+ },
+ {
+  "name": "尿路感染",
+  "type": "Disease",
+  "mention": "尿路感染",
+  "span": null
+ },
+ {
+  "name": "心理评估量表",
+  "type": "Exam",
+  "mention": "心理评估量表",
+  "span": null
+ },
+ {
+  "name": "抑郁症",
+  "type": "Disease",
+  "mention": "抑郁障碍",
+  "span": null
+ },
+ {
+  "name": "精神心理科",
+  "type": "Department",
+  "mention": "精神心理科",
+  "span": null
+ },
+ {
+  "name": "舍曲林",
+  "type": "Drug",
+  "mention": "舍曲林",
+  "span": null
+ },
+ {
+  "name": "氟西汀",
+  "type": "Drug",
+  "mention": "百忧解",
+  "span": null
+ }
+]

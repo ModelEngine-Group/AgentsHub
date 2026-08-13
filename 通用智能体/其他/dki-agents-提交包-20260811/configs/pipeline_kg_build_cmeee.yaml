@@ -1,0 +1,18 @@
+# 任务二质量证据变体：实体抽取走 CMeEE GlobalPointer（backend=cmeee / cmeee_gp）。
+# 默认权威低时延链路仍是 pipeline_kg_build.yaml 的 dict 后端；
+# 本文件用于对标 CBLUE 真实基准的质量演示路径。
+#
+# 前置：models/medical_ner_cmeee/（或 modelPath 指向已晋升 checkpoint）。
+name: medical-kg-build-cmeee
+export_path: outputs/kg_pipeline_cmeee
+process:
+  - MedicalTextCleaner:
+      maskPii: true
+  - MedicalSectionSplitter: {}
+  - MedicalEntityExtractor:
+      backend: cmeee_gp
+      # modelPath: models/medical_ner_cmeee
+  - MedicalRelationExtractor:
+      useLlm: false
+  - TripleBuilderValidator:
+      minConfidence: 0.55

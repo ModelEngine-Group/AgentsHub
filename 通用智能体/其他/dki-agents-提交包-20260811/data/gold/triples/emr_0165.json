@@ -1,0 +1,93 @@
+[
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "食欲不振",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "乏力",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "夜尿增多",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "下肢水肿",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "泌尿系超声",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "肾功能检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "尿常规",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "肾内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "贫血",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "缬沙坦",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "呋塞米",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "慢性肾脏病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "腹膜透析",
+  "tail_type": "Treatment"
+ },
+ {
+  "head": "阿仑膦酸钠",
+  "head_type": "Drug",
+  "relation": "CONTRAINDICATED_FOR",
+  "tail": "反流性食管炎",
+  "tail_type": "Disease"
+ }
+]

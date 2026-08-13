@@ -1,0 +1,62 @@
+[
+ {
+  "name": "体重下降",
+  "type": "Symptom",
+  "mention": "体重下降",
+  "span": null
+ },
+ {
+  "name": "腹痛",
+  "type": "Symptom",
+  "mention": "腹痛",
+  "span": null
+ },
+ {
+  "name": "黄疸",
+  "type": "Symptom",
+  "mention": "黄疸",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "疲乏",
+  "span": null
+ },
+ {
+  "name": "尿路结石",
+  "type": "Disease",
+  "mention": "尿路结石",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能减退症",
+  "type": "Disease",
+  "mention": "甲减",
+  "span": null
+ },
+ {
+  "name": "腹部CT",
+  "type": "Exam",
+  "mention": "腹部CT",
+  "span": null
+ },
+ {
+  "name": "肝癌",
+  "type": "Disease",
+  "mention": "肝癌",
+  "span": null
+ },
+ {
+  "name": "普通外科",
+  "type": "Department",
+  "mention": "普通外科",
+  "span": null
+ },
+ {
+  "name": "仑伐替尼",
+  "type": "Drug",
+  "mention": "仑伐替尼",
+  "span": null
+ }
+]

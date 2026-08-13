@@ -1,0 +1,21 @@
+# 任务二编排增强变体：把实体抽取切到微调 BERT 后端（其余算子链与默认一致）。
+# 与 pipeline_kg_build.yaml 的唯一差异是 MedicalEntityExtractor.backend=bert，
+# 用于演示“同一条流水线可插拔 dict/bert 后端”的编排增强（见 docs/ner_finetuning.md §5）。
+#
+# 前置：models/medical_ner_bert/ 存在（`python scripts/train_ner.py` 生成）；
+# 若目录缺失，bert 后端会回退到未微调占位权重（仅吞吐基线，不建议用于抽取质量）。
+# 默认权威链路仍是 pipeline_kg_build.yaml 的 dict 后端；本文件为可选增强演示。
+name: medical-kg-build-bert
+export_path: outputs/kg_pipeline_bert
+process:
+  - MedicalTextCleaner:
+      maskPii: true
+  - MedicalSectionSplitter: {}
+  - MedicalEntityExtractor:
+      backend: bert
+      # modelPath 留空时自动探测 models/medical_ner_bert；也可显式指定其它 <1B 权重目录。
+      # modelPath: models/medical_ner_bert
+  - MedicalRelationExtractor:
+      useLlm: false
+  - TripleBuilderValidator:
+      minConfidence: 0.55

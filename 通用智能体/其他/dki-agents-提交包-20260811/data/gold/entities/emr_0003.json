@@ -1,0 +1,74 @@
+[
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "头晕",
+  "span": null
+ },
+ {
+  "name": "面色苍白",
+  "type": "Symptom",
+  "mention": "面色苍白",
+  "span": null
+ },
+ {
+  "name": "心悸",
+  "type": "Symptom",
+  "mention": "心慌",
+  "span": null
+ },
+ {
+  "name": "反流性食管炎",
+  "type": "Disease",
+  "mention": "GERD",
+  "span": null
+ },
+ {
+  "name": "糖尿病视网膜病变",
+  "type": "Disease",
+  "mention": "糖尿病视网膜病变",
+  "span": null
+ },
+ {
+  "name": "铁代谢检查",
+  "type": "Exam",
+  "mention": "铁代谢检查",
+  "span": null
+ },
+ {
+  "name": "血常规",
+  "type": "Exam",
+  "mention": "血常规",
+  "span": null
+ },
+ {
+  "name": "贫血",
+  "type": "Disease",
+  "mention": "贫血",
+  "span": null
+ },
+ {
+  "name": "血液科",
+  "type": "Department",
+  "mention": "血液科",
+  "span": null
+ },
+ {
+  "name": "琥珀酸亚铁",
+  "type": "Drug",
+  "mention": "速力菲",
+  "span": null
+ },
+ {
+  "name": "阿仑膦酸钠",
+  "type": "Drug",
+  "mention": "阿仑膦酸钠",
+  "span": null
+ },
+ {
+  "name": "反流性食管炎",
+  "type": "Disease",
+  "mention": "GERD",
+  "span": null
+ }
+]

@@ -1,0 +1,37 @@
+[
+ {
+  "head": "脂肪肝",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "乏力",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "脂肪肝",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "腹胀",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "脂肪肝",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "肝功能检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "脂肪肝",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "消化内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "脂肪肝",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "多烯磷脂酰胆碱",
+  "tail_type": "Drug"
+ }
+]

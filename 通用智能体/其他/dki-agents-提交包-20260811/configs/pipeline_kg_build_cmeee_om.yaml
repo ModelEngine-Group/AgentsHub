@@ -1,0 +1,22 @@
+# Target-host candidate only. Every path must belong to one schema-v3 release.
+# Do not use the historical medical_ner_bert OM with this configuration.
+name: medical-kg-build-cmeee-om
+export_path: outputs/kg_pipeline_cmeee_om
+process:
+  - MedicalTextCleaner:
+      maskPii: true
+  - MedicalSectionSplitter: {}
+  - MedicalEntityExtractor:
+      backend: cmeee_om
+      accelerator: npu
+      modelPath: models/medical_ner_cmeee
+      omPath: outputs/npu_release/cmeee_globalpointer.om
+      manifestPath: outputs/npu_release/cmeee_globalpointer.bound.manifest.json
+      exportReceiptPath: outputs/npu_release/cmeee_globalpointer.onnx.export.json
+      atcLogPath: outputs/npu_release/cmeee_globalpointer.atc.json
+  - MedicalRelationExtractor:
+      backend: hybrid
+      cmeieModelPath: models/medical_re_cmeie
+      useLlm: false
+  - TripleBuilderValidator:
+      minConfidence: 0.55

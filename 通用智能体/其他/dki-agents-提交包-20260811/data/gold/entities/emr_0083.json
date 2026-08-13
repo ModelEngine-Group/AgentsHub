@@ -1,0 +1,62 @@
+[
+ {
+  "name": "多饮",
+  "type": "Symptom",
+  "mention": "多饮",
+  "span": null
+ },
+ {
+  "name": "多尿",
+  "type": "Symptom",
+  "mention": "多尿",
+  "span": null
+ },
+ {
+  "name": "偏头痛",
+  "type": "Disease",
+  "mention": "偏头痛",
+  "span": null
+ },
+ {
+  "name": "帕金森病",
+  "type": "Disease",
+  "mention": "震颤麻痹",
+  "span": null
+ },
+ {
+  "name": "空腹血糖检测",
+  "type": "Exam",
+  "mention": "空腹血糖",
+  "span": null
+ },
+ {
+  "name": "2型糖尿病",
+  "type": "Disease",
+  "mention": "2型糖尿病",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "糖尿病周围神经病变",
+  "type": "Disease",
+  "mention": "糖尿病周围神经病变",
+  "span": null
+ },
+ {
+  "name": "二甲双胍",
+  "type": "Drug",
+  "mention": "二甲双胍",
+  "span": null
+ },
+ {
+  "name": "饮食控制",
+  "type": "Treatment",
+  "mention": "饮食控制",
+  "span": null
+ }
+]

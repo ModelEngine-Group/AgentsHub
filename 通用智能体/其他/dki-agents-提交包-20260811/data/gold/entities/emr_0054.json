@@ -1,0 +1,68 @@
+[
+ {
+  "name": "易怒",
+  "type": "Symptom",
+  "mention": "易怒",
+  "span": null
+ },
+ {
+  "name": "心悸",
+  "type": "Symptom",
+  "mention": "心悸",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "癫痫",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能检查",
+  "type": "Exam",
+  "mention": "甲状腺功能检查",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能亢进症",
+  "type": "Disease",
+  "mention": "甲亢",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "骨质疏松症",
+  "type": "Disease",
+  "mention": "骨质疏松症",
+  "span": null
+ },
+ {
+  "name": "甲巯咪唑",
+  "type": "Drug",
+  "mention": "赛治",
+  "span": null
+ },
+ {
+  "name": "放射性碘治疗",
+  "type": "Treatment",
+  "mention": "放射性碘治疗",
+  "span": null
+ },
+ {
+  "name": "左氧氟沙星",
+  "type": "Drug",
+  "mention": "左氧氟沙星",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "癫痫",
+  "span": null
+ }
+]

@@ -1,0 +1,44 @@
+[
+ {
+  "name": "行为异常",
+  "type": "Symptom",
+  "mention": "行为异常",
+  "span": null
+ },
+ {
+  "name": "意识障碍",
+  "type": "Symptom",
+  "mention": "意识障碍",
+  "span": null
+ },
+ {
+  "name": "扑翼样震颤",
+  "type": "Symptom",
+  "mention": "扑翼样震颤",
+  "span": null
+ },
+ {
+  "name": "肝功能检查",
+  "type": "Exam",
+  "mention": "肝功能检查",
+  "span": null
+ },
+ {
+  "name": "肝性脑病",
+  "type": "Disease",
+  "mention": "肝性脑病",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "乳果糖",
+  "type": "Drug",
+  "mention": "乳果糖",
+  "span": null
+ }
+]

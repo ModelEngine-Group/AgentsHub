@@ -1,0 +1,58 @@
+[
+ {
+  "head": "痛风",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "发热",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "痛风",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "关节红肿",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "痛风",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "关节疼痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "痛风",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "关节超声",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "痛风",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "血尿酸检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "痛风",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "风湿免疫科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "痛风",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "秋水仙碱",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "痛风",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "别嘌醇",
+  "tail_type": "Drug"
+ }
+]

@@ -1,0 +1,56 @@
+[
+ {
+  "name": "下肢肿胀",
+  "type": "Symptom",
+  "mention": "下肢肿胀",
+  "span": null
+ },
+ {
+  "name": "下肢疼痛",
+  "type": "Symptom",
+  "mention": "下肢疼痛",
+  "span": null
+ },
+ {
+  "name": "偏头痛",
+  "type": "Disease",
+  "mention": "偏头痛",
+  "span": null
+ },
+ {
+  "name": "下肢血管超声",
+  "type": "Exam",
+  "mention": "下肢血管超声",
+  "span": null
+ },
+ {
+  "name": "深静脉血栓形成",
+  "type": "Disease",
+  "mention": "深静脉血栓形成",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "肺栓塞",
+  "type": "Disease",
+  "mention": "肺栓塞",
+  "span": null
+ },
+ {
+  "name": "低分子肝素",
+  "type": "Drug",
+  "mention": "低分子肝素",
+  "span": null
+ },
+ {
+  "name": "抗凝治疗",
+  "type": "Treatment",
+  "mention": "抗凝治疗",
+  "span": null
+ }
+]

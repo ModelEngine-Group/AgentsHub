@@ -1,0 +1,74 @@
+[
+ {
+  "name": "剧烈胸痛",
+  "type": "Symptom",
+  "mention": "剧烈胸痛",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "濒死感",
+  "type": "Symptom",
+  "mention": "濒死感",
+  "span": null
+ },
+ {
+  "name": "糖尿病周围神经病变",
+  "type": "Disease",
+  "mention": "糖尿病周围神经病变",
+  "span": null
+ },
+ {
+  "name": "支气管哮喘",
+  "type": "Disease",
+  "mention": "支气管哮喘",
+  "span": null
+ },
+ {
+  "name": "心肌酶谱",
+  "type": "Exam",
+  "mention": "心肌酶谱",
+  "span": null
+ },
+ {
+  "name": "心肌梗死",
+  "type": "Disease",
+  "mention": "心肌梗死",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "阿托伐他汀",
+  "type": "Drug",
+  "mention": "阿托伐他汀",
+  "span": null
+ },
+ {
+  "name": "氯吡格雷",
+  "type": "Drug",
+  "mention": "波立维",
+  "span": null
+ },
+ {
+  "name": "普萘洛尔",
+  "type": "Drug",
+  "mention": "普萘洛尔",
+  "span": null
+ },
+ {
+  "name": "支气管哮喘",
+  "type": "Disease",
+  "mention": "支气管哮喘",
+  "span": null
+ }
+]

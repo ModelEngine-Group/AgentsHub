@@ -1,0 +1,68 @@
+[
+ {
+  "name": "呕血",
+  "type": "Symptom",
+  "mention": "呕血",
+  "span": null
+ },
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "头晕",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "倦怠",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜检查",
+  "span": null
+ },
+ {
+  "name": "血常规",
+  "type": "Exam",
+  "mention": "血常规",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "上消化道出血",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "贫血",
+  "type": "Disease",
+  "mention": "贫血",
+  "span": null
+ },
+ {
+  "name": "生长抑素",
+  "type": "Drug",
+  "mention": "生长抑素",
+  "span": null
+ },
+ {
+  "name": "奥美拉唑",
+  "type": "Drug",
+  "mention": "奥美拉唑",
+  "span": null
+ },
+ {
+  "name": "内镜下止血术",
+  "type": "Treatment",
+  "mention": "内镜下止血术",
+  "span": null
+ }
+]

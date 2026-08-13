@@ -1,0 +1,72 @@
+[
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "呼吸困难",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "夜间阵发性呼吸困难",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "乏力",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "下肢水肿",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "BNP检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "胸部X线",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "心血管内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "慢性肾脏病",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "美托洛尔",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "心力衰竭",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "螺内酯",
+  "tail_type": "Drug"
+ }
+]

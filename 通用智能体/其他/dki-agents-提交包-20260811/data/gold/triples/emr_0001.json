@@ -1,0 +1,72 @@
+[
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "耳鸣",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "头痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "头晕",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "心悸",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "动态血压监测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "血压测量",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "心血管内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "冠心病",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "缬沙坦",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "高血压",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "氨氯地平",
+  "tail_type": "Drug"
+ }
+]

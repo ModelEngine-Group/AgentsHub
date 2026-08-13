@@ -1,0 +1,74 @@
+[
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "嗳气",
+  "type": "Symptom",
+  "mention": "嗳气",
+  "span": null
+ },
+ {
+  "name": "肺结核",
+  "type": "Disease",
+  "mention": "结核病",
+  "span": null
+ },
+ {
+  "name": "深静脉血栓形成",
+  "type": "Disease",
+  "mention": "深静脉血栓形成",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜检查",
+  "span": null
+ },
+ {
+  "name": "幽门螺杆菌检测",
+  "type": "Exam",
+  "mention": "幽门螺杆菌检测",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "消化道出血",
+  "span": null
+ },
+ {
+  "name": "阿莫西林",
+  "type": "Drug",
+  "mention": "阿莫西林胶囊",
+  "span": null
+ },
+ {
+  "name": "奥美拉唑",
+  "type": "Drug",
+  "mention": "奥美拉唑",
+  "span": null
+ },
+ {
+  "name": "克拉霉素",
+  "type": "Drug",
+  "mention": "克拉霉素",
+  "span": null
+ }
+]

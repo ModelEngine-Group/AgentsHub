@@ -1,0 +1,13 @@
+# 任务二示例流程：病历 → 知识三元组（清洗→分段→实体→关系→三元组校验）
+name: medical-kg-build
+export_path: outputs/kg_pipeline
+process:
+  - MedicalTextCleaner:
+      maskPii: true
+  - MedicalSectionSplitter: {}
+  - MedicalEntityExtractor:
+      backend: dict
+  - MedicalRelationExtractor:
+      useLlm: false
+  - TripleBuilderValidator:
+      minConfidence: 0.55

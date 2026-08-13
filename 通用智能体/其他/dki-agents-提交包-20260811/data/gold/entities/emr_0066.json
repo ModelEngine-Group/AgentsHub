@@ -1,0 +1,56 @@
+[
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "腹胀",
+  "type": "Symptom",
+  "mention": "腹胀",
+  "span": null
+ },
+ {
+  "name": "腰椎间盘突出症",
+  "type": "Disease",
+  "mention": "腰椎间盘突出症",
+  "span": null
+ },
+ {
+  "name": "肝功能检查",
+  "type": "Exam",
+  "mention": "肝功能检查",
+  "span": null
+ },
+ {
+  "name": "腹部超声",
+  "type": "Exam",
+  "mention": "腹部B超",
+  "span": null
+ },
+ {
+  "name": "脂肪肝",
+  "type": "Disease",
+  "mention": "脂肪肝",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "多烯磷脂酰胆碱",
+  "type": "Drug",
+  "mention": "多烯磷脂酰胆碱",
+  "span": null
+ },
+ {
+  "name": "饮食控制",
+  "type": "Treatment",
+  "mention": "饮食调节",
+  "span": null
+ }
+]

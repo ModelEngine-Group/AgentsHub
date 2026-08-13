@@ -1,0 +1,58 @@
+[
+ {
+  "head": "深静脉血栓形成",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "下肢肿胀",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "深静脉血栓形成",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "下肢疼痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "深静脉血栓形成",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "D-二聚体检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "深静脉血栓形成",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "下肢血管超声",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "深静脉血栓形成",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "心血管内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "深静脉血栓形成",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "低分子肝素",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "深静脉血栓形成",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "利伐沙班",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "深静脉血栓形成",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "抗凝治疗",
+  "tail_type": "Treatment"
+ }
+]

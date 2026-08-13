@@ -1,0 +1,51 @@
+[
+ {
+  "head": "2型糖尿病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "多饮",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "2型糖尿病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "多尿",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "2型糖尿病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "空腹血糖检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "2型糖尿病",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "内分泌科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "2型糖尿病",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "糖尿病周围神经病变",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "2型糖尿病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "二甲双胍",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "2型糖尿病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "饮食控制",
+  "tail_type": "Treatment"
+ }
+]

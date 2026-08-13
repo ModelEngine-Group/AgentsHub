@@ -1,0 +1,44 @@
+[
+ {
+  "head": "甲状腺功能减退症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "体重增加",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "甲状腺功能减退症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "畏寒",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "甲状腺功能减退症",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "甲状腺功能检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "甲状腺功能减退症",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "内分泌科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "甲状腺功能减退症",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "左甲状腺素钠",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "胺碘酮",
+  "head_type": "Drug",
+  "relation": "CONTRAINDICATED_FOR",
+  "tail": "甲状腺功能亢进症",
+  "tail_type": "Disease"
+ }
+]

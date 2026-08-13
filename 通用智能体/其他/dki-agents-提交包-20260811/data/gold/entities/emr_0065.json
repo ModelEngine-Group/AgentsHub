@@ -1,0 +1,86 @@
+[
+ {
+  "name": "体重下降",
+  "type": "Symptom",
+  "mention": "体重下降",
+  "span": null
+ },
+ {
+  "name": "多饮",
+  "type": "Symptom",
+  "mention": "多饮",
+  "span": null
+ },
+ {
+  "name": "多食",
+  "type": "Symptom",
+  "mention": "多食",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "肝硬化",
+  "type": "Disease",
+  "mention": "肝硬化",
+  "span": null
+ },
+ {
+  "name": "糖化血红蛋白检测",
+  "type": "Exam",
+  "mention": "糖化血红蛋白检测",
+  "span": null
+ },
+ {
+  "name": "空腹血糖检测",
+  "type": "Exam",
+  "mention": "空腹血糖检测",
+  "span": null
+ },
+ {
+  "name": "口服葡萄糖耐量试验",
+  "type": "Exam",
+  "mention": "口服葡萄糖耐量试验",
+  "span": null
+ },
+ {
+  "name": "2型糖尿病",
+  "type": "Disease",
+  "mention": "T2DM",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "格列美脲",
+  "type": "Drug",
+  "mention": "格列美脲",
+  "span": null
+ },
+ {
+  "name": "饮食控制",
+  "type": "Treatment",
+  "mention": "饮食调节",
+  "span": null
+ },
+ {
+  "name": "甲氨蝶呤",
+  "type": "Drug",
+  "mention": "甲氨蝶呤",
+  "span": null
+ },
+ {
+  "name": "肝硬化",
+  "type": "Disease",
+  "mention": "肝硬化",
+  "span": null
+ }
+]

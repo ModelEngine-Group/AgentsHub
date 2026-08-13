@@ -1,0 +1,80 @@
+[
+ {
+  "name": "呕血",
+  "type": "Symptom",
+  "mention": "呕血",
+  "span": null
+ },
+ {
+  "name": "黑便",
+  "type": "Symptom",
+  "mention": "黑便",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "癫痫",
+  "span": null
+ },
+ {
+  "name": "支气管哮喘",
+  "type": "Disease",
+  "mention": "支气管哮喘",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "消化道出血",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "生长抑素",
+  "type": "Drug",
+  "mention": "生长抑素",
+  "span": null
+ },
+ {
+  "name": "奥美拉唑",
+  "type": "Drug",
+  "mention": "奥美拉唑肠溶胶囊",
+  "span": null
+ },
+ {
+  "name": "内镜下止血术",
+  "type": "Treatment",
+  "mention": "内镜下止血术",
+  "span": null
+ },
+ {
+  "name": "左氧氟沙星",
+  "type": "Drug",
+  "mention": "可乐必妥",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "癫痫",
+  "span": null
+ }
+]

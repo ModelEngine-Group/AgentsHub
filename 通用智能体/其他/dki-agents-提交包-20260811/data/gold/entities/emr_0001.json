@@ -1,0 +1,80 @@
+[
+ {
+  "name": "耳鸣",
+  "type": "Symptom",
+  "mention": "耳鸣",
+  "span": null
+ },
+ {
+  "name": "头痛",
+  "type": "Symptom",
+  "mention": "头痛",
+  "span": null
+ },
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "头晕",
+  "span": null
+ },
+ {
+  "name": "心悸",
+  "type": "Symptom",
+  "mention": "心悸",
+  "span": null
+ },
+ {
+  "name": "肝硬化",
+  "type": "Disease",
+  "mention": "肝硬化",
+  "span": null
+ },
+ {
+  "name": "抑郁症",
+  "type": "Disease",
+  "mention": "抑郁症",
+  "span": null
+ },
+ {
+  "name": "动态血压监测",
+  "type": "Exam",
+  "mention": "动态血压监测",
+  "span": null
+ },
+ {
+  "name": "血压测量",
+  "type": "Exam",
+  "mention": "血压测量",
+  "span": null
+ },
+ {
+  "name": "高血压",
+  "type": "Disease",
+  "mention": "原发性高血压",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "冠心病",
+  "type": "Disease",
+  "mention": "冠心病",
+  "span": null
+ },
+ {
+  "name": "缬沙坦",
+  "type": "Drug",
+  "mention": "缬沙坦胶囊",
+  "span": null
+ },
+ {
+  "name": "氨氯地平",
+  "type": "Drug",
+  "mention": "氨氯地平",
+  "span": null
+ }
+]

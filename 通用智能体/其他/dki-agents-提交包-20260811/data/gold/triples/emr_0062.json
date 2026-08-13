@@ -1,0 +1,51 @@
+[
+ {
+  "head": "贫血",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "面色苍白",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "贫血",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "头晕",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "贫血",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "血常规",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "贫血",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "血液科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "贫血",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "心力衰竭",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "贫血",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "叶酸",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "贫血",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "琥珀酸亚铁",
+  "tail_type": "Drug"
+ }
+]

@@ -1,0 +1,50 @@
+[
+ {
+  "name": "腹胀",
+  "type": "Symptom",
+  "mention": "腹胀",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "糖尿病周围神经病变",
+  "type": "Disease",
+  "mention": "糖尿病周围神经病变",
+  "span": null
+ },
+ {
+  "name": "肝功能检查",
+  "type": "Exam",
+  "mention": "肝功能",
+  "span": null
+ },
+ {
+  "name": "肝硬化",
+  "type": "Disease",
+  "mention": "肝硬化",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "螺内酯",
+  "type": "Drug",
+  "mention": "螺内酯",
+  "span": null
+ },
+ {
+  "name": "呋塞米",
+  "type": "Drug",
+  "mention": "呋塞米",
+  "span": null
+ }
+]

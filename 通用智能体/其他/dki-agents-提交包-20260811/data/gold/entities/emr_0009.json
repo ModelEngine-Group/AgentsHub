@@ -1,0 +1,56 @@
+[
+ {
+  "name": "血尿",
+  "type": "Symptom",
+  "mention": "血尿",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "高脂血症",
+  "type": "Disease",
+  "mention": "高脂血症",
+  "span": null
+ },
+ {
+  "name": "慢性胃炎",
+  "type": "Disease",
+  "mention": "慢性胃炎",
+  "span": null
+ },
+ {
+  "name": "腹部CT",
+  "type": "Exam",
+  "mention": "腹部CT",
+  "span": null
+ },
+ {
+  "name": "尿路结石",
+  "type": "Disease",
+  "mention": "尿路结石",
+  "span": null
+ },
+ {
+  "name": "泌尿外科",
+  "type": "Department",
+  "mention": "泌尿外科",
+  "span": null
+ },
+ {
+  "name": "尿路感染",
+  "type": "Disease",
+  "mention": "泌尿系感染",
+  "span": null
+ },
+ {
+  "name": "坦索罗辛",
+  "type": "Drug",
+  "mention": "坦索罗辛",
+  "span": null
+ }
+]

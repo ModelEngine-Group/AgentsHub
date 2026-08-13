@@ -1,0 +1,86 @@
+[
+ {
+  "name": "夜尿增多",
+  "type": "Symptom",
+  "mention": "夜尿增多",
+  "span": null
+ },
+ {
+  "name": "食欲不振",
+  "type": "Symptom",
+  "mention": "纳差",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心力衰竭",
+  "span": null
+ },
+ {
+  "name": "2型糖尿病",
+  "type": "Disease",
+  "mention": "2型糖尿病",
+  "span": null
+ },
+ {
+  "name": "尿常规",
+  "type": "Exam",
+  "mention": "尿常规",
+  "span": null
+ },
+ {
+  "name": "肾功能检查",
+  "type": "Exam",
+  "mention": "肾功能检查",
+  "span": null
+ },
+ {
+  "name": "泌尿系超声",
+  "type": "Exam",
+  "mention": "泌尿系超声",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾脏病",
+  "span": null
+ },
+ {
+  "name": "肾内科",
+  "type": "Department",
+  "mention": "肾内科",
+  "span": null
+ },
+ {
+  "name": "呋塞米",
+  "type": "Drug",
+  "mention": "呋塞米",
+  "span": null
+ },
+ {
+  "name": "缬沙坦",
+  "type": "Drug",
+  "mention": "缬沙坦胶囊",
+  "span": null
+ },
+ {
+  "name": "腹膜透析",
+  "type": "Treatment",
+  "mention": "腹膜透析",
+  "span": null
+ },
+ {
+  "name": "硝苯地平",
+  "type": "Drug",
+  "mention": "硝苯地平缓释片",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心力衰竭",
+  "span": null
+ }
+]

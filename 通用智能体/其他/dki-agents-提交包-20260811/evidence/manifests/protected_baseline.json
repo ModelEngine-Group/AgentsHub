@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "partial_local_baseline",
+  "note": "Large model/ONNX/OM artifacts are retained on the controlled NPU host and must be appended after read-only remote verification; absence here does not authorize replacement.",
+  "protected": [
+    {
+      "path": "configs/pipeline_kg_build.yaml",
+      "role": "default_dict_pipeline",
+      "sha256": "35822de0e7bc4db54c57db6276cba8a15ee66471495a045a0f2e7cea0fae432f",
+      "size": 402
+    },
+    {
+      "path": "data/ood_blind/final3_blind_eval.jsonl",
+      "role": "historical_blind_read_only",
+      "sha256": "f49d335e40a757b3043fb18fbe2d1949edc9b7fce4351872c05f6ab98f40320e",
+      "size": 17938,
+      "forbidden_for": ["training", "calibration", "selection", "model_selection", "routing", "profiling", "threshold_search", "quantization", "error_analysis"]
+    },
+    {
+      "path": "data/ood_blind/final3_blind_eval.manifest.json",
+      "role": "historical_blind_manifest_read_only",
+      "sha256": "0d2cc3414a2b56d7f0df8ea54aec6ecfbeaccd29147c294fec55e79cdefdd620",
+      "size": 221
+    },
+    {
+      "path": "outputs/ner_finetune/ood_final3_quality_v2.json",
+      "role": "historical_blind_result_read_only",
+      "sha256": "c6e8826c5411e7e4fad0433868825c66d02d08fa4e5b9977f148372a4633ee6e",
+      "size": 3879
+    }
+  ]
+}

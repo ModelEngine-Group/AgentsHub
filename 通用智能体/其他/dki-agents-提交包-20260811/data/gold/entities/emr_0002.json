@@ -1,0 +1,62 @@
+[
+ {
+  "name": "心悸",
+  "type": "Symptom",
+  "mention": "心悸",
+  "span": null
+ },
+ {
+  "name": "体重下降",
+  "type": "Symptom",
+  "mention": "消瘦",
+  "span": null
+ },
+ {
+  "name": "失眠症",
+  "type": "Disease",
+  "mention": "失眠症",
+  "span": null
+ },
+ {
+  "name": "支气管哮喘",
+  "type": "Disease",
+  "mention": "哮喘",
+  "span": null
+ },
+ {
+  "name": "甲状腺超声",
+  "type": "Exam",
+  "mention": "甲状腺超声",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能检查",
+  "type": "Exam",
+  "mention": "甲状腺功能检查",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能亢进症",
+  "type": "Disease",
+  "mention": "甲状腺功能亢进症",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "普萘洛尔",
+  "type": "Drug",
+  "mention": "普萘洛尔",
+  "span": null
+ },
+ {
+  "name": "放射性碘治疗",
+  "type": "Treatment",
+  "mention": "碘131治疗",
+  "span": null
+ }
+]

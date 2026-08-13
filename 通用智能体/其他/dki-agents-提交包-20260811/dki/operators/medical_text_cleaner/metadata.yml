@@ -1,0 +1,36 @@
+name: '医疗文本清洗算子'
+description: '面向医疗病历的组合清洗：HTML标签清理、不可见字符、全角转半角、多余空格、重复语句去重、繁转简、手机号/身份证脱敏。内部复用 DataMate 内置清洗算子，平台外自动回退等价实现。'
+language: 'python'
+vendor: 'dki'
+raw_id: 'MedicalTextCleaner'
+version: '0.1.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+release:
+  - '首次发布：组合复用 DataMate 内置清洗与脱敏算子'
+metrics:
+  - name: '吞吐量'
+    metric: '见 outputs/bench/operator_bench.md（CPU 实测）'
+runtime:
+  memory: 10485760
+  cpu: 0.05
+  gpu: 0
+  npu: 0
+settings:
+  steps:
+    name: '清洗步骤'
+    description: '按序执行的清洗步骤，逗号分隔。可选：html,invisible,fullwidth,space,dedup_sent,traditional'
+    type: 'input'
+    defaultVal: 'invisible,html,fullwidth,space,dedup_sent,traditional'
+    required: false
+  maskPii:
+    name: 'PII 脱敏'
+    description: '是否对手机号/身份证号脱敏'
+    type: 'switch'
+    defaultVal: 'true'
+    required: false
+    checkedLabel: '开启'
+    unCheckedLabel: '关闭'

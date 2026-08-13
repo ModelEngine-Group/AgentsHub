@@ -1,0 +1,92 @@
+[
+ {
+  "name": "黄疸",
+  "type": "Symptom",
+  "mention": "黄疸",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "倦怠",
+  "span": null
+ },
+ {
+  "name": "腹痛",
+  "type": "Symptom",
+  "mention": "腹痛",
+  "span": null
+ },
+ {
+  "name": "体重下降",
+  "type": "Symptom",
+  "mention": "体重下降",
+  "span": null
+ },
+ {
+  "name": "反流性食管炎",
+  "type": "Disease",
+  "mention": "反流性食管炎",
+  "span": null
+ },
+ {
+  "name": "心肌梗死",
+  "type": "Disease",
+  "mention": "心肌梗死",
+  "span": null
+ },
+ {
+  "name": "甲胎蛋白检测",
+  "type": "Exam",
+  "mention": "甲胎蛋白检测",
+  "span": null
+ },
+ {
+  "name": "腹部CT",
+  "type": "Exam",
+  "mention": "腹部CT",
+  "span": null
+ },
+ {
+  "name": "肝癌",
+  "type": "Disease",
+  "mention": "肝癌",
+  "span": null
+ },
+ {
+  "name": "普通外科",
+  "type": "Department",
+  "mention": "普通外科",
+  "span": null
+ },
+ {
+  "name": "仑伐替尼",
+  "type": "Drug",
+  "mention": "仑伐替尼",
+  "span": null
+ },
+ {
+  "name": "索拉非尼",
+  "type": "Drug",
+  "mention": "索拉非尼",
+  "span": null
+ },
+ {
+  "name": "肝切除术",
+  "type": "Treatment",
+  "mention": "肝切除术",
+  "span": null
+ },
+ {
+  "name": "阿仑膦酸钠",
+  "type": "Drug",
+  "mention": "福善美",
+  "span": null
+ },
+ {
+  "name": "反流性食管炎",
+  "type": "Disease",
+  "mention": "反流性食管炎",
+  "span": null
+ }
+]

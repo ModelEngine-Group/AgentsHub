@@ -1,0 +1,74 @@
+[
+ {
+  "name": "腰背疼痛",
+  "type": "Symptom",
+  "mention": "腰背疼痛",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "糖尿病视网膜病变",
+  "type": "Disease",
+  "mention": "糖尿病视网膜病变",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "骨密度检测",
+  "type": "Exam",
+  "mention": "骨密度检测",
+  "span": null
+ },
+ {
+  "name": "骨质疏松症",
+  "type": "Disease",
+  "mention": "骨质疏松症",
+  "span": null
+ },
+ {
+  "name": "骨科",
+  "type": "Department",
+  "mention": "骨科",
+  "span": null
+ },
+ {
+  "name": "骨化三醇",
+  "type": "Drug",
+  "mention": "骨化三醇",
+  "span": null
+ },
+ {
+  "name": "阿仑膦酸钠",
+  "type": "Drug",
+  "mention": "阿仑膦酸钠",
+  "span": null
+ },
+ {
+  "name": "运动疗法",
+  "type": "Treatment",
+  "mention": "运动疗法",
+  "span": null
+ },
+ {
+  "name": "阿司匹林",
+  "type": "Drug",
+  "mention": "阿司匹林",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ }
+]

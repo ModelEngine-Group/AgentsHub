@@ -1,0 +1,65 @@
+[
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "呕吐",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "剧烈腹痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "发热",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "恶心",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "腹部CT",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "血淀粉酶检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "消化内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "生长抑素",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "急性胰腺炎",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "禁食",
+  "tail_type": "Treatment"
+ }
+]

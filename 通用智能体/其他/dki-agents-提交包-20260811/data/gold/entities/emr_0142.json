@@ -1,0 +1,80 @@
+[
+ {
+  "name": "心悸",
+  "type": "Symptom",
+  "mention": "心悸",
+  "span": null
+ },
+ {
+  "name": "胸痛",
+  "type": "Symptom",
+  "mention": "胸痛",
+  "span": null
+ },
+ {
+  "name": "气短",
+  "type": "Symptom",
+  "mention": "气短",
+  "span": null
+ },
+ {
+  "name": "胸闷",
+  "type": "Symptom",
+  "mention": "胸闷",
+  "span": null
+ },
+ {
+  "name": "冠状动脉造影",
+  "type": "Exam",
+  "mention": "冠状动脉造影",
+  "span": null
+ },
+ {
+  "name": "心电图",
+  "type": "Exam",
+  "mention": "ECG",
+  "span": null
+ },
+ {
+  "name": "冠心病",
+  "type": "Disease",
+  "mention": "冠心病",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "心律失常",
+  "type": "Disease",
+  "mention": "心律不齐",
+  "span": null
+ },
+ {
+  "name": "阿司匹林",
+  "type": "Drug",
+  "mention": "阿司匹林肠溶片",
+  "span": null
+ },
+ {
+  "name": "硝酸甘油",
+  "type": "Drug",
+  "mention": "硝酸甘油",
+  "span": null
+ },
+ {
+  "name": "阿托伐他汀",
+  "type": "Drug",
+  "mention": "阿托伐他汀",
+  "span": null
+ },
+ {
+  "name": "经皮冠状动脉介入治疗",
+  "type": "Treatment",
+  "mention": "经皮冠状动脉介入治疗",
+  "span": null
+ }
+]

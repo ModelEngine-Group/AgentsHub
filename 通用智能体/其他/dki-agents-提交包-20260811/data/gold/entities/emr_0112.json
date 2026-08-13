@@ -1,0 +1,50 @@
+[
+ {
+  "name": "易怒",
+  "type": "Symptom",
+  "mention": "易怒",
+  "span": null
+ },
+ {
+  "name": "体重下降",
+  "type": "Symptom",
+  "mention": "消瘦",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能检查",
+  "type": "Exam",
+  "mention": "甲状腺功能检查",
+  "span": null
+ },
+ {
+  "name": "甲状腺超声",
+  "type": "Exam",
+  "mention": "甲状腺超声",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能亢进症",
+  "type": "Disease",
+  "mention": "甲状腺功能亢进症",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "甲巯咪唑",
+  "type": "Drug",
+  "mention": "甲巯咪唑",
+  "span": null
+ },
+ {
+  "name": "放射性碘治疗",
+  "type": "Treatment",
+  "mention": "放射性碘治疗",
+  "span": null
+ }
+]

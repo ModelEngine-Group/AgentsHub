@@ -1,0 +1,56 @@
+[
+ {
+  "name": "入睡困难",
+  "type": "Symptom",
+  "mention": "入睡困难",
+  "span": null
+ },
+ {
+  "name": "多梦",
+  "type": "Symptom",
+  "mention": "多梦",
+  "span": null
+ },
+ {
+  "name": "早醒",
+  "type": "Symptom",
+  "mention": "早醒",
+  "span": null
+ },
+ {
+  "name": "多导睡眠监测",
+  "type": "Exam",
+  "mention": "多导睡眠监测",
+  "span": null
+ },
+ {
+  "name": "失眠症",
+  "type": "Disease",
+  "mention": "失眠症",
+  "span": null
+ },
+ {
+  "name": "精神心理科",
+  "type": "Department",
+  "mention": "精神心理科",
+  "span": null
+ },
+ {
+  "name": "艾司唑仑",
+  "type": "Drug",
+  "mention": "艾司唑仑",
+  "span": null
+ },
+ {
+  "name": "佐匹克隆",
+  "type": "Drug",
+  "mention": "佐匹克隆",
+  "span": null
+ },
+ {
+  "name": "认知行为治疗",
+  "type": "Treatment",
+  "mention": "认知行为治疗",
+  "span": null
+ }
+]

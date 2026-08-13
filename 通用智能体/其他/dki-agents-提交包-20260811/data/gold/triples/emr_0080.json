@@ -1,0 +1,44 @@
+[
+ {
+  "head": "骨质疏松症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "腰背疼痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "骨质疏松症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "乏力",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "骨质疏松症",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "骨密度检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "骨质疏松症",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "骨科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "骨质疏松症",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "骨折",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "骨质疏松症",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "骨化三醇",
+  "tail_type": "Drug"
+ }
+]

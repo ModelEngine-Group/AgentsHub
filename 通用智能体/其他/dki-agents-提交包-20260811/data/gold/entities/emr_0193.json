@@ -1,0 +1,80 @@
+[
+ {
+  "name": "意识障碍",
+  "type": "Symptom",
+  "mention": "意识障碍",
+  "span": null
+ },
+ {
+  "name": "口角歪斜",
+  "type": "Symptom",
+  "mention": "口角歪斜",
+  "span": null
+ },
+ {
+  "name": "言语不清",
+  "type": "Symptom",
+  "mention": "构音障碍",
+  "span": null
+ },
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "眩晕",
+  "span": null
+ },
+ {
+  "name": "腰椎间盘突出症",
+  "type": "Disease",
+  "mention": "腰椎间盘突出",
+  "span": null
+ },
+ {
+  "name": "2型糖尿病",
+  "type": "Disease",
+  "mention": "II型糖尿病",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅磁共振",
+  "span": null
+ },
+ {
+  "name": "脑卒中",
+  "type": "Disease",
+  "mention": "中风",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "阿司匹林",
+  "type": "Drug",
+  "mention": "阿司匹林",
+  "span": null
+ },
+ {
+  "name": "阿托伐他汀",
+  "type": "Drug",
+  "mention": "阿托伐他汀",
+  "span": null
+ },
+ {
+  "name": "氯吡格雷",
+  "type": "Drug",
+  "mention": "氯吡格雷",
+  "span": null
+ },
+ {
+  "name": "康复训练",
+  "type": "Treatment",
+  "mention": "康复治疗",
+  "span": null
+ }
+]

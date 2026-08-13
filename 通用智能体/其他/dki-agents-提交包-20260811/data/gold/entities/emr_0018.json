@@ -1,0 +1,68 @@
+[
+ {
+  "name": "下肢水肿",
+  "type": "Symptom",
+  "mention": "下肢水肿",
+  "span": null
+ },
+ {
+  "name": "食欲不振",
+  "type": "Symptom",
+  "mention": "纳差",
+  "span": null
+ },
+ {
+  "name": "肾功能检查",
+  "type": "Exam",
+  "mention": "肾功能检查",
+  "span": null
+ },
+ {
+  "name": "尿常规",
+  "type": "Exam",
+  "mention": "尿常规",
+  "span": null
+ },
+ {
+  "name": "泌尿系超声",
+  "type": "Exam",
+  "mention": "泌尿系超声",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾脏病",
+  "span": null
+ },
+ {
+  "name": "肾内科",
+  "type": "Department",
+  "mention": "肾内科",
+  "span": null
+ },
+ {
+  "name": "骨质疏松症",
+  "type": "Disease",
+  "mention": "骨质疏松",
+  "span": null
+ },
+ {
+  "name": "缬沙坦",
+  "type": "Drug",
+  "mention": "缬沙坦",
+  "span": null
+ },
+ {
+  "name": "呋塞米",
+  "type": "Drug",
+  "mention": "速尿",
+  "span": null
+ },
+ {
+  "name": "血液透析",
+  "type": "Treatment",
+  "mention": "血液透析",
+  "span": null
+ }
+]

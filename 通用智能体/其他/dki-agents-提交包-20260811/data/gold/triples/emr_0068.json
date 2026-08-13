@@ -1,0 +1,72 @@
+[
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "恶心",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "食欲不振",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "乏力",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "黄疸",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "乙肝五项检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "肝功能检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "感染科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "肝硬化",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "恩替卡韦",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "病毒性肝炎",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "替诺福韦",
+  "tail_type": "Drug"
+ }
+]

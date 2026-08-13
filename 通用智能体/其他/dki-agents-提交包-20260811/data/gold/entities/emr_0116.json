@@ -1,0 +1,62 @@
+[
+ {
+  "name": "上腹痛",
+  "type": "Symptom",
+  "mention": "上腹痛",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾脏病",
+  "span": null
+ },
+ {
+  "name": "尿路感染",
+  "type": "Disease",
+  "mention": "尿路感染",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "克拉霉素",
+  "type": "Drug",
+  "mention": "克拉霉素",
+  "span": null
+ },
+ {
+  "name": "秋水仙碱",
+  "type": "Drug",
+  "mention": "秋水仙碱",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾脏病",
+  "span": null
+ }
+]

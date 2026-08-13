@@ -1,0 +1,5 @@
+Apache License 2.0 notice for the vendored Apache ECharts distribution.
+
+The minified asset in this directory is downloaded unchanged from the official
+Apache ECharts npm distribution. Its source header and upstream license apply:
+https://github.com/apache/echarts/blob/master/LICENSE

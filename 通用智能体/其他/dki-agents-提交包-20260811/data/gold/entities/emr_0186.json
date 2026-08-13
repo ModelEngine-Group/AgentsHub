@@ -1,0 +1,44 @@
+[
+ {
+  "name": "关节肿胀",
+  "type": "Symptom",
+  "mention": "关节肿胀",
+  "span": null
+ },
+ {
+  "name": "晨僵",
+  "type": "Symptom",
+  "mention": "晨僵",
+  "span": null
+ },
+ {
+  "name": "类风湿因子检测",
+  "type": "Exam",
+  "mention": "类风湿因子检测",
+  "span": null
+ },
+ {
+  "name": "关节超声",
+  "type": "Exam",
+  "mention": "关节超声",
+  "span": null
+ },
+ {
+  "name": "类风湿关节炎",
+  "type": "Disease",
+  "mention": "类风湿关节炎",
+  "span": null
+ },
+ {
+  "name": "风湿免疫科",
+  "type": "Department",
+  "mention": "风湿免疫科",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬",
+  "span": null
+ }
+]
