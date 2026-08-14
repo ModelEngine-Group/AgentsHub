@@ -1,0 +1,3 @@
+id,title,source,text
+csv-001,结构化高血压记录,synthetic_structured,患者血压升高伴头晕，建议低盐饮食和规律运动。
+csv-002,结构化糖尿病记录,synthetic_structured,患者多饮多尿，空腹血糖升高，建议饮食控制并评估二甲双胍治疗。

@@ -1,0 +1,3 @@
+# The portable rule-based baseline uses only the Python standard library.
+# See requirements-optional-analytics.txt and requirements-optional-model.txt
+# for optional acceleration, policy-model and training dependencies.

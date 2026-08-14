@@ -1,0 +1,328 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ModelEngine Task-2 MedicalKGAgent",
+    "version": "1.0.0",
+    "description": "Competition Task-2 medical knowledge graph generation and QA agent. It orchestrates reusable entity extraction, relation extraction, triple normalization, validation, entity linking, graph generation, and KG-backed medical QA operators through Nexent OpenAPI/MCP."
+  },
+  "servers": [
+    {
+      "url": "http://host.docker.internal:8088"
+    }
+  ],
+  "paths": {
+    "/api/medical-kg/build": {
+      "post": {
+        "operationId": "build_medical_kg_agent",
+        "summary": "Build a medical knowledge graph through the Task-2 agent",
+        "description": "Run the Task-2 MedicalKGAgent from raw medical text or tables to a validated medical knowledge graph. The response includes operator dispatch, status tracking, validation, quality evaluation, QA traces, and artifact locations.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MedicalKGBuildRequest"
+              },
+              "examples": {
+                "official_medical_kg": {
+                  "value": {
+                    "input_path": "data/raw/medical_demo.jsonl",
+                    "output_root": ".",
+                    "questions": [
+                      "高血压有哪些并发症？"
+                    ],
+                    "kg_backend": "rule",
+                    "use_llm": false,
+                    "external_documents": "data/external/cblue_cmeie_documents.jsonl",
+                    "external_triples": "data/external/cblue_cmeie_triples.jsonl",
+                    "external_entities": "data/external/cblue_cmeie_entities.jsonl"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Medical KG build completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicalKGBuildResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or missing required files",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/medical-kg/ask": {
+      "post": {
+        "operationId": "ask_medical_kg_agent",
+        "summary": "Answer a medical question with KG and DataMate evidence",
+        "description": "Answer a medical-domain question from the generated knowledge graph, optionally fusing live DataMate retrieval evidence when a knowledge base is configured.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MedicalKGAskRequest"
+              },
+              "examples": {
+                "hypertension_complications": {
+                  "value": {
+                    "output_root": ".",
+                    "question": "高血压有哪些并发症？",
+                    "use_hybrid": true,
+                    "enable_live_datamate": true,
+                    "datamate_timeout_seconds": 1.5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "KG-backed answer with evidence and reasoning trace",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicalKGAskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid question or missing KG artifacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MedicalKGBuildRequest": {
+        "type": "object",
+        "required": [
+          "input_path"
+        ],
+        "properties": {
+          "input_path": {
+            "type": "string",
+            "description": "Medical JSONL, JSON, CSV, TXT, MD file path, or a supported input file."
+          },
+          "output_root": {
+            "type": "string",
+            "default": ".",
+            "description": "Output root for graph artifacts and QA traces."
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Medical QA questions used to verify the generated graph."
+          },
+          "kg_backend": {
+            "type": "string",
+            "enum": [
+              "rule",
+              "llm"
+            ],
+            "description": "Knowledge extraction backend. LLM mode requires configured credentials."
+          },
+          "use_llm": {
+            "type": "boolean",
+            "description": "Whether to request the LLM extraction/answer polishing path."
+          },
+          "external_documents": {
+            "type": "string",
+            "description": "Optional official/medical external documents JSONL to merge into KG construction."
+          },
+          "external_triples": {
+            "type": "string",
+            "description": "Optional gold/external triples JSONL for merge and quality evaluation."
+          },
+          "external_entities": {
+            "type": "string",
+            "description": "Optional external entities JSONL for entity linking."
+          }
+        }
+      },
+      "MedicalKGBuildResponse": {
+        "type": "object",
+        "required": [
+          "status",
+          "documents",
+          "entities",
+          "triples",
+          "kg_validation_report",
+          "kg_operator_profile",
+          "artifact_paths"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "completed"
+            ]
+          },
+          "agent": {
+            "type": "string"
+          },
+          "pipeline": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "documents": {
+            "type": "integer"
+          },
+          "entities": {
+            "type": "integer"
+          },
+          "triples": {
+            "type": "integer"
+          },
+          "qa_count": {
+            "type": "integer"
+          },
+          "kg_validation_report": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "kg_quality_eval": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "kg_backend_probe": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "kg_operator_profile": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "kg_backend": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "external_summary": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "artifact_paths": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "trace": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      "MedicalKGAskRequest": {
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "output_root": {
+            "type": "string",
+            "default": "."
+          },
+          "use_llm": {
+            "type": "boolean"
+          },
+          "use_hybrid": {
+            "type": "boolean",
+            "default": true
+          },
+          "knowledge_base_id": {
+            "type": "string"
+          },
+          "enable_live_datamate": {
+            "type": "boolean",
+            "default": true
+          },
+          "datamate_timeout_seconds": {
+            "type": "number",
+            "default": 1.5
+          }
+        }
+      },
+      "MedicalKGAskResponse": {
+        "type": "object",
+        "required": [
+          "question",
+          "answer",
+          "supporting_triples"
+        ],
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          },
+          "supporting_triples": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "hybrid_qa": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "reasoning_paths": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

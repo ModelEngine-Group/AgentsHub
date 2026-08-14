@@ -1,0 +1,5 @@
+case_id,department,note,age,extra_flag
+drift-001,cardiology,患者胸闷胸痛，心电图提示ST段改变，需要评估冠心病风险。,67,urgent
+drift-002,endocrinology,,54,missing_text
+drift-002,endocrinology,重复主键记录，患者血糖升高并伴口渴多尿。,54,duplicate_id
+drift-004,respiratory,联系电话13800000000，患者咳嗽咳痰并出现活动后气短。,71,pii_noise
