@@ -1,0 +1,121 @@
+{
+  "pack_name": "chroniccare_datamate_operator_pack",
+  "version": "0.1.0",
+  "domain": "healthcare_chronic_followup",
+  "operator_count": 11,
+  "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。",
+  "operators": [
+    {
+      "name": "chronic_file_ingest",
+      "display_name": "慢病随访原始数据接入算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_file_ingest/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_file_ingest.process",
+      "stage": "data_processing"
+    },
+    {
+      "name": "chronic_table_clean",
+      "display_name": "慢病随访结构化清洗算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_table_clean/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_table_clean.process",
+      "stage": "data_processing"
+    },
+    {
+      "name": "chronic_field_normalize",
+      "display_name": "慢病随访字段归一化算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_field_normalize/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_field_normalize.process",
+      "stage": "data_processing"
+    },
+    {
+      "name": "chronic_text_split",
+      "display_name": "慢病随访文本切分算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_text_split/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_text_split.process",
+      "stage": "data_processing"
+    },
+    {
+      "name": "chronic_entity_extract",
+      "display_name": "慢病随访实体抽取算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_entity_extract/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_entity_extract.process",
+      "stage": "knowledge_graph"
+    },
+    {
+      "name": "chronic_relation_extract",
+      "display_name": "慢病随访关系抽取算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_relation_extract/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_relation_extract.process",
+      "stage": "knowledge_graph"
+    },
+    {
+      "name": "chronic_triple_validate",
+      "display_name": "慢病随访三元组校验算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_triple_validate/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_triple_validate.process",
+      "stage": "knowledge_graph"
+    },
+    {
+      "name": "chronic_kg_build",
+      "display_name": "慢病知识图谱构建算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_kg_build/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_kg_build.process",
+      "stage": "knowledge_graph"
+    },
+    {
+      "name": "chronic_sqlite_loader",
+      "display_name": "慢病分析 SQLite 装载算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_sqlite_loader/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_sqlite_loader.process",
+      "stage": "data_analysis"
+    },
+    {
+      "name": "chronic_nl2sql_analyze",
+      "display_name": "慢病 NL2SQL 分析算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_nl2sql_analyze/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_nl2sql_analyze.process",
+      "stage": "data_analysis"
+    },
+    {
+      "name": "chronic_report_pack",
+      "display_name": "慢病报告打包算子",
+      "wrapper_entrypoint": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper/chronic_report_pack/process.py",
+      "wrapped_operator": "datamate.ops.mapper.chronic_report_pack.process",
+      "stage": "data_analysis"
+    }
+  ],
+  "current_data_support": {
+    "tables": [
+      "risk_event",
+      "followup_plan",
+      "lifestyle_record",
+      "doctor_advice",
+      "patient_risk_score"
+    ],
+    "open_nl2sql_variant_group_count": 35,
+    "metrics_path": "configs/current_metrics.json"
+  },
+  "npu_enhancement": {
+    "operator_count": 2,
+    "scope": "实体抽取与关系抽取增强分支；主线 11 个 DataMate CPU 算子保持不变。",
+    "operators": [
+      {
+        "name": "chronic_entity_extract_model_npu",
+        "cpu_operator": "chronic_entity_extract",
+        "wrapper_entrypoint": "integrations/datamate/operators/chronic_entity_extract_model_npu/process.py",
+        "integration_path": "integrations/datamate/operators/chronic_entity_extract_model_npu",
+        "fallback_policy": "NPU runtime 或模型服务不可用时回退 CPU artifact。"
+      },
+      {
+        "name": "chronic_relation_extract_model_npu",
+        "cpu_operator": "chronic_relation_extract",
+        "wrapper_entrypoint": "integrations/datamate/operators/chronic_relation_extract_model_npu/process.py",
+        "integration_path": "integrations/datamate/operators/chronic_relation_extract_model_npu",
+        "fallback_policy": "NPU runtime 或模型服务不可用时回退 CPU artifact。"
+      }
+    ],
+    "reports": [
+      "outputs/evaluation/npu_operator_benchmark_report.json",
+      "outputs/evaluation/npu_pipeline_report.json"
+    ]
+  }
+}

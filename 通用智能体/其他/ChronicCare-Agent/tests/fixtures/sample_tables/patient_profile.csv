@@ -1,0 +1,5 @@
+patient_id,age,gender,disease_tags,bmi
+P0001,62,male,hypertension,25.1
+P0002,58,female,diabetes,23.4
+P0003,70,female,hypertension|diabetes,26.8
+P0004,49,male,hyperlipidemia,24.0

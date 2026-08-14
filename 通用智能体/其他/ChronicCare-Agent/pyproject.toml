@@ -1,0 +1,25 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-config --strict-markers"
+markers = [
+    "real_integration: requires the deployed ChronicCare/DataMate services or Ascend NPU hardware",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["analysis", "kg", "mcp_adapter", "orchestration", "runtime_common", "tool_server", "visualization"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+precision = 2
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+extend-exclude = ["data", "outputs", "release", ".venv-quality"]
+
+[tool.ruff.lint]
+select = ["E9", "F", "I"]
+

@@ -1,0 +1,11 @@
+{
+  "nodes": [
+    {"id": "Patient::P0001", "type": "Patient", "display_name": "示例患者P0001"},
+    {"id": "Disease::hypertension", "type": "Disease", "display_name": "高血压"},
+    {"id": "Indicator::hba1c", "type": "Indicator", "display_name": "HbA1c"}
+  ],
+  "edges": [
+    {"id": "edge-1", "source": "Patient::P0001", "target": "Disease::hypertension", "relation": "has_disease"},
+    {"id": "edge-2", "source": "Disease::hypertension", "target": "Indicator::hba1c", "relation": "associated_indicator"}
+  ]
+}

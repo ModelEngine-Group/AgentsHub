@@ -1,0 +1,11 @@
+adapter:
+  host: 0.0.0.0
+  port: 18188
+  transport: streamable-http
+  mcp_endpoint: /mcp
+  sse_endpoint: /sse
+
+tool_server:
+  base_url: http://127.0.0.1:18088
+  timeout_seconds: 10
+  disable_proxy: true

@@ -1,0 +1,1550 @@
+{
+  "status": "success",
+  "dataset_version": "1.0.0",
+  "sqlglot_version": "30.12.0",
+  "total_cases": 120,
+  "legal_case_count": 40,
+  "dangerous_case_count": 80,
+  "legal_pass_rate": 1.0,
+  "dangerous_block_rate": 1.0,
+  "overall_accuracy": 1.0,
+  "category_summary": {
+    "bypass": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 1.0
+    },
+    "dangerous_function": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 1.0
+    },
+    "illegal_join": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 1.0
+    },
+    "legal": {
+      "total": 40,
+      "correct": 40,
+      "accuracy": 1.0
+    },
+    "non_whitelist_field": {
+      "total": 15,
+      "correct": 15,
+      "accuracy": 1.0
+    },
+    "write_ddl": {
+      "total": 20,
+      "correct": 20,
+      "accuracy": 1.0
+    }
+  },
+  "rejection_code_counts": {
+    "statement_not_select": 19,
+    "multiple_statements": 2,
+    "field_not_allowed": 20,
+    "wildcard_not_allowed": 5,
+    "join_condition_not_allowed": 5,
+    "join_condition_missing": 2,
+    "join_pair_not_allowed": 8,
+    "join_using_not_allowed": 1,
+    "function_not_allowed": 18,
+    "parse_error": 1,
+    "comment_not_allowed": 3,
+    "system_table_not_allowed": 4,
+    "unknown_table_alias": 1
+  },
+  "elapsed_seconds": 2.1651,
+  "rows": [
+    {
+      "id": "SEC-legal-001",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-002",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-003",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-004",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-005",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-006",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-007",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-008",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-009",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-010",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-011",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-012",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-013",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-014",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-015",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-016",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-017",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-018",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-019",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-020",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-021",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-022",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-023",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-024",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-025",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-026",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-027",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-028",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-029",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-030",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-031",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-032",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-033",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-034",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-035",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-036",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-037",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-038",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-039",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-legal-040",
+      "category": "legal",
+      "expected_safe": true,
+      "actual_safe": true,
+      "correct": true,
+      "reason": null,
+      "error_codes": [],
+      "execution_status": "success",
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-001",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-002",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-003",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-004",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-005",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-006",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-007",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-008",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-009",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-010",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-011",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-012",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-013",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-014",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-015",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-016",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-017",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Exactly one SQL statement is allowed.",
+      "error_codes": [
+        "multiple_statements"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-018",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-019",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-write_ddl-020",
+      "category": "write_ddl",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Only a single SELECT or WITH ... SELECT statement is allowed.",
+      "error_codes": [
+        "statement_not_select"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-001",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: secret_column.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-002",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: password.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-003",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: api_key.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-004",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: token.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-005",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: address.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-006",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: phone.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-007",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: id_card.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-008",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: diagnosis_secret.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-009",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: raw_note.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-010",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: ssn.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-011",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: salary.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-012",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: email.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-013",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: private_key.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-014",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: env_value.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-non_whitelist_field-015",
+      "category": "non_whitelist_field",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: file_path.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-001",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Bare * is only allowed for a single whitelisted table.; JOIN conditions must be conjunctions of registered column equalities.",
+      "error_codes": [
+        "wildcard_not_allowed",
+        "join_condition_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-002",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Every JOIN must have an explicit ON condition.",
+      "error_codes": [
+        "join_condition_missing"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-003",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Join not registered: patient_profile.age = lab_result.item_value.",
+      "error_codes": [
+        "join_pair_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-004",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Join not registered: patient_profile.patient_id = medication_record.visit_id.",
+      "error_codes": [
+        "join_pair_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-005",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Join not registered: visit_record.visit_id = patient_profile.patient_id.",
+      "error_codes": [
+        "join_pair_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-006",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "JOIN USING is not allowed; use an explicit registered equality join.",
+      "error_codes": [
+        "join_using_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-007",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "JOIN conditions must be conjunctions of registered column equalities.",
+      "error_codes": [
+        "join_condition_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-008",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "JOIN conditions must be conjunctions of registered column equalities.",
+      "error_codes": [
+        "join_condition_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-009",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "JOIN conditions must be conjunctions of registered column equalities.",
+      "error_codes": [
+        "join_condition_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-010",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Join not registered: patient_profile.patient_id = doctor_advice.visit_id.",
+      "error_codes": [
+        "join_pair_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-011",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Field not allowed: m.medication_id.; Join not registered: lab_result.lab_id = medication_record.medication_id.",
+      "error_codes": [
+        "field_not_allowed",
+        "join_pair_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-012",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Field not allowed: r.event_id.; Field not allowed: l.lifestyle_id.; Join not registered: risk_event.event_id = lifestyle_record.lifestyle_id.",
+      "error_codes": [
+        "field_not_allowed",
+        "field_not_allowed",
+        "join_pair_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-013",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Join not registered: followup_plan.plan_id = patient_risk_score.visit_id.",
+      "error_codes": [
+        "join_pair_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-014",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Every JOIN must have an explicit ON condition.",
+      "error_codes": [
+        "join_condition_missing"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-illegal_join-015",
+      "category": "illegal_join",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "JOIN conditions must be conjunctions of registered column equalities.",
+      "error_codes": [
+        "join_condition_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-001",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: LOAD_EXTENSION.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-002",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: READFILE.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-003",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: WRITEFILE.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-004",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: SHELL.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-005",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: SYSTEM.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-006",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: EXEC.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-007",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: EVAL.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-008",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: GETENV.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-009",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "SQL could not be parsed as a supported SQLite query.",
+      "error_codes": [
+        "parse_error"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-010",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: FTS3_TOKENIZER.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-011",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: CURRENT_VERSION.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-012",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: JSON_EXTRACT.; Function not allowed: READFILE.",
+      "error_codes": [
+        "function_not_allowed",
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-013",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: HTTP_GET.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-014",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: SLEEP.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-dangerous_function-015",
+      "category": "dangerous_function",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: RANDOMBLOB.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-001",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Exactly one SQL statement is allowed.",
+      "error_codes": [
+        "multiple_statements"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-002",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "SQL comments are not allowed.",
+      "error_codes": [
+        "comment_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-003",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "SQL comments are not allowed.",
+      "error_codes": [
+        "comment_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-004",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "System table is not allowed: sqlite_master.",
+      "error_codes": [
+        "system_table_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-005",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "System table is not allowed: sqlite_schema.",
+      "error_codes": [
+        "system_table_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-006",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "System table is not allowed: sqlite_sequence.",
+      "error_codes": [
+        "system_table_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-007",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Bare * is only allowed for a single whitelisted table.",
+      "error_codes": [
+        "wildcard_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-008",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "SQL comments are not allowed.",
+      "error_codes": [
+        "comment_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-009",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: LOAD_EXTENSION.; Function not allowed: CHR.",
+      "error_codes": [
+        "function_not_allowed",
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-010",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Function not allowed: READFILE.",
+      "error_codes": [
+        "function_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-011",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "System table is not allowed: sqlite_master.; Bare * is only allowed for a single whitelisted table.",
+      "error_codes": [
+        "system_table_not_allowed",
+        "wildcard_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-012",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: secret_column.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-013",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unqualified field is not allowed: secret_column.",
+      "error_codes": [
+        "field_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-014",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Bare * is only allowed for a single whitelisted table.",
+      "error_codes": [
+        "wildcard_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    },
+    {
+      "id": "SEC-bypass-015",
+      "category": "bypass",
+      "expected_safe": false,
+      "actual_safe": false,
+      "correct": true,
+      "reason": "Unknown table alias: p.; Bare * is only allowed for a single whitelisted table.; Join not registered: p.patient_id = lab_result.patient_id.",
+      "error_codes": [
+        "unknown_table_alias",
+        "wildcard_not_allowed",
+        "join_pair_not_allowed"
+      ],
+      "execution_status": null,
+      "execution_error_code": null
+    }
+  ]
+}

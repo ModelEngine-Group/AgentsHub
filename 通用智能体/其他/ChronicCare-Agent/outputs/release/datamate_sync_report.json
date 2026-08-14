@@ -1,0 +1,134 @@
+{
+  "status": "success",
+  "timestamp": "2026-07-26T20:51:36+08:00",
+  "backup_dir": "backups/datamate_full_pipeline_before_sync_20260726_205134",
+  "backup_items": [
+    {
+      "source": "data/processed",
+      "exists": true,
+      "copied_files": 24
+    },
+    {
+      "source": "data/graph",
+      "exists": true,
+      "copied_files": 5
+    },
+    {
+      "source": "data/sqlite",
+      "exists": true,
+      "copied_files": 1
+    },
+    {
+      "source": "outputs/reports",
+      "exists": true,
+      "copied_files": 6
+    },
+    {
+      "source": "outputs/charts",
+      "exists": true,
+      "copied_files": 39
+    },
+    {
+      "source": "configs/current_metrics.json",
+      "exists": true,
+      "copied_files": 1
+    }
+  ],
+  "synced_paths": [
+    "data/processed/clean_tables",
+    "data/processed/normalized_tables",
+    "data/processed/chunks",
+    "data/processed/entities",
+    "data/processed/relations",
+    "data/processed/triples/triples_clean.jsonl",
+    "data/processed/triples/triples_rejected.jsonl",
+    "data/graph/graph",
+    "data/graph/graph.json",
+    "data/graph/graph_summary.json",
+    "data/sqlite/chroniccare.db",
+    "outputs/reports/indicator_results.json",
+    "outputs/reports/sql_candidates.json",
+    "outputs/reports/nl2sql_eval_report.json",
+    "outputs/reports/analysis_report.md",
+    "outputs/reports/analysis_report.html",
+    "outputs/reports/report_pack_summary.json",
+    "outputs/charts",
+    "configs/current_metrics.json"
+  ],
+  "required_output_exists": {
+    "manifest": true,
+    "clean_tables": true,
+    "normalized_tables": true,
+    "chunks": true,
+    "entities": true,
+    "relations": true,
+    "triples_clean": true,
+    "graph_summary": true,
+    "sqlite_db": true,
+    "indicator_results": true,
+    "report_html": true,
+    "chart_index": true
+  },
+  "metrics_after_sync": {
+    "patient_count": 2000,
+    "visit_count": 8231,
+    "lab_result_count": 131323,
+    "medication_record_count": 18248,
+    "node_count": 197404,
+    "edge_count": 396928,
+    "quality_score_total": 94,
+    "question_count": 60,
+    "data_version": "synthetic_chroniccare",
+    "generated_at": "2026-07-26T20:51:36+08:00",
+    "nl2sql_question_count": 60,
+    "analysis_success_rate": 1.0,
+    "entity_type_count": {
+      "Disease": 20,
+      "Patient": 2000,
+      "RiskFactor": 3,
+      "Visit": 8231,
+      "LabResult": 131323,
+      "Indicator": 16,
+      "Drug": 24,
+      "DrugCategory": 15,
+      "RiskEvent": 8,
+      "FollowupPlan": 8231,
+      "LifestyleRecord": 8231,
+      "DoctorAdvice": 8231,
+      "RiskScore": 8231,
+      "RiskEventOccurrence": 22840
+    },
+    "relation_type_count": {
+      "patient_has_disease": 2908,
+      "patient_has_visit": 8231,
+      "visit_has_lab": 131323,
+      "lab_result_belongs_to_indicator": 131323,
+      "lab_result_indicates_risk": 26241,
+      "disease_has_indicator": 15,
+      "visit_has_medication": 18248,
+      "drug_belongs_to_category": 24,
+      "disease_treated_by_drug": 11,
+      "patient_has_risk_event": 22840,
+      "event_instance_of": 22840,
+      "patient_has_followup_plan": 8231,
+      "visit_has_lifestyle_record": 8231,
+      "visit_has_doctor_advice": 8231,
+      "patient_has_risk_score": 8231
+    },
+    "provenance_version": "2.1.0-provenance",
+    "edge_provenance_complete_rate": 1.0,
+    "exact_duplicate_edge_count": 0,
+    "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+  },
+  "validation_mode": "semantic_consistency",
+  "reference_metrics": {
+    "patient_count_min": 1000,
+    "visit_count_min": 5000,
+    "lab_result_count_min": 78000,
+    "quality_score_total_min": 85,
+    "question_count_min": 60
+  },
+  "warnings": [],
+  "errors": [],
+  "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+}

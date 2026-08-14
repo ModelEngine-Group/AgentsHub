@@ -1,0 +1,15 @@
+{
+  "pack_name": "chroniccare_datamate_operator_pack",
+  "version": "0.1.0",
+  "operator_count": 11,
+  "npu_enhancement_operator_count": 2,
+  "catalog_path": "integrations/datamate/operator_catalog.yml",
+  "lineage_path": "integrations/datamate/operator_lineage.yml",
+  "operator_root": "external:datamate-runtime:/opt/runtime/datamate/ops/mapper",
+  "npu_enhancement_root": "integrations/datamate/operators",
+  "npu_enhancement_reports": [
+    "outputs/evaluation/npu_operator_benchmark_report.json",
+    "outputs/evaluation/npu_pipeline_report.json"
+  ],
+  "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+}

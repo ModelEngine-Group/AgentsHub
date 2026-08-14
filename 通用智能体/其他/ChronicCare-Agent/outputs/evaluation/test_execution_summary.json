@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "status": "success",
+  "generated_at": "2026-08-03T23:10:21.962635+08:00",
+  "acceptance_date": "2026-08-03",
+  "pytest": {
+    "tests": 437,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 138.753,
+    "junit_report": "outputs/evaluation/pytest_report.xml",
+    "execution_log": "outputs/evaluation/pytest_execution.log"
+  },
+  "coverage": {
+    "combined_percent": 62.31598767545361,
+    "statement_percent": 65.60802833530106,
+    "branch_percent": 53.64032358431861,
+    "report": "outputs/evaluation/coverage.json"
+  },
+  "ruff": {
+    "status": "success",
+    "violation_count": 0,
+    "json_report": "outputs/evaluation/ruff_report.json",
+    "execution_log": "outputs/evaluation/ruff_execution.log"
+  },
+  "execution_scope": {
+    "default_tests": 431,
+    "real_integration_tests": 6,
+    "real_integrations": [
+      "Tool Server只读接口",
+      "MCP JSON-RPC与工具分派",
+      "DataMate容器隔离临时输入",
+      "Ascend NPU设备与最小张量计算"
+    ]
+  },
+  "freshness": {
+    "latest_source_and_test_covered": true,
+    "required_latest_test_present": true
+  },
+  "privacy": {
+    "host_identifiers_sanitized": true,
+    "test_results_modified": false
+  }
+}

@@ -1,0 +1,32 @@
+name: chronic_kg_build
+raw_id: chronic_kg_build
+display_name: 慢病知识图谱构建算子
+version: 2.2.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 将实体目录和 clean triples 构建为带逐事件来源追溯的慢病知识图谱及图谱摘要。
+inputs:
+  - name: entities
+    type: directory
+    required: true
+  - name: triples_clean
+    type: jsonl
+    required: true
+outputs:
+  - name: graph_json
+    type: json
+  - name: graph_summary
+    type: json
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+  - name: entities_path
+    type: string
+    default: ""
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, graph]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

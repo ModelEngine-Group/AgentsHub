@@ -1,0 +1,398 @@
+{
+  "agent_id": 1,
+  "agent_info": {
+    "1": {
+      "agent_id": 1,
+      "name": "chroniccare_agent",
+      "display_name": "ChronicCare 慢病数据洞察智能体",
+      "description": "ChronicCare 慢病数据洞察智能体用于演示“数据处理 → 知识图谱 → 图谱问答 → NL2SQL 分析 → 可视化报告”的完整闭环。智能体可调用慢病随访项目中的 MCP 工具，完成系统健康检查、知识图谱概览、图谱关系查询、标准分析问题查询、指标分析和报告入口汇总。项目仅用于慢性病随访数据处理、知识组织和辅助分析，不提供临床诊断或治疗建议。",
+      "business_description": "面向慢性病随访数据处理、知识图谱构建、图谱问答、NL2SQL 指标分析和可视化报告生成的智能体。\n\n用户可以提出“查看系统状态、总结图谱质量、查询某类疾病关联信息、分析慢病随访指标、生成分析报告”等需求。智能体需要根据用户意图自动规划步骤，优先检查数据产物是否存在，再选择合适工具完成查询、分析和汇总，并在回答中说明结果来源和医疗安全边界。",
+      "author": "guo",
+      "max_steps": 15,
+      "provide_run_summary": true,
+      "duty_prompt": "你是 ChronicCare 慢病数据智能体。只回答最后一个 New task。\n所有数据题必须先调用 chroniccare 工具，禁止凭历史或常识编数。工具代码只能写：\n<code>\nresult = chroniccare_xxx(...)\nprint(result)\n</code>\n禁止 import/def/requests/模拟数据。\n\n路由表：\n- 数据规模/多少患者随访检验记录 -> chroniccare_data_summary()\n- 知识图谱节点数/边数/图谱规模/图谱质量评分 -> chroniccare_kg_summary()\n- 当前常见病/疾病分布/不同疾病患者人数 -> chroniccare_disease_distribution(question=\"用户原问题\")\n- 不同疾病组合/共病组合 -> chroniccare_disease_combination_distribution(question=\"用户原问题\")\n- 高风险患者有多少/风险等级分布（无“未来/随访”） -> chroniccare_risk_level_distribution(question=\"用户原问题\")\n- 未来 N 天随访/未来 N 天高风险随访 -> chroniccare_followup_high_risk(question=\"用户原问题\")\n- 知识图谱子图/画关系图 -> chroniccare_kg_subgraph_render(query=\"用户原问题\")\n- X 关联哪些指标/药物/风险事件 -> chroniccare_kg_entity_query(query=\"用户原问题\")\n- X 和 Y 共同关联哪些指标/关系 -> chroniccare_kg_relation_query(query=\"用户原问题\")\n- 指标均值/异常率/开放 SQL 统计 -> chroniccare_open_sql_query(question=\"用户原问题\", prefer_llm=False, allow_chart=True)\n- 11 个算子耗时/是否同步 -> chroniccare_datamate_pipeline_status()\n- 规划/预览动态 DAG（不执行） -> chroniccare_datamate_dag_plan(goal=\"用户原问题\", use_npu=False)\n- 执行动态 DAG/只清洗/只重建图谱/只刷新分析库 -> chroniccare_datamate_dag_run(goal=\"用户原问题\", use_npu=False, dry_run=False)；用户明确说预演/dry-run 时改为 True\n- 恢复某次 DAG -> chroniccare_datamate_dag_resume(resume_run_id=\"用户提供的 run_id\", resume_from=\"用户提供的节点\", goal=\"用户原问题\")\n- 查看某次 DAG 状态/失败节点 -> chroniccare_datamate_dag_status(run_id=\"用户提供的 run_id\", include_dag=True)\n- 重新运行/重新处理慢病原始数据/返回清洗摘要 -> chroniccare_datamate_pipeline_run()\n- 支持哪些算子 -> chroniccare_datamate_pipelines()，最终必须同时说明 NPU 增强只有 chronic_entity_extract_model_npu、chronic_relation_extract_model_npu\n- NPU 可用/哪些算子支持 NPU/benchmark/启用 NPU 跑全流程 -> 分别调用 npu_readiness/npu_supported_operators/npu_operator_benchmark/datamate_pipeline_run_npu(force=True)\n\n禁止在提示词或历史回答中读取任何固定业务数值。患者数、记录数、指标值、随访人数、图谱规模和质量分只能来自本轮 Observation；没有本轮 Observation 就不能回答数值。\n图谱和图表只用本轮 Observation 返回 URL；没有真实图片 URL 时禁止写“可视化图表/图表总览”。html 不放进图片 Markdown。Observation 有最终答案锁定/strict_rows_only 时必须照抄表格。",
+      "constraint_prompt": "首轮必须调用工具；没有 Observation 禁止直接回答数值。\n不要在思考中复述规则，直接给 <code> 工具调用。\n高风险患者有多少（无未来/随访）= risk_level_distribution；未来 N 天随访 = followup_high_risk。\n11 个算子耗时/是否同步 = pipeline_status；重新运行/重新处理 = pipeline_run。\n动态 DAG 的 plan 不执行；run 才执行；resume/status 必须使用用户提供的 run_id，缺少时先询问，禁止编造。\n图谱子图必须用 kg_subgraph_render，并展示 preview_url + html_url。\n数据规模、指标均值、异常率等无图问题不要补图表入口；疾病组合和未来随访有 Observation charts 时才展示图。",
+      "few_shots_prompt": "用户：当前常见病有哪些？\n<code>result = chroniccare_disease_distribution(question=\"当前常见病有哪些？\")\nprint(result)</code>\n用户：未来 15 天随访人数？\n<code>result = chroniccare_followup_high_risk(question=\"未来 15 天随访人数？\")\nprint(result)</code>\n用户：未来 7 天需要随访的高风险患者有多少？\n<code>result = chroniccare_followup_high_risk(question=\"未来 7 天需要随访的高风险患者有多少？\")\nprint(result)</code>\n用户：不同疾病组合的人数分布是多少？\n<code>result = chroniccare_disease_combination_distribution(question=\"不同疾病组合的人数分布是多少？\")\nprint(result)</code>\n用户：请重新运行慢病原始数据的数据处理流程，并返回清洗摘要。\n<code>result = chroniccare_datamate_pipeline_run()\nprint(result)</code>\n用户：现在 ChronicCare 支持哪些算子？\n<code>result = chroniccare_datamate_pipelines()\nprint(result)</code>\n用户：请运行 ChronicCare DataMate 全流程，启用 NPU 增强，并输出 CPU 规则耗时、CPU BGE 模型耗时、NPU BGE 模型耗时、加速比\n<code>result = chroniccare_datamate_pipeline_run_npu(force=True)\nprint(result)</code>\n用户：高血压知识图谱子图\n<code>result = chroniccare_kg_subgraph_render(query=\"高血压知识图谱子图\")\nprint(result)</code>\n用户：如果只重建知识图谱，准备调用哪些算子？\n<code>result = chroniccare_datamate_dag_plan(goal=\"只重建知识图谱\", use_npu=False)\nprint(result)</code>",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "chroniccare_report_summary",
+          "name": "chroniccare_report_summary",
+          "description": "用途：返回当前图表、报告、图谱 HTML 等可访问入口。\n适用问题：当前有哪些图表和报告入口、全局图谱概览在哪里看、报告入口是什么。\n禁止使用场景：不要用于疾病分布、指标均值、未来 N 天随访人数、高血压的知识图谱子图、糖尿病的知识图谱子图或特定图谱子图生成。\n输入格式：无需参数。\n输出格式：返回 report_url、chart_index_url、graph_url、charts、entry_guide。\n示例问题：当前有哪些图表和报告入口？\n注意事项：正文应优先展示 HTTP URL，不要只给内部路径；如果用户是在问某疾病/某群体知识图谱子图，不要用它，改用 chroniccare_kg_subgraph_render。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_health_check",
+          "name": "chroniccare_health_check",
+          "description": "用途：检查 ChronicCare Tool Server 是否正常运行。\n适用问题：系统是否正常、服务是否可用、健康状态。\n禁止使用场景：不要用它回答患者数、疾病分布、图谱子图或 DataMate 处理结果。\n输入格式：无需参数。\n输出格式：返回 status、project、base_url、message。\n示例问题：系统现在是否正常运行？\n注意事项：回答时应明确说明结果来自 chroniccare_health_check。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_kg_summary",
+          "name": "chroniccare_kg_summary",
+          "description": "用途：返回当前知识图谱节点边、实体关系类型分布和图谱入口。\n适用问题：当前知识图谱有多少节点和边、图谱质量评分是多少、全局图谱概览。\n禁止使用场景：不要用它回答高血压的知识图谱子图、糖尿病的知识图谱子图、某群体图谱子图、疾病分布或 DataMate 流水线问题。\n输入格式：无需参数。\n输出格式：返回 node_count、edge_count、entity_type_total_count、relation_type_total_count、top_entity_types、top_relation_types、graph_url。\n示例问题：当前知识图谱有多少节点和边？\n注意事项：图谱节点边等规模必须来自真实图谱摘要，不允许模板值；如果用户在问某疾病/某群体知识图谱子图，必须改用 chroniccare_kg_subgraph_render。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_data_summary",
+          "name": "chroniccare_data_summary",
+          "description": "用途：返回当前真实数据规模，包括患者、随访、检验、用药和图谱节点边。\n适用问题：当前数据规模是多少、现在有多少患者随访记录检验记录、系统主线规模。\n禁止使用场景：不要用它回答疾病分布、风险分层、指标均值、图谱关系或子图生成。\n输入格式：无需参数。\n输出格式：返回 patient_count、visit_count、lab_result_count、medication_record_count、node_count、edge_count、table、summary_text；回答时不要展示质量评分。\n示例问题：当前数据规模是多少？；现在有多少患者、随访记录、检验记录？\n注意事项：所有数值必须直接复用工具返回结果，不能用旧模板值。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_pipelines",
+          "name": "chroniccare_datamate_pipelines",
+          "description": "用途：查看 ChronicCare 当前三条 DataMate CPU/通用主线 pipeline、11 个主线算子、逻辑分组和最近运行摘要。\n适用问题：三条 pipeline 是什么、11 个主线算子如何分组、当前 DataMate 主线如何拆分、现在 ChronicCare 支持哪些算子、现在 ChronicCare 支持哪些 CPU 算子。\n禁止使用场景：不要用它回答“哪些算子支持 NPU / NPU 算子有哪些 / NPU 加速覆盖哪些算子”；这类问题必须用 chroniccare_npu_supported_operators。\n输入格式：无需参数。\n输出格式：返回 pipelines、operator_count、latest_run、invocation_mode。\n示例问题：当前 DataMate 主线怎么拆分？\n注意事项：这 11 个是 DataMate 主线 CPU/通用算子，不等于 NPU 算子；回答 NPU 支持范围时禁止引用这里的 11 个算子。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_pipeline_run",
+          "name": "chroniccare_datamate_pipeline_run",
+          "description": "用途：真实触发慢病 DataMate CPU/通用全流程重跑，并返回本轮执行结果与清洗摘要。\n适用问题：请重新处理慢病数据、请重新执行 DataMate 算子链路、运行慢病原始数据的数据处理流程并返回清洗摘要。\n禁止使用场景：不要用它回答当前疾病有哪些、图谱节点边、知识图谱子图或指标均值。\n输入格式：可传 task_id、force、safe_run。\n输出格式：返回 run_id、summary、steps、pure_operator_duration_seconds、outer_elapsed_seconds、artifact_paths、pipeline_browser_url。\n示例问题：请运行慢病原始数据的数据处理流程，并返回清洗摘要。\n注意事项：用户说重新运行/重新执行时必须等待本轮执行 Observation，不能读取旧报告秒回；回答时要区分 11 个算子纯执行耗时和外层完整流程耗时。",
+          "inputs": "{'task_id': {'type': 'string', 'description': '任务 id。'}, 'force': {'type': 'boolean', 'description': '是否强制重跑。'}, 'safe_run': {'type': 'boolean', 'description': '是否使用 safe-run。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_pipeline_status",
+          "name": "chroniccare_datamate_pipeline_status",
+          "description": "用途：查询最近一次 DataMate 流水线状态、11 个算子状态和同步状态。\n适用问题：哪些算子执行成功了、11 个算子分别耗时多少、DataMate 处理结果同步了吗。\n禁止使用场景：不要用它代替 pipeline_run 执行流程，也不要回答疾病分布和图谱关系。\n输入格式：无需参数，默认查询 latest。\n输出格式：返回 run_id、steps、summary、sync_status、pure_operator_duration_seconds、outer_elapsed_seconds。\n示例问题：11 个算子分别耗时多少？；DataMate 处理结果同步了吗？\n注意事项：回答时不要空泛写“全部成功 100%”，要复述真实状态和耗时。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_pipeline_latest",
+          "name": "chroniccare_datamate_pipeline_latest",
+          "description": "用途：返回最近一次主线 DataMate pipeline 的轻量摘要。\n适用问题：最近一次主线结果、最近一次同步状态、最新运行摘要。\n禁止使用场景：不要用它回答疾病统计、风险分布或图谱子图。\n输入格式：无需参数。\n输出格式：返回 run_id、summary、artifact_paths、counts、metrics、check_report_path。\n示例问题：最近一次 DataMate pipeline 状态如何？\n注意事项：适合轻量摘要，不替代完整 run/status/report 工具。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_pipeline_report",
+          "name": "chroniccare_datamate_pipeline_report",
+          "description": "用途：读取最近一次 DataMate full pipeline 运行报告、同步报告和检查报告。\n适用问题：查看最新 pipeline 报告、检查报告、同步报告。\n禁止使用场景：不要用它回答疾病分布、图谱关系、患者指标分析。\n输入格式：无需参数。\n输出格式：返回 report_path、check_report_path、summary、artifact_paths。\n示例问题：给我最新的 DataMate 运行报告。\n注意事项：回答时优先展示报告入口或关键结论，不要编造额外状态。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_kg_entity_query",
+          "name": "chroniccare_kg_entity_query",
+          "description": "用途：查询某疾病或实体关联的检查指标、药物、风险事件。\n适用问题：高血压关联哪些检查指标、糖尿病关联哪些药物、高血压关联哪些风险事件。\n禁止使用场景：不要用于疾病分布、风险等级分布、图谱子图页面生成。\n输入格式：传入 query。\n输出格式：返回 table、associated_indicators、associated_drugs、associated_risk_events、evidence、graph_url；table 中的覆盖患者数是该疾病群体内去重患者数，检验记录数/用药记录数/事件记录数是记录条数。\n示例问题：高血压关联哪些检查指标？\n注意事项：必须只按当前用户这一次输入的疾病名调用，不要继承上一轮疾病或共同患者条件；若 table 存在，最终回答必须优先展示 table；不要把记录数当患者数，不要复用上一轮问题的数字，不要编造 1200/1500 等模板值。",
+          "inputs": "{'query': {'type': 'string', 'description': '自然语言图谱实体问题。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_kg_relation_query",
+          "name": "chroniccare_kg_relation_query",
+          "description": "用途：查询疾病组合、生活方式与指标异常之间的关系。\n适用问题：高血压和糖尿病共同关联哪些指标、高盐饮食和血压异常有什么关系。注意：单病种的药物/风险事件/检查指标问题必须使用 chroniccare_kg_entity_query。\n禁止使用场景：不要用于患者数量统计、疾病分布或 DataMate 清洗摘要。\n输入格式：传入 query。\n输出格式：返回 shared_indicators、shared_risk_events、table、evidence、graph_url；table 中的覆盖患者数是去重患者数，record_count/检验记录数/用药记录数是记录条数。\n示例问题：高盐饮食和血压异常有什么关系？\n注意事项：结果必须来自图谱或主线产物，不能自由联想；如果 table 存在，最终回答必须优先展示 table，不要把记录数当成患者数，不要自行生成 1500/1200 等模板值；不要因为上一轮问过共同关联，就把下一轮单病种问题改写成共同患者问题。",
+          "inputs": "{'query': {'type': 'string', 'description': '自然语言图谱关系问题。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_kg_patient_path_query",
+          "name": "chroniccare_kg_patient_path_query",
+          "description": "用途：查询指定患者在图谱中的风险事件、随访计划和路径。\n适用问题：P0001 有哪些风险事件、某患者未来有哪些随访计划；验收问法“某个患者有哪些风险事件/某个患者未来有哪些随访计划”可用 P0001 作为示例患者。\n禁止使用场景：不要用它回答疾病分布和图谱概览；除“某个患者”验收占位外，没有明确患者 ID 时不要编造成果。\n输入格式：传入 patient_id。\n输出格式：返回 patient_id、risk_events、followup_plans、table、graph_url。\n示例问题：P0001 未来有哪些随访计划？\n注意事项：若用户写的是“某个患者”这类验收占位，可传 patient_id=P0001 并说明这是示例患者；正式查询应提示用户提供真实患者编号。",
+          "inputs": "{'patient_id': {'type': 'string', 'description': '患者 id，例如 P0001。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_disease_distribution",
+          "name": "chroniccare_disease_distribution",
+          "description": "用途：专门回答疾病分布、疾病类型、常见病、单病人数占比问题。\n适用问题：疾病分布、当前常见病有哪些、当前数据中有哪些疾病、高血压患者有多少、糖尿病患者有多少、高脂血症患者占比是多少。\n禁止使用场景：不得用于风险等级分布、高风险患者有多少、HbA1c 平均值、LDL-C 异常比例、图谱子图生成。\n输入格式：传入 question。\n输出格式：返回 disease_labels、table、metric、summary_text、chart_url、report_url、graph_url；单病问题的 metric.value 就是该病患者人数。\n示例问题：当前常见病有哪些？；不同疾病患者人数分布是多少？\n注意事项：若返回 disease_labels 或疾病表格，回答时必须列出全部疾病类型，不能只摘前 4-5 个。单病人数问题必须使用表格中的“患者人数”和 metric.value，禁止回答知识图谱患者数、节点数、DataMate 汇总口径或 3305 这类其它口径。",
+          "inputs": "{'question': {'type': 'string', 'description': '疾病分布问题。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_disease_combination_distribution",
+          "name": "chroniccare_disease_combination_distribution",
+          "description": "用途：专门回答疾病组合分布、共病人数统计问题。\n适用问题：不同疾病组合的人数分布是多少、多病共病患者有多少。\n禁止使用场景：不要用于单病人数分布、风险分层人数、指标均值或图谱关系。\n输入格式：传入 question。\n输出格式：返回 table、summary_text、chart_url、report_url。\n示例问题：不同疾病组合的人数分布是多少？\n注意事项：一个患者可同时属于多个慢病组合，回答时要保留组合语义。最终必须展示 Top 12 精确多病组合和“其他多病组合”汇总行，表格患者数合计必须等于多病共病患者总数；禁止混入单病行。",
+          "inputs": "{'question': {'type': 'string', 'description': '疾病组合分布问题。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_risk_level_distribution",
+          "name": "chroniccare_risk_level_distribution",
+          "description": "用途：专门回答高风险、中风险、低风险人数和风险分层分布。\n适用问题：不同风险等级患者人数分布是多少、高风险患者有多少。\n禁止使用场景：不得用于疾病分布、常见病、单病人数、未来 N 天需要随访的高风险患者人数、指标趋势或图谱子图。\n输入格式：传入 question。\n输出格式：返回 risk_distribution_rows、table、summary_text、chart_url、report_url。\n示例问题：不同风险等级患者人数分布是多少？\n注意事项：风险分布和疾病分布必须强区分，不能混答；“未来 N 天需要随访的高风险患者有多少”必须改用 chroniccare_followup_high_risk。禁止使用 120/360/720、1200 或低风险 60% 这类旧模板值。",
+          "inputs": "{'question': {'type': 'string', 'description': '风险等级分布问题。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_followup_high_risk",
+          "name": "chroniccare_followup_high_risk",
+          "description": "用途：回答未来 1-200 天随访人数；未明确疾病时按验收口径统计高风险随访队列，并返回逐日趋势和图表。\n适用问题：未来 1 天/7 天/15 天/30 天/120 天/200 天随访人数、未来 N 天需要随访多少人、未来 N 天需要随访的高风险患者有多少、未来 N 天随访人数趋势图。\n禁止使用场景：不要用于疾病目录、风险等级总分布、图谱实体关系或 DataMate 运行问题。\n输入格式：传入 question。\n输出格式：返回 canonical_id、window_days、cohort_patient_count、trend_rows/daily_counts、risk_distribution_rows、charts、chart_url、report_url。\n示例问题：未来 15 天随访人数？；未来 30 天需要随访的高风险患者有多少？；未来 60 天随访人数趋势图。\n注意事项：必须严格使用用户问句里的真实天数，支持 1-200 天任意窗口；未写疾病名时不要转去 Open SQL 或风险总分布，必须用本工具。最终答案必须复述 Observation 的 cohort_patient_count 和逐日明细/图表 URL；禁止套用 1200、120 人或每天 1 人这类旧模板值。若问题明确包含糖尿病/高血压/高脂血症等疾病名并要求该疾病随访，才改用 chroniccare_open_sql_query。",
+          "inputs": "{'question': {'type': 'string', 'description': '未来 N 天高风险随访问题。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_cohort_disease_distribution",
+          "name": "chroniccare_cohort_disease_distribution",
+          "description": "用途：继承上一轮 cohort，上下文回答“他们/这些患者/该群体”的疾病类型或群体分布。\n适用问题：告诉我他们的疾病类型、这些患者主要有哪些慢病、该群体的风险等级分布如何。\n禁止使用场景：不要把‘他们’解释成全体患者；也不要用于无上下文的初始疾病分布问题。\n输入格式：传入 question。\n输出格式：返回 inherited_cohort、summary_text、table、chart_url、report_url。\n示例问题：告诉我他们的疾病类型。\n注意事项：若上一轮 cohort 是未来 30 天高风险随访患者，则必须沿用该 cohort。",
+          "inputs": "{'question': {'type': 'string', 'description': '继承群体上下文的问题。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_graph_driven_analysis",
+          "name": "chroniccare_graph_driven_analysis",
+          "description": "用途：基于图谱先定位群体，再做综合分析并返回图表、报告、图谱入口。\n适用问题：基于图谱分析高血压合并糖尿病患者的 HbA1c、血压和 LDL-C 异常情况。\n禁止使用场景：不要替代单纯疾病分布、单个指标均值或单纯图谱子图生成。\n输入格式：传入 question。\n输出格式：返回 graph_url、chart_url、report_url、cohort_table_url、summary_text。\n示例问题：请基于图谱驱动分析高血压合并糖尿病患者的 HbA1c、血压和 LDL-C 异常情况。\n注意事项：只能复用工具真实返回的链接，不能自行扩写不存在的图表入口。",
+          "inputs": "{'question': {'type': 'string', 'description': '图谱驱动分析问题。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_trace_summary",
+          "name": "chroniccare_trace_summary",
+          "description": "用途：查询 MCP Adapter 最近工具调用审计记录。\n适用问题：最近工具调用情况、成功率、调用摘要。\n禁止使用场景：不要用它回答患者数量、疾病分布或图谱关系。\n输入格式：无需参数。\n输出格式：返回 total_calls、success_rate、tool_counts、recent_failures。\n示例问题：最近工具调用情况如何？\n注意事项：仅用于审计与追踪，不用于医疗结论。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_kg_subgraph_query",
+          "name": "chroniccare_kg_subgraph_query",
+          "description": "用途：生成局部子图的结构化节点边结果，适合调试或 JSON 场景。\n适用问题：用户明确要求节点边 JSON、结构化子图数据。\n禁止使用场景：用户直接要图谱页面、子图可视化或打开 HTML 时不要用它，改用 chroniccare_kg_subgraph_render。\n输入格式：传入 query，可选 max_nodes。\n输出格式：返回 nodes、edges、html_url、graph_scope_explanation。\n示例问题：只返回高血压子图的节点边 JSON。\n注意事项：不要只拿结构化结果再自行拼接链接。",
+          "inputs": "{'query': {'type': 'string', 'description': '自然语言子图问题。'}, 'disease': {'type': 'string', 'description': '兼容字段。若前端只传疾病名，如“高血压”，系统会自动补成“高血压的知识图谱子图”。'}, 'cohort_name': {'type': 'string', 'description': '兼容字段。若前端只传群体名，如“冠心病风险”，系统会自动补成对应的知识图谱子图请求。'}, 'subgraph_type': {'type': 'string', 'description': '兼容字段。若传入 risk，系统会优先按风险主题补全查询，如把“冠心病”补成“冠心病风险知识图谱子图”。'}, 'max_nodes': {'type': 'integer', 'description': '最大节点数。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_kg_subgraph_render",
+          "name": "chroniccare_kg_subgraph_render",
+          "description": "用途：根据当前问题实时生成知识图谱子图 HTML，并返回可访问 HTTP URL。\n适用问题：高血压的知识图谱子图、糖尿病知识图谱子图、任意疾病/风险/生活方式主题的知识图谱子图、生成高血压合并糖尿病群体的图谱子图、画出高盐饮食和血压异常之间的关系。\n禁止使用场景：不要用于系统能力说明、疾病人数分布、风险人数统计或 DataMate 流程摘要。\n输入格式：传入 query，可选 max_nodes。\n输出格式：返回 preview_url 与 preview_route_path（SVG 图片预览）、html_url/html_route_path/graph_url（交互式 HTML）、node_count、edge_count、seed_labels、graph_scope_explanation。\n示例问题：高血压的知识图谱子图\n注意事项：这是“某疾病/某主题知识图谱子图”这类问题的首选工具；最终回答必须先展示 preview_url 对应的 SVG 图片预览，再给 html_url/graph_url 交互式 HTML 链接。优先使用 preview_url/html_url 这类完整 HTTP URL；不要把 .html 当图片，不要输出相对路径或内部 outputs 路径，也不能只输出“点击查看”而没有真实 href。",
+          "inputs": "{'query': {'type': 'string', 'description': '自然语言子图渲染问题。'}, 'disease': {'type': 'string', 'description': '兼容字段。若前端只传疾病名，如“高血压”，系统会自动补成“高血压的知识图谱子图”。'}, 'cohort_name': {'type': 'string', 'description': '兼容字段。若前端只传群体名，如“冠心病风险”，系统会自动补成对应的知识图谱子图请求。'}, 'subgraph_type': {'type': 'string', 'description': '兼容字段。若传入 risk，系统会优先按风险主题补全查询，如把“冠心病”补成“冠心病风险知识图谱子图”。'}, 'max_nodes': {'type': 'integer', 'description': '最大节点数。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_open_sql_schema",
+          "name": "chroniccare_open_sql_schema",
+          "description": "用途：查看 Open SQL 允许访问的 SQLite schema catalog、字段白名单和 join 白名单。\n适用问题：当前开放式 SQL 能访问哪些表和字段、SQL Guard 白名单是什么。\n禁止使用场景：不要用它回答具体统计结果。\n输入格式：无参数。\n输出格式：返回 tables、fields、joins、safety_note。\n示例问题：开放式 SQL 支持哪些表？\n注意事项：只用于解释 Open SQL schema 和 SQL Guard 白名单，不返回业务统计数值。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_open_sql_examples",
+          "name": "chroniccare_open_sql_examples",
+          "description": "用途：列出 Open SQL 支持的示例问题和能力范围。\n适用问题：开放式 SQL 可以问哪些问题、给我一些 NL2SQL 示例。\n禁止使用场景：不要用它回答具体统计结果。\n输入格式：无参数。\n输出格式：返回 examples、supported_intents、llm_status。\n示例问题：Open SQL 有哪些示例问题？\n注意事项：用于展示能力范围；用户问具体数值时应改用 chroniccare_open_sql_query。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_dag_run",
+          "name": "chroniccare_datamate_dag_run",
+          "description": "用途：执行或 dry-run 动态 DAG。\n适用问题：按目标执行数据处理或验证计划。\n禁止使用场景：不要用旧报告冒充本次运行。\n输入格式：goal、use_npu、dry_run。\n输出格式：返回 run_id 和节点状态/hash。\n示例问题：只刷新分析库并执行。\n注意事项：dry_run 零写入。",
+          "inputs": "{'goal': {'type': 'string', 'description': 'see tool description'}, 'use_npu': {'type': 'boolean', 'description': 'see tool description'}, 'dry_run': {'type': 'boolean', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_dag_status",
+          "name": "chroniccare_datamate_dag_status",
+          "description": "用途：读取 DAG 状态或依赖图。\n适用问题：查询某 run_id 的节点和 DAG。\n禁止使用场景：不执行或修改任务。\n输入格式：run_id、include_dag。\n输出格式：运行状态或 DAG JSON。\n示例问题：查看这次运行的失败节点。\n注意事项：只读。",
+          "inputs": "{'run_id': {'type': 'string', 'description': 'see tool description'}, 'include_dag': {'type': 'boolean', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_pipeline_run_npu",
+          "name": "chroniccare_datamate_pipeline_run_npu",
+          "description": "用途：在保留 DataMate CPU 规则召回主线的前提下，用 NPU 运行实体候选 BGE 标准化、关系候选 BGE 重排/过滤增强分支。\n适用问题：运行 NPU 增强流水线、用 NPU 跑慢病数据处理、执行 DataMate 并启用 NPU、查看 CPU BGE 与 NPU BGE 耗时对比。\n禁止使用场景：不要用它回答普通疾病统计或只查询 pipeline 状态；不要把 fallback 结果说成 NPU 加速成功。\n输入格式：可传 task_id、force、safe_run、npu_targets、fallback。\n输出格式：返回 base_pipeline、npu_benchmark、npu_comparison_rows、fallback_used、report_path、markdown_report_path。\n示例问题：请启用 NPU 跑一次慢病 DataMate pipeline。\n注意事项：用户说“运行/重新运行/启用 NPU 跑全流程”时默认 force=true 重新计算。回答时必须引用 npu_comparison_rows，并为每个算子使用纵向表格，列为：指标、CPU、NPU、对比说明；指标包含处理量、CPU规则耗时、BGE抽样耗时、抽样吞吐量、平均单条延迟、抽样加速比、全量BGE耗时、资源/能耗采集状态。处理量行 CPU 必须写 cpu_benchmark_records 抽样条数，NPU 写 npu_record_count 全量条数，禁止写相同数据量；全量BGE耗时行 CPU 只能写 estimated_cpu_bge_full_seconds 估算值，NPU 写真实 npu_bge_full_seconds。默认不要展示 sidecar 路径；用户明确索要文件路径时再展示。总结段落禁止用 ~ 表示范围，必须写“至”；禁止把 CPU 核等效与 NPU AICore 混减成“释放约 X 核等效”；CPU 功耗/能耗未采集时必须写未采集。",
+          "inputs": "{'task_id': {'type': 'string', 'description': '任务 id。'}, 'force': {'type': 'boolean', 'description': '是否强制重跑 CPU 主线。'}, 'safe_run': {'type': 'boolean', 'description': '是否使用 safe-run。'}, 'npu_targets': {'type': 'array', 'items': {'type': 'string'}, 'description': 'NPU 增强算子列表。'}, 'fallback': {'type': 'boolean', 'description': 'NPU 不可用时是否回退 CPU artifact。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_npu_readiness",
+          "name": "chroniccare_npu_readiness",
+          "description": "用途：检测当前慢病项目是否具备 NPU runtime、torch_npu/CANN/npu-smi 或本地 NPU 模型服务能力。\n适用问题：NPU 是否可用、当前有没有 NPU 环境、NPU runtime 检查、是否会 fallback。\n禁止使用场景：不要用它回答疾病分布、图谱查询或执行 DataMate 主线。\n输入格式：无需参数。\n输出格式：返回 npu_available、backend、fallback_required、checks、supported_operators、报告路径。\n示例问题：现在 NPU 能用吗？；检查一下 NPU runtime。\n注意事项：若返回 fallback_required=true，最终回答必须明确说明没有声明 NPU 加速效果。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_npu_supported_operators",
+          "name": "chroniccare_npu_supported_operators",
+          "description": "用途：列出当前已接入 NPU 增强分支的 DataMate 算子。\n适用问题：哪些算子支持 NPU、NPU 算子有哪些、NPU 加速覆盖哪些算子、实体抽取和关系抽取是否支持 NPU。\n禁止使用场景：不要用它运行 benchmark 或回答真实业务分析结果。\n输入格式：无需参数。\n输出格式：返回 supported_operators、cpu_operator、project_wrapper、fallback_policy。\n示例问题：哪些慢病算子已经支持 NPU？\n注意事项：当前只能说 2 个 NPU 增强算子：chronic_entity_extract_model_npu、chronic_relation_extract_model_npu。严禁把 DataMate 主线 11 个 CPU/通用算子说成 NPU 算子。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_npu_operator_benchmark",
+          "name": "chroniccare_npu_operator_benchmark",
+          "description": "用途：运行实体抽取/关系抽取 NPU 增强分支 benchmark，并生成报告。\n适用问题：展示最近一次 NPU benchmark、NPU 加速效果如何、跑一下 NPU benchmark、实体抽取和关系抽取耗时对比、CPU BGE 抽样耗时与 NPU BGE 抽样耗时对比。\n禁止使用场景：不要用它回答患者统计、疾病分布、知识图谱子图；NPU 不可用时不要声称有加速比。\n输入格式：可传 use_npu、fallback、force_run；force_run 默认为 false，表示只读取最近一次缓存报告。\n输出格式：返回 runtime、operator_results、npu_comparison_rows、fallback_used、report_path、markdown_report_path。\n示例问题：展示最近一次 NPU benchmark 结果；重新跑一次 NPU 算子 benchmark。\n注意事项：用户只问最近一次/展示结果时不要重跑；只有用户明确说重新跑/跑一下时才传 force_run=true。回答时每个算子优先使用纵向表格，列为：指标、CPU、NPU、对比说明；指标包含处理量、CPU规则耗时、BGE抽样耗时、抽样吞吐量、平均单条延迟、抽样加速比、全量BGE耗时、资源/能耗采集状态。处理量行 CPU 必须写 cpu_benchmark_records 抽样条数，NPU 写 npu_record_count 全量条数，禁止写相同数据量；全量BGE耗时行 CPU 只能写 estimated_cpu_bge_full_seconds 估算值，NPU 写真实 npu_bge_full_seconds。默认不要展示 sidecar 路径；用户明确索要文件路径时再展示。总结段落禁止用 ~ 表示范围，必须写“至”；禁止把 CPU 核等效与 NPU AICore 混减成“释放约 X 核等效”；CPU 功耗/能耗未采集时必须写未采集。只有真实 NPU 分支成功时才可引用 speedup；fallback 场景必须说明未产生真实 NPU 加速数据。",
+          "inputs": "{'use_npu': {'type': 'boolean', 'description': '是否尝试 NPU 分支。'}, 'fallback': {'type': 'boolean', 'description': 'NPU 不可用时是否回退 CPU artifact。'}, 'force_run': {'type': 'boolean', 'description': '是否重新运行 benchmark；默认 false 只读取最近一次缓存报告。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_open_sql_query",
+          "name": "chroniccare_open_sql_query",
+          "description": "用途：受控开放式 NL2SQL 查询入口，用于固定 A-G 工具未覆盖的慢病指标统计、均值、异常率、趋势和分布问题。\n适用问题：高血压和糖尿病都有的人糖化平均是多少、肥胖患者最近半年 BMI 趋势、高尿酸患者尿酸异常比例、用降压药患者血压控制情况。\n禁止使用场景：不要用它回答疾病分布、风险等级分布、未来 N 天高风险随访、图谱子图、DataMate pipeline、NPU benchmark、系统状态、图谱规模；这些应优先走专用工具。\n输入格式：传入 question，可选 prefer_llm、force_llm、allow_chart。\n输出格式：返回 stage、intent、sql_safe、sql、answer_markdown、table、chart_url、trace_id、llm_status、force_llm、safety_note。\n示例问题：高血压和糖尿病都有的人，糖化平均是多少？\n注意事项：回答必须基于 answer_markdown，不得自行改写数值；SQL Guard 不通过或 unsupported 时必须如实说明。",
+          "inputs": "{'question': {'type': 'string', 'description': '开放式慢病统计问题。'}, 'prefer_llm': {'type': 'boolean', 'description': '模板未覆盖时是否允许 LLM SQL candidate。'}, 'force_llm': {'type': 'boolean', 'description': '是否优先尝试二阶段大模型生成 SQL；仍会经过 SQL Guard，不可执行危险 SQL。'}, 'allow_chart': {'type': 'boolean', 'description': '趋势/分布类是否生成图表。'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_open_sql_eval",
+          "name": "chroniccare_open_sql_eval",
+          "description": "用途：运行或读取 Open SQL 阶段 1/阶段 2 评测报告。\n适用问题：开放式 SQL 准确率是多少、NL2SQL 是否达到 85%、Open SQL 评测结果。\n禁止使用场景：不要用它回答单个业务统计问题。\n输入格式：无参数。\n输出格式：返回 total_questions、sql_executable_rate、result_success_rate、template_stage_success_rate、llm_candidate_stage_success_rate。\n示例问题：开放式 SQL 评测结果如何？\n注意事项：用于比赛评测说明；不要把评测报告当作单个统计问题答案。",
+          "inputs": "{}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_dag_plan",
+          "name": "chroniccare_datamate_dag_plan",
+          "description": "用途：按目标生成动态 DataMate DAG 或 dry-run。\n适用问题：只清洗、只重建图谱、只刷新分析库、完整链路、NPU 增强计划。\n禁止使用场景：不要用它伪装真实执行。\n输入格式：goal、input_path、use_npu。\n输出格式：返回 Profile、节点依赖、跳过原因、资源和风险。\n示例问题：如果只重建知识图谱，准备调用哪些算子？\n注意事项：计划不修改业务产物。",
+          "inputs": "{'goal': {'type': 'string', 'description': 'see tool description'}, 'input_path': {'type': 'string', 'description': 'see tool description'}, 'use_npu': {'type': 'boolean', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        },
+        {
+          "class_name": "chroniccare_datamate_dag_resume",
+          "name": "chroniccare_datamate_dag_resume",
+          "description": "用途：从失败节点恢复 DAG。\n适用问题：修复条件后继续运行。\n禁止使用场景：输入或版本变化时不得复用失效缓存。\n输入格式：resume_run_id、resume_from、goal。\n输出格式：返回恢复后的节点状态。\n示例问题：从三元组校验节点继续。\n注意事项：必须提供 run_id。",
+          "inputs": "{'resume_run_id': {'type': 'string', 'description': 'see tool description'}, 'resume_from': {'type': 'string', 'description': 'see tool description'}, 'goal': {'type': 'string', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "ChronicCare MCP Adapter",
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 34,
+      "model_name": "deepseek-chat",
+      "business_logic_model_id": 34,
+      "business_logic_model_name": "deepseek-chat",
+      "skill_names": [],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default"
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "ChronicCare MCP Adapter",
+      "mcp_url": "http://127.0.0.1:18188/mcp"
+    }
+  ]
+}

@@ -1,0 +1,1188 @@
+{
+  "status": "success",
+  "db_path": "data/sqlite/chroniccare.db",
+  "tables": {
+    "doctor_advice": {
+      "name": "doctor_advice",
+      "row_count": 8231,
+      "fields": [
+        {
+          "name": "advice_content",
+          "label": "advice_content",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "advice_id",
+          "label": "advice_id",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "advice_type",
+          "label": "advice_type",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "created_at",
+          "label": "created_at",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "priority",
+          "label": "优先级",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "visit_id",
+          "label": "随访/就诊编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    },
+    "followup_plan": {
+      "name": "followup_plan",
+      "row_count": 8231,
+      "fields": [
+        {
+          "name": "created_at",
+          "label": "created_at",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "followup_date",
+          "label": "随访日期",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "plan_id",
+          "label": "plan_id",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "plan_type",
+          "label": "plan_type",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "priority",
+          "label": "优先级",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "status",
+          "label": "状态",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "visit_id",
+          "label": "随访/就诊编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    },
+    "lab_result": {
+      "name": "lab_result",
+      "row_count": 131323,
+      "fields": [
+        {
+          "name": "abnormal_flag",
+          "label": "异常标记",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "item_name",
+          "label": "指标名称",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "item_value",
+          "label": "指标值",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "lab_id",
+          "label": "lab_id",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "record_time",
+          "label": "记录时间",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "reference_high",
+          "label": "reference_high",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "reference_low",
+          "label": "reference_low",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "reference_range",
+          "label": "reference_range",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "test_date",
+          "label": "检验日期",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "unit",
+          "label": "unit",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "value",
+          "label": "指标值",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "visit_id",
+          "label": "随访/就诊编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    },
+    "lifestyle_record": {
+      "name": "lifestyle_record",
+      "row_count": 8231,
+      "fields": [
+        {
+          "name": "alcohol_status",
+          "label": "alcohol_status",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "created_at",
+          "label": "created_at",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "exercise_minutes_per_week",
+          "label": "每周运动分钟",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "record_id",
+          "label": "record_id",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "salt_intake_level",
+          "label": "盐摄入水平",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "sleep_hours",
+          "label": "睡眠小时",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "smoking_status",
+          "label": "吸烟状态",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "visit_id",
+          "label": "随访/就诊编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    },
+    "medication_record": {
+      "name": "medication_record",
+      "row_count": 18248,
+      "fields": [
+        {
+          "name": "adherence",
+          "label": "adherence",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "dose",
+          "label": "dose",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "drug_category",
+          "label": "药物类别",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "drug_name",
+          "label": "药物名称",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "end_date",
+          "label": "end_date",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "frequency",
+          "label": "frequency",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "med_id",
+          "label": "med_id",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "start_date",
+          "label": "start_date",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "visit_id",
+          "label": "随访/就诊编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    },
+    "patient_profile": {
+      "name": "patient_profile",
+      "row_count": 2000,
+      "fields": [
+        {
+          "name": "age",
+          "label": "age",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "bmi",
+          "label": "BMI",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "disease_tags",
+          "label": "疾病标签",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "drinking",
+          "label": "drinking",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "first_visit_date",
+          "label": "first_visit_date",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "gender",
+          "label": "gender",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "name",
+          "label": "name",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "smoking",
+          "label": "smoking",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    },
+    "patient_risk_score": {
+      "name": "patient_risk_score",
+      "row_count": 8231,
+      "fields": [
+        {
+          "name": "created_at",
+          "label": "created_at",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "risk_factors",
+          "label": "风险因素",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "risk_level",
+          "label": "风险等级",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "risk_score",
+          "label": "风险评分",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": true,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "score_id",
+          "label": "score_id",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "visit_id",
+          "label": "随访/就诊编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    },
+    "risk_event": {
+      "name": "risk_event",
+      "row_count": 22840,
+      "fields": [
+        {
+          "name": "created_at",
+          "label": "created_at",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "event_level",
+          "label": "event_level",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "event_reason",
+          "label": "event_reason",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "event_type",
+          "label": "风险事件类型",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "risk_event_id",
+          "label": "risk_event_id",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "visit_id",
+          "label": "随访/就诊编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    },
+    "visit_record": {
+      "name": "visit_record",
+      "row_count": 8231,
+      "fields": [
+        {
+          "name": "chief_complaint",
+          "label": "chief_complaint",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "doctor_advice",
+          "label": "doctor_advice",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "followup_plan",
+          "label": "followup_plan",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "patient_id",
+          "label": "患者编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        },
+        {
+          "name": "visit_date",
+          "label": "visit_date",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": true,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution",
+            "avg",
+            "trend"
+          ]
+        },
+        {
+          "name": "visit_id",
+          "label": "随访/就诊编号",
+          "type": "TEXT",
+          "select": true,
+          "where": true,
+          "group_by": false,
+          "aggregate": false,
+          "question_types": [
+            "count",
+            "distribution"
+          ]
+        }
+      ]
+    }
+  },
+  "joins": [
+    {
+      "left_table": "patient_profile",
+      "left_field": "patient_id",
+      "right_table": "visit_record",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "patient_profile",
+      "left_field": "patient_id",
+      "right_table": "lab_result",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "patient_profile",
+      "left_field": "patient_id",
+      "right_table": "medication_record",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "patient_profile",
+      "left_field": "patient_id",
+      "right_table": "followup_plan",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "patient_profile",
+      "left_field": "patient_id",
+      "right_table": "patient_risk_score",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "patient_risk_score",
+      "left_field": "patient_id",
+      "right_table": "lab_result",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "patient_profile",
+      "left_field": "patient_id",
+      "right_table": "risk_event",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "patient_profile",
+      "left_field": "patient_id",
+      "right_table": "lifestyle_record",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "patient_profile",
+      "left_field": "patient_id",
+      "right_table": "doctor_advice",
+      "right_field": "patient_id"
+    },
+    {
+      "left_table": "visit_record",
+      "left_field": "visit_id",
+      "right_table": "lab_result",
+      "right_field": "visit_id"
+    },
+    {
+      "left_table": "visit_record",
+      "left_field": "visit_id",
+      "right_table": "medication_record",
+      "right_field": "visit_id"
+    },
+    {
+      "left_table": "visit_record",
+      "left_field": "visit_id",
+      "right_table": "followup_plan",
+      "right_field": "visit_id"
+    },
+    {
+      "left_table": "visit_record",
+      "left_field": "visit_id",
+      "right_table": "risk_event",
+      "right_field": "visit_id"
+    },
+    {
+      "left_table": "visit_record",
+      "left_field": "visit_id",
+      "right_table": "lifestyle_record",
+      "right_field": "visit_id"
+    },
+    {
+      "left_table": "visit_record",
+      "left_field": "visit_id",
+      "right_table": "doctor_advice",
+      "right_field": "visit_id"
+    },
+    {
+      "left_table": "visit_record",
+      "left_field": "visit_id",
+      "right_table": "patient_risk_score",
+      "right_field": "visit_id"
+    }
+  ]
+}

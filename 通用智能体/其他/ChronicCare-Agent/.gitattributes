@@ -1,0 +1,4 @@
+data/graph/graph.json filter=lfs diff=lfs merge=lfs -text
+data/sqlite/chroniccare.db filter=lfs diff=lfs merge=lfs -text
+data/processed/triples/triples_clean.jsonl filter=lfs diff=lfs merge=lfs -text
+data/processed/relations/relations_raw.jsonl filter=lfs diff=lfs merge=lfs -text

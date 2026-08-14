@@ -1,0 +1,78 @@
+version: medical-rules-2026.07.19-v1
+accessed_at: 2026-07-19
+clinical_use: false
+rules:
+  - rule_id: MR-HYPERTENSION-OBS-001
+    concept: hypertension
+    output_layer: observed_fact
+    source_fields: [disease_tags]
+    threshold: "synthetic source tag only; no diagnosis inferred by this rule"
+    scope: synthetic adult chronic-care cohort
+    limitation: source tag is synthetic and not independently clinically adjudicated
+    reference: https://www.who.int/en/news-room/fact-sheets/detail/hypertension
+    reference_version: WHO fact sheet 2025-09-25
+  - rule_id: MR-DIABETES-RISK-001
+    concept: diabetes_risk
+    output_layer: rule_derived_risk
+    source_fields: [hba1c, fasting_glucose]
+    threshold: "engineering synthetic-data rule; never emitted as confirmed diagnosis"
+    scope: synthetic adult cohort
+    limitation: diagnostic confirmation and repeat testing are unavailable
+    reference: https://diabetesjournals.org/care/article/49/Supplement_1/S27/163926/2-Diagnosis-and-Classification-of-Diabetes
+    reference_version: ADA Standards of Care in Diabetes 2026
+  - rule_id: MR-CKD-RISK-001
+    concept: ckd_risk
+    output_layer: rule_derived_risk
+    source_fields: [egfr, uacr]
+    threshold: "abnormal synthetic eGFR or UACR; risk flag only"
+    scope: synthetic adult cohort
+    limitation: persistence for at least three months and clinical context are not established
+    reference: https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf
+    reference_version: KDIGO 2024 CKD Guideline
+  - rule_id: MR-HF-RISK-001
+    concept: heart_failure_risk
+    legacy_alias: heart_failure
+    output_layer: rule_derived_risk
+    source_fields: [age, risk_events, synthetic_history_seed]
+    threshold: "legacy synthetic combination rule"
+    scope: synthetic data only
+    limitation: cannot establish heart-failure diagnosis; UI must say risk
+  - rule_id: MR-STROKE-HISTORY-001
+    concept: synthetic_stroke_history
+    legacy_alias: stroke_post
+    output_layer: observed_fact
+    source_fields: [synthetic_history_seed]
+    threshold: explicit synthetic history generator flag
+    scope: synthetic data only
+    limitation: not verified against a medical record
+  - rule_id: MR-CORONARY-RISK-001
+    concept: coronary_risk
+    output_layer: rule_derived_risk
+    source_fields: [age, ldl_c, smoking_status, hypertension_tag]
+    threshold: legacy weighted engineering score
+    scope: synthetic adult cohort
+    limitation: not a validated cardiovascular risk model
+  - rule_id: MR-METABOLIC-RISK-001
+    concept: metabolic_syndrome_risk
+    legacy_alias: metabolic_syndrome
+    output_layer: rule_derived_risk
+    source_fields: [bmi, fasting_glucose, triglyceride, blood_pressure]
+    threshold: legacy synthetic combination rule
+    scope: synthetic adult cohort
+    limitation: does not constitute a confirmed diagnosis
+  - rule_id: MR-DIABETIC-KIDNEY-RISK-001
+    concept: diabetic_kidney_risk
+    output_layer: rule_derived_risk
+    source_fields: [diabetes_tag, egfr, uacr]
+    threshold: diabetes synthetic tag plus renal abnormality
+    scope: synthetic adult cohort
+    limitation: inherits diabetes and renal generator dependencies
+  - rule_id: MR-HIGH-SALT-001
+    concept: high_salt_diet
+    output_layer: observed_fact
+    source_fields: [salt_intake_level]
+    threshold: categorical value high
+    scope: synthetic lifestyle record
+    limitation: generated exposure; high-salt/BP association is a generator validation, not a discovery
+    reference: https://www.who.int/publications/i/item/9789241504836
+    reference_version: WHO Sodium Intake Guideline 2012

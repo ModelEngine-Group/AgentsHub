@@ -1,0 +1,60 @@
+{
+  "status": "success",
+  "annotation_type": "engineering_not_clinical",
+  "clinical_expert_reviewed": false,
+  "sample_sizes": {
+    "entity_texts": 300,
+    "entity_mentions": 3656,
+    "relation_texts": 250,
+    "relations": 2323,
+    "triples": 1000
+  },
+  "entity_strict": {
+    "precision": 1.0,
+    "recall": 0.8356,
+    "f1": 0.9104
+  },
+  "entity_relaxed": {
+    "precision": 1.0,
+    "recall": 0.8356,
+    "f1": 0.9104
+  },
+  "entity_f1_by_type": {
+    "Patient": 1.0,
+    "DiseaseRisk": 0.7694,
+    "Disease": 1.0,
+    "RiskEvent": 0.9988,
+    "FollowupPlan": 0.0
+  },
+  "relation": {
+    "precision": 1.0,
+    "recall": 0.9996,
+    "f1": 0.9998
+  },
+  "triple_sample_accuracy": 0.999,
+  "triple_accuracy_95ci": [
+    0.9944,
+    0.9998
+  ],
+  "agreement": {
+    "overlap_samples": 60,
+    "annotators": [
+      "deterministic_dictionary_v1",
+      "independent_regex_review_v1"
+    ],
+    "agreement": 1.0,
+    "disagreements": [],
+    "limitation": "Both are engineering procedures, not independent human clinicians."
+  },
+  "error_categories": {
+    "negation": 0,
+    "boundary": 601,
+    "mapping": 601,
+    "cooccurrence_false_link": 1,
+    "missing_evidence": 0
+  },
+  "limitations": [
+    "Gold labels are reproducible engineering annotations derived from synthetic text; they are not an independent clinical gold standard.",
+    "Metrics measure current graph coverage against the engineering annotations and must not be interpreted as clinical validity."
+  ]
+}

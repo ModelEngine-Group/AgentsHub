@@ -1,0 +1,26 @@
+name: chronic_table_clean
+raw_id: chronic_table_clean
+display_name: 慢病随访结构化清洗算子
+version: 0.1.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 清洗患者、随访、检验和用药表，输出规范化前的 clean tables 与报告。
+inputs:
+  - name: raw_structured
+    type: directory
+    required: true
+outputs:
+  - name: clean_tables
+    type: directory
+  - name: table_clean_report
+    type: json
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, cleaning]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

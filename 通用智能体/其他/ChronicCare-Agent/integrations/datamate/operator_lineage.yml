@@ -1,0 +1,103 @@
+{
+  "pipeline_name": "chroniccare_datamate_pipeline",
+  "version": "0.1.0",
+  "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。",
+  "steps": [
+    {
+      "step": 1,
+      "operator": "chronic_file_ingest",
+      "consumes": ["data/raw/structured", "data/raw/text"],
+      "produces": ["data/processed/manifest.json"]
+    },
+    {
+      "step": 2,
+      "operator": "chronic_table_clean",
+      "consumes": ["data/raw/structured"],
+      "produces": ["data/processed/clean_tables", "data/processed/table_clean_report.json"]
+    },
+    {
+      "step": 3,
+      "operator": "chronic_field_normalize",
+      "consumes": ["data/processed/clean_tables"],
+      "produces": ["data/processed/normalized_tables", "data/processed/field_normalize_report.json"]
+    },
+    {
+      "step": 4,
+      "operator": "chronic_text_split",
+      "consumes": ["data/processed/text_clean"],
+      "produces": ["data/processed/chunks", "data/processed/text_split_report.json"]
+    },
+    {
+      "step": 5,
+      "operator": "chronic_entity_extract",
+      "consumes": ["data/processed/chunks"],
+      "produces": ["data/processed/entities", "data/processed/entity_extract_report.json"]
+    },
+    {
+      "step": 6,
+      "operator": "chronic_relation_extract",
+      "consumes": ["data/processed/entities", "data/processed/chunks"],
+      "produces": ["data/processed/relations", "data/processed/relation_extract_report.json"]
+    },
+    {
+      "step": 7,
+      "operator": "chronic_triple_validate",
+      "consumes": ["data/processed/relations"],
+      "produces": ["data/processed/triples/triples_clean.jsonl", "data/processed/triples/triples_rejected.jsonl", "data/processed/triple_validate_report.json"]
+    },
+    {
+      "step": 8,
+      "operator": "chronic_kg_build",
+      "consumes": ["data/processed/entities", "data/processed/triples/triples_clean.jsonl"],
+      "produces": ["data/graph/graph.json", "data/graph/graph_summary.json", "data/processed/kg_build_report.json"]
+    },
+    {
+      "step": 9,
+      "operator": "chronic_sqlite_loader",
+      "consumes": ["data/processed/normalized_tables"],
+      "produces": ["data/sqlite/chroniccare.db", "data/processed/sqlite_loader_report.json"]
+    },
+    {
+      "step": 10,
+      "operator": "chronic_nl2sql_analyze",
+      "consumes": ["data/sqlite/chroniccare.db", "configs/nl2sql_questions.json"],
+      "produces": ["outputs/reports/sql_candidates.json", "outputs/reports/nl2sql_eval_report.json", "outputs/reports/indicator_results.json"]
+    },
+    {
+      "step": 11,
+      "operator": "chronic_report_pack",
+      "consumes": ["outputs/reports/indicator_results.json", "data/graph/graph_summary.json"],
+      "produces": ["outputs/reports/analysis_report.html", "outputs/reports/analysis_report.md", "outputs/charts/chart_index.html", "outputs/reports/report_pack_summary.json"]
+    }
+  ],
+  "enhanced_sync": {
+    "notes": [
+      "Data ingest now includes enhanced synthetic dataset tables.",
+      "SQLite loader includes five enhanced management tables.",
+      "KG build is post-augmented with follow-up, lifestyle, advice, and risk-score entities.",
+      "NL2SQL question set expanded to 35 executable questions."
+    ]
+  },
+  "npu_enhancement": {
+    "notes": [
+      "启用 NPU 时，两个模型增强算子分别替换主线实体抽取和关系抽取步骤，并保留 CPU fallback。",
+      "chronic_entity_extract_model_npu 产出标准化实体和同样本 CPU/NPU 测量。",
+      "chronic_relation_extract_model_npu 产出标准化关系和同样本 CPU/NPU 测量。",
+      "benchmark 只有在真实 NPU 分支成功时才记录 speedup；fallback 场景 speedup 为 null。"
+    ],
+    "steps": [
+      {
+        "step": "5-npu",
+        "operator": "chronic_entity_extract_model_npu",
+        "consumes": ["data/processed/chunks"],
+        "produces": ["outputs/datamate_full_pipeline_npu/output/chronic_entity_extract_model_npu/npu_entity_standardized.jsonl", "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract_model_npu/entity_extract_model_npu_report.json"]
+      },
+      {
+        "step": "6-npu",
+        "operator": "chronic_relation_extract_model_npu",
+        "consumes": ["data/processed/entities", "data/processed/chunks"],
+        "produces": ["outputs/datamate_full_pipeline_npu/output/chronic_relation_extract_model_npu/npu_relation_standardized.jsonl", "outputs/datamate_full_pipeline_npu/output/chronic_relation_extract_model_npu/relation_extract_model_npu_report.json"]
+      }
+    ]
+  }
+}

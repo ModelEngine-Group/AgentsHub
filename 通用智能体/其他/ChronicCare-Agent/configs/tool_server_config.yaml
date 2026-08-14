@@ -1,0 +1,30 @@
+server:
+  host: 127.0.0.1
+  public_host: 127.0.0.1
+  port: 18088
+  browser_base_url: http://127.0.0.1:28088
+
+paths:
+  raw_data_dir: data/raw
+  processed_dir: data/processed
+  sqlite_db: data/sqlite/chroniccare.db
+  graph_json: data/graph/graph.json
+  graph_html: data/graph/graph.html
+  graph_summary: data/graph/graph_summary.json
+  chart_index: outputs/charts/chart_index.html
+  analysis_report_html: outputs/reports/analysis_report.html
+  analysis_report_md: outputs/reports/analysis_report.md
+  indicator_results: outputs/reports/indicator_results.json
+  kg_query_examples: outputs/reports/kg_query_examples.json
+  demo_manifest: outputs/demo/demo_assets.json
+  agent_runs_dir: outputs/agent_runs
+
+tools:
+  allow_run_pipeline: true
+  allow_read_reports: true
+  allow_kg_query: true
+  allow_analysis_query: true
+  allow_chart_lookup: true
+
+safety:
+  medical_safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

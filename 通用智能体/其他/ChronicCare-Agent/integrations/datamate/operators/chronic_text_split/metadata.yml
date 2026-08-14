@@ -1,0 +1,26 @@
+name: chronic_text_split
+raw_id: chronic_text_split
+display_name: 慢病随访文本切分算子
+version: 0.1.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 将清洗后的病历文本和指南文本切分为可抽取实体关系的 chunks。
+inputs:
+  - name: clean_text
+    type: directory
+    required: true
+outputs:
+  - name: chunk_dir
+    type: directory
+  - name: text_split_report
+    type: json
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, text]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

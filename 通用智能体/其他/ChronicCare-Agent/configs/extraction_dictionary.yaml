@@ -1,0 +1,184 @@
+symptom_aliases:
+  dizziness:
+    canonical: 头晕
+    aliases:
+      - 头晕
+      - 眩晕
+      - 晨起头晕
+      - 头胀
+  palpitation:
+    canonical: 心悸
+    aliases:
+      - 心悸
+      - 心慌
+  polydipsia:
+    canonical: 多饮
+    aliases:
+      - 多饮
+      - 口渴
+      - 口干
+  polyuria:
+    canonical: 多尿
+    aliases:
+      - 多尿
+      - 夜尿增多
+  fatigue:
+    canonical: 乏力
+    aliases:
+      - 乏力
+      - 疲乏
+      - 易疲劳
+  chest_tightness:
+    canonical: 胸闷
+    aliases:
+      - 胸闷
+      - 胸部不适
+      - 活动后胸闷
+  weight_gain:
+    canonical: 体重增加
+    aliases:
+      - 体重增加
+      - 体重上升
+  cough:
+    canonical: 咳嗽
+    aliases:
+      - 咳嗽
+      - 慢性咳嗽
+      - 咳痰
+  edema:
+    canonical: 下肢水肿
+    aliases:
+      - 下肢水肿
+      - 浮肿
+  snoring:
+    canonical: 打鼾
+    aliases:
+      - 打鼾
+      - 睡眠打鼾
+
+risk_factor_aliases:
+  obesity:
+    canonical: 肥胖
+    aliases:
+      - 肥胖
+      - BMI偏高
+      - 体重指数偏高
+      - 控制体重
+  high_salt_diet:
+    canonical: 高盐饮食
+    aliases:
+      - 高盐饮食
+      - 盐摄入偏高
+      - 口味偏咸
+  high_fat_diet:
+    canonical: 高脂饮食
+    aliases:
+      - 高脂饮食
+      - 油脂摄入偏多
+  smoking:
+    canonical: 吸烟
+    aliases:
+      - 吸烟
+      - 长期吸烟
+  drinking:
+    canonical: 饮酒
+    aliases:
+      - 饮酒
+      - 经常饮酒
+  lack_of_exercise:
+    canonical: 缺乏运动
+    aliases:
+      - 缺乏运动
+      - 运动不足
+      - 久坐
+  sleep_apnea_risk:
+    canonical: 睡眠呼吸暂停风险
+    aliases:
+      - 睡眠呼吸暂停风险
+      - 打鼾风险
+      - 睡眠呼吸暂停
+
+lifestyle_advice_aliases:
+  low_salt_diet:
+    canonical: 低盐饮食
+    aliases:
+      - 低盐饮食
+      - 控制盐摄入
+  low_fat_diet:
+    canonical: 低脂饮食
+    aliases:
+      - 低脂饮食
+      - 控制油脂摄入
+  regular_exercise:
+    canonical: 规律运动
+    aliases:
+      - 规律运动
+      - 增加运动
+      - 每周运动
+      - 坚持步行运动
+      - 有氧运动
+  glucose_monitoring:
+    canonical: 监测血糖
+    aliases:
+      - 监测血糖
+      - 规律监测血糖
+      - 记录空腹和餐后血糖
+  blood_pressure_monitoring:
+    canonical: 监测血压
+    aliases:
+      - 监测血压
+      - 规律监测血压
+      - 监测晨起和晚间血压
+  follow_up:
+    canonical: 定期复查
+    aliases:
+      - 定期复查
+      - 复诊
+      - 复查
+
+risk_event_aliases:
+  blood_pressure_high:
+    canonical: 血压升高
+    aliases:
+      - 血压升高
+      - 血压偏高
+      - 收缩压升高
+      - 舒张压升高
+      - 晨起血压偏高
+  glucose_high:
+    canonical: 血糖升高
+    aliases:
+      - 血糖升高
+      - 血糖偏高
+      - 空腹血糖控制不佳
+      - 餐后血糖偏高
+      - 空腹血糖偏高
+  lipid_abnormal:
+    canonical: 血脂异常
+    aliases:
+      - 血脂异常
+      - LDL-C偏高
+      - 甘油三酯偏高
+      - 总胆固醇偏高
+      - 体检血脂异常
+  bmi_high:
+    canonical: BMI偏高
+    aliases:
+      - BMI偏高
+      - 体重指数偏高
+  renal_risk:
+    canonical: 肾功能异常风险
+    aliases:
+      - 肾功能异常风险
+      - eGFR下降
+      - UACR异常
+  liver_risk:
+    canonical: 肝功能异常风险
+    aliases:
+      - 肝功能异常风险
+      - 转氨酶升高
+  heart_failure_risk:
+    canonical: 心力衰竭风险
+    aliases:
+      - 心力衰竭风险
+      - 心衰风险

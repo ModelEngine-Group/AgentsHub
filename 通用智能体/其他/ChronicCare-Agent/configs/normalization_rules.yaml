@@ -1,0 +1,253 @@
+field_aliases:
+  patient_id:
+    - patient_id
+    - pid
+    - 患者编号
+    - 患者ID
+  name:
+    - name
+    - 姓名
+  visit_id:
+    - visit_id
+    - vid
+    - 随访编号
+  age:
+    - age
+    - 年龄
+  gender:
+    - gender
+    - 性别
+  bmi:
+    - bmi
+    - BMI
+    - 体重指数
+  disease_tags:
+    - disease_tags
+    - 疾病标签
+  first_visit_date:
+    - first_visit_date
+    - 首次随访日期
+  smoking:
+    - smoking
+    - 吸烟
+  drinking:
+    - drinking
+    - 饮酒
+  visit_date:
+    - visit_date
+    - 随访日期
+  chief_complaint:
+    - chief_complaint
+    - 主诉
+  doctor_advice:
+    - doctor_advice
+    - 医嘱
+  followup_plan:
+    - followup_plan
+    - 随访计划
+  item_name:
+    - item_name
+    - lab_item
+    - 指标名称
+  item_value:
+    - item_value
+    - value
+    - 指标数值
+  lab_id:
+    - lab_id
+    - 检验编号
+  unit:
+    - unit
+    - 单位
+  reference_range:
+    - reference_range
+    - 参考范围
+  abnormal_flag:
+    - abnormal_flag
+    - 异常标记
+  test_date:
+    - test_date
+    - 检验日期
+  med_id:
+    - med_id
+    - 用药编号
+  drug_name:
+    - drug_name
+    - 药物名称
+  drug_category:
+    - drug_category
+    - 药物类别
+  dose:
+    - dose
+    - 剂量
+  frequency:
+    - frequency
+    - 频次
+  start_date:
+    - start_date
+    - 开始日期
+  adherence:
+    - adherence
+    - 依从性
+
+disease_aliases:
+  hypertension:
+    - hypertension
+    - 高血压
+    - 血压升高
+  diabetes:
+    - diabetes
+    - type_2_diabetes
+    - 2型糖尿病
+    - 糖尿病
+  hyperlipidemia:
+    - hyperlipidemia
+    - 高血脂
+    - 血脂异常
+  ckd_risk:
+    - ckd_risk
+    - 慢性肾病
+    - 慢性肾功能异常
+    - 肾功能异常
+  copd:
+    - copd
+    - 慢阻肺
+    - 慢性阻塞性肺疾病
+  coronary_risk:
+    - coronary_risk
+    - 冠心病
+    - 冠心病风险
+  stroke_post:
+    - stroke_post
+    - 脑卒中后管理
+    - 卒中后管理
+  osteoporosis:
+    - osteoporosis
+    - 骨质疏松
+    - 骨质疏松风险
+  sleep_apnea_risk:
+    - sleep_apnea_risk
+    - 睡眠呼吸暂停风险
+    - 睡眠呼吸暂停
+  heart_failure:
+    - heart_failure
+    - 慢性心力衰竭
+    - 心力衰竭风险
+  diabetic_kidney_risk:
+    - diabetic_kidney_risk
+    - 糖尿病肾病风险
+  metabolic_syndrome:
+    - metabolic_syndrome
+    - 代谢综合征
+
+indicator_aliases:
+  fasting_glucose:
+    - fasting_glucose
+    - FPG
+    - 空腹血糖
+  postprandial_glucose:
+    - postprandial_glucose
+    - PPG
+    - 餐后血糖
+  hba1c:
+    - hba1c
+    - HbA1c
+    - 糖化血红蛋白
+  systolic_bp:
+    - systolic_bp
+    - SBP
+    - 收缩压
+  diastolic_bp:
+    - diastolic_bp
+    - DBP
+    - 舒张压
+  total_cholesterol:
+    - total_cholesterol
+    - TC
+    - 总胆固醇
+  ldl_c:
+    - ldl_c
+    - LDL-C
+    - 低密度脂蛋白胆固醇
+  hdl_c:
+    - hdl_c
+    - HDL-C
+    - 高密度脂蛋白胆固醇
+  triglyceride:
+    - triglyceride
+    - TG
+    - 甘油三酯
+  bmi:
+    - bmi
+    - BMI
+    - 体重指数
+  egfr:
+    - egfr
+    - 肾小球滤过率
+    - eGFR
+  uacr:
+    - uacr
+    - 尿白蛋白肌酐比
+    - UACR
+  uric_acid:
+    - uric_acid
+    - 尿酸
+  fev1_ratio:
+    - fev1_ratio
+    - 肺功能
+    - FEV1/FVC
+
+drug_aliases:
+  metformin:
+    - metformin
+    - 二甲双胍
+  insulin:
+    - insulin
+    - 胰岛素
+  acarbose:
+    - acarbose
+    - 阿卡波糖
+  amlodipine:
+    - amlodipine
+    - 氨氯地平
+  losartan:
+    - losartan
+    - 氯沙坦
+  nifedipine:
+    - nifedipine
+    - 硝苯地平
+  atorvastatin:
+    - atorvastatin
+    - 阿托伐他汀
+  rosuvastatin:
+    - rosuvastatin
+    - 瑞舒伐他汀
+  fenofibrate:
+    - fenofibrate
+    - 非诺贝特
+  valsartan:
+    - valsartan
+    - 缬沙坦
+  dapagliflozin:
+    - dapagliflozin
+    - 达格列净
+  febuxostat:
+    - febuxostat
+    - 非布司他
+  clopidogrel:
+    - clopidogrel
+    - 氯吡格雷
+  furosemide:
+    - furosemide
+    - 呋塞米
+  tiotropium:
+    - tiotropium
+    - 噻托溴铵
+
+unit_conversion:
+  glucose_mg_dl_to_mmol_l:
+    factor: 0.0555
+  cholesterol_mg_dl_to_mmol_l:
+    factor: 0.02586
+  triglyceride_mg_dl_to_mmol_l:
+    factor: 0.01129

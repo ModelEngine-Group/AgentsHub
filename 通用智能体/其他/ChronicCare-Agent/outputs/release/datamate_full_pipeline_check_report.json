@@ -1,0 +1,1099 @@
+{
+  "status": "success",
+  "timestamp": "2026-07-26T20:51:43+08:00",
+  "output_root": "outputs/datamate_full_pipeline",
+  "required_output_exists": {
+    "manifest": true,
+    "clean_tables": true,
+    "normalized_tables": true,
+    "chunks": true,
+    "entities": true,
+    "relations": true,
+    "triples_clean": true,
+    "graph_summary": true,
+    "sqlite_db": true,
+    "indicator_results": true,
+    "report_html": true,
+    "chart_index": true
+  },
+  "run_report_exists": true,
+  "sync_report_exists": true,
+  "graph_summary_exists": true,
+  "sqlite_exists": true,
+  "current_metrics_exists": true,
+  "current_metrics": {
+    "patient_count": 2000,
+    "visit_count": 8231,
+    "lab_result_count": 131323,
+    "medication_record_count": 18248,
+    "node_count": 197404,
+    "edge_count": 396928,
+    "quality_score_total": 94,
+    "question_count": 60,
+    "data_version": "synthetic_chroniccare",
+    "generated_at": "2026-07-26T20:51:36+08:00",
+    "nl2sql_question_count": 60,
+    "analysis_success_rate": 1.0,
+    "entity_type_count": {
+      "Disease": 20,
+      "Patient": 2000,
+      "RiskFactor": 3,
+      "Visit": 8231,
+      "LabResult": 131323,
+      "Indicator": 16,
+      "Drug": 24,
+      "DrugCategory": 15,
+      "RiskEvent": 8,
+      "FollowupPlan": 8231,
+      "LifestyleRecord": 8231,
+      "DoctorAdvice": 8231,
+      "RiskScore": 8231,
+      "RiskEventOccurrence": 22840
+    },
+    "relation_type_count": {
+      "patient_has_disease": 2908,
+      "patient_has_visit": 8231,
+      "visit_has_lab": 131323,
+      "lab_result_belongs_to_indicator": 131323,
+      "lab_result_indicates_risk": 26241,
+      "disease_has_indicator": 15,
+      "visit_has_medication": 18248,
+      "drug_belongs_to_category": 24,
+      "disease_treated_by_drug": 11,
+      "patient_has_risk_event": 22840,
+      "event_instance_of": 22840,
+      "patient_has_followup_plan": 8231,
+      "visit_has_lifestyle_record": 8231,
+      "visit_has_doctor_advice": 8231,
+      "patient_has_risk_score": 8231
+    },
+    "provenance_version": "2.1.0-provenance",
+    "edge_provenance_complete_rate": 1.0,
+    "exact_duplicate_edge_count": 0,
+    "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+  },
+  "pipeline_metrics": {
+    "patient_count": 2000,
+    "visit_count": 8231,
+    "lab_result_count": 131323,
+    "medication_record_count": 18248,
+    "node_count": 197404,
+    "edge_count": 396928,
+    "quality_score_total": 94,
+    "question_count": 60
+  },
+  "validation_mode": "semantic_consistency",
+  "reference_metrics": {
+    "patient_count_min": 1000,
+    "visit_count_min": 5000,
+    "lab_result_count_min": 78000,
+    "quality_score_total_min": 85,
+    "question_count_min": 60
+  },
+  "tool_server_probes": {
+    "kg_summary": {
+      "ok": true,
+      "status_code": 200,
+      "latency_ms": 6229.35,
+      "json": {
+        "status": "success",
+        "data_version": "synthetic_chroniccare",
+        "patient_count": 2000,
+        "visit_count": 8231,
+        "lab_result_count": 131323,
+        "medication_record_count": 18248,
+        "node_count": 197404,
+        "edge_count": 396928,
+        "quality_score_total": 94,
+        "table": {
+          "rows": [
+            {
+              "维度": "患者数",
+              "数值": 2000,
+              "说明": "来自 current_metrics / SQLite 主线指标"
+            },
+            {
+              "维度": "随访记录数",
+              "数值": 8231,
+              "说明": "来自 current_metrics / visit_record"
+            },
+            {
+              "维度": "检验记录数",
+              "数值": 131323,
+              "说明": "来自 current_metrics / lab_result"
+            },
+            {
+              "维度": "用药记录数",
+              "数值": 18248,
+              "说明": "来自 current_metrics / medication_record"
+            },
+            {
+              "维度": "知识图谱节点数",
+              "数值": 197404,
+              "说明": "来自 graph_summary.json"
+            },
+            {
+              "维度": "知识图谱边数",
+              "数值": 396928,
+              "说明": "来自 graph_summary.json"
+            }
+          ]
+        },
+        "entity_type_count": {
+          "Disease": 20,
+          "Patient": 2000,
+          "RiskFactor": 3,
+          "Visit": 8231,
+          "LabResult": 131323,
+          "Indicator": 16,
+          "Drug": 24,
+          "DrugCategory": 15,
+          "RiskEvent": 8,
+          "FollowupPlan": 8231,
+          "LifestyleRecord": 8231,
+          "DoctorAdvice": 8231,
+          "RiskScore": 8231,
+          "RiskEventOccurrence": 22840
+        },
+        "entity_type_total_count": 14,
+        "relation_type_count": {
+          "patient_has_disease": 2908,
+          "patient_has_visit": 8231,
+          "visit_has_lab": 131323,
+          "lab_result_belongs_to_indicator": 131323,
+          "lab_result_indicates_risk": 26241,
+          "disease_has_indicator": 15,
+          "visit_has_medication": 18248,
+          "drug_belongs_to_category": 24,
+          "disease_treated_by_drug": 11,
+          "patient_has_risk_event": 22840,
+          "event_instance_of": 22840,
+          "patient_has_followup_plan": 8231,
+          "visit_has_lifestyle_record": 8231,
+          "visit_has_doctor_advice": 8231,
+          "patient_has_risk_score": 8231
+        },
+        "relation_type_total_count": 15,
+        "top_entity_types": [
+          [
+            "LabResult",
+            131323
+          ],
+          [
+            "RiskEventOccurrence",
+            22840
+          ],
+          [
+            "Visit",
+            8231
+          ],
+          [
+            "FollowupPlan",
+            8231
+          ],
+          [
+            "LifestyleRecord",
+            8231
+          ],
+          [
+            "DoctorAdvice",
+            8231
+          ],
+          [
+            "RiskScore",
+            8231
+          ],
+          [
+            "Patient",
+            2000
+          ]
+        ],
+        "top_relation_types": [
+          [
+            "visit_has_lab",
+            131323
+          ],
+          [
+            "lab_result_belongs_to_indicator",
+            131323
+          ],
+          [
+            "lab_result_indicates_risk",
+            26241
+          ],
+          [
+            "patient_has_risk_event",
+            22840
+          ],
+          [
+            "event_instance_of",
+            22840
+          ],
+          [
+            "visit_has_medication",
+            18248
+          ],
+          [
+            "patient_has_visit",
+            8231
+          ],
+          [
+            "patient_has_followup_plan",
+            8231
+          ]
+        ],
+        "quality_highlights": {
+          "isolated_node_count": null,
+          "isolated_node_rate": null,
+          "weakly_connected_components": null,
+          "largest_component_node_count": null,
+          "largest_component_ratio": null,
+          "average_degree": 4.0215,
+          "duplicate_edge_count": null,
+          "self_loop_count": null,
+          "missing_display_name_count": null,
+          "rejected_triples_count": 0
+        },
+        "disease_type_count": 20,
+        "disease_labels": [
+          "冠心病",
+          "哮喘",
+          "心房颤动",
+          "慢性心力衰竭",
+          "慢性肝炎",
+          "慢性肾病",
+          "慢性阻塞性肺疾病（COPD）",
+          "甲状腺功能减退",
+          "痛风",
+          "糖尿病",
+          "糖尿病肾病",
+          "肥胖",
+          "脂肪肝",
+          "脑血管病",
+          "阻塞性睡眠呼吸暂停",
+          "骨关节炎",
+          "骨质疏松",
+          "高尿酸血症",
+          "高脂血症",
+          "高血压"
+        ],
+        "top_degree_nodes": [],
+        "known_issues": [],
+        "scoring_rule": "DataMate-only fallback summary",
+        "graph_html_path": "data/graph/graph.html",
+        "graph_url": "http://127.0.0.1:28088/artifacts/graph.html",
+        "graph_service_url": "http://127.0.0.1:18088/artifacts/graph.html",
+        "chart_index_url": "http://127.0.0.1:28088/artifacts/charts",
+        "chart_index_service_url": "http://127.0.0.1:18088/artifacts/charts",
+        "report_url": "http://127.0.0.1:28088/artifacts/report",
+        "report_service_url": "http://127.0.0.1:18088/artifacts/report",
+        "text": "当前主线真实数据规模为：患者 2000 人、随访记录 8231 条、检验记录 131323 条、用药记录 18248 条；知识图谱节点 197404 个、边 396928 条；图谱质量评分 94 分。",
+        "answer_guardrail": "回答图谱概览时，只能使用本工具返回的真实节点数、边数、实体类型、关系类型和疾病类型信息，禁止编造模板示例值或泛化关系名。",
+        "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。",
+        "analysis_context": {
+          "as_of_date": "2026-07-26",
+          "timezone": "Asia/Shanghai",
+          "data_version": "synthetic_chroniccare",
+          "sqlite_version": "sha256:f5734b9f1b611683f7c1cf2776a26419daacdcc7331dbf4828948727cb672995",
+          "graph_version": "sha256:379e1b75d7c6636cd2a527da9281b630d157aa412f963308ca03876e0e890383",
+          "cohort_id": null,
+          "cohort_definition": {},
+          "window_start": null,
+          "window_end": null,
+          "window_inclusive": true,
+          "latest_record_policy": "latest_by_observed_at_then_visit_id",
+          "metric_definition_version": "1.0.0",
+          "demo_fixed_date": false
+        },
+        "as_of_date": "2026-07-26"
+      }
+    },
+    "analysis_questions": {
+      "ok": true,
+      "status_code": 200,
+      "latency_ms": 53.85,
+      "json": {
+        "status": "success",
+        "data_version": "synthetic_chroniccare",
+        "question_count": 60,
+        "questions": [
+          {
+            "id": "AQ001",
+            "source_id": "NLQ001",
+            "question": "高血压合并糖尿病患者的平均 HbA1c 是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ002",
+            "source_id": "NLQ002",
+            "question": "糖尿病患者的空腹血糖平均值是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ003",
+            "source_id": "NLQ003",
+            "question": "高脂血症患者的 LDL-C 异常比例是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ004",
+            "source_id": "NLQ004",
+            "question": "BMI 超标患者有多少人？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ005",
+            "source_id": "NLQ005",
+            "question": "不同疾病组合患者的平均 HbA1c 是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ006",
+            "source_id": "NLQ006",
+            "question": "不同风险等级患者的人数分布是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ007",
+            "source_id": "NLQ007",
+            "question": "不同用药类别患者的指标控制情况如何？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ008",
+            "source_id": "NLQ008",
+            "question": "最近 6 个月 HbA1c 异常人数趋势如何？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ009",
+            "source_id": "NLQ009",
+            "question": "最近 6 个月血压异常人数趋势如何？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ010",
+            "source_id": "NLQ010",
+            "question": "不同月份高风险事件数量变化如何？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ011",
+            "source_id": "NLQ011",
+            "question": "哪些患者同时存在血糖、血压和血脂异常？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ012",
+            "source_id": "NLQ012",
+            "question": "高风险患者常见风险因素有哪些？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ013",
+            "source_id": "NLQ013",
+            "question": "用药依从性差的患者中 HbA1c 异常比例是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ014",
+            "source_id": "NLQ014",
+            "question": "未来 30 天需要随访的高风险患者有多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ015",
+            "source_id": "NLQ015",
+            "question": "不同随访优先级的患者数量是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ016",
+            "source_id": "NLQ016",
+            "question": "逾期未随访的患者有多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ017",
+            "source_id": "NLQ017",
+            "question": "运动不足患者的 BMI 平均值是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ018",
+            "source_id": "NLQ018",
+            "question": "高盐饮食患者的血压异常比例是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ019",
+            "source_id": "NLQ019",
+            "question": "睡眠不足患者的高风险事件数量是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ020",
+            "source_id": "NLQ020",
+            "question": "不同风险等级患者的平均 eGFR 是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ021",
+            "source_id": "NLQ021",
+            "question": "高尿酸血症患者的平均尿酸水平是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ022",
+            "source_id": "NLQ022",
+            "question": "慢性肾功能异常患者的 UACR 异常比例是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ023",
+            "source_id": "NLQ023",
+            "question": "脂肪肝风险患者的 ALT 平均值是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ024",
+            "source_id": "NLQ024",
+            "question": "冠心病风险患者使用他汀类药物的比例是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ025",
+            "source_id": "NLQ025",
+            "question": "不同药物类别对应的患者数量是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ026",
+            "source_id": "NLQ026",
+            "question": "最近一次随访中异常指标最多的患者有哪些？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ027",
+            "source_id": "NLQ027",
+            "question": "图谱中每种实体类型的数量是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ028",
+            "source_id": "NLQ028",
+            "question": "图谱中每种关系类型的数量是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ029",
+            "source_id": "NLQ029",
+            "question": "高风险事件最多的事件类型是什么？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ030",
+            "source_id": "NLQ030",
+            "question": "不同性别患者的平均 BMI 是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ031",
+            "source_id": "NLQ031",
+            "question": "高血压患者中收缩压超过 140 的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ032",
+            "source_id": "NLQ032",
+            "question": "糖尿病患者中 HbA1c 高于 6.5 的比例是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ033",
+            "source_id": "NLQ033",
+            "question": "风险评分最高的前 10 位患者是谁？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ034",
+            "source_id": "NLQ034",
+            "question": "不同随访状态的计划数量是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ035",
+            "source_id": "NLQ035",
+            "question": "使用达格列净患者的平均空腹血糖是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ036",
+            "source_id": "NLQ036",
+            "question": "慢性肾病风险患者的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ037",
+            "source_id": "NLQ037",
+            "question": "慢阻肺患者的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ038",
+            "source_id": "NLQ038",
+            "question": "冠心病风险患者的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ039",
+            "source_id": "NLQ039",
+            "question": "代谢综合征患者的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ040",
+            "source_id": "NLQ040",
+            "question": "慢性肾病风险患者的平均 eGFR 是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ041",
+            "source_id": "NLQ041",
+            "question": "高尿酸血症患者中尿酸高于 420 的比例是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ042",
+            "source_id": "NLQ042",
+            "question": "慢阻肺患者的平均 FEV1/FVC 是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ043",
+            "source_id": "NLQ043",
+            "question": "未来 60 天需要随访的患者人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ044",
+            "source_id": "NLQ044",
+            "question": "未来 15 天需要随访的高风险患者人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ045",
+            "source_id": "NLQ045",
+            "question": "未来 30 天不同优先级随访计划数量是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ046",
+            "source_id": "NLQ046",
+            "question": "高风险患者最常见的风险事件是什么？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ047",
+            "source_id": "NLQ047",
+            "question": "冠心病风险患者最常用的药物类别是什么？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ048",
+            "source_id": "NLQ048",
+            "question": "高血压合并糖尿病患者的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ049",
+            "source_id": "NLQ049",
+            "question": "冠心病风险合并高脂血症患者的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ050",
+            "source_id": "NLQ050",
+            "question": "慢性肾病风险合并糖尿病患者的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ051",
+            "source_id": "NLQ051",
+            "question": "不同疾病标签对应的患者数量 Top10 是什么？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ052",
+            "source_id": "NLQ052",
+            "question": "不同医生建议类型的数量是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ053",
+            "source_id": "NLQ053",
+            "question": "高风险患者最常见的医生建议有哪些？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ054",
+            "source_id": "NLQ054",
+            "question": "运动不足患者中高风险患者有多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ055",
+            "source_id": "NLQ055",
+            "question": "高盐饮食患者中未来 30 天需要随访的患者有多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ056",
+            "source_id": "NLQ056",
+            "question": "睡眠不足患者的人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ057",
+            "source_id": "NLQ057",
+            "question": "吸烟患者中慢阻肺患者有多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ058",
+            "source_id": "NLQ058",
+            "question": "使用利尿剂患者的平均 eGFR 是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ059",
+            "source_id": "NLQ059",
+            "question": "使用抗血小板药物患者的冠心病风险人数是多少？",
+            "intent": null,
+            "chart_type": null
+          },
+          {
+            "id": "AQ060",
+            "source_id": "NLQ060",
+            "question": "高风险患者中未来 7 天需要随访的患者有多少？",
+            "intent": null,
+            "chart_type": null
+          }
+        ],
+        "summary_text": "当前系统共支持 60 个分析问题。",
+        "warning_text": "本工具只用于回答系统支持哪些分析问题；如果用户在问疾病分布、当前常见病、病种目录，应改用 chroniccare_disease_distribution。",
+        "disease_type_count": 20,
+        "disease_labels": [
+          "高血压",
+          "糖尿病",
+          "高脂血症",
+          "肥胖",
+          "高尿酸血症",
+          "慢性肾病",
+          "慢性阻塞性肺疾病（COPD）",
+          "骨质疏松",
+          "冠心病",
+          "脂肪肝",
+          "骨关节炎",
+          "脑血管病",
+          "慢性心力衰竭",
+          "心房颤动",
+          "痛风",
+          "糖尿病肾病",
+          "甲状腺功能减退",
+          "阻塞性睡眠呼吸暂停",
+          "哮喘",
+          "慢性肝炎"
+        ],
+        "disease_table": {
+          "rows": [
+            {
+              "疾病名称": "高血压",
+              "英文标准Code": "hypertension",
+              "患者人数": 433,
+              "占比": 0.2165
+            },
+            {
+              "疾病名称": "糖尿病",
+              "英文标准Code": "diabetes",
+              "患者人数": 356,
+              "占比": 0.178
+            },
+            {
+              "疾病名称": "高脂血症",
+              "英文标准Code": "hyperlipidemia",
+              "患者人数": 328,
+              "占比": 0.164
+            },
+            {
+              "疾病名称": "肥胖",
+              "英文标准Code": "obesity",
+              "患者人数": 242,
+              "占比": 0.121
+            },
+            {
+              "疾病名称": "高尿酸血症",
+              "英文标准Code": "hyperuricemia",
+              "患者人数": 156,
+              "占比": 0.078
+            },
+            {
+              "疾病名称": "慢性肾病",
+              "英文标准Code": "chronic_kidney_disease",
+              "患者人数": 139,
+              "占比": 0.0695
+            },
+            {
+              "疾病名称": "慢性阻塞性肺疾病（COPD）",
+              "英文标准Code": "copd",
+              "患者人数": 133,
+              "占比": 0.0665
+            },
+            {
+              "疾病名称": "骨质疏松",
+              "英文标准Code": "osteoporosis",
+              "患者人数": 120,
+              "占比": 0.06
+            },
+            {
+              "疾病名称": "冠心病",
+              "英文标准Code": "coronary_heart_disease",
+              "患者人数": 119,
+              "占比": 0.0595
+            },
+            {
+              "疾病名称": "脂肪肝",
+              "英文标准Code": "fatty_liver_disease",
+              "患者人数": 114,
+              "占比": 0.057
+            },
+            {
+              "疾病名称": "骨关节炎",
+              "英文标准Code": "osteoarthritis",
+              "患者人数": 111,
+              "占比": 0.0555
+            },
+            {
+              "疾病名称": "脑血管病",
+              "英文标准Code": "cerebrovascular_disease",
+              "患者人数": 93,
+              "占比": 0.0465
+            },
+            {
+              "疾病名称": "慢性心力衰竭",
+              "英文标准Code": "chronic_heart_failure",
+              "患者人数": 92,
+              "占比": 0.046
+            },
+            {
+              "疾病名称": "心房颤动",
+              "英文标准Code": "atrial_fibrillation",
+              "患者人数": 89,
+              "占比": 0.0445
+            },
+            {
+              "疾病名称": "痛风",
+              "英文标准Code": "gout",
+              "患者人数": 78,
+              "占比": 0.039
+            },
+            {
+              "疾病名称": "糖尿病肾病",
+              "英文标准Code": "diabetic_kidney_disease",
+              "患者人数": 76,
+              "占比": 0.038
+            },
+            {
+              "疾病名称": "甲状腺功能减退",
+              "英文标准Code": "hypothyroidism",
+              "患者人数": 69,
+              "占比": 0.0345
+            },
+            {
+              "疾病名称": "阻塞性睡眠呼吸暂停",
+              "英文标准Code": "obstructive_sleep_apnea",
+              "患者人数": 68,
+              "占比": 0.034
+            },
+            {
+              "疾病名称": "哮喘",
+              "英文标准Code": "asthma",
+              "患者人数": 50,
+              "占比": 0.025
+            },
+            {
+              "疾病名称": "慢性肝炎",
+              "英文标准Code": "chronic_hepatitis",
+              "患者人数": 42,
+              "占比": 0.021
+            }
+          ],
+          "detail_rows": [
+            {
+              "疾病名称": "高血压",
+              "英文标准Code": "hypertension",
+              "患者人数": 433,
+              "占比": 0.2165
+            },
+            {
+              "疾病名称": "糖尿病",
+              "英文标准Code": "diabetes",
+              "患者人数": 356,
+              "占比": 0.178
+            },
+            {
+              "疾病名称": "高脂血症",
+              "英文标准Code": "hyperlipidemia",
+              "患者人数": 328,
+              "占比": 0.164
+            },
+            {
+              "疾病名称": "肥胖",
+              "英文标准Code": "obesity",
+              "患者人数": 242,
+              "占比": 0.121
+            },
+            {
+              "疾病名称": "高尿酸血症",
+              "英文标准Code": "hyperuricemia",
+              "患者人数": 156,
+              "占比": 0.078
+            },
+            {
+              "疾病名称": "慢性肾病",
+              "英文标准Code": "chronic_kidney_disease",
+              "患者人数": 139,
+              "占比": 0.0695
+            },
+            {
+              "疾病名称": "慢性阻塞性肺疾病（COPD）",
+              "英文标准Code": "copd",
+              "患者人数": 133,
+              "占比": 0.0665
+            },
+            {
+              "疾病名称": "骨质疏松",
+              "英文标准Code": "osteoporosis",
+              "患者人数": 120,
+              "占比": 0.06
+            },
+            {
+              "疾病名称": "冠心病",
+              "英文标准Code": "coronary_heart_disease",
+              "患者人数": 119,
+              "占比": 0.0595
+            },
+            {
+              "疾病名称": "脂肪肝",
+              "英文标准Code": "fatty_liver_disease",
+              "患者人数": 114,
+              "占比": 0.057
+            },
+            {
+              "疾病名称": "骨关节炎",
+              "英文标准Code": "osteoarthritis",
+              "患者人数": 111,
+              "占比": 0.0555
+            },
+            {
+              "疾病名称": "脑血管病",
+              "英文标准Code": "cerebrovascular_disease",
+              "患者人数": 93,
+              "占比": 0.0465
+            },
+            {
+              "疾病名称": "慢性心力衰竭",
+              "英文标准Code": "chronic_heart_failure",
+              "患者人数": 92,
+              "占比": 0.046
+            },
+            {
+              "疾病名称": "心房颤动",
+              "英文标准Code": "atrial_fibrillation",
+              "患者人数": 89,
+              "占比": 0.0445
+            },
+            {
+              "疾病名称": "痛风",
+              "英文标准Code": "gout",
+              "患者人数": 78,
+              "占比": 0.039
+            },
+            {
+              "疾病名称": "糖尿病肾病",
+              "英文标准Code": "diabetic_kidney_disease",
+              "患者人数": 76,
+              "占比": 0.038
+            },
+            {
+              "疾病名称": "甲状腺功能减退",
+              "英文标准Code": "hypothyroidism",
+              "患者人数": 69,
+              "占比": 0.0345
+            },
+            {
+              "疾病名称": "阻塞性睡眠呼吸暂停",
+              "英文标准Code": "obstructive_sleep_apnea",
+              "患者人数": 68,
+              "占比": 0.034
+            },
+            {
+              "疾病名称": "哮喘",
+              "英文标准Code": "asthma",
+              "患者人数": 50,
+              "占比": 0.025
+            },
+            {
+              "疾病名称": "慢性肝炎",
+              "英文标准Code": "chronic_hepatitis",
+              "患者人数": 42,
+              "占比": 0.021
+            }
+          ]
+        },
+        "disease_summary_text": "当前唯一患者总数为 2000 人，共识别出 20 种疾病类型：高血压（433人，21.6%）；糖尿病（356人，17.8%）；高脂血症（328人，16.4%）；肥胖（242人，12.1%）；高尿酸血症（156人，7.8%）；慢性肾病（139人，7.0%）；慢性阻塞性肺疾病（COPD）（133人，6.7%）；骨质疏松（120人，6.0%）；冠心病（119人，5.9%）；脂肪肝（114人，5.7%）；骨关节炎（111人，5.5%）；脑血管病（93人，4.7%）；慢性心力衰竭（92人，4.6%）；心房颤动（89人，4.5%）；痛风（78人，3.9%）；糖尿病肾病（76人，3.8%）；甲状腺功能减退（69人，3.5%）；阻塞性睡眠呼吸暂停（68人，3.4%）；哮喘（50人，2.5%）；慢性肝炎（42人，2.1%）。疾病标签累计覆盖 2908 人次；一个患者可能同时属于多种疾病。已生成疾病分布图、疾病组合分布和完整分析页面。",
+        "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+      }
+    },
+    "mcp_root": {
+      "ok": true,
+      "status_code": 200,
+      "latency_ms": 2.87,
+      "json": {
+        "project": "ChronicCare MCP Adapter",
+        "status": "ok",
+        "transport": "streamable-http",
+        "tool_server_url": "http://127.0.0.1:18088",
+        "mcp_endpoint": "/mcp",
+        "sse_endpoint": "/sse",
+        "tools_endpoint": "/tools",
+        "sdk_available": true,
+        "tool_count": 39
+      }
+    },
+    "trace_summary": {
+      "ok": true,
+      "status_code": 200,
+      "latency_ms": 6.47,
+      "json": {
+        "status": "success",
+        "total_calls": 129,
+        "success_calls": 125,
+        "error_calls": 4,
+        "success_rate": 0.969,
+        "tool_counts": {
+          "chroniccare_data_summary": 6,
+          "chroniccare_followup_high_risk": 13,
+          "chroniccare_kg_subgraph_render": 9,
+          "chroniccare_kg_entity_query": 4,
+          "chroniccare_open_sql_query": 29,
+          "chroniccare_open_sql_schema": 3,
+          "chroniccare_datamate_pipeline_run": 9,
+          "chroniccare_datamate_pipeline_run_npu": 18,
+          "chroniccare_datamate_pipelines": 10,
+          "chroniccare_disease_distribution": 9,
+          "chroniccare_disease_combination_distribution": 3,
+          "chroniccare_datamate_dag_plan": 3,
+          "chroniccare_cohort_disease_distribution": 9,
+          "chroniccare_npu_supported_operators": 2,
+          "chroniccare_kg_summary": 1,
+          "chroniccare_kg_relation_query": 1
+        },
+        "avg_latency_ms": 41420.56,
+        "trace_file": "outputs/mcp_traces/mcp_tool_calls.jsonl",
+        "summary_file": "outputs/mcp_traces/mcp_trace_summary.json",
+        "recent_trace": {
+          "trace_id": "trace_20260726_205001_94081cc2",
+          "timestamp": "2026-07-26T20:50:01+08:00",
+          "source": "nexent_mcp",
+          "tool_name": "chroniccare_datamate_pipeline_run",
+          "input": {
+            "task_id": "mcp_datamate_run_001",
+            "force": "true",
+            "safe_run": "false"
+          },
+          "target_endpoint": "POST /datamate/pipeline/run",
+          "tool_server_url": "http://127.0.0.1:18088",
+          "status": "running",
+          "latency_ms": 0.0,
+          "output_summary": {
+            "message": "tool call started"
+          },
+          "error": null
+        }
+      }
+    },
+    "streamlit_head": {
+      "ok": true,
+      "status_code": 200,
+      "latency_ms": 2.97
+    }
+  },
+  "nexent_probe": {
+    "ok": true,
+    "returncode": 0,
+    "stdout": "{\"project\":\"ChronicCare MCP Adapter\",\"status\":\"ok\",\"transport\":\"streamable-http\",\"tool_server_url\":\"http://127.0.0.1:18088\",\"mcp_endpoint\":\"/mcp\",\"sse_endpoint\":\"/sse\",\"tools_endpoint\":\"/tools\",\"sdk_available\":true,\"tool_count\":39}",
+    "stderr": ""
+  },
+  "warnings": [],
+  "errors": [],
+  "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+}

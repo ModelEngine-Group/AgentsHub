@@ -1,0 +1,1066 @@
+{
+  "status": "success",
+  "timestamp": "2026-08-02T17:02:57+08:00",
+  "container": "datamate-runtime",
+  "use_npu": true,
+  "npu_targets": [
+    "chronic_entity_extract_model_npu",
+    "chronic_relation_extract_model_npu"
+  ],
+  "pipeline_steps": [
+    {
+      "operator": "chronic_file_ingest",
+      "status": "success",
+      "execution_seconds": 0.0032,
+      "summary": {
+        "file_count": 11,
+        "structured_files": 9,
+        "text_files": 2
+      },
+      "artifact_paths": {
+        "manifest": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_file_ingest/manifest.json",
+        "raw_structured_dir": "/tmp/chroniccare_datamate_full_pipeline/input/raw/structured",
+        "raw_text_dir": "/tmp/chroniccare_datamate_full_pipeline/input/raw/text"
+      },
+      "artifact_keys": [
+        "manifest",
+        "raw_structured_dir",
+        "raw_text_dir"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_table_clean",
+      "status": "success",
+      "execution_seconds": 9.166,
+      "summary": {
+        "table_count": 9,
+        "rows_after": 215566
+      },
+      "artifact_paths": {
+        "clean_tables": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_table_clean/clean_tables",
+        "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_table_clean/table_clean_report.json"
+      },
+      "artifact_keys": [
+        "clean_tables",
+        "report"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_field_normalize",
+      "status": "success",
+      "execution_seconds": 8.1501,
+      "summary": {
+        "table_count": 9
+      },
+      "artifact_paths": {
+        "normalized_tables": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_field_normalize/normalized_tables",
+        "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_field_normalize/field_normalize_report.json"
+      },
+      "artifact_keys": [
+        "normalized_tables",
+        "report"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_text_split",
+      "status": "success",
+      "execution_seconds": 0.1829,
+      "summary": {
+        "chunk_count": 9189,
+        "document_count": 8232
+      },
+      "artifact_paths": {
+        "chunk_dir": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_text_split/chunks",
+        "chunk_file": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_text_split/chunks/all_chunks.jsonl",
+        "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_text_split/text_split_report.json"
+      },
+      "artifact_keys": [
+        "chunk_dir",
+        "chunk_file",
+        "report"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_entity_extract_model_npu",
+      "status": "success",
+      "execution_seconds": 49.371,
+      "summary": {
+        "entity_count": 174564,
+        "backend": "real_bge_embedding_standardization",
+        "fallback_used": false,
+        "mainline_consumed_npu": true,
+        "npu_available": true,
+        "npu_execution_used": true,
+        "cpu_rule_extraction_seconds": 7.857498,
+        "model_inference": {
+          "model_path": "/models/MedCleanStd/bge-small-zh-v1.5",
+          "record_count": 174564,
+          "npu_record_count": 174564,
+          "cpu_benchmark_record_count": 2048,
+          "label_count": 13,
+          "batch_size": 1024,
+          "cpu_batch_size": 64,
+          "npu_batch_size": 1024,
+          "cpu_thread_count": 64,
+          "warmup_runs_per_device": 1,
+          "warmup_record_count": 2048,
+          "cpu_warmup_seconds": 6.747834,
+          "npu_warmup_seconds": 1.655115,
+          "warmup_excluded_from_benchmark": true,
+          "max_length": 64,
+          "threshold": 0.35,
+          "kept_count": 174564,
+          "cpu_embedding_seconds": 3.061487,
+          "npu_embedding_seconds": 14.406138,
+          "npu_similarity_seconds": 0.059579,
+          "cpu_total_model_seconds": 3.061487,
+          "npu_same_sample_record_count": 2048,
+          "npu_same_sample_embedding_seconds": 0.209551,
+          "npu_same_sample_similarity_seconds": 0.001176,
+          "npu_same_sample_total_model_seconds": 0.210727,
+          "same_sample_timing_source": "direct_measurement",
+          "same_sample_speedup": 14.5282,
+          "npu_total_model_seconds": 14.465717,
+          "cpu_process_seconds": 261.897281,
+          "cpu_compute_utilization_percent": 8554.5787,
+          "cpu_resource_metrics_status": "process_time_estimated",
+          "cpu_resource_metrics_note": "CPU 利用率按当前进程 CPU time / wall time 估算，不等同于整机功耗采样。",
+          "npu_sample_resource_metrics": {
+            "status": "collected",
+            "sample_count": 1,
+            "sample_interval_seconds": 0.1,
+            "elapsed_seconds": 1.147417,
+            "device_id": 6,
+            "average_power_watt": 105.6,
+            "max_power_watt": 105.6,
+            "average_aicore_percent": 0.0,
+            "max_aicore_percent": 0.0,
+            "average_hbm_used_mb": 5017.0,
+            "max_hbm_used_mb": 5017.0,
+            "estimated_energy_wh": 0.033658,
+            "errors": []
+          },
+          "npu_sample_resource_metrics_status": "collected",
+          "npu_full_resource_metrics": {
+            "status": "collected",
+            "sample_count": 7,
+            "sample_interval_seconds": 1.0,
+            "elapsed_seconds": 14.754235,
+            "device_id": 6,
+            "average_power_watt": 121.3571,
+            "max_power_watt": 127.1,
+            "average_aicore_percent": 6.5714,
+            "max_aicore_percent": 12.0,
+            "average_hbm_used_mb": 5099.86,
+            "max_hbm_used_mb": 5597.0,
+            "estimated_energy_wh": 0.49737,
+            "errors": []
+          },
+          "npu_full_resource_metrics_status": "collected",
+          "npu_resource_metrics": {
+            "status": "collected",
+            "sample_count": 7,
+            "sample_interval_seconds": 1.0,
+            "elapsed_seconds": 14.754235,
+            "device_id": 6,
+            "average_power_watt": 121.3571,
+            "max_power_watt": 127.1,
+            "average_aicore_percent": 6.5714,
+            "max_aicore_percent": 12.0,
+            "average_hbm_used_mb": 5099.86,
+            "max_hbm_used_mb": 5597.0,
+            "estimated_energy_wh": 0.49737,
+            "errors": []
+          },
+          "npu_resource_metrics_status": "collected",
+          "cpu_seconds_per_record": 0.00149487,
+          "npu_seconds_per_record": 8.287e-05,
+          "estimated_cpu_full_seconds": 260.949876,
+          "estimated_full_speedup": 18.0392,
+          "model_speedup": 14.5282,
+          "cpu_embedding_shape": [
+            2048,
+            512
+          ],
+          "npu_embedding_shape": [
+            174564,
+            512
+          ],
+          "business_input": "chronic_entity_extract/entities_raw.jsonl",
+          "business_output": "npu_entity_standardized.jsonl",
+          "equivalence": {
+            "sample_count": 2048,
+            "embedding_shape_cpu": [
+              2048,
+              512
+            ],
+            "embedding_shape_npu": [
+              2048,
+              512
+            ],
+            "all_finite": true,
+            "embedding_cosine_mean": 0.99999899,
+            "embedding_cosine_min": 0.99999815,
+            "top1_candidate_agreement": 1.0,
+            "keep_decision_agreement": 1.0,
+            "semantic_preservation": 0.99999899
+          },
+          "quality_gate": {
+            "min_keep_rate": 0.98,
+            "required_semantic_preservation": 0.99,
+            "keep_rate": 1.0,
+            "raw_prediction_agreement_diagnostic": 0.752343,
+            "semantic_preservation": 0.99999899,
+            "equivalence": {
+              "sample_count": 2048,
+              "embedding_shape_cpu": [
+                2048,
+                512
+              ],
+              "embedding_shape_npu": [
+                2048,
+                512
+              ],
+              "all_finite": true,
+              "embedding_cosine_mean": 0.99999899,
+              "embedding_cosine_min": 0.99999815,
+              "top1_candidate_agreement": 1.0,
+              "keep_decision_agreement": 1.0,
+              "semantic_preservation": 0.99999899
+            },
+            "passed": true
+          },
+          "mainline_consumed_npu": true
+        },
+        "duration_seconds": 49.3701
+      },
+      "artifact_paths": {
+        "entities": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_entity_extract_model_npu/entities",
+        "entities_raw": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_entity_extract_model_npu/entities/entities_raw.jsonl",
+        "npu_entity_standardized": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_entity_extract_model_npu/npu_entity_standardized.jsonl",
+        "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_entity_extract_model_npu/entity_extract_model_npu_report.json"
+      },
+      "artifact_keys": [
+        "entities",
+        "entities_raw",
+        "npu_entity_standardized",
+        "report"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_relation_extract_model_npu",
+      "status": "success",
+      "execution_seconds": 91.7796,
+      "summary": {
+        "relation_count": 374088,
+        "backend": "real_bge_embedding_relation_rerank",
+        "fallback_used": false,
+        "mainline_consumed_npu": true,
+        "npu_available": true,
+        "npu_execution_used": true,
+        "cpu_rule_extraction_seconds": 11.413619,
+        "model_inference": {
+          "model_path": "/models/MedCleanStd/bge-small-zh-v1.5",
+          "record_count": 374088,
+          "npu_record_count": 374088,
+          "cpu_benchmark_record_count": 2048,
+          "label_count": 14,
+          "batch_size": 1024,
+          "cpu_batch_size": 64,
+          "npu_batch_size": 1024,
+          "cpu_thread_count": 64,
+          "warmup_runs_per_device": 1,
+          "warmup_record_count": 2048,
+          "cpu_warmup_seconds": 4.80679,
+          "npu_warmup_seconds": 0.494251,
+          "warmup_excluded_from_benchmark": true,
+          "max_length": 64,
+          "threshold": 0.35,
+          "kept_count": 374088,
+          "cpu_embedding_seconds": 5.104834,
+          "npu_embedding_seconds": 52.769432,
+          "npu_similarity_seconds": 0.074693,
+          "cpu_total_model_seconds": 5.104834,
+          "npu_same_sample_record_count": 2048,
+          "npu_same_sample_embedding_seconds": 0.264349,
+          "npu_same_sample_similarity_seconds": 0.001065,
+          "npu_same_sample_total_model_seconds": 0.265414,
+          "same_sample_timing_source": "direct_measurement",
+          "same_sample_speedup": 19.2335,
+          "npu_total_model_seconds": 52.844124,
+          "cpu_process_seconds": 375.983667,
+          "cpu_compute_utilization_percent": 7365.248,
+          "cpu_resource_metrics_status": "process_time_estimated",
+          "cpu_resource_metrics_note": "CPU 利用率按当前进程 CPU time / wall time 估算，不等同于整机功耗采样。",
+          "npu_sample_resource_metrics": {
+            "status": "collected",
+            "sample_count": 1,
+            "sample_interval_seconds": 0.1,
+            "elapsed_seconds": 1.14238,
+            "device_id": 6,
+            "average_power_watt": 106.5,
+            "max_power_watt": 106.5,
+            "average_aicore_percent": 0.0,
+            "max_aicore_percent": 0.0,
+            "average_hbm_used_mb": 5941.0,
+            "max_hbm_used_mb": 5941.0,
+            "estimated_energy_wh": 0.033795,
+            "errors": []
+          },
+          "npu_sample_resource_metrics_status": "collected",
+          "npu_full_resource_metrics": {
+            "status": "collected",
+            "sample_count": 24,
+            "sample_interval_seconds": 1.0,
+            "elapsed_seconds": 53.900424,
+            "device_id": 6,
+            "average_power_watt": 130.75,
+            "max_power_watt": 160.4,
+            "average_aicore_percent": 4.625,
+            "max_aicore_percent": 24.0,
+            "average_hbm_used_mb": 6040.38,
+            "max_hbm_used_mb": 7004.0,
+            "estimated_energy_wh": 1.957633,
+            "errors": []
+          },
+          "npu_full_resource_metrics_status": "collected",
+          "npu_resource_metrics": {
+            "status": "collected",
+            "sample_count": 24,
+            "sample_interval_seconds": 1.0,
+            "elapsed_seconds": 53.900424,
+            "device_id": 6,
+            "average_power_watt": 130.75,
+            "max_power_watt": 160.4,
+            "average_aicore_percent": 4.625,
+            "max_aicore_percent": 24.0,
+            "average_hbm_used_mb": 6040.38,
+            "max_hbm_used_mb": 7004.0,
+            "estimated_energy_wh": 1.957633,
+            "errors": []
+          },
+          "npu_resource_metrics_status": "collected",
+          "cpu_seconds_per_record": 0.00249259,
+          "npu_seconds_per_record": 0.00014126,
+          "estimated_cpu_full_seconds": 932.44973,
+          "estimated_full_speedup": 17.6453,
+          "model_speedup": 19.2335,
+          "cpu_embedding_shape": [
+            2048,
+            512
+          ],
+          "npu_embedding_shape": [
+            374088,
+            512
+          ],
+          "business_input": "chronic_relation_extract/relations_raw.jsonl",
+          "business_output": "npu_relation_standardized.jsonl",
+          "equivalence": {
+            "sample_count": 2048,
+            "embedding_shape_cpu": [
+              2048,
+              512
+            ],
+            "embedding_shape_npu": [
+              2048,
+              512
+            ],
+            "all_finite": true,
+            "embedding_cosine_mean": 0.99999821,
+            "embedding_cosine_min": 0.99999785,
+            "top1_candidate_agreement": 1.0,
+            "keep_decision_agreement": 1.0,
+            "semantic_preservation": 0.99999821
+          },
+          "quality_gate": {
+            "min_keep_rate": 0.98,
+            "required_semantic_preservation": 0.99,
+            "keep_rate": 1.0,
+            "raw_prediction_agreement_diagnostic": 0.869533,
+            "semantic_preservation": 0.99999821,
+            "equivalence": {
+              "sample_count": 2048,
+              "embedding_shape_cpu": [
+                2048,
+                512
+              ],
+              "embedding_shape_npu": [
+                2048,
+                512
+              ],
+              "all_finite": true,
+              "embedding_cosine_mean": 0.99999821,
+              "embedding_cosine_min": 0.99999785,
+              "top1_candidate_agreement": 1.0,
+              "keep_decision_agreement": 1.0,
+              "semantic_preservation": 0.99999821
+            },
+            "passed": true
+          },
+          "mainline_consumed_npu": true
+        },
+        "duration_seconds": 91.3785
+      },
+      "artifact_paths": {
+        "relations": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_relation_extract_model_npu/relations",
+        "relations_raw": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_relation_extract_model_npu/relations/relations_raw.jsonl",
+        "npu_relation_standardized": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_relation_extract_model_npu/npu_relation_standardized.jsonl",
+        "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_relation_extract_model_npu/relation_extract_model_npu_report.json"
+      },
+      "artifact_keys": [
+        "npu_relation_standardized",
+        "relations",
+        "relations_raw",
+        "report"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_triple_validate",
+      "status": "success",
+      "execution_seconds": 9.3866,
+      "summary": {
+        "triples_clean": 374088,
+        "triples_rejected": 0
+      },
+      "artifact_paths": {
+        "triples_clean": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_triple_validate/triples_clean.jsonl",
+        "triples_rejected": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_triple_validate/triples_rejected.jsonl",
+        "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_triple_validate/triple_validate_report.json"
+      },
+      "artifact_keys": [
+        "report",
+        "triples_clean",
+        "triples_rejected"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_kg_build",
+      "status": "success",
+      "execution_seconds": 32.8222,
+      "summary": {
+        "status": "success",
+        "data_version": "synthetic_chroniccare",
+        "generated_at": "2026-08-02T17:02:01+08:00",
+        "provenance_version": "2.1.0-provenance",
+        "node_count": 197404,
+        "edge_count": 396928,
+        "event_edge_count": 22840,
+        "risk_event_occurrence_nodes": 22840,
+        "unique_semantic_relation_count": 396928,
+        "exact_duplicate_edge_count": 0,
+        "unmatched_risk_event_edges": 0,
+        "illegal_node_references_rejected": 0,
+        "edge_provenance_complete_rate": 1.0,
+        "semantic_evaluation_scope": "automated engineering regression only; no independent human semantic gold evaluation",
+        "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+      },
+      "artifact_paths": {
+        "graph_json": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_kg_build/graph/graph.json",
+        "graph_summary": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_kg_build/graph/graph_summary.json",
+        "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_kg_build/kg_build_report.json"
+      },
+      "artifact_keys": [
+        "graph_json",
+        "graph_summary",
+        "report"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_sqlite_loader",
+      "status": "success",
+      "execution_seconds": 12.2045,
+      "summary": {
+        "table_count": 11
+      },
+      "artifact_paths": {
+        "sqlite_db": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_sqlite_loader/chroniccare.db",
+        "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_sqlite_loader/sqlite_loader_report.json"
+      },
+      "artifact_keys": [
+        "report",
+        "sqlite_db"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_nl2sql_analyze",
+      "status": "success",
+      "execution_seconds": 1.2916,
+      "summary": {
+        "question_count": 60,
+        "success_count": 60
+      },
+      "artifact_paths": {
+        "sql_candidates": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_nl2sql_analyze/sql_candidates.json",
+        "nl2sql_eval": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_nl2sql_analyze/nl2sql_eval_report.json",
+        "indicator_results": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_nl2sql_analyze/indicator_results.json"
+      },
+      "artifact_keys": [
+        "indicator_results",
+        "nl2sql_eval",
+        "sql_candidates"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    },
+    {
+      "operator": "chronic_report_pack",
+      "status": "success",
+      "execution_seconds": 0.0056,
+      "summary": {
+        "indicator_count": 60,
+        "node_count": 197404,
+        "edge_count": 396928
+      },
+      "artifact_paths": {
+        "analysis_report_md": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_report_pack/analysis_report.md",
+        "analysis_report_html": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_report_pack/analysis_report.html",
+        "chart_index": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_report_pack/charts/chart_index.html",
+        "summary": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_report_pack/report_pack_summary.json"
+      },
+      "artifact_keys": [
+        "analysis_report_html",
+        "analysis_report_md",
+        "chart_index",
+        "summary"
+      ],
+      "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+    }
+  ],
+  "pure_execution_seconds": 214.3633,
+  "pipeline_execution_seconds": 214.3651,
+  "outer_flow_seconds": 237.6268,
+  "output_root_in_container": "/tmp/chroniccare_datamate_full_pipeline/output",
+  "output_root_on_host": "outputs/datamate_full_pipeline_npu/output",
+  "required_outputs": {
+    "manifest": "outputs/datamate_full_pipeline_npu/output/chronic_file_ingest/manifest.json",
+    "clean_tables": "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables",
+    "normalized_tables": "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables",
+    "chunks": "outputs/datamate_full_pipeline_npu/output/chronic_text_split/chunks",
+    "entities": "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract/entities",
+    "relations": "outputs/datamate_full_pipeline_npu/output/chronic_relation_extract/relations",
+    "triples_clean": "outputs/datamate_full_pipeline_npu/output/chronic_triple_validate/triples_clean.jsonl",
+    "graph_summary": "outputs/datamate_full_pipeline_npu/output/chronic_kg_build/graph/graph_summary.json",
+    "sqlite_db": "outputs/datamate_full_pipeline_npu/output/chronic_sqlite_loader/chroniccare.db",
+    "indicator_results": "outputs/datamate_full_pipeline_npu/output/chronic_nl2sql_analyze/indicator_results.json",
+    "report_html": "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/analysis_report.html",
+    "chart_index": "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/chart_index.html"
+  },
+  "required_output_exists": {
+    "manifest": true,
+    "clean_tables": true,
+    "normalized_tables": true,
+    "chunks": true,
+    "entities": true,
+    "relations": true,
+    "triples_clean": true,
+    "graph_summary": true,
+    "sqlite_db": true,
+    "indicator_results": true,
+    "report_html": true,
+    "chart_index": true
+  },
+  "metrics": {
+    "patient_count": 2000,
+    "visit_count": 8231,
+    "lab_result_count": 131323,
+    "medication_record_count": 18248,
+    "node_count": 197404,
+    "edge_count": 396928,
+    "quality_score_total": 94,
+    "question_count": 60
+  },
+  "validation_mode": "semantic_consistency",
+  "npu_enhancement": {
+    "status": "success",
+    "source": "datamate-runtime:/opt/runtime/datamate/ops/mapper",
+    "operator_steps": [
+      {
+        "operator": "chronic_entity_extract_model_npu",
+        "status": "success",
+        "execution_seconds": 49.371,
+        "summary": {
+          "entity_count": 174564,
+          "backend": "real_bge_embedding_standardization",
+          "fallback_used": false,
+          "mainline_consumed_npu": true,
+          "npu_available": true,
+          "npu_execution_used": true,
+          "cpu_rule_extraction_seconds": 7.857498,
+          "model_inference": {
+            "model_path": "/models/MedCleanStd/bge-small-zh-v1.5",
+            "record_count": 174564,
+            "npu_record_count": 174564,
+            "cpu_benchmark_record_count": 2048,
+            "label_count": 13,
+            "batch_size": 1024,
+            "cpu_batch_size": 64,
+            "npu_batch_size": 1024,
+            "cpu_thread_count": 64,
+            "warmup_runs_per_device": 1,
+            "warmup_record_count": 2048,
+            "cpu_warmup_seconds": 6.747834,
+            "npu_warmup_seconds": 1.655115,
+            "warmup_excluded_from_benchmark": true,
+            "max_length": 64,
+            "threshold": 0.35,
+            "kept_count": 174564,
+            "cpu_embedding_seconds": 3.061487,
+            "npu_embedding_seconds": 14.406138,
+            "npu_similarity_seconds": 0.059579,
+            "cpu_total_model_seconds": 3.061487,
+            "npu_same_sample_record_count": 2048,
+            "npu_same_sample_embedding_seconds": 0.209551,
+            "npu_same_sample_similarity_seconds": 0.001176,
+            "npu_same_sample_total_model_seconds": 0.210727,
+            "same_sample_timing_source": "direct_measurement",
+            "same_sample_speedup": 14.5282,
+            "npu_total_model_seconds": 14.465717,
+            "cpu_process_seconds": 261.897281,
+            "cpu_compute_utilization_percent": 8554.5787,
+            "cpu_resource_metrics_status": "process_time_estimated",
+            "cpu_resource_metrics_note": "CPU 利用率按当前进程 CPU time / wall time 估算，不等同于整机功耗采样。",
+            "npu_sample_resource_metrics": {
+              "status": "collected",
+              "sample_count": 1,
+              "sample_interval_seconds": 0.1,
+              "elapsed_seconds": 1.147417,
+              "device_id": 6,
+              "average_power_watt": 105.6,
+              "max_power_watt": 105.6,
+              "average_aicore_percent": 0.0,
+              "max_aicore_percent": 0.0,
+              "average_hbm_used_mb": 5017.0,
+              "max_hbm_used_mb": 5017.0,
+              "estimated_energy_wh": 0.033658,
+              "errors": []
+            },
+            "npu_sample_resource_metrics_status": "collected",
+            "npu_full_resource_metrics": {
+              "status": "collected",
+              "sample_count": 7,
+              "sample_interval_seconds": 1.0,
+              "elapsed_seconds": 14.754235,
+              "device_id": 6,
+              "average_power_watt": 121.3571,
+              "max_power_watt": 127.1,
+              "average_aicore_percent": 6.5714,
+              "max_aicore_percent": 12.0,
+              "average_hbm_used_mb": 5099.86,
+              "max_hbm_used_mb": 5597.0,
+              "estimated_energy_wh": 0.49737,
+              "errors": []
+            },
+            "npu_full_resource_metrics_status": "collected",
+            "npu_resource_metrics": {
+              "status": "collected",
+              "sample_count": 7,
+              "sample_interval_seconds": 1.0,
+              "elapsed_seconds": 14.754235,
+              "device_id": 6,
+              "average_power_watt": 121.3571,
+              "max_power_watt": 127.1,
+              "average_aicore_percent": 6.5714,
+              "max_aicore_percent": 12.0,
+              "average_hbm_used_mb": 5099.86,
+              "max_hbm_used_mb": 5597.0,
+              "estimated_energy_wh": 0.49737,
+              "errors": []
+            },
+            "npu_resource_metrics_status": "collected",
+            "cpu_seconds_per_record": 0.00149487,
+            "npu_seconds_per_record": 8.287e-05,
+            "estimated_cpu_full_seconds": 260.949876,
+            "estimated_full_speedup": 18.0392,
+            "model_speedup": 14.5282,
+            "cpu_embedding_shape": [
+              2048,
+              512
+            ],
+            "npu_embedding_shape": [
+              174564,
+              512
+            ],
+            "business_input": "chronic_entity_extract/entities_raw.jsonl",
+            "business_output": "npu_entity_standardized.jsonl",
+            "equivalence": {
+              "sample_count": 2048,
+              "embedding_shape_cpu": [
+                2048,
+                512
+              ],
+              "embedding_shape_npu": [
+                2048,
+                512
+              ],
+              "all_finite": true,
+              "embedding_cosine_mean": 0.99999899,
+              "embedding_cosine_min": 0.99999815,
+              "top1_candidate_agreement": 1.0,
+              "keep_decision_agreement": 1.0,
+              "semantic_preservation": 0.99999899
+            },
+            "quality_gate": {
+              "min_keep_rate": 0.98,
+              "required_semantic_preservation": 0.99,
+              "keep_rate": 1.0,
+              "raw_prediction_agreement_diagnostic": 0.752343,
+              "semantic_preservation": 0.99999899,
+              "equivalence": {
+                "sample_count": 2048,
+                "embedding_shape_cpu": [
+                  2048,
+                  512
+                ],
+                "embedding_shape_npu": [
+                  2048,
+                  512
+                ],
+                "all_finite": true,
+                "embedding_cosine_mean": 0.99999899,
+                "embedding_cosine_min": 0.99999815,
+                "top1_candidate_agreement": 1.0,
+                "keep_decision_agreement": 1.0,
+                "semantic_preservation": 0.99999899
+              },
+              "passed": true
+            },
+            "mainline_consumed_npu": true
+          },
+          "duration_seconds": 49.3701
+        },
+        "artifact_paths": {
+          "entities": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_entity_extract_model_npu/entities",
+          "entities_raw": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_entity_extract_model_npu/entities/entities_raw.jsonl",
+          "npu_entity_standardized": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_entity_extract_model_npu/npu_entity_standardized.jsonl",
+          "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_entity_extract_model_npu/entity_extract_model_npu_report.json"
+        },
+        "artifact_keys": [
+          "entities",
+          "entities_raw",
+          "npu_entity_standardized",
+          "report"
+        ],
+        "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+      },
+      {
+        "operator": "chronic_relation_extract_model_npu",
+        "status": "success",
+        "execution_seconds": 91.7796,
+        "summary": {
+          "relation_count": 374088,
+          "backend": "real_bge_embedding_relation_rerank",
+          "fallback_used": false,
+          "mainline_consumed_npu": true,
+          "npu_available": true,
+          "npu_execution_used": true,
+          "cpu_rule_extraction_seconds": 11.413619,
+          "model_inference": {
+            "model_path": "/models/MedCleanStd/bge-small-zh-v1.5",
+            "record_count": 374088,
+            "npu_record_count": 374088,
+            "cpu_benchmark_record_count": 2048,
+            "label_count": 14,
+            "batch_size": 1024,
+            "cpu_batch_size": 64,
+            "npu_batch_size": 1024,
+            "cpu_thread_count": 64,
+            "warmup_runs_per_device": 1,
+            "warmup_record_count": 2048,
+            "cpu_warmup_seconds": 4.80679,
+            "npu_warmup_seconds": 0.494251,
+            "warmup_excluded_from_benchmark": true,
+            "max_length": 64,
+            "threshold": 0.35,
+            "kept_count": 374088,
+            "cpu_embedding_seconds": 5.104834,
+            "npu_embedding_seconds": 52.769432,
+            "npu_similarity_seconds": 0.074693,
+            "cpu_total_model_seconds": 5.104834,
+            "npu_same_sample_record_count": 2048,
+            "npu_same_sample_embedding_seconds": 0.264349,
+            "npu_same_sample_similarity_seconds": 0.001065,
+            "npu_same_sample_total_model_seconds": 0.265414,
+            "same_sample_timing_source": "direct_measurement",
+            "same_sample_speedup": 19.2335,
+            "npu_total_model_seconds": 52.844124,
+            "cpu_process_seconds": 375.983667,
+            "cpu_compute_utilization_percent": 7365.248,
+            "cpu_resource_metrics_status": "process_time_estimated",
+            "cpu_resource_metrics_note": "CPU 利用率按当前进程 CPU time / wall time 估算，不等同于整机功耗采样。",
+            "npu_sample_resource_metrics": {
+              "status": "collected",
+              "sample_count": 1,
+              "sample_interval_seconds": 0.1,
+              "elapsed_seconds": 1.14238,
+              "device_id": 6,
+              "average_power_watt": 106.5,
+              "max_power_watt": 106.5,
+              "average_aicore_percent": 0.0,
+              "max_aicore_percent": 0.0,
+              "average_hbm_used_mb": 5941.0,
+              "max_hbm_used_mb": 5941.0,
+              "estimated_energy_wh": 0.033795,
+              "errors": []
+            },
+            "npu_sample_resource_metrics_status": "collected",
+            "npu_full_resource_metrics": {
+              "status": "collected",
+              "sample_count": 24,
+              "sample_interval_seconds": 1.0,
+              "elapsed_seconds": 53.900424,
+              "device_id": 6,
+              "average_power_watt": 130.75,
+              "max_power_watt": 160.4,
+              "average_aicore_percent": 4.625,
+              "max_aicore_percent": 24.0,
+              "average_hbm_used_mb": 6040.38,
+              "max_hbm_used_mb": 7004.0,
+              "estimated_energy_wh": 1.957633,
+              "errors": []
+            },
+            "npu_full_resource_metrics_status": "collected",
+            "npu_resource_metrics": {
+              "status": "collected",
+              "sample_count": 24,
+              "sample_interval_seconds": 1.0,
+              "elapsed_seconds": 53.900424,
+              "device_id": 6,
+              "average_power_watt": 130.75,
+              "max_power_watt": 160.4,
+              "average_aicore_percent": 4.625,
+              "max_aicore_percent": 24.0,
+              "average_hbm_used_mb": 6040.38,
+              "max_hbm_used_mb": 7004.0,
+              "estimated_energy_wh": 1.957633,
+              "errors": []
+            },
+            "npu_resource_metrics_status": "collected",
+            "cpu_seconds_per_record": 0.00249259,
+            "npu_seconds_per_record": 0.00014126,
+            "estimated_cpu_full_seconds": 932.44973,
+            "estimated_full_speedup": 17.6453,
+            "model_speedup": 19.2335,
+            "cpu_embedding_shape": [
+              2048,
+              512
+            ],
+            "npu_embedding_shape": [
+              374088,
+              512
+            ],
+            "business_input": "chronic_relation_extract/relations_raw.jsonl",
+            "business_output": "npu_relation_standardized.jsonl",
+            "equivalence": {
+              "sample_count": 2048,
+              "embedding_shape_cpu": [
+                2048,
+                512
+              ],
+              "embedding_shape_npu": [
+                2048,
+                512
+              ],
+              "all_finite": true,
+              "embedding_cosine_mean": 0.99999821,
+              "embedding_cosine_min": 0.99999785,
+              "top1_candidate_agreement": 1.0,
+              "keep_decision_agreement": 1.0,
+              "semantic_preservation": 0.99999821
+            },
+            "quality_gate": {
+              "min_keep_rate": 0.98,
+              "required_semantic_preservation": 0.99,
+              "keep_rate": 1.0,
+              "raw_prediction_agreement_diagnostic": 0.869533,
+              "semantic_preservation": 0.99999821,
+              "equivalence": {
+                "sample_count": 2048,
+                "embedding_shape_cpu": [
+                  2048,
+                  512
+                ],
+                "embedding_shape_npu": [
+                  2048,
+                  512
+                ],
+                "all_finite": true,
+                "embedding_cosine_mean": 0.99999821,
+                "embedding_cosine_min": 0.99999785,
+                "top1_candidate_agreement": 1.0,
+                "keep_decision_agreement": 1.0,
+                "semantic_preservation": 0.99999821
+              },
+              "passed": true
+            },
+            "mainline_consumed_npu": true
+          },
+          "duration_seconds": 91.3785
+        },
+        "artifact_paths": {
+          "relations": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_relation_extract_model_npu/relations",
+          "relations_raw": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_relation_extract_model_npu/relations/relations_raw.jsonl",
+          "npu_relation_standardized": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_relation_extract_model_npu/npu_relation_standardized.jsonl",
+          "report": "/tmp/chroniccare_datamate_full_pipeline/output/chronic_relation_extract_model_npu/relation_extract_model_npu_report.json"
+        },
+        "artifact_keys": [
+          "npu_relation_standardized",
+          "relations",
+          "relations_raw",
+          "report"
+        ],
+        "filePath": "/tmp/chroniccare_datamate_full_pipeline/input/raw"
+      }
+    ],
+    "fallback_enabled": false,
+    "fallback_used": false
+  },
+  "reference_metrics": {
+    "patient_count_min": 1000,
+    "visit_count_min": 5000,
+    "lab_result_count_min": 78000,
+    "quality_score_total_min": 85,
+    "question_count_min": 60
+  },
+  "copy_inputs": [
+    {
+      "args": [
+        "docker",
+        "cp",
+        "<PROJECT_ROOT>/data/raw",
+        "datamate-runtime:/tmp/chroniccare_datamate_full_pipeline/input/raw"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "ok": true
+    },
+    {
+      "args": [
+        "docker",
+        "cp",
+        "<PROJECT_ROOT>/configs",
+        "datamate-runtime:/tmp/chroniccare_datamate_full_pipeline/input/configs"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "",
+      "ok": true
+    }
+  ],
+  "container_workspace_prepare": {
+    "args": [
+      "docker",
+      "exec",
+      "-i",
+      "datamate-runtime",
+      "sh",
+      "-lc",
+      "CANN_ROOT=\"\"; NPU_DEVICE_ID=\"6\"; if [ -z \"$CANN_ROOT\" ]; then ENV_FILE=$(find / -type f -path '*/cann-*/set_env.sh' 2>/dev/null | head -n 1); CANN_ROOT=$(dirname \"$ENV_FILE\"); fi; test -n \"$CANN_ROOT\" && test -f \"$CANN_ROOT/set_env.sh\"; source \"$CANN_ROOT/set_env.sh\" >/dev/null 2>&1; export ASCEND_HOME_PATH=\"$CANN_ROOT\"; export ASCEND_TOOLKIT_HOME=\"$CANN_ROOT\"; export ASCEND_OPP_PATH=\"$CANN_ROOT/opp\"; if [ -n \"$NPU_DEVICE_ID\" ]; then export ASCEND_RT_VISIBLE_DEVICES=\"$NPU_DEVICE_ID\"; export ASCEND_VISIBLE_DEVICES=\"$NPU_DEVICE_ID\"; export CHRONICCARE_NPU_PHYSICAL_DEVICE_ID=\"$NPU_DEVICE_ID\"; fi; export OPENBLAS_NUM_THREADS=\"64\"; export OMP_NUM_THREADS=\"64\"; export MKL_NUM_THREADS=\"64\"; export NUMEXPR_NUM_THREADS=\"64\"; export PYTHONPATH=\"$CANN_ROOT/python/site-packages:$CANN_ROOT/opp/built-in/op_impl/ai_core/tbe:/opt/runtime/datamate/:$PYTHONPATH\"; export LD_LIBRARY_PATH=\"$CANN_ROOT/lib64:$CANN_ROOT/lib64/plugin/opskernel:$CANN_ROOT/lib64/plugin/nnengine:$CANN_ROOT/opp/built-in/op_impl/ai_core/tbe/op_tiling/lib/linux/aarch64:$CANN_ROOT/tools/aml/lib64:$CANN_ROOT/tools/aml/lib64/plugin:/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64/common:/usr/local/Ascend/driver/lib64/driver:$LD_LIBRARY_PATH\"; python -"
+    ],
+    "returncode": 0,
+    "stdout": "/tmp/chroniccare_datamate_full_pipeline",
+    "stderr": "",
+    "ok": true
+  },
+  "container_pipeline_run": {
+    "ok": true,
+    "stdout_preview": "{\"status\": \"success\", \"use_npu\": true, \"pure_execution_seconds\": 214.3633, \"pipeline_execution_seconds\": 214.3651, \"pipeline_steps\": [{\"operator\": \"chronic_file_ingest\", \"status\": \"success\", \"execution_seconds\": 0.0032, \"summary\": {\"file_count\": 11, \"structured_files\": 9, \"text_files\": 2}, \"artifact_paths\": {\"manifest\": \"/tmp/chroniccare_datamate_full_pipeline/output/chronic_file_ingest/manifest.json\", \"raw_structured_dir\": \"/tmp/chroniccare_datamate_full_pipeline/input/raw/structured\", \"raw_text_dir\": \"/tmp/chroniccare_datamate_full_pipeline/input/raw/text\"}, \"artifact_keys\": [\"manifest\", \"raw_structured_dir\", \"raw_text_dir\"], \"filePath\": \"/tmp/chroniccare_datamate_full_pipeline/input/raw\"}, {\"operator\": \"chronic_table_clean\", \"status\": \"success\", \"execution_seconds\": 9.166, \"summary\": {\"table_count\": 9, \"rows_after\": 215566}, \"artifact_paths\": {\"clean_tables\": \"/tmp/chroniccare_datamate_full_pipeline/output/chronic_table_clean/clean_tables\", \"report\": \"/tmp/chroniccare_datamate_full_pipeline/output/chronic_table_clean/table_clean_report.json\"}, \"artifact_keys\": [\"clean_tables\", \"report\"], \"filePath\": \"/tmp/chroniccare_datamate_full_pipeline/input/raw\"}, {\"operator\": \"chronic_field_normalize\", \"status\": \"success\", \"execution_seconds\": 8.1501, \"summary\": {\"table_count\": 9}, \"artifact_paths\": {\"normalized_tables\": \"/tmp/chroniccare_datamate_full_pipeline/output/chronic_field_normalize/normalized_tables\", \"report\": \"/tmp/chroniccare_datamate_full_pipeline/output/chronic_field_normalize/field_normalize_report.json\"}, \"artifact_keys\": [\"normalized_tables\", \"report\"], \"filePath\": \"/tmp/chroniccare_datamate_full_pipeline/input/raw\"}, {\"operator\": \"chronic_text_split\", \"status\": \"success\", \"execution_seconds\": 0.1829, \"summary\": {\"chunk_count\": 9189, \"document_count\": 8232}, \"artifact_paths\": {\"chunk_dir\": \"/tmp/chroniccare_datamate_full_pipeline/output/chronic_text_split/chunks\", \"chunk_file\": \"/tmp/chroniccare_datamate_full_pipeline/output/chronic_text_split/chunks/all_c",
+    "stderr": "/usr/local/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.\n  import pynvml  # type: ignore[import]\n/usr/local/lib/python3.11/site-packages/torch_npu/utils/collect_env.py:58: UserWarning: Warning: The <CANN_ROOT> owner does not match the current owner.\n  warnings.warn(f\"Warning: The {path} owner does not match the current owner.\")\n/usr/local/lib/python3.11/site-packages/torch_npu/utils/collect_env.py:58: UserWarning: Warning: The <CANN_ROOT>/aarch64-linux/ascend_ops_install.info owner does not match the current owner.\n  warnings.warn(f\"Warning: The {path} owner does not match the current owner.\")\n/usr/local/lib/python3.11/site-packages/torch_npu/utils/collect_env.py:58: UserWarning: Warning: The <CANN_ROOT> owner does not match the current owner.\n  warnings.warn(f\"Warning: The {path} owner does not match the current owner.\")\n/usr/local/lib/python3.11/site-packages/torch_npu/utils/collect_env.py:58: UserWarning: Warning: The <CANN_ROOT>/aarch64-linux/ascend_ops_install.info owner does not match the current owner.\n  warnings.warn(f\"Warning: The {path} owner does not match the current owner.\")\n[W802 16:59:57.929311040 compiler_depend.ts:41] Warning: The <CANN_ROOT>/opp/vendors/customize/op_api/lib/libcust_opapi.so owner does not match current owner or the root user is using the files of a common user, will skip this file. (function operator())\n[W802 16:59:58.165633900 compiler_depend.ts:117] Warning: Driver Version: ��\u0015\t�� is invalid or not supported yet. (function operator())"
+  },
+  "copy_outputs": {
+    "args": [
+      "docker",
+      "cp",
+      "datamate-runtime:/tmp/chroniccare_datamate_full_pipeline/output",
+      "<PROJECT_ROOT>/outputs/datamate_full_pipeline_npu"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "",
+    "ok": true
+  },
+  "host_output_files": [
+    "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract/entities/entities_raw.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract/entities/entity_catalog.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract/entity_extract_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract_model_npu/entities/entities_raw.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract_model_npu/entities/entity_catalog.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract_model_npu/entity_extract_model_npu_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_entity_extract_model_npu/npu_entity_standardized.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/field_normalize_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/doctor_advice.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/followup_plan.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/lab_result.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/lifestyle_record.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/medication_record.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/patient_profile.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/patient_risk_score.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/risk_event.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_field_normalize/normalized_tables/visit_record.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_file_ingest/manifest.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_kg_build/graph/graph.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_kg_build/graph/graph_summary.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_kg_build/kg_build_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_nl2sql_analyze/indicator_results.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_nl2sql_analyze/nl2sql_eval_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_nl2sql_analyze/sql_candidates.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_relation_extract/relation_extract_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_relation_extract/relations/relations_raw.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/chronic_relation_extract_model_npu/npu_relation_standardized.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/chronic_relation_extract_model_npu/relation_extract_model_npu_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_relation_extract_model_npu/relations/relations_raw.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/analysis_report.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/analysis_report.md",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ001.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ002.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ003.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ004.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ005.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ006.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ007.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ008.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ009.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ010.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ011.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ012.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ013.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ014.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ015.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ016.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ017.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ018.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ019.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/NLQ020.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/charts/chart_index.html",
+    "outputs/datamate_full_pipeline_npu/output/chronic_report_pack/report_pack_summary.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_sqlite_loader/chroniccare.db",
+    "outputs/datamate_full_pipeline_npu/output/chronic_sqlite_loader/sqlite_loader_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/doctor_advice_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/followup_plan_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/lab_result_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/lifestyle_record_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/medication_record_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/patient_profile_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/patient_risk_score_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/risk_event_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/clean_tables/visit_record_clean.csv",
+    "outputs/datamate_full_pipeline_npu/output/chronic_table_clean/table_clean_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_text_split/chunks/all_chunks.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/chronic_text_split/text_split_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_triple_validate/triple_validate_report.json",
+    "outputs/datamate_full_pipeline_npu/output/chronic_triple_validate/triples_clean.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/chronic_triple_validate/triples_rejected.jsonl",
+    "outputs/datamate_full_pipeline_npu/output/pipeline_runtime_result.json"
+  ],
+  "warnings": [],
+  "errors": [],
+  "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+}

@@ -1,0 +1,27 @@
+name: chronic_file_ingest
+raw_id: chronic_file_ingest
+display_name: 慢病随访原始数据接入算子
+version: 0.1.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 扫描慢病随访原始结构化与文本数据，生成后续处理链路使用的 manifest。
+inputs:
+  - name: raw_structured
+    type: directory
+    required: true
+  - name: raw_text
+    type: directory
+    required: true
+outputs:
+  - name: manifest
+    type: json
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, ingestion]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

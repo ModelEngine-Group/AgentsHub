@@ -1,0 +1,55 @@
+templates:
+  patient_overview:
+    description: 查询患者关联疾病、随访、异常指标和用药
+    patterns:
+      - patient_has_disease
+      - patient_has_visit
+      - visit_has_lab
+      - visit_has_medication
+
+  disease_profile:
+    description: 查询疾病关联指标、症状、药物和风险事件
+    patterns:
+      - disease_has_indicator
+      - disease_has_symptom
+      - disease_treated_by_drug
+      - associated_with_risk_event
+
+  drug_profile:
+    description: 查询药物类别和治疗疾病
+    patterns:
+      - drug_belongs_to_category
+      - disease_treated_by_drug
+
+  indicator_profile:
+    description: 查询指标关联的疾病和风险事件
+    patterns:
+      - disease_has_indicator
+      - lab_result_belongs_to_indicator
+      - lab_result_indicates_risk
+
+demo_questions:
+  - id: Q001
+    question: 患者 P0001 关联了哪些疾病、随访和用药？
+    query_type: patient_overview
+    entity_id: Patient::P0001
+
+  - id: Q002
+    question: 高血压关联哪些检查指标、症状和药物？
+    query_type: disease_profile
+    entity_id: Disease::hypertension
+
+  - id: Q003
+    question: 糖尿病关联哪些检查指标和药物？
+    query_type: disease_profile
+    entity_id: Disease::diabetes
+
+  - id: Q004
+    question: 二甲双胍属于什么药物类别，关联哪些疾病？
+    query_type: drug_profile
+    entity_id: Drug::metformin
+
+  - id: Q005
+    question: 空腹血糖和哪些疾病、风险事件有关？
+    query_type: indicator_profile
+    entity_id: Indicator::fasting_glucose

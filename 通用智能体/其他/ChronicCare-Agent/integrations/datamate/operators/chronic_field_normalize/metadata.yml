@@ -1,0 +1,26 @@
+name: chronic_field_normalize
+raw_id: chronic_field_normalize
+display_name: 慢病随访字段归一化算子
+version: 0.1.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 对清洗后的表执行编码、单位和字段命名归一化。
+inputs:
+  - name: clean_tables
+    type: directory
+    required: true
+outputs:
+  - name: normalized_tables
+    type: directory
+  - name: field_normalize_report
+    type: json
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, normalize]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

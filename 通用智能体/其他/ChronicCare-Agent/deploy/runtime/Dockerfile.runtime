@@ -1,0 +1,17 @@
+FROM python:3.12.13-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+COPY . /app
+RUN chmod +x /app/deploy/runtime/start_runtime.sh
+
+EXPOSE 18088 18188 18501
+HEALTHCHECK --interval=30s --timeout=8s --start-period=20s --retries=3 CMD python -c "import urllib.request; urls=['http://127.0.0.1:18088/health','http://127.0.0.1:18188/health','http://127.0.0.1:18501']; raise SystemExit(0 if all(urllib.request.urlopen(u, timeout=3).status < 400 for u in urls) else 1)"
+
+CMD ["/app/deploy/runtime/start_runtime.sh"]

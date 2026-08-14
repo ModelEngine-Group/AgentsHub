@@ -1,0 +1,121 @@
+{
+  "status": "success",
+  "base_single_turn_questions": 35,
+  "multi_turn_dialogues": 5,
+  "total_evaluation_turns": 40,
+  "reference_resolution_accuracy": 1.0,
+  "privacy_check": "patient_ids and patient detail rows are removed before persistence",
+  "cases": [
+    {
+      "id": "ctx-001",
+      "expected": "latest",
+      "actual": "latest",
+      "correct": true,
+      "result": {
+        "status": "resolved",
+        "cohort": {
+          "cohort_label": "未来30天高风险",
+          "cohort_definition": {
+            "disease": "未来30天高风险"
+          },
+          "source_question": "建立未来30天高风险队列",
+          "source_tool": "context_eval",
+          "filters": {
+            "disease": "未来30天高风险"
+          },
+          "time_window": null,
+          "patient_count": 183,
+          "data_version": "context_fixture_v1",
+          "as_of_date": "2026-07-19",
+          "conversation_id": "c1",
+          "cohort_id": "cohort_f96e812fa9a4",
+          "created_at": "2026-07-19T17:00:10.849601+08:00",
+          "expires_at": "2026-07-19T18:00:10.849601+08:00"
+        },
+        "resolution": "latest"
+      }
+    },
+    {
+      "id": "ctx-002",
+      "expected": "latest",
+      "actual": "latest",
+      "correct": true,
+      "result": {
+        "status": "resolved",
+        "cohort": {
+          "cohort_label": "糖尿病",
+          "cohort_definition": {
+            "disease": "糖尿病"
+          },
+          "source_question": "建立糖尿病队列",
+          "source_tool": "context_eval",
+          "filters": {
+            "disease": "糖尿病"
+          },
+          "time_window": null,
+          "patient_count": 746,
+          "data_version": "context_fixture_v1",
+          "as_of_date": "2026-07-19",
+          "conversation_id": "c2",
+          "cohort_id": "cohort_c83e1cd3527a",
+          "created_at": "2026-07-19T17:00:10.850727+08:00",
+          "expires_at": "2026-07-19T18:00:10.850727+08:00"
+        },
+        "resolution": "latest"
+      }
+    },
+    {
+      "id": "ctx-003",
+      "expected": "needs_clarification",
+      "actual": "needs_clarification",
+      "correct": true,
+      "result": {
+        "status": "needs_clarification",
+        "cohort": null,
+        "question": "他们指哪个群体？请先说明患者范围。"
+      }
+    },
+    {
+      "id": "ctx-004",
+      "expected": "previous",
+      "actual": "previous",
+      "correct": true,
+      "result": {
+        "status": "resolved",
+        "cohort": {
+          "cohort_label": "糖尿病",
+          "cohort_definition": {
+            "disease": "糖尿病"
+          },
+          "source_question": "建立糖尿病队列",
+          "source_tool": "context_eval",
+          "filters": {
+            "disease": "糖尿病"
+          },
+          "time_window": null,
+          "patient_count": 746,
+          "data_version": "context_fixture_v1",
+          "as_of_date": "2026-07-19",
+          "conversation_id": "c4",
+          "cohort_id": "cohort_678adf166794",
+          "created_at": "2026-07-19T17:00:10.851843+08:00",
+          "expires_at": "2026-07-19T18:00:10.851843+08:00"
+        },
+        "resolution": "previous"
+      }
+    },
+    {
+      "id": "ctx-005",
+      "expected": "needs_clarification",
+      "actual": "needs_clarification",
+      "correct": true,
+      "result": {
+        "status": "needs_clarification",
+        "cohort": null,
+        "question": "他们指哪个群体？请先说明患者范围。"
+      }
+    }
+  ],
+  "evaluation_scope": "isolated_context_fixture_not_current_database",
+  "fixture_note": "patient_count values belong to isolated context-resolution fixtures and are not ChronicCare database metrics"
+}

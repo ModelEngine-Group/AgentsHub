@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "synthetic": true,
+  "data_version": "synthetic_chroniccare",
+  "generator_version": "3.0.0",
+  "seed": 20260719,
+  "generated_at": "2026-07-21T22:59:35+08:00",
+  "content_sha256": "e55862b95c0566ef245df9658c5b6c93eed7f3338309ad3e42384e755e961c38",
+  "patient_count": 2000,
+  "visit_count": 8231,
+  "lab_result_count": 131323,
+  "medication_record_count": 18248,
+  "risk_event_count": 22840,
+  "followup_plan_count": 8231,
+  "case_note_count": 8231,
+  "synthetic_data_statement": "参考真实慢病随访业务的字段结构、业务关系和合理取值范围，采用程序化规则与固定随机种子合成；不来源于真实患者个体或原始病历，不代表任何国家、地区或医疗机构的真实患病率，不用于临床诊断。"
+}
