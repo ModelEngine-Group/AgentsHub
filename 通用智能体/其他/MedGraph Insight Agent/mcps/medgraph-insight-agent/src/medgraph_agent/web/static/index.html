@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MedGraph Insight Agent</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">ModelEngine Preliminary Demo</div>
+        <h1>MedGraph Insight Agent</h1>
+      </div>
+      <button id="runDemo" class="primary">Run Pipeline</button>
+    </header>
+
+    <main>
+      <section class="metrics" id="metrics"></section>
+
+      <section class="workspace">
+        <div class="panel graph-panel">
+          <div class="panel-title">
+            <h2>Knowledge Graph</h2>
+            <span id="graphMeta"></span>
+          </div>
+          <svg id="graph" viewBox="0 0 920 520" role="img" aria-label="knowledge graph"></svg>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">
+            <h2>Graph Analysis</h2>
+          </div>
+          <div class="query-row">
+            <input id="analysisQuestion" value="统计关系类型分布" />
+            <button id="analyze">Analyze</button>
+          </div>
+          <div id="chart" class="chart"></div>
+          <p id="narrative" class="narrative"></p>
+        </div>
+      </section>
+
+      <section class="panel qa-panel">
+        <div class="panel-title">
+          <h2>Graph-grounded QA</h2>
+        </div>
+        <div class="query-row">
+          <input id="qaQuestion" value="高血压有哪些症状、治疗和检查证据？" />
+          <button id="ask">Ask</button>
+        </div>
+        <div id="answer" class="answer"></div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

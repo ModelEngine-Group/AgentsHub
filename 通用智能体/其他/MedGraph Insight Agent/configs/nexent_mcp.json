@@ -1,0 +1,15 @@
+{
+  "name": "MedGraphInsight",
+  "description": "Medical data processing, knowledge graph QA, graph analysis and quality auditing.",
+  "transport": "sse",
+  "url": "http://host.docker.internal:8100/sse",
+  "tools": [
+    "run_pipeline",
+    "query_graph",
+    "answer_medical_question",
+    "run_analysis",
+    "get_benchmark",
+    "get_quality_report"
+  ],
+  "authentication": null
+}
