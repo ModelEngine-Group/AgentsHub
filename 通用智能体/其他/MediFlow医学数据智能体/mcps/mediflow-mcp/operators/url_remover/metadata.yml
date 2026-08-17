@@ -1,0 +1,17 @@
+name: 'URL链接去除'
+name_en: 'URL Remover'
+description: '完全删除医疗文本中的 HTTP/HTTPS/FTP 链接（包括内部系统链接、图片链接等），不留任何占位符。'
+description_en: 'Completely removes HTTP/HTTPS/FTP URLs from medical text without leaving placeholders.'
+language: 'python'
+vendor: 'bjfuteam'
+raw_id: 'UrlRemover'
+version: '1.0.0'
+types:
+  - 'cleaning'
+modal: 'text'
+effect:
+  before: '报告链接：http://hospital-inner.local/report_id=99281 📎 图片已失效'
+  after: '报告链接：图片已失效'
+inputs: 'text'
+outputs: 'text'
+settings: {}

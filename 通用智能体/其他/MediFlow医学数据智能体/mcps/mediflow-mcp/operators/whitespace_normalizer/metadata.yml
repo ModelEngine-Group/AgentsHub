@@ -1,0 +1,5 @@
+name: WhitespaceNormalizer
+description: 空白规范化：去除多余空行、每行前导尾随空格、噪声标记行（###/---）、广告话术行（@@...@@），压缩行内多余空格
+version: 1.0.0
+inputs: text
+outputs: text

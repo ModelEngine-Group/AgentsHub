@@ -1,0 +1,38 @@
+# MediFlow 结构化配置参考
+
+llm:
+  base_url: "https://api.deepseek.com/v1/chat/completions"
+  model: "deepseek-chat"
+  timeout_seconds: 240
+
+datamate:
+  api_base: "http://localhost:18000"
+  gateway_base: "http://localhost:8080"
+  operator_volume: "/path/to/datamate-operator-runtime-volume"
+  dataset_volume: "/path/to/datamate-dataset-volume"
+  data_root: "data/input"
+  runtime_container: "datamate-runtime"
+  mineru_api: "https://mineru.net/api/v1/agent"
+
+nexent:
+  api_base: "http://localhost:5010"
+  runtime_base: "http://localhost:5014"
+  service_name: "medical-ai"
+
+mcp_server:
+  host: "0.0.0.0"
+  port: 8900
+  external_url: "http://127.0.0.1:8900/mcp"
+
+public_urls:
+  datamate: "https://datamate.example.com/"
+  nexent: "https://nexent.example.com/"
+  analytics: "https://analytics.example.com/"
+
+kg:
+  sqlite_path: "data/task2_medical_kg.db"
+  analytics_db_path: "data/task3_analytics.db"
+
+extraction:
+  backend: "hybrid"
+  max_gap_segments: 12

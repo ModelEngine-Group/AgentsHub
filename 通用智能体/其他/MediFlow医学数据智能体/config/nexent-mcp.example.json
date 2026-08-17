@@ -1,0 +1,11 @@
+{
+  "name": "medical-ai",
+  "server_url": "http://mediflow-host:8900/mcp",
+  "description": "MediFlow 医疗数据清洗、知识图谱与分析 MCP 服务",
+  "source": "local",
+  "tags": [
+    "medical",
+    "data"
+  ],
+  "enabled": true
+}

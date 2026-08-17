@@ -1,0 +1,5 @@
+name: JsonFieldCleaner
+description: JSON/JSONL 字段级清洗：解析结构后只清洗医疗文本字段(note/text/诊断/主诉等)的value，做术语标准化(term_kb)+规则去噪(noise_kb)，保留JSON结构、key名、标识字段(id/姓名/age)与非文本值。避免把JSON当纯文本整串正则替换破坏结构。
+version: 1.0.0
+inputs: text
+outputs: text

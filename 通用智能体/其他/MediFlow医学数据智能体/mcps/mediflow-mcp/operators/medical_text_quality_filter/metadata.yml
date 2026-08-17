@@ -1,0 +1,38 @@
+name: '医疗文本质量过滤'
+name_en: 'Medical Text Quality Filter'
+description: '对医疗文本进行综合质量评分（0~1），过滤低质量文档。评分维度：医疗术语密度(35%) + 信息完整度(30%) + 文本长度(20%) + 文本洁净度(15%)。'
+description_en: 'Scores medical text quality (0~1) and filters out low-quality documents. Scoring: term density(35%) + completeness(30%) + length(20%) + cleanliness(15%).'
+language: 'python'
+vendor: 'bjfuteam'
+raw_id: 'MedicalTextQualityFilter'
+version: '1.0.0'
+types:
+  - 'cleaning'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+effect:
+  before: '买卖手机，超低价，点击链接！！！！！！！！！！'
+  after: '（被过滤，质量分 0.02 < 阈值 0.3）'
+settings:
+  qualityThreshold:
+    name: '质量分阈值'
+    description: '低于此分数的文档被过滤（0~1，默认0.3）'
+    type: 'slider'
+    defaultVal: 0.3
+    min: 0.1
+    max: 0.9
+    step: 0.05
+  addScoreField:
+    name: '输出质量分字段'
+    description: '是否在输出中附加 quality_score 字段'
+    type: 'switch'
+    defaultVal: true
+runtime:
+  memory: 52428800
+  cpu: 0.1
+  gpu: 0
+  npu: 0
+release:
+  - '首次发布，支持医疗文本质量评分与过滤'
+  - '扩充情绪/主诉/睡眠等非结构化医疗词汇'
