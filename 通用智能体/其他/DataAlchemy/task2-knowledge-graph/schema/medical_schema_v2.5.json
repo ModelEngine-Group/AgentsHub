@@ -1,0 +1,389 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "医疗知识图谱Schema v2.5",
+  "description": "CCF开源创新大赛 · 任务二 · 医疗知识图谱问答智能体 · 精益创新版",
+  "version": "2.5",
+  "author": "",
+  "updated": "2026-05-16",
+
+  "metadata": {
+    "design_principle": "在比赛评分要求 × 个人时间约束 × 创新差异化之间找最优解",
+    "innovation_highlights": [
+      "双代理验证（推理+验证）- QKG论文核心创新",
+      "上下文约束字段 - 体现医疗KG专业性",
+      "禁忌关系 - Schema从3→4种关系",
+      "经验记忆（可选）- 避免重复错误"
+    ],
+    "scoring_mapping": {
+      "知识图谱设计": "10分 - 4实体+4关系+上下文约束+禁忌关系",
+      "算子设计与实现": "10分 - 3个算子继承Mapper、接口清晰",
+      "智能体编排能力": "10分 - 双代理验证+Supervisor模式",
+      "结果质量": "10分 - 双代理验证准确率+经验记忆"
+    }
+  },
+
+  "entity_types": {
+    "description": "实体类型（4种，固定预定义，不依赖LLM发现）",
+    "types": [
+      {
+        "type": "疾病",
+        "type_en": "disease",
+        "description": "各种疾病名称",
+        "examples": ["2型糖尿病", "高血压", "冠心病", "肺炎", "胃溃疡", "慢性肾病"],
+        "extraction_hints": "通常包含'病'、'症'、'炎'等后缀，或特定疾病名称"
+      },
+      {
+        "type": "症状",
+        "type_en": "symptom",
+        "description": "疾病的各种临床表现",
+        "examples": ["多饮多尿", "头痛", "胸闷", "咳嗽", "发热", "乏力"],
+        "extraction_hints": "患者主诉、临床表现，注意超级节点过滤",
+        "super_nodes": ["发热", "乏力", "头痛", "呕吐"],
+        "super_node_threshold": 8
+      },
+      {
+        "type": "药物",
+        "type_en": "drug",
+        "description": "各种治疗药物",
+        "examples": ["二甲双胍", "阿司匹林", "布洛芬", "氨溴索", "胰岛素"],
+        "extraction_hints": "药品通用名、商品名"
+      },
+      {
+        "type": "检查",
+        "type_en": "test",
+        "description": "医学检查项目",
+        "examples": ["血常规", "X光", "CT", "尿常规", "血糖检测", "肾功能检查"],
+        "extraction_hints": "检查、检验、化验、影像等"
+      }
+    ]
+  },
+
+  "relation_types": {
+    "description": "关系类型（4种，v2.5版）",
+    "types": [
+      {
+        "relation": "导致",
+        "relation_en": "causes",
+        "head_type": "疾病",
+        "tail_type": "症状",
+        "direction": "疾病 → 症状",
+        "description": "疾病表现出的症状",
+        "examples": [
+          {"head": "糖尿病", "tail": "多饮多尿"},
+          {"head": "高血压", "tail": "头痛"},
+          {"head": "冠心病", "tail": "胸闷"}
+        ]
+      },
+      {
+        "relation": "治疗",
+        "relation_en": "treats",
+        "head_type": "药物",
+        "tail_type": "疾病",
+        "direction": "药物 → 疾病",
+        "description": "药物治疗的疾病",
+        "examples": [
+          {"head": "二甲双胍", "tail": "2型糖尿病"},
+          {"head": "阿司匹林", "tail": "冠心病"},
+          {"head": "布洛芬", "tail": "发热"}
+        ]
+      },
+      {
+        "relation": "用于",
+        "relation_en": "used_for",
+        "head_type": "药物",
+        "tail_type": "症状",
+        "direction": "药物 → 症状",
+        "description": "药物缓解的症状",
+        "examples": [
+          {"head": "布洛芬", "tail": "发热"},
+          {"head": "布洛芬", "tail": "头痛"},
+          {"head": "氨溴索", "tail": "咳嗽"}
+        ]
+      },
+      {
+        "relation": "禁忌",
+        "relation_en": "contraindicates",
+        "head_type": "药物",
+        "tail_type": "疾病",
+        "direction": "药物 → 疾病",
+        "description": "药物禁用或慎用的疾病（v2.5新增，体现医疗KG专业性）",
+        "examples": [
+          {"head": "阿司匹林", "tail": "胃溃疡"},
+          {"head": "二甲双胍", "tail": "慢性肾病"}
+        ]
+      }
+    ]
+  },
+
+  "triple_schema": {
+    "description": "三元组存储格式（含上下文约束）",
+    "type": "object",
+    "required": ["head", "relation", "tail"],
+    "properties": {
+      "head": {
+        "type": "string",
+        "description": "头实体名称"
+      },
+      "relation": {
+        "type": "string",
+        "enum": ["导致", "治疗", "用于", "禁忌"],
+        "description": "关系类型"
+      },
+      "tail": {
+        "type": "string",
+        "description": "尾实体名称"
+      },
+      "context_constraints": {
+        "type": "array",
+        "description": "上下文约束（v2.5创新：体现医疗KG的专业性）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "condition": {
+              "type": "string",
+              "description": "约束条件（如 eGFR >= 30）"
+            },
+            "applicability": {
+              "type": "string",
+              "enum": ["适用", "慎用", "禁忌"],
+              "description": "适用性"
+            },
+            "evidence": {
+              "type": "string",
+              "description": "证据来源（如药品说明书、临床指南）"
+            }
+          }
+        }
+      },
+      "confidence": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "description": "置信度（0-1）"
+      },
+      "source": {
+        "type": "string",
+        "description": "数据来源"
+      }
+    }
+  },
+
+  "kg_storage_format": {
+    "description": "知识图谱存储格式（内存JSON文件）",
+    "type": "object",
+    "properties": {
+      "schema_version": {
+        "type": "string",
+        "const": "2.5"
+      },
+      "entities": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "type": {"type": "string", "enum": ["疾病", "症状", "药物", "检查"]},
+            "aliases": {"type": "array", "items": {"type": "string"}},
+            "description": {"type": "string"}
+          }
+        }
+      },
+      "triples": {
+        "type": "array",
+        "items": {"$ref": "#/triple_schema"}
+      }
+    }
+  },
+
+  "query_types": {
+    "description": "支持的查询类型（用于KG检索模块）",
+    "types": [
+      {
+        "query_type": "symptom_query",
+        "description": "查询疾病的症状",
+        "example_question": "糖尿病有哪些症状？",
+        "filter_logic": "relation == '导致' AND head == query_entity"
+      },
+      {
+        "query_type": "treatment_query",
+        "description": "查询疾病的治疗药物",
+        "example_question": "糖尿病用什么药治疗？",
+        "filter_logic": "relation == '治疗' AND tail == query_entity"
+      },
+      {
+        "query_type": "drug_effect_query",
+        "description": "查询药物治疗的疾病",
+        "example_question": "二甲双胍能治什么病？",
+        "filter_logic": "relation == '治疗' AND head == query_entity"
+      },
+      {
+        "query_type": "contraindication_query",
+        "description": "查询药物的禁忌症",
+        "example_question": "阿司匹林有什么禁忌？",
+        "filter_logic": "relation == '禁忌' AND head == query_entity"
+      },
+      {
+        "query_type": "cause_query",
+        "description": "查询疾病的原因/并发症",
+        "example_question": "什么疾病会导致头痛？",
+        "filter_logic": "relation == '导致' AND tail == query_entity"
+      }
+    ]
+  },
+
+  "super_node_config": {
+    "description": "超级节点配置（FEA论文启发，过滤过度通用的症状）",
+    "super_nodes": ["发热", "乏力", "头痛", "呕吐"],
+    "threshold": 8,
+    "filter_logic": "当症状连接超过threshold个疾病时，检索时降权处理"
+  },
+
+  "example_knowledge_graph": {
+    "description": "示例知识图谱（用于测试）",
+    "entities": [
+      {"name": "2型糖尿病", "type": "疾病", "aliases": ["糖尿病", "T2DM"]},
+      {"name": "高血压", "type": "疾病", "aliases": ["血压高"]},
+      {"name": "冠心病", "type": "疾病", "aliases": ["冠状动脉粥样硬化性心脏病"]},
+      {"name": "胃溃疡", "type": "疾病", "aliases": ["胃黏膜溃疡"]},
+      {"name": "慢性肾病", "type": "疾病", "aliases": ["CKD"]},
+      {"name": "多饮多尿", "type": "症状", "aliases": ["三多一少"]},
+      {"name": "头痛", "type": "症状", "aliases": []},
+      {"name": "胸闷", "type": "症状", "aliases": []},
+      {"name": "二甲双胍", "type": "药物", "aliases": ["格华止"]},
+      {"name": "阿司匹林", "type": "药物", "aliases": ["拜阿司匹灵"]},
+      {"name": "布洛芬", "type": "药物", "aliases": ["芬必得"]},
+      {"name": "血常规", "type": "检查", "aliases": ["血细胞分析"]},
+      {"name": "血糖检测", "type": "检查", "aliases": ["空腹血糖"]},
+      {"name": "肾功能检查", "type": "检查", "aliases": ["肾功"]}
+    ],
+    "triples": [
+      {
+        "head": "2型糖尿病",
+        "relation": "导致",
+        "tail": "多饮多尿",
+        "context_constraints": [],
+        "confidence": 0.95,
+        "source": "临床指南"
+      },
+      {
+        "head": "二甲双胍",
+        "relation": "治疗",
+        "tail": "2型糖尿病",
+        "context_constraints": [
+          {
+            "condition": "eGFR >= 30",
+            "applicability": "适用",
+            "evidence": "药品说明书"
+          },
+          {
+            "condition": "eGFR < 30",
+            "applicability": "禁忌",
+            "evidence": "药品说明书：重度肾功能不全禁用"
+          }
+        ],
+        "confidence": 0.98,
+        "source": "药品说明书"
+      },
+      {
+        "head": "阿司匹林",
+        "relation": "治疗",
+        "tail": "冠心病",
+        "context_constraints": [
+          {
+            "condition": "无胃溃疡病史",
+            "applicability": "适用",
+            "evidence": "临床指南"
+          }
+        ],
+        "confidence": 0.95,
+        "source": "临床指南"
+      },
+      {
+        "head": "阿司匹林",
+        "relation": "禁忌",
+        "tail": "胃溃疡",
+        "context_constraints": [],
+        "confidence": 0.99,
+        "source": "药品说明书"
+      },
+      {
+        "head": "二甲双胍",
+        "relation": "禁忌",
+        "tail": "慢性肾病",
+        "context_constraints": [
+          {
+            "condition": "eGFR < 30",
+            "applicability": "禁忌",
+            "evidence": "药品说明书"
+          }
+        ],
+        "confidence": 0.97,
+        "source": "药品说明书"
+      },
+      {
+        "head": "高血压",
+        "relation": "导致",
+        "tail": "头痛",
+        "context_constraints": [],
+        "confidence": 0.85,
+        "source": "临床经验"
+      },
+      {
+        "head": "布洛芬",
+        "relation": "用于",
+        "tail": "头痛",
+        "context_constraints": [],
+        "confidence": 0.90,
+        "source": "药品说明书"
+      },
+      {
+        "head": "布洛芬",
+        "relation": "用于",
+        "tail": "发热",
+        "context_constraints": [],
+        "confidence": 0.92,
+        "source": "药品说明书"
+      },
+      {
+        "head": "冠心病",
+        "relation": "导致",
+        "tail": "胸闷",
+        "context_constraints": [],
+        "confidence": 0.88,
+        "source": "临床指南"
+      }
+    ]
+  },
+
+  "experience_memory_schema": {
+    "description": "经验记忆存储格式",
+    "type": "object",
+    "properties": {
+      "failure_memories": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "question": {"type": "string"},
+            "original_answer": {"type": "string"},
+            "correct_answer": {"type": "string"},
+            "error_type": {"type": "string"},
+            "correct_trace": {"type": "array", "items": {"type": "string"}},
+            "timestamp": {"type": "string", "format": "date-time"}
+          }
+        }
+      },
+      "success_hints": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "question_type": {"type": "string"},
+            "pattern": {"type": "string"},
+            "hint": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}

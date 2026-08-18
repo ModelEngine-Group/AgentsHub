@@ -1,0 +1,294 @@
+{
+  "agent_config": {
+    "name": "医疗知识图谱问答智能体v2.5",
+    "description": "基于双代理验证的医疗知识图谱问答系统，支持超级节点过滤和上下文约束推理",
+    "version": "2.5",
+    "author": "",
+    "created_at": "2026-05-16",
+    "architecture": "dual_agent_supervisor"
+  },
+  "model_config": {
+    "primary_model": {
+      "model_id": "deepseek-v4-flash",
+      "provider": "openai_compatible",
+      "api_base": "https://api.siliconflow.cn/v1",
+      "api_key": "your_api_key_here",
+      "temperature": 0.3,
+      "max_tokens": 4096,
+      "stream": true
+    },
+    "backup_model": {
+      "model_id": "qwen3.5-plus",
+      "provider": "openai_compatible",
+      "api_base": "https://api.siliconflow.cn/v1",
+      "api_key": "your_api_key_here",
+      "temperature": 0.3,
+      "max_tokens": 4096
+    },
+    "embedding_model": {
+      "model_id": "qwen3-embedding-8b",
+      "provider": "openai_compatible",
+      "api_base": "https://api.siliconflow.cn/v1",
+      "api_key": "your_api_key_here"
+    }
+  },
+  "system_prompt": {
+    "file_path": "prompts/reasoning_agent_v2.5.md",
+    "dynamic_loading": true,
+    "template_variables": {
+      "schema_version": "2.5",
+      "super_node_threshold": 8,
+      "max_iterations": 3
+    }
+  },
+  "tools_config": {
+    "mcp_tools": [
+      {
+        "name": "knowledge_graph_search",
+        "type": "mcp_tool",
+        "mcp_server": "http://host.docker.internal:8089",
+        "tool_name": "datamate_execute_operator",
+        "description": "查询医疗知识图谱",
+        "parameters": {
+          "operator_name": "kg_search",
+          "params": {
+            "query_type": "string",
+            "entity": "string",
+            "relation": "string",
+            "max_results": 10
+          }
+        }
+      },
+      {
+        "name": "entity_recognition",
+        "type": "mcp_tool",
+        "mcp_server": "http://host.docker.internal:8089",
+        "tool_name": "datamate_execute_operator",
+        "description": "识别医疗文本中的实体",
+        "parameters": {
+          "operator_name": "entity_recognizer",
+          "params": {
+            "text": "string",
+            "entity_types": ["疾病", "症状", "药物", "检查"]
+          }
+        }
+      },
+      {
+        "name": "relation_extraction",
+        "type": "mcp_tool",
+        "mcp_server": "http://host.docker.internal:8089",
+        "tool_name": "datamate_execute_operator",
+        "description": "抽取实体间的关系",
+        "parameters": {
+          "operator_name": "relation_extractor",
+          "params": {
+            "text": "string",
+            "entities": "array"
+          }
+        }
+      },
+      {
+        "name": "context_constraint_checker",
+        "type": "custom_tool",
+        "implementation": "tools/context_constraint_checker.py",
+        "description": "检查三元组的上下文约束",
+        "parameters": {
+          "triple": "object",
+          "patient_context": "object"
+        }
+      },
+      {
+        "name": "super_node_filter",
+        "type": "custom_tool",
+        "implementation": "tools/super_node_filter.py",
+        "description": "过滤超级节点的高频连接",
+        "parameters": {
+          "node": "string",
+          "connections": "array",
+          "threshold": 8
+        }
+      },
+      {
+        "name": "fact_checker",
+        "type": "custom_tool",
+        "implementation": "tools/fact_checker.py",
+        "description": "验证推理结果的事实准确性",
+        "parameters": {
+          "reasoning_result": "object",
+          "knowledge_graph": "object"
+        }
+      },
+      {
+        "name": "logic_validator",
+        "type": "custom_tool",
+        "implementation": "tools/logic_validator.py",
+        "description": "验证推理过程的逻辑合理性",
+        "parameters": {
+          "reasoning_process": "object"
+        }
+      },
+      {
+        "name": "safety_assessor",
+        "type": "custom_tool",
+        "implementation": "tools/safety_assessor.py",
+        "description": "评估医疗信息的安全性",
+        "parameters": {
+          "medical_info": "object",
+          "patient_context": "object"
+        }
+      },
+      {
+        "name": "quality_scorer",
+        "type": "custom_tool",
+        "implementation": "tools/quality_scorer.py",
+        "description": "对推理结果进行多维度质量评分",
+        "parameters": {
+          "reasoning_result": "object",
+          "evaluation_criteria": "object"
+        }
+      },
+      {
+        "name": "experience_memory",
+        "type": "custom_tool",
+        "implementation": "tools/experience_memory.py",
+        "description": "查询经验记忆库",
+        "parameters": {
+          "query": "string",
+          "memory_type": "string",
+          "max_results": 5
+        }
+      }
+    ],
+    "file_system_tools": [
+      {
+        "name": "read_schema",
+        "type": "file_system",
+        "init_path": "/mnt/nexent/",
+        "description": "读取Schema配置文件"
+      },
+      {
+        "name": "read_test_data",
+        "type": "file_system",
+        "init_path": "/mnt/nexent/",
+        "description": "读取测试数据文件"
+      },
+      {
+        "name": "read_experience_memory",
+        "type": "file_system",
+        "init_path": "/mnt/nexent/",
+        "description": "读取经验记忆文件"
+      }
+    ]
+  },
+  "execution_config": {
+    "max_steps": 10,
+    "timeout_seconds": 30,
+    "retry_attempts": 3,
+    "parallel_execution": false,
+    "verbose_logging": true
+  },
+  "quality_control": {
+    "dual_agent_verification": {
+      "enabled": true,
+      "reasoning_agent": "prompts/reasoning_agent_v2.5.md",
+      "verification_agent": "prompts/verification_agent_v2.5.md",
+      "max_iterations": 3,
+      "quality_threshold": 0.7,
+      "safety_threshold": 0.9
+    },
+    "super_node_filtering": {
+      "enabled": true,
+      "threshold": 8,
+      "super_nodes": ["发热", "乏力", "头痛", "呕吐"]
+    },
+    "context_constraints": {
+      "enabled": true,
+      "strict_mode": true,
+      "supported_conditions": ["age", "gender", "egfr", "allergies", "comorbidities"]
+    }
+  },
+  "data_files": {
+    "schema_file": "schema/medical_schema_v2.5.json",
+    "test_queries_file": "data/test_queries_v2.5.json",
+    "experience_memory_file": "data/experience_memory.json",
+    "super_node_config": "config/super_node_config.json"
+  },
+  "deployment_config": {
+    "environment": "nexent_platform",
+    "workspace_dir": "/mnt/nexent/",
+    "temp_dir": "/tmp/kg_qa_agent/",
+    "log_dir": "/var/log/kg_qa_agent/",
+    "mcp_server_url": "http://host.docker.internal:8089"
+  },
+  "monitoring_config": {
+    "enable_metrics": true,
+    "metrics_port": 9090,
+    "enable_logging": true,
+    "log_level": "INFO",
+    "enable_tracing": true,
+    "tracing_port": 16686
+  },
+  "output_config": {
+    "response_format": "markdown",
+    "include_reasoning_process": true,
+    "include_confidence_scores": true,
+    "include_evidence_sources": true,
+    "include_limitations": true,
+    "max_response_length": 2000
+  },
+  "error_handling": {
+    "fallback_responses": {
+      "knowledge_gap": "抱歉，我的知识库中暂时没有相关信息，建议您咨询专业医生。",
+      "ambiguity": "您的问题有些模糊，能否提供更多详细信息？",
+      "safety_concern": "⚠️ 安全提示：该问题涉及医疗安全，建议立即咨询医生。",
+      "system_error": "系统暂时出现问题，请稍后再试。"
+    },
+    "escalation_rules": {
+      "critical_safety": "立即终止对话，提示用户寻求专业医疗帮助",
+      "repeated_failures": "切换到备用模型或简化推理模式",
+      "timeout": "返回部分结果并提示用户"
+    }
+  },
+  "performance_config": {
+    "cache_enabled": true,
+    "cache_ttl_seconds": 300,
+    "batch_processing": false,
+    "max_concurrent_queries": 5,
+    "query_timeout_seconds": 30
+  },
+  "testing_config": {
+    "test_queries_file": "data/test_queries_v2.5.json",
+    "evaluation_framework": {
+      "quality_dimensions": ["准确性", "完整性", "安全性", "个性化", "实用性"],
+      "passing_threshold": 0.7,
+      "target_accuracy": 0.85
+    },
+    "automated_testing": {
+      "enabled": true,
+      "test_on_startup": false,
+      "regression_testing": true
+    }
+  },
+  "documentation": {
+    "readme_file": "README.md",
+    "api_documentation": "docs/api_spec.md",
+    "user_guide": "docs/user_guide.md",
+    "developer_guide": "docs/developer_guide.md"
+  },
+  "version_info": {
+    "version": "2.5",
+    "release_date": "2026-05-16",
+    "changelog": [
+      "新增双代理验证架构",
+      "集成超级节点过滤",
+      "支持上下文约束推理",
+      "添加经验记忆系统",
+      "优化质量评分机制"
+    ],
+    "compatibility": {
+      "nexent_version": ">=2.0.0",
+      "datamate_version": ">=1.0.0",
+      "python_version": ">=3.9"
+    }
+  }
+}

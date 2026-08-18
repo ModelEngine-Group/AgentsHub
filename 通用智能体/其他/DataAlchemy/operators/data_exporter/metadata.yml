@@ -1,0 +1,75 @@
+name: '数据导出算子'
+description: '支持 CSV/JSON/JSONL 格式导出的数据导出算子，完成 ETL 流水线的 Load 阶段'
+language: 'python'
+vendor: 'ccf-team'
+raw_id: 'DataExporter'
+version: '1.0.0'
+modal: 'text'
+inputs: 'table'
+outputs: 'table'
+types:
+  - 'cleaning'
+release:
+  - '首次发布'
+runtime:
+  memory: 20971520
+  cpu: 0.2
+  gpu: 0
+  npu: 0
+settings:
+  outputFormat:
+    name: '导出格式'
+    description: '选择导出的文件格式'
+    type: 'select'
+    defaultVal: 'csv'
+    required: false
+    options:
+      - label: 'CSV'
+        value: 'csv'
+      - label: 'JSON（数组格式）'
+        value: 'json'
+      - label: 'JSONL（每行一条记录）'
+        value: 'jsonl'
+  outputDir:
+    name: '输出目录'
+    description: '输出文件的目录路径，如 /mnt/data/export/（不存在时自动创建）'
+    type: 'input'
+    defaultVal: ''
+    required: true
+  outputFileName:
+    name: '输出文件名'
+    description: '输出文件名（不含扩展名），如 cleaned_data'
+    type: 'input'
+    defaultVal: 'export_output'
+    required: false
+  encoding:
+    name: '输出编码'
+    description: '输出文件的编码格式'
+    type: 'select'
+    defaultVal: 'utf-8'
+    required: false
+    options:
+      - label: 'UTF-8'
+        value: 'utf-8'
+      - label: 'GBK'
+        value: 'gbk'
+      - label: 'GB2312'
+        value: 'gb2312'
+  includeHeader:
+    name: '包含表头'
+    description: 'CSV 格式是否包含列名表头'
+    type: 'switch'
+    defaultVal: true
+    required: false
+  indexColumn:
+    name: '包含索引'
+    description: '是否在输出中包含 pandas 行索引列'
+    type: 'switch'
+    defaultVal: false
+    required: false
+  overwrite:
+    name: '覆盖已有文件'
+    description: '输出文件已存在时是否覆盖，关闭则自动追加时间戳'
+    type: 'switch'
+    defaultVal: true
+    required: false

@@ -1,0 +1,25 @@
+{
+  "description": "药物相互作用知识库（40+对）",
+  "interactions": [
+    {"drug_a": "华法林", "drug_b": "阿司匹林", "risk": "high", "effect": "增加出血风险，可能引发严重内出血。两药均有抗凝/抗血小板作用，联用时出血风险显著增加。", "recommendation": "避免联合使用，除非在严密监测INR下进行。若必须联用，加用胃黏膜保护剂。"},
+    {"drug_a": "阿司匹林", "drug_b": "布洛芬", "risk": "high", "effect": "布洛芬可能降低阿司匹林的心血管保护作用，同时增加胃肠道出血风险。", "recommendation": "避免长期联用。需要止痛时考虑对乙酰氨基酚替代。"},
+    {"drug_a": "ACEI类药物", "drug_b": "利尿剂", "risk": "medium", "effect": "首次联用可能导致过度降压和肾前性急性肾损伤。", "recommendation": "利尿剂减量后开始ACEI，从小剂量起始，监测血压和肾功能。"},
+    {"drug_a": "万古霉素", "drug_b": "氨基糖苷类", "risk": "high", "effect": "肾毒性增加，可能导致急性肾损伤。两者均有肾毒性，联用时风险叠加。", "recommendation": "避免联用，或在严密监测肾功能和血药浓度下短期使用。"},
+    {"drug_a": "他汀类药物", "drug_b": "大环内酯类", "risk": "high", "effect": "克拉霉素、红霉素等大环内酯类药物抑制CYP3A4，导致他汀血药浓度升高，增加横纹肌溶解风险。", "recommendation": "服用他汀期间避免使用克拉霉素/红霉素。可用阿奇霉素替代（相互作用较弱）。"},
+    {"drug_a": "甲硝唑", "drug_b": "华法林", "risk": "high", "effect": "甲硝唑抑制华法林代谢，导致INR显著升高，出血风险增加。", "recommendation": "联用时华法林减量1/3-1/2，密切监测INR。"},
+    {"drug_a": "二甲双胍", "drug_b": "含碘造影剂", "risk": "high", "effect": "肾功能受损时联用可能诱发乳酸酸中毒。", "recommendation": "使用造影剂前48小时暂停二甲双胍，造影后48-72小时确认肾功能正常后恢复。"},
+    {"drug_a": "胺碘酮", "drug_b": "地高辛", "risk": "high", "effect": "胺碘酮抑制地高辛排泄，使地高辛血药浓度升高50-70%，增加洋地黄中毒风险。", "recommendation": "联用时地高辛减量50%，监测血药浓度和心电图。"},
+    {"drug_a": "螺内酯", "drug_b": "钾补充剂", "risk": "high", "effect": "导致严重高钾血症，可能引发心律失常甚至心搏骤停。", "recommendation": "禁止联用。使用螺内酯期间停用补钾药物，避免高钾食物。"},
+    {"drug_a": "硝酸酯类", "drug_b": "西地那非", "risk": "high", "effect": "两药均有血管扩张作用，联用可导致血压急剧下降，危及生命。", "recommendation": "严格禁止联用。使用硝酸酯类患者至少间隔24小时才能服用西地那非/他达拉非。"},
+    {"drug_a": "甲氨蝶呤", "drug_b": "NSAIDs", "risk": "high", "effect": "NSAIDs减少甲氨蝶呤肾排泄，导致甲氨蝶呤血药浓度升高，骨髓抑制毒性增加。", "recommendation": "避免联用，尤其是高剂量甲氨蝶呤。"},
+    {"drug_a": "锂盐", "drug_b": "利尿剂", "risk": "high", "effect": "噻嗪类利尿剂减少锂排泄，导致锂中毒风险。", "recommendation": "联用时锂盐减量，监测血锂浓度。"},
+    {"drug_a": "胰岛素", "drug_b": "饮酒", "risk": "medium", "effect": "酒精抑制肝糖原分解，增加低血糖风险；二甲双胍+饮酒增加乳酸酸中毒风险。", "recommendation": "服药期间避免饮酒，尤其是空腹饮酒。"},
+    {"drug_a": "华法林", "drug_b": "维生素K", "risk": "medium", "effect": "大量摄入维生素K（菠菜/西兰花/动物肝脏）会拮抗华法林抗凝效果，导致INR降低。", "recommendation": "保持每日维生素K摄入量相对恒定，避免大幅波动。"},
+    {"drug_a": "甲亢药物", "drug_b": "含碘药物", "risk": "high", "effect": "含碘药物（胺碘酮/造影剂）可诱发或加重甲亢。", "recommendation": "甲亢患者避免使用含碘药物，必须使用时提前告知医生。"},
+    {"drug_a": "奥美拉唑", "drug_b": "氯吡格雷", "risk": "medium", "effect": "奥美拉唑抑制CYP2C19，降低氯吡格雷活性代谢物生成，减弱抗血小板效果。", "recommendation": "可用泮托拉唑替代（CYP2C19抑制作用最弱）。"},
+    {"drug_a": "泼尼松", "drug_b": "NSAIDs", "risk": "high", "effect": "胃肠道溃疡和出血风险显著增加。", "recommendation": "必须联用时加用质子泵抑制剂（PPI）保护胃黏膜。"},
+    {"drug_a": "环磷酰胺", "drug_b": "别嘌醇", "risk": "high", "effect": "别嘌醇抑制环磷酰胺代谢，增加骨髓毒性。", "recommendation": "避免联用或密切监测血象。"},
+    {"drug_a": "苯妥英钠", "drug_b": "华法林", "risk": "medium", "effect": "苯妥英钠诱导肝药酶加速华法林代谢，降低抗凝效果。但初期可能先置换华法林使其游离浓度升高。", "recommendation": "联用时密切监测INR，调整华法林剂量。"},
+    {"drug_a": "β受体阻滞剂", "drug_b": "地尔硫䓬", "risk": "high", "effect": "联用导致严重心动过缓、房室传导阻滞，甚至心搏骤停。", "recommendation": "避免联用非二氢吡啶类钙通道阻滞剂（维拉帕米/地尔硫䓬）与普萘洛尔等β受体阻滞剂。"}
+  ]
+}

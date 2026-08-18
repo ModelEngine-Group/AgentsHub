@@ -1,0 +1,59 @@
+name: 'CSV读取算子'
+description: '从CSV文件中读取医疗数据，支持多种编码和分隔符'
+language: 'python'
+vendor: 'ccf-team'
+raw_id: 'CsvReader'
+version: '1.0.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+release:
+  - '首次发布'
+  - '支持基本CSV读取功能'
+  - '支持多种编码格式'
+metrics:
+  - name: '读取速度'
+    metric: '10000 rows/sec'
+  - name: '内存效率'
+    metric: '10MB/10000 rows'
+runtime:
+  memory: 10485760
+  cpu: 0.1
+  gpu: 0
+  npu: 0
+settings:
+  encoding:
+    name: '文件编码'
+    description: 'CSV文件的字符编码格式'
+    type: 'select'
+    defaultVal: 'utf-8'
+    required: false
+    options:
+      - label: 'UTF-8'
+        value: 'utf-8'
+      - label: 'GBK'
+        value: 'gbk'
+      - label: 'GB2312'
+        value: 'gb2312'
+  delimiter:
+    name: '分隔符'
+    description: 'CSV字段分隔符'
+    type: 'select'
+    defaultVal: ','
+    required: false
+    options:
+      - label: '逗号 ,'
+        value: ','
+      - label: '制表符 \\t'
+        value: '\t'
+      - label: '分号 ;'
+        value: ';'
+  hasHeader:
+    name: '包含表头'
+    description: 'CSV文件是否包含表头行'
+    type: 'switch'
+    defaultVal: 'true'
+    checkedLabel: '是'
+    unCheckedLabel: '否'

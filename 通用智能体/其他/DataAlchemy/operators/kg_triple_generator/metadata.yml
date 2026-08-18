@@ -1,0 +1,25 @@
+name: '知识图谱三元组生成算子'
+description: '将实体和关系组合为标准化知识图谱三元组，支持去重、冲突检测、上下文约束字段预留'
+language: 'python'
+vendor: 'ccf-team'
+raw_id: 'KGTripleGenerator'
+version: '1.0.0'
+modal: 'text'
+inputs: 'table'
+outputs: 'table'
+types:
+  - 'cleaning'
+release:
+  - '首次发布'
+runtime:
+  memory: 20971520
+  cpu: 0.2
+  gpu: 0
+  npu: 0
+settings:
+  enableConflictDetection:
+    name: '启用冲突检测'
+    description: '是否检测三元组间的逻辑冲突'
+    type: 'switch'
+    defaultVal: true
+    required: false

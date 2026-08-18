@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "version": "2.5",
+    "created_at": "2026-05-16",
+    "last_updated": "2026-05-16",
+    "total_entries": 0,
+    "categories": ["common_errors", "successful_patterns", "safety_warnings", "optimization_tips"]
+  },
+  "common_errors": [
+    {
+      "id": "error_001",
+      "error_type": "knowledge_gap",
+      "description": "知识图谱中缺少罕见病信息",
+      "example_query": "我得了罕见的遗传病，怎么治疗？",
+      "incorrect_response": "推荐了常见治疗方法",
+      "correct_approach": "承认知识图谱覆盖范围有限，建议咨询专科医生",
+      "prevention_strategy": "建立罕见病知识库，标注知识图谱覆盖范围",
+      "frequency": "medium",
+      "severity": "high"
+    },
+    {
+      "id": "error_002",
+      "error_type": "context_mismatch",
+      "description": "未考虑药物禁忌的上下文约束",
+      "example_query": "我有肾功能不全，能用二甲双胍吗？",
+      "incorrect_response": "推荐了二甲双胍",
+      "correct_approach": "检查eGFR值，根据上下文约束判断是否适用",
+      "prevention_strategy": "强制检查context_constraints字段",
+      "frequency": "high",
+      "severity": "critical"
+    },
+    {
+      "id": "error_003",
+      "error_type": "super_node_overload",
+      "description": "超级节点连接过多导致推理混乱",
+      "example_query": "发热可能是什么原因？",
+      "incorrect_response": "列出了所有可能原因，没有优先级",
+      "correct_approach": "应用超级节点过滤，优先考虑高置信度关系",
+      "prevention_strategy": "严格执行super_node_config配置",
+      "frequency": "medium",
+      "severity": "medium"
+    }
+  ],
+  "successful_patterns": [
+    {
+      "id": "success_001",
+      "pattern_type": "context_aware_reasoning",
+      "description": "基于上下文约束的个性化推理",
+      "example_query": "我父亲65岁，有糖尿病和肾病，怎么控制血糖？",
+      "successful_approach": "考虑年龄、并发症、肾功能，推荐适合的降糖方案",
+      "key_factors": ["患者年龄", "并发症", "肾功能", "药物禁忌"],
+      "confidence": 0.95,
+      "replicability": "high"
+    },
+    {
+      "id": "success_002",
+      "pattern_type": "multi_path_reasoning",
+      "description": "多路径推理提供全面建议",
+      "example_query": "高血压怎么治疗？",
+      "successful_approach": "提供药物治疗、生活方式干预、监测建议等多方面建议",
+      "key_factors": ["治疗选项", "生活方式", "监测计划", "随访建议"],
+      "confidence": 0.9,
+      "replicability": "high"
+    }
+  ],
+  "safety_warnings": [
+    {
+      "id": "warning_001",
+      "warning_type": "drug_interaction",
+      "description": "药物相互作用风险",
+      "example_scenario": "同时使用华法林和阿司匹林",
+      "risk_level": "high",
+      "mitigation": "检查药物相互作用数据库，提供明确警告",
+      "detection_method": "药物相互作用检查工具",
+      "response_protocol": "立即警告用户，建议咨询医生"
+    },
+    {
+      "id": "warning_002",
+      "warning_type": "contraindication",
+      "description": "药物禁忌忽视",
+      "example_scenario": "孕妇使用致畸药物",
+      "risk_level": "critical",
+      "mitigation": "强制检查上下文约束，特别是妊娠和哺乳期",
+      "detection_method": "上下文约束检查器",
+      "response_protocol": "拒绝提供用药建议，建议立即就医"
+    }
+  ],
+  "optimization_tips": [
+    {
+      "id": "tip_001",
+      "optimization_type": "query_preprocessing",
+      "description": "查询预处理提升准确性",
+      "technique": "实体识别和关系抽取前置",
+      "benefit": "减少推理步骤，提升响应速度",
+      "implementation": "在推理前先进行实体识别和关系抽取",
+      "expected_improvement": "响应时间减少20%，准确性提升10%"
+    },
+    {
+      "id": "tip_002",
+      "optimization_type": "cache_utilization",
+      "description": "缓存常用查询结果",
+      "technique": "建立查询-结果缓存映射",
+      "benefit": "减少重复计算，提升响应速度",
+      "implementation": "对常见查询模式建立缓存",
+      "expected_improvement": "响应时间减少50%，系统负载降低30%"
+    }
+  ],
+  "learning_history": {
+    "total_queries_processed": 0,
+    "average_quality_score": 0,
+    "common_failure_modes": [],
+    "improvement_areas": [],
+    "last_evaluation_date": null
+  },
+  "update_log": [
+    {
+      "timestamp": "2026-05-16T00:00:00Z",
+      "update_type": "initialization",
+      "description": "初始化经验记忆库",
+      "changes": ["创建基础结构", "添加示例条目"]
+    }
+  ]
+}

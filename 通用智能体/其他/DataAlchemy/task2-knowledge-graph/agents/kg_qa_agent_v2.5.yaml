@@ -1,0 +1,341 @@
+# 医疗知识图谱问答智能体配置 v2.5
+# 双代理验证架构
+
+# 智能体基本信息
+agent_info:
+  name: "医疗知识图谱问答智能体"
+  version: "2.5"
+  description: "基于双代理验证的医疗知识图谱问答系统"
+  architecture: "supervisor_pattern"
+  
+# 模型配置
+model_config:
+  primary_model: "deepseek-v4-flash"
+  backup_model: "qwen3.5-plus"
+  embedding_model: "qwen3-embedding-8b"
+  temperature: 0.3
+  max_tokens: 4096
+
+# 双代理配置
+dual_agent_system:
+  # 推理代理配置
+  reasoning_agent:
+    name: "推理代理"
+    prompt_file: "prompts/reasoning_agent_v2.5.md"
+    max_steps: 5
+    timeout_seconds: 10
+    tools:
+      - "knowledge_graph_search"
+      - "entity_recognition"
+      - "relation_extraction"
+      - "context_constraint_checker"
+      - "super_node_filter"
+    
+  # 验证代理配置
+  verification_agent:
+    name: "验证代理"
+    prompt_file: "prompts/verification_agent_v2.5.md"
+    max_steps: 3
+    timeout_seconds: 5
+    tools:
+      - "fact_checker"
+      - "logic_validator"
+      - "safety_assessor"
+      - "quality_scorer"
+      - "experience_memory_query"
+    
+  # 协作机制
+  collaboration:
+    max_iterations: 3
+    quality_threshold: 0.7
+    safety_threshold: 0.9
+    revision_strategy: "iterative_refinement"
+    
+# Schema配置
+schema_config:
+  version: "2.5"
+  schema_file: "schema/medical_schema_v2.5.json"
+  entity_types:
+    - "疾病"
+    - "症状"
+    - "药物"
+    - "检查"
+  relation_types:
+    - "导致"
+    - "治疗"
+    - "用于"
+    - "禁忌"
+    
+# 工具配置
+tools_config:
+  # 知识图谱查询工具
+  knowledge_graph_search:
+    type: "mcp_tool"
+    name: "kg_search"
+    description: "查询医疗知识图谱"
+    parameters:
+      query_type: "string"
+      entity: "string"
+      relation: "string"
+      max_results: 10
+      
+  # 实体识别工具
+  entity_recognition:
+    type: "datamate_operator"
+    name: "entity_recognizer"
+    description: "识别医疗文本中的实体"
+    version: "1.0.0"
+    
+  # 关系抽取工具
+  relation_extraction:
+    type: "datamate_operator"
+    name: "relation_extractor"
+    description: "抽取实体间的关系"
+    version: "1.0.0"
+    
+  # 上下文约束检查工具
+  context_constraint_checker:
+    type: "custom_tool"
+    name: "context_checker"
+    description: "检查三元组的上下文约束"
+    implementation: "tools/context_constraint_checker.py"
+    
+  # 超级节点过滤工具
+  super_node_filter:
+    type: "custom_tool"
+    name: "super_node_filter"
+    description: "过滤超级节点的高频连接"
+    implementation: "tools/super_node_filter.py"
+    parameters:
+      threshold: 8
+      super_nodes: ["发热", "乏力", "头痛", "呕吐"]
+      
+  # 事实核查工具
+  fact_checker:
+    type: "custom_tool"
+    name: "fact_checker"
+    description: "验证推理结果的事实准确性"
+    implementation: "tools/fact_checker.py"
+    
+  # 逻辑验证工具
+  logic_validator:
+    type: "custom_tool"
+    name: "logic_validator"
+    description: "验证推理过程的逻辑合理性"
+    implementation: "tools/logic_validator.py"
+    
+  # 安全评估工具
+  safety_assessor:
+    type: "custom_tool"
+    name: "safety_assessor"
+    description: "评估医疗信息的安全性"
+    implementation: "tools/safety_assessor.py"
+    
+  # 质量评分工具
+  quality_scorer:
+    type: "custom_tool"
+    name: "quality_scorer"
+    description: "对推理结果进行多维度质量评分"
+    implementation: "tools/quality_scorer.py"
+    
+  # 经验记忆查询工具
+  experience_memory_query:
+    type: "custom_tool"
+    name: "experience_memory"
+    description: "查询经验记忆库"
+    implementation: "tools/experience_memory.py"
+    parameters:
+      memory_file: "data/experience_memory.json"
+      max_results: 5
+      
+# 经验记忆配置
+experience_memory:
+  enabled: true
+  memory_file: "data/experience_memory.json"
+  max_entries: 1000
+  auto_update: true
+  categories:
+    - "common_errors"
+    - "successful_patterns"
+    - "safety_warnings"
+    - "optimization_tips"
+    
+# 超级节点配置
+super_node_config:
+  enabled: true
+  threshold: 8
+  super_nodes:
+    - name: "发热"
+      max_connections: 15
+      filter_strategy: "confidence_based"
+    - name: "乏力"
+      max_connections: 12
+      filter_strategy: "confidence_based"
+    - name: "头痛"
+      max_connections: 10
+      filter_strategy: "confidence_based"
+    - name: "呕吐"
+      max_connections: 8
+      filter_strategy: "confidence_based"
+      
+# 上下文约束配置
+context_constraints:
+  enabled: true
+  supported_conditions:
+    - "age"
+    - "gender"
+    - "egfr"
+    - "allergies"
+    - "comorbidities"
+    - "pregnancy"
+    - "lactation"
+  constraint_checking: "strict"
+  
+# 查询类型配置
+query_types:
+  symptom_query:
+    description: "症状相关查询"
+    examples: ["发热是什么原因？", "头痛可能是什么病？"]
+    priority: "high"
+    
+  treatment_query:
+    description: "治疗方案查询"
+    examples: ["糖尿病怎么治疗？", "高血压吃什么药？"]
+    priority: "high"
+    
+  medication_query:
+    description: "用药指导查询"
+    examples: ["二甲双胍怎么用？", "阿司匹林有什么副作用？"]
+    priority: "high"
+    
+  test_query:
+    description: "检查建议查询"
+    examples: ["糖尿病需要做什么检查？", "高血压要检查什么？"]
+    priority: "medium"
+    
+  comprehensive_query:
+    description: "综合分析查询"
+    examples: ["我父亲有糖尿病和高血压，怎么管理？", "肾功能不全能用什么降糖药？"]
+    priority: "high"
+    
+# 输出格式配置
+output_format:
+  reasoning_output:
+    format: "json"
+    required_fields:
+      - "query_understanding"
+      - "knowledge_retrieval"
+      - "reasoning_process"
+      - "preliminary_answer"
+      
+  verification_output:
+    format: "json"
+    required_fields:
+      - "quality_assessment"
+      - "revision_suggestions"
+      - "approval_status"
+      
+  final_output:
+    format: "markdown"
+    sections:
+      - "answer_summary"
+      - "detailed_explanation"
+      - "supporting_evidence"
+      - "limitations"
+      - "recommendations"
+      
+# 质量控制配置
+quality_control:
+  metrics:
+    - "factual_accuracy"
+    - "logical_coherence"
+    - "safety_assessment"
+    - "completeness"
+    - "personalization"
+    
+  thresholds:
+    minimum_quality: 0.7
+    safety_threshold: 0.9
+    completeness_threshold: 0.8
+    
+  monitoring:
+    enable_logging: true
+    log_level: "INFO"
+    performance_tracking: true
+    
+# 错误处理配置
+error_handling:
+  retry_strategy:
+    max_retries: 3
+    backoff_factor: 1.5
+    
+  fallback_mechanisms:
+    - "use_backup_model"
+    - "simplified_reasoning"
+    - "human_escalation"
+    
+  error_types:
+    - type: "knowledge_gap"
+      action: "acknowledge_limitation"
+    - type: "ambiguity"
+      action: "ask_clarification"
+    - type: "safety_concern"
+      action: "warn_user"
+    - type: "system_error"
+      action: "graceful_degradation"
+      
+# 性能配置
+performance:
+  timeout_seconds: 30
+  max_concurrent_queries: 10
+  cache_enabled: true
+  cache_ttl_seconds: 300
+  
+# 部署配置
+deployment:
+  environment: "nexent_platform"
+  mcp_tools:
+    - "knowledge_graph_search"
+    - "entity_recognition"
+    - "relation_extraction"
+    
+  datamate_operators:
+    - "entity_recognizer"
+    - "relation_extractor"
+    - "triple_generator"
+    
+  dependencies:
+    - "schema_v2.5.json"
+    - "experience_memory.json"
+    - "super_node_config.json"
+    
+# 监控与日志
+monitoring:
+  metrics_collection: true
+  performance_tracking: true
+  error_tracking: true
+  user_feedback: true
+  
+  alerts:
+    - condition: "quality_score < 0.6"
+      action: "notify_admin"
+    - condition: "safety_score < 0.8"
+      action: "block_response"
+    - condition: "response_time > 10s"
+      action: "log_warning"
+      
+# 版本信息
+version_info:
+  version: "2.5"
+  release_date: "2026-05-16"
+  changelog:
+    - "新增双代理验证架构"
+    - "集成超级节点过滤"
+    - "支持上下文约束推理"
+    - "添加经验记忆系统"
+    - "优化质量评分机制"
+    
+  compatibility:
+    nexent_version: ">=2.0.0"
+    datamate_version: ">=1.0.0"
+    schema_version: "2.5"
