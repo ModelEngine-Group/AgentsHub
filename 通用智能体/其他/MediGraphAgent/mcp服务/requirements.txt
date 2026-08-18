@@ -1,0 +1,53 @@
+# MediGraph-Agent core dependencies (local-first, API-driven)
+openai>=1.30.0          # OpenAI-compatible client for SiliconFlow / DashScope
+python-dotenv>=1.0.0    # load .env config
+pydantic>=2.5.0         # operator metadata / schema models
+networkx>=3.0           # default local knowledge-graph backend
+numpy>=1.26             # cosine search for the local vector store (hybrid GraphRAG)
+pyvis>=0.3.2            # interactive HTML graph visualization
+tqdm>=4.66.0            # progress bars
+tenacity>=8.2.0         # retry for LLM calls
+pypdf>=4.0.0            # PDF ingestion in document_loader (DOCX uses stdlib ZIP/XML)
+sqlglot>=25.0.0         # SQL AST read-only guard + SQLite/PostgreSQL transpile
+
+# Nexent integration (MCP tools) -- needed only to run mcp_server/server.py
+fastmcp>=0.2.0
+
+# Platform integration (DataMate REST client, A2A server) -- integration/
+requests>=2.31.0        # DataMate REST client
+fastapi>=0.110.0        # A2A server + HTTP service layer
+uvicorn>=0.27.0         # A2A server + HTTP service layer
+
+# HTTP service layer (service/) -- observability and SSE streaming
+prometheus-client>=0.20.0   # /metrics exposition
+python-json-logger>=3.0.0   # structured JSON logs
+sse-starlette>=2.0.0        # SSE response helpers
+
+# Optional storage backends (ANALYTICS_BACKEND=postgres / CACHE_ENABLED=true).
+# The offline SQLite path never needs these; tests skip when the servers are absent.
+psycopg[binary,pool]>=3.1.0 # PostgreSQL driver + connection pool
+pgvector>=0.2.0             # vector type adapter for the HNSW ANN store
+redis>=5.0.0                # result cache client
+
+# Optional-but-shipped neural GPLinker L1. If absent, auto mode falls back to
+# the deterministic lexicon path and/or LLM.
+torch>=2.2.0
+transformers>=4.40.0
+
+# Optional Neo4j backend -- needed only when GRAPH_BACKEND=neo4j
+neo4j>=5.14.0
+
+# Optional: Ragas evaluation of GraphRAG answer quality
+# (benchmarks/eval_ragas_kg_qa.py). Not needed for any offline/CI path.
+# Ragas 0.4.x's llms/base.py unconditionally imports
+# langchain_community.chat_models.vertexai, which recent langchain-community
+# releases no longer ship (split into langchain-google-vertexai); the eval
+# script stubs that one module before importing ragas so the rest of the
+# (used) API works. If a future ragas release fixes this, the stub in
+# eval_ragas_kg_qa.py can be deleted -- it is a no-op once the import succeeds
+# on its own.
+ragas>=0.4.0
+langchain-openai>=1.0.0
+
+# Testing
+pytest>=7.4.0

@@ -1,0 +1,60 @@
+{
+  "agent_id": 1,
+  "agent_info": {
+    "1": {
+      "agent_id": 1,
+      "tenant_id": "__TENANT_ID__",
+      "name": "medical_analysis_supervisor",
+      "display_name": "图谱驱动医疗数据分析与BI智能体",
+      "description": "复用医疗知识图谱，并可协同医疗数据处理智能体和医疗知识图谱问答智能体，自动规划SQL统计/趋势或GRAPH关联分析，生成柱状、折线、饼图、关系网络及图文洞察。",
+      "business_description": "基于 Nexent 的图谱感知分析与 BI 智能体，完成数据→知识→洞察闭环。",
+      "author": "MediGraph",
+      "max_steps": 4,
+      "provide_run_summary": false,
+      "duty_prompt": "你是图谱驱动医疗数据分析与BI智能体，也是医疗数据闭环分析总控。先判断用户意图并选择能力：1. 用户要求查看图谱复用证据、数据库表规模、NL2SQL指标、支持路线、图表或报告清单时，只调用一次 inspect_analysis_assets，默认 graph_name=graph.json。2. 用户提出统计、排名、趋势、比例、费用、异常率或图谱关联分析时，优先由你调用 analyze_medical_data 完成，并汇报 plan.route/reason、SQL 或 anchors/intent_relations、数据行、citations、chart_type、insight、report_html 和 data_provenance。3. 用户要求新增文件、清洗、切块、抽取实体/关系、批处理或 DataMate 运行时，转交或调用子智能体“医疗数据处理智能体（Nexent×DataMate）”，并要求其汇报 selected_ops、dataset_id、template_id、task_id、status。4. 用户要求图谱构建、图谱审计、医疗知识问答、三元组证据或 GraphRAG 溯源时，转交或调用子智能体“医疗知识图谱生成与问答智能体”，并要求其列出 resolved_entities、intent_relations、evidence、confidence 和 source。5. 普通BI分析不要重跑上游；只有用户明确要求新增数据或重建图谱时才协同上游子智能体。工具或子智能体返回后立即总结，不重复调用。",
+      "constraint_prompt": "只能依据工具、子智能体或A2A协作智能体的真实返回作答；不得编造 dataset_id、template_id、task_id、status、SQL、三元组、confidence 或 source。SQL必须来自只读NL2SQL结果；图谱结论必须列出 confidence/source。必须明确 KG 来自医疗知识图谱主图，而就诊/处方/检查记录是固定 seed 生成的可复现实验数据，不得冒充真实患者数据。涉及LLM抽取或DataMate批处理时提醒耗时和API消耗。",
+      "few_shots_prompt": "示例1：用户问各疾病就诊人次→由本智能体调用 analyze_medical_data(question=\"各疾病的就诊人次是多少\", report_name=\"analysis_nexent_bar.html\")，汇报SQL、数据、柱状图和血缘。示例2：用户问高血压并发症与药物关系→由本智能体走GRAPH路由并返回关系网络和citations。示例3：用户说有一批新医疗文本要纳入分析→先请医疗数据处理智能体运行DataMate五算子，再请医疗知识图谱生成与问答智能体建图/审计，最后由本智能体做BI分析。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "MCPTool",
+          "name": "analyze_medical_data",
+          "description": "图谱驱动SQL/GRAPH分析与BI报告",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        },
+        {
+          "class_name": "MCPTool",
+          "name": "inspect_analysis_assets",
+          "description": "审计图谱复用、NL2SQL和可视化证据",
+          "source": "mcp",
+          "usage": null,
+          "metadata": null,
+          "params": {}
+        }
+      ],
+      "managed_agents": [],
+      "model_id": 5,
+      "model_name": "deepseek-ai/DeepSeek-V4-Pro",
+      "business_logic_model_id": 5,
+      "business_logic_model_name": "deepseek-ai/DeepSeek-V4-Pro",
+      "skill_names": [],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default",
+      "verification_config": {
+        "enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true,
+        "llm_verification_enabled": false
+      }
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "MediGraphOperators",
+      "mcp_url": "http://host.docker.internal:8011/sse"
+    }
+  ]
+}
