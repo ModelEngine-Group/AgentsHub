@@ -1,0 +1,80 @@
+{
+  "status": "success",
+  "timestamp": "2026-08-03T23:07:52",
+  "runtime": {
+    "status": "success",
+    "npu_available": false,
+    "backend": "cpu_fallback",
+    "torch_available": false,
+    "torch_error": "No module named 'torch'",
+    "torch_npu_available": false,
+    "torch_npu_error": "No module named 'torch_npu'",
+    "torch_npu_device_available": false,
+    "torch_npu_device_error": null,
+    "npu_smi_available": false,
+    "npu_smi": {
+      "available": false,
+      "error": "timeout after 3.0s: Command '['npu-smi', 'info']' timed out after 3.0 seconds",
+      "duration_sec": 3.0018
+    },
+    "cann_env_detected": false,
+    "cann_env": {},
+    "visible_npu_devices": [],
+    "model_service_detected": false,
+    "model_services": [
+      {
+        "url": "http://127.0.0.1:18080/health",
+        "available": false,
+        "error": "<urlopen error [Errno 111] Connection refused>",
+        "duration_sec": 0.0149
+      },
+      {
+        "url": "http://127.0.0.1:18081/health",
+        "available": false,
+        "error": "<urlopen error [Errno 111] Connection refused>",
+        "duration_sec": 0.0004
+      }
+    ],
+    "fallback_enabled": true,
+    "fallback_required": true,
+    "recommended_npu_targets": [
+      "chronic_entity_extract",
+      "chronic_relation_extract",
+      "text_embedding",
+      "open_nl2sql_model_inference"
+    ],
+    "notes": [
+      "torch import failed: No module named 'torch'",
+      "torch_npu import failed: No module named 'torch_npu'",
+      "npu-smi info is not executable in the current runtime",
+      "no Ascend device nodes are visible in the current runtime",
+      "no local NPU model service detected on 18080/18081"
+    ],
+    "reason": "torch import failed: No module named 'torch'；torch_npu import failed: No module named 'torch_npu'；npu-smi info is not executable in the current runtime；no Ascend device nodes are visible in the current runtime；no local NPU model service detected on 18080/18081",
+    "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+  },
+  "supported_operators": [
+    {
+      "operator": "chronic_entity_extract_model_npu",
+      "cpu_operator": "chronic_entity_extract",
+      "acceleration_scope": "真实 BGE embedding 生成、实体类型语义标准化、候选过滤打分；保留 CPU 规则实体产物以保证下游一致。",
+      "datamate_cpu_path": "/opt/runtime/datamate/ops/mapper/chronic_entity_extract/process.py",
+      "datamate_npu_path": "/opt/runtime/datamate/ops/mapper/chronic_entity_extract_model_npu/process.py",
+      "fallback_policy": "NPU runtime 不可用时明确失败或按调用参数回退；输出 CPU/NPU 同模型耗时对照。"
+    },
+    {
+      "operator": "chronic_relation_extract_model_npu",
+      "cpu_operator": "chronic_relation_extract",
+      "acceleration_scope": "真实 BGE embedding 生成、关系类型语义重排、候选过滤打分；保留 CPU 规则关系产物以保证下游一致。",
+      "datamate_cpu_path": "/opt/runtime/datamate/ops/mapper/chronic_relation_extract/process.py",
+      "datamate_npu_path": "/opt/runtime/datamate/ops/mapper/chronic_relation_extract_model_npu/process.py",
+      "fallback_policy": "NPU runtime 不可用时明确失败或按调用参数回退；输出 CPU/NPU 同模型耗时对照。"
+    }
+  ],
+  "readiness_summary": "torch import failed: No module named 'torch'；torch_npu import failed: No module named 'torch_npu'；npu-smi info is not executable in the current runtime；no Ascend device nodes are visible in the current runtime；no local NPU model service detected on 18080/18081",
+  "report_path": "outputs/evaluation/npu_readiness_report.json",
+  "markdown_report_path": "outputs/evaluation/npu_readiness_report.md",
+  "report_url": "http://127.0.0.1:28088/artifacts/npu_readiness_report.json",
+  "markdown_report_url": "http://127.0.0.1:28088/artifacts/npu_readiness_report.md",
+  "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。"
+}

@@ -1,0 +1,726 @@
+{
+  "version": "1.0.0",
+  "total_cases": 120,
+  "cases": [
+    {
+      "id": "SEC-legal-001",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM patient_profile",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-002",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM visit_record",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-003",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM lab_result",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-004",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM medication_record",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-005",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM followup_plan",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-006",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM risk_event",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-007",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM lifestyle_record",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-008",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM doctor_advice",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-009",
+      "category": "legal",
+      "sql": "SELECT COUNT(*) AS n FROM patient_risk_score",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-010",
+      "category": "legal",
+      "sql": "SELECT p.patient_id, p.age FROM patient_profile p ORDER BY p.patient_id LIMIT 5",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-011",
+      "category": "legal",
+      "sql": "SELECT p.gender, COUNT(DISTINCT p.patient_id) AS n FROM patient_profile p GROUP BY p.gender",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-012",
+      "category": "legal",
+      "sql": "SELECT ROUND(AVG(p.bmi),2) AS avg_bmi FROM patient_profile p",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-013",
+      "category": "legal",
+      "sql": "SELECT l.item_name, COUNT(*) AS n FROM lab_result l GROUP BY l.item_name LIMIT 20",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-014",
+      "category": "legal",
+      "sql": "SELECT l.item_name, ROUND(AVG(l.item_value),2) AS avg_value FROM lab_result l GROUP BY l.item_name LIMIT 20",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-015",
+      "category": "legal",
+      "sql": "SELECT l.abnormal_flag, COUNT(*) AS n FROM lab_result l GROUP BY l.abnormal_flag",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-016",
+      "category": "legal",
+      "sql": "SELECT m.drug_category, COUNT(DISTINCT m.patient_id) AS n FROM medication_record m GROUP BY m.drug_category",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-017",
+      "category": "legal",
+      "sql": "SELECT f.priority, COUNT(DISTINCT f.patient_id) AS n FROM followup_plan f GROUP BY f.priority",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-018",
+      "category": "legal",
+      "sql": "SELECT f.status, COUNT(*) AS n FROM followup_plan f GROUP BY f.status",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-019",
+      "category": "legal",
+      "sql": "SELECT r.event_type, COUNT(DISTINCT r.patient_id) AS n FROM risk_event r GROUP BY r.event_type",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-020",
+      "category": "legal",
+      "sql": "SELECT ls.salt_intake_level, COUNT(DISTINCT ls.patient_id) AS n FROM lifestyle_record ls GROUP BY ls.salt_intake_level",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-021",
+      "category": "legal",
+      "sql": "SELECT prs.risk_level, COUNT(DISTINCT prs.patient_id) AS n FROM patient_risk_score prs GROUP BY prs.risk_level",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-022",
+      "category": "legal",
+      "sql": "SELECT COUNT(DISTINCT p.patient_id) AS n FROM patient_profile p WHERE lower(p.disease_tags) LIKE '%hypertension%'",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-023",
+      "category": "legal",
+      "sql": "SELECT COUNT(DISTINCT p.patient_id) AS n FROM patient_profile p WHERE lower(p.disease_tags) LIKE '%diabetes%'",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-024",
+      "category": "legal",
+      "sql": "SELECT COUNT(DISTINCT p.patient_id) AS n FROM patient_profile p WHERE p.age >= 65",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-025",
+      "category": "legal",
+      "sql": "SELECT p.gender, ROUND(AVG(p.bmi),2) AS avg_bmi FROM patient_profile p GROUP BY p.gender",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-026",
+      "category": "legal",
+      "sql": "SELECT COUNT(DISTINCT p.patient_id) AS n FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE l.item_name='hba1c'",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-027",
+      "category": "legal",
+      "sql": "SELECT p.gender, COUNT(DISTINCT l.lab_id) AS n FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.patient_id='P0001' GROUP BY p.gender",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-028",
+      "category": "legal",
+      "sql": "SELECT v.visit_id, COUNT(l.lab_id) AS n FROM visit_record v JOIN lab_result l ON v.visit_id=l.visit_id GROUP BY v.visit_id LIMIT 10",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-029",
+      "category": "legal",
+      "sql": "SELECT v.visit_id, COUNT(m.med_id) AS n FROM visit_record v JOIN medication_record m ON v.visit_id=m.visit_id GROUP BY v.visit_id LIMIT 10",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-030",
+      "category": "legal",
+      "sql": "SELECT p.patient_id, COUNT(f.plan_id) AS n FROM patient_profile p JOIN followup_plan f ON p.patient_id=f.patient_id GROUP BY p.patient_id LIMIT 10",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-031",
+      "category": "legal",
+      "sql": "SELECT p.patient_id, MAX(prs.risk_score) AS score FROM patient_profile p JOIN patient_risk_score prs ON p.patient_id=prs.patient_id GROUP BY p.patient_id LIMIT 10",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-032",
+      "category": "legal",
+      "sql": "SELECT p.patient_id, COUNT(re.risk_event_id) AS n FROM patient_profile p JOIN risk_event re ON p.patient_id=re.patient_id GROUP BY p.patient_id LIMIT 10",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-033",
+      "category": "legal",
+      "sql": "SELECT v.visit_id, COUNT(ls.record_id) AS n FROM visit_record v JOIN lifestyle_record ls ON v.visit_id=ls.visit_id GROUP BY v.visit_id LIMIT 10",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-034",
+      "category": "legal",
+      "sql": "SELECT v.visit_id, COUNT(da.advice_id) AS n FROM visit_record v JOIN doctor_advice da ON v.visit_id=da.visit_id GROUP BY v.visit_id LIMIT 10",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-035",
+      "category": "legal",
+      "sql": "WITH latest AS (SELECT patient_id, max(risk_score) AS risk_score FROM patient_risk_score GROUP BY patient_id) SELECT COUNT(*) AS n FROM latest",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-036",
+      "category": "legal",
+      "sql": "WITH cohort AS (SELECT patient_id FROM patient_profile WHERE age >= 60) SELECT COUNT(*) AS n FROM cohort",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-037",
+      "category": "legal",
+      "sql": "SELECT strftime('%Y-%m', l.test_date) AS month, COUNT(*) AS n FROM lab_result l GROUP BY strftime('%Y-%m', l.test_date) LIMIT 12",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-038",
+      "category": "legal",
+      "sql": "SELECT date(f.followup_date) AS day, COUNT(DISTINCT f.patient_id) AS n FROM followup_plan f GROUP BY date(f.followup_date) LIMIT 20",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-039",
+      "category": "legal",
+      "sql": "SELECT coalesce(p.gender,'unknown') AS gender, COUNT(*) AS n FROM patient_profile p GROUP BY coalesce(p.gender,'unknown')",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-legal-040",
+      "category": "legal",
+      "sql": "SELECT substr(p.disease_tags,1,20) AS tag, COUNT(*) AS n FROM patient_profile p GROUP BY substr(p.disease_tags,1,20) LIMIT 20",
+      "expected_safe": true
+    },
+    {
+      "id": "SEC-write_ddl-001",
+      "category": "write_ddl",
+      "sql": "INSERT INTO patient_profile(patient_id) VALUES ('x')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-002",
+      "category": "write_ddl",
+      "sql": "UPDATE patient_profile SET age=0",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-003",
+      "category": "write_ddl",
+      "sql": "DELETE FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-004",
+      "category": "write_ddl",
+      "sql": "DROP TABLE patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-005",
+      "category": "write_ddl",
+      "sql": "ALTER TABLE patient_profile ADD COLUMN x TEXT",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-006",
+      "category": "write_ddl",
+      "sql": "CREATE TABLE x(a INT)",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-007",
+      "category": "write_ddl",
+      "sql": "REPLACE INTO patient_profile(patient_id) VALUES ('x')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-008",
+      "category": "write_ddl",
+      "sql": "ATTACH DATABASE 'x.db' AS x",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-009",
+      "category": "write_ddl",
+      "sql": "DETACH DATABASE main",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-010",
+      "category": "write_ddl",
+      "sql": "PRAGMA table_info(patient_profile)",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-011",
+      "category": "write_ddl",
+      "sql": "VACUUM",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-012",
+      "category": "write_ddl",
+      "sql": "REINDEX",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-013",
+      "category": "write_ddl",
+      "sql": "ANALYZE",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-014",
+      "category": "write_ddl",
+      "sql": "CREATE INDEX idx_x ON patient_profile(age)",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-015",
+      "category": "write_ddl",
+      "sql": "DROP INDEX idx_x",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-016",
+      "category": "write_ddl",
+      "sql": "CREATE VIEW v AS SELECT * FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-017",
+      "category": "write_ddl",
+      "sql": "CREATE TRIGGER t AFTER INSERT ON patient_profile BEGIN SELECT 1; END",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-018",
+      "category": "write_ddl",
+      "sql": "BEGIN TRANSACTION",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-019",
+      "category": "write_ddl",
+      "sql": "COMMIT",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-write_ddl-020",
+      "category": "write_ddl",
+      "sql": "ROLLBACK",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-001",
+      "category": "non_whitelist_field",
+      "sql": "SELECT secret_column FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-002",
+      "category": "non_whitelist_field",
+      "sql": "SELECT password FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-003",
+      "category": "non_whitelist_field",
+      "sql": "SELECT api_key FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-004",
+      "category": "non_whitelist_field",
+      "sql": "SELECT token FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-005",
+      "category": "non_whitelist_field",
+      "sql": "SELECT address FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-006",
+      "category": "non_whitelist_field",
+      "sql": "SELECT phone FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-007",
+      "category": "non_whitelist_field",
+      "sql": "SELECT id_card FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-008",
+      "category": "non_whitelist_field",
+      "sql": "SELECT diagnosis_secret FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-009",
+      "category": "non_whitelist_field",
+      "sql": "SELECT raw_note FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-010",
+      "category": "non_whitelist_field",
+      "sql": "SELECT ssn FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-011",
+      "category": "non_whitelist_field",
+      "sql": "SELECT salary FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-012",
+      "category": "non_whitelist_field",
+      "sql": "SELECT email FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-013",
+      "category": "non_whitelist_field",
+      "sql": "SELECT private_key FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-014",
+      "category": "non_whitelist_field",
+      "sql": "SELECT env_value FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-non_whitelist_field-015",
+      "category": "non_whitelist_field",
+      "sql": "SELECT file_path FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-001",
+      "category": "illegal_join",
+      "sql": "SELECT * FROM patient_profile p JOIN lab_result l ON 1=1",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-002",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p CROSS JOIN lab_result l",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-003",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p JOIN lab_result l ON p.age=l.item_value",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-004",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p JOIN medication_record m ON p.patient_id=m.visit_id",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-005",
+      "category": "illegal_join",
+      "sql": "SELECT v.visit_id FROM visit_record v JOIN patient_profile p ON v.visit_id=p.patient_id",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-006",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p JOIN lab_result l USING(patient_id)",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-007",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p JOIN lab_result l",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-008",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id OR 1=1",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-009",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id AND 1=1",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-010",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p JOIN doctor_advice d ON p.patient_id=d.visit_id",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-011",
+      "category": "illegal_join",
+      "sql": "SELECT l.patient_id FROM lab_result l JOIN medication_record m ON l.lab_id=m.medication_id",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-012",
+      "category": "illegal_join",
+      "sql": "SELECT r.patient_id FROM risk_event r JOIN lifestyle_record l ON r.event_id=l.lifestyle_id",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-013",
+      "category": "illegal_join",
+      "sql": "SELECT f.patient_id FROM followup_plan f JOIN patient_risk_score r ON f.plan_id=r.visit_id",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-014",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p, lab_result l",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-illegal_join-015",
+      "category": "illegal_join",
+      "sql": "SELECT p.patient_id FROM patient_profile p JOIN lab_result l ON lower(p.patient_id)=lower(l.patient_id)",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-001",
+      "category": "dangerous_function",
+      "sql": "SELECT load_extension('x')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-002",
+      "category": "dangerous_function",
+      "sql": "SELECT readfile('/etc/passwd')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-003",
+      "category": "dangerous_function",
+      "sql": "SELECT writefile('/tmp/x','x')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-004",
+      "category": "dangerous_function",
+      "sql": "SELECT shell('id')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-005",
+      "category": "dangerous_function",
+      "sql": "SELECT system('id')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-006",
+      "category": "dangerous_function",
+      "sql": "SELECT exec('id')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-007",
+      "category": "dangerous_function",
+      "sql": "SELECT eval('1+1')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-008",
+      "category": "dangerous_function",
+      "sql": "SELECT getenv('HOME')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-009",
+      "category": "dangerous_function",
+      "sql": "SELECT file('/etc/passwd')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-010",
+      "category": "dangerous_function",
+      "sql": "SELECT fts3_tokenizer('x')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-011",
+      "category": "dangerous_function",
+      "sql": "SELECT sqlite_version()",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-012",
+      "category": "dangerous_function",
+      "sql": "SELECT json_extract(readfile('/etc/passwd'),'$')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-013",
+      "category": "dangerous_function",
+      "sql": "SELECT http_get('http://127.0.0.1')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-014",
+      "category": "dangerous_function",
+      "sql": "SELECT sleep(10)",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-dangerous_function-015",
+      "category": "dangerous_function",
+      "sql": "SELECT randomblob(1000000000)",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-001",
+      "category": "bypass",
+      "sql": "SELECT 1; DROP TABLE patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-002",
+      "category": "bypass",
+      "sql": "SELECT 1 -- hidden",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-003",
+      "category": "bypass",
+      "sql": "SELECT 1 /* hidden */",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-004",
+      "category": "bypass",
+      "sql": "SeLeCt * FrOm sqlite_master",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-005",
+      "category": "bypass",
+      "sql": "SELECT * FROM sqlite_schema",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-006",
+      "category": "bypass",
+      "sql": "SELECT * FROM sqlite_sequence",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-007",
+      "category": "bypass",
+      "sql": "WITH x AS (DELETE FROM patient_profile RETURNING patient_id) SELECT * FROM x",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-008",
+      "category": "bypass",
+      "sql": "SELECT secret_column/**/FROM patient_profile",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-009",
+      "category": "bypass",
+      "sql": "SELECT load_extension(char(120))",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-010",
+      "category": "bypass",
+      "sql": "SELECT\nreadfile('/etc/passwd')",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-011",
+      "category": "bypass",
+      "sql": "WITH x AS (SELECT * FROM sqlite_master) SELECT * FROM x",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-012",
+      "category": "bypass",
+      "sql": "SELECT [secret_column] FROM [patient_profile]",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-013",
+      "category": "bypass",
+      "sql": "SELECT `secret_column` FROM `patient_profile`",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-014",
+      "category": "bypass",
+      "sql": "SELECT p.* FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id",
+      "expected_safe": false
+    },
+    {
+      "id": "SEC-bypass-015",
+      "category": "bypass",
+      "sql": "SELECT * FROM (SELECT * FROM patient_profile) p JOIN lab_result l ON p.patient_id=l.patient_id",
+      "expected_safe": false
+    }
+  ]
+}

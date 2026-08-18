@@ -1,0 +1,138 @@
+{
+  "project": "ChronicCare-Agent",
+  "safety_note": "本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。",
+  "tools": [
+    {
+      "name": "chroniccare_health_check",
+      "title": "ChronicCare Tool Server Health Check"
+    },
+    {
+      "name": "chroniccare_data_summary",
+      "title": "ChronicCare System Data Summary"
+    },
+    {
+      "name": "chroniccare_datamate_pipelines",
+      "title": "ChronicCare DataMate Pipelines Overview"
+    },
+    {
+      "name": "chroniccare_datamate_pipeline_run",
+      "title": "ChronicCare DataMate Pipeline Run"
+    },
+    {
+      "name": "chroniccare_npu_readiness",
+      "title": "ChronicCare NPU Runtime Readiness"
+    },
+    {
+      "name": "chroniccare_npu_supported_operators",
+      "title": "ChronicCare NPU Supported Operators"
+    },
+    {
+      "name": "chroniccare_npu_operator_benchmark",
+      "title": "ChronicCare NPU Operator Benchmark"
+    },
+    {
+      "name": "chroniccare_datamate_pipeline_run_npu",
+      "title": "ChronicCare DataMate Pipeline Run With NPU Enhancement"
+    },
+    {
+      "name": "chroniccare_datamate_dag_plan",
+      "title": "Plan Dynamic DataMate DAG"
+    },
+    {
+      "name": "chroniccare_datamate_dag_run",
+      "title": "Run Dynamic DataMate DAG"
+    },
+    {
+      "name": "chroniccare_datamate_dag_resume",
+      "title": "Resume Dynamic DataMate DAG"
+    },
+    {
+      "name": "chroniccare_datamate_dag_status",
+      "title": "Dynamic DAG Status"
+    },
+    {
+      "name": "chroniccare_datamate_pipeline_status",
+      "title": "ChronicCare DataMate Pipeline Status"
+    },
+    {
+      "name": "chroniccare_datamate_pipeline_latest",
+      "title": "ChronicCare DataMate Pipeline Latest"
+    },
+    {
+      "name": "chroniccare_datamate_pipeline_report",
+      "title": "ChronicCare DataMate Pipeline Report"
+    },
+    {
+      "name": "chroniccare_kg_summary",
+      "title": "ChronicCare KG Summary"
+    },
+    {
+      "name": "chroniccare_kg_entity_query",
+      "title": "ChronicCare KG Entity Query"
+    },
+    {
+      "name": "chroniccare_kg_relation_query",
+      "title": "ChronicCare KG Relation Query"
+    },
+    {
+      "name": "chroniccare_kg_patient_path_query",
+      "title": "ChronicCare KG Patient Path Query"
+    },
+    {
+      "name": "chroniccare_kg_subgraph_query",
+      "title": "ChronicCare KG Subgraph Query"
+    },
+    {
+      "name": "chroniccare_kg_subgraph_render",
+      "title": "ChronicCare KG Subgraph Render"
+    },
+    {
+      "name": "chroniccare_disease_distribution",
+      "title": "ChronicCare Disease Distribution"
+    },
+    {
+      "name": "chroniccare_disease_combination_distribution",
+      "title": "ChronicCare Disease Combination Distribution"
+    },
+    {
+      "name": "chroniccare_risk_level_distribution",
+      "title": "ChronicCare Risk Level Distribution"
+    },
+    {
+      "name": "chroniccare_followup_high_risk",
+      "title": "ChronicCare Future High Risk Followup"
+    },
+    {
+      "name": "chroniccare_cohort_disease_distribution",
+      "title": "ChronicCare Cohort Disease Distribution"
+    },
+    {
+      "name": "chroniccare_graph_driven_analysis",
+      "title": "ChronicCare Graph-driven Analysis"
+    },
+    {
+      "name": "chroniccare_open_sql_query",
+      "title": "ChronicCare Open SQL Query"
+    },
+    {
+      "name": "chroniccare_open_sql_schema",
+      "title": "ChronicCare Open SQL Schema"
+    },
+    {
+      "name": "chroniccare_open_sql_eval",
+      "title": "ChronicCare Open SQL Eval"
+    },
+    {
+      "name": "chroniccare_open_sql_examples",
+      "title": "ChronicCare Open SQL Examples"
+    },
+    {
+      "name": "chroniccare_report_summary",
+      "title": "ChronicCare Report Summary"
+    },
+    {
+      "name": "chroniccare_trace_summary",
+      "title": "ChronicCare Trace Summary"
+    }
+  ]
+}

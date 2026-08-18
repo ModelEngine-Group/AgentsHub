@@ -1,0 +1,13 @@
+FROM python:3.12.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    CHRONICCARE_MCP_HOST=0.0.0.0 \
+    CHRONICCARE_MCP_PORT=18188
+WORKDIR /app
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+COPY . /app
+EXPOSE 18188
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 CMD python -c "import urllib.request; raise SystemExit(0 if urllib.request.urlopen('http://127.0.0.1:18188/health', timeout=3).status < 400 else 1)"
+CMD ["python", "scripts/run_mcp_adapter.py"]

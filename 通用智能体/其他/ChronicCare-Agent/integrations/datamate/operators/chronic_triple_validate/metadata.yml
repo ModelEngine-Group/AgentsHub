@@ -1,0 +1,28 @@
+name: chronic_triple_validate
+raw_id: chronic_triple_validate
+display_name: 慢病随访三元组校验算子
+version: 0.1.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 对抽取出的关系进行 schema 校验、去重与 clean/rejected 分流。
+inputs:
+  - name: relations
+    type: directory
+    required: true
+outputs:
+  - name: triples_clean
+    type: jsonl
+  - name: triples_rejected
+    type: jsonl
+  - name: triple_validate_report
+    type: json
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, triple]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

@@ -1,0 +1,281 @@
+{
+  "schema_version": "2.0.0",
+  "status": "success",
+  "acceptance_date": "2026-08-10",
+  "generated_at": "2026-08-10T19:21:54.663118+08:00",
+  "data_version": "synthetic_chroniccare",
+  "checks": [
+    {
+      "name": "file_and_config_completeness",
+      "ok": true,
+      "required": true,
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "name": "dependency_lock",
+      "ok": true,
+      "required": true,
+      "details": {
+        "dependency_count": 17
+      }
+    },
+    {
+      "name": "operator_source_count",
+      "ok": true,
+      "required": true,
+      "details": {
+        "count": 13,
+        "operators": [
+          "chronic_entity_extract",
+          "chronic_entity_extract_model_npu",
+          "chronic_field_normalize",
+          "chronic_file_ingest",
+          "chronic_kg_build",
+          "chronic_nl2sql_analyze",
+          "chronic_relation_extract",
+          "chronic_relation_extract_model_npu",
+          "chronic_report_pack",
+          "chronic_sqlite_loader",
+          "chronic_table_clean",
+          "chronic_text_split",
+          "chronic_triple_validate"
+        ]
+      }
+    },
+    {
+      "name": "public_tree_privacy",
+      "ok": true,
+      "required": true,
+      "details": {
+        "secrets": [],
+        "private_paths_or_ips": [],
+        "forbidden_files": []
+      }
+    },
+    {
+      "name": "current_data_consistency",
+      "ok": true,
+      "required": true,
+      "details": {
+        "data_version": "synthetic_chroniccare",
+        "snapshots": {
+          "sqlite": {
+            "path": "data/sqlite/chroniccare.db",
+            "sha256": "f5734b9f1b611683f7c1cf2776a26419daacdcc7331dbf4828948727cb672995",
+            "patient_count": 2000,
+            "visit_count": 8231,
+            "lab_result_count": 131323,
+            "medication_record_count": 18248,
+            "risk_event_count": 22840
+          },
+          "graph": {
+            "path": "data/graph/graph.json",
+            "sha256": "379e1b75d7c6636cd2a527da9281b630d157aa412f963308ca03876e0e890383",
+            "node_count": 197404,
+            "edge_count": 396928,
+            "entity_type_total_count": 14,
+            "relation_type_total_count": 15,
+            "risk_event_occurrence_nodes": 22840
+          }
+        },
+        "validations": {
+          "expected_counts_match": true,
+          "data_version_consistent": true,
+          "metrics_match_graph": true,
+          "graph_provenance_complete": true,
+          "graph_has_no_exact_duplicate_edges": true
+        }
+      }
+    },
+    {
+      "name": "service_health",
+      "ok": true,
+      "required": true,
+      "details": {
+        "mode": "online",
+        "services": {
+          "http://127.0.0.1:18088/health": {
+            "ok": true,
+            "status_code": 200
+          },
+          "http://127.0.0.1:18188/tools": {
+            "ok": true,
+            "status_code": 200
+          },
+          "http://127.0.0.1:18501": {
+            "ok": true,
+            "status_code": 200
+          }
+        }
+      }
+    },
+    {
+      "name": "mcp_tool_count_and_schema",
+      "ok": true,
+      "required": true,
+      "details": {
+        "count": 38,
+        "dynamic_dag_tools_present": [
+          "chroniccare_datamate_dag_plan",
+          "chroniccare_datamate_dag_resume",
+          "chroniccare_datamate_dag_run",
+          "chroniccare_datamate_dag_status"
+        ]
+      }
+    },
+    {
+      "name": "formal_report_statuses",
+      "ok": true,
+      "required": true,
+      "details": {
+        "current_data_consistency_report.json": "success",
+        "synthetic_data_quality_report.json": "success",
+        "open_sql_security_eval_report.json": "success",
+        "kg_semantic_quality_report.json": "success",
+        "kgqa_quality_report.json": "success",
+        "npu_operator_benchmark_report.json": "success",
+        "npu_environment_report.json": "success",
+        "test_execution_summary.json": "success",
+        "conversation_context_eval_report.json": "success",
+        "agent_routing_coverage_report.json": "success",
+        "nl2sql_blind_eval_report.json": "success"
+      }
+    },
+    {
+      "name": "machine_readable_test_evidence",
+      "ok": true,
+      "required": true,
+      "details": {
+        "junit_present": true,
+        "coverage_present": true,
+        "ruff_present": true,
+        "tests": 437,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "combined_coverage": 62.31598767545361,
+        "statement_coverage": 65.60802833530106,
+        "branch_coverage": 53.64032358431861,
+        "ruff_violations": 0,
+        "latest_validation_input": "deploy/runtime/README.md",
+        "evidence_fresh_against_source": true,
+        "required_latest_test_present": true
+      }
+    },
+    {
+      "name": "nl2sql_hard_gate",
+      "ok": true,
+      "required": true,
+      "details": {
+        "dataset": 240,
+        "llm_calls": 80,
+        "accuracy": 0.9958
+      }
+    },
+    {
+      "name": "graph_provenance_gate",
+      "ok": true,
+      "required": true,
+      "details": {
+        "data_version": "synthetic_chroniccare",
+        "node_count": 197404,
+        "edge_count": 396928,
+        "provenance_version": "2.1.0-provenance"
+      }
+    },
+    {
+      "name": "npu_execution_and_equivalence_gate",
+      "ok": true,
+      "required": true,
+      "details": {
+        "fallback_used": false,
+        "benchmark_repeat_count": 5,
+        "benchmark_sample_count": 2048,
+        "operators": [
+          {
+            "operator": "chronic_entity_extract_model_npu",
+            "sample_speedup_mean": 13.3517,
+            "cpu_runs": [
+              2.768436,
+              3.083839,
+              2.923616,
+              2.27635,
+              3.061487
+            ],
+            "npu_runs": [
+              0.202607,
+              0.212051,
+              0.223459,
+              0.208229,
+              0.210727
+            ],
+            "npu_full_runs": [
+              14.219094,
+              14.91047,
+              14.575497,
+              13.919897,
+              14.465717
+            ]
+          },
+          {
+            "operator": "chronic_relation_extract_model_npu",
+            "sample_speedup_mean": 16.2116,
+            "cpu_runs": [
+              4.501741,
+              4.777494,
+              4.589151,
+              4.025404,
+              5.104834
+            ],
+            "npu_runs": [
+              0.281544,
+              0.310538,
+              0.283546,
+              0.277613,
+              0.265414
+            ],
+            "npu_full_runs": [
+              51.794847,
+              53.054074,
+              52.074868,
+              51.551916,
+              52.844124
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "routing_regression_gate",
+      "ok": true,
+      "required": true,
+      "details": {
+        "question_count": 80,
+        "pass_rate": 1.0,
+        "failures": null
+      }
+    },
+    {
+      "name": "formal_document_references",
+      "ok": true,
+      "required": true,
+      "details": {
+        "documents": 4,
+        "checked": 32,
+        "missing": []
+      }
+    },
+    {
+      "name": "optional_internal_offline_archive",
+      "ok": true,
+      "required": false,
+      "details": {
+        "mode": "not-built",
+        "note": "外层提交ZIP或源码目录可直接验收；内部离线TAR仅在显式构建后执行完整性校验。"
+      }
+    }
+  ],
+  "required_failures": []
+}

@@ -1,0 +1,34 @@
+name: chronic_nl2sql_analyze
+raw_id: chronic_nl2sql_analyze
+display_name: 慢病 NL2SQL 分析算子
+version: 0.1.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 基于 SQLite 与标准分析问题集生成 SQL 候选、评测结果和真实指标分析产物。
+inputs:
+  - name: sqlite_db
+    type: sqlite
+    required: true
+  - name: analysis_questions
+    type: json
+    required: true
+outputs:
+  - name: sql_candidates
+    type: json
+  - name: nl2sql_eval
+    type: json
+  - name: indicator_results
+    type: json
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+  - name: analysis_questions_path
+    type: string
+    default: ""
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, nl2sql]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

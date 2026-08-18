@@ -1,0 +1,36 @@
+chart_defaults:
+  width: 900
+  height: 520
+  template: plotly_white
+  output_format: html
+
+chart_type_mapping:
+  metric_card:
+    renderer: metric_card
+  bar:
+    renderer: bar
+  line:
+    renderer: line
+  table:
+    renderer: table
+
+report_sections:
+  - overview
+  - nl2sql_results
+  - key_metrics
+  - trend_analysis
+  - graph_statistics
+  - kg_quality
+  - safety_note
+
+demo_highlight_questions:
+  - A001
+  - A002
+  - A003
+  - A007
+  - A011
+  - A012
+  - A014
+  - A015
+
+safety_note: 医疗安全说明：本项目仅用于慢性病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

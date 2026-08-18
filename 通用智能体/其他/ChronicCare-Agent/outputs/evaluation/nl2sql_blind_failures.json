@@ -1,0 +1,91 @@
+{
+  "dataset_version": "2026.07.28-blind-semantic-refresh",
+  "count": 1,
+  "failures": [
+    {
+      "id": "llm-055",
+      "subset": "llm_candidate",
+      "question": "统计就诊事件规模",
+      "expected_status": "success",
+      "stage": "llm_candidate",
+      "candidate": {
+        "status": "success",
+        "sql": "SELECT COUNT(DISTINCT vr.patient_id) AS patient_count FROM visit_record vr",
+        "confidence": 1.0,
+        "reason": "统计就诊事件规模，即覆盖的患者人数，使用 COUNT(DISTINCT patient_id)。",
+        "model": "deepseek-chat",
+        "endpoint_category": "OpenAI-compatible remote API",
+        "temperature": 0,
+        "prompt_version": "nl2sql_candidate_semantic_constraints",
+        "usage": {
+          "prompt_tokens": 2203,
+          "completion_tokens": 46,
+          "total_tokens": 2249,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 2203
+        }
+      },
+      "llm_latency_ms": 1904.38,
+      "guard": {
+        "safe": true,
+        "reason": "",
+        "errors": [],
+        "normalized_sql": "SELECT COUNT(DISTINCT vr.patient_id) AS patient_count FROM visit_record AS vr LIMIT 500",
+        "warnings": [
+          "LIMIT was automatically added to keep the query bounded."
+        ],
+        "ast_dialect": "sqlite"
+      },
+      "actual_status": "success",
+      "sql": "SELECT COUNT(DISTINCT vr.patient_id) AS patient_count FROM visit_record AS vr LIMIT 500",
+      "predicted_rows": [
+        {
+          "patient_count": 2000
+        }
+      ],
+      "gold_rows": [
+        {
+          "visit_count": 8231
+        }
+      ],
+      "data_version": "synthetic_chroniccare",
+      "model": "deepseek-chat",
+      "prompt_version": "nl2sql_candidate_semantic_constraints",
+      "candidate_sql": "SELECT COUNT(DISTINCT vr.patient_id) AS patient_count FROM visit_record AS vr LIMIT 500",
+      "guard_stage": {
+        "safe": true,
+        "reason": "",
+        "errors": [],
+        "normalized_sql": "SELECT COUNT(DISTINCT vr.patient_id) AS patient_count FROM visit_record AS vr LIMIT 500",
+        "warnings": [
+          "LIMIT was automatically added to keep the query bounded."
+        ],
+        "ast_dialect": "sqlite"
+      },
+      "execution_result": {
+        "status": "success",
+        "rows": [
+          {
+            "patient_count": 2000
+          }
+        ]
+      },
+      "token_usage": {
+        "prompt_tokens": 2203,
+        "completion_tokens": 46,
+        "total_tokens": 2249,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2203
+      },
+      "correct": false,
+      "failure_category": "result",
+      "latency_ms": 1952.11
+    }
+  ]
+}

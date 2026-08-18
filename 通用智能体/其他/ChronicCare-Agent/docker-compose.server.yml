@@ -1,0 +1,38 @@
+services:
+  chroniccare-runtime:
+    build:
+      context: .
+      dockerfile: deploy/runtime/Dockerfile.runtime
+      network: host
+    container_name: chroniccare-runtime
+    ports:
+      - "${CHRONICCARE_TOOL_SERVER_PORT:-18088}:18088"
+      - "${CHRONICCARE_MCP_PORT:-18188}:18188"
+      - "${CHRONICCARE_STREAMLIT_PORT:-18501}:18501"
+    volumes:
+      - "${CHRONICCARE_DEPLOY_ROOT:-.}/data:/app/data"
+      - "${CHRONICCARE_DEPLOY_ROOT:-.}/outputs:/app/outputs"
+      - "${CHRONICCARE_DEPLOY_ROOT:-.}/models:/app/models"
+      - ./configs:/app/configs
+      - "${CHRONICCARE_DEPLOY_ROOT:-.}/logs:/app/logs"
+      # 管理型DataMate编排专用：Docker socket等同宿主机高权限，仅限隔离受控服务器。
+      - /usr/bin/docker:/usr/bin/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      CHRONICCARE_ENV: server
+      CHRONICCARE_TOOL_SERVER_URL: "http://127.0.0.1:18088"
+      CHRONICCARE_MCP_HOST: "0.0.0.0"
+      CHRONICCARE_MCP_PORT: "${CHRONICCARE_MCP_PORT:-18188}"
+      CHRONICCARE_MCP_TRANSPORT: "streamable-http"
+      CHRONICCARE_CANN_ROOT: "${CHRONICCARE_CANN_ROOT:-/usr/local/Ascend/ascend-toolkit/latest}"
+      CHRONICCARE_TRACE_DIR: "/app/outputs/mcp_traces"
+      CHRONICCARE_TRACE_FILE: "/app/outputs/mcp_traces/mcp_tool_calls.jsonl"
+      CHRONICCARE_TRACE_SUMMARY_FILE: "/app/outputs/mcp_traces/mcp_trace_summary.json"
+      PYTHONUNBUFFERED: "1"
+      NO_PROXY: "localhost,127.0.0.1,172.17.0.1,172.19.0.1,172.20.0.1,172.21.0.1,10.0.0.0/8,172.16.0.0/12"
+      no_proxy: "localhost,127.0.0.1,172.17.0.1,172.19.0.1,172.20.0.1,172.21.0.1,10.0.0.0/8,172.16.0.0/12"
+    restart: unless-stopped
+
+networks:
+  default:
+    name: chroniccare-server-net

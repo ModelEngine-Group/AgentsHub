@@ -1,0 +1,424 @@
+{
+  "questions": [
+    {
+      "id": "NLQ001",
+      "question": "高血压合并糖尿病患者的平均 HbA1c 是多少？",
+      "intent": "nl2sql_q_001",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(l.item_value), 2) AS avg_hba1c FROM patient_profile p JOIN lab_result l ON p.patient_id = l.patient_id WHERE p.disease_tags LIKE '%hypertension%' AND p.disease_tags LIKE '%diabetes%' AND l.item_name = 'hba1c';"
+    },
+    {
+      "id": "NLQ002",
+      "question": "糖尿病患者的空腹血糖平均值是多少？",
+      "intent": "nl2sql_q_002",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(l.item_value), 2) AS avg_fasting_glucose FROM patient_profile p JOIN lab_result l ON p.patient_id = l.patient_id WHERE p.disease_tags LIKE '%diabetes%' AND l.item_name = 'fasting_glucose';"
+    },
+    {
+      "id": "NLQ003",
+      "question": "高脂血症患者的 LDL-C 异常比例是多少？",
+      "intent": "nl2sql_q_003",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(SUM(CASE WHEN abnormal_flag != 'normal' THEN 1 ELSE 0 END) * 1.0 / COUNT(*), 4) AS ldl_abnormal_rate FROM patient_profile p JOIN lab_result l ON p.patient_id = l.patient_id WHERE p.disease_tags LIKE '%hyperlipidemia%' AND l.item_name = 'ldl_c';"
+    },
+    {
+      "id": "NLQ004",
+      "question": "BMI 超标患者有多少人？",
+      "intent": "nl2sql_q_004",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(*) AS overweight_patient_count FROM patient_profile WHERE bmi >= 24.0;"
+    },
+    {
+      "id": "NLQ005",
+      "question": "不同疾病组合患者的平均 HbA1c 是多少？",
+      "intent": "nl2sql_q_005",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT disease_tags, ROUND(AVG(l.item_value), 2) AS avg_hba1c FROM patient_profile p JOIN lab_result l ON p.patient_id = l.patient_id WHERE l.item_name = 'hba1c' GROUP BY disease_tags ORDER BY avg_hba1c DESC;"
+    },
+    {
+      "id": "NLQ006",
+      "question": "不同风险等级患者的人数分布是多少？",
+      "intent": "nl2sql_q_006",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT risk_level, COUNT(DISTINCT patient_id) AS patient_count FROM patient_risk_score GROUP BY risk_level ORDER BY patient_count DESC;"
+    },
+    {
+      "id": "NLQ007",
+      "question": "不同用药类别患者的指标控制情况如何？",
+      "intent": "nl2sql_q_007",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT m.drug_category, ROUND(AVG(CASE WHEN l.abnormal_flag = 'normal' THEN 1 ELSE 0 END), 4) AS control_rate FROM medication_record m JOIN lab_result l ON m.patient_id = l.patient_id AND m.visit_id = l.visit_id WHERE l.item_name IN ('hba1c','fasting_glucose','ldl_c','systolic_bp') GROUP BY m.drug_category ORDER BY control_rate DESC;"
+    },
+    {
+      "id": "NLQ008",
+      "question": "最近 6 个月 HbA1c 异常人数趋势如何？",
+      "intent": "nl2sql_q_008",
+      "expected_chart_type": "line",
+      "sql_template": "SELECT substr(test_date,1,7) AS month, COUNT(DISTINCT patient_id) AS abnormal_patient_count FROM lab_result WHERE item_name='hba1c' AND abnormal_flag!='normal' GROUP BY substr(test_date,1,7) ORDER BY month DESC LIMIT 6;"
+    },
+    {
+      "id": "NLQ009",
+      "question": "最近 6 个月血压异常人数趋势如何？",
+      "intent": "nl2sql_q_009",
+      "expected_chart_type": "line",
+      "sql_template": "SELECT substr(test_date,1,7) AS month, COUNT(DISTINCT patient_id) AS abnormal_patient_count FROM lab_result WHERE item_name IN ('systolic_bp','diastolic_bp') AND abnormal_flag!='normal' GROUP BY substr(test_date,1,7) ORDER BY month DESC LIMIT 6;"
+    },
+    {
+      "id": "NLQ010",
+      "question": "不同月份高风险事件数量变化如何？",
+      "intent": "nl2sql_q_010",
+      "expected_chart_type": "line",
+      "sql_template": "SELECT substr(created_at,1,7) AS month, COUNT(*) AS high_risk_event_count FROM risk_event WHERE event_level='high' GROUP BY substr(created_at,1,7) ORDER BY month;"
+    },
+    {
+      "id": "NLQ011",
+      "question": "哪些患者同时存在血糖、血压和血脂异常？",
+      "intent": "nl2sql_q_011",
+      "expected_chart_type": "table",
+      "sql_template": "SELECT patient_id, COUNT(DISTINCT CASE WHEN item_name IN ('fasting_glucose','hba1c') AND abnormal_flag!='normal' THEN 'glucose' END) + COUNT(DISTINCT CASE WHEN item_name IN ('systolic_bp','diastolic_bp') AND abnormal_flag!='normal' THEN 'bp' END) + COUNT(DISTINCT CASE WHEN item_name IN ('ldl_c','triglyceride','total_cholesterol','hdl_c') AND abnormal_flag!='normal' THEN 'lipid' END) AS abnormal_domains FROM lab_result GROUP BY patient_id HAVING abnormal_domains >= 3 ORDER BY patient_id LIMIT 20;"
+    },
+    {
+      "id": "NLQ012",
+      "question": "高风险患者常见风险因素有哪些？",
+      "intent": "nl2sql_q_012",
+      "expected_chart_type": "table",
+      "sql_template": "SELECT risk_factors, COUNT(*) AS record_count FROM patient_risk_score WHERE risk_level='high' GROUP BY risk_factors ORDER BY record_count DESC LIMIT 10;"
+    },
+    {
+      "id": "NLQ013",
+      "question": "用药依从性差的患者中 HbA1c 异常比例是多少？",
+      "intent": "nl2sql_q_013",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(SUM(CASE WHEN l.abnormal_flag!='normal' THEN 1 ELSE 0 END) * 1.0 / COUNT(*), 4) AS abnormal_rate FROM medication_record m JOIN lab_result l ON m.patient_id=l.patient_id AND m.visit_id=l.visit_id WHERE m.adherence='irregular' AND l.item_name='hba1c';"
+    },
+    {
+      "id": "NLQ014",
+      "question": "未来 30 天需要随访的高风险患者有多少？",
+      "intent": "nl2sql_q_014",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT fp.patient_id) AS due_high_risk_patients FROM followup_plan fp JOIN patient_risk_score prs ON fp.patient_id=prs.patient_id AND fp.visit_id=prs.visit_id WHERE prs.risk_level='high' AND fp.followup_date <= date('now', '+30 days') AND fp.status='scheduled';"
+    },
+    {
+      "id": "NLQ015",
+      "question": "不同随访优先级的患者数量是多少？",
+      "intent": "nl2sql_q_015",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT priority, COUNT(DISTINCT patient_id) AS patient_count FROM followup_plan GROUP BY priority ORDER BY patient_count DESC;"
+    },
+    {
+      "id": "NLQ016",
+      "question": "逾期未随访的患者有多少？",
+      "intent": "nl2sql_q_016",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS overdue_patient_count FROM followup_plan WHERE status='scheduled' AND followup_date < date('now');"
+    },
+    {
+      "id": "NLQ017",
+      "question": "运动不足患者的 BMI 平均值是多少？",
+      "intent": "nl2sql_q_017",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(p.bmi), 2) AS avg_bmi FROM patient_profile p JOIN lifestyle_record lr ON p.patient_id=lr.patient_id WHERE lr.exercise_minutes_per_week < 120;"
+    },
+    {
+      "id": "NLQ018",
+      "question": "高盐饮食患者的血压异常比例是多少？",
+      "intent": "nl2sql_q_018",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(SUM(CASE WHEN l.abnormal_flag!='normal' THEN 1 ELSE 0 END) * 1.0 / COUNT(*), 4) AS abnormal_rate FROM lifestyle_record lr JOIN lab_result l ON lr.patient_id=l.patient_id AND lr.visit_id=l.visit_id WHERE lr.salt_intake_level='high' AND l.item_name IN ('systolic_bp','diastolic_bp');"
+    },
+    {
+      "id": "NLQ019",
+      "question": "睡眠不足患者的高风险事件数量是多少？",
+      "intent": "nl2sql_q_019",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(*) AS high_risk_event_count FROM lifestyle_record lr JOIN risk_event re ON lr.patient_id=re.patient_id AND lr.visit_id=re.visit_id WHERE lr.sleep_hours < 6.5 AND re.event_level='high';"
+    },
+    {
+      "id": "NLQ020",
+      "question": "不同风险等级患者的平均 eGFR 是多少？",
+      "intent": "nl2sql_q_020",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT prs.risk_level, ROUND(AVG(l.item_value), 2) AS avg_egfr FROM patient_risk_score prs JOIN lab_result l ON prs.patient_id=l.patient_id AND prs.visit_id=l.visit_id WHERE l.item_name='egfr' GROUP BY prs.risk_level ORDER BY avg_egfr;"
+    },
+    {
+      "id": "NLQ021",
+      "question": "高尿酸血症患者的平均尿酸水平是多少？",
+      "intent": "nl2sql_q_021",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(l.item_value), 2) AS avg_uric_acid FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.disease_tags LIKE '%hyperuricemia%' AND l.item_name='uric_acid';"
+    },
+    {
+      "id": "NLQ022",
+      "question": "慢性肾功能异常患者的 UACR 异常比例是多少？",
+      "intent": "nl2sql_q_022",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(SUM(CASE WHEN abnormal_flag!='normal' THEN 1 ELSE 0 END) * 1.0 / COUNT(*), 4) AS uacr_abnormal_rate FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.disease_tags LIKE '%ckd_risk%' AND l.item_name='uacr';"
+    },
+    {
+      "id": "NLQ023",
+      "question": "脂肪肝风险患者的 ALT 平均值是多少？",
+      "intent": "nl2sql_q_023",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(l.item_value), 2) AS avg_alt FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.disease_tags LIKE '%fatty_liver_risk%' AND l.item_name='alt';"
+    },
+    {
+      "id": "NLQ024",
+      "question": "冠心病风险患者使用他汀类药物的比例是多少？",
+      "intent": "nl2sql_q_024",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(COUNT(DISTINCT CASE WHEN m.drug_name IN ('atorvastatin','rosuvastatin') THEN p.patient_id END) * 1.0 / COUNT(DISTINCT p.patient_id), 4) AS statin_rate FROM patient_profile p LEFT JOIN medication_record m ON p.patient_id=m.patient_id WHERE p.disease_tags LIKE '%coronary_risk%';"
+    },
+    {
+      "id": "NLQ025",
+      "question": "不同药物类别对应的患者数量是多少？",
+      "intent": "nl2sql_q_025",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT drug_category, COUNT(DISTINCT patient_id) AS patient_count FROM medication_record GROUP BY drug_category ORDER BY patient_count DESC;"
+    },
+    {
+      "id": "NLQ026",
+      "question": "最近一次随访中异常指标最多的患者有哪些？",
+      "intent": "nl2sql_q_026",
+      "expected_chart_type": "table",
+      "sql_template": "WITH latest AS (SELECT patient_id, MAX(visit_date) AS latest_date FROM visit_record GROUP BY patient_id) SELECT v.patient_id, COUNT(*) AS abnormal_count FROM visit_record v JOIN latest lt ON v.patient_id=lt.patient_id AND v.visit_date=lt.latest_date JOIN lab_result l ON v.visit_id=l.visit_id WHERE l.abnormal_flag!='normal' GROUP BY v.patient_id ORDER BY abnormal_count DESC LIMIT 10;"
+    },
+    {
+      "id": "NLQ027",
+      "question": "图谱中每种实体类型的数量是多少？",
+      "intent": "nl2sql_q_027",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT entity_type, COUNT(*) AS node_count FROM graph_nodes GROUP BY entity_type ORDER BY node_count DESC;"
+    },
+    {
+      "id": "NLQ028",
+      "question": "图谱中每种关系类型的数量是多少？",
+      "intent": "nl2sql_q_028",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT relation_type, COUNT(*) AS edge_count FROM graph_edges GROUP BY relation_type ORDER BY edge_count DESC;"
+    },
+    {
+      "id": "NLQ029",
+      "question": "高风险事件最多的事件类型是什么？",
+      "intent": "nl2sql_q_029",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT event_type, COUNT(*) AS event_count FROM risk_event WHERE event_level='high' GROUP BY event_type ORDER BY event_count DESC;"
+    },
+    {
+      "id": "NLQ030",
+      "question": "不同性别患者的平均 BMI 是多少？",
+      "intent": "nl2sql_q_030",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT gender, ROUND(AVG(bmi), 2) AS avg_bmi FROM patient_profile GROUP BY gender ORDER BY avg_bmi DESC;"
+    },
+    {
+      "id": "NLQ031",
+      "question": "高血压患者中收缩压超过 140 的人数是多少？",
+      "intent": "nl2sql_q_031",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.disease_tags LIKE '%hypertension%' AND l.item_name='systolic_bp' AND l.item_value >= 140;"
+    },
+    {
+      "id": "NLQ032",
+      "question": "糖尿病患者中 HbA1c 高于 6.5 的比例是多少？",
+      "intent": "nl2sql_q_032",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(SUM(CASE WHEN l.item_value >= 6.5 THEN 1 ELSE 0 END) * 1.0 / COUNT(*), 4) AS hba1c_high_rate FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.disease_tags LIKE '%diabetes%' AND l.item_name='hba1c';"
+    },
+    {
+      "id": "NLQ033",
+      "question": "风险评分最高的前 10 位患者是谁？",
+      "intent": "nl2sql_q_033",
+      "expected_chart_type": "table",
+      "sql_template": "SELECT patient_id, MAX(risk_score) AS max_risk_score FROM patient_risk_score GROUP BY patient_id ORDER BY max_risk_score DESC LIMIT 10;"
+    },
+    {
+      "id": "NLQ034",
+      "question": "不同随访状态的计划数量是多少？",
+      "intent": "nl2sql_q_034",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT status, COUNT(*) AS plan_count FROM followup_plan GROUP BY status ORDER BY plan_count DESC;"
+    },
+    {
+      "id": "NLQ035",
+      "question": "使用达格列净患者的平均空腹血糖是多少？",
+      "intent": "nl2sql_q_035",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(l.item_value), 2) AS avg_fasting_glucose FROM medication_record m JOIN lab_result l ON m.patient_id=l.patient_id AND m.visit_id=l.visit_id WHERE m.drug_name='dapagliflozin' AND l.item_name='fasting_glucose';"
+    },
+    {
+      "id": "NLQ036",
+      "question": "慢性肾病风险患者的人数是多少？",
+      "intent": "nl2sql_q_036",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE disease_tags LIKE '%ckd_risk%';"
+    },
+    {
+      "id": "NLQ037",
+      "question": "慢阻肺患者的人数是多少？",
+      "intent": "nl2sql_q_037",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE disease_tags LIKE '%copd%';"
+    },
+    {
+      "id": "NLQ038",
+      "question": "冠心病风险患者的人数是多少？",
+      "intent": "nl2sql_q_038",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE disease_tags LIKE '%coronary_risk%';"
+    },
+    {
+      "id": "NLQ039",
+      "question": "代谢综合征患者的人数是多少？",
+      "intent": "nl2sql_q_039",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE disease_tags LIKE '%metabolic_syndrome%';"
+    },
+    {
+      "id": "NLQ040",
+      "question": "慢性肾病风险患者的平均 eGFR 是多少？",
+      "intent": "nl2sql_q_040",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(l.item_value), 2) AS avg_egfr FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.disease_tags LIKE '%ckd_risk%' AND l.item_name='egfr';"
+    },
+    {
+      "id": "NLQ041",
+      "question": "高尿酸血症患者中尿酸高于 420 的比例是多少？",
+      "intent": "nl2sql_q_041",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(SUM(CASE WHEN l.item_value > 420 THEN 1 ELSE 0 END) * 1.0 / COUNT(*), 4) AS uric_high_rate FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.disease_tags LIKE '%hyperuricemia%' AND l.item_name='uric_acid';"
+    },
+    {
+      "id": "NLQ042",
+      "question": "慢阻肺患者的平均 FEV1/FVC 是多少？",
+      "intent": "nl2sql_q_042",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(l.item_value), 2) AS avg_fev1_ratio FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE p.disease_tags LIKE '%copd%' AND l.item_name='fev1_ratio';"
+    },
+    {
+      "id": "NLQ043",
+      "question": "未来 60 天需要随访的患者人数是多少？",
+      "intent": "nl2sql_q_043",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM followup_plan WHERE status IN ('pending','scheduled') AND followup_date BETWEEN date('now') AND date('now', '+60 day');"
+    },
+    {
+      "id": "NLQ044",
+      "question": "未来 15 天需要随访的高风险患者人数是多少？",
+      "intent": "nl2sql_q_044",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT fp.patient_id) AS patient_count FROM followup_plan fp JOIN patient_risk_score prs ON fp.patient_id=prs.patient_id AND fp.visit_id=prs.visit_id WHERE prs.risk_level='high' AND fp.status IN ('pending','scheduled') AND fp.followup_date BETWEEN date('now') AND date('now', '+15 day');"
+    },
+    {
+      "id": "NLQ045",
+      "question": "未来 30 天不同优先级随访计划数量是多少？",
+      "intent": "nl2sql_q_045",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT priority, COUNT(*) AS plan_count FROM followup_plan WHERE followup_date BETWEEN date('now') AND date('now', '+30 day') GROUP BY priority ORDER BY plan_count DESC;"
+    },
+    {
+      "id": "NLQ046",
+      "question": "高风险患者最常见的风险事件是什么？",
+      "intent": "nl2sql_q_046",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT re.event_type, COUNT(*) AS event_count FROM risk_event re JOIN patient_risk_score prs ON re.patient_id=prs.patient_id AND re.visit_id=prs.visit_id WHERE prs.risk_level='high' GROUP BY re.event_type ORDER BY event_count DESC LIMIT 10;"
+    },
+    {
+      "id": "NLQ047",
+      "question": "冠心病风险患者最常用的药物类别是什么？",
+      "intent": "nl2sql_q_047",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT m.drug_category, COUNT(DISTINCT m.patient_id) AS patient_count FROM patient_profile p JOIN medication_record m ON p.patient_id=m.patient_id WHERE p.disease_tags LIKE '%coronary_risk%' GROUP BY m.drug_category ORDER BY patient_count DESC;"
+    },
+    {
+      "id": "NLQ048",
+      "question": "高血压合并糖尿病患者的人数是多少？",
+      "intent": "nl2sql_q_048",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE disease_tags LIKE '%hypertension%' AND disease_tags LIKE '%diabetes%';"
+    },
+    {
+      "id": "NLQ049",
+      "question": "冠心病风险合并高脂血症患者的人数是多少？",
+      "intent": "nl2sql_q_049",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE disease_tags LIKE '%coronary_risk%' AND disease_tags LIKE '%hyperlipidemia%';"
+    },
+    {
+      "id": "NLQ050",
+      "question": "慢性肾病风险合并糖尿病患者的人数是多少？",
+      "intent": "nl2sql_q_050",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE disease_tags LIKE '%ckd_risk%' AND disease_tags LIKE '%diabetes%';"
+    },
+    {
+      "id": "NLQ051",
+      "question": "不同疾病标签对应的患者数量 Top10 是什么？",
+      "intent": "nl2sql_q_051",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT disease_tags, COUNT(*) AS patient_count FROM patient_profile GROUP BY disease_tags ORDER BY patient_count DESC LIMIT 10;"
+    },
+    {
+      "id": "NLQ052",
+      "question": "不同医生建议类型的数量是多少？",
+      "intent": "nl2sql_q_052",
+      "expected_chart_type": "bar",
+      "sql_template": "SELECT advice_type, COUNT(*) AS advice_count FROM doctor_advice GROUP BY advice_type ORDER BY advice_count DESC;"
+    },
+    {
+      "id": "NLQ053",
+      "question": "高风险患者最常见的医生建议有哪些？",
+      "intent": "nl2sql_q_053",
+      "expected_chart_type": "table",
+      "sql_template": "SELECT da.advice_content, COUNT(*) AS advice_count FROM doctor_advice da JOIN patient_risk_score prs ON da.patient_id=prs.patient_id AND da.visit_id=prs.visit_id WHERE prs.risk_level='high' GROUP BY da.advice_content ORDER BY advice_count DESC LIMIT 10;"
+    },
+    {
+      "id": "NLQ054",
+      "question": "运动不足患者中高风险患者有多少？",
+      "intent": "nl2sql_q_054",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT prs.patient_id) AS patient_count FROM lifestyle_record lr JOIN patient_risk_score prs ON lr.patient_id=prs.patient_id AND lr.visit_id=prs.visit_id WHERE lr.exercise_minutes_per_week < 120 AND prs.risk_level='high';"
+    },
+    {
+      "id": "NLQ055",
+      "question": "高盐饮食患者中未来 30 天需要随访的患者有多少？",
+      "intent": "nl2sql_q_055",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT fp.patient_id) AS patient_count FROM lifestyle_record lr JOIN followup_plan fp ON lr.patient_id=fp.patient_id AND lr.visit_id=fp.visit_id WHERE lr.salt_intake_level='high' AND fp.status IN ('pending','scheduled') AND fp.followup_date BETWEEN date('now') AND date('now', '+30 day');"
+    },
+    {
+      "id": "NLQ056",
+      "question": "睡眠不足患者的人数是多少？",
+      "intent": "nl2sql_q_056",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM lifestyle_record WHERE sleep_hours < 6.5;"
+    },
+    {
+      "id": "NLQ057",
+      "question": "吸烟患者中慢阻肺患者有多少？",
+      "intent": "nl2sql_q_057",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count FROM patient_profile p JOIN lifestyle_record lr ON p.patient_id=lr.patient_id WHERE p.disease_tags LIKE '%copd%' AND lr.smoking_status='yes';"
+    },
+    {
+      "id": "NLQ058",
+      "question": "使用利尿剂患者的平均 eGFR 是多少？",
+      "intent": "nl2sql_q_058",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT ROUND(AVG(l.item_value), 2) AS avg_egfr FROM medication_record m JOIN lab_result l ON m.patient_id=l.patient_id AND m.visit_id=l.visit_id WHERE m.drug_category='diuretic' AND l.item_name='egfr';"
+    },
+    {
+      "id": "NLQ059",
+      "question": "使用抗血小板药物患者的冠心病风险人数是多少？",
+      "intent": "nl2sql_q_059",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count FROM patient_profile p JOIN medication_record m ON p.patient_id=m.patient_id WHERE p.disease_tags LIKE '%coronary_risk%' AND m.drug_category='antiplatelet';"
+    },
+    {
+      "id": "NLQ060",
+      "question": "高风险患者中未来 7 天需要随访的患者有多少？",
+      "intent": "nl2sql_q_060",
+      "expected_chart_type": "metric_card",
+      "sql_template": "SELECT COUNT(DISTINCT fp.patient_id) AS patient_count FROM followup_plan fp JOIN patient_risk_score prs ON fp.patient_id=prs.patient_id AND fp.visit_id=prs.visit_id WHERE prs.risk_level='high' AND fp.status IN ('pending','scheduled') AND fp.followup_date BETWEEN date('now') AND date('now', '+7 day');"
+    }
+  ]
+}

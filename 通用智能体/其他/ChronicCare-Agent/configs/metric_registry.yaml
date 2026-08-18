@@ -1,0 +1,56 @@
+version: 1.0.0
+timezone: Asia/Shanghai
+window_policy:
+  future_days: inclusive_calendar_days
+  formula: end_date = as_of_date + N - 1 days
+latest_record_policy:
+  risk_level: latest observed_at or created_at, then visit_id descending
+metrics:
+  patient_count:
+    label: 去重患者数
+    numerator: count(distinct patient_id)
+    denominator: null
+    unit: patient
+  record_count:
+    label: 记录数
+    numerator: count(*)
+    denominator: null
+    unit: record
+  event_count:
+    label: 纵向事件数
+    numerator: count(distinct event_id)
+    denominator: null
+    unit: event
+  abnormal_record_rate:
+    label: 异常记录率
+    numerator: abnormal records
+    denominator: all eligible records
+    unit: ratio
+  abnormal_patient_rate:
+    label: 至少一次异常患者率
+    numerator: distinct patients with at least one abnormal record
+    denominator: distinct eligible patients
+    unit: ratio
+  latest_risk_distribution:
+    label: 最新风险等级患者分布
+    numerator: distinct patients by latest risk level
+    denominator: patients with a valid latest risk record
+    unit: patient
+  future_followup_patient_count:
+    label: 未来 N 天待随访去重患者数
+    numerator: distinct patients with pending or scheduled plans in inclusive window
+    denominator: null
+    unit: patient
+known_cohorts:
+  high_salt_blood_pressure_observed:
+    label: 高盐饮食且存在同次血压记录的分析队列
+    expected_baseline_count: 687
+  high_salt_any_abnormal_blood_pressure:
+    label: 上述队列中至少一次血压异常的患者
+    expected_baseline_count: 628
+    denominator_cohort: high_salt_blood_pressure_observed
+edge_metrics:
+  graph_event_edge_count:
+    label: 图谱纵向事件边数
+  unique_semantic_relation_count:
+    label: 去重语义关系数

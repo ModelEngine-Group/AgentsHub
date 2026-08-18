@@ -1,0 +1,34 @@
+name: chronic_report_pack
+raw_id: chronic_report_pack
+display_name: 慢病报告打包算子
+version: 0.1.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 汇总指标分析、图谱摘要和可视化产物，形成报告、图表入口和演示打包产物。
+inputs:
+  - name: indicator_results
+    type: json
+    required: true
+  - name: graph_summary
+    type: json
+    required: true
+outputs:
+  - name: analysis_report_html
+    type: html
+  - name: analysis_report_md
+    type: markdown
+  - name: chart_index
+    type: html
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+  - name: graph_summary_path
+    type: string
+    default: ""
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, report]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

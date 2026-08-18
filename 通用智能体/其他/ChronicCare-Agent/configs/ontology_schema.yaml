@@ -1,0 +1,230 @@
+version: 1
+domain: chronic_care_followup
+description: '面向三高慢性病随访场景的知识图谱 schema，供后续实体抽取、关系抽取、 图谱构建与问答模块复用。
+
+  '
+entity_types:
+  Disease:
+    description: 慢性病或疾病诊断标签。
+    examples:
+    - 高血压
+    - 2型糖尿病
+    - 高脂血症
+    - 慢阻肺
+    - 慢性肾病风险
+    - 代谢综合征
+    - 冠心病风险
+  Symptom:
+    description: 患者主诉或症状表现。
+    examples:
+    - 头晕
+    - 多饮
+    - 乏力
+    - 心悸
+  Drug:
+    description: 具体药物名称。
+    examples:
+    - 二甲双胍
+    - 氨氯地平
+    - 阿托伐他汀
+    - 氯吡格雷
+    - 呋塞米
+    - 噻托溴铵
+  DrugCategory:
+    description: 药物类别，用于归纳不同治疗方案。
+    examples:
+    - glucose_lowering
+    - antihypertensive
+    - lipid_lowering
+  Indicator:
+    description: 检验指标或生命体征项目名称。
+    examples:
+    - 空腹血糖
+    - HbA1c
+    - 收缩压
+    - LDL-C
+    - eGFR
+    - 尿酸
+    - FEV1/FVC
+  LabResult:
+    description: 某次随访产生的具体检验结果实例。
+    examples:
+    - L000001
+    - 空腹血糖 8.1 mmol/L
+    - 收缩压 152 mmHg
+  Patient:
+    description: 脱敏患者实体。
+    examples:
+    - P0001
+    - P0048
+  Visit:
+    description: 某位患者的一次随访事件。
+    examples:
+    - V000001
+    - V000245
+  RiskFactor:
+    description: 与慢病风险或控制不佳相关的行为和体征因素。
+    examples:
+    - 高盐饮食
+    - 缺乏运动
+    - 吸烟
+    - 肥胖
+  LifestyleAdvice:
+    description: 面向健康管理的生活方式建议。
+    examples:
+    - 低盐饮食
+    - 规律运动
+    - 控制体重
+    - 规律监测血糖
+  RiskEvent:
+    description: 从检验或随访中识别出的风险事件或异常状态。
+    examples:
+    - 血压控制不佳
+    - 血糖升高
+    - 血脂异常
+  FollowupPlan:
+    description: 随访计划实体。
+    examples:
+    - FP0000001
+  LifestyleRecord:
+    description: 生活方式记录实体。
+    examples:
+    - LS0000001
+  DoctorAdvice:
+    description: 医生建议实体。
+    examples:
+    - DA0000001
+  RiskScore:
+    description: 患者风险评分实体。
+    examples:
+    - RS0000001
+relation_types:
+  patient_has_disease:
+    head_type: Patient
+    tail_type: Disease
+    description: 患者具备某一慢病诊断标签。
+    example: P0001 -> patient_has_disease -> 高血压
+  patient_has_visit:
+    head_type: Patient
+    tail_type: Visit
+    description: 患者关联到具体一次随访记录。
+    example: P0001 -> patient_has_visit -> V000001
+  visit_has_lab:
+    head_type: Visit
+    tail_type: LabResult
+    description: 某次随访包含一项检验或生命体征结果。
+    example: V000001 -> visit_has_lab -> L000001
+  visit_has_medication:
+    head_type: Visit
+    tail_type: Drug
+    description: 某次随访记录中涉及到的药物。
+    example: V000001 -> visit_has_medication -> 二甲双胍
+  disease_has_indicator:
+    head_type: Disease
+    tail_type: Indicator
+    description: 某种疾病重点关联的指标。
+    example: 2型糖尿病 -> disease_has_indicator -> 空腹血糖
+  disease_has_symptom:
+    head_type: Disease
+    tail_type: Symptom
+    description: 某种疾病常见相关症状。
+    example: 高血压 -> disease_has_symptom -> 头晕
+  disease_treated_by_drug:
+    head_type: Disease
+    tail_type: Drug
+    description: 某种疾病可由某药物进行管理。
+    example: 高脂血症 -> disease_treated_by_drug -> 阿托伐他汀
+  drug_belongs_to_category:
+    head_type: Drug
+    tail_type: DrugCategory
+    description: 药物归属于某一治疗类别。
+    example: 氨氯地平 -> drug_belongs_to_category -> antihypertensive
+  risk_factor_associated_with_disease:
+    head_type: RiskFactor
+    tail_type: Disease
+    description: 风险因素与某类慢病有关联。
+    example: 高盐饮食 -> risk_factor_associated_with_disease -> 高血压
+  lifestyle_advice_for_disease:
+    head_type: LifestyleAdvice
+    tail_type: Disease
+    description: 某类生活方式建议适用于某疾病管理。
+    example: 低盐饮食 -> lifestyle_advice_for_disease -> 高血压
+  lab_result_indicates_risk:
+    head_type: LabResult
+    tail_type: RiskEvent
+    description: 某项异常检验结果提示相应风险事件。
+    example: L000001 -> lab_result_indicates_risk -> 血糖升高
+  patient_has_risk_event:
+    head_type: Patient
+    tail_type: RiskEvent
+    description: 患者在随访周期中出现某类风险事件。
+    example: P0001 -> patient_has_risk_event -> 血压控制不佳
+  lab_result_belongs_to_indicator:
+    head_type: LabResult
+    tail_type: Indicator
+    description: 某条检验结果对应某个指标项目。
+    example: L000001 -> lab_result_belongs_to_indicator -> fasting_glucose
+  associated_with_risk_event:
+    head_type: Disease
+    tail_type: RiskEvent
+    description: 某类疾病与风险事件存在共现或关联。
+    example: hypertension -> associated_with_risk_event -> blood_pressure_high
+  patient_has_followup_plan:
+    head_type: Patient
+    tail_type: FollowupPlan
+    description: 患者关联到随访计划。
+    example: P0001 -> patient_has_followup_plan -> FP000001
+  visit_has_lifestyle_record:
+    head_type: Visit
+    tail_type: LifestyleRecord
+    description: 随访记录对应生活方式信息。
+    example: V000001 -> visit_has_lifestyle_record -> LS000001
+  visit_has_doctor_advice:
+    head_type: Visit
+    tail_type: DoctorAdvice
+    description: 随访记录对应医生建议。
+    example: V000001 -> visit_has_doctor_advice -> DA000001
+  patient_has_risk_score:
+    head_type: Patient
+    tail_type: RiskScore
+    description: 患者关联当前风险评分。
+    example: P0001 -> patient_has_risk_score -> RS000001
+field_hints:
+  patient_profile:
+    description: 患者基础档案表。
+    key_fields:
+    - patient_id
+    - age
+    - gender
+    - bmi
+    - disease_tags
+    - smoking
+    - drinking
+  visit_record:
+    description: 患者随访事件表。
+    key_fields:
+    - visit_id
+    - patient_id
+    - visit_date
+    - chief_complaint
+    - doctor_advice
+    - followup_plan
+  lab_result:
+    description: 检验与生命体征结果表。
+    key_fields:
+    - lab_id
+    - patient_id
+    - visit_id
+    - item_name
+    - item_value
+    - abnormal_flag
+    - test_date
+  medication_record:
+    description: 用药记录表。
+    key_fields:
+    - med_id
+    - patient_id
+    - visit_id
+    - drug_name
+    - drug_category
+    - adherence

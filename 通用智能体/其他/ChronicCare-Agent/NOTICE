@@ -1,0 +1,8 @@
+ChronicCare-Agent
+Copyright (c) 2026 ChronicCare-Agent contributors
+
+本项目集成但不随交付包再分发以下项目源码：
+- Nexent（https://github.com/ModelEngine-Group/nexent），集成基线v2.2.0 / a57538fb68e23d4e6b5439c3f13add014edbfd7e，MIT License。
+- DataMate（https://github.com/ModelEngine-Group/DataMate），集成基线6136834ce00075f0a844e26dcc7fe1cc9e0d8dd9，MIT License。
+
+项目使用的开源Python依赖固定在requirements.txt中，归属信息记录于THIRD_PARTY_NOTICES.md。模型权重和Ascend/CANN运行组件不包含在源码交付包中，分别遵循其自身许可证和部署条款。

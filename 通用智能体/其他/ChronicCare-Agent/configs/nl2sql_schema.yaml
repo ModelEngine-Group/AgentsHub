@@ -1,0 +1,309 @@
+version: 1
+database: chroniccare_sqlite
+description: 'ChronicCare NL2SQL schema，供SQL生成、校验、执行与评测模块复用。
+
+  '
+tables:
+  patient_profile:
+    description: 患者基础画像与共病标签表。
+    primary_key: patient_id
+    foreign_keys: []
+    columns:
+      patient_id:
+        type: TEXT
+        description: 脱敏患者编号
+      name:
+        type: TEXT
+        description: 模拟患者姓名
+      age:
+        type: INTEGER
+        description: 年龄
+      gender:
+        type: TEXT
+        description: 性别，male 或 female
+      bmi:
+        type: REAL
+        description: 基线 BMI
+      disease_tags:
+        type: TEXT
+        description: 疾病标签，使用分号分隔
+      first_visit_date:
+        type: TEXT
+        description: 首次随访日期，YYYY-MM-DD
+      smoking:
+        type: TEXT
+        description: 吸烟情况，yes 或 no
+      drinking:
+        type: TEXT
+        description: 饮酒情况，yes 或 no
+    example_questions:
+    - 最近三个月高血压患者有多少？
+    - 三高共病患者的平均 BMI 是多少？
+    - BMI 偏高患者中血压异常比例是多少？
+  visit_record:
+    description: 患者随访主记录表。
+    primary_key: visit_id
+    foreign_keys:
+    - patient_id -> patient_profile.patient_id
+    columns:
+      visit_id:
+        type: TEXT
+        description: 随访编号
+      patient_id:
+        type: TEXT
+        description: 患者编号
+      visit_date:
+        type: TEXT
+        description: 随访日期，YYYY-MM-DD
+      chief_complaint:
+        type: TEXT
+        description: 主诉摘要
+      doctor_advice:
+        type: TEXT
+        description: 医生健康管理建议
+      followup_plan:
+        type: TEXT
+        description: 复查或复诊安排
+    example_questions:
+    - 最近一次随访中异常指标最多的患者有哪些？
+    - 最近三个月有多少次随访提到晨起血压偏高？
+  lab_result:
+    description: 检验结果与生命体征明细表。
+    primary_key: lab_id
+    foreign_keys:
+    - patient_id -> patient_profile.patient_id
+    - visit_id -> visit_record.visit_id
+    columns:
+      lab_id:
+        type: TEXT
+        description: 检验记录编号
+      patient_id:
+        type: TEXT
+        description: 患者编号
+      visit_id:
+        type: TEXT
+        description: 随访编号
+      item_name:
+        type: TEXT
+        description: 指标名称，如 fasting_glucose、ldl_c
+      item_value:
+        type: REAL
+        description: 指标数值
+      unit:
+        type: TEXT
+        description: 指标单位
+      reference_range:
+        type: TEXT
+        description: 参考范围文本
+      abnormal_flag:
+        type: TEXT
+        description: normal、high 或 low
+      test_date:
+        type: TEXT
+        description: 检测日期，YYYY-MM-DD
+    example_questions:
+    - 高血压合并糖尿病患者的平均 HbA1c 是多少？
+    - 不同疾病组合的 LDL-C 异常比例是多少？
+    - 糖尿病患者中 HbA1c 高于 6.5 的比例是多少？
+    - 高血压患者中收缩压超过 140 的人数是多少？
+    - 使用二甲双胍的患者空腹血糖变化趋势如何？
+  medication_record:
+    description: 每次随访关联的用药记录表。
+    primary_key: med_id
+    foreign_keys:
+    - patient_id -> patient_profile.patient_id
+    - visit_id -> visit_record.visit_id
+    columns:
+      med_id:
+        type: TEXT
+        description: 用药记录编号
+      patient_id:
+        type: TEXT
+        description: 患者编号
+      visit_id:
+        type: TEXT
+        description: 随访编号
+      drug_name:
+        type: TEXT
+        description: 药物名称
+      drug_category:
+        type: TEXT
+        description: 药物类别
+      dose:
+        type: TEXT
+        description: 剂量
+      frequency:
+        type: TEXT
+        description: 频次
+      start_date:
+        type: TEXT
+        description: 开始日期，YYYY-MM-DD
+      adherence:
+        type: TEXT
+        description: 用药依从性
+    example_questions:
+    - 使用他汀类药物患者的 LDL-C 平均值是多少？
+    - 使用二甲双胍的患者空腹血糖变化趋势如何？
+    - 哪些患者在最近一次随访中同时使用降糖药和降压药？
+  risk_event:
+    description: 患者风险事件表。
+    primary_key: risk_event_id
+    foreign_keys:
+    - patient_id -> patient_profile.patient_id
+    - visit_id -> visit_record.visit_id
+    columns:
+      risk_event_id:
+        type: TEXT
+        description: 风险事件编号
+      patient_id:
+        type: TEXT
+        description: 患者编号
+      visit_id:
+        type: TEXT
+        description: 随访编号
+      event_type:
+        type: TEXT
+        description: 风险事件类型
+      event_level:
+        type: TEXT
+        description: 风险级别
+      event_reason:
+        type: TEXT
+        description: 事件原因
+      created_at:
+        type: TEXT
+        description: 创建时间
+  followup_plan:
+    description: 随访计划表。
+    primary_key: plan_id
+    foreign_keys:
+    - patient_id -> patient_profile.patient_id
+    - visit_id -> visit_record.visit_id
+    columns:
+      plan_id:
+        type: TEXT
+        description: 计划编号
+      patient_id:
+        type: TEXT
+        description: 患者编号
+      visit_id:
+        type: TEXT
+        description: 随访编号
+      plan_type:
+        type: TEXT
+        description: 计划类型
+      followup_date:
+        type: TEXT
+        description: 随访日期
+      priority:
+        type: TEXT
+        description: 优先级
+      status:
+        type: TEXT
+        description: 状态
+      created_at:
+        type: TEXT
+        description: 创建时间
+  lifestyle_record:
+    description: 生活方式记录表。
+    primary_key: record_id
+    foreign_keys:
+    - patient_id -> patient_profile.patient_id
+    - visit_id -> visit_record.visit_id
+    columns:
+      record_id:
+        type: TEXT
+        description: 记录编号
+      patient_id:
+        type: TEXT
+        description: 患者编号
+      visit_id:
+        type: TEXT
+        description: 随访编号
+      smoking_status:
+        type: TEXT
+        description: 吸烟状态
+      alcohol_status:
+        type: TEXT
+        description: 饮酒状态
+      exercise_minutes_per_week:
+        type: INTEGER
+        description: 每周运动分钟数
+      salt_intake_level:
+        type: TEXT
+        description: 盐摄入水平
+      sleep_hours:
+        type: REAL
+        description: 睡眠时长
+      created_at:
+        type: TEXT
+        description: 创建时间
+  doctor_advice:
+    description: 医生建议表。
+    primary_key: advice_id
+    foreign_keys:
+    - patient_id -> patient_profile.patient_id
+    - visit_id -> visit_record.visit_id
+    columns:
+      advice_id:
+        type: TEXT
+        description: 建议编号
+      patient_id:
+        type: TEXT
+        description: 患者编号
+      visit_id:
+        type: TEXT
+        description: 随访编号
+      advice_type:
+        type: TEXT
+        description: 建议类型
+      advice_content:
+        type: TEXT
+        description: 建议内容
+      priority:
+        type: TEXT
+        description: 优先级
+      created_at:
+        type: TEXT
+        description: 创建时间
+  patient_risk_score:
+    description: 患者风险评分表。
+    primary_key: score_id
+    foreign_keys:
+    - patient_id -> patient_profile.patient_id
+    - visit_id -> visit_record.visit_id
+    columns:
+      score_id:
+        type: TEXT
+        description: 评分编号
+      patient_id:
+        type: TEXT
+        description: 患者编号
+      visit_id:
+        type: TEXT
+        description: 随访编号
+      risk_score:
+        type: REAL
+        description: 风险分值
+      risk_level:
+        type: TEXT
+        description: 风险等级
+      risk_factors:
+        type: TEXT
+        description: 风险因素
+      created_at:
+        type: TEXT
+        description: 创建时间
+example_questions_global:
+- 最近三个月高血压患者有多少？
+- 高血压合并糖尿病患者的平均 HbA1c 是多少？
+- 不同疾病组合的 LDL-C 异常比例是多少？
+- 使用二甲双胍的患者空腹血糖变化趋势如何？
+- BMI 偏高患者中血压异常比例是多少？
+- 使用他汀类药物患者的 LDL-C 平均值是多少？
+- 最近一次随访中异常指标最多的患者有哪些？
+- 糖尿病患者中 HbA1c 高于 6.5 的比例是多少？
+- 高血压患者中收缩压超过 140 的人数是多少？
+- 三高共病患者的平均 BMI 是多少？
+- 吸烟患者的甘油三酯异常比例是多少？
+- 饮酒患者中 HDL-C 偏低的比例是多少？

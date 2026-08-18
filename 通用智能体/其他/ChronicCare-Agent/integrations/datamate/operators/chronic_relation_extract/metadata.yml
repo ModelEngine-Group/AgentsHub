@@ -1,0 +1,32 @@
+name: chronic_relation_extract
+raw_id: chronic_relation_extract
+display_name: 慢病随访关系抽取算子
+version: 1.1.0
+type: data_processing
+domain: healthcare_chronic_followup
+language: python
+description: 基于实体与文本上下文抽取疾病、药物、指标、风险事件之间的关系。
+inputs:
+  - name: entities
+    type: directory
+    required: true
+  - name: chunks
+    type: directory
+    required: true
+outputs:
+  - name: relations
+    type: directory
+  - name: relation_extract_report
+    type: json
+parameters:
+  - name: export_path
+    type: string
+    default: ./outputs
+  - name: chunks_path
+    type: string
+    default: ""
+dependencies:
+  - python>=3.10
+entrypoint: process.py
+tags: [ChronicCare, DataMate, healthcare, relation]
+safety_note: 本项目仅用于慢病随访数据处理、知识组织和辅助分析，不提供临床诊断，不替代医生决策。

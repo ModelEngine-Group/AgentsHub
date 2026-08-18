@@ -1,0 +1,61 @@
+{
+  "schema_version": "2.0.0",
+  "project": "ChronicCare-Agent",
+  "updated_at": "2026-08-10T00:00:00+08:00",
+  "python": "3.12",
+  "dependency_file": "requirements.txt",
+  "dependency_policy": "single pinned runtime dependency list",
+  "external_dependencies": [
+    "Nexent",
+    "DataMate",
+    "Ascend driver and CANN",
+    "hardware-matched PyTorch and torch_npu",
+    "Transformers and bge-small-zh-v1.5 model weights"
+  ],
+  "excluded_patterns": [
+    ".env",
+    ".git/**",
+    ".venv/**",
+    "venv/**",
+    "**/__pycache__/**",
+    "*.pyc",
+    "logs/**",
+    "models/**",
+    "release/*.tar.gz",
+    "outputs/*_previous_*/**",
+    "outputs/**/artifacts/**",
+    "outputs/open_sql/traces/**",
+    "outputs/mcp_traces/**",
+    "outputs/planner_logs/**",
+    "outputs/runtime_context/**",
+    "outputs/reports/**",
+    "outputs/charts/**",
+    "outputs/datamate_full_pipeline/**",
+    "outputs/datamate_full_pipeline_npu/**",
+    ".ruff_cache/**",
+    ".coverage",
+    "outputs/runtime_generated/**"
+  ],
+  "key_paths": [
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "THIRD_PARTY_NOTICES.md",
+    "requirements.txt",
+    ".env.example",
+    "docker-compose.yml",
+    "deploy/runtime/Dockerfile.runtime",
+    "configs/current_metrics.json",
+    "data/sqlite/chroniccare.db",
+    "data/graph/graph.json",
+    "outputs/evaluation",
+    "outputs/release"
+  ],
+  "notes": [
+    "docs目录包含10份中文Markdown正式文档、1份技术报告PDF和42张经复核的Nexent前端截图及1张架构图。",
+    "打包前已清除运行trace、缓存、历史备份和DAG内嵌大型artifacts。",
+    "可运行scripts/build_offline_release_manifest.py生成脱敏离线包及精确文件清单。"
+  ],
+  "release_version": "v1.0.0",
+  "release_date": "2026-08-10"
+}

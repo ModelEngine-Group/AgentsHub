@@ -1,0 +1,46 @@
+{
+  "status": "generated",
+  "synthetic": true,
+  "generation_instance_id": "synthetic_chroniccare-seed20260719",
+  "synthetic_data_statement": "参考真实慢病随访业务的字段结构、业务关系和合理取值范围，采用程序化规则与固定随机种子合成；不来源于真实患者个体或原始病历，不代表任何国家、地区或医疗机构的真实患病率，不用于临床诊断。",
+  "data_version": "synthetic_chroniccare",
+  "generator_version": "3.0.0",
+  "profile_version": "synthetic-profile",
+  "seed": 20260719,
+  "patient_count": 2000,
+  "generation_anchor_date": "2026-07-01",
+  "generated_at": "2026-07-21T22:59:35+08:00",
+  "content_sha256": "e55862b95c0566ef245df9658c5b6c93eed7f3338309ad3e42384e755e961c38",
+  "table_row_counts": {
+    "patient_profile": 2000,
+    "visit_record": 8231,
+    "lab_result": 131323,
+    "medication_record": 18248,
+    "risk_event": 22840,
+    "followup_plan": 8231,
+    "lifestyle_record": 8231,
+    "doctor_advice": 8231,
+    "patient_risk_score": 8231
+  },
+  "text_row_counts": {
+    "case_notes": 8231,
+    "guideline_snippets": 6
+  },
+  "observed_disease_count_distribution": {
+    "0": 60,
+    "1": 1158,
+    "2": 596,
+    "3": 186
+  },
+  "label_layer_counts": {
+    "observed_fact": 2908,
+    "rule_derived_risk": 3664,
+    "synthetic_history": 46
+  },
+  "longitudinal_transition_distribution": {
+    "stable": 761,
+    "worsening": 508,
+    "improving": 731
+  },
+  "source_boundary": "reference-informed synthetic schema and controlled programmatic generation; no real patient records"
+}

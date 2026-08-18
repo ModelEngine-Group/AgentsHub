@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "status": "success",
+  "generated_at": "2026-08-02T17:07:56.271756+08:00",
+  "scope": "formal_npu_benchmark_environment",
+  "hardware": {
+    "accelerator": "Ascend 910B3",
+    "device_count_used": 1,
+    "shared_server": true,
+    "physical_device_id_used": 6
+  },
+  "software": {
+    "ascend_driver": "25.5.0",
+    "ascendhal": "7.35.23",
+    "cann_toolkit": "8.5.0",
+    "cann_inner_version": "V100R001C25SPC001B232",
+    "python": "3.11.14",
+    "pytorch": "2.8.0+cpu",
+    "torch_npu": "2.8.0",
+    "transformers": "4.57.6"
+  },
+  "datamate": {
+    "commit": "6136834ce00075f0a844e26dcc7fe1cc9e0d8dd9",
+    "image": "ghcr.io/modelengine-group/datamate-runtime@sha256:0fcdd4293270d8c6f19e0ffed9584e9f61989116735c4f39a8445eab421eeb9d"
+  },
+  "model": {
+    "name": "bge-small-zh-v1.5",
+    "content_sha256": "688f9664eb65edea0f73f78464c767a759a230b60ae74001af9492be6a67e94c",
+    "bundled": false
+  },
+  "benchmark": {
+    "sample_records": 2048,
+    "repeat_count": 5,
+    "cpu_threads": 64,
+    "cpu_batch_size": 64,
+    "npu_batch_size": 1024,
+    "max_length": 64,
+    "warmup_runs_per_device_per_round": 1,
+    "aggregation": "arithmetic_mean_of_five_independent_runs"
+  },
+  "privacy": {
+    "contains_host_absolute_path": false,
+    "contains_credentials": false
+  }
+}

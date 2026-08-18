@@ -1,0 +1,5 @@
+plan_id,patient_id,followup_date,priority,status
+F001,P0001,2026-07-29,high,pending
+F002,P0002,2026-07-30,medium,scheduled
+F003,P0003,2026-08-02,high,scheduled
+F004,P0004,2026-08-20,high,pending

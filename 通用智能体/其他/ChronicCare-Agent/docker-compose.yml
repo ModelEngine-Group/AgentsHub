@@ -1,0 +1,37 @@
+services:
+  chroniccare-runtime:
+    build:
+      context: .
+      dockerfile: deploy/runtime/Dockerfile.runtime
+    container_name: chroniccare-runtime
+    ports:
+      - "18088:18088"
+      - "18188:18188"
+      - "18501:18501"
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./configs:/app/configs
+      - ./logs:/app/logs
+    environment:
+      CHRONICCARE_TOOL_SERVER_URL: "http://127.0.0.1:18088"
+      CHRONICCARE_MCP_HOST: "0.0.0.0"
+      CHRONICCARE_MCP_PORT: "18188"
+      CHRONICCARE_MCP_TRANSPORT: "streamable-http"
+      CHRONICCARE_TRACE_DIR: "/app/outputs/mcp_traces"
+      CHRONICCARE_TRACE_FILE: "/app/outputs/mcp_traces/mcp_tool_calls.jsonl"
+      CHRONICCARE_TRACE_SUMMARY_FILE: "/app/outputs/mcp_traces/mcp_trace_summary.json"
+      OPEN_SQL_LLM_ENABLED: "${OPEN_SQL_LLM_ENABLED:-false}"
+      OPEN_SQL_FORCE_LLM: "${OPEN_SQL_FORCE_LLM:-false}"
+      OPEN_SQL_LLM_MODEL: "${OPEN_SQL_LLM_MODEL:-deepseek-chat}"
+      OPEN_SQL_PROXY_URL: "${OPEN_SQL_PROXY_URL:-}"
+      DEEPSEEK_BASE_URL: "${DEEPSEEK_BASE_URL:-https://api.deepseek.com}"
+      DEEPSEEK_API_KEY: "${DEEPSEEK_API_KEY:-}"
+      CHRONICCARE_CANN_ROOT: "${CHRONICCARE_CANN_ROOT:-/usr/local/Ascend/ascend-toolkit/latest}"
+      http_proxy: "${OPEN_SQL_PROXY_URL:-}"
+      https_proxy: "${OPEN_SQL_PROXY_URL:-}"
+      HTTP_PROXY: "${OPEN_SQL_PROXY_URL:-}"
+      HTTPS_PROXY: "${OPEN_SQL_PROXY_URL:-}"
+      NO_PROXY: "localhost,127.0.0.1,172.17.0.1,172.19.0.1,172.20.0.1,172.21.0.1,10.0.0.0/8,172.16.0.0/12"
+      no_proxy: "localhost,127.0.0.1,172.17.0.1,172.19.0.1,172.20.0.1,172.21.0.1,10.0.0.0/8,172.16.0.0/12"
+    restart: unless-stopped

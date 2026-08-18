@@ -1,0 +1,11 @@
+{
+  "name": "chroniccare-mcp-adapter",
+  "server_name": "chroniccare-mcp-adapter",
+  "project": "ChronicCare-Agent",
+  "transport": "streamable-http",
+  "base_url": "http://127.0.0.1:18188",
+  "mcp_endpoint": "http://127.0.0.1:18188/mcp",
+  "sse_endpoint": "http://127.0.0.1:18188/sse",
+  "tool_server_url": "http://127.0.0.1:18088",
+  "dashboard_url": "http://127.0.0.1:18501"
+}

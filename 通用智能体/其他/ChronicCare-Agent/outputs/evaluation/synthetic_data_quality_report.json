@@ -1,0 +1,741 @@
+{
+  "status": "success",
+  "generated_at": "2026-07-22",
+  "raw_root": "<private-path>",
+  "data_version": "synthetic_chroniccare",
+  "generator_version": "3.0.0",
+  "seed": 20260719,
+  "synthetic": true,
+  "checks": [
+    {
+      "name": "nine_table_schema",
+      "ok": true,
+      "details": {
+        "patient_profile": {
+          "exists": true,
+          "expected": [
+            "patient_id",
+            "name",
+            "age",
+            "gender",
+            "bmi",
+            "disease_tags",
+            "first_visit_date",
+            "smoking",
+            "drinking"
+          ],
+          "actual": [
+            "patient_id",
+            "name",
+            "age",
+            "gender",
+            "bmi",
+            "disease_tags",
+            "first_visit_date",
+            "smoking",
+            "drinking"
+          ],
+          "rows": 2000,
+          "header_match": true
+        },
+        "visit_record": {
+          "exists": true,
+          "expected": [
+            "visit_id",
+            "patient_id",
+            "visit_date",
+            "chief_complaint",
+            "doctor_advice",
+            "followup_plan"
+          ],
+          "actual": [
+            "visit_id",
+            "patient_id",
+            "visit_date",
+            "chief_complaint",
+            "doctor_advice",
+            "followup_plan"
+          ],
+          "rows": 8231,
+          "header_match": true
+        },
+        "lab_result": {
+          "exists": true,
+          "expected": [
+            "lab_id",
+            "patient_id",
+            "visit_id",
+            "item_name",
+            "item_value",
+            "value",
+            "unit",
+            "reference_low",
+            "reference_high",
+            "reference_range",
+            "abnormal_flag",
+            "test_date",
+            "record_time"
+          ],
+          "actual": [
+            "lab_id",
+            "patient_id",
+            "visit_id",
+            "item_name",
+            "item_value",
+            "value",
+            "unit",
+            "reference_low",
+            "reference_high",
+            "reference_range",
+            "abnormal_flag",
+            "test_date",
+            "record_time"
+          ],
+          "rows": 131323,
+          "header_match": true
+        },
+        "medication_record": {
+          "exists": true,
+          "expected": [
+            "med_id",
+            "patient_id",
+            "visit_id",
+            "drug_name",
+            "drug_category",
+            "dose",
+            "frequency",
+            "adherence",
+            "start_date",
+            "end_date"
+          ],
+          "actual": [
+            "med_id",
+            "patient_id",
+            "visit_id",
+            "drug_name",
+            "drug_category",
+            "dose",
+            "frequency",
+            "adherence",
+            "start_date",
+            "end_date"
+          ],
+          "rows": 18248,
+          "header_match": true
+        },
+        "risk_event": {
+          "exists": true,
+          "expected": [
+            "risk_event_id",
+            "patient_id",
+            "visit_id",
+            "event_type",
+            "event_level",
+            "event_reason",
+            "created_at"
+          ],
+          "actual": [
+            "risk_event_id",
+            "patient_id",
+            "visit_id",
+            "event_type",
+            "event_level",
+            "event_reason",
+            "created_at"
+          ],
+          "rows": 22840,
+          "header_match": true
+        },
+        "followup_plan": {
+          "exists": true,
+          "expected": [
+            "plan_id",
+            "patient_id",
+            "visit_id",
+            "plan_type",
+            "followup_date",
+            "priority",
+            "status",
+            "created_at"
+          ],
+          "actual": [
+            "plan_id",
+            "patient_id",
+            "visit_id",
+            "plan_type",
+            "followup_date",
+            "priority",
+            "status",
+            "created_at"
+          ],
+          "rows": 8231,
+          "header_match": true
+        },
+        "lifestyle_record": {
+          "exists": true,
+          "expected": [
+            "record_id",
+            "patient_id",
+            "visit_id",
+            "smoking_status",
+            "alcohol_status",
+            "exercise_minutes_per_week",
+            "salt_intake_level",
+            "sleep_hours",
+            "created_at"
+          ],
+          "actual": [
+            "record_id",
+            "patient_id",
+            "visit_id",
+            "smoking_status",
+            "alcohol_status",
+            "exercise_minutes_per_week",
+            "salt_intake_level",
+            "sleep_hours",
+            "created_at"
+          ],
+          "rows": 8231,
+          "header_match": true
+        },
+        "doctor_advice": {
+          "exists": true,
+          "expected": [
+            "advice_id",
+            "patient_id",
+            "visit_id",
+            "advice_type",
+            "advice_content",
+            "priority",
+            "created_at"
+          ],
+          "actual": [
+            "advice_id",
+            "patient_id",
+            "visit_id",
+            "advice_type",
+            "advice_content",
+            "priority",
+            "created_at"
+          ],
+          "rows": 8231,
+          "header_match": true
+        },
+        "patient_risk_score": {
+          "exists": true,
+          "expected": [
+            "score_id",
+            "patient_id",
+            "visit_id",
+            "risk_score",
+            "risk_level",
+            "risk_factors",
+            "created_at"
+          ],
+          "actual": [
+            "score_id",
+            "patient_id",
+            "visit_id",
+            "risk_score",
+            "risk_level",
+            "risk_factors",
+            "created_at"
+          ],
+          "rows": 8231,
+          "header_match": true
+        }
+      }
+    },
+    {
+      "name": "patient_count",
+      "ok": true,
+      "details": {
+        "expected": 2000,
+        "actual": 2000
+      }
+    },
+    {
+      "name": "primary_keys",
+      "ok": true,
+      "details": {
+        "patient_profile": {
+          "rows": 2000,
+          "blank": 0,
+          "duplicates": 0
+        },
+        "visit_record": {
+          "rows": 8231,
+          "blank": 0,
+          "duplicates": 0
+        },
+        "lab_result": {
+          "rows": 131323,
+          "blank": 0,
+          "duplicates": 0
+        },
+        "medication_record": {
+          "rows": 18248,
+          "blank": 0,
+          "duplicates": 0
+        },
+        "risk_event": {
+          "rows": 22840,
+          "blank": 0,
+          "duplicates": 0
+        },
+        "followup_plan": {
+          "rows": 8231,
+          "blank": 0,
+          "duplicates": 0
+        },
+        "lifestyle_record": {
+          "rows": 8231,
+          "blank": 0,
+          "duplicates": 0
+        },
+        "doctor_advice": {
+          "rows": 8231,
+          "blank": 0,
+          "duplicates": 0
+        },
+        "patient_risk_score": {
+          "rows": 8231,
+          "blank": 0,
+          "duplicates": 0
+        }
+      }
+    },
+    {
+      "name": "foreign_keys",
+      "ok": true,
+      "details": {
+        "visit_record": {
+          "patient_id": 0,
+          "visit_id": 0
+        },
+        "lab_result": {
+          "patient_id": 0,
+          "visit_id": 0
+        },
+        "medication_record": {
+          "patient_id": 0,
+          "visit_id": 0
+        },
+        "risk_event": {
+          "patient_id": 0,
+          "visit_id": 0
+        },
+        "followup_plan": {
+          "patient_id": 0,
+          "visit_id": 0
+        },
+        "lifestyle_record": {
+          "patient_id": 0,
+          "visit_id": 0
+        },
+        "doctor_advice": {
+          "patient_id": 0,
+          "visit_id": 0
+        },
+        "patient_risk_score": {
+          "patient_id": 0,
+          "visit_id": 0
+        }
+      }
+    },
+    {
+      "name": "observed_disease_distribution",
+      "ok": true,
+      "details": {
+        "counts": {
+          "1": 1158,
+          "2": 596,
+          "3": 186,
+          "0": 60
+        },
+        "shares": {
+          "0": 0.03,
+          "1": 0.579,
+          "2": 0.298,
+          "3": 0.093
+        },
+        "over_three": 0
+      }
+    },
+    {
+      "name": "label_validity",
+      "ok": true,
+      "details": {
+        "invalid_labels": {},
+        "empty_or_nan": 0,
+        "valid_layers": {
+          "observed_fact": [
+            "hypertension",
+            "diabetes",
+            "hyperlipidemia",
+            "obesity",
+            "hyperuricemia",
+            "copd",
+            "osteoporosis",
+            "chronic_kidney_disease",
+            "coronary_heart_disease",
+            "fatty_liver_disease",
+            "asthma",
+            "osteoarthritis",
+            "gout",
+            "chronic_heart_failure",
+            "diabetic_kidney_disease",
+            "obstructive_sleep_apnea",
+            "cerebrovascular_disease",
+            "atrial_fibrillation",
+            "chronic_hepatitis",
+            "hypothyroidism"
+          ],
+          "rule_derived_risk": [
+            "coronary_risk",
+            "ckd_risk",
+            "fatty_liver_risk",
+            "sleep_apnea_risk",
+            "heart_failure",
+            "diabetic_kidney_risk",
+            "metabolic_syndrome"
+          ],
+          "synthetic_history": [
+            "stroke_post"
+          ],
+          "model_prediction": []
+        }
+      }
+    },
+    {
+      "name": "disease_tags_observed_only",
+      "ok": true,
+      "details": {
+        "non_observed_label_counts": {
+          "ckd_risk": 0,
+          "coronary_risk": 0,
+          "diabetic_kidney_risk": 0,
+          "fatty_liver_risk": 0,
+          "heart_failure": 0,
+          "metabolic_syndrome": 0,
+          "sleep_apnea_risk": 0,
+          "stroke_post": 0
+        },
+        "observed_labels": [
+          "asthma",
+          "atrial_fibrillation",
+          "cerebrovascular_disease",
+          "chronic_heart_failure",
+          "chronic_hepatitis",
+          "chronic_kidney_disease",
+          "copd",
+          "coronary_heart_disease",
+          "diabetes",
+          "diabetic_kidney_disease",
+          "fatty_liver_disease",
+          "gout",
+          "hyperlipidemia",
+          "hypertension",
+          "hyperuricemia",
+          "hypothyroidism",
+          "obesity",
+          "obstructive_sleep_apnea",
+          "osteoarthritis",
+          "osteoporosis"
+        ]
+      }
+    },
+    {
+      "name": "observed_disease_catalog_coverage",
+      "ok": true,
+      "details": {
+        "configured_count": 20,
+        "expected_count": 20,
+        "patient_counts": {
+          "asthma": 50,
+          "atrial_fibrillation": 89,
+          "cerebrovascular_disease": 93,
+          "chronic_heart_failure": 92,
+          "chronic_hepatitis": 42,
+          "chronic_kidney_disease": 139,
+          "copd": 133,
+          "coronary_heart_disease": 119,
+          "diabetes": 356,
+          "diabetic_kidney_disease": 76,
+          "fatty_liver_disease": 114,
+          "gout": 78,
+          "hyperlipidemia": 328,
+          "hypertension": 433,
+          "hyperuricemia": 156,
+          "hypothyroidism": 69,
+          "obesity": 242,
+          "obstructive_sleep_apnea": 68,
+          "osteoarthritis": 111,
+          "osteoporosis": 120
+        },
+        "missing_from_dataset": []
+      }
+    },
+    {
+      "name": "demographic_guardrails",
+      "ok": true,
+      "details": {
+        "gender": {
+          "female": 1032,
+          "male": 968
+        },
+        "gender_shares": {
+          "female": 0.516,
+          "male": 0.484
+        },
+        "age_min": 30,
+        "age_max": 82,
+        "age_bands": {
+          "70s": 272,
+          "50s": 524,
+          "40s": 406,
+          "60s": 489,
+          "30s": 234,
+          "80s": 75
+        },
+        "max_single_age_share": 0.0345
+      }
+    },
+    {
+      "name": "lifestyle_guardrails",
+      "ok": true,
+      "details": {
+        "smoking_yes_share": 0.1935,
+        "drinking_yes_share": 0.208,
+        "high_salt_share": 0.207265,
+        "salt": {
+          "medium": 4624,
+          "low": 1901,
+          "high": 1706
+        },
+        "sleep": {
+          "long": 1469,
+          "normal": 5029,
+          "short": 1733
+        },
+        "exercise": {
+          "moderate": 3740,
+          "active": 2280,
+          "low": 2211
+        }
+      }
+    },
+    {
+      "name": "indicator_units_and_hard_bounds",
+      "ok": true,
+      "details": {
+        "unit_errors": 0,
+        "hard_bound_errors": 0,
+        "unknown_indicators": 0
+      }
+    },
+    {
+      "name": "indicator_state_coverage",
+      "ok": true,
+      "details": {
+        "alt": {
+          "normal": 4807,
+          "borderline": 917,
+          "abnormal": 2475
+        },
+        "ast": {
+          "borderline": 893,
+          "abnormal": 2104,
+          "normal": 5213
+        },
+        "bmi": {
+          "normal": 3618,
+          "borderline": 789,
+          "abnormal": 3804
+        },
+        "creatinine": {
+          "normal": 4795,
+          "borderline": 982,
+          "abnormal": 2437
+        },
+        "diastolic_bp": {
+          "normal": 4976,
+          "borderline": 1174,
+          "abnormal": 2057
+        },
+        "egfr": {
+          "abnormal": 2849,
+          "borderline": 910,
+          "normal": 4452
+        },
+        "fasting_glucose": {
+          "normal": 3906,
+          "borderline": 893,
+          "abnormal": 3409
+        },
+        "fev1_ratio": {
+          "abnormal": 1770,
+          "normal": 5729,
+          "borderline": 710
+        },
+        "hba1c": {
+          "abnormal": 2435,
+          "normal": 4761,
+          "borderline": 1011
+        },
+        "hdl_c": {
+          "abnormal": 3088,
+          "normal": 3815,
+          "borderline": 1308
+        },
+        "ldl_c": {
+          "abnormal": 2608,
+          "normal": 4039,
+          "borderline": 1567
+        },
+        "systolic_bp": {
+          "abnormal": 2767,
+          "normal": 4243,
+          "borderline": 1195
+        },
+        "total_cholesterol": {
+          "normal": 4471,
+          "abnormal": 2610,
+          "borderline": 1114
+        },
+        "triglyceride": {
+          "normal": 3900,
+          "abnormal": 3329,
+          "borderline": 977
+        },
+        "uacr": {
+          "normal": 2351,
+          "abnormal": 3473,
+          "borderline": 2384
+        },
+        "uric_acid": {
+          "normal": 4798,
+          "borderline": 1012,
+          "abnormal": 2398
+        }
+      }
+    },
+    {
+      "name": "medication_scenario_consistency",
+      "ok": true,
+      "details": {
+        "conflict_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "name": "temporal_consistency",
+      "ok": true,
+      "details": {
+        "visit_before_first": 0,
+        "lab_result_visit_mismatch": 0,
+        "risk_event_visit_mismatch": 0,
+        "lifestyle_record_visit_mismatch": 0,
+        "doctor_advice_visit_mismatch": 0,
+        "patient_risk_score_visit_mismatch": 0,
+        "followup_before_visit": 0,
+        "medication_order": 0
+      }
+    },
+    {
+      "name": "future_high_risk_followup_coverage",
+      "ok": true,
+      "details": {
+        "start_date": "2026-07-21",
+        "coverage_days": 365,
+        "minimum_daily": 1,
+        "maximum_daily": 10,
+        "distinct_daily_counts": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "adjacent_changes": 253,
+        "zero_days": 0
+      }
+    },
+    {
+      "name": "row_count_relationships",
+      "ok": true,
+      "details": {
+        "visits_per_patient": 4.1155,
+        "labs_per_visit": 15.95468351354635,
+        "lifestyle_coverage": 1.0,
+        "risk_score_coverage": 1.0,
+        "followup_coverage": 1.0,
+        "advice_coverage": 1.0,
+        "medications_per_patient": 9.124,
+        "risk_events": 22840
+      }
+    },
+    {
+      "name": "risk_event_and_followup_distribution",
+      "ok": true,
+      "details": {
+        "risk_levels": {
+          "high": 3236,
+          "low": 963,
+          "medium": 4032
+        },
+        "event_types": {
+          "blood_pressure_high": 4027,
+          "glucose_high": 4562,
+          "renal_risk": 5620,
+          "lipid_abnormal": 3782,
+          "pulmonary_risk": 432,
+          "bmi_high": 2848,
+          "liver_risk": 1102,
+          "uric_acid_high": 467
+        },
+        "followup_priorities": {
+          "high": 3236,
+          "low": 963,
+          "medium": 4032
+        }
+      }
+    },
+    {
+      "name": "synthetic_text_consistency",
+      "ok": true,
+      "details": {
+        "case_notes": 8231,
+        "visit_count": 8231,
+        "errors": {
+          "patient": 0,
+          "visit": 0,
+          "data_version": 0,
+          "synthetic": 0
+        },
+        "guideline_marked": true
+      }
+    },
+    {
+      "name": "manifest_and_content_hash",
+      "ok": true,
+      "details": {
+        "manifest_hash": "e55862b95c0566ef245df9658c5b6c93eed7f3338309ad3e42384e755e961c38",
+        "actual_hash": "e55862b95c0566ef245df9658c5b6c93eed7f3338309ad3e42384e755e961c38",
+        "data_version": "synthetic_chroniccare",
+        "seed": 20260719
+      }
+    }
+  ],
+  "failed_checks": [],
+  "reproducibility": {
+    "checked": false
+  },
+  "statement": "参考真实慢病随访业务的字段结构、业务关系和合理取值范围，采用程序化规则与固定随机种子合成；不来源于真实患者个体或原始病历，不代表任何国家、地区或医疗机构的真实患病率，不用于临床诊断。",
+  "kg_evaluation_scope": "automated engineering regression only; no independent human semantic validation"
+}

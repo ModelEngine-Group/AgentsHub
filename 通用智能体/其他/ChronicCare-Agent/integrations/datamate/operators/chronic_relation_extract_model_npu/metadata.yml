@@ -1,0 +1,3 @@
+name: chronic_relation_extract_model_npu
+raw_id: chronic_relation_extract_model_npu
+description: ChronicCare model-style relation embedding inference on NPU.

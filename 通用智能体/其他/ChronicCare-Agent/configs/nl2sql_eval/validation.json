@@ -1,0 +1,146 @@
+{
+  "version": "2026.07.19-validation",
+  "seed": 20260719,
+  "cases": [
+    {
+      "id": "tpl-021",
+      "subset": "template",
+      "question": "高血压人群一共有多少患者",
+      "gold_sql": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE lower(disease_tags) LIKE '%hypertension%'",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-022",
+      "subset": "template",
+      "question": "糖尿病人群一共有多少患者",
+      "gold_sql": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE lower(disease_tags) LIKE '%diabetes%'",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-023",
+      "subset": "template",
+      "question": "同时有高血压、糖尿病的人数是多少",
+      "gold_sql": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE lower(disease_tags) LIKE '%hypertension%' AND lower(disease_tags) LIKE '%diabetes%'",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-024",
+      "subset": "template",
+      "question": "请计算高血压患者的平均糖化血红蛋白",
+      "gold_sql": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count, COUNT(DISTINCT l.lab_id) AS lab_count, ROUND(AVG(CAST(COALESCE(l.value, l.item_value) AS REAL)), 4) AS avg_value FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE lower(p.disease_tags) LIKE '%hypertension%' AND lower(l.item_name) IN ('hba1c')",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-025",
+      "subset": "template",
+      "question": "请计算糖尿病患者空腹血糖均值",
+      "gold_sql": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count, COUNT(DISTINCT l.lab_id) AS lab_count, ROUND(AVG(CAST(COALESCE(l.value, l.item_value) AS REAL)), 4) AS avg_value FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE lower(p.disease_tags) LIKE '%diabetes%' AND lower(l.item_name) IN ('fasting_glucose')",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-026",
+      "subset": "template",
+      "question": "请统计高脂血症患者 LDL 异常率",
+      "gold_sql": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count, COUNT(DISTINCT l.lab_id) AS denominator, COUNT(DISTINCT CASE WHEN lower(l.abnormal_flag) != 'normal' THEN l.lab_id END) AS numerator, ROUND(1.0*COUNT(DISTINCT CASE WHEN lower(l.abnormal_flag) != 'normal' THEN l.lab_id END)/NULLIF(COUNT(DISTINCT l.lab_id),0),4) AS abnormal_rate FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE lower(p.disease_tags) LIKE '%hyperlipidemia%' AND lower(l.item_name) IN ('ldl_c')",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-027",
+      "subset": "template",
+      "question": "请按风险等级统计患者人数",
+      "gold_sql": "WITH latest_risk AS (SELECT patient_id,risk_level FROM (SELECT patient_id,risk_level,created_at,visit_id,ROW_NUMBER() OVER(PARTITION BY patient_id ORDER BY date(created_at) DESC,visit_id DESC) rn FROM patient_risk_score) WHERE rn=1) SELECT risk_level,COUNT(DISTINCT patient_id) patient_count FROM latest_risk GROUP BY risk_level ORDER BY patient_count DESC",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-028",
+      "subset": "template",
+      "question": "请按药物类别统计患者人数",
+      "gold_sql": "SELECT drug_category,COUNT(DISTINCT patient_id) patient_count FROM medication_record GROUP BY drug_category ORDER BY patient_count DESC LIMIT 20",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-029",
+      "subset": "template",
+      "question": "请统计高盐饮食患者血压异常率",
+      "gold_sql": "SELECT COUNT(DISTINCT ls.patient_id) patient_count,COUNT(DISTINCT l.lab_id) denominator,COUNT(DISTINCT CASE WHEN lower(l.abnormal_flag)!='normal' THEN l.lab_id END) numerator,ROUND(1.0*COUNT(DISTINCT CASE WHEN lower(l.abnormal_flag)!='normal' THEN l.lab_id END)/NULLIF(COUNT(DISTINCT l.lab_id),0),4) abnormal_rate FROM lifestyle_record ls JOIN visit_record v ON ls.visit_id=v.visit_id JOIN lab_result l ON v.visit_id=l.visit_id WHERE lower(ls.salt_intake_level)='high' AND lower(l.item_name) IN ('systolic_bp','diastolic_bp')",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-030",
+      "subset": "template",
+      "question": "请计算各风险层级 HbA1c 平均值",
+      "gold_sql": "WITH latest_risk AS (SELECT patient_id,risk_level FROM (SELECT patient_id,risk_level,created_at,visit_id,ROW_NUMBER() OVER(PARTITION BY patient_id ORDER BY date(created_at) DESC,visit_id DESC) rn FROM patient_risk_score) WHERE rn=1) SELECT r.risk_level,COUNT(DISTINCT r.patient_id) patient_count,COUNT(DISTINCT l.lab_id) lab_count,ROUND(AVG(CAST(COALESCE(l.value,l.item_value) AS REAL)),4) avg_value FROM latest_risk r JOIN lab_result l ON r.patient_id=l.patient_id WHERE lower(l.item_name) IN ('hba1c') GROUP BY r.risk_level ORDER BY CASE r.risk_level WHEN 'low' THEN 1 WHEN 'medium' THEN 2 WHEN 'high' THEN 3 ELSE 9 END",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-031",
+      "subset": "template",
+      "question": "患有高血压的患者数量是多少",
+      "gold_sql": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE lower(disease_tags) LIKE '%hypertension%'",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-032",
+      "subset": "template",
+      "question": "患有糖尿病的患者数量是多少",
+      "gold_sql": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE lower(disease_tags) LIKE '%diabetes%'",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-033",
+      "subset": "template",
+      "question": "高血压与糖尿病共病患者有多少人",
+      "gold_sql": "SELECT COUNT(DISTINCT patient_id) AS patient_count FROM patient_profile WHERE lower(disease_tags) LIKE '%hypertension%' AND lower(disease_tags) LIKE '%diabetes%'",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-034",
+      "subset": "template",
+      "question": "患高血压者 HbA1c 平均值",
+      "gold_sql": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count, COUNT(DISTINCT l.lab_id) AS lab_count, ROUND(AVG(CAST(COALESCE(l.value, l.item_value) AS REAL)), 4) AS avg_value FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE lower(p.disease_tags) LIKE '%hypertension%' AND lower(l.item_name) IN ('hba1c')",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-035",
+      "subset": "template",
+      "question": "患糖尿病者的空腹血糖平均是多少",
+      "gold_sql": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count, COUNT(DISTINCT l.lab_id) AS lab_count, ROUND(AVG(CAST(COALESCE(l.value, l.item_value) AS REAL)), 4) AS avg_value FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE lower(p.disease_tags) LIKE '%diabetes%' AND lower(l.item_name) IN ('fasting_glucose')",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-036",
+      "subset": "template",
+      "question": "患高脂血症者 LDL-C 异常比例是多少",
+      "gold_sql": "SELECT COUNT(DISTINCT p.patient_id) AS patient_count, COUNT(DISTINCT l.lab_id) AS denominator, COUNT(DISTINCT CASE WHEN lower(l.abnormal_flag) != 'normal' THEN l.lab_id END) AS numerator, ROUND(1.0*COUNT(DISTINCT CASE WHEN lower(l.abnormal_flag) != 'normal' THEN l.lab_id END)/NULLIF(COUNT(DISTINCT l.lab_id),0),4) AS abnormal_rate FROM patient_profile p JOIN lab_result l ON p.patient_id=l.patient_id WHERE lower(p.disease_tags) LIKE '%hyperlipidemia%' AND lower(l.item_name) IN ('ldl_c')",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-037",
+      "subset": "template",
+      "question": "各风险层级分别有多少患者",
+      "gold_sql": "WITH latest_risk AS (SELECT patient_id,risk_level FROM (SELECT patient_id,risk_level,created_at,visit_id,ROW_NUMBER() OVER(PARTITION BY patient_id ORDER BY date(created_at) DESC,visit_id DESC) rn FROM patient_risk_score) WHERE rn=1) SELECT risk_level,COUNT(DISTINCT patient_id) patient_count FROM latest_risk GROUP BY risk_level ORDER BY patient_count DESC",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-038",
+      "subset": "template",
+      "question": "各用药分类覆盖多少患者",
+      "gold_sql": "SELECT drug_category,COUNT(DISTINCT patient_id) patient_count FROM medication_record GROUP BY drug_category ORDER BY patient_count DESC LIMIT 20",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-039",
+      "subset": "template",
+      "question": "盐摄入高的人群血压异常比例是多少",
+      "gold_sql": "SELECT COUNT(DISTINCT ls.patient_id) patient_count,COUNT(DISTINCT l.lab_id) denominator,COUNT(DISTINCT CASE WHEN lower(l.abnormal_flag)!='normal' THEN l.lab_id END) numerator,ROUND(1.0*COUNT(DISTINCT CASE WHEN lower(l.abnormal_flag)!='normal' THEN l.lab_id END)/NULLIF(COUNT(DISTINCT l.lab_id),0),4) abnormal_rate FROM lifestyle_record ls JOIN visit_record v ON ls.visit_id=v.visit_id JOIN lab_result l ON v.visit_id=l.visit_id WHERE lower(ls.salt_intake_level)='high' AND lower(l.item_name) IN ('systolic_bp','diastolic_bp')",
+      "expected_status": "success"
+    },
+    {
+      "id": "tpl-040",
+      "subset": "template",
+      "question": "每个风险等级的糖化血红蛋白平均是多少",
+      "gold_sql": "WITH latest_risk AS (SELECT patient_id,risk_level FROM (SELECT patient_id,risk_level,created_at,visit_id,ROW_NUMBER() OVER(PARTITION BY patient_id ORDER BY date(created_at) DESC,visit_id DESC) rn FROM patient_risk_score) WHERE rn=1) SELECT r.risk_level,COUNT(DISTINCT r.patient_id) patient_count,COUNT(DISTINCT l.lab_id) lab_count,ROUND(AVG(CAST(COALESCE(l.value,l.item_value) AS REAL)),4) avg_value FROM latest_risk r JOIN lab_result l ON r.patient_id=l.patient_id WHERE lower(l.item_name) IN ('hba1c') GROUP BY r.risk_level ORDER BY CASE r.risk_level WHEN 'low' THEN 1 WHEN 'medium' THEN 2 WHEN 'high' THEN 3 ELSE 9 END",
+      "expected_status": "success"
+    }
+  ]
+}

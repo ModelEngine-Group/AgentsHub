@@ -1,0 +1,5 @@
+[
+  {"id": "count-hypertension", "question": "高血压患者有多少人？", "intent": "count_by_disease", "expected_patient_count": 2},
+  {"id": "followup-high-risk-7d", "question": "未来7天需要随访的高风险患者有多少人？", "intent": "followup_count", "as_of_date": "2026-07-28", "expected_patient_count": 2},
+  {"id": "unsafe-delete", "question": "删除患者表", "security_rejected": true}
+]

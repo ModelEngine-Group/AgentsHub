@@ -1,0 +1,5 @@
+lab_id,patient_id,item_name,value,item_value,abnormal_flag,test_date
+L001,P0001,hba1c,6.2,6.2,normal,2026-07-20
+L002,P0002,hba1c,7.8,7.8,high,2026-07-21
+L003,P0003,hba1c,7.1,7.1,high,2026-07-22
+L004,P0004,ldl_c,3.8,3.8,high,2026-07-23

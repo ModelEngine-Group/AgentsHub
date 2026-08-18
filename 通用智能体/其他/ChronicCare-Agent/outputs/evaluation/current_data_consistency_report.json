@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "status": "success",
+  "generated_at": "2026-08-10T19:21:32.231784+08:00",
+  "data_version": "synthetic_chroniccare",
+  "snapshots": {
+    "sqlite": {
+      "path": "data/sqlite/chroniccare.db",
+      "sha256": "f5734b9f1b611683f7c1cf2776a26419daacdcc7331dbf4828948727cb672995",
+      "patient_count": 2000,
+      "visit_count": 8231,
+      "lab_result_count": 131323,
+      "medication_record_count": 18248,
+      "risk_event_count": 22840
+    },
+    "graph": {
+      "path": "data/graph/graph.json",
+      "sha256": "379e1b75d7c6636cd2a527da9281b630d157aa412f963308ca03876e0e890383",
+      "node_count": 197404,
+      "edge_count": 396928,
+      "entity_type_total_count": 14,
+      "relation_type_total_count": 15,
+      "risk_event_occurrence_nodes": 22840
+    }
+  },
+  "expected": {
+    "patient_count": 2000,
+    "visit_count": 8231,
+    "lab_result_count": 131323,
+    "medication_record_count": 18248,
+    "risk_event_count": 22840,
+    "node_count": 197404,
+    "edge_count": 396928,
+    "entity_type_total_count": 14,
+    "relation_type_total_count": 15
+  },
+  "actual": {
+    "patient_count": 2000,
+    "visit_count": 8231,
+    "lab_result_count": 131323,
+    "medication_record_count": 18248,
+    "risk_event_count": 22840,
+    "node_count": 197404,
+    "edge_count": 396928,
+    "entity_type_total_count": 14,
+    "relation_type_total_count": 15
+  },
+  "data_version_sources": {
+    "data_manifest": "synthetic_chroniccare",
+    "graph_summary": "synthetic_chroniccare",
+    "current_metrics": "synthetic_chroniccare"
+  },
+  "validations": {
+    "expected_counts_match": true,
+    "data_version_consistent": true,
+    "metrics_match_graph": true,
+    "graph_provenance_complete": true,
+    "graph_has_no_exact_duplicate_edges": true
+  }
+}

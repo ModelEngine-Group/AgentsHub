@@ -1,0 +1,21 @@
+version: operator-contracts-2026.07.19-v1
+defaults:
+  idempotent: true
+  retry_policy: {max_attempts: 2, base_delay_seconds: 0.1, retryable_errors: [TimeoutError, ConnectionError]}
+  timeout_seconds: 600
+  resource_requirements: {cpu: 1, memory_mb: 512, npu: 0}
+  supports_resume: true
+operators:
+  chronic_file_ingest: {version: '1.0', input_artifacts: [raw_input], input_schema: file_or_directory, output_artifacts: [manifest], output_schema: manifest_v1, preconditions: [input_exists], postconditions: [manifest_nonempty]}
+  chronic_table_clean: {version: '1.0', input_artifacts: [manifest], input_schema: manifest_v1, output_artifacts: [clean_tables], output_schema: clean_tables_v1, preconditions: [manifest_nonempty], postconditions: [tables_readable]}
+  chronic_field_normalize: {version: '1.0', input_artifacts: [clean_tables], input_schema: clean_tables_v1, output_artifacts: [normalized_tables], output_schema: normalized_tables_v1, preconditions: [tables_readable], postconditions: [canonical_fields]}
+  chronic_text_split: {version: '1.0', input_artifacts: [normalized_tables], input_schema: normalized_tables_v1, output_artifacts: [chunks], output_schema: chunks_v1, preconditions: [text_or_structured_available], postconditions: [chunks_valid]}
+  chronic_entity_extract: {version: '1.0', input_artifacts: [normalized_tables, chunks], input_schema: normalized_and_chunks_v1, output_artifacts: [entities_raw], output_schema: entities_v1, preconditions: [normalized_available], postconditions: [entity_ids_unique]}
+  chronic_entity_extract_model_npu: {version: '2.0', input_artifacts: [normalized_tables, chunks], input_schema: normalized_and_chunks_v1, output_artifacts: [entities_raw, npu_entity_standardized], output_schema: entities_npu_v2, preconditions: [model_or_fallback], postconditions: [quality_gate_recorded], resource_requirements: {cpu: 4, memory_mb: 8192, npu: 1}}
+  chronic_relation_extract: {version: '1.0', input_artifacts: [entities_raw], input_schema: entities_v1, output_artifacts: [relations_raw], output_schema: relations_v1, preconditions: [entities_available], postconditions: [relation_endpoints_present]}
+  chronic_relation_extract_model_npu: {version: '2.0', input_artifacts: [entities_raw], input_schema: entities_npu_v2, output_artifacts: [relations_raw, npu_relation_standardized], output_schema: relations_npu_v2, preconditions: [model_or_fallback], postconditions: [quality_gate_recorded], resource_requirements: {cpu: 4, memory_mb: 8192, npu: 1}}
+  chronic_triple_validate: {version: '1.0', input_artifacts: [entities_raw, relations_raw], input_schema: graph_candidates_v1, output_artifacts: [triples_clean, triples_rejected], output_schema: triples_v1, preconditions: [candidate_endpoints_present], postconditions: [no_dangling_references]}
+  chronic_kg_build: {version: '1.0', input_artifacts: [triples_clean], input_schema: triples_v1, output_artifacts: [graph_json, graph_summary], output_schema: graph_v1, preconditions: [triples_valid], postconditions: [graph_loadable]}
+  chronic_sqlite_loader: {version: '1.0', input_artifacts: [normalized_tables], input_schema: normalized_tables_v1, output_artifacts: [sqlite_db], output_schema: sqlite_v1, preconditions: [normalized_available], postconditions: [query_only_openable]}
+  chronic_nl2sql_analyze: {version: '1.0', input_artifacts: [sqlite_db], input_schema: sqlite_v1, output_artifacts: [analysis_results], output_schema: analysis_v1, preconditions: [sqlite_openable], postconditions: [report_json_valid]}
+  chronic_report_pack: {version: '1.0', input_artifacts: [analysis_results, graph_summary], input_schema: report_inputs_v1, output_artifacts: [analysis_report], output_schema: report_pack_v1, preconditions: [analysis_available], postconditions: [report_openable]}

@@ -1,0 +1,2013 @@
+{
+  "status": "success",
+  "annotation_type": "engineering_not_clinical",
+  "total": 150,
+  "exact_accuracy": 1.0,
+  "semantic_accuracy": 1.0,
+  "evidence_hit_rate": 1.0,
+  "unanswerable_refusal_accuracy": 1.0,
+  "data_version": "synthetic_chroniccare",
+  "cases": [
+    {
+      "id": "kgqa-001",
+      "answerable": true,
+      "predicted": [
+        "Indicator::hba1c"
+      ],
+      "gold": [
+        "Indicator::hba1c"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-002",
+      "answerable": true,
+      "predicted": [
+        "Indicator::fasting_glucose"
+      ],
+      "gold": [
+        "Indicator::fasting_glucose"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-003",
+      "answerable": true,
+      "predicted": [
+        "Indicator::ldl_c"
+      ],
+      "gold": [
+        "Indicator::ldl_c"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-004",
+      "answerable": true,
+      "predicted": [
+        "Indicator::hba1c"
+      ],
+      "gold": [
+        "Indicator::hba1c"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-005",
+      "answerable": true,
+      "predicted": [
+        "Indicator::fasting_glucose"
+      ],
+      "gold": [
+        "Indicator::fasting_glucose"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-006",
+      "answerable": true,
+      "predicted": [
+        "Indicator::ldl_c"
+      ],
+      "gold": [
+        "Indicator::ldl_c"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-007",
+      "answerable": true,
+      "predicted": [
+        "Indicator::hba1c"
+      ],
+      "gold": [
+        "Indicator::hba1c"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-008",
+      "answerable": true,
+      "predicted": [
+        "Indicator::fasting_glucose"
+      ],
+      "gold": [
+        "Indicator::fasting_glucose"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-009",
+      "answerable": true,
+      "predicted": [
+        "Indicator::ldl_c"
+      ],
+      "gold": [
+        "Indicator::ldl_c"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-010",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-011",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-012",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-013",
+      "answerable": true,
+      "predicted": [
+        "Disease::heart_failure"
+      ],
+      "gold": [
+        "Disease::heart_failure"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-014",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-015",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-016",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-017",
+      "answerable": true,
+      "predicted": [
+        "Disease::sleep_apnea_risk"
+      ],
+      "gold": [
+        "Disease::sleep_apnea_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-018",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-019",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-020",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-021",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-022",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetes"
+      ],
+      "gold": [
+        "Disease::diabetes"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-023",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-024",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-025",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-026",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-027",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-028",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-029",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-030",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetes"
+      ],
+      "gold": [
+        "Disease::diabetes"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-031",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetic_kidney_risk"
+      ],
+      "gold": [
+        "Disease::diabetic_kidney_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-032",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-033",
+      "answerable": true,
+      "predicted": [
+        "Disease::heart_failure"
+      ],
+      "gold": [
+        "Disease::heart_failure"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-034",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-035",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-036",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-037",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-038",
+      "answerable": true,
+      "predicted": [
+        "Disease::sleep_apnea_risk"
+      ],
+      "gold": [
+        "Disease::sleep_apnea_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-039",
+      "answerable": true,
+      "predicted": [
+        "Disease::stroke_post"
+      ],
+      "gold": [
+        "Disease::stroke_post"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-040",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-041",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-042",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-043",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-044",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperuricemia"
+      ],
+      "gold": [
+        "Disease::hyperuricemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-045",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-046",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-047",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-048",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetes"
+      ],
+      "gold": [
+        "Disease::diabetes"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-049",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetic_kidney_risk"
+      ],
+      "gold": [
+        "Disease::diabetic_kidney_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-050",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-051",
+      "answerable": true,
+      "predicted": [
+        "Disease::heart_failure"
+      ],
+      "gold": [
+        "Disease::heart_failure"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-052",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-053",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-054",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperuricemia"
+      ],
+      "gold": [
+        "Disease::hyperuricemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-055",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-056",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-057",
+      "answerable": true,
+      "predicted": [
+        "Disease::stroke_post"
+      ],
+      "gold": [
+        "Disease::stroke_post"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-058",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-059",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetes"
+      ],
+      "gold": [
+        "Disease::diabetes"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-060",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-061",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperuricemia"
+      ],
+      "gold": [
+        "Disease::hyperuricemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-062",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-063",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-064",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-065",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetes"
+      ],
+      "gold": [
+        "Disease::diabetes"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-066",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-067",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-068",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-069",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperuricemia"
+      ],
+      "gold": [
+        "Disease::hyperuricemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-070",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-071",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetes"
+      ],
+      "gold": [
+        "Disease::diabetes"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-072",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-073",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-074",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-075",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-076",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-077",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-078",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-079",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-080",
+      "answerable": true,
+      "predicted": [
+        "Disease::heart_failure"
+      ],
+      "gold": [
+        "Disease::heart_failure"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-081",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-082",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-083",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-084",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-085",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-086",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperuricemia"
+      ],
+      "gold": [
+        "Disease::hyperuricemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-087",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-088",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-089",
+      "answerable": true,
+      "predicted": [
+        "Disease::sleep_apnea_risk"
+      ],
+      "gold": [
+        "Disease::sleep_apnea_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-090",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-091",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-092",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-093",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-094",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-095",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-096",
+      "answerable": true,
+      "predicted": [
+        "Disease::sleep_apnea_risk"
+      ],
+      "gold": [
+        "Disease::sleep_apnea_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-097",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-098",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-099",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetes"
+      ],
+      "gold": [
+        "Disease::diabetes"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-100",
+      "answerable": true,
+      "predicted": [
+        "Disease::diabetic_kidney_risk"
+      ],
+      "gold": [
+        "Disease::diabetic_kidney_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-101",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-102",
+      "answerable": true,
+      "predicted": [
+        "Disease::heart_failure"
+      ],
+      "gold": [
+        "Disease::heart_failure"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-103",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-104",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-105",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperuricemia"
+      ],
+      "gold": [
+        "Disease::hyperuricemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-106",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-107",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-108",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-109",
+      "answerable": true,
+      "predicted": [
+        "Disease::copd"
+      ],
+      "gold": [
+        "Disease::copd"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-110",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-111",
+      "answerable": true,
+      "predicted": [
+        "Disease::fatty_liver_risk"
+      ],
+      "gold": [
+        "Disease::fatty_liver_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-112",
+      "answerable": true,
+      "predicted": [
+        "Disease::heart_failure"
+      ],
+      "gold": [
+        "Disease::heart_failure"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-113",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-114",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-115",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-116",
+      "answerable": true,
+      "predicted": [
+        "Disease::obesity"
+      ],
+      "gold": [
+        "Disease::obesity"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-117",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-118",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-119",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-120",
+      "answerable": true,
+      "predicted": [
+        "Disease::hypertension"
+      ],
+      "gold": [
+        "Disease::hypertension"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-121",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperuricemia"
+      ],
+      "gold": [
+        "Disease::hyperuricemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-122",
+      "answerable": true,
+      "predicted": [
+        "Disease::hyperlipidemia"
+      ],
+      "gold": [
+        "Disease::hyperlipidemia"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-123",
+      "answerable": true,
+      "predicted": [
+        "Disease::metabolic_syndrome"
+      ],
+      "gold": [
+        "Disease::metabolic_syndrome"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-124",
+      "answerable": true,
+      "predicted": [
+        "Disease::ckd_risk"
+      ],
+      "gold": [
+        "Disease::ckd_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-125",
+      "answerable": true,
+      "predicted": [
+        "Disease::coronary_risk"
+      ],
+      "gold": [
+        "Disease::coronary_risk"
+      ],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": false
+    },
+    {
+      "id": "kgqa-126",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-127",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-128",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-129",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-130",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-131",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-132",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-133",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-134",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-135",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-136",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-137",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-138",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-139",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-140",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-141",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-142",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-143",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-144",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-145",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-146",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-147",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-148",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-149",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    },
+    {
+      "id": "kgqa-150",
+      "answerable": false,
+      "predicted": [],
+      "gold": [],
+      "exact": true,
+      "semantic": true,
+      "evidence_hit": true,
+      "refusal_correct": true
+    }
+  ],
+  "limitation": "Deterministic graph retrieval against engineering QA; not a clinical expert evaluation."
+}

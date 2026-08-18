@@ -1,0 +1,129 @@
+templates:
+  count_patients_by_disease_recent: |
+    WITH max_date AS (
+      SELECT MAX(visit_date) AS d FROM visit_record
+    )
+    SELECT COUNT(DISTINCT p.patient_id) AS patient_count
+    FROM patient_profile p
+    JOIN visit_record v ON p.patient_id = v.patient_id
+    WHERE p.disease_tags LIKE '%hypertension%'
+      AND v.visit_date >= date((SELECT d FROM max_date), '-3 months');
+  avg_indicator_by_disease_combo: |
+    SELECT ROUND(AVG(l.item_value), 2) AS avg_hba1c
+    FROM patient_profile p
+    JOIN lab_result l ON p.patient_id = l.patient_id
+    WHERE p.disease_tags LIKE '%hypertension%'
+      AND p.disease_tags LIKE '%diabetes%'
+      AND l.item_name = 'hba1c';
+  abnormal_rate_by_disease_group: |
+    SELECT
+      p.disease_tags AS disease_group,
+      ROUND(COUNT(CASE WHEN l.abnormal_flag != 'normal' THEN 1 END) * 1.0 / COUNT(*), 4) AS abnormal_rate,
+      COUNT(*) AS total_records
+    FROM patient_profile p
+    JOIN lab_result l ON p.patient_id = l.patient_id
+    WHERE l.item_name = 'ldl_c'
+    GROUP BY p.disease_tags
+    ORDER BY abnormal_rate DESC;
+  avg_indicator_by_drug: |
+    SELECT ROUND(AVG(l.item_value), 2) AS avg_fasting_glucose
+    FROM medication_record m
+    JOIN lab_result l ON m.patient_id = l.patient_id
+    WHERE m.drug_name = 'metformin'
+      AND l.item_name = 'fasting_glucose';
+  abnormal_rate_by_bmi_group: |
+    SELECT
+      ROUND(COUNT(CASE WHEN l.abnormal_flag = 'high' THEN 1 END) * 1.0 / COUNT(*), 4) AS bp_abnormal_rate,
+      COUNT(*) AS bp_records
+    FROM patient_profile p
+    JOIN lab_result l ON p.patient_id = l.patient_id
+    WHERE p.bmi >= 24.0
+      AND l.item_name IN ('systolic_bp', 'diastolic_bp');
+  avg_ldl_by_lipid_drug: |
+    SELECT ROUND(AVG(l.item_value), 2) AS avg_ldl_c
+    FROM medication_record m
+    JOIN lab_result l ON m.patient_id = l.patient_id
+    WHERE m.drug_name IN ('atorvastatin', 'rosuvastatin')
+      AND l.item_name = 'ldl_c';
+  top_patients_by_abnormal_latest_visit: |
+    WITH latest_visit AS (
+      SELECT patient_id, MAX(visit_date) AS latest_visit_date
+      FROM visit_record
+      GROUP BY patient_id
+    ),
+    latest_visit_ids AS (
+      SELECT v.patient_id, v.visit_id
+      FROM visit_record v
+      JOIN latest_visit lv
+        ON v.patient_id = lv.patient_id
+       AND v.visit_date = lv.latest_visit_date
+    )
+    SELECT
+      lvi.patient_id,
+      COUNT(*) AS abnormal_count
+    FROM latest_visit_ids lvi
+    JOIN lab_result l ON lvi.visit_id = l.visit_id
+    WHERE l.abnormal_flag != 'normal'
+    GROUP BY lvi.patient_id
+    ORDER BY abnormal_count DESC
+    LIMIT 10;
+  hba1c_high_rate_in_diabetes: |
+    SELECT
+      ROUND(COUNT(CASE WHEN l.item_value >= 6.5 THEN 1 END) * 1.0 / COUNT(*), 4) AS hba1c_high_rate,
+      COUNT(*) AS hba1c_records
+    FROM patient_profile p
+    JOIN lab_result l ON p.patient_id = l.patient_id
+    WHERE p.disease_tags LIKE '%diabetes%'
+      AND l.item_name = 'hba1c';
+  systolic_high_count_in_hypertension: |
+    SELECT COUNT(DISTINCT p.patient_id) AS patient_count
+    FROM patient_profile p
+    JOIN lab_result l ON p.patient_id = l.patient_id
+    WHERE p.disease_tags LIKE '%hypertension%'
+      AND l.item_name = 'systolic_bp'
+      AND l.item_value >= 140;
+  avg_bmi_three_highs: |
+    SELECT ROUND(AVG(bmi), 2) AS avg_bmi
+    FROM patient_profile
+    WHERE disease_tags LIKE '%hypertension%'
+      AND disease_tags LIKE '%diabetes%'
+      AND disease_tags LIKE '%hyperlipidemia%';
+  monthly_fasting_glucose_abnormal_trend: |
+    SELECT
+      substr(test_date, 1, 7) AS month,
+      COUNT(DISTINCT patient_id) AS abnormal_patient_count
+    FROM lab_result
+    WHERE item_name = 'fasting_glucose'
+      AND abnormal_flag != 'normal'
+    GROUP BY substr(test_date, 1, 7)
+    ORDER BY month;
+  monthly_bp_abnormal_trend: |
+    SELECT
+      substr(test_date, 1, 7) AS month,
+      COUNT(DISTINCT patient_id) AS abnormal_patient_count
+    FROM lab_result
+    WHERE item_name IN ('systolic_bp', 'diastolic_bp')
+      AND abnormal_flag != 'normal'
+    GROUP BY substr(test_date, 1, 7)
+    ORDER BY month;
+  patient_count_by_drug_category: |
+    SELECT
+      drug_category,
+      COUNT(DISTINCT patient_id) AS patient_count
+    FROM medication_record
+    GROUP BY drug_category
+    ORDER BY patient_count DESC;
+  graph_entity_type_count: |
+    SELECT
+      entity_type,
+      COUNT(*) AS node_count
+    FROM graph_nodes
+    GROUP BY entity_type
+    ORDER BY node_count DESC;
+  graph_relation_type_count: |
+    SELECT
+      relation_type,
+      COUNT(*) AS edge_count
+    FROM graph_edges
+    GROUP BY relation_type
+    ORDER BY edge_count DESC;
