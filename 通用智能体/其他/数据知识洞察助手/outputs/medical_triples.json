@@ -1,0 +1,467 @@
+[
+  {
+    "subject": "肺炎",
+    "predicate": "has_symptom",
+    "object": "发热"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "has_symptom",
+    "object": "咳嗽"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "has_symptom",
+    "object": "咳痰"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "has_symptom",
+    "object": "胸痛"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "has_symptom",
+    "object": "呼吸困难"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "treated_by",
+    "object": "阿莫西林"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "treated_by",
+    "object": "头孢类抗生素"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "treated_by",
+    "object": "左氧氟沙星"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "requires_exam",
+    "object": "胸部X线"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "requires_exam",
+    "object": "CT检查"
+  },
+  {
+    "subject": "肺炎",
+    "predicate": "treated_by",
+    "object": "呼吸机辅助通气"
+  },
+  {
+    "subject": "冠心病",
+    "predicate": "has_symptom",
+    "object": "胸痛"
+  },
+  {
+    "subject": "冠心病",
+    "predicate": "has_symptom",
+    "object": "胸闷"
+  },
+  {
+    "subject": "冠心病",
+    "predicate": "has_symptom",
+    "object": "心悸"
+  },
+  {
+    "subject": "冠心病",
+    "predicate": "has_symptom",
+    "object": "气短"
+  },
+  {
+    "subject": "冠心病",
+    "predicate": "treated_by",
+    "object": "阿司匹林"
+  },
+  {
+    "subject": "冠心病",
+    "predicate": "treated_by",
+    "object": "氯吡格雷"
+  },
+  {
+    "subject": "冠心病",
+    "predicate": "treated_by",
+    "object": "冠脉支架植入"
+  },
+  {
+    "subject": "冠心病",
+    "predicate": "treated_by",
+    "object": "搭桥手术"
+  },
+  {
+    "subject": "偏头痛",
+    "predicate": "has_symptom",
+    "object": "头痛"
+  },
+  {
+    "subject": "偏头痛",
+    "predicate": "has_symptom",
+    "object": "恶心"
+  },
+  {
+    "subject": "偏头痛",
+    "predicate": "has_symptom",
+    "object": "呕吐"
+  },
+  {
+    "subject": "偏头痛",
+    "predicate": "treated_by",
+    "object": "布洛芬"
+  },
+  {
+    "subject": "偏头痛",
+    "predicate": "treated_by",
+    "object": "曲普坦类药物"
+  },
+  {
+    "subject": "急性胃肠炎",
+    "predicate": "has_symptom",
+    "object": "发热"
+  },
+  {
+    "subject": "急性胃肠炎",
+    "predicate": "has_symptom",
+    "object": "恶心"
+  },
+  {
+    "subject": "急性胃肠炎",
+    "predicate": "has_symptom",
+    "object": "呕吐"
+  },
+  {
+    "subject": "急性胃肠炎",
+    "predicate": "has_symptom",
+    "object": "腹痛"
+  },
+  {
+    "subject": "急性胃肠炎",
+    "predicate": "has_symptom",
+    "object": "腹泻"
+  },
+  {
+    "subject": "急性胃肠炎",
+    "predicate": "treated_by",
+    "object": "诺氟沙星"
+  },
+  {
+    "subject": "急性胃肠炎",
+    "predicate": "treated_by",
+    "object": "蒙脱石散"
+  },
+  {
+    "subject": "急性胃肠炎",
+    "predicate": "treated_by",
+    "object": "口服补液盐"
+  },
+  {
+    "subject": "支气管炎",
+    "predicate": "has_symptom",
+    "object": "发热"
+  },
+  {
+    "subject": "支气管炎",
+    "predicate": "has_symptom",
+    "object": "咳嗽"
+  },
+  {
+    "subject": "支气管炎",
+    "predicate": "has_symptom",
+    "object": "咳痰"
+  },
+  {
+    "subject": "支气管炎",
+    "predicate": "treated_by",
+    "object": "头孢克洛"
+  },
+  {
+    "subject": "支气管炎",
+    "predicate": "treated_by",
+    "object": "阿奇霉素"
+  },
+  {
+    "subject": "类风湿性关节炎",
+    "predicate": "has_symptom",
+    "object": "关节肿胀"
+  },
+  {
+    "subject": "类风湿性关节炎",
+    "predicate": "treated_by",
+    "object": "布洛芬"
+  },
+  {
+    "subject": "类风湿性关节炎",
+    "predicate": "treated_by",
+    "object": "甲氨蝶呤"
+  },
+  {
+    "subject": "类风湿性关节炎",
+    "predicate": "treated_by",
+    "object": "来氟米特"
+  },
+  {
+    "subject": "腰椎间盘突出",
+    "predicate": "has_symptom",
+    "object": "腰痛"
+  },
+  {
+    "subject": "腰椎间盘突出",
+    "predicate": "has_symptom",
+    "object": "麻木"
+  },
+  {
+    "subject": "腰椎间盘突出",
+    "predicate": "treated_by",
+    "object": "布洛芬"
+  },
+  {
+    "subject": "腰椎间盘突出",
+    "predicate": "requires_exam",
+    "object": "MRI检查"
+  },
+  {
+    "subject": "腰椎间盘突出",
+    "predicate": "treated_by",
+    "object": "物理治疗"
+  },
+  {
+    "subject": "腰椎间盘突出",
+    "predicate": "treated_by",
+    "object": "牵引"
+  },
+  {
+    "subject": "多囊卵巢综合征",
+    "predicate": "has_symptom",
+    "object": "月经不调"
+  },
+  {
+    "subject": "多囊卵巢综合征",
+    "predicate": "has_symptom",
+    "object": "多毛"
+  },
+  {
+    "subject": "多囊卵巢综合征",
+    "predicate": "has_symptom",
+    "object": "痤疮"
+  },
+  {
+    "subject": "多囊卵巢综合征",
+    "predicate": "treated_by",
+    "object": "炔雌醇环丙孕酮"
+  },
+  {
+    "subject": "多囊卵巢综合征",
+    "predicate": "treated_by",
+    "object": "二甲双胍"
+  },
+  {
+    "subject": "多囊卵巢综合征",
+    "predicate": "requires_exam",
+    "object": "超声"
+  },
+  {
+    "subject": "2型糖尿病",
+    "predicate": "has_symptom",
+    "object": "多饮"
+  },
+  {
+    "subject": "2型糖尿病",
+    "predicate": "has_symptom",
+    "object": "多尿"
+  },
+  {
+    "subject": "2型糖尿病",
+    "predicate": "has_symptom",
+    "object": "多食"
+  },
+  {
+    "subject": "2型糖尿病",
+    "predicate": "has_symptom",
+    "object": "体重下降"
+  },
+  {
+    "subject": "2型糖尿病",
+    "predicate": "treated_by",
+    "object": "二甲双胍"
+  },
+  {
+    "subject": "缺铁性贫血",
+    "predicate": "has_symptom",
+    "object": "乏力"
+  },
+  {
+    "subject": "缺铁性贫血",
+    "predicate": "has_symptom",
+    "object": "头晕"
+  },
+  {
+    "subject": "缺铁性贫血",
+    "predicate": "has_symptom",
+    "object": "面色苍白"
+  },
+  {
+    "subject": "缺铁性贫血",
+    "predicate": "treated_by",
+    "object": "硫酸亚铁"
+  },
+  {
+    "subject": "缺铁性贫血",
+    "predicate": "treated_by",
+    "object": "富马酸亚铁"
+  },
+  {
+    "subject": "荨麻疹",
+    "predicate": "has_symptom",
+    "object": "瘙痒"
+  },
+  {
+    "subject": "荨麻疹",
+    "predicate": "treated_by",
+    "object": "氯雷他定"
+  },
+  {
+    "subject": "荨麻疹",
+    "predicate": "treated_by",
+    "object": "西替利嗪"
+  },
+  {
+    "subject": "急性胆囊炎",
+    "predicate": "has_symptom",
+    "object": "发热"
+  },
+  {
+    "subject": "急性胆囊炎",
+    "predicate": "has_symptom",
+    "object": "腹痛"
+  },
+  {
+    "subject": "急性胆囊炎",
+    "predicate": "has_symptom",
+    "object": "右上腹痛"
+  },
+  {
+    "subject": "急性胆囊炎",
+    "predicate": "has_symptom",
+    "object": "黄疸"
+  },
+  {
+    "subject": "急性胆囊炎",
+    "predicate": "treated_by",
+    "object": "头孢曲松"
+  },
+  {
+    "subject": "急性胆囊炎",
+    "predicate": "treated_by",
+    "object": "哌拉西林"
+  },
+  {
+    "subject": "急性胆囊炎",
+    "predicate": "treated_by",
+    "object": "腹腔镜胆囊切除术"
+  },
+  {
+    "subject": "尿路感染",
+    "predicate": "has_symptom",
+    "object": "腹痛"
+  },
+  {
+    "subject": "尿路感染",
+    "predicate": "has_symptom",
+    "object": "多饮"
+  },
+  {
+    "subject": "尿路感染",
+    "predicate": "has_symptom",
+    "object": "尿频"
+  },
+  {
+    "subject": "尿路感染",
+    "predicate": "has_symptom",
+    "object": "尿急"
+  },
+  {
+    "subject": "尿路感染",
+    "predicate": "has_symptom",
+    "object": "尿痛"
+  },
+  {
+    "subject": "尿路感染",
+    "predicate": "treated_by",
+    "object": "左氧氟沙星"
+  },
+  {
+    "subject": "尿路感染",
+    "predicate": "treated_by",
+    "object": "呋喃妥因"
+  },
+  {
+    "subject": "急性心肌梗死",
+    "predicate": "has_symptom",
+    "object": "胸痛"
+  },
+  {
+    "subject": "急性心肌梗死",
+    "predicate": "has_symptom",
+    "object": "恶心"
+  },
+  {
+    "subject": "急性心肌梗死",
+    "predicate": "treated_by",
+    "object": "阿司匹林"
+  },
+  {
+    "subject": "急性心肌梗死",
+    "predicate": "treated_by",
+    "object": "氯吡格雷"
+  },
+  {
+    "subject": "急性心肌梗死",
+    "predicate": "requires_exam",
+    "object": "心电图"
+  },
+  {
+    "subject": "急性心肌梗死",
+    "predicate": "treated_by",
+    "object": "急诊PCI"
+  },
+  {
+    "subject": "急性心肌梗死",
+    "predicate": "treated_by",
+    "object": "溶栓治疗"
+  },
+  {
+    "subject": "急性扁桃体炎",
+    "predicate": "has_symptom",
+    "object": "发热"
+  },
+  {
+    "subject": "急性扁桃体炎",
+    "predicate": "has_symptom",
+    "object": "吞咽困难"
+  },
+  {
+    "subject": "急性扁桃体炎",
+    "predicate": "has_symptom",
+    "object": "咽痛"
+  },
+  {
+    "subject": "急性扁桃体炎",
+    "predicate": "treated_by",
+    "object": "阿莫西林"
+  },
+  {
+    "subject": "急性扁桃体炎",
+    "predicate": "treated_by",
+    "object": "青霉素V钾"
+  },
+  {
+    "subject": "急性扁桃体炎",
+    "predicate": "treated_by",
+    "object": "扁桃体切除术"
+  }
+]

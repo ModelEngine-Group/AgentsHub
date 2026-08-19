@@ -1,0 +1,27 @@
+[project]
+name = "data-knowledge-insight-demo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "bear", email = "2082923707@qq.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.136.1",
+    "fastmcp>=0.1.0",
+    "httpx>=0.28.1",
+    "matplotlib>=3.10.9",
+    "networkx>=3.6.1",
+    "pandas>=3.0.2",
+    "pytest>=9.0.3",
+    "pyvis>=0.3.2",
+    "uvicorn>=0.46.0",
+]
+
+[project.scripts]
+data-knowledge-insight-demo = "data_knowledge_insight_demo:main"
+
+[build-system]
+requires = ["uv_build>=0.8.22,<0.9.0"]
+build-backend = "uv_build"

@@ -1,0 +1,410 @@
+{
+  "task": "task3_data_analysis_agent",
+  "task_description": "请分析医疗知识图谱，生成统计结果、图表和报告",
+  "selected_task": "graph_statistics",
+  "status": "success",
+  "plan": [
+    {
+      "step": "load_graph",
+      "operator": "json.load",
+      "goal": "读取医疗知识图谱"
+    },
+    {
+      "step": "graph_statistics",
+      "operator": "GraphStatisticsOperator",
+      "goal": "统计节点、边、实体类型和关系类型"
+    },
+    {
+      "step": "disease_symptom_count",
+      "operator": "DiseaseSymptomCountOperator",
+      "goal": "统计疾病关联症状数量"
+    },
+    {
+      "step": "drug_disease_count",
+      "operator": "DrugDiseaseCountOperator",
+      "goal": "统计药物关联疾病数量"
+    },
+    {
+      "step": "centrality_analysis",
+      "operator": "CentralityAnalysisOperator",
+      "goal": "分析图谱中心节点"
+    },
+    {
+      "step": "visualize",
+      "operator": "matplotlib",
+      "goal": "生成柱状图"
+    },
+    {
+      "step": "nl2sql",
+      "operator": "BuildMedicalSqliteOperator/EvaluateNL2SQLOperator",
+      "goal": "构建 SQLite 并评估 NL2SQL"
+    },
+    {
+      "step": "report",
+      "operator": "markdown",
+      "goal": "生成分析报告"
+    }
+  ],
+  "statistics": {
+    "node_count": 87,
+    "edge_count": 93,
+    "entity_type_count": {
+      "Disease": 15,
+      "Symptom": 34,
+      "Drug": 24,
+      "Examination": 5,
+      "Treatment": 9
+    },
+    "relation_type_count": {
+      "has_symptom": 48,
+      "treated_by": 40,
+      "requires_exam": 5
+    }
+  },
+  "disease_symptom_counts": [
+    {
+      "disease": "尿路感染",
+      "symptom_count": 5
+    },
+    {
+      "disease": "急性胃肠炎",
+      "symptom_count": 5
+    },
+    {
+      "disease": "肺炎",
+      "symptom_count": 5
+    },
+    {
+      "disease": "2型糖尿病",
+      "symptom_count": 4
+    },
+    {
+      "disease": "冠心病",
+      "symptom_count": 4
+    },
+    {
+      "disease": "急性胆囊炎",
+      "symptom_count": 4
+    },
+    {
+      "disease": "偏头痛",
+      "symptom_count": 3
+    },
+    {
+      "disease": "多囊卵巢综合征",
+      "symptom_count": 3
+    },
+    {
+      "disease": "急性扁桃体炎",
+      "symptom_count": 3
+    },
+    {
+      "disease": "支气管炎",
+      "symptom_count": 3
+    },
+    {
+      "disease": "缺铁性贫血",
+      "symptom_count": 3
+    },
+    {
+      "disease": "急性心肌梗死",
+      "symptom_count": 2
+    },
+    {
+      "disease": "腰椎间盘突出",
+      "symptom_count": 2
+    },
+    {
+      "disease": "类风湿性关节炎",
+      "symptom_count": 1
+    },
+    {
+      "disease": "荨麻疹",
+      "symptom_count": 1
+    }
+  ],
+  "drug_disease_counts": [
+    {
+      "drug": "布洛芬",
+      "disease_count": 3,
+      "diseases": [
+        "偏头痛",
+        "类风湿性关节炎",
+        "腰椎间盘突出"
+      ]
+    },
+    {
+      "drug": "二甲双胍",
+      "disease_count": 2,
+      "diseases": [
+        "2型糖尿病",
+        "多囊卵巢综合征"
+      ]
+    },
+    {
+      "drug": "左氧氟沙星",
+      "disease_count": 2,
+      "diseases": [
+        "尿路感染",
+        "肺炎"
+      ]
+    },
+    {
+      "drug": "氯吡格雷",
+      "disease_count": 2,
+      "diseases": [
+        "冠心病",
+        "急性心肌梗死"
+      ]
+    },
+    {
+      "drug": "阿司匹林",
+      "disease_count": 2,
+      "diseases": [
+        "冠心病",
+        "急性心肌梗死"
+      ]
+    },
+    {
+      "drug": "阿莫西林",
+      "disease_count": 2,
+      "diseases": [
+        "急性扁桃体炎",
+        "肺炎"
+      ]
+    },
+    {
+      "drug": "口服补液盐",
+      "disease_count": 1,
+      "diseases": [
+        "急性胃肠炎"
+      ]
+    },
+    {
+      "drug": "呋喃妥因",
+      "disease_count": 1,
+      "diseases": [
+        "尿路感染"
+      ]
+    },
+    {
+      "drug": "哌拉西林",
+      "disease_count": 1,
+      "diseases": [
+        "急性胆囊炎"
+      ]
+    },
+    {
+      "drug": "头孢克洛",
+      "disease_count": 1,
+      "diseases": [
+        "支气管炎"
+      ]
+    },
+    {
+      "drug": "头孢曲松",
+      "disease_count": 1,
+      "diseases": [
+        "急性胆囊炎"
+      ]
+    },
+    {
+      "drug": "头孢类抗生素",
+      "disease_count": 1,
+      "diseases": [
+        "肺炎"
+      ]
+    },
+    {
+      "drug": "富马酸亚铁",
+      "disease_count": 1,
+      "diseases": [
+        "缺铁性贫血"
+      ]
+    },
+    {
+      "drug": "曲普坦类药物",
+      "disease_count": 1,
+      "diseases": [
+        "偏头痛"
+      ]
+    },
+    {
+      "drug": "来氟米特",
+      "disease_count": 1,
+      "diseases": [
+        "类风湿性关节炎"
+      ]
+    },
+    {
+      "drug": "氯雷他定",
+      "disease_count": 1,
+      "diseases": [
+        "荨麻疹"
+      ]
+    },
+    {
+      "drug": "炔雌醇环丙孕酮",
+      "disease_count": 1,
+      "diseases": [
+        "多囊卵巢综合征"
+      ]
+    },
+    {
+      "drug": "甲氨蝶呤",
+      "disease_count": 1,
+      "diseases": [
+        "类风湿性关节炎"
+      ]
+    },
+    {
+      "drug": "硫酸亚铁",
+      "disease_count": 1,
+      "diseases": [
+        "缺铁性贫血"
+      ]
+    },
+    {
+      "drug": "蒙脱石散",
+      "disease_count": 1,
+      "diseases": [
+        "急性胃肠炎"
+      ]
+    },
+    {
+      "drug": "西替利嗪",
+      "disease_count": 1,
+      "diseases": [
+        "荨麻疹"
+      ]
+    },
+    {
+      "drug": "诺氟沙星",
+      "disease_count": 1,
+      "diseases": [
+        "急性胃肠炎"
+      ]
+    },
+    {
+      "drug": "阿奇霉素",
+      "disease_count": 1,
+      "diseases": [
+        "支气管炎"
+      ]
+    },
+    {
+      "drug": "青霉素V钾",
+      "disease_count": 1,
+      "diseases": [
+        "急性扁桃体炎"
+      ]
+    }
+  ],
+  "centrality": [
+    {
+      "node": "肺炎",
+      "type": "Disease",
+      "degree_centrality": 0.127907
+    },
+    {
+      "node": "冠心病",
+      "type": "Disease",
+      "degree_centrality": 0.093023
+    },
+    {
+      "node": "急性胃肠炎",
+      "type": "Disease",
+      "degree_centrality": 0.093023
+    },
+    {
+      "node": "尿路感染",
+      "type": "Disease",
+      "degree_centrality": 0.081395
+    },
+    {
+      "node": "急性心肌梗死",
+      "type": "Disease",
+      "degree_centrality": 0.081395
+    },
+    {
+      "node": "急性胆囊炎",
+      "type": "Disease",
+      "degree_centrality": 0.081395
+    },
+    {
+      "node": "多囊卵巢综合征",
+      "type": "Disease",
+      "degree_centrality": 0.069767
+    },
+    {
+      "node": "急性扁桃体炎",
+      "type": "Disease",
+      "degree_centrality": 0.069767
+    },
+    {
+      "node": "腰椎间盘突出",
+      "type": "Disease",
+      "degree_centrality": 0.069767
+    },
+    {
+      "node": "2型糖尿病",
+      "type": "Disease",
+      "degree_centrality": 0.05814
+    }
+  ],
+  "sqlite_result": {
+    "db_path": "/home/bear/Desktop/开源赛/AgentsHub/通用智能体/其他/数据知识洞察助手/outputs/medical_records.db",
+    "table_name": "medical_records",
+    "row_count": 15
+  },
+  "nl2sql_metrics": {
+    "total": 6,
+    "correct": 6,
+    "accuracy": 1.0,
+    "details": [
+      {
+        "question": "一共有多少条医疗记录？",
+        "expected_sql": "SELECT COUNT(*) AS count FROM medical_records",
+        "predicted_sql": "SELECT COUNT(*) AS count FROM medical_records",
+        "matched": true
+      },
+      {
+        "question": "每个科室有多少患者？",
+        "expected_sql": "SELECT department, COUNT(*) AS patient_count FROM medical_records GROUP BY department ORDER BY patient_count DESC",
+        "predicted_sql": "SELECT department, COUNT(*) AS patient_count FROM medical_records GROUP BY department ORDER BY patient_count DESC",
+        "matched": true
+      },
+      {
+        "question": "肺炎患者用了什么药？",
+        "expected_sql": "SELECT patient_id, medicine FROM medical_records WHERE diagnosis = '肺炎'",
+        "predicted_sql": "SELECT patient_id, medicine FROM medical_records WHERE diagnosis = '肺炎'",
+        "matched": true
+      },
+      {
+        "question": "年龄最大的患者是谁？",
+        "expected_sql": "SELECT patient_id, age, diagnosis FROM medical_records ORDER BY age DESC LIMIT 1",
+        "predicted_sql": "SELECT patient_id, age, diagnosis FROM medical_records ORDER BY age DESC LIMIT 1",
+        "matched": true
+      },
+      {
+        "question": "心血管内科有哪些诊断？",
+        "expected_sql": "SELECT patient_id, diagnosis FROM medical_records WHERE department = '心血管内科'",
+        "predicted_sql": "SELECT patient_id, diagnosis FROM medical_records WHERE department = '心血管内科'",
+        "matched": true
+      },
+      {
+        "question": "使用阿莫西林的患者有哪些？",
+        "expected_sql": "SELECT patient_id, diagnosis FROM medical_records WHERE medicine LIKE '%阿莫西林%'",
+        "predicted_sql": "SELECT patient_id, diagnosis FROM medical_records WHERE medicine LIKE '%阿莫西林%'",
+        "matched": true
+      }
+    ]
+  },
+  "outputs": {
+    "disease_symptom_chart": "/home/bear/Desktop/开源赛/AgentsHub/通用智能体/其他/数据知识洞察助手/outputs/charts/disease_symptom_count.png",
+    "drug_disease_chart": "/home/bear/Desktop/开源赛/AgentsHub/通用智能体/其他/数据知识洞察助手/outputs/charts/drug_disease_count.png",
+    "sqlite": "/home/bear/Desktop/开源赛/AgentsHub/通用智能体/其他/数据知识洞察助手/outputs/medical_records.db",
+    "report": "/home/bear/Desktop/开源赛/AgentsHub/通用智能体/其他/数据知识洞察助手/outputs/analysis_report.md",
+    "summary": "/home/bear/Desktop/开源赛/AgentsHub/通用智能体/其他/数据知识洞察助手/outputs/analysis_summary.json"
+  }
+}

@@ -1,0 +1,26 @@
+name: 医疗记录字段规范化
+description: DataMate 风格任务一算子示例，用于规范化医疗记录字段。
+language: python
+raw_id: NormalizeMedicalRecord
+version: 1.0.0
+vendor: data-knowledge-insight-demo
+modal: text
+inputs: text
+outputs: text
+types:
+  - cleaning
+release:
+  - 首次发布任务一 DataMate 迁移示例
+runtime:
+  memory: 10485760
+  cpu: 0.05
+  gpu: 0
+  npu: 0
+  storage: 10MB
+settings:
+  columns:
+    name: 需要规范化的字段
+    description: 多个字段用逗号分隔，例如 diagnosis,medicine,department
+    type: input
+    defaultVal: diagnosis,medicine,department
+    required: true
