@@ -1,0 +1,69 @@
+{
+  "status": "completed",
+  "execution_mode": "dkm_orchestrator_run",
+  "request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+  "question": "哪些疾病关联最多症状？",
+  "input": {
+    "path": "data\\samples\\task1_medical_notes.txt"
+  },
+  "planner_preview": {
+    "original_request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+    "planner_mode": "rule",
+    "stages": [
+      {
+        "task": "task1",
+        "task_request": "清洗并标准化医疗文本数据"
+      },
+      {
+        "task": "task2",
+        "task_request": "构建医疗知识图谱",
+        "question": "哪些疾病关联最多症状？"
+      },
+      {
+        "task": "task3",
+        "task_request": "分析图谱统计、关联与可视化洞察",
+        "question": "哪些疾病关联最多症状？"
+      }
+    ],
+    "rationale": [
+      "Detected requested DKM stages from task keywords.",
+      "Stages execute in task1 -> task2 -> task3 order when selected."
+    ],
+    "confidence": 0.85
+  },
+  "stages": [
+    {
+      "task": "task1",
+      "status": "completed",
+      "message": "Task 1 pipeline processed task1_medical_notes.txt (text -> text)."
+    },
+    {
+      "task": "task2",
+      "status": "completed",
+      "message": "Task 2 pipeline built 37 triples from 5 records."
+    },
+    {
+      "task": "task3",
+      "status": "completed",
+      "message": "Task 3 analyzed 36 nodes and 37 edges."
+    }
+  ],
+  "output_root": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\dkm_orchestrator",
+  "artifacts": {
+    "task1_cleaned": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\dkm_orchestrator\\task1",
+    "task2_graph": {
+      "status": "available",
+      "path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\dkm_orchestrator\\task2\\medical_kg.json",
+      "node_count": 36,
+      "edge_count": 37,
+      "triple_count": 37
+    },
+    "task3_report": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\dkm_orchestrator\\task3\\task3_analysis_report.json"
+  },
+  "stage_order": [
+    "task1",
+    "task2",
+    "task3"
+  ],
+  "interpretation": "DKMOrchestrator plans stages from NL request keywords, then executes task1 -> task2 -> task3 agents in order with artifact handoff."
+}

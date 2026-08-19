@@ -1,0 +1,540 @@
+{
+  "nl2sql_path": "fallback_chain(local_model>llm>template)",
+  "enhancement_config": {
+    "llm_config": ".local/llm_deepseek_v4.env",
+    "local_model": "data/training/analysis_nl2sql_model_output/final"
+  },
+  "per_translator": {
+    "template": {
+      "total": 18,
+      "correct": 18,
+      "accuracy": 1.0,
+      "passed": true,
+      "status": "evaluated"
+    },
+    "llm": {
+      "total": 18,
+      "correct": 1,
+      "accuracy": 0.0556,
+      "passed": false,
+      "status": "evaluated"
+    },
+    "local_model": {
+      "total": 18,
+      "correct": 4,
+      "accuracy": 0.2222,
+      "passed": false,
+      "status": "evaluated"
+    },
+    "fallback_chain": {
+      "total": 18,
+      "correct": 4,
+      "accuracy": 0.2222,
+      "passed": false,
+      "status": "evaluated"
+    }
+  },
+  "intent_classification": {
+    "total": 76,
+    "correct": 76,
+    "accuracy": 1.0,
+    "per_intent": {
+      "top_disease_symptoms": {
+        "total": 10,
+        "correct": 10
+      },
+      "top_disease_drugs": {
+        "total": 8,
+        "correct": 8
+      },
+      "top_disease_exams": {
+        "total": 5,
+        "correct": 5
+      },
+      "top_disease_treatments": {
+        "total": 7,
+        "correct": 7
+      },
+      "disease_complications": {
+        "total": 5,
+        "correct": 5
+      },
+      "relation_distribution": {
+        "total": 6,
+        "correct": 6
+      },
+      "list_diseases": {
+        "total": 7,
+        "correct": 7
+      },
+      "top_mentioned_entities": {
+        "total": 6,
+        "correct": 6
+      },
+      "entity_distribution": {
+        "total": 6,
+        "correct": 6
+      },
+      "graph_hub_nodes": {
+        "total": 4,
+        "correct": 4
+      },
+      "symptom_to_diseases": {
+        "total": 5,
+        "correct": 5
+      },
+      "drug_to_diseases": {
+        "total": 4,
+        "correct": 4
+      },
+      "treatment_to_diseases": {
+        "total": 3,
+        "correct": 3
+      }
+    },
+    "mistakes": [],
+    "benchmark": "benchmarks/data/nl2sql_benchmark.json",
+    "threshold": 0.85,
+    "passed": true
+  },
+  "accuracy": 1.0,
+  "threshold": 0.85,
+  "passed": true,
+  "execution": {
+    "total": 18,
+    "correct": 18,
+    "accuracy": 1.0,
+    "metric": "execution_row_match",
+    "per_translator": {
+      "template": {
+        "total": 18,
+        "correct": 18,
+        "accuracy": 1.0
+      }
+    },
+    "mistakes": [],
+    "benchmark": "benchmarks/data/nl2sql_execution_benchmark.json",
+    "threshold": 0.85,
+    "passed": true
+  },
+  "holdout_generalization": {
+    "total": 20,
+    "correct": 20,
+    "accuracy": 1.0,
+    "metric": "execution_row_match",
+    "per_translator": {
+      "template": {
+        "total": 20,
+        "correct": 20,
+        "accuracy": 1.0
+      }
+    },
+    "mistakes": [],
+    "benchmark": "benchmarks/data/nl2sql_holdout_benchmark.json",
+    "evaluation_role": "expanded_paraphrase_regression",
+    "untouched_holdout": false,
+    "threshold": 0.85,
+    "passed": true
+  },
+  "independent_paths": {
+    "template": {
+      "path": "template",
+      "status": "evaluated",
+      "execution": {
+        "total": 18,
+        "correct": 18,
+        "accuracy": 1.0,
+        "passed": true,
+        "metric": "execution_row_match",
+        "mistakes": [],
+        "per_translator": {
+          "template": {
+            "total": 18,
+            "correct": 18,
+            "accuracy": 1.0
+          }
+        }
+      }
+    },
+    "llm": {
+      "path": "llm",
+      "status": "evaluated",
+      "execution": {
+        "total": 18,
+        "correct": 1,
+        "accuracy": 0.0556,
+        "passed": false,
+        "metric": "execution_row_match",
+        "mistakes": [
+          {
+            "question": "高血压用什么药",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT d.name AS disease, dr.name AS drug, COUNT(*) AS count FROM nodes d JOIN edges e ON d.id = e.source JOIN nodes dr ON e.target = dr.id WHERE d.name = '高血压' AND d.type = 'Disease' AND e.predicate = 'treated_by' AND dr.type = 'Drug' GROUP BY dr.name ORDER BY count DESC LIMIT 20",
+            "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '高血压' ORDER BY drug ASC LIMIT 20"
+          },
+          {
+            "question": "糖尿病用什么药",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT d.name AS disease, dr.name AS drug, COUNT(*) AS count FROM nodes d JOIN edges e ON d.id = e.source JOIN nodes dr ON e.target = dr.id WHERE d.name = '糖尿病' AND d.type = 'Disease' AND e.predicate = 'treated_by' AND dr.type = 'Drug' GROUP BY dr.name ORDER BY count DESC LIMIT 20",
+            "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '糖尿病' ORDER BY drug ASC LIMIT 20"
+          },
+          {
+            "question": "糖尿病有哪些症状",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT n.name FROM nodes n JOIN edges e ON n.id = e.target WHERE e.source = (SELECT id FROM nodes WHERE name = '糖尿病' AND type = 'Disease') AND e.predicate = 'has_symptom' AND n.type = 'Symptom' LIMIT 20",
+            "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '糖尿病' ORDER BY symptom ASC LIMIT 20"
+          },
+          {
+            "question": "冠心病做什么检查",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT n.name FROM nodes n JOIN edges e ON n.id = e.target WHERE e.source = (SELECT id FROM nodes WHERE name = '冠心病' AND type = 'Disease') AND e.predicate = 'diagnosed_by' AND n.type = 'Examination' LIMIT 20",
+            "gold_sql": "SELECT t.name AS examination FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'diagnosed_by' AND s.name = '冠心病' ORDER BY examination ASC LIMIT 20"
+          },
+          {
+            "question": "高血压怎么治疗",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT d.name AS disease, t.name AS treatment FROM nodes d JOIN edges e ON d.id = e.source JOIN nodes t ON e.target = t.id WHERE d.name = '高血压' AND e.predicate = 'treated_by' AND t.type = 'Treatment' LIMIT 20",
+            "gold_sql": "SELECT t.name AS treatment FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'recommended_treatment' AND s.name = '高血压' ORDER BY treatment ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病关联最多症状",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT n.name, COUNT(e.target) AS symptom_count FROM nodes n JOIN edges e ON n.id = e.source WHERE n.type = 'Disease' AND e.predicate = 'has_symptom' GROUP BY n.id ORDER BY symptom_count DESC LIMIT 20",
+            "gold_sql": "SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'has_symptom' AND n.type = 'Disease' GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10"
+          },
+          {
+            "question": "图谱中有哪些关系类型",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT predicate FROM edges LIMIT 20",
+            "gold_sql": "SELECT predicate, COUNT(*) AS edge_count FROM edges GROUP BY predicate ORDER BY edge_count DESC, predicate ASC"
+          },
+          {
+            "question": "列出所有疾病",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT name FROM nodes WHERE type = 'Disease' LIMIT 20",
+            "gold_sql": "SELECT name AS disease, mention_count FROM nodes WHERE type = 'Disease' ORDER BY mention_count DESC, disease ASC LIMIT 20"
+          },
+          {
+            "question": "各类型实体的分布",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT type, COUNT(*) AS count FROM nodes GROUP BY type ORDER BY count DESC LIMIT 20",
+            "gold_sql": "SELECT type, COUNT(*) AS node_count FROM nodes GROUP BY type ORDER BY node_count DESC, type ASC"
+          },
+          {
+            "question": "提及次数最多的实体",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT name, mention_count FROM nodes ORDER BY mention_count DESC LIMIT 20",
+            "gold_sql": "SELECT name, type, mention_count FROM nodes ORDER BY mention_count DESC, name ASC LIMIT 10"
+          },
+          {
+            "question": "哪些疾病的并发症最多",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT n.name, COUNT(*) AS complication_count FROM nodes n JOIN edges e ON n.id = e.source WHERE e.predicate = 'complication_of' GROUP BY n.id ORDER BY complication_count DESC LIMIT 20",
+            "gold_sql": "SELECT s.name AS disease, t.name AS complication FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'complication_of' ORDER BY disease ASC, complication ASC LIMIT 20"
+          },
+          {
+            "question": "图谱里连接度最高的枢纽节点",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT n.id, n.name, n.type, COUNT(*) AS degree FROM nodes n JOIN edges e ON n.id = e.source OR n.id = e.target GROUP BY n.id ORDER BY degree DESC LIMIT 20",
+            "gold_sql": "SELECT n.name, n.type, (SELECT COUNT(*) FROM edges e WHERE e.source = n.id OR e.target = n.id) AS degree FROM nodes n ORDER BY degree DESC, n.name ASC LIMIT 10"
+          },
+          {
+            "question": "哪些疾病会出现头晕症状",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT n.name FROM nodes n JOIN edges e ON n.id = e.source WHERE n.type = 'Disease' AND e.predicate = 'has_symptom' AND e.target IN (SELECT id FROM nodes WHERE name = '头晕' AND type = 'Symptom') LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '头晕' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病会出现头痛症状",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT n.name FROM nodes n JOIN edges e ON n.id = e.source WHERE e.predicate = 'has_symptom' AND e.target IN (SELECT id FROM nodes WHERE name = '头痛' AND type = 'Symptom') AND n.type = 'Disease' LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '头痛' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病用氨氯地平治疗",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT n.name FROM nodes n JOIN edges e ON n.id = e.source WHERE e.predicate = 'treated_by' AND e.target = (SELECT id FROM nodes WHERE name = '氨氯地平' AND type = 'Drug') AND n.type = 'Disease' LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.type = 'Disease' AND t.type = 'Drug' AND t.name = '氨氯地平' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病采用低盐饮食治疗",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT n.name FROM nodes n JOIN edges e ON n.id = e.source WHERE n.type = 'Disease' AND e.predicate = 'treated_by' AND e.target IN (SELECT id FROM nodes WHERE name = '低盐饮食' AND type = 'Treatment') LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'recommended_treatment' AND s.type = 'Disease' AND t.type = 'Treatment' AND t.name = '低盐饮食' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病会出现多尿症状",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT n.name FROM nodes n JOIN edges e ON n.id = e.source WHERE n.type = 'Disease' AND e.predicate = 'has_symptom' AND e.target IN (SELECT id FROM nodes WHERE name = '多尿' AND type = 'Symptom') LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '多尿' ORDER BY disease ASC LIMIT 20"
+          }
+        ],
+        "per_translator": {
+          "llm": {
+            "total": 18,
+            "correct": 1,
+            "accuracy": 0.0556
+          }
+        }
+      }
+    },
+    "local_model": {
+      "path": "local_model",
+      "status": "evaluated",
+      "execution": {
+        "total": 18,
+        "correct": 4,
+        "accuracy": 0.2222,
+        "passed": false,
+        "metric": "execution_row_match",
+        "mistakes": [
+          {
+            "question": "高血压用什么药",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS drug_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'treated_by' AND n.type = 'Disease' GROUP BY n.name ORDER BY drug_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '高血压' ORDER BY drug ASC LIMIT 20"
+          },
+          {
+            "question": "糖尿病用什么药",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS drug_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'treated_by' AND n.type = 'Disease' GROUP BY n.name ORDER BY drug_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '糖尿病' ORDER BY drug ASC LIMIT 20"
+          },
+          {
+            "question": "高血压有哪些症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'has_symptom' AND n.type = 'Disease' GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '高血压' ORDER BY symptom ASC LIMIT 20"
+          },
+          {
+            "question": "糖尿病有哪些症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'has_symptom' AND n.type = 'Disease' GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '糖尿病' ORDER BY symptom ASC LIMIT 20"
+          },
+          {
+            "question": "冠心病做什么检查",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS examination_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'diagnosed_by' AND n.type = 'Disease' GROUP BY n.name ORDER BY examination_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS examination FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'diagnosed_by' AND s.name = '冠心病' ORDER BY examination ASC LIMIT 20"
+          },
+          {
+            "question": "高血压怎么治疗",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS treatment_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'recommended_treatment' AND n.type = 'Disease' GROUP BY n.name ORDER BY treatment_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS treatment FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'recommended_treatment' AND s.name = '高血压' ORDER BY treatment ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病关联最多症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT s.name AS disease, t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' ORDER BY disease ASC, symptom ASC LIMIT 20",
+            "gold_sql": "SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'has_symptom' AND n.type = 'Disease' GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10"
+          },
+          {
+            "question": "图谱中有哪些关系类型",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT type, COUNT(*) AS node_count FROM nodes GROUP BY type ORDER BY node_count DESC, type ASC LIMIT 20",
+            "gold_sql": "SELECT predicate, COUNT(*) AS edge_count FROM edges GROUP BY predicate ORDER BY edge_count DESC, predicate ASC"
+          },
+          {
+            "question": "图谱里连接度最高的枢纽节点",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT name, type, mention_count FROM nodes ORDER BY mention_count DESC, name ASC LIMIT 10",
+            "gold_sql": "SELECT n.name, n.type, (SELECT COUNT(*) FROM edges e WHERE e.source = n.id OR e.target = n.id) AS degree FROM nodes n ORDER BY degree DESC, n.name ASC LIMIT 10"
+          },
+          {
+            "question": "哪些疾病会出现头晕症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT s.name AS disease, t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' ORDER BY disease ASC, symptom ASC LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '头晕' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病会出现头痛症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT s.name AS disease, t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' ORDER BY disease ASC, symptom ASC LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '头痛' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病用氨氯地平治疗",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS treatment_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'treated_by' AND n.type = 'Disease' GROUP BY n.name ORDER BY treatment_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.type = 'Disease' AND t.type = 'Drug' AND t.name = '氨氯地平' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病采用低盐饮食治疗",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS treatment_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'recommended_treatment' AND n.type = 'Disease' GROUP BY n.name ORDER BY treatment_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'recommended_treatment' AND s.type = 'Disease' AND t.type = 'Treatment' AND t.name = '低盐饮食' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病会出现多尿症状",
+            "intent": "local_model_failed",
+            "translator": "local_model",
+            "predicted_sql": "SELECT 1",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '多尿' ORDER BY disease ASC LIMIT 20"
+          }
+        ],
+        "per_translator": {
+          "local_model": {
+            "total": 18,
+            "correct": 4,
+            "accuracy": 0.2222
+          }
+        }
+      }
+    },
+    "fallback_chain": {
+      "path": "fallback_chain",
+      "status": "evaluated",
+      "execution": {
+        "total": 18,
+        "correct": 4,
+        "accuracy": 0.2222,
+        "passed": false,
+        "metric": "execution_row_match",
+        "mistakes": [
+          {
+            "question": "高血压用什么药",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS drug_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'treated_by' AND n.type = 'Disease' GROUP BY n.name ORDER BY drug_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '高血压' ORDER BY drug ASC LIMIT 20"
+          },
+          {
+            "question": "糖尿病用什么药",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS drug_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'treated_by' AND n.type = 'Disease' GROUP BY n.name ORDER BY drug_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '糖尿病' ORDER BY drug ASC LIMIT 20"
+          },
+          {
+            "question": "高血压有哪些症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'has_symptom' AND n.type = 'Disease' GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '高血压' ORDER BY symptom ASC LIMIT 20"
+          },
+          {
+            "question": "糖尿病有哪些症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'has_symptom' AND n.type = 'Disease' GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '糖尿病' ORDER BY symptom ASC LIMIT 20"
+          },
+          {
+            "question": "冠心病做什么检查",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS examination_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'diagnosed_by' AND n.type = 'Disease' GROUP BY n.name ORDER BY examination_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS examination FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'diagnosed_by' AND s.name = '冠心病' ORDER BY examination ASC LIMIT 20"
+          },
+          {
+            "question": "高血压怎么治疗",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS treatment_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'recommended_treatment' AND n.type = 'Disease' GROUP BY n.name ORDER BY treatment_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT t.name AS treatment FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'recommended_treatment' AND s.name = '高血压' ORDER BY treatment ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病关联最多症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT s.name AS disease, t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' ORDER BY disease ASC, symptom ASC LIMIT 20",
+            "gold_sql": "SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'has_symptom' AND n.type = 'Disease' GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10"
+          },
+          {
+            "question": "图谱中有哪些关系类型",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT type, COUNT(*) AS node_count FROM nodes GROUP BY type ORDER BY node_count DESC, type ASC LIMIT 20",
+            "gold_sql": "SELECT predicate, COUNT(*) AS edge_count FROM edges GROUP BY predicate ORDER BY edge_count DESC, predicate ASC"
+          },
+          {
+            "question": "图谱里连接度最高的枢纽节点",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT name, type, mention_count FROM nodes ORDER BY mention_count DESC, name ASC LIMIT 10",
+            "gold_sql": "SELECT n.name, n.type, (SELECT COUNT(*) FROM edges e WHERE e.source = n.id OR e.target = n.id) AS degree FROM nodes n ORDER BY degree DESC, n.name ASC LIMIT 10"
+          },
+          {
+            "question": "哪些疾病会出现头晕症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT s.name AS disease, t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' ORDER BY disease ASC, symptom ASC LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '头晕' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病会出现头痛症状",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT s.name AS disease, t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' ORDER BY disease ASC, symptom ASC LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '头痛' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病用氨氯地平治疗",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS treatment_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'treated_by' AND n.type = 'Disease' GROUP BY n.name ORDER BY treatment_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.type = 'Disease' AND t.type = 'Drug' AND t.name = '氨氯地平' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病采用低盐饮食治疗",
+            "intent": "local_model_generated",
+            "translator": "local_model",
+            "predicted_sql": "SELECT n.name AS disease, COUNT(*) AS treatment_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'recommended_treatment' AND n.type = 'Disease' GROUP BY n.name ORDER BY treatment_count DESC, disease ASC LIMIT 10",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'recommended_treatment' AND s.type = 'Disease' AND t.type = 'Treatment' AND t.name = '低盐饮食' ORDER BY disease ASC LIMIT 20"
+          },
+          {
+            "question": "哪些疾病会出现多尿症状",
+            "intent": "llm_generated",
+            "translator": "llm",
+            "predicted_sql": "SELECT DISTINCT n.name FROM nodes n JOIN edges e ON n.id = e.source WHERE n.type = 'Disease' AND e.predicate = 'has_symptom' AND e.target IN (SELECT id FROM nodes WHERE name = '多尿' AND type = 'Symptom') LIMIT 20",
+            "gold_sql": "SELECT DISTINCT s.name AS disease FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.type = 'Disease' AND t.type = 'Symptom' AND t.name = '多尿' ORDER BY disease ASC LIMIT 20"
+          }
+        ],
+        "per_translator": {
+          "local_model": {
+            "total": 17,
+            "correct": 4,
+            "accuracy": 0.2353
+          },
+          "llm": {
+            "total": 1,
+            "correct": 0,
+            "accuracy": 0.0
+          }
+        }
+      }
+    }
+  }
+}

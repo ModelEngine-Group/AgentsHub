@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Task 3 Analysis Dashboard</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --line: #d9e2ec;
+      --panel: #ffffff;
+      --page: #f5f7fb;
+      --accent: #246bfe;
+      --accent-soft: #dfe8ff;
+      --good: #0f8f70;
+      --warn: #b45309;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+    .analysis-dashboard {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+    h1 { margin: 0; font-size: 28px; }
+    h2 { margin: 0 0 14px; font-size: 18px; }
+    h3 { margin: 16px 0 8px; font-size: 15px; }
+    .subtitle { margin: 6px 0 0; color: var(--muted); }
+    .status-pill {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--good);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .kpi, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    .kpi { padding: 14px; min-height: 84px; }
+    .kpi-label { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+    .kpi-value { margin-top: 6px; font-size: 24px; font-weight: 800; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .panel { padding: 16px; overflow: hidden; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: minmax(96px, 160px) 1fr minmax(36px, auto);
+      gap: 10px;
+      align-items: center;
+      margin: 8px 0;
+      font-size: 13px;
+    }
+    .bar-label { overflow-wrap: anywhere; }
+    .bar-track { height: 12px; background: #edf2f7; border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--accent); border-radius: 999px; }
+    .trend {
+      height: 190px;
+      width: 100%;
+      border: 1px solid var(--line);
+      background: linear-gradient(#fff, #f8fbff);
+      border-radius: 6px;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 700; }
+    code { background: #eef2f7; border-radius: 4px; padding: 2px 4px; }
+    .network-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .network-item {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px;
+      background: #fbfdff;
+      font-size: 13px;
+    }
+    @media (max-width: 860px) {
+      header { display: block; }
+      .status-pill { display: inline-block; margin-top: 12px; }
+      .kpis, .grid, .network-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="analysis-dashboard">
+    <header>
+      <div>
+        <h1>Task 3 Graph Analysis Dashboard</h1>
+        <p class="subtitle">Static reviewer dashboard generated from graph statistics, NL2SQL results, and visualization specs.</p>
+      </div>
+      <div class="status-pill">Ready for review</div>
+    </header>
+    <section class="kpis">
+      <article class="kpi"><div class="kpi-label">Entities</div><div class="kpi-value">26</div></article>
+      <article class="kpi"><div class="kpi-label">Relations</div><div class="kpi-value">29</div></article>
+      <article class="kpi"><div class="kpi-label">Avg confidence</div><div class="kpi-value">0.8179</div></article>
+      <article class="kpi"><div class="kpi-label">NL2SQL rows</div><div class="kpi-value">4</div></article>
+    </section>
+    <section class="grid">
+      <article class="panel">
+        <h2>Entity type distribution</h2>
+        <div class="bar-row"><span class="bar-label">Disease</span><span class="bar-track"><span class="bar-fill" style="width: 50.0%"></span></span><strong>4</strong></div>
+<div class="bar-row"><span class="bar-label">Drug</span><span class="bar-track"><span class="bar-fill" style="width: 62.5%"></span></span><strong>5</strong></div>
+<div class="bar-row"><span class="bar-label">Examination</span><span class="bar-track"><span class="bar-fill" style="width: 75.0%"></span></span><strong>6</strong></div>
+<div class="bar-row"><span class="bar-label">Symptom</span><span class="bar-track"><span class="bar-fill" style="width: 100.0%"></span></span><strong>8</strong></div>
+<div class="bar-row"><span class="bar-label">Treatment</span><span class="bar-track"><span class="bar-fill" style="width: 37.5%"></span></span><strong>3</strong></div>
+      </article>
+      <article class="panel">
+        <h2>Relation type distribution</h2>
+        <div class="bar-row"><span class="bar-label">complication_of</span><span class="bar-track"><span class="bar-fill" style="width: 10.0%"></span></span><strong>1</strong></div>
+<div class="bar-row"><span class="bar-label">diagnosed_by</span><span class="bar-track"><span class="bar-fill" style="width: 90.0%"></span></span><strong>9</strong></div>
+<div class="bar-row"><span class="bar-label">has_symptom</span><span class="bar-track"><span class="bar-fill" style="width: 100.0%"></span></span><strong>10</strong></div>
+<div class="bar-row"><span class="bar-label">recommended_treatment</span><span class="bar-track"><span class="bar-fill" style="width: 40.0%"></span></span><strong>4</strong></div>
+<div class="bar-row"><span class="bar-label">treated_by</span><span class="bar-track"><span class="bar-fill" style="width: 50.0%"></span></span><strong>5</strong></div>
+      </article>
+      <article class="panel">
+        <h2>Record sequence trend</h2>
+        <svg class="trend" viewBox="0 0 680 220" role="img" aria-label="Record trend (edge and entity counts)"><polyline points="28.0,64.4 236.0,64.4 444.0,82.7 652.0,28.0" fill="none" stroke="#246bfe" stroke-width="3" /><circle cx="28.0" cy="64.4" r="4" fill="#246bfe" />
+<circle cx="236.0" cy="64.4" r="4" fill="#246bfe" />
+<circle cx="444.0" cy="82.7" r="4" fill="#246bfe" />
+<circle cx="652.0" cy="28.0" r="4" fill="#246bfe" /><polyline points="28.0,46.2 236.0,46.2 444.0,64.4 652.0,64.4" fill="none" stroke="#0f8f70" stroke-width="3" stroke-dasharray="5 4" /><circle cx="28.0" cy="46.2" r="4" fill="#0f8f70" />
+<circle cx="236.0" cy="46.2" r="4" fill="#0f8f70" />
+<circle cx="444.0" cy="64.4" r="4" fill="#0f8f70" />
+<circle cx="652.0" cy="64.4" r="4" fill="#0f8f70" /><text x="28" y="214" text-anchor="middle" font-size="10" fill="#5f6b7a">record_1</text>
+<text x="236" y="214" text-anchor="middle" font-size="10" fill="#5f6b7a">record_2</text>
+<text x="444" y="214" text-anchor="middle" font-size="10" fill="#5f6b7a">record_3</text>
+<text x="652" y="214" text-anchor="middle" font-size="10" fill="#5f6b7a">record_4</text><g font-size="11"><rect x="500" y="8" width="12" height="12" fill="#246bfe" /><text x="518" y="18" fill="#172033">边数</text><rect x="580" y="8" width="12" height="12" fill="#0f8f70" /><text x="598" y="18" fill="#172033">实体数</text></g></svg>
+        <p class="subtitle">Peak record: record_4 / 9 edges</p>
+      </article>
+      <article class="panel">
+        <h2>Top Hub 节点 (度中心性)</h2>
+        <div class="bar-row"><span class="bar-label">高血压</span><span class="bar-track"><span class="bar-fill" style="width: 100.0%"></span></span><strong>11</strong></div>
+<div class="bar-row"><span class="bar-label">2型糖尿病</span><span class="bar-track"><span class="bar-fill" style="width: 63.6%"></span></span><strong>7</strong></div>
+<div class="bar-row"><span class="bar-label">冠心病</span><span class="bar-track"><span class="bar-fill" style="width: 54.5%"></span></span><strong>6</strong></div>
+<div class="bar-row"><span class="bar-label">支气管哮喘急性发作</span><span class="bar-track"><span class="bar-fill" style="width: 54.5%"></span></span><strong>6</strong></div>
+<div class="bar-row"><span class="bar-label">心电图</span><span class="bar-track"><span class="bar-fill" style="width: 18.2%"></span></span><strong>2</strong></div>
+<div class="bar-row"><span class="bar-label">肝功能</span><span class="bar-track"><span class="bar-fill" style="width: 18.2%"></span></span><strong>2</strong></div>
+<div class="bar-row"><span class="bar-label">血常规</span><span class="bar-track"><span class="bar-fill" style="width: 18.2%"></span></span><strong>2</strong></div>
+<div class="bar-row"><span class="bar-label">气短</span><span class="bar-track"><span class="bar-fill" style="width: 18.2%"></span></span><strong>2</strong></div>
+      </article>
+      <article class="panel">
+        <h2>Disease association highlights</h2>
+        <table><thead><tr><th>Disease</th><th>Symptoms</th><th>Drugs</th><th>Exams</th><th>Complications</th></tr></thead><tbody><tr><td>高血压</td><td>4</td><td>2</td><td>3</td><td>1</td></tr>
+<tr><td>2型糖尿病</td><td>2</td><td>2</td><td>2</td><td>0</td></tr>
+<tr><td>支气管哮喘急性发作</td><td>2</td><td>1</td><td>2</td><td>0</td></tr>
+<tr><td>冠心病</td><td>2</td><td>0</td><td>2</td><td>0</td></tr></tbody></table>
+      </article>
+      <article class="panel">
+        <h2>NL2SQL evidence</h2>
+        <p><code>SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = &#x27;has_symptom&#x27; AND n.type = &#x27;Disease&#x27; GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10</code></p>
+        <table><thead><tr><th>disease</th><th>symptom_count</th></tr></thead><tbody><tr><td>高血压</td><td>4</td></tr><tr><td>2型糖尿病</td><td>2</td></tr><tr><td>冠心病</td><td>2</td></tr><tr><td>支气管哮喘急性发作</td><td>2</td></tr></tbody></table>
+      </article>
+      <article class="panel">
+        <h2>Disease-centered relation network</h2>
+        <p class="subtitle">26 nodes / 29 edges in rendered network spec.</p><div class="network-list"><div class="network-item"><strong>高血压</strong><br>Disease</div>
+<div class="network-item"><strong>头晕</strong><br>Symptom</div>
+<div class="network-item"><strong>头痛</strong><br>Symptom</div>
+<div class="network-item"><strong>气短</strong><br>Symptom</div>
+<div class="network-item"><strong>胸闷</strong><br>Symptom</div>
+<div class="network-item"><strong>氨氯地平</strong><br>Drug</div>
+<div class="network-item"><strong>阿司匹林</strong><br>Drug</div>
+<div class="network-item"><strong>心电图</strong><br>Examination</div></div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

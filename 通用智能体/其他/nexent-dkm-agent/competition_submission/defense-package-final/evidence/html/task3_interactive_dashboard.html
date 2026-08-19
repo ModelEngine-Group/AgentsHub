@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 3 Interactive Analysis Dashboard</title>
+<style>
+  :root { --ink: #172033; --muted: #5f6b7a; --line: #e2e8f0; --panel: #fff; --page: #f0f4f8; --accent: #3b82f6; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--page); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.5; }
+  .dashboard { max-width: 1200px; margin: 0 auto; padding: 24px 16px 40px; }
+  header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  h1 { font-size: 24px; font-weight: 700; }
+  .subtitle { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .badge { background: #dcfce7; color: #166534; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; text-align: center; }
+  .kpi-value { font-size: 28px; font-weight: 800; color: var(--accent); }
+  .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 16px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  .panel-full { grid-column: 1 / -1; }
+  .chart { width: 100%; height: 320px; display: none; }
+  .fallback { display: block; width: 100%; text-align: center; }
+  .fallback svg { max-width: 100%; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; }
+  code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+  .nl2sql-info { margin-bottom: 12px; padding: 8px 12px; background: #f8fafc; border-radius: 6px; font-size: 13px; }
+  .nl2sql-live { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .nl2sql-live input { flex: 1 1 320px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px; }
+  .nl2sql-live button { padding: 10px 16px; background: var(--accent); color: #fff; border: 0; border-radius: 6px; cursor: pointer; font-weight: 600; }
+  .nl2sql-live-status { font-size: 12px; color: var(--muted); margin-bottom: 8px; min-height: 18px; }
+  @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, 1fr); } .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="dashboard">
+  <header>
+    <div>
+      <h1>Medical KG Analysis Dashboard</h1>
+      <p class="subtitle">Interactive analysis powered by Apache ECharts | Task 3</p>
+    </div>
+    <span class="badge">Analysis Complete</span>
+  </header>
+
+  <section class="kpis">
+    <div class="kpi"><div class="kpi-value">26</div><div class="kpi-label">Entities</div></div>
+    <div class="kpi"><div class="kpi-value">29</div><div class="kpi-label">Relations</div></div>
+    <div class="kpi"><div class="kpi-value">0.82</div><div class="kpi-label">Avg Confidence</div></div>
+    <div class="kpi"><div class="kpi-value">4</div><div class="kpi-label">NL2SQL Rows</div></div>
+  </section>
+
+  <section class="grid">
+    <div class="panel">
+      <div id="entity-chart" class="chart"></div>
+      <div id="entity-fallback" class="fallback"><svg viewBox="0 0 500 280" style="max-width:100%;" role="img" aria-label="实体类型分布"><text x="250" y="16" text-anchor="middle" font-size="13" fill="#172033">实体类型分布</text><path d="M130,140 L130.0,45.0 A95,95 0 0,1 208.2,86.0 Z" fill="#5470c6" opacity="0.85"/><path d="M130,140 L208.2,86.0 A95,95 0 0,1 208.2,194.0 Z" fill="#91cc75" opacity="0.85"/><path d="M130,140 L208.2,194.0 A95,95 0 0,1 85.9,224.1 Z" fill="#fac858" opacity="0.85"/><path d="M130,140 L85.9,224.1 A95,95 0 0,1 67.0,68.9 Z" fill="#ee6666" opacity="0.85"/><path d="M130,140 L67.0,68.9 A95,95 0 0,1 130.0,45.0 Z" fill="#73c0de" opacity="0.85"/><rect x="260" y="37" width="12" height="12" rx="2" fill="#5470c6"/><text x="280" y="48" font-size="12" fill="#172033">Disease (15%)</text><rect x="260" y="61" width="12" height="12" rx="2" fill="#91cc75"/><text x="280" y="72" font-size="12" fill="#172033">Drug (19%)</text><rect x="260" y="85" width="12" height="12" rx="2" fill="#fac858"/><text x="280" y="96" font-size="12" fill="#172033">Examination (23%)</text><rect x="260" y="109" width="12" height="12" rx="2" fill="#ee6666"/><text x="280" y="120" font-size="12" fill="#172033">Symptom (31%)</text><rect x="260" y="133" width="12" height="12" rx="2" fill="#73c0de"/><text x="280" y="144" font-size="12" fill="#172033">Treatment (12%)</text></svg></div>
+    </div>
+    <div class="panel">
+      <div id="relation-chart" class="chart"></div>
+      <div id="relation-fallback" class="fallback"><svg viewBox="0 0 500 190" style="max-width:100%;" role="img" aria-label="关系类型分布"><text x="250" y="16" text-anchor="middle" font-size="13" fill="#172033">关系类型分布</text><text x="96" y="48" text-anchor="end" font-size="11" fill="#172033">complication_of</text><rect x="100" y="30" width="38" height="22" rx="4" fill="#5470c6" opacity="0.85"/><text x="142" y="48" font-size="11" fill="#5f6b7a">1</text><text x="96" y="78" text-anchor="end" font-size="11" fill="#172033">diagnosed_by</text><rect x="100" y="60" width="342" height="22" rx="4" fill="#91cc75" opacity="0.85"/><text x="446" y="78" font-size="11" fill="#5f6b7a">9</text><text x="96" y="108" text-anchor="end" font-size="11" fill="#172033">has_symptom</text><rect x="100" y="90" width="380" height="22" rx="4" fill="#fac858" opacity="0.85"/><text x="484" y="108" font-size="11" fill="#5f6b7a">10</text><text x="96" y="138" text-anchor="end" font-size="11" fill="#172033">recommended_treatment</text><rect x="100" y="120" width="152" height="22" rx="4" fill="#ee6666" opacity="0.85"/><text x="256" y="138" font-size="11" fill="#5f6b7a">4</text><text x="96" y="168" text-anchor="end" font-size="11" fill="#172033">treated_by</text><rect x="100" y="150" width="190" height="22" rx="4" fill="#73c0de" opacity="0.85"/><text x="294" y="168" font-size="11" fill="#5f6b7a">5</text></svg></div>
+    </div>
+    <div class="panel">
+      <div id="trend-chart" class="chart"></div>
+      <div id="trend-fallback" class="fallback"><svg viewBox="0 0 500 220" style="max-width:100%;" role="img" aria-label="记录序列趋势"><text x="250" y="16" text-anchor="middle" font-size="13" fill="#172033">记录序列趋势</text><rect x="330" y="8" width="12" height="12" fill="#5470c6" /><text x="348" y="18" font-size="11" fill="#172033">边数</text><rect x="410" y="8" width="12" height="12" fill="#91cc75" /><text x="428" y="18" font-size="11" fill="#172033">实体数</text><polyline points="30.0,65.6 176.7,65.6 323.3,83.3 470.0,30.0" fill="none" stroke="#5470c6" stroke-width="2.5" /><circle cx="30.0" cy="65.6" r="4" fill="#5470c6" /><circle cx="176.7" cy="65.6" r="4" fill="#5470c6" /><circle cx="323.3" cy="83.3" r="4" fill="#5470c6" /><circle cx="470.0" cy="30.0" r="4" fill="#5470c6" /><polyline points="30.0,47.8 176.7,47.8 323.3,65.6 470.0,65.6" fill="none" stroke="#91cc75" stroke-width="2.5" stroke-dasharray="5 4" /><circle cx="30.0" cy="47.8" r="4" fill="#91cc75" /><circle cx="176.7" cy="47.8" r="4" fill="#91cc75" /><circle cx="323.3" cy="65.6" r="4" fill="#91cc75" /><circle cx="470.0" cy="65.6" r="4" fill="#91cc75" /><text x="30" y="212" text-anchor="middle" font-size="10" fill="#5f6b7a">record_1</text><text x="177" y="212" text-anchor="middle" font-size="10" fill="#5f6b7a">record_2</text><text x="323" y="212" text-anchor="middle" font-size="10" fill="#5f6b7a">record_3</text><text x="470" y="212" text-anchor="middle" font-size="10" fill="#5f6b7a">record_4</text></svg></div>
+    </div>
+    <div class="panel">
+      <div id="hub-chart" class="chart"></div>
+      <div id="hub-fallback" class="fallback"><svg viewBox="0 0 500 280" style="max-width:100%;" role="img" aria-label="Top Hub 节点"><text x="250" y="16" text-anchor="middle" font-size="13" fill="#172033">Top Hub 节点</text><text x="96" y="48" text-anchor="end" font-size="11" fill="#172033">高血压</text><rect x="100" y="30" width="380" height="22" rx="4" fill="#5470c6" opacity="0.85"/><text x="484" y="48" font-size="11" fill="#5f6b7a">11</text><text x="96" y="78" text-anchor="end" font-size="11" fill="#172033">2型糖尿病</text><rect x="100" y="60" width="242" height="22" rx="4" fill="#91cc75" opacity="0.85"/><text x="346" y="78" font-size="11" fill="#5f6b7a">7</text><text x="96" y="108" text-anchor="end" font-size="11" fill="#172033">冠心病</text><rect x="100" y="90" width="207" height="22" rx="4" fill="#fac858" opacity="0.85"/><text x="311" y="108" font-size="11" fill="#5f6b7a">6</text><text x="96" y="138" text-anchor="end" font-size="11" fill="#172033">支气管哮喘急性发作</text><rect x="100" y="120" width="207" height="22" rx="4" fill="#ee6666" opacity="0.85"/><text x="311" y="138" font-size="11" fill="#5f6b7a">6</text><text x="96" y="168" text-anchor="end" font-size="11" fill="#172033">心电图</text><rect x="100" y="150" width="69" height="22" rx="4" fill="#73c0de" opacity="0.85"/><text x="173" y="168" font-size="11" fill="#5f6b7a">2</text><text x="96" y="198" text-anchor="end" font-size="11" fill="#172033">肝功能</text><rect x="100" y="180" width="69" height="22" rx="4" fill="#3ba272" opacity="0.85"/><text x="173" y="198" font-size="11" fill="#5f6b7a">2</text><text x="96" y="228" text-anchor="end" font-size="11" fill="#172033">血常规</text><rect x="100" y="210" width="69" height="22" rx="4" fill="#fc8452" opacity="0.85"/><text x="173" y="228" font-size="11" fill="#5f6b7a">2</text><text x="96" y="258" text-anchor="end" font-size="11" fill="#172033">气短</text><rect x="100" y="240" width="69" height="22" rx="4" fill="#9a60b4" opacity="0.85"/><text x="173" y="258" font-size="11" fill="#5f6b7a">2</text></svg></div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="panel panel-full">
+      <div id="kg-chart" class="chart" style="height:420px;"></div>
+      <div id="kg-fallback" class="fallback">
+        <p style="padding:20px;color:#888;">KG force-directed graph requires ECharts. See disease association table below.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="panel panel-full">
+      <h3 style="margin-bottom:12px;">Disease Association Profiles</h3>
+      <table>
+        <thead><tr><th>Disease</th><th>Symptoms</th><th>Top Symptoms</th><th>Drugs</th><th>Top Drugs</th><th>Complications</th></tr></thead>
+        <tbody><tr><td>高血压</td><td>4</td><td>头晕, 头痛, 气短, 胸闷</td><td>2</td><td>氨氯地平, 阿司匹林</td><td>1</td></tr><tr><td>2型糖尿病</td><td>2</td><td>口渴, 多尿</td><td>2</td><td>二甲双胍, 辛伐他汀</td><td>0</td></tr><tr><td>支气管哮喘急性发作</td><td>2</td><td>呼吸困难, 喘息</td><td>1</td><td>布洛芬</td><td>0</td></tr><tr><td>冠心病</td><td>2</td><td>气短, 胸闷</td><td>0</td><td></td><td>0</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="panel panel-full">
+      <h3 style="margin-bottom:12px;">NL2SQL Evidence</h3>
+      <div class="nl2sql-live">
+        <input id="nl2sql-question" type="text" placeholder="输入分析问题，例如：哪些疾病关联最多症状？" value="哪些疾病关联最多症状？" />
+        <button id="nl2sql-submit" type="button">实时查询</button>
+      </div>
+      <div id="nl2sql-live-status" class="nl2sql-live-status">连接 Task 3 API 后可在此提交 NL2SQL 查询。</div>
+      <div class="nl2sql-info">
+        <strong>Intent:</strong> <span id="nl2sql-intent">top_disease_symptoms</span> &nbsp;|&nbsp;
+        <strong>Translator:</strong> <span id="nl2sql-translator">template</span> &nbsp;|&nbsp;
+        <strong>Rows:</strong> <span id="nl2sql-row-count">4</span>
+      </div>
+      <p><code id="nl2sql-sql">SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = &#x27;has_symptom&#x27; AND n.type = &#x27;Disease&#x27; GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10</code></p>
+      <table><thead><tr id="nl2sql-head"><th>disease</th><th>symptom_count</th></tr></thead><tbody id="nl2sql-body"><tr><td>高血压</td><td>4</td></tr><tr><td>2型糖尿病</td><td>2</td></tr><tr><td>冠心病</td><td>2</td></tr><tr><td>支气管哮喘急性发作</td><td>2</td></tr></tbody></table>
+    </div>
+  </section>
+</div>
+
+<script>
+function setDashboardMode(interactive) {
+  var ids = ['entity','relation','trend','hub','kg'];
+  for (var i = 0; i < ids.length; i++) {
+    var chart = document.getElementById(ids[i] + '-chart');
+    var fallback = document.getElementById(ids[i] + '-fallback');
+    if (chart) chart.style.display = interactive ? 'block' : 'none';
+    if (fallback) fallback.style.display = interactive ? 'none' : 'block';
+  }
+}
+
+function hideFallbackPanels() {
+  var ids = ['entity','relation','trend','hub','kg'];
+  for (var i = 0; i < ids.length; i++) {
+    var fallback = document.getElementById(ids[i] + '-fallback');
+    if (fallback) fallback.style.display = 'none';
+  }
+}
+
+function showChartPanels() {
+  var ids = ['entity','relation','trend','hub','kg'];
+  for (var i = 0; i < ids.length; i++) {
+    var chart = document.getElementById(ids[i] + '-chart');
+    if (chart) chart.style.display = 'block';
+  }
+}
+
+function initializeECharts() {
+  try {
+    if (typeof echarts === 'undefined') throw new Error('ECharts not loaded');
+    showChartPanels();
+    window.requestAnimationFrame(function() {
+      window.requestAnimationFrame(function() {
+        var c1 = echarts.init(document.getElementById('entity-chart'));
+        c1.setOption({"title": {"text": "实体类型分布", "left": "center", "textStyle": {"fontSize": 14}}, "tooltip": {"trigger": "item"}, "series": [{"type": "pie", "radius": ["35%", "65%"], "center": ["50%", "55%"], "data": [{"name": "Disease", "value": 4}, {"name": "Drug", "value": 5}, {"name": "Examination", "value": 6}, {"name": "Symptom", "value": 8}, {"name": "Treatment", "value": 3}], "emphasis": {"itemStyle": {"shadowBlur": 10, "shadowOffsetX": 0, "shadowColor": "rgba(0,0,0,0.5)"}}, "label": {"formatter": "{b}: {c} ({d}%)"}}]});
+        var c2 = echarts.init(document.getElementById('relation-chart'));
+        c2.setOption({"title": {"text": "关系类型分布", "left": "center", "textStyle": {"fontSize": 14}}, "tooltip": {"trigger": "axis"}, "animation": false, "grid": {"left": 48, "right": 24, "top": 64, "bottom": 48, "containLabel": true}, "xAxis": {"type": "category", "data": ["complication_of", "diagnosed_by", "has_symptom", "recommended_treatment", "treated_by"], "axisLabel": {"rotate": 20}}, "yAxis": {"type": "value"}, "series": [{"type": "bar", "data": [1, 9, 10, 4, 5], "itemStyle": {"color": "#5470c6"}, "barWidth": "60%"}]});
+        var c3 = echarts.init(document.getElementById('trend-chart'));
+        c3.setOption({"title": {"text": "记录序列趋势", "left": "center", "textStyle": {"fontSize": 14}}, "tooltip": {"trigger": "axis"}, "animation": false, "legend": {"data": ["边数", "实体数"], "top": 30}, "grid": {"left": 48, "right": 24, "top": 64, "bottom": 32, "containLabel": true}, "xAxis": {"type": "category", "data": ["record_1", "record_2", "record_3", "record_4"]}, "yAxis": {"type": "value"}, "series": [{"name": "边数", "type": "line", "data": [7, 7, 6, 9], "smooth": true, "itemStyle": {"color": "#5470c6"}}, {"name": "实体数", "type": "line", "data": [8, 8, 7, 7], "smooth": true, "itemStyle": {"color": "#91cc75"}}]});
+        var c4 = echarts.init(document.getElementById('hub-chart'));
+        c4.setOption({"title": {"text": "Top Hub 节点 (度中心性)", "left": "center", "textStyle": {"fontSize": 14}}, "tooltip": {"trigger": "axis"}, "animation": false, "grid": {"left": 120, "right": 24, "top": 56, "bottom": 24, "containLabel": true}, "xAxis": {"type": "value"}, "yAxis": {"type": "category", "data": ["气短", "血常规", "肝功能", "心电图", "支气管哮喘急性发作", "冠心病", "2型糖尿病", "高血压"]}, "series": [{"type": "bar", "data": [2, 2, 2, 2, 6, 6, 7, 11], "itemStyle": {"color": "#ee6666"}, "barWidth": "50%"}]});
+        var c5 = echarts.init(document.getElementById('kg-chart'));
+        c5.setOption({"title": {"text": "知识图谱结构可视化", "left": "center", "textStyle": {"fontSize": 14}}, "tooltip": {"trigger": "item", "renderMode": "richText", "formatter": "{b}"}, "legend": {"data": ["Disease", "Symptom", "Drug", "Examination", "Treatment"], "top": 30, "textStyle": {"fontSize": 11}}, "animationDuration": 1500, "animationEasingUpdate": "quinticInOut", "series": [{"type": "graph", "layout": "force", "data": [{"name": "高血压", "category": 0, "symbolSize": 8, "itemStyle": {"color": "#ee6666"}, "label": {"show": true, "fontSize": 10, "color": "#333"}}, {"name": "头晕", "category": 1, "symbolSize": 5, "itemStyle": {"color": "#5470c6"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "头痛", "category": 1, "symbolSize": 5, "itemStyle": {"color": "#5470c6"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "气短", "category": 1, "symbolSize": 5, "itemStyle": {"color": "#5470c6"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "胸闷", "category": 1, "symbolSize": 5, "itemStyle": {"color": "#5470c6"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "氨氯地平", "category": 2, "symbolSize": 5, "itemStyle": {"color": "#91cc75"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "阿司匹林", "category": 2, "symbolSize": 5, "itemStyle": {"color": "#91cc75"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "心电图", "category": 3, "symbolSize": 5, "itemStyle": {"color": "#fac858"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "肝功能", "category": 3, "symbolSize": 5, "itemStyle": {"color": "#fac858"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "血常规", "category": 3, "symbolSize": 5, "itemStyle": {"color": "#fac858"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "继续服用", "category": 4, "symbolSize": 5, "itemStyle": {"color": "#73c0de"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "冠心病", "category": 0, "symbolSize": 8, "itemStyle": {"color": "#ee6666"}, "label": {"show": true, "fontSize": 10, "color": "#333"}}, {"name": "2型糖尿病", "category": 0, "symbolSize": 8, "itemStyle": {"color": "#ee6666"}, "label": {"show": true, "fontSize": 10, "color": "#333"}}, {"name": "口渴", "category": 1, "symbolSize": 5, "itemStyle": {"color": "#5470c6"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "多尿", "category": 1, "symbolSize": 5, "itemStyle": {"color": "#5470c6"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "二甲双胍", "category": 2, "symbolSize": 5, "itemStyle": {"color": "#91cc75"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "辛伐他汀", "category": 2, "symbolSize": 5, "itemStyle": {"color": "#91cc75"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "尿常规", "category": 3, "symbolSize": 5, "itemStyle": {"color": "#fac858"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "血糖", "category": 3, "symbolSize": 5, "itemStyle": {"color": "#fac858"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "调节血脂", "category": 4, "symbolSize": 5, "itemStyle": {"color": "#73c0de"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "支气管哮喘急性发作", "category": 0, "symbolSize": 8, "itemStyle": {"color": "#ee6666"}, "label": {"show": true, "fontSize": 10, "color": "#333"}}, {"name": "呼吸困难", "category": 1, "symbolSize": 5, "itemStyle": {"color": "#5470c6"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "喘息", "category": 1, "symbolSize": 5, "itemStyle": {"color": "#5470c6"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "布洛芬", "category": 2, "symbolSize": 5, "itemStyle": {"color": "#91cc75"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "肺功能", "category": 3, "symbolSize": 5, "itemStyle": {"color": "#fac858"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}, {"name": "对症治疗", "category": 4, "symbolSize": 5, "itemStyle": {"color": "#73c0de"}, "label": {"show": false, "fontSize": 10, "color": "#333"}}], "links": [{"source": "高血压", "target": "头晕", "name": "symptoms", "value": "symptoms"}, {"source": "高血压", "target": "头痛", "name": "symptoms", "value": "symptoms"}, {"source": "高血压", "target": "气短", "name": "symptoms", "value": "symptoms"}, {"source": "高血压", "target": "胸闷", "name": "symptoms", "value": "symptoms"}, {"source": "高血压", "target": "氨氯地平", "name": "drugs", "value": "drugs"}, {"source": "高血压", "target": "阿司匹林", "name": "drugs", "value": "drugs"}, {"source": "高血压", "target": "心电图", "name": "examinations", "value": "examinations"}, {"source": "高血压", "target": "肝功能", "name": "examinations", "value": "examinations"}, {"source": "高血压", "target": "血常规", "name": "examinations", "value": "examinations"}, {"source": "高血压", "target": "继续服用", "name": "treatments", "value": "treatments"}, {"source": "高血压", "target": "冠心病", "name": "complications", "value": "complications"}, {"source": "2型糖尿病", "target": "口渴", "name": "symptoms", "value": "symptoms"}, {"source": "2型糖尿病", "target": "多尿", "name": "symptoms", "value": "symptoms"}, {"source": "2型糖尿病", "target": "二甲双胍", "name": "drugs", "value": "drugs"}, {"source": "2型糖尿病", "target": "辛伐他汀", "name": "drugs", "value": "drugs"}, {"source": "2型糖尿病", "target": "尿常规", "name": "examinations", "value": "examinations"}, {"source": "2型糖尿病", "target": "血糖", "name": "examinations", "value": "examinations"}, {"source": "2型糖尿病", "target": "调节血脂", "name": "treatments", "value": "treatments"}, {"source": "支气管哮喘急性发作", "target": "呼吸困难", "name": "symptoms", "value": "symptoms"}, {"source": "支气管哮喘急性发作", "target": "喘息", "name": "symptoms", "value": "symptoms"}, {"source": "支气管哮喘急性发作", "target": "布洛芬", "name": "drugs", "value": "drugs"}, {"source": "支气管哮喘急性发作", "target": "肺功能", "name": "examinations", "value": "examinations"}, {"source": "支气管哮喘急性发作", "target": "血常规", "name": "examinations", "value": "examinations"}, {"source": "支气管哮喘急性发作", "target": "对症治疗", "name": "treatments", "value": "treatments"}, {"source": "冠心病", "target": "气短", "name": "symptoms", "value": "symptoms"}, {"source": "冠心病", "target": "胸闷", "name": "symptoms", "value": "symptoms"}, {"source": "冠心病", "target": "心电图", "name": "examinations", "value": "examinations"}, {"source": "冠心病", "target": "肝功能", "name": "examinations", "value": "examinations"}, {"source": "冠心病", "target": "继续服用", "name": "treatments", "value": "treatments"}], "categories": [{"name": "Disease"}, {"name": "Symptom"}, {"name": "Drug"}, {"name": "Examination"}, {"name": "Treatment"}], "roam": true, "draggable": true, "force": {"repulsion": 200, "gravity": 0.1, "edgeLength": [50, 120]}, "emphasis": {"focus": "adjacency", "lineStyle": {"width": 4}}, "edgeLabel": {"show": false}, "lineStyle": {"opacity": 0.6, "width": 1.5, "curveness": 0.1}}]});
+        var instances = [c1, c2, c3, c4, c5];
+        instances.forEach(function(chart) { chart.resize(); });
+        hideFallbackPanels();
+        window.addEventListener('resize', function() {
+          instances.forEach(function(chart) { chart.resize(); });
+        });
+      });
+    });
+  } catch(e) {
+    setDashboardMode(false);
+  }
+}
+
+setDashboardMode(false);
+var echartsScript = document.createElement('script');
+echartsScript.src = 'https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js';
+echartsScript.async = true;
+echartsScript.onload = initializeECharts;
+echartsScript.onerror = function() { setDashboardMode(false); };
+document.head.appendChild(echartsScript);
+
+var NL2SQL_API_BASE = "";
+var NL2SQL_GRAPH_FILE = "";
+
+function renderNl2SqlTable(rows) {
+  var body = document.getElementById('nl2sql-body');
+  var head = document.getElementById('nl2sql-head');
+  if (!body || !head) return;
+  if (!rows || !rows.length) {
+    head.innerHTML = '';
+    body.innerHTML = '<tr><td>No rows</td></tr>';
+    return;
+  }
+  var columns = Object.keys(rows[0]);
+  head.innerHTML = columns.map(function(c) { return '<th>' + c + '</th>'; }).join('');
+  body.innerHTML = rows.slice(0, 20).map(function(row) {
+    return '<tr>' + columns.map(function(c) { return '<td>' + String(row[c] ?? '') + '</td>'; }).join('') + '</tr>';
+  }).join('');
+  var count = document.getElementById('nl2sql-row-count');
+  if (count) count.textContent = String(rows.length);
+}
+
+async function submitNl2SqlQuery() {
+  var status = document.getElementById('nl2sql-live-status');
+  var questionInput = document.getElementById('nl2sql-question');
+  if (!questionInput) return;
+  var question = questionInput.value.trim();
+  if (!question) {
+    if (status) status.textContent = '请输入问题。';
+    return;
+  }
+  if (status) status.textContent = '查询中...';
+  try {
+    var payload = { question: question };
+    if (NL2SQL_GRAPH_FILE) payload.graph_file = NL2SQL_GRAPH_FILE;
+    var response = await fetch((NL2SQL_API_BASE || '') + '/api/nl2sql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    var data = await response.json();
+    var intent = document.getElementById('nl2sql-intent');
+    var translator = document.getElementById('nl2sql-translator');
+    var sql = document.getElementById('nl2sql-sql');
+    if (intent) intent.textContent = data.intent || 'N/A';
+    if (translator) translator.textContent = data.translator || 'N/A';
+    if (sql) sql.textContent = data.sql || '';
+    renderNl2SqlTable(data.rows || []);
+    if (status) status.textContent = '查询完成。';
+  } catch (err) {
+    if (status) status.textContent = '实时查询失败：' + err.message + '（请启动 Task 3 API 服务）';
+  }
+}
+
+var nl2sqlButton = document.getElementById('nl2sql-submit');
+if (nl2sqlButton) nl2sqlButton.addEventListener('click', submitNl2SqlQuery);
+var nl2sqlInput = document.getElementById('nl2sql-question');
+if (nl2sqlInput) nl2sqlInput.addEventListener('keydown', function(evt) {
+  if (evt.key === 'Enter') submitNl2SqlQuery();
+});
+</script>
+</body>
+</html>

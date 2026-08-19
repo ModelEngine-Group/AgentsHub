@@ -1,0 +1,106 @@
+{
+  "agent_id": 9001,
+  "agent_info": {
+    "9001": {
+      "agent_id": 9001,
+      "name": "dkm_end_to_end_agent",
+      "display_name": "nexent-dkm-agent",
+      "description": "基于 Nexent 与 DataMate 的数据处理、医疗知识图谱生成、图谱驱动分析与可视化智能体。",
+      "business_description": "编排任务一数据处理、任务二医疗知识图谱构建、任务三图谱分析与可视化，形成数据—知识—洞察闭环。可通过本地算子或导入的 OpenAPI MCP 工具调用。",
+      "author": "龙卷风摧毁停车场",
+      "max_steps": 12,
+      "provide_run_summary": true,
+      "verification_config": null,
+      "duty_prompt": "Plan the data-knowledge-insight workflow. Submit task 1 first when raw data needs cleaning, use task 2 to build and query the medical knowledge graph, then use task 3 for NL2SQL, graph analytics, and visualization. Poll each status endpoint and read its report before passing artifacts to the next stage.",
+      "constraint_prompt": "Keep DataMate in dry_run unless the user explicitly requests an online submission. Do not invent task IDs, graph paths, metrics, or external-service results. Prefer the provided DKM task tools and reuse upstream artifacts as downstream inputs.",
+      "few_shots_prompt": "任务1：清洗医疗样例数据并生成画像\n<code>\nresult = task1_data_processing(task_request=\"清洗患者样例并生成质量报告\", input_path=None, datamate_mode=\"dry_run\")\nprint(result)\n</code>\n\n任务2：从清洗文本构建医疗知识图谱并问答\n<code>\nkg = task2_medical_kg(input_path=None, question=\"高血压有哪些症状和用药？\")\nprint(kg)\n</code>\n\n任务3：对图谱做 NL2SQL 与可视化分析\n<code>\nanalysis = task3_graph_analysis(graph_file=None, question=\"哪些疾病关联最多症状？\", task_request=\"统计分析\")\nprint(analysis)\n</code>",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "DataProcessingAgentTool",
+          "name": "task1_data_processing",
+          "description": "Understand, plan, execute, and track a CSV data-cleaning workflow. It profiles structured data, runs deterministic local cleaning, and prepares DataMate cleaning template/task payloads.",
+          "inputs": "{\"task_request\": {\"type\": \"string\", \"description\": \"Free-form data-processing request.\", \"description_zh\": \"自然语言数据处理需求。\", \"nullable\": true}, \"input_path\": {\"type\": \"string\", \"description\": \"Input CSV path. Uses the bundled sample if omitted.\", \"description_zh\": \"输入CSV路径；为空时使用内置样例。\", \"nullable\": true}, \"datamate_mode\": {\"type\": \"string\", \"description\": \"dry_run prepares payloads; submit posts to DataMate.\", \"description_zh\": \"dry_run只生成payload；submit会提交到DataMate。\", \"default\": \"dry_run\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "datamate_base_url": "http://localhost:18000",
+            "output_dir": null
+          },
+          "source": "local",
+          "metadata": {
+            "task": "task1",
+            "framework": "nexent",
+            "default_datamate_mode": "dry_run"
+          }
+        },
+        {
+          "class_name": "MedicalKGAgentTool",
+          "name": "task2_medical_kg",
+          "description": "Extract medical entities and relations from text, build a JSON knowledge graph, validate triples, and answer graph-backed questions.",
+          "inputs": "{\"input_path\": {\"type\": \"string\", \"description\": \"Medical text input path. Uses bundled sample if omitted.\", \"nullable\": true}, \"question\": {\"type\": \"string\", \"description\": \"Question to answer from the generated graph.\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "output_dir": null
+          },
+          "source": "local",
+          "metadata": {
+            "task": "task2",
+            "framework": "nexent",
+            "graph_output": "outputs/task2/medical_kg.json"
+          }
+        },
+        {
+          "class_name": "GraphAnalysisAgentTool",
+          "name": "task3_graph_analysis",
+          "description": "Analyze a medical knowledge graph with LLM-enhanced NL2SQL, graph analytics (centrality, paths, communities), statistics, association analysis, trends, and interactive visualization.",
+          "inputs": "{\"graph_file\": {\"type\": \"string\", \"description\": \"Task-2 graph JSON path. If missing, bootstraps the sample graph.\", \"nullable\": true}, \"question\": {\"type\": \"string\", \"description\": \"Natural-language analysis question for NL2SQL.\", \"nullable\": true}, \"task_request\": {\"type\": \"string\", \"description\": \"Free-form analysis request (e.g., '统计分析', '关联分析').\", \"nullable\": true}, \"llm_config\": {\"type\": \"object\", \"description\": \"LLM config with base_url, api_key, model_name for NL2SQL enhancement.\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "output_dir": null
+          },
+          "source": "local",
+          "metadata": {
+            "task": "task3",
+            "framework": "nexent",
+            "analysis_output": "outputs/task3/task3_analysis_report.json"
+          }
+        }
+      ],
+      "managed_agents": [],
+      "model_id": null,
+      "model_name": "main_model",
+      "business_logic_model_id": null,
+      "business_logic_model_name": "main_model",
+      "skill_names": [],
+      "prompt_template_id": 0,
+      "prompt_template_name": "system_default"
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_service_name": "nexent_dkm_task1",
+      "description": "DKM task 1 data processing API",
+      "server_url": "http://host.docker.internal:8000",
+      "openapi_file": "mcps/nexent_dkm_task1.openapi.json"
+    },
+    {
+      "mcp_service_name": "nexent_dkm_task2",
+      "description": "DKM task 2 medical knowledge graph API",
+      "server_url": "http://host.docker.internal:8002",
+      "openapi_file": "mcps/nexent_dkm_task2.openapi.json"
+    },
+    {
+      "mcp_service_name": "nexent_dkm_task3",
+      "description": "DKM task 3 graph analysis API",
+      "server_url": "http://host.docker.internal:8003",
+      "openapi_file": "mcps/nexent_dkm_task3.openapi.json"
+    }
+  ],
+  "metadata": {
+    "team": "龙卷风摧毁停车场",
+    "agent_name": "nexent-dkm-agent",
+    "source_repo": "https://gitlink.org.cn/hybdaxia/nexent-dkm-agent.git",
+    "source_branch": "final-version",
+    "workflow": "data_knowledge_insight"
+  }
+}

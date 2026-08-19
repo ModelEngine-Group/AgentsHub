@@ -1,0 +1,77 @@
+task: task2_kg_agent
+description: Medical knowledge graph schema for the task-2 local baseline.
+
+entities:
+  Disease:
+    examples: [高血压, 2型糖尿病, 支气管哮喘急性发作]
+  Symptom:
+    examples: [头晕, 头痛, 口渴, 多尿, 喘息, 呼吸困难]
+  Drug:
+    examples: [氨氯地平, 阿司匹林, 二甲双胍, 辛伐他汀]
+  Examination:
+    examples: [血常规, 肝功能, 尿常规, 血糖, 肺功能]
+  Treatment:
+    examples: [调节血脂, 对症治疗, 抗感染, 继续服用]
+
+relations:
+  has_symptom:
+    subject: Disease
+    object: Symptom
+  treated_by:
+    subject: Disease
+    object: Drug
+  diagnosed_by:
+    subject: Disease
+    object: Examination
+  recommended_treatment:
+    subject: Disease
+    object: Treatment
+  complication_of:
+    subject: Disease
+    object: Disease
+
+normalization:
+  aliases:
+    糖尿病: 2型糖尿病
+    哮喘: 支气管哮喘急性发作
+    血糖监测: 血糖
+
+pipeline:
+  - load_input
+  - extract_entities
+  - extract_relations
+  - validate_triples
+  - build_graph
+  - query_graph_neighbors
+  - export_graph
+  - answer_question
+  - build_quality_report
+
+output:
+  graph_file: outputs/task2/medical_kg.json
+  quality_report: artifacts.quality_report
+  api_server: demos/task2_demo.py --serve --port 8002
+  benchmark: benchmarks/task2_kg_benchmark.py --iterations 20
+
+query:
+  entity_search:
+    operator: find_graph_entities
+    fields: [id, name, type, record_ids, mention_count, match_type, score]
+  neighbor_query:
+    operator: query_graph_neighbors
+    directions: [out, in, both]
+    supported_filters: [relation]
+
+quality_metrics:
+  - entity_total
+  - valid_triple_count
+  - relation_type_count
+  - relation_coverage
+  - average_confidence
+  - evidence_edge_count
+
+benchmark:
+  cpu:
+    metrics: [latency_ms_avg, throughput_records_per_sec, throughput_chars_per_sec]
+  npu:
+    policy: Report unavailable when no supported NPU runtime is detected; do not fabricate speedup or energy metrics.

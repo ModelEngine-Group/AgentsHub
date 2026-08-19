@@ -1,0 +1,111 @@
+{
+  "task": "task3_centrality_integration",
+  "graph": {
+    "node_count": 5000,
+    "edge_count": 50000,
+    "seed": 42,
+    "multi_type": true,
+    "type_count": 6,
+    "cached_type_count": 6
+  },
+  "cpu_compute_centrality": {
+    "iterations": 20,
+    "latency_ms_avg": 59.5151,
+    "latency_ms_min": 57.828,
+    "latency_ms_max": 73.8066,
+    "throughput_edges_per_sec": 840123.2736,
+    "status": "completed",
+    "backend": "python",
+    "top_hubs_backend": "python",
+    "top_degree": 38
+  },
+  "optimized_compute_centrality": {
+    "iterations": 20,
+    "latency_ms_avg": 88.8369,
+    "latency_ms_min": 86.618,
+    "latency_ms_max": 93.8091,
+    "throughput_edges_per_sec": 562829.3139,
+    "status": "completed",
+    "backend": "torch_npu",
+    "top_hubs_backend": "torch_npu",
+    "top_hubs_npu_reason": null,
+    "top_degree": 38
+  },
+  "cached_npu_top_hubs_cpu_type_centrality": {
+    "iterations": 20,
+    "latency_ms_avg": 51.4705,
+    "latency_ms_min": 50.8324,
+    "latency_ms_max": 52.208,
+    "throughput_edges_per_sec": 971431.1644,
+    "status": "completed",
+    "backend": "torch_npu",
+    "top_hubs_backend": "torch_npu",
+    "top_hubs_npu_reason": null,
+    "top_degree": 38,
+    "cache_status": "completed",
+    "cache_backend": "torch_npu",
+    "cache_device": "npu:0",
+    "cache_prepare_ms": 44.8845
+  },
+  "correctness": {
+    "status": "passed",
+    "top_hubs_exact_match": false,
+    "top_degree_equal": true,
+    "top_hub_count_equal": true,
+    "optimized_above_cpu_boundary": true,
+    "cpu_boundary_degree": 33,
+    "type_centrality_equal": true,
+    "cpu_top_hubs_backend": "python",
+    "optimized_top_hubs_backend": "torch_npu"
+  },
+  "cached_correctness": {
+    "status": "passed",
+    "top_hubs_exact_match": false,
+    "top_degree_equal": true,
+    "top_hub_count_equal": true,
+    "optimized_above_cpu_boundary": true,
+    "cpu_boundary_degree": 33,
+    "type_centrality_equal": true,
+    "cpu_top_hubs_backend": "python",
+    "optimized_top_hubs_backend": "torch_npu"
+  },
+  "speedup": 0.6699,
+  "cached_speedup": 1.1563,
+  "amortized_cached_centrality": {
+    "runs": [
+      1,
+      2,
+      5,
+      10,
+      20
+    ],
+    "cpu_total_ms": [
+      59.5151,
+      119.0302,
+      297.5755,
+      595.151,
+      1190.302
+    ],
+    "cached_total_ms": [
+      96.355,
+      147.8255,
+      302.237,
+      559.5895,
+      1074.2945
+    ],
+    "speedup": [
+      0.6177,
+      0.8052,
+      0.9846,
+      1.0635,
+      1.108
+    ],
+    "breakeven_runs": 10
+  },
+  "notes": [
+    "CPU baseline forces prefer_device=cpu.",
+    "Optimized path uses compute_centrality(prefer_device) without an external tensor cache.",
+    "Cached path prepares the NPU degree tensor cache once, then reuses it across benchmark iterations.",
+    "When NPU is unavailable, optimized and cached paths fall back to CPU and speedup should be interpreted as fallback overhead."
+  ]
+}

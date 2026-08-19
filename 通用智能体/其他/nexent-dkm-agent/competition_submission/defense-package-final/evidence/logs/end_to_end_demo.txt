@@ -1,0 +1,271 @@
+{
+  "status": "completed",
+  "stages": [
+    {
+      "task": "task1_data_processing_agent",
+      "status": "completed"
+    },
+    {
+      "task": "task2_kg_agent",
+      "status": "completed"
+    },
+    {
+      "task": "task3_analysis_agent",
+      "status": "completed"
+    }
+  ],
+  "data_flow": {
+    "raw_text": "data\\samples\\task1_medical_notes.txt",
+    "cleaned_text": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\end_to_end\\task1\\task1_medical_notes_cleaned.txt",
+    "knowledge_graph": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\end_to_end\\task2\\medical_kg.json",
+    "insight_report": {
+      "status": "completed",
+      "markdown_path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\end_to_end\\task3\\task3_insight_report.md",
+      "html_path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\end_to_end\\task3\\task3_insight_report.html",
+      "dashboard_path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\end_to_end\\task3\\task3_analysis_dashboard.html"
+    }
+  },
+  "task1": {
+    "status": "completed",
+    "output_format": "text",
+    "quality_report": {
+      "status": "passed",
+      "metrics": {
+        "input_rows": 5,
+        "output_rows": 5,
+        "duplicate_rows_before": 0,
+        "duplicate_rows_removed": 0,
+        "missing_values_before": 0,
+        "missing_values_filled": 0,
+        "planned_operator_count": 4,
+        "datamate_operator_count": 0,
+        "plan_confidence": 0.65
+      },
+      "readiness": {
+        "task_understanding": true,
+        "multi_operator_plan": true,
+        "local_execution": true,
+        "quality_validation": true,
+        "datamate_catalog": false,
+        "datamate_template_ready": false,
+        "datamate_task_ready_or_waiting": true,
+        "datamate_submission_safe": true
+      },
+      "datamate": {
+        "status": "skipped",
+        "execution_mode": "offline",
+        "template_status": null,
+        "task_status": null,
+        "submission_mode": null,
+        "submitted": false
+      }
+    }
+  },
+  "task2": {
+    "status": "completed",
+    "graph": {
+      "node_count": 36,
+      "edge_count": 37,
+      "triple_count": 37,
+      "record_count": 5,
+      "output_path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\end_to_end\\task2\\medical_kg.json"
+    },
+    "qa": {
+      "status": "answered",
+      "question": "高血压有哪些症状和用药？",
+      "answer": "高血压相关信息：症状: 头晕、头痛；用药: 氨氯地平、阿司匹林。",
+      "evidence": [
+        {
+          "id": "Disease:高血压-has_symptom-Symptom:头晕",
+          "source": "Disease:高血压",
+          "target": "Symptom:头晕",
+          "predicate": "has_symptom",
+          "record_ids": [
+            "record_1"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmH"
+          ]
+        },
+        {
+          "id": "Disease:高血压-has_symptom-Symptom:头痛",
+          "source": "Disease:高血压",
+          "target": "Symptom:头痛",
+          "predicate": "has_symptom",
+          "record_ids": [
+            "record_1"
+          ],
+          "confidence": 0.93,
+          "evidence": [
+            "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmH"
+          ]
+        },
+        {
+          "id": "Disease:高血压-treated_by-Drug:氨氯地平",
+          "source": "Disease:高血压",
+          "target": "Drug:氨氯地平",
+          "predicate": "treated_by",
+          "record_ids": [
+            "record_1"
+          ],
+          "confidence": 0.86,
+          "evidence": [
+            "1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。建议"
+          ]
+        },
+        {
+          "id": "Disease:高血压-treated_by-Drug:阿司匹林",
+          "source": "Disease:高血压",
+          "target": "Drug:阿司匹林",
+          "predicate": "treated_by",
+          "record_ids": [
+            "record_1"
+          ],
+          "confidence": 0.75,
+          "evidence": [
+            "1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。建议：血常规、肝功能检查，继续服用阿司匹林。\n联系电话：[PHONE]"
+          ]
+        }
+      ]
+    }
+  },
+  "task3": {
+    "status": "completed",
+    "statistics": {
+      "status": "completed",
+      "entity_type_counts": {
+        "Disease": 6,
+        "Drug": 8,
+        "Examination": 8,
+        "Symptom": 10,
+        "Treatment": 4
+      },
+      "relation_type_counts": {
+        "diagnosed_by": 10,
+        "has_symptom": 13,
+        "recommended_treatment": 4,
+        "treated_by": 10
+      },
+      "top_degree_nodes": [
+        {
+          "node_id": "Disease:2型糖尿病",
+          "name": "2型糖尿病",
+          "degree": 7
+        },
+        {
+          "node_id": "Disease:高血压",
+          "name": "高血压",
+          "degree": 7
+        },
+        {
+          "node_id": "Disease:冠心病",
+          "name": "冠心病",
+          "degree": 6
+        },
+        {
+          "node_id": "Disease:心力衰竭",
+          "name": "心力衰竭",
+          "degree": 6
+        },
+        {
+          "node_id": "Disease:支气管哮喘急性发作",
+          "name": "支气管哮喘急性发作",
+          "degree": 6
+        },
+        {
+          "node_id": "Disease:胃炎",
+          "name": "胃炎",
+          "degree": 5
+        },
+        {
+          "node_id": "Drug:奥美拉唑",
+          "name": "奥美拉唑",
+          "degree": 2
+        },
+        {
+          "node_id": "Drug:甲硝唑",
+          "name": "甲硝唑",
+          "degree": 2
+        },
+        {
+          "node_id": "Examination:心电图",
+          "name": "心电图",
+          "degree": 2
+        },
+        {
+          "node_id": "Examination:血常规",
+          "name": "血常规",
+          "degree": 2
+        }
+      ],
+      "confidence": {
+        "average": 0.82,
+        "min": 0.7,
+        "max": 0.93
+      },
+      "graph_size": {
+        "node_count": 36,
+        "edge_count": 37,
+        "record_count": 5
+      }
+    },
+    "nl2sql": {
+      "status": "completed",
+      "intent": "disease_specific_drugs",
+      "sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '高血压' ORDER BY drug ASC LIMIT 20",
+      "entity": "高血压",
+      "rows": [
+        {
+          "drug": "氨氯地平"
+        },
+        {
+          "drug": "阿司匹林"
+        }
+      ],
+      "translator": "template"
+    },
+    "plan_execution": {
+      "selected_intents": [
+        "graph_analytics",
+        "visualization",
+        "nl2sql"
+      ],
+      "extended_analytics": true,
+      "nl2sql_executed": true,
+      "executed_optional_operators": [
+        "compute_centrality",
+        "compute_shortest_paths",
+        "detect_communities",
+        "translate_question_to_sql",
+        "execute_sql"
+      ],
+      "planned_operators": [
+        "load_graph",
+        "generate_statistical_summary",
+        "generate_association_analysis",
+        "generate_trend_analysis",
+        "compute_centrality",
+        "compute_shortest_paths",
+        "detect_communities",
+        "translate_question_to_sql",
+        "execute_sql",
+        "build_analysis_visualizations",
+        "build_analysis_report"
+      ],
+      "executed_operators": [
+        "load_graph",
+        "generate_statistical_summary",
+        "generate_association_analysis",
+        "generate_trend_analysis",
+        "compute_centrality",
+        "compute_shortest_paths",
+        "detect_communities",
+        "translate_question_to_sql",
+        "execute_sql",
+        "build_analysis_visualizations",
+        "build_analysis_report"
+      ]
+    }
+  }
+}

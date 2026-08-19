@@ -1,0 +1,160 @@
+{
+  "oov_corpus": {
+    "record_count": 8,
+    "overall": {
+      "tp": 22,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "per_type": {
+      "Disease": {
+        "tp": 8,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "Symptom": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "Drug": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "Examination": {
+        "tp": 7,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "Treatment": {
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "records": [
+      {
+        "record_id": "oov_1",
+        "false_positives": {},
+        "false_negatives": {}
+      },
+      {
+        "record_id": "oov_2",
+        "false_positives": {},
+        "false_negatives": {}
+      },
+      {
+        "record_id": "oov_3",
+        "false_positives": {},
+        "false_negatives": {}
+      },
+      {
+        "record_id": "oov_4",
+        "false_positives": {},
+        "false_negatives": {}
+      },
+      {
+        "record_id": "oov_5",
+        "false_positives": {},
+        "false_negatives": {}
+      },
+      {
+        "record_id": "oov_6",
+        "false_positives": {},
+        "false_negatives": {}
+      },
+      {
+        "record_id": "oov_7",
+        "false_positives": {},
+        "false_negatives": {}
+      },
+      {
+        "record_id": "oov_8",
+        "false_positives": {},
+        "false_negatives": {}
+      }
+    ],
+    "vocabulary_split": {
+      "in_vocabulary": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "out_of_vocabulary": {
+        "tp": 22,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      }
+    },
+    "oov_entity_count": 22,
+    "interpretation": "Hybrid dictionary + suffix-pattern extraction reports separate in-vocabulary and out-of-vocabulary recall.",
+    "benchmark": "benchmarks/data/kg_extraction_oov_gold.json"
+  },
+  "closed_corpus": {
+    "benchmark": "benchmarks/data/kg_extraction_gold.json",
+    "record_count": 30,
+    "overall": {
+      "tp": 161,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "vocabulary_split": {
+      "in_vocabulary": {
+        "tp": 161,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "out_of_vocabulary": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "comparison": {
+    "closed_overall_f1": 1.0,
+    "oov_overall_f1": 1.0,
+    "oov_recall": 1.0,
+    "in_vocab_recall_on_oov_corpus": 0.0
+  },
+  "thresholds": {
+    "in_vocabulary_recall_min": 0.95,
+    "out_of_vocabulary_recall_min": 0.95
+  },
+  "passed": true,
+  "interpretation": "Hybrid dictionary + suffix-pattern extraction should reach high recall on both closed gold and OOV hold-out corpora."
+}

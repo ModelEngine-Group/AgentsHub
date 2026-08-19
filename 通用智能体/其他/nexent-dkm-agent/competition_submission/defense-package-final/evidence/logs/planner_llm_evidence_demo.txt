@@ -1,0 +1,712 @@
+{
+  "rule_only": {
+    "task1": {
+      "task": "task1",
+      "task_request": "请清洗患者CSV，删除重复记录，填补空值，并统一字段类型后导出",
+      "input_path": "data\\samples\\task1_patients.csv",
+      "rule_plan": {
+        "understanding": {
+          "original_request": "请清洗患者CSV，删除重复记录，填补空值，并统一字段类型后导出",
+          "task_type": "cleaning",
+          "data_type": "structured_csv",
+          "intent_keywords": [
+            "deduplicate",
+            "fill_missing",
+            "normalize_types",
+            "export"
+          ],
+          "constraints": [
+            "no_secret_persistence",
+            "datamate_submit_requires_explicit_mode"
+          ]
+        },
+        "operators": [
+          "load_csv",
+          "profile_schema",
+          "drop_duplicate_rows",
+          "fill_missing_values",
+          "normalize_column_types",
+          "export_clean_dataset",
+          "validate_clean_dataset"
+        ],
+        "rationale": [
+          "Understand the request and profile the input data.",
+          "Remove duplicate records detected by the profile or request.",
+          "Fill missing values with deterministic type-aware defaults.",
+          "Normalize integer, float, boolean, and text representations."
+        ],
+        "quality_checks": [
+          "row_count",
+          "column_count",
+          "missing_cells",
+          "duplicate_rows",
+          "output_rows",
+          "post_clean_missing_cells",
+          "post_clean_duplicate_rows"
+        ],
+        "confidence": 0.95,
+        "planner_mode": "rule",
+        "datamate_integration": {}
+      },
+      "hybrid_plan": {
+        "understanding": {
+          "original_request": "请清洗患者CSV，删除重复记录，填补空值，并统一字段类型后导出",
+          "task_type": "cleaning",
+          "data_type": "structured_csv",
+          "intent_keywords": [
+            "deduplicate",
+            "fill_missing",
+            "normalize_types",
+            "export"
+          ],
+          "constraints": [
+            "no_secret_persistence",
+            "datamate_submit_requires_explicit_mode"
+          ]
+        },
+        "operators": [
+          "load_csv",
+          "profile_schema",
+          "drop_duplicate_rows",
+          "fill_missing_values",
+          "normalize_column_types",
+          "export_clean_dataset",
+          "validate_clean_dataset"
+        ],
+        "rationale": [
+          "Understand the request and profile the input data.",
+          "Remove duplicate records detected by the profile or request.",
+          "Fill missing values with deterministic type-aware defaults.",
+          "Normalize integer, float, boolean, and text representations."
+        ],
+        "quality_checks": [
+          "row_count",
+          "column_count",
+          "missing_cells",
+          "duplicate_rows",
+          "output_rows",
+          "post_clean_missing_cells",
+          "post_clean_duplicate_rows"
+        ],
+        "confidence": 0.95,
+        "planner_mode": "rule",
+        "datamate_integration": {}
+      },
+      "operators_match": true,
+      "hybrid_mode": "rule"
+    },
+    "task2": {
+      "task": "task2",
+      "task_request": "构建医疗知识图谱并回答相关问题",
+      "question": "哪些疾病关联最多症状？",
+      "rule_plan": {
+        "understanding": {
+          "original_request": "构建医疗知识图谱并回答相关问题",
+          "task_type": "full_pipeline",
+          "data_type": "text",
+          "intent_keywords": [
+            "build",
+            "qa"
+          ],
+          "constraints": []
+        },
+        "operators": [
+          "extract_medical_entities",
+          "extract_relations",
+          "validate_triples",
+          "build_medical_graph",
+          "answer_graph_question",
+          "build_kg_quality_report"
+        ],
+        "rationale": [
+          "Extract medical entities from text.",
+          "Generate relation triples between entities.",
+          "Validate triples against KG schema.",
+          "Build deduplicated knowledge graph.",
+          "Answer user question using graph evidence.",
+          "Generate quality report with readiness metrics."
+        ],
+        "question": "哪些疾病关联最多症状？",
+        "confidence": 0.8,
+        "planner_mode": "rule"
+      },
+      "hybrid_plan": {
+        "understanding": {
+          "original_request": "构建医疗知识图谱并回答相关问题",
+          "task_type": "full_pipeline",
+          "data_type": "text",
+          "intent_keywords": [
+            "build",
+            "qa"
+          ],
+          "constraints": []
+        },
+        "operators": [
+          "extract_medical_entities",
+          "extract_relations",
+          "validate_triples",
+          "build_medical_graph",
+          "answer_graph_question",
+          "build_kg_quality_report"
+        ],
+        "rationale": [
+          "Extract medical entities from text.",
+          "Generate relation triples between entities.",
+          "Validate triples against KG schema.",
+          "Build deduplicated knowledge graph.",
+          "Answer user question using graph evidence.",
+          "Generate quality report with readiness metrics."
+        ],
+        "question": "哪些疾病关联最多症状？",
+        "confidence": 0.8,
+        "planner_mode": "rule"
+      },
+      "operators_match": true,
+      "hybrid_mode": "rule"
+    },
+    "task3": {
+      "task": "task3",
+      "task_request": "分析图谱统计、关联与可视化洞察",
+      "question": "哪些疾病关联最多症状？",
+      "graph_file": null,
+      "rule_plan": {
+        "task_type": "full_analysis",
+        "planner_mode": "rule",
+        "intent_keywords": [
+          "statistics",
+          "association",
+          "visualization",
+          "nl2sql"
+        ],
+        "operators": [
+          "load_graph",
+          "generate_statistical_summary",
+          "generate_association_analysis",
+          "generate_trend_analysis",
+          "compute_centrality",
+          "compute_shortest_paths",
+          "detect_communities",
+          "translate_question_to_sql",
+          "execute_sql",
+          "build_analysis_visualizations",
+          "build_analysis_report"
+        ],
+        "question": "哪些疾病关联最多症状？",
+        "confidence": 0.95,
+        "graph_context": {
+          "node_count": 4,
+          "edge_count": 3,
+          "type_counts": {
+            "Disease": 1,
+            "Symptom": 2,
+            "Drug": 1
+          },
+          "disease_count": 1,
+          "symptom_count": 2,
+          "relation_counts": {
+            "has_symptom": 2,
+            "treated_by": 1
+          },
+          "is_large_graph": false,
+          "has_rich_disease_links": false
+        }
+      },
+      "hybrid_plan": {
+        "task_type": "full_analysis",
+        "planner_mode": "rule",
+        "intent_keywords": [
+          "statistics",
+          "association",
+          "visualization",
+          "nl2sql"
+        ],
+        "operators": [
+          "load_graph",
+          "generate_statistical_summary",
+          "generate_association_analysis",
+          "generate_trend_analysis",
+          "compute_centrality",
+          "compute_shortest_paths",
+          "detect_communities",
+          "translate_question_to_sql",
+          "execute_sql",
+          "build_analysis_visualizations",
+          "build_analysis_report"
+        ],
+        "question": "哪些疾病关联最多症状？",
+        "confidence": 0.95,
+        "graph_context": {
+          "node_count": 4,
+          "edge_count": 3,
+          "type_counts": {
+            "Disease": 1,
+            "Symptom": 2,
+            "Drug": 1
+          },
+          "disease_count": 1,
+          "symptom_count": 2,
+          "relation_counts": {
+            "has_symptom": 2,
+            "treated_by": 1
+          },
+          "is_large_graph": false,
+          "has_rich_disease_links": false
+        }
+      },
+      "operators_match": true,
+      "hybrid_mode": "rule"
+    },
+    "orchestrator": {
+      "request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+      "question": "哪些疾病关联最多症状？",
+      "rule_plan": {
+        "original_request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+        "planner_mode": "rule",
+        "stages": [
+          {
+            "task": "task1",
+            "task_request": "清洗并标准化医疗文本数据"
+          },
+          {
+            "task": "task2",
+            "task_request": "构建医疗知识图谱",
+            "question": "哪些疾病关联最多症状？"
+          },
+          {
+            "task": "task3",
+            "task_request": "分析图谱统计、关联与可视化洞察",
+            "question": "哪些疾病关联最多症状？"
+          }
+        ],
+        "rationale": [
+          "Detected requested DKM stages from task keywords.",
+          "Stages execute in task1 -> task2 -> task3 order when selected."
+        ],
+        "confidence": 0.85
+      },
+      "enhanced_plan": null,
+      "stages_match": null,
+      "enhanced_mode": null
+    }
+  },
+  "llm_enhanced": {
+    "task1": {
+      "task": "task1",
+      "task_request": "请清洗患者CSV，删除重复记录，填补空值，并统一字段类型后导出",
+      "input_path": "data\\samples\\task1_patients.csv",
+      "rule_plan": {
+        "understanding": {
+          "original_request": "请清洗患者CSV，删除重复记录，填补空值，并统一字段类型后导出",
+          "task_type": "cleaning",
+          "data_type": "structured_csv",
+          "intent_keywords": [
+            "deduplicate",
+            "fill_missing",
+            "normalize_types",
+            "export"
+          ],
+          "constraints": [
+            "no_secret_persistence",
+            "datamate_submit_requires_explicit_mode"
+          ]
+        },
+        "operators": [
+          "load_csv",
+          "profile_schema",
+          "drop_duplicate_rows",
+          "fill_missing_values",
+          "normalize_column_types",
+          "export_clean_dataset",
+          "validate_clean_dataset"
+        ],
+        "rationale": [
+          "Understand the request and profile the input data.",
+          "Remove duplicate records detected by the profile or request.",
+          "Fill missing values with deterministic type-aware defaults.",
+          "Normalize integer, float, boolean, and text representations."
+        ],
+        "quality_checks": [
+          "row_count",
+          "column_count",
+          "missing_cells",
+          "duplicate_rows",
+          "output_rows",
+          "post_clean_missing_cells",
+          "post_clean_duplicate_rows"
+        ],
+        "confidence": 0.95,
+        "planner_mode": "rule",
+        "datamate_integration": {}
+      },
+      "hybrid_plan": {
+        "understanding": {
+          "original_request": "请清洗患者CSV，删除重复记录，填补空值，并统一字段类型后导出",
+          "task_type": "cleaning",
+          "data_type": "structured_csv",
+          "intent_keywords": [
+            "deduplicate",
+            "fill_missing",
+            "normalize_types",
+            "export"
+          ],
+          "constraints": [
+            "no_secret_persistence",
+            "datamate_submit_requires_explicit_mode"
+          ]
+        },
+        "operators": [
+          "load_csv",
+          "profile_schema",
+          "drop_duplicate_rows",
+          "fill_missing_values",
+          "normalize_column_types",
+          "export_clean_dataset",
+          "validate_clean_dataset"
+        ],
+        "rationale": [
+          "Understand the request and profile the input data.",
+          "Remove duplicate records detected by the profile or request.",
+          "Fill missing values with deterministic type-aware defaults.",
+          "Normalize integer, float, boolean, and text representations."
+        ],
+        "quality_checks": [
+          "row_count",
+          "column_count",
+          "missing_cells",
+          "duplicate_rows",
+          "output_rows",
+          "post_clean_missing_cells",
+          "post_clean_duplicate_rows"
+        ],
+        "confidence": 0.95,
+        "planner_mode": "rule",
+        "datamate_integration": {}
+      },
+      "operators_match": true,
+      "hybrid_mode": "rule"
+    },
+    "task2": {
+      "task": "task2",
+      "task_request": "构建医疗知识图谱并回答相关问题",
+      "question": "哪些疾病关联最多症状？",
+      "rule_plan": {
+        "understanding": {
+          "original_request": "构建医疗知识图谱并回答相关问题",
+          "task_type": "full_pipeline",
+          "data_type": "text",
+          "intent_keywords": [
+            "build",
+            "qa"
+          ],
+          "constraints": []
+        },
+        "operators": [
+          "extract_medical_entities",
+          "extract_relations",
+          "validate_triples",
+          "build_medical_graph",
+          "answer_graph_question",
+          "build_kg_quality_report"
+        ],
+        "rationale": [
+          "Extract medical entities from text.",
+          "Generate relation triples between entities.",
+          "Validate triples against KG schema.",
+          "Build deduplicated knowledge graph.",
+          "Answer user question using graph evidence.",
+          "Generate quality report with readiness metrics."
+        ],
+        "question": "哪些疾病关联最多症状？",
+        "confidence": 0.8,
+        "planner_mode": "rule"
+      },
+      "hybrid_plan": {
+        "understanding": {
+          "original_request": "构建医疗知识图谱并回答相关问题",
+          "task_type": "full_pipeline",
+          "data_type": "text",
+          "intent_keywords": [
+            "build",
+            "qa"
+          ],
+          "constraints": []
+        },
+        "operators": [
+          "extract_medical_entities",
+          "extract_relations",
+          "validate_triples",
+          "build_medical_graph",
+          "answer_graph_question",
+          "build_kg_quality_report"
+        ],
+        "rationale": [
+          "Extract medical entities from text.",
+          "Generate relation triples between entities.",
+          "Validate triples against KG schema.",
+          "Build deduplicated knowledge graph.",
+          "Answer user question using graph evidence.",
+          "Generate quality report with readiness metrics."
+        ],
+        "question": "哪些疾病关联最多症状？",
+        "confidence": 0.8,
+        "planner_mode": "rule"
+      },
+      "operators_match": true,
+      "hybrid_mode": "rule"
+    },
+    "task3": {
+      "task": "task3",
+      "task_request": "分析图谱统计、关联与可视化洞察",
+      "question": "哪些疾病关联最多症状？",
+      "graph_file": null,
+      "rule_plan": {
+        "task_type": "full_analysis",
+        "planner_mode": "rule",
+        "intent_keywords": [
+          "statistics",
+          "association",
+          "visualization",
+          "nl2sql"
+        ],
+        "operators": [
+          "load_graph",
+          "generate_statistical_summary",
+          "generate_association_analysis",
+          "generate_trend_analysis",
+          "compute_centrality",
+          "compute_shortest_paths",
+          "detect_communities",
+          "translate_question_to_sql",
+          "execute_sql",
+          "build_analysis_visualizations",
+          "build_analysis_report"
+        ],
+        "question": "哪些疾病关联最多症状？",
+        "confidence": 0.95,
+        "graph_context": {
+          "node_count": 4,
+          "edge_count": 3,
+          "type_counts": {
+            "Disease": 1,
+            "Symptom": 2,
+            "Drug": 1
+          },
+          "disease_count": 1,
+          "symptom_count": 2,
+          "relation_counts": {
+            "has_symptom": 2,
+            "treated_by": 1
+          },
+          "is_large_graph": false,
+          "has_rich_disease_links": false
+        }
+      },
+      "hybrid_plan": {
+        "task_type": "full_analysis",
+        "planner_mode": "rule",
+        "intent_keywords": [
+          "statistics",
+          "association",
+          "visualization",
+          "nl2sql"
+        ],
+        "operators": [
+          "load_graph",
+          "generate_statistical_summary",
+          "generate_association_analysis",
+          "generate_trend_analysis",
+          "compute_centrality",
+          "compute_shortest_paths",
+          "detect_communities",
+          "translate_question_to_sql",
+          "execute_sql",
+          "build_analysis_visualizations",
+          "build_analysis_report"
+        ],
+        "question": "哪些疾病关联最多症状？",
+        "confidence": 0.95,
+        "graph_context": {
+          "node_count": 4,
+          "edge_count": 3,
+          "type_counts": {
+            "Disease": 1,
+            "Symptom": 2,
+            "Drug": 1
+          },
+          "disease_count": 1,
+          "symptom_count": 2,
+          "relation_counts": {
+            "has_symptom": 2,
+            "treated_by": 1
+          },
+          "is_large_graph": false,
+          "has_rich_disease_links": false
+        }
+      },
+      "operators_match": true,
+      "hybrid_mode": "rule"
+    },
+    "orchestrator": {
+      "request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+      "question": "哪些疾病关联最多症状？",
+      "rule_plan": {
+        "original_request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+        "planner_mode": "rule",
+        "stages": [
+          {
+            "task": "task1",
+            "task_request": "清洗并标准化医疗文本数据"
+          },
+          {
+            "task": "task2",
+            "task_request": "构建医疗知识图谱",
+            "question": "哪些疾病关联最多症状？"
+          },
+          {
+            "task": "task3",
+            "task_request": "分析图谱统计、关联与可视化洞察",
+            "question": "哪些疾病关联最多症状？"
+          }
+        ],
+        "rationale": [
+          "Detected requested DKM stages from task keywords.",
+          "Stages execute in task1 -> task2 -> task3 order when selected."
+        ],
+        "confidence": 0.85
+      },
+      "enhanced_plan": {
+        "original_request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+        "planner_mode": "rule",
+        "stages": [
+          {
+            "task": "task1",
+            "task_request": "清洗并标准化医疗文本数据"
+          },
+          {
+            "task": "task2",
+            "task_request": "构建医疗知识图谱",
+            "question": "哪些疾病关联最多症状？"
+          },
+          {
+            "task": "task3",
+            "task_request": "分析图谱统计、关联与可视化洞察",
+            "question": "哪些疾病关联最多症状？"
+          }
+        ],
+        "rationale": [
+          "Detected requested DKM stages from task keywords.",
+          "Stages execute in task1 -> task2 -> task3 order when selected."
+        ],
+        "confidence": 0.85
+      },
+      "stages_match": true,
+      "enhanced_mode": "rule"
+    }
+  },
+  "diff_summary": [
+    {
+      "task": "task1",
+      "rule_mode": "rule",
+      "enhanced_mode": "rule",
+      "rule_operator_count": 7,
+      "enhanced_operator_count": 7,
+      "operators_match": true,
+      "rule_operators": [
+        "load_csv",
+        "profile_schema",
+        "drop_duplicate_rows",
+        "fill_missing_values",
+        "normalize_column_types",
+        "export_clean_dataset",
+        "validate_clean_dataset"
+      ],
+      "enhanced_operators": [
+        "load_csv",
+        "profile_schema",
+        "drop_duplicate_rows",
+        "fill_missing_values",
+        "normalize_column_types",
+        "export_clean_dataset",
+        "validate_clean_dataset"
+      ]
+    },
+    {
+      "task": "task2",
+      "rule_mode": "rule",
+      "enhanced_mode": "rule",
+      "rule_operator_count": 6,
+      "enhanced_operator_count": 6,
+      "operators_match": true,
+      "rule_operators": [
+        "extract_medical_entities",
+        "extract_relations",
+        "validate_triples",
+        "build_medical_graph",
+        "answer_graph_question",
+        "build_kg_quality_report"
+      ],
+      "enhanced_operators": [
+        "extract_medical_entities",
+        "extract_relations",
+        "validate_triples",
+        "build_medical_graph",
+        "answer_graph_question",
+        "build_kg_quality_report"
+      ]
+    },
+    {
+      "task": "task3",
+      "rule_mode": "rule",
+      "enhanced_mode": "rule",
+      "rule_operator_count": 11,
+      "enhanced_operator_count": 11,
+      "operators_match": true,
+      "rule_operators": [
+        "load_graph",
+        "generate_statistical_summary",
+        "generate_association_analysis",
+        "generate_trend_analysis",
+        "compute_centrality",
+        "compute_shortest_paths",
+        "detect_communities",
+        "translate_question_to_sql",
+        "execute_sql",
+        "build_analysis_visualizations",
+        "build_analysis_report"
+      ],
+      "enhanced_operators": [
+        "load_graph",
+        "generate_statistical_summary",
+        "generate_association_analysis",
+        "generate_trend_analysis",
+        "compute_centrality",
+        "compute_shortest_paths",
+        "detect_communities",
+        "translate_question_to_sql",
+        "execute_sql",
+        "build_analysis_visualizations",
+        "build_analysis_report"
+      ]
+    },
+    {
+      "task": "orchestrator",
+      "rule_mode": "rule",
+      "enhanced_mode": "rule",
+      "rule_stages": [
+        "task1",
+        "task2",
+        "task3"
+      ],
+      "enhanced_stages": [
+        "task1",
+        "task2",
+        "task3"
+      ],
+      "stages_match": true
+    }
+  ],
+  "collection_mode": "live_llm",
+  "llm_available": true,
+  "snapshot_used": false,
+  "llm_model": "glm-5.1"
+}

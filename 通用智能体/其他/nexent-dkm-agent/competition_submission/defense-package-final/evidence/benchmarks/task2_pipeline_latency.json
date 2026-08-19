@@ -1,0 +1,44 @@
+{
+  "task": "task2_kg_pipeline_latency",
+  "input": {
+    "path": "C:\\Users\\Administrator\\Desktop\\nexent-dkm-agent\\nexent-dkm-agent\\data\\samples\\task2_medical_notes.txt",
+    "char_count": 413
+  },
+  "measurement": "end_to_end_pipeline",
+  "rule_backend": {
+    "iterations": 5,
+    "warmup": 1,
+    "latency_ms_avg": 3.0549,
+    "latency_ms_min": 2.9137,
+    "latency_ms_max": 3.3689,
+    "throughput_records_per_sec": 1309.3718,
+    "artifacts": {
+      "record_count": 4,
+      "triple_count": 29,
+      "node_count": 26,
+      "edge_count": 29
+    }
+  },
+  "tensor_cpu_backend": {
+    "iterations": 5,
+    "warmup": 1,
+    "latency_ms_avg": 5.5368,
+    "latency_ms_min": 5.3604,
+    "latency_ms_max": 5.7281,
+    "throughput_records_per_sec": 722.4442,
+    "artifacts": {
+      "record_count": 4,
+      "triple_count": 29,
+      "node_count": 26,
+      "edge_count": 29,
+      "relation_backend": "cpu"
+    }
+  },
+  "speedup_rule_over_tensor_cpu": 0.5517,
+  "notes": [
+    "End-to-end latency includes entity extraction, relation scoring, validation, and graph build.",
+    "Tensor CPU path uses extract_relations_tensorized(backend='cpu').",
+    "NPU end-to-end numbers require Ascend hardware; see task2_relation_tensor_*.json."
+  ],
+  "passed": true
+}

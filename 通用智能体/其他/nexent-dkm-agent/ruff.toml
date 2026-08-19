@@ -1,0 +1,17 @@
+line-length = 100
+target-version = "py310"
+
+[lint]
+# Focus on correctness defects (pyflakes + pycodestyle errors/warnings).
+# Line-length (E501) and import-ordering (I) are intentionally not enforced to
+# avoid large cosmetic churn across the existing codebase.
+select = ["E4", "E7", "E9", "F", "W"]
+
+[lint.per-file-ignores]
+# Standalone runnable scripts adjust sys.path before importing project modules,
+# so module-level imports legitimately appear after that setup.
+"demos/*.py" = ["E402"]
+"benchmarks/*.py" = ["E402"]
+"tests/*.py" = ["E402"]
+"data/training/*.py" = ["E402"]
+"src/training/*.py" = ["E402"]

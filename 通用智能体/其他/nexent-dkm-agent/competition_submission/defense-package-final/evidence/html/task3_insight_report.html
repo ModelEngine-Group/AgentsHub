@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Task 3 Graph Analysis Insight Report</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #5f6b7a;
+      --line: #d9e2ec;
+      --panel: #ffffff;
+      --page: #f5f7fb;
+      --accent: #246bfe;
+      --accent-2: #0f8f70;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; line-height: 1.55; color: var(--ink); background: var(--page); }
+    h1, h2 { color: #0f172a; }
+    code, pre { background: #f3f4f6; border-radius: 4px; padding: 2px 4px; }
+    .report { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 40px; }
+    .markdown-body, .chart-card, .charts {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+    .markdown-body { padding: 20px; }
+    .insight-chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .chart-card { padding: 16px; overflow: hidden; }
+    .chart-card h2 { margin: 0 0 8px; font-size: 18px; }
+    .chart-meta { color: var(--muted); font-size: 13px; margin: 0 0 10px; }
+    .chart-svg { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; background: #fbfdff; }
+    .charts { margin-top: 18px; padding: 16px; }
+    .charts summary { cursor: pointer; font-weight: 700; }
+    @media (max-width: 860px) {
+      .insight-chart-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="report">
+    <section class="markdown-body"># Task 3 Graph Analysis Insight Report<br>
+<br>
+## Executive Summary<br>
+<br>
+- Graph size: 26 nodes, 29 edges.<br>
+- Relation confidence: average=0.8179, min=0.7, max=0.92.<br>
+- NL2SQL intent: `top_disease_symptoms` with 4 result rows.<br>
+- Visualization specs: disease_network, entity_distribution, record_trend, relation_distribution.<br>
+<br>
+## Top Graph Hubs<br>
+<br>
+| Rank | Entity | Degree |<br>
+| --- | --- | ---: |<br>
+| 1 | 高血压 | 11 |<br>
+| 2 | 2型糖尿病 | 7 |<br>
+| 3 | 冠心病 | 6 |<br>
+| 4 | 支气管哮喘急性发作 | 6 |<br>
+| 5 | 心电图 | 2 |<br>
+<br>
+## Disease Association Highlights<br>
+<br>
+| Disease | Symptoms | Drugs | Examinations | Complications |<br>
+| --- | ---: | ---: | ---: | ---: |<br>
+| 高血压 | 4 | 2 | 3 | 1 |<br>
+| 2型糖尿病 | 2 | 2 | 2 | 0 |<br>
+| 支气管哮喘急性发作 | 2 | 1 | 2 | 0 |<br>
+| 冠心病 | 2 | 0 | 2 | 0 |<br>
+<br>
+## 图谱驱动的自然语言洞察 (Graph-Driven Insights)<br>
+<br>
+以下结论由知识图谱结构（实体、关系、枢纽、社区）自动生成：<br>
+<br>
+- 知识图谱由 26 个实体与 29 条关系组成，覆盖 5 类节点（症状8、检查6、药物5、疾病4、治疗3）。<br>
+- 关系以 症状（has_symptom）为主，占比约 34.5%；完整分布：症状 10 条、检查 9 条、用药 5 条、治疗 4 条、并发 1 条。<br>
+- 最核心的实体是「高血压」（类型 疾病），直接连接 11 个实体，是图谱主要枢纽（中心性由 `python` 计算）。<br>
+- 关联最丰富的疾病是「高血压」：4 个症状、2 种药物、3 项检查。<br>
+- 可形成诊疗链路：「高血压」—has_symptom→「头晕」、「高血压」—treated_by→「氨氯地平」，为「症状识别→对症用药」提供图谱依据。<br>
+- 图谱包含 1 条并发关系，例如「Disease:冠心病」并发于「Disease:高血压」，提示需关注疾病间的合并风险。<br>
+- 社区检测将图谱划分为 3 个相对独立的子结构，对应不同的疾病-症状-用药聚簇。<br>
+<br>
+## Graph Centrality<br>
+<br>
+Degree centrality identifies the most connected entities (compute backend: `python`).<br>
+<br>
+| Rank | Entity | Type | Degree | Centrality |<br>
+| --- | --- | --- | ---: | ---: |<br>
+| 1 | 高血压 | Disease | 11 | 0.44 |<br>
+| 2 | 2型糖尿病 | Disease | 7 | 0.28 |<br>
+| 3 | 冠心病 | Disease | 6 | 0.24 |<br>
+| 4 | 支气管哮喘急性发作 | Disease | 6 | 0.24 |<br>
+| 5 | 心电图 | Examination | 2 | 0.08 |<br>
+<br>
+Per-type hubs:<br>
+<br>
+- Disease: 4 nodes, top hub `高血压` (avg degree 7.5).<br>
+- Drug: 5 nodes, top hub `二甲双胍` (avg degree 1.0).<br>
+- Examination: 6 nodes, top hub `心电图` (avg degree 1.5).<br>
+- Symptom: 8 nodes, top hub `气短` (avg degree 1.25).<br>
+- Treatment: 3 nodes, top hub `继续服用` (avg degree 1.33).<br>
+<br>
+## Community Structure<br>
+<br>
+Label propagation detected 3 communities; the largest are summarised below.<br>
+<br>
+| Community | Size | Dominant types |<br>
+| --- | ---: | --- |<br>
+| Examination:肝功能 | 11 | Symptom×4, Disease×2, Drug×2 |<br>
+| Drug:辛伐他汀 | 8 | Drug×2, Examination×2, Symptom×2 |<br>
+| Examination:血常规 | 7 | Examination×2, Symptom×2, Disease×1 |<br>
+<br>
+## Reachability From Top Hub<br>
+<br>
+From hub `Disease:高血压`, 18 entities are reachable within 4 hops.<br>
+<br>
+## Trend Signal<br>
+<br>
+- Peak record: record_4 with 9 graph edges.<br>
+<br>
+## NL2SQL Evidence<br>
+<br>
+```sql<br>
+SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = &#x27;has_symptom&#x27; AND n.type = &#x27;Disease&#x27; GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10<br>
+```<br>
+<br>
+Rows:<br>
+<br>
+```json<br>
+[<br>
+  {<br>
+    &quot;disease&quot;: &quot;高血压&quot;,<br>
+    &quot;symptom_count&quot;: 4<br>
+  },<br>
+  {<br>
+    &quot;disease&quot;: &quot;2型糖尿病&quot;,<br>
+    &quot;symptom_count&quot;: 2<br>
+  },<br>
+  {<br>
+    &quot;disease&quot;: &quot;冠心病&quot;,<br>
+    &quot;symptom_count&quot;: 2<br>
+  },<br>
+  {<br>
+    &quot;disease&quot;: &quot;支气管哮喘急性发作&quot;,<br>
+    &quot;symptom_count&quot;: 2<br>
+  }<br>
+]<br>
+```<br>
+<br>
+## Visualization Spec Index<br>
+<br>
+- `disease_network`: network - Disease-centered relation network<br>
+- `entity_distribution`: bar - Entity type distribution<br>
+- `record_trend`: line - Record sequence trend<br>
+- `relation_distribution`: bar - Relation type distribution<br>
+</section>
+    <section class="insight-chart-grid"><article class="chart-card"><h2>Entity type distribution</h2><p class="chart-meta">entity_distribution / bar</p><svg class="chart-svg" viewBox="0 0 720 196" role="img"><text x="14" y="41" font-size="13" fill="#172033">Disease</text><rect x="180" y="24" width="216.0" height="18" rx="4" fill="#246bfe" /><text x="664" y="39" font-size="13" fill="#172033">4</text><text x="14" y="73" font-size="13" fill="#172033">Drug</text><rect x="180" y="56" width="270.0" height="18" rx="4" fill="#246bfe" /><text x="664" y="71" font-size="13" fill="#172033">5</text><text x="14" y="105" font-size="13" fill="#172033">Examination</text><rect x="180" y="88" width="324.0" height="18" rx="4" fill="#246bfe" /><text x="664" y="103" font-size="13" fill="#172033">6</text><text x="14" y="137" font-size="13" fill="#172033">Symptom</text><rect x="180" y="120" width="432.0" height="18" rx="4" fill="#246bfe" /><text x="664" y="135" font-size="13" fill="#172033">8</text><text x="14" y="169" font-size="13" fill="#172033">Treatment</text><rect x="180" y="152" width="162.0" height="18" rx="4" fill="#246bfe" /><text x="664" y="167" font-size="13" fill="#172033">3</text></svg></article>
+<article class="chart-card"><h2>Relation type distribution</h2><p class="chart-meta">relation_distribution / bar</p><svg class="chart-svg" viewBox="0 0 720 196" role="img"><text x="14" y="41" font-size="13" fill="#172033">complication_of</text><rect x="180" y="24" width="43.2" height="18" rx="4" fill="#246bfe" /><text x="664" y="39" font-size="13" fill="#172033">1</text><text x="14" y="73" font-size="13" fill="#172033">diagnosed_by</text><rect x="180" y="56" width="388.8" height="18" rx="4" fill="#246bfe" /><text x="664" y="71" font-size="13" fill="#172033">9</text><text x="14" y="105" font-size="13" fill="#172033">has_symptom</text><rect x="180" y="88" width="432.0" height="18" rx="4" fill="#246bfe" /><text x="664" y="103" font-size="13" fill="#172033">10</text><text x="14" y="137" font-size="13" fill="#172033">recommended_tre...</text><rect x="180" y="120" width="172.8" height="18" rx="4" fill="#246bfe" /><text x="664" y="135" font-size="13" fill="#172033">4</text><text x="14" y="169" font-size="13" fill="#172033">treated_by</text><rect x="180" y="152" width="216.0" height="18" rx="4" fill="#246bfe" /><text x="664" y="167" font-size="13" fill="#172033">5</text></svg></article>
+<article class="chart-card"><h2>Record sequence trend</h2><p class="chart-meta">record_trend / line</p><svg class="chart-svg" viewBox="0 0 720 260" role="img"><line x1="42" y1="228" x2="678" y2="228" stroke="#d9e2ec" /><line x1="42" y1="32" x2="42" y2="228" stroke="#d9e2ec" /><polyline points="42.0,75.6 254.0,75.6 466.0,97.3 678.0,32.0" fill="none" stroke="#246bfe" stroke-width="3" /><circle cx="42.0" cy="75.6" r="4" fill="#246bfe" /><circle cx="254.0" cy="75.6" r="4" fill="#246bfe" /><circle cx="466.0" cy="97.3" r="4" fill="#246bfe" /><circle cx="678.0" cy="32.0" r="4" fill="#246bfe" /><text x="42.0" y="250" text-anchor="middle" font-size="10">1</text><text x="254.0" y="250" text-anchor="middle" font-size="10">2</text><text x="466.0" y="250" text-anchor="middle" font-size="10">3</text><text x="678.0" y="250" text-anchor="middle" font-size="10">4</text></svg></article>
+<article class="chart-card"><h2>Disease-centered relation network</h2><p class="chart-meta">disease_network / network</p><svg class="chart-svg" viewBox="0 0 720 360" role="img"><line x1="360.0" y1="180.0" x2="590.0" y2="180.0" stroke="#b9c6d4" stroke-width="1.4" /><line x1="360.0" y1="180.0" x2="536.2" y2="253.9" stroke="#b9c6d4" stroke-width="1.4" /><line x1="360.0" y1="180.0" x2="399.9" y2="293.3" stroke="#b9c6d4" stroke-width="1.4" /><line x1="360.0" y1="180.0" x2="245.0" y2="279.6" stroke="#b9c6d4" stroke-width="1.4" /><line x1="360.0" y1="180.0" x2="143.9" y2="219.3" stroke="#b9c6d4" stroke-width="1.4" /><line x1="360.0" y1="180.0" x2="143.9" y2="140.7" stroke="#b9c6d4" stroke-width="1.4" /><line x1="360.0" y1="180.0" x2="245.0" y2="80.4" stroke="#b9c6d4" stroke-width="1.4" /><line x1="360.0" y1="180.0" x2="399.9" y2="66.7" stroke="#b9c6d4" stroke-width="1.4" /><line x1="360.0" y1="180.0" x2="536.2" y2="106.1" stroke="#b9c6d4" stroke-width="1.4" /><circle cx="360.0" cy="180.0" r="18" fill="#246bfe" opacity="0.9" /><text x="360.0" y="214.0" text-anchor="middle" font-size="11" fill="#172033">高血压</text><circle cx="590.0" cy="180.0" r="18" fill="#0f8f70" opacity="0.9" /><text x="590.0" y="214.0" text-anchor="middle" font-size="11" fill="#172033">头晕</text><circle cx="536.2" cy="253.9" r="18" fill="#0f8f70" opacity="0.9" /><text x="536.2" y="287.9" text-anchor="middle" font-size="11" fill="#172033">头痛</text><circle cx="399.9" cy="293.3" r="18" fill="#0f8f70" opacity="0.9" /><text x="399.9" y="327.3" text-anchor="middle" font-size="11" fill="#172033">气短</text><circle cx="245.0" cy="279.6" r="18" fill="#0f8f70" opacity="0.9" /><text x="245.0" y="313.6" text-anchor="middle" font-size="11" fill="#172033">胸闷</text><circle cx="143.9" cy="219.3" r="18" fill="#0f8f70" opacity="0.9" /><text x="143.9" y="253.3" text-anchor="middle" font-size="11" fill="#172033">氨氯地平</text><circle cx="143.9" cy="140.7" r="18" fill="#0f8f70" opacity="0.9" /><text x="143.9" y="174.7" text-anchor="middle" font-size="11" fill="#172033">阿司匹林</text><circle cx="245.0" cy="80.4" r="18" fill="#0f8f70" opacity="0.9" /><text x="245.0" y="114.4" text-anchor="middle" font-size="11" fill="#172033">心电图</text><circle cx="399.9" cy="66.7" r="18" fill="#0f8f70" opacity="0.9" /><text x="399.9" y="100.7" text-anchor="middle" font-size="11" fill="#172033">肝功能</text><circle cx="536.2" cy="106.1" r="18" fill="#0f8f70" opacity="0.9" /><text x="536.2" y="140.1" text-anchor="middle" font-size="11" fill="#172033">血常规</text></svg></article></section>
+    <details class="charts">
+      <summary>Raw Visualization Specs</summary>
+      <pre>{
+  &quot;entity_distribution&quot;: {
+    &quot;type&quot;: &quot;bar&quot;,
+    &quot;title&quot;: &quot;Entity type distribution&quot;,
+    &quot;encoding&quot;: {
+      &quot;x&quot;: &quot;category&quot;,
+      &quot;y&quot;: &quot;value&quot;
+    },
+    &quot;data&quot;: [
+      {
+        &quot;category&quot;: &quot;Disease&quot;,
+        &quot;value&quot;: 4
+      },
+      {
+        &quot;category&quot;: &quot;Drug&quot;,
+        &quot;value&quot;: 5
+      },
+      {
+        &quot;category&quot;: &quot;Examination&quot;,
+        &quot;value&quot;: 6
+      },
+      {
+        &quot;category&quot;: &quot;Symptom&quot;,
+        &quot;value&quot;: 8
+      },
+      {
+        &quot;category&quot;: &quot;Treatment&quot;,
+        &quot;value&quot;: 3
+      }
+    ]
+  },
+  &quot;relation_distribution&quot;: {
+    &quot;type&quot;: &quot;bar&quot;,
+    &quot;title&quot;: &quot;Relation type distribution&quot;,
+    &quot;encoding&quot;: {
+      &quot;x&quot;: &quot;category&quot;,
+      &quot;y&quot;: &quot;value&quot;
+    },
+    &quot;data&quot;: [
+      {
+        &quot;category&quot;: &quot;complication_of&quot;,
+        &quot;value&quot;: 1
+      },
+      {
+        &quot;category&quot;: &quot;diagnosed_by&quot;,
+        &quot;value&quot;: 9
+      },
+      {
+        &quot;category&quot;: &quot;has_symptom&quot;,
+        &quot;value&quot;: 10
+      },
+      {
+        &quot;category&quot;: &quot;recommended_treatment&quot;,
+        &quot;value&quot;: 4
+      },
+      {
+        &quot;category&quot;: &quot;treated_by&quot;,
+        &quot;value&quot;: 5
+      }
+    ]
+  },
+  &quot;record_trend&quot;: {
+    &quot;type&quot;: &quot;line&quot;,
+    &quot;title&quot;: &quot;Record sequence trend&quot;,
+    &quot;encoding&quot;: {
+      &quot;x&quot;: &quot;record_id&quot;,
+      &quot;y&quot;: &quot;edge_count&quot;
+    },
+    &quot;data&quot;: [
+      {
+        &quot;record_id&quot;: &quot;record_1&quot;,
+        &quot;edge_count&quot;: 7,
+        &quot;entity_count&quot;: 8
+      },
+      {
+        &quot;record_id&quot;: &quot;record_2&quot;,
+        &quot;edge_count&quot;: 7,
+        &quot;entity_count&quot;: 8
+      },
+      {
+        &quot;record_id&quot;: &quot;record_3&quot;,
+        &quot;edge_count&quot;: 6,
+        &quot;entity_count&quot;: 7
+      },
+      {
+        &quot;record_id&quot;: &quot;record_4&quot;,
+        &quot;edge_count&quot;: 9,
+        &quot;entity_count&quot;: 7
+      }
+    ]
+  },
+  &quot;disease_network&quot;: {
+    &quot;type&quot;: &quot;network&quot;,
+    &quot;title&quot;: &quot;Disease-centered relation network&quot;,
+    &quot;nodes&quot;: [
+      {
+        &quot;id&quot;: &quot;高血压&quot;,
+        &quot;label&quot;: &quot;高血压&quot;,
+        &quot;type&quot;: &quot;Disease&quot;
+      },
+      {
+        &quot;id&quot;: &quot;头晕&quot;,
+        &quot;label&quot;: &quot;头晕&quot;,
+        &quot;type&quot;: &quot;Symptom&quot;
+      },
+      {
+        &quot;id&quot;: &quot;头痛&quot;,
+        &quot;label&quot;: &quot;头痛&quot;,
+        &quot;type&quot;: &quot;Symptom&quot;
+      },
+      {
+        &quot;id&quot;: &quot;气短&quot;,
+        &quot;label&quot;: &quot;气短&quot;,
+        &quot;type&quot;: &quot;Symptom&quot;
+      },
+      {
+        &quot;id&quot;: &quot;胸闷&quot;,
+        &quot;label&quot;: &quot;胸闷&quot;,
+        &quot;type&quot;: &quot;Symptom&quot;
+      },
+      {
+        &quot;id&quot;: &quot;氨氯地平&quot;,
+        &quot;label&quot;: &quot;氨氯地平&quot;,
+        &quot;type&quot;: &quot;Drug&quot;
+      },
+      {
+        &quot;id&quot;: &quot;阿司匹林&quot;,
+        &quot;label&quot;: &quot;阿司匹林&quot;,
+        &quot;type&quot;: &quot;Drug&quot;
+      },
+      {
+        &quot;id&quot;: &quot;心电图&quot;,
+        &quot;label&quot;: &quot;心电图&quot;,
+        &quot;type&quot;: &quot;Examination&quot;
+      },
+      {
+        &quot;id&quot;: &quot;肝功能&quot;,
+        &quot;label&quot;: &quot;肝功能&quot;,
+        &quot;type&quot;: &quot;Examination&quot;
+      },
+      {
+        &quot;id&quot;: &quot;血常规&quot;,
+        &quot;label&quot;: &quot;血常规&quot;,
+        &quot;type&quot;: &quot;Examination&quot;
+      },
+      {
+        &quot;id&quot;: &quot;继续服用&quot;,
+        &quot;label&quot;: &quot;继续服用&quot;,
+        &quot;type&quot;: &quot;Treatment&quot;
+      },
+      {
+        &quot;id&quot;: &quot;冠心病&quot;,
+        &quot;label&quot;: &quot;冠心病&quot;,
+        &quot;type&quot;: &quot;Disease&quot;
+      },
+      {
+        &quot;id&quot;: &quot;2型糖尿病&quot;,
+        &quot;label&quot;: &quot;2型糖尿病&quot;,
+        &quot;type&quot;: &quot;Disease&quot;
+      },
+      {
+        &quot;id&quot;: &quot;口渴&quot;,
+        &quot;label&quot;: &quot;口渴&quot;,
+        &quot;type&quot;: &quot;Symptom&quot;
+      },
+      {
+        &quot;id&quot;: &quot;多尿&quot;,
+        &quot;label&quot;: &quot;多尿&quot;,
+        &quot;type&quot;: &quot;Symptom&quot;
+      },
+      {
+        &quot;id&quot;: &quot;二甲双胍&quot;,
+        &quot;label&quot;: &quot;二甲双胍&quot;,
+        &quot;type&quot;: &quot;Drug&quot;
+      },
+      {
+        &quot;id&quot;: &quot;辛伐他汀&quot;,
+        &quot;label&quot;: &quot;辛伐他汀&quot;,
+        &quot;type&quot;: &quot;Drug&quot;
+      },
+      {
+        &quot;id&quot;: &quot;尿常规&quot;,
+        &quot;label&quot;: &quot;尿常规&quot;,
+        &quot;type&quot;: &quot;Examination&quot;
+      },
+      {
+        &quot;id&quot;: &quot;血糖&quot;,
+        &quot;label&quot;: &quot;血糖&quot;,
+        &quot;type&quot;: &quot;Examination&quot;
+      },
+      {
+        &quot;id&quot;: &quot;调节血脂&quot;,
+        &quot;label&quot;: &quot;调节血脂&quot;,
+        &quot;type&quot;: &quot;Treatment&quot;
+      },
+      {
+        &quot;id&quot;: &quot;支气管哮喘急性发作&quot;,
+        &quot;label&quot;: &quot;支气管哮喘急性发作&quot;,
+        &quot;type&quot;: &quot;Disease&quot;
+      },
+      {
+        &quot;id&quot;: &quot;呼吸困难&quot;,
+        &quot;label&quot;: &quot;呼吸困难&quot;,
+        &quot;type&quot;: &quot;Symptom&quot;
+      },
+      {
+        &quot;id&quot;: &quot;喘息&quot;,
+        &quot;label&quot;: &quot;喘息&quot;,
+        &quot;type&quot;: &quot;Symptom&quot;
+      },
+      {
+        &quot;id&quot;: &quot;布洛芬&quot;,
+        &quot;label&quot;: &quot;布洛芬&quot;,
+        &quot;type&quot;: &quot;Drug&quot;
+      },
+      {
+        &quot;id&quot;: &quot;肺功能&quot;,
+        &quot;label&quot;: &quot;肺功能&quot;,
+        &quot;type&quot;: &quot;Examination&quot;
+      },
+      {
+        &quot;id&quot;: &quot;对症治疗&quot;,
+        &quot;label&quot;: &quot;对症治疗&quot;,
+        &quot;type&quot;: &quot;Treatment&quot;
+      }
+    ],
+    &quot;edges&quot;: [
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;头晕&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;头痛&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;气短&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;胸闷&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;氨氯地平&quot;,
+        &quot;relation&quot;: &quot;drugs&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;阿司匹林&quot;,
+        &quot;relation&quot;: &quot;drugs&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;心电图&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;肝功能&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;血常规&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;继续服用&quot;,
+        &quot;relation&quot;: &quot;treatments&quot;
+      },
+      {
+        &quot;source&quot;: &quot;高血压&quot;,
+        &quot;target&quot;: &quot;冠心病&quot;,
+        &quot;relation&quot;: &quot;complications&quot;
+      },
+      {
+        &quot;source&quot;: &quot;2型糖尿病&quot;,
+        &quot;target&quot;: &quot;口渴&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;2型糖尿病&quot;,
+        &quot;target&quot;: &quot;多尿&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;2型糖尿病&quot;,
+        &quot;target&quot;: &quot;二甲双胍&quot;,
+        &quot;relation&quot;: &quot;drugs&quot;
+      },
+      {
+        &quot;source&quot;: &quot;2型糖尿病&quot;,
+        &quot;target&quot;: &quot;辛伐他汀&quot;,
+        &quot;relation&quot;: &quot;drugs&quot;
+      },
+      {
+        &quot;source&quot;: &quot;2型糖尿病&quot;,
+        &quot;target&quot;: &quot;尿常规&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;2型糖尿病&quot;,
+        &quot;target&quot;: &quot;血糖&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;2型糖尿病&quot;,
+        &quot;target&quot;: &quot;调节血脂&quot;,
+        &quot;relation&quot;: &quot;treatments&quot;
+      },
+      {
+        &quot;source&quot;: &quot;支气管哮喘急性发作&quot;,
+        &quot;target&quot;: &quot;呼吸困难&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;支气管哮喘急性发作&quot;,
+        &quot;target&quot;: &quot;喘息&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;支气管哮喘急性发作&quot;,
+        &quot;target&quot;: &quot;布洛芬&quot;,
+        &quot;relation&quot;: &quot;drugs&quot;
+      },
+      {
+        &quot;source&quot;: &quot;支气管哮喘急性发作&quot;,
+        &quot;target&quot;: &quot;肺功能&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;支气管哮喘急性发作&quot;,
+        &quot;target&quot;: &quot;血常规&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;支气管哮喘急性发作&quot;,
+        &quot;target&quot;: &quot;对症治疗&quot;,
+        &quot;relation&quot;: &quot;treatments&quot;
+      },
+      {
+        &quot;source&quot;: &quot;冠心病&quot;,
+        &quot;target&quot;: &quot;气短&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;冠心病&quot;,
+        &quot;target&quot;: &quot;胸闷&quot;,
+        &quot;relation&quot;: &quot;symptoms&quot;
+      },
+      {
+        &quot;source&quot;: &quot;冠心病&quot;,
+        &quot;target&quot;: &quot;心电图&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;冠心病&quot;,
+        &quot;target&quot;: &quot;肝功能&quot;,
+        &quot;relation&quot;: &quot;examinations&quot;
+      },
+      {
+        &quot;source&quot;: &quot;冠心病&quot;,
+        &quot;target&quot;: &quot;继续服用&quot;,
+        &quot;relation&quot;: &quot;treatments&quot;
+      }
+    ]
+  }
+}</pre>
+    </details>
+  </main>
+</body>
+</html>

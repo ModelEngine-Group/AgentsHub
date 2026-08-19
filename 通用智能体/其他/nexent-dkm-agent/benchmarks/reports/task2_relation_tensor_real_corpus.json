@@ -1,0 +1,67 @@
+{
+  "task": "task2_relation_tensor_scoring",
+  "input": {
+    "candidate_count": 34,
+    "feature_dim": 16,
+    "relation_count": 5,
+    "iterations": 20,
+    "seed": 42,
+    "source": "real_corpus:task2_medical_notes.txt"
+  },
+  "cpu": {
+    "iterations": 20,
+    "latency_ms_avg": 0.1089,
+    "latency_ms_min": 0.0912,
+    "latency_ms_max": 0.293,
+    "throughput_candidates_per_sec": 312313.4145,
+    "status": "completed",
+    "backend": "torch",
+    "device": "cpu"
+  },
+  "npu": {
+    "iterations": 20,
+    "latency_ms_avg": null,
+    "latency_ms_min": null,
+    "latency_ms_max": null,
+    "throughput_candidates_per_sec": null,
+    "status": "unavailable",
+    "backend": "torch",
+    "device": "cpu",
+    "runtime": {
+      "kind": "cpu",
+      "device": "cpu",
+      "module": null,
+      "reason": "cpu requested"
+    },
+    "reason": "NPU device is unavailable: cpu requested"
+  },
+  "speedup": null,
+  "correctness": {
+    "status": "passed",
+    "backend": "cpu",
+    "candidate_count": 34,
+    "triple_count": 33,
+    "metric": "cpu_tensor_matches_rule_triples"
+  },
+  "runtime": {
+    "selected_device": {
+      "kind": "cpu",
+      "device": "cpu",
+      "module": null,
+      "reason": "cpu requested"
+    },
+    "relation_types": [
+      "has_symptom",
+      "treated_by",
+      "diagnosed_by",
+      "recommended_treatment",
+      "complication_of"
+    ]
+  },
+  "notes": [
+    "This benchmark measures a tensorized Task-2 relation-candidate scoring operator.",
+    "Real (Disease, Object) candidate pairs are encoded via build_features_from_records (no synthetic torch.randn).",
+    "CPU and NPU paths use the same feature, weight, and bias tensors.",
+    "NPU latency includes moving feature, weight, and bias tensors to the selected NPU device and copying logits back to CPU."
+  ]
+}

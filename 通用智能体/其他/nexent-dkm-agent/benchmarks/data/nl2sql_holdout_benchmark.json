@@ -1,0 +1,62 @@
+{
+  "description": "Held-out NL2SQL generalization benchmark. Unlike nl2sql_execution_benchmark.json, the questions here are deliberately paraphrased away from the literal phrasings used elsewhere (e.g. '会引起身体哪些不适' instead of '有哪些症状', '需要服用哪些药物' instead of '用什么药', '要做哪些化验检测' instead of '做什么检查'). The translator-generated SQL is executed against the embedded graph and its rows are compared (order-independent) with a hand-written gold query. This measures whether the entity-aware keyword translator generalizes to unseen surface forms, not just the exact training phrasings. Known boundary: a question with zero lexical overlap with any intent keyword falls back to entity_distribution; the fine-tuned local NL2SQL model is the path to cover those.",
+  "graph": {
+    "nodes": [
+      {"id": "高血压", "name": "高血压", "type": "Disease", "mention_count": 6},
+      {"id": "糖尿病", "name": "糖尿病", "type": "Disease", "mention_count": 5},
+      {"id": "冠心病", "name": "冠心病", "type": "Disease", "mention_count": 4},
+      {"id": "头晕", "name": "头晕", "type": "Symptom", "mention_count": 3},
+      {"id": "头痛", "name": "头痛", "type": "Symptom", "mention_count": 2},
+      {"id": "多尿", "name": "多尿", "type": "Symptom", "mention_count": 2},
+      {"id": "胸痛", "name": "胸痛", "type": "Symptom", "mention_count": 1},
+      {"id": "氨氯地平", "name": "氨氯地平", "type": "Drug", "mention_count": 3},
+      {"id": "阿司匹林", "name": "阿司匹林", "type": "Drug", "mention_count": 3},
+      {"id": "二甲双胍", "name": "二甲双胍", "type": "Drug", "mention_count": 2},
+      {"id": "硝酸甘油", "name": "硝酸甘油", "type": "Drug", "mention_count": 1},
+      {"id": "血压测量", "name": "血压测量", "type": "Examination", "mention_count": 2},
+      {"id": "血糖检测", "name": "血糖检测", "type": "Examination", "mention_count": 2},
+      {"id": "心电图", "name": "心电图", "type": "Examination", "mention_count": 1},
+      {"id": "低盐饮食", "name": "低盐饮食", "type": "Treatment", "mention_count": 2},
+      {"id": "运动疗法", "name": "运动疗法", "type": "Treatment", "mention_count": 1}
+    ],
+    "edges": [
+      {"source": "高血压", "target": "头晕", "predicate": "has_symptom", "confidence": 0.9},
+      {"source": "高血压", "target": "头痛", "predicate": "has_symptom", "confidence": 0.85},
+      {"source": "高血压", "target": "氨氯地平", "predicate": "treated_by", "confidence": 0.9},
+      {"source": "高血压", "target": "阿司匹林", "predicate": "treated_by", "confidence": 0.8},
+      {"source": "高血压", "target": "血压测量", "predicate": "diagnosed_by", "confidence": 0.95},
+      {"source": "高血压", "target": "低盐饮食", "predicate": "recommended_treatment", "confidence": 0.7},
+      {"source": "糖尿病", "target": "多尿", "predicate": "has_symptom", "confidence": 0.9},
+      {"source": "糖尿病", "target": "二甲双胍", "predicate": "treated_by", "confidence": 0.9},
+      {"source": "糖尿病", "target": "血糖检测", "predicate": "diagnosed_by", "confidence": 0.95},
+      {"source": "冠心病", "target": "胸痛", "predicate": "has_symptom", "confidence": 0.9},
+      {"source": "冠心病", "target": "硝酸甘油", "predicate": "treated_by", "confidence": 0.85},
+      {"source": "冠心病", "target": "心电图", "predicate": "diagnosed_by", "confidence": 0.9},
+      {"source": "冠心病", "target": "运动疗法", "predicate": "recommended_treatment", "confidence": 0.7},
+      {"source": "高血压", "target": "冠心病", "predicate": "complication_of", "confidence": 0.6}
+    ],
+    "statistics": {"node_count": 16, "edge_count": 14}
+  },
+  "cases": [
+    {"question": "高血压会引起身体哪些不适", "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '高血压' ORDER BY symptom ASC LIMIT 20"},
+    {"question": "高血压的临床表现是什么", "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '高血压' ORDER BY symptom ASC LIMIT 20"},
+    {"question": "得了糖尿病平时需要服用哪些药物", "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '糖尿病' ORDER BY drug ASC LIMIT 20"},
+    {"question": "冠心病患者要做哪些化验检测", "gold_sql": "SELECT t.name AS examination FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'diagnosed_by' AND s.name = '冠心病' ORDER BY examination ASC LIMIT 20"},
+    {"question": "针对高血压有什么干预手段", "gold_sql": "SELECT t.name AS treatment FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'recommended_treatment' AND s.name = '高血压' ORDER BY treatment ASC LIMIT 20"},
+    {"question": "知识图谱里实体类别是如何分布的", "gold_sql": "SELECT type, COUNT(*) AS node_count FROM nodes GROUP BY type ORDER BY node_count DESC, type ASC"},
+    {"question": "整个图里出现最频繁的实体有哪些", "gold_sql": "SELECT name, type, mention_count FROM nodes ORDER BY mention_count DESC, name ASC LIMIT 10"},
+    {"question": "图谱中有几种关系", "gold_sql": "SELECT predicate, COUNT(*) AS edge_count FROM edges GROUP BY predicate ORDER BY edge_count DESC, predicate ASC"},
+    {"question": "图谱里都收录了哪些病", "gold_sql": "SELECT name AS disease, mention_count FROM nodes WHERE type = 'Disease' ORDER BY mention_count DESC, disease ASC LIMIT 20"},
+    {"question": "高血压常见的并发症有哪些", "gold_sql": "SELECT s.name AS disease, t.name AS complication FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'complication_of' ORDER BY disease ASC, complication ASC LIMIT 20"},
+    {"question": "糖尿病病人身体上会有什么感觉", "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '糖尿病' ORDER BY symptom ASC LIMIT 20"},
+    {"question": "高血压病人日常都吃些什么药", "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '高血压' ORDER BY drug ASC LIMIT 20"},
+    {"question": "冠心病可以通过什么方式确诊", "gold_sql": "SELECT t.name AS examination FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'diagnosed_by' AND s.name = '冠心病' ORDER BY examination ASC LIMIT 20"},
+    {"question": "血糖偏高的患者有什么饮食上的建议", "gold_sql": "SELECT t.name AS treatment FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'recommended_treatment' AND s.name = '糖尿病' ORDER BY treatment ASC LIMIT 20"},
+    {"question": "胸痛是冠心病的什么表现", "gold_sql": "SELECT t.name AS symptom FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'has_symptom' AND s.name = '冠心病' ORDER BY symptom ASC LIMIT 20"},
+    {"question": "冠心病患者一般服用什么药来缓解", "gold_sql": "SELECT t.name AS drug FROM edges e JOIN nodes s ON e.source = s.id JOIN nodes t ON e.target = t.id WHERE e.predicate = 'treated_by' AND s.name = '冠心病' ORDER BY drug ASC LIMIT 20"},
+    {"question": "图中各类节点的数量分别是多少", "gold_sql": "SELECT type, COUNT(*) AS node_count FROM nodes GROUP BY type ORDER BY node_count DESC, type ASC"},
+    {"question": "哪种实体被引用的次数最多", "gold_sql": "SELECT name, type, mention_count FROM nodes ORDER BY mention_count DESC, name ASC LIMIT 10"},
+    {"question": "边的关系类型都有哪几种", "gold_sql": "SELECT predicate, COUNT(*) AS edge_count FROM edges GROUP BY predicate ORDER BY edge_count DESC, predicate ASC"},
+    {"question": "高血压和糖尿病哪个被提及更多次", "gold_sql": "SELECT name AS disease, mention_count FROM nodes WHERE type = 'Disease' AND name IN ('高血压', '糖尿病') ORDER BY mention_count DESC, disease ASC LIMIT 20"}
+  ]
+}

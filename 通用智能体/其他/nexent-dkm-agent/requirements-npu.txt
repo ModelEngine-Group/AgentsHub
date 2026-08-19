@@ -1,0 +1,43 @@
+# ============================================================
+# NPU 环境依赖 (Ascend NPU)
+# 用途: 记录 Ascend NPU 运行前置条件，并安装非 torch Python 依赖。
+#
+# 重要说明:
+#   * 2026-06-01 已在 Ascend 910B2C 服务器完成算子、Demo、benchmark
+#     和 240 pytest 验证。实测 NPU 栈为:
+#       - CANN 8.5.1
+#       - torch 2.9.0+cpu
+#       - torch_npu 2.9.0rc1
+#   * 上述 torch / torch_npu 栈来自服务器 Ascend/CANN 环境或专用安装流程,
+#     不是通过普通 `pip install -r requirements-npu.txt` 安装完成。
+#   * 使用本文件前, 请先按目标服务器的 Ascend/CANN 文档安装或激活匹配的
+#     torch_npu 运行时, 并确认 `import torch; import torch_npu` 可用。
+#   * 本文件【不】使用 `-r requirements.txt`, 以避免拉取 CUDA 版 torch
+#     与 torch_npu 冲突。非 torch 依赖在下方显式列出, 与通用依赖保持一致。
+#   * NPU 适配的 CPU 基线与移植目标见 docs/npu_optimization.md 与
+#     docs/local_model_finetune.md。
+# ============================================================
+
+# --- 前置条件 (不通过 pip 安装, 按昇腾官方文档安装) ---
+#   - Ascend 驱动 + 固件
+#   - CANN Toolkit (实测为 8.5.1)
+#   - 与 CANN 匹配的 CPU torch + torch_npu (实测为 torch 2.9.0+cpu,
+#     torch_npu 2.9.0rc1)
+#
+# 不要在这里安装 CUDA 版 torch。也不要盲目从公共 PyPI 安装 torch/torch-npu,
+# 除非目标服务器的 Ascend 运行时文档明确要求该安装方式和版本。
+
+# --- 与 NPU 兼容的通用 ML 库 (与 requirements.txt 同约束) ---
+transformers>=4.40
+peft>=0.10
+datasets>=2.18
+accelerate>=0.28
+safetensors>=0.4
+
+# --- 任务运行所需的非 torch 通用依赖 (与 requirements.txt 一致) ---
+pandas>=2.0
+fastapi>=0.110
+uvicorn>=0.29
+httpx>=0.27
+neo4j>=5.0
+openai>=1.0

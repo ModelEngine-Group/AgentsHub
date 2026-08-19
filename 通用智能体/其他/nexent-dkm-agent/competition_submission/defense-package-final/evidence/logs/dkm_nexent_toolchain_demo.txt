@@ -1,0 +1,2889 @@
+{
+  "status": "completed",
+  "simulation": "nexent_toolchain_offline",
+  "tool_count": 3,
+  "planner": {
+    "request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+    "question": "哪些疾病关联最多症状？",
+    "rule_plan": {
+      "original_request": "请清洗医疗文本，构建知识图谱并生成分析洞察",
+      "planner_mode": "rule",
+      "stages": [
+        {
+          "task": "task1",
+          "task_request": "清洗并标准化医疗文本数据"
+        },
+        {
+          "task": "task2",
+          "task_request": "构建医疗知识图谱",
+          "question": "哪些疾病关联最多症状？"
+        },
+        {
+          "task": "task3",
+          "task_request": "分析图谱统计、关联与可视化洞察",
+          "question": "哪些疾病关联最多症状？"
+        }
+      ],
+      "rationale": [
+        "Detected requested DKM stages from task keywords.",
+        "Stages execute in task1 -> task2 -> task3 order when selected."
+      ],
+      "confidence": 0.85
+    },
+    "enhanced_plan": null,
+    "stages_match": null,
+    "enhanced_mode": null
+  },
+  "nexent_suite": {
+    "name": "dkm_end_to_end_agent",
+    "tool_names": [
+      "task1_data_processing",
+      "task2_medical_kg",
+      "task3_graph_analysis"
+    ],
+    "instructions": "You orchestrate the medical DKM workflow. 1) Call task1_data_processing to clean structured or text inputs and prepare DataMate payloads (keep datamate_mode=dry_run unless submit is requested). 2) Call task2_medical_kg on the cleaned text to build medical_kg.json. 3) Call task3_graph_analysis on the graph artifact for statistics, NL2SQL, and BI/insight visualizations. Reuse each stage output as the next stage input."
+  },
+  "steps": [
+    {
+      "tool": "task1_data_processing",
+      "status": "completed",
+      "message": "Task 1 pipeline processed task1_medical_notes.txt (text -> text).",
+      "input": {
+        "path": "data\\samples\\task1_medical_notes.txt"
+      },
+      "artifacts": {
+        "input": {
+          "path": "data\\samples\\task1_medical_notes.txt",
+          "format": "text"
+        },
+        "understanding": {
+          "original_request": "清洗医疗文本并导出",
+          "task_type": "profiling",
+          "data_type": "text",
+          "intent_keywords": [
+            "export"
+          ],
+          "constraints": [
+            "no_secret_persistence",
+            "datamate_submit_requires_explicit_mode"
+          ]
+        },
+        "json_conversion": {},
+        "profile": {},
+        "plan": {
+          "understanding": {
+            "original_request": "清洗医疗文本并导出",
+            "task_type": "profiling",
+            "data_type": "text",
+            "intent_keywords": [
+              "export"
+            ],
+            "constraints": [
+              "no_secret_persistence",
+              "datamate_submit_requires_explicit_mode"
+            ]
+          },
+          "operators": [
+            "load_text",
+            "clean_text",
+            "export_clean_dataset",
+            "validate_clean_dataset"
+          ],
+          "rationale": [
+            "Load and clean unstructured text input.",
+            "Export cleaned output and validate results."
+          ],
+          "quality_checks": [
+            "row_count",
+            "column_count",
+            "missing_cells",
+            "duplicate_rows",
+            "output_rows",
+            "post_clean_missing_cells",
+            "post_clean_duplicate_rows"
+          ],
+          "confidence": 0.55,
+          "planner_mode": "rule",
+          "datamate_integration": {}
+        },
+        "plan_execution": {
+          "planned_operators": [
+            "load_text",
+            "clean_text",
+            "export_clean_dataset",
+            "validate_clean_dataset"
+          ],
+          "executed_operators": [
+            "load_text",
+            "clean_text",
+            "export_clean_dataset",
+            "validate_clean_dataset"
+          ],
+          "skipped_operators": []
+        },
+        "cleaning": {},
+        "transform": {},
+        "processing": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task1\\task1_medical_notes_cleaned.txt",
+        "entities": {},
+        "validation": {
+          "status": "passed",
+          "checks": {
+            "output_generated": true
+          }
+        },
+        "datamate": {
+          "status": "skipped",
+          "health": {
+            "status": "skipped"
+          }
+        },
+        "quality_report": {
+          "status": "passed",
+          "metrics": {
+            "input_rows": 5,
+            "output_rows": 5,
+            "duplicate_rows_before": 0,
+            "duplicate_rows_removed": 0,
+            "missing_values_before": 0,
+            "missing_values_filled": 0,
+            "planned_operator_count": 4,
+            "datamate_operator_count": 0,
+            "plan_confidence": 0.55
+          },
+          "readiness": {
+            "task_understanding": true,
+            "multi_operator_plan": true,
+            "local_execution": true,
+            "quality_validation": true,
+            "datamate_catalog": false,
+            "datamate_template_ready": false,
+            "datamate_task_ready_or_waiting": true,
+            "datamate_submission_safe": true
+          },
+          "datamate": {
+            "status": "skipped",
+            "execution_mode": "offline",
+            "template_status": null,
+            "task_status": null,
+            "submission_mode": null,
+            "submitted": false
+          }
+        },
+        "run_state": {
+          "status": "completed",
+          "started_at": "2026-07-03T09:31:26+00:00",
+          "finished_at": "2026-07-03T09:31:26+00:00",
+          "steps": [
+            {
+              "name": "understand_task",
+              "status": "completed",
+              "started_at": "2026-07-03T09:31:26+00:00",
+              "finished_at": "2026-07-03T09:31:26+00:00",
+              "message": "Parsed the user task into a structured intent.",
+              "error": null,
+              "artifacts": {}
+            },
+            {
+              "name": "validate_runtime_config",
+              "status": "completed",
+              "started_at": "2026-07-03T09:31:26+00:00",
+              "finished_at": "2026-07-03T09:31:26+00:00",
+              "message": "Validated input path and DataMate execution mode.",
+              "error": null,
+              "artifacts": {
+                "status": "passed"
+              }
+            },
+            {
+              "name": "plan_operators",
+              "status": "completed",
+              "started_at": "2026-07-03T09:31:26+00:00",
+              "finished_at": "2026-07-03T09:31:26+00:00",
+              "message": "Built a text-specific operator plan: load_text -> clean_text -> export_clean_dataset -> validate_clean_dataset (mode=rule).",
+              "error": null,
+              "artifacts": {}
+            },
+            {
+              "name": "process_text",
+              "status": "completed",
+              "started_at": "2026-07-03T09:31:26+00:00",
+              "finished_at": "2026-07-03T09:31:26+00:00",
+              "message": "Cleaned unstructured text: removed HTML, normalized Unicode, redacted PII.",
+              "error": null,
+              "artifacts": {
+                "status": "completed"
+              }
+            },
+            {
+              "name": "build_quality_report",
+              "status": "completed",
+              "started_at": "2026-07-03T09:31:26+00:00",
+              "finished_at": "2026-07-03T09:31:26+00:00",
+              "message": "Built a reproducible run evidence report for text processing.",
+              "error": null,
+              "artifacts": {
+                "status": "passed"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tool": "task2_medical_kg",
+      "status": "completed",
+      "message": "Task 2 pipeline built 37 triples from 5 records.",
+      "input": {
+        "path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task1\\task1_medical_notes_cleaned.txt",
+        "question": "哪些疾病关联最多症状？"
+      },
+      "artifacts": {
+        "input": {
+          "path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task1\\task1_medical_notes_cleaned.txt"
+        },
+        "extraction": {
+          "status": "completed",
+          "record_count": 5,
+          "records": [
+            {
+              "record_id": "record_1",
+              "text": "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。建议：血常规、肝功能检查，继续服用阿司匹林。\n联系电话：[PHONE]",
+              "entities": {
+                "Disease": [
+                  "高血压"
+                ],
+                "Symptom": [
+                  "头晕",
+                  "头痛"
+                ],
+                "Drug": [
+                  "氨氯地平",
+                  "阿司匹林"
+                ],
+                "Examination": [
+                  "血常规",
+                  "肝功能"
+                ],
+                "Treatment": [
+                  "继续服用"
+                ]
+              },
+              "normalization": {
+                "aliases": {}
+              },
+              "mentions": {
+                "氨氯地平": [
+                  {
+                    "start": 43,
+                    "end": 47,
+                    "text": "氨氯地平"
+                  }
+                ],
+                "阿司匹林": [
+                  {
+                    "start": 90,
+                    "end": 94,
+                    "text": "阿司匹林"
+                  }
+                ],
+                "继续服用": [
+                  {
+                    "start": 86,
+                    "end": 90,
+                    "text": "继续服用"
+                  }
+                ],
+                "高血压": [
+                  {
+                    "start": 31,
+                    "end": 34,
+                    "text": "高血压"
+                  },
+                  {
+                    "start": 69,
+                    "end": 72,
+                    "text": "高血压"
+                  }
+                ],
+                "血常规": [
+                  {
+                    "start": 76,
+                    "end": 79,
+                    "text": "血常规"
+                  }
+                ],
+                "肝功能": [
+                  {
+                    "start": 80,
+                    "end": 83,
+                    "text": "肝功能"
+                  }
+                ],
+                "头晕": [
+                  {
+                    "start": 20,
+                    "end": 22,
+                    "text": "头晕"
+                  }
+                ],
+                "头痛": [
+                  {
+                    "start": 23,
+                    "end": 25,
+                    "text": "头痛"
+                  }
+                ]
+              }
+            },
+            {
+              "record_id": "record_2",
+              "text": "记录 2:\n患者李四，女，52岁。主诉：口渴、多尿1周。既往有糖尿病病史。长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。建议行尿常规、血糖监测，加用辛伐他汀调节血脂。\n身份证号：[ID_CARD]",
+              "entities": {
+                "Disease": [
+                  "2型糖尿病"
+                ],
+                "Symptom": [
+                  "口渴",
+                  "多尿"
+                ],
+                "Drug": [
+                  "二甲双胍",
+                  "辛伐他汀"
+                ],
+                "Examination": [
+                  "血糖",
+                  "尿常规"
+                ],
+                "Treatment": [
+                  "调节血脂"
+                ]
+              },
+              "normalization": {
+                "aliases": {
+                  "2型糖尿病": [
+                    "糖尿病"
+                  ],
+                  "血糖": [
+                    "血糖监测"
+                  ]
+                }
+              },
+              "mentions": {
+                "2型糖尿病": [
+                  {
+                    "start": 72,
+                    "end": 77,
+                    "text": "2型糖尿病"
+                  }
+                ],
+                "糖尿病": [
+                  {
+                    "start": 31,
+                    "end": 34,
+                    "text": "糖尿病"
+                  },
+                  {
+                    "start": 74,
+                    "end": 77,
+                    "text": "糖尿病"
+                  }
+                ],
+                "二甲双胍": [
+                  {
+                    "start": 41,
+                    "end": 45,
+                    "text": "二甲双胍"
+                  }
+                ],
+                "辛伐他汀": [
+                  {
+                    "start": 92,
+                    "end": 96,
+                    "text": "辛伐他汀"
+                  }
+                ],
+                "血糖": [
+                  {
+                    "start": 54,
+                    "end": 56,
+                    "text": "血糖"
+                  },
+                  {
+                    "start": 85,
+                    "end": 87,
+                    "text": "血糖"
+                  }
+                ],
+                "尿常规": [
+                  {
+                    "start": 81,
+                    "end": 84,
+                    "text": "尿常规"
+                  }
+                ],
+                "血糖监测": [
+                  {
+                    "start": 85,
+                    "end": 89,
+                    "text": "血糖监测"
+                  }
+                ],
+                "调节血脂": [
+                  {
+                    "start": 96,
+                    "end": 100,
+                    "text": "调节血脂"
+                  }
+                ],
+                "口渴": [
+                  {
+                    "start": 20,
+                    "end": 22,
+                    "text": "口渴"
+                  }
+                ],
+                "多尿": [
+                  {
+                    "start": 23,
+                    "end": 25,
+                    "text": "多尿"
+                  }
+                ]
+              }
+            },
+            {
+              "record_id": "record_3",
+              "text": "记录 3:\n患者王五，男，30岁。主诉：喘息、呼吸困难2天。既往有哮喘病史。近期有花粉接触史。查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。建议：肺功能检查、血常规，给予布洛芬对症治疗。",
+              "entities": {
+                "Disease": [
+                  "支气管哮喘急性发作"
+                ],
+                "Symptom": [
+                  "呼吸困难",
+                  "喘息"
+                ],
+                "Drug": [
+                  "布洛芬"
+                ],
+                "Examination": [
+                  "肺功能",
+                  "血常规"
+                ],
+                "Treatment": [
+                  "对症治疗"
+                ]
+              },
+              "normalization": {
+                "aliases": {
+                  "支气管哮喘急性发作": [
+                    "哮喘"
+                  ],
+                  "肺功能": [
+                    "肺功能检查"
+                  ]
+                }
+              },
+              "mentions": {
+                "支气管哮喘急性发作": [
+                  {
+                    "start": 63,
+                    "end": 72,
+                    "text": "支气管哮喘急性发作"
+                  }
+                ],
+                "哮喘": [
+                  {
+                    "start": 33,
+                    "end": 35,
+                    "text": "哮喘"
+                  },
+                  {
+                    "start": 66,
+                    "end": 68,
+                    "text": "哮喘"
+                  }
+                ],
+                "肺功能": [
+                  {
+                    "start": 76,
+                    "end": 79,
+                    "text": "肺功能"
+                  }
+                ],
+                "血常规": [
+                  {
+                    "start": 82,
+                    "end": 85,
+                    "text": "血常规"
+                  }
+                ],
+                "肺功能检查": [
+                  {
+                    "start": 76,
+                    "end": 81,
+                    "text": "肺功能检查"
+                  }
+                ],
+                "呼吸困难": [
+                  {
+                    "start": 23,
+                    "end": 27,
+                    "text": "呼吸困难"
+                  }
+                ],
+                "喘息": [
+                  {
+                    "start": 20,
+                    "end": 22,
+                    "text": "喘息"
+                  }
+                ],
+                "对症治疗": [
+                  {
+                    "start": 91,
+                    "end": 95,
+                    "text": "对症治疗"
+                  }
+                ],
+                "布洛芬": [
+                  {
+                    "start": 88,
+                    "end": 91,
+                    "text": "布洛芬"
+                  }
+                ]
+              }
+            },
+            {
+              "record_id": "record_4",
+              "text": "记录 4:\n患者赵六，女，65岁。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检查。给予甲硝唑预防感染。",
+              "entities": {
+                "Disease": [
+                  "心力衰竭",
+                  "冠心病"
+                ],
+                "Symptom": [
+                  "胸闷",
+                  "气短",
+                  "水肿"
+                ],
+                "Drug": [
+                  "奥美拉唑",
+                  "甲硝唑"
+                ],
+                "Examination": [
+                  "心电图"
+                ],
+                "Treatment": []
+              },
+              "normalization": {
+                "aliases": {}
+              },
+              "mentions": {
+                "心力衰竭": [
+                  {
+                    "start": 48,
+                    "end": 52,
+                    "text": "心力衰竭"
+                  }
+                ],
+                "冠心病": [
+                  {
+                    "start": 44,
+                    "end": 47,
+                    "text": "冠心病"
+                  }
+                ],
+                "奥美拉唑": [
+                  {
+                    "start": 59,
+                    "end": 63,
+                    "text": "奥美拉唑"
+                  }
+                ],
+                "甲硝唑": [
+                  {
+                    "start": 95,
+                    "end": 98,
+                    "text": "甲硝唑"
+                  }
+                ],
+                "心电图": [
+                  {
+                    "start": 84,
+                    "end": 87,
+                    "text": "心电图"
+                  }
+                ],
+                "胸闷": [
+                  {
+                    "start": 33,
+                    "end": 35,
+                    "text": "胸闷"
+                  }
+                ],
+                "气短": [
+                  {
+                    "start": 36,
+                    "end": 38,
+                    "text": "气短"
+                  }
+                ],
+                "水肿": [
+                  {
+                    "start": 78,
+                    "end": 80,
+                    "text": "水肿"
+                  }
+                ]
+              }
+            },
+            {
+              "record_id": "record_5",
+              "text": "记录 5:\n患者孙七，男，38岁。主诉：上腹痛3天。既往有 胃炎 病史。查体：上腹压痛(+)。初步诊断：急性胃炎。建议：CT检查、肝肾功能，给予阿莫西林抗感染。\n联系电话：[PHONE]",
+              "entities": {
+                "Disease": [
+                  "胃炎"
+                ],
+                "Symptom": [
+                  "上腹痛"
+                ],
+                "Drug": [
+                  "阿莫西林"
+                ],
+                "Examination": [
+                  "肾功能",
+                  "CT"
+                ],
+                "Treatment": [
+                  "抗感染"
+                ]
+              },
+              "normalization": {
+                "aliases": {}
+              },
+              "mentions": {
+                "阿莫西林": [
+                  {
+                    "start": 72,
+                    "end": 76,
+                    "text": "阿莫西林"
+                  }
+                ],
+                "上腹痛": [
+                  {
+                    "start": 20,
+                    "end": 23,
+                    "text": "上腹痛"
+                  }
+                ],
+                "肾功能": [
+                  {
+                    "start": 66,
+                    "end": 69,
+                    "text": "肾功能"
+                  }
+                ],
+                "CT": [
+                  {
+                    "start": 60,
+                    "end": 62,
+                    "text": "CT"
+                  }
+                ],
+                "抗感染": [
+                  {
+                    "start": 76,
+                    "end": 79,
+                    "text": "抗感染"
+                  }
+                ],
+                "胃炎": [
+                  {
+                    "start": 30,
+                    "end": 32,
+                    "text": "胃炎"
+                  },
+                  {
+                    "start": 54,
+                    "end": 56,
+                    "text": "胃炎"
+                  }
+                ]
+              }
+            }
+          ],
+          "entity_counts": {
+            "Disease": 6,
+            "Symptom": 10,
+            "Drug": 8,
+            "Examination": 9,
+            "Treatment": 4
+          },
+          "normalization": {
+            "aliases": {
+              "2型糖尿病": [
+                "糖尿病"
+              ],
+              "血糖": [
+                "血糖监测"
+              ],
+              "支气管哮喘急性发作": [
+                "哮喘"
+              ],
+              "肺功能": [
+                "肺功能检查"
+              ]
+            }
+          }
+        },
+        "validation": {
+          "status": "passed",
+          "valid_count": 37,
+          "invalid_count": 0,
+          "duplicate_count": 0,
+          "triples": [
+            {
+              "subject": "高血压",
+              "predicate": "has_symptom",
+              "object": "头晕",
+              "record_id": "record_1",
+              "confidence": 0.92,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmH"
+            },
+            {
+              "subject": "高血压",
+              "predicate": "has_symptom",
+              "object": "头痛",
+              "record_id": "record_1",
+              "confidence": 0.93,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmH"
+            },
+            {
+              "subject": "高血压",
+              "predicate": "treated_by",
+              "object": "氨氯地平",
+              "record_id": "record_1",
+              "confidence": 0.86,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。建议"
+            },
+            {
+              "subject": "高血压",
+              "predicate": "treated_by",
+              "object": "阿司匹林",
+              "record_id": "record_1",
+              "confidence": 0.75,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。建议：血常规、肝功能检查，继续服用阿司匹林。\n联系电话：[PHONE]"
+            },
+            {
+              "subject": "高血压",
+              "predicate": "diagnosed_by",
+              "object": "血常规",
+              "record_id": "record_1",
+              "confidence": 0.74,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。建议：血常规、肝功能检查，继续服用阿司匹林。\n联系电话：[PHONE"
+            },
+            {
+              "subject": "高血压",
+              "predicate": "diagnosed_by",
+              "object": "肝功能",
+              "record_id": "record_1",
+              "confidence": 0.73,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。建议：血常规、肝功能检查，继续服用阿司匹林。\n联系电话：[PHONE]"
+            },
+            {
+              "subject": "高血压",
+              "predicate": "recommended_treatment",
+              "object": "继续服用",
+              "record_id": "record_1",
+              "confidence": 0.7,
+              "subject_type": "Disease",
+              "object_type": "Treatment",
+              "evidence": "1:\n患者张三，男，45岁。主诉：头晕、头痛3天。既往有高血压病史5年，长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。建议：血常规、肝功能检查，继续服用阿司匹林。\n联系电话：[PHONE]"
+            },
+            {
+              "subject": "2型糖尿病",
+              "predicate": "has_symptom",
+              "object": "口渴",
+              "record_id": "record_2",
+              "confidence": 0.8,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "记录 2:\n患者李四，女，52岁。主诉：口渴、多尿1周。既往有糖尿病病史。长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。建议行尿常规、血糖监测，加用辛伐他汀调节血脂。\n身份证"
+            },
+            {
+              "subject": "2型糖尿病",
+              "predicate": "has_symptom",
+              "object": "多尿",
+              "record_id": "record_2",
+              "confidence": 0.8,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "记录 2:\n患者李四，女，52岁。主诉：口渴、多尿1周。既往有糖尿病病史。长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。建议行尿常规、血糖监测，加用辛伐他汀调节血脂。\n身份证"
+            },
+            {
+              "subject": "2型糖尿病",
+              "predicate": "treated_by",
+              "object": "二甲双胍",
+              "record_id": "record_2",
+              "confidence": 0.81,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "52岁。主诉：口渴、多尿1周。既往有糖尿病病史。长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。建议行尿常规、血糖监测，加用辛伐他汀调节血脂。\n身份证"
+            },
+            {
+              "subject": "2型糖尿病",
+              "predicate": "treated_by",
+              "object": "辛伐他汀",
+              "record_id": "record_2",
+              "confidence": 0.84,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。建议行尿常规、血糖监测，加用辛伐他汀调节血脂。\n身份证号：[ID_CARD]"
+            },
+            {
+              "subject": "2型糖尿病",
+              "predicate": "diagnosed_by",
+              "object": "血糖",
+              "record_id": "record_2",
+              "confidence": 0.83,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "周。既往有糖尿病病史。长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。建议行尿常规、血糖监测，加用辛伐他汀调节血脂。\n身份证"
+            },
+            {
+              "subject": "2型糖尿病",
+              "predicate": "diagnosed_by",
+              "object": "尿常规",
+              "record_id": "record_2",
+              "confidence": 0.85,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。建议行尿常规、血糖监测，加用辛伐他汀调节血脂。\n身份证号：[ID_C"
+            },
+            {
+              "subject": "2型糖尿病",
+              "predicate": "recommended_treatment",
+              "object": "调节血脂",
+              "record_id": "record_2",
+              "confidence": 0.78,
+              "subject_type": "Disease",
+              "object_type": "Treatment",
+              "evidence": "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。建议行尿常规、血糖监测，加用辛伐他汀调节血脂。\n身份证号：[ID_CARD]"
+            },
+            {
+              "subject": "支气管哮喘急性发作",
+              "predicate": "has_symptom",
+              "object": "呼吸困难",
+              "record_id": "record_3",
+              "confidence": 0.83,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "记录 3:\n患者王五，男，30岁。主诉：喘息、呼吸困难2天。既往有哮喘病史。近期有花粉接触史。查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。建议：肺功能检查、血常规，给予布洛芬对症治疗。"
+            },
+            {
+              "subject": "支气管哮喘急性发作",
+              "predicate": "has_symptom",
+              "object": "喘息",
+              "record_id": "record_3",
+              "confidence": 0.82,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "记录 3:\n患者王五，男，30岁。主诉：喘息、呼吸困难2天。既往有哮喘病史。近期有花粉接触史。查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。建议：肺功能检查、血常规，给予布洛芬对症治疗。"
+            },
+            {
+              "subject": "支气管哮喘急性发作",
+              "predicate": "treated_by",
+              "object": "布洛芬",
+              "record_id": "record_3",
+              "confidence": 0.82,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "病史。近期有花粉接触史。查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。建议：肺功能检查、血常规，给予布洛芬对症治疗。"
+            },
+            {
+              "subject": "支气管哮喘急性发作",
+              "predicate": "diagnosed_by",
+              "object": "肺功能",
+              "record_id": "record_3",
+              "confidence": 0.84,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "病史。近期有花粉接触史。查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。建议：肺功能检查、血常规，给予布洛芬对症治疗。"
+            },
+            {
+              "subject": "支气管哮喘急性发作",
+              "predicate": "diagnosed_by",
+              "object": "血常规",
+              "record_id": "record_3",
+              "confidence": 0.82,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "病史。近期有花粉接触史。查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。建议：肺功能检查、血常规，给予布洛芬对症治疗。"
+            },
+            {
+              "subject": "支气管哮喘急性发作",
+              "predicate": "recommended_treatment",
+              "object": "对症治疗",
+              "record_id": "record_3",
+              "confidence": 0.77,
+              "subject_type": "Disease",
+              "object_type": "Treatment",
+              "evidence": "病史。近期有花粉接触史。查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。建议：肺功能检查、血常规，给予布洛芬对症治疗。"
+            },
+            {
+              "subject": "心力衰竭",
+              "predicate": "has_symptom",
+              "object": "胸闷",
+              "record_id": "record_4",
+              "confidence": 0.91,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "患者赵六，女，65岁。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿"
+            },
+            {
+              "subject": "心力衰竭",
+              "predicate": "has_symptom",
+              "object": "气短",
+              "record_id": "record_4",
+              "confidence": 0.91,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "赵六，女，65岁。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿"
+            },
+            {
+              "subject": "心力衰竭",
+              "predicate": "has_symptom",
+              "object": "水肿",
+              "record_id": "record_4",
+              "confidence": 0.86,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "nt＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检查。给予甲硝唑预防感染。"
+            },
+            {
+              "subject": "心力衰竭",
+              "predicate": "treated_by",
+              "object": "奥美拉唑",
+              "record_id": "record_4",
+              "confidence": 0.87,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "nt＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检"
+            },
+            {
+              "subject": "心力衰竭",
+              "predicate": "treated_by",
+              "object": "甲硝唑",
+              "record_id": "record_4",
+              "confidence": 0.76,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "nt＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检查。给予甲硝唑预防感染。"
+            },
+            {
+              "subject": "心力衰竭",
+              "predicate": "diagnosed_by",
+              "object": "心电图",
+              "record_id": "record_4",
+              "confidence": 0.77,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "nt＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检查。给予甲硝唑预防感染。"
+            },
+            {
+              "subject": "冠心病",
+              "predicate": "has_symptom",
+              "object": "胸闷",
+              "record_id": "record_4",
+              "confidence": 0.92,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "患者赵六，女，65岁。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，"
+            },
+            {
+              "subject": "冠心病",
+              "predicate": "has_symptom",
+              "object": "气短",
+              "record_id": "record_4",
+              "confidence": 0.93,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "赵六，女，65岁。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，"
+            },
+            {
+              "subject": "冠心病",
+              "predicate": "has_symptom",
+              "object": "水肿",
+              "record_id": "record_4",
+              "confidence": 0.85,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检查。给予甲硝唑预防感染。"
+            },
+            {
+              "subject": "冠心病",
+              "predicate": "treated_by",
+              "object": "奥美拉唑",
+              "record_id": "record_4",
+              "confidence": 0.85,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检"
+            },
+            {
+              "subject": "冠心病",
+              "predicate": "treated_by",
+              "object": "甲硝唑",
+              "record_id": "record_4",
+              "confidence": 0.75,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检查。给予甲硝唑预防感染。"
+            },
+            {
+              "subject": "冠心病",
+              "predicate": "diagnosed_by",
+              "object": "心电图",
+              "record_id": "record_4",
+              "confidence": 0.76,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "。＜font＞主诉＜／font＞：胸闷、气短1周。既往有冠心病、心力衰竭病史。长期服用奥美拉唑。查体：心率92次/分，双下肢水肿。建议行心电图、B超检查。给予甲硝唑预防感染。"
+            },
+            {
+              "subject": "胃炎",
+              "predicate": "has_symptom",
+              "object": "上腹痛",
+              "record_id": "record_5",
+              "confidence": 0.92,
+              "subject_type": "Disease",
+              "object_type": "Symptom",
+              "evidence": "记录 5:\n患者孙七，男，38岁。主诉：上腹痛3天。既往有 胃炎 病史。查体：上腹压痛(+)。初步诊断：急性胃炎。建议："
+            },
+            {
+              "subject": "胃炎",
+              "predicate": "treated_by",
+              "object": "阿莫西林",
+              "record_id": "record_5",
+              "confidence": 0.77,
+              "subject_type": "Disease",
+              "object_type": "Drug",
+              "evidence": "5:\n患者孙七，男，38岁。主诉：上腹痛3天。既往有 胃炎 病史。查体：上腹压痛(+)。初步诊断：急性胃炎。建议：CT检查、肝肾功能，给予阿莫西林抗感染。\n联系电话：[PHONE]"
+            },
+            {
+              "subject": "胃炎",
+              "predicate": "diagnosed_by",
+              "object": "肾功能",
+              "record_id": "record_5",
+              "confidence": 0.77,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "5:\n患者孙七，男，38岁。主诉：上腹痛3天。既往有 胃炎 病史。查体：上腹压痛(+)。初步诊断：急性胃炎。建议：CT检查、肝肾功能，给予阿莫西林抗感染。\n联系电话：[PHONE]"
+            },
+            {
+              "subject": "胃炎",
+              "predicate": "diagnosed_by",
+              "object": "CT",
+              "record_id": "record_5",
+              "confidence": 0.79,
+              "subject_type": "Disease",
+              "object_type": "Examination",
+              "evidence": "5:\n患者孙七，男，38岁。主诉：上腹痛3天。既往有 胃炎 病史。查体：上腹压痛(+)。初步诊断：急性胃炎。建议：CT检查、肝肾功能，给予阿莫西林抗感染。\n联系电话：[PHO"
+            },
+            {
+              "subject": "胃炎",
+              "predicate": "recommended_treatment",
+              "object": "抗感染",
+              "record_id": "record_5",
+              "confidence": 0.71,
+              "subject_type": "Disease",
+              "object_type": "Treatment",
+              "evidence": "5:\n患者孙七，男，38岁。主诉：上腹痛3天。既往有 胃炎 病史。查体：上腹压痛(+)。初步诊断：急性胃炎。建议：CT检查、肝肾功能，给予阿莫西林抗感染。\n联系电话：[PHONE]"
+            }
+          ],
+          "invalid_triples": []
+        },
+        "graph": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task2\\medical_kg.json",
+        "relation_scoring": {
+          "backend": "rule",
+          "mode": "rule"
+        },
+        "qa": {
+          "status": "unanswered",
+          "question": "哪些疾病关联最多症状？",
+          "answer": "未在图谱中找到问题对应的实体。",
+          "evidence": []
+        },
+        "retrieval": {
+          "status": "skipped"
+        },
+        "plan": {
+          "understanding": {
+            "original_request": "",
+            "task_type": "kg_qa",
+            "data_type": "text",
+            "intent_keywords": [
+              "qa"
+            ],
+            "constraints": []
+          },
+          "operators": [
+            "extract_medical_entities",
+            "extract_relations",
+            "validate_triples",
+            "build_medical_graph",
+            "answer_graph_question"
+          ],
+          "rationale": [
+            "Extract entities needed for graph construction.",
+            "Build relations and graph for QA.",
+            "Answer question from graph evidence."
+          ],
+          "question": "哪些疾病关联最多症状？",
+          "confidence": 0.7,
+          "planner_mode": "rule"
+        },
+        "plan_execution": {
+          "task_type": "kg_qa",
+          "planner_mode": "rule",
+          "selected_operators": [
+            "extract_medical_entities",
+            "extract_relations",
+            "validate_triples",
+            "build_medical_graph",
+            "answer_graph_question"
+          ],
+          "executed_operators": [
+            "extract_medical_entities",
+            "extract_relations",
+            "validate_triples",
+            "build_medical_graph",
+            "answer_graph_question"
+          ],
+          "qa_executed": true
+        },
+        "quality_report": {
+          "status": "warning",
+          "metrics": {
+            "record_count": 5,
+            "entity_total": 37,
+            "valid_triple_count": 37,
+            "invalid_triple_count": 0,
+            "node_count": 36,
+            "edge_count": 37,
+            "triple_count": 37,
+            "graph_density": 0.0294,
+            "evidence_edge_count": 37,
+            "relation_type_count": 4,
+            "relation_coverage": 0.8,
+            "average_confidence": 0.82
+          },
+          "readiness": {
+            "records_loaded": true,
+            "entities_extracted": true,
+            "triples_validated": true,
+            "graph_built": true,
+            "graph_exported": true,
+            "qa_answered": false,
+            "evidence_attached": true,
+            "relation_schema_covered": true
+          }
+        },
+        "run_state": {
+          "status": "completed",
+          "steps": [
+            {
+              "name": "load_input",
+              "status": "completed",
+              "message": "Loaded medical text corpus.",
+              "artifacts": {
+                "length": 537
+              }
+            },
+            {
+              "name": "extract_entities",
+              "status": "completed",
+              "message": "Extracted disease, symptom, drug, examination, and treatment entities.",
+              "artifacts": {
+                "status": "completed",
+                "record_count": 5
+              }
+            },
+            {
+              "name": "extract_relations",
+              "status": "completed",
+              "message": "Generated candidate medical KG triples.",
+              "artifacts": {
+                "count": 37
+              }
+            },
+            {
+              "name": "validate_triples",
+              "status": "completed",
+              "message": "Validated triples against the task-2 schema.",
+              "artifacts": {
+                "status": "passed",
+                "valid_count": 37,
+                "invalid_count": 0
+              }
+            },
+            {
+              "name": "build_graph",
+              "status": "completed",
+              "message": "Built a deduplicated medical knowledge graph.",
+              "artifacts": {
+                "node_count": 36,
+                "edge_count": 37,
+                "triple_count": 37,
+                "record_count": 5
+              }
+            },
+            {
+              "name": "export_graph",
+              "status": "completed",
+              "message": "Exported graph JSON artifact.",
+              "artifacts": {
+                "status": "completed",
+                "output_path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task2\\medical_kg.json"
+              }
+            },
+            {
+              "name": "answer_question",
+              "status": "completed",
+              "message": "Answered the user question from graph evidence.",
+              "artifacts": {
+                "status": "unanswered"
+              }
+            },
+            {
+              "name": "build_quality_report",
+              "status": "completed",
+              "message": "Built a reproducible KG quality report.",
+              "artifacts": {
+                "status": "warning"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tool": "task3_graph_analysis",
+      "status": "completed",
+      "message": "Task 3 analyzed 36 nodes and 37 edges.",
+      "input": {
+        "graph_file": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task2\\medical_kg.json",
+        "question": "哪些疾病关联最多症状？"
+      },
+      "artifacts": {
+        "input": {
+          "path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task2\\medical_kg.json",
+          "source": "graph_file"
+        },
+        "graph": {
+          "node_count": 36,
+          "edge_count": 37,
+          "triple_count": 37,
+          "record_count": 5
+        },
+        "plan": {
+          "task_type": "full_analysis",
+          "planner_mode": "rule",
+          "intent_keywords": [
+            "nl2sql",
+            "graph_analytics"
+          ],
+          "operators": [
+            "load_graph",
+            "generate_statistical_summary",
+            "generate_association_analysis",
+            "generate_trend_analysis",
+            "compute_centrality",
+            "compute_shortest_paths",
+            "detect_communities",
+            "translate_question_to_sql",
+            "execute_sql",
+            "build_analysis_visualizations",
+            "build_analysis_report"
+          ],
+          "question": "哪些疾病关联最多症状？",
+          "confidence": 0.9,
+          "graph_context": {
+            "node_count": 36,
+            "edge_count": 37,
+            "type_counts": {
+              "Disease": 6,
+              "Drug": 8,
+              "Examination": 8,
+              "Symptom": 10,
+              "Treatment": 4
+            },
+            "disease_count": 6,
+            "symptom_count": 10,
+            "relation_counts": {
+              "diagnosed_by": 10,
+              "has_symptom": 13,
+              "recommended_treatment": 4,
+              "treated_by": 10
+            },
+            "is_large_graph": true,
+            "has_rich_disease_links": true
+          }
+        },
+        "plan_execution": {
+          "selected_intents": [
+            "nl2sql",
+            "graph_analytics"
+          ],
+          "extended_analytics": true,
+          "nl2sql_executed": true,
+          "executed_optional_operators": [
+            "compute_centrality",
+            "compute_shortest_paths",
+            "detect_communities",
+            "translate_question_to_sql",
+            "execute_sql"
+          ],
+          "planned_operators": [
+            "load_graph",
+            "generate_statistical_summary",
+            "generate_association_analysis",
+            "generate_trend_analysis",
+            "compute_centrality",
+            "compute_shortest_paths",
+            "detect_communities",
+            "translate_question_to_sql",
+            "execute_sql",
+            "build_analysis_visualizations",
+            "build_analysis_report"
+          ],
+          "executed_operators": [
+            "load_graph",
+            "generate_statistical_summary",
+            "generate_association_analysis",
+            "generate_trend_analysis",
+            "compute_centrality",
+            "compute_shortest_paths",
+            "detect_communities",
+            "translate_question_to_sql",
+            "execute_sql",
+            "build_analysis_visualizations",
+            "build_analysis_report"
+          ]
+        },
+        "statistics": {
+          "status": "completed",
+          "entity_type_counts": {
+            "Disease": 6,
+            "Drug": 8,
+            "Examination": 8,
+            "Symptom": 10,
+            "Treatment": 4
+          },
+          "relation_type_counts": {
+            "diagnosed_by": 10,
+            "has_symptom": 13,
+            "recommended_treatment": 4,
+            "treated_by": 10
+          },
+          "top_degree_nodes": [
+            {
+              "node_id": "Disease:2型糖尿病",
+              "name": "2型糖尿病",
+              "degree": 7
+            },
+            {
+              "node_id": "Disease:高血压",
+              "name": "高血压",
+              "degree": 7
+            },
+            {
+              "node_id": "Disease:冠心病",
+              "name": "冠心病",
+              "degree": 6
+            },
+            {
+              "node_id": "Disease:心力衰竭",
+              "name": "心力衰竭",
+              "degree": 6
+            },
+            {
+              "node_id": "Disease:支气管哮喘急性发作",
+              "name": "支气管哮喘急性发作",
+              "degree": 6
+            },
+            {
+              "node_id": "Disease:胃炎",
+              "name": "胃炎",
+              "degree": 5
+            },
+            {
+              "node_id": "Drug:奥美拉唑",
+              "name": "奥美拉唑",
+              "degree": 2
+            },
+            {
+              "node_id": "Drug:甲硝唑",
+              "name": "甲硝唑",
+              "degree": 2
+            },
+            {
+              "node_id": "Examination:心电图",
+              "name": "心电图",
+              "degree": 2
+            },
+            {
+              "node_id": "Examination:血常规",
+              "name": "血常规",
+              "degree": 2
+            }
+          ],
+          "confidence": {
+            "average": 0.82,
+            "min": 0.7,
+            "max": 0.93
+          },
+          "graph_size": {
+            "node_count": 36,
+            "edge_count": 37,
+            "record_count": 5
+          }
+        },
+        "associations": {
+          "status": "completed",
+          "disease_profiles": [
+            {
+              "disease_id": "Disease:2型糖尿病",
+              "disease": "2型糖尿病",
+              "symptoms": [
+                "口渴",
+                "多尿"
+              ],
+              "drugs": [
+                "二甲双胍",
+                "辛伐他汀"
+              ],
+              "examinations": [
+                "尿常规",
+                "血糖"
+              ],
+              "treatments": [
+                "调节血脂"
+              ],
+              "complications": [],
+              "evidence_count": 7
+            },
+            {
+              "disease_id": "Disease:高血压",
+              "disease": "高血压",
+              "symptoms": [
+                "头晕",
+                "头痛"
+              ],
+              "drugs": [
+                "氨氯地平",
+                "阿司匹林"
+              ],
+              "examinations": [
+                "肝功能",
+                "血常规"
+              ],
+              "treatments": [
+                "继续服用"
+              ],
+              "complications": [],
+              "evidence_count": 7
+            },
+            {
+              "disease_id": "Disease:冠心病",
+              "disease": "冠心病",
+              "symptoms": [
+                "气短",
+                "水肿",
+                "胸闷"
+              ],
+              "drugs": [
+                "奥美拉唑",
+                "甲硝唑"
+              ],
+              "examinations": [
+                "心电图"
+              ],
+              "treatments": [],
+              "complications": [],
+              "evidence_count": 6
+            },
+            {
+              "disease_id": "Disease:心力衰竭",
+              "disease": "心力衰竭",
+              "symptoms": [
+                "气短",
+                "水肿",
+                "胸闷"
+              ],
+              "drugs": [
+                "奥美拉唑",
+                "甲硝唑"
+              ],
+              "examinations": [
+                "心电图"
+              ],
+              "treatments": [],
+              "complications": [],
+              "evidence_count": 6
+            },
+            {
+              "disease_id": "Disease:支气管哮喘急性发作",
+              "disease": "支气管哮喘急性发作",
+              "symptoms": [
+                "呼吸困难",
+                "喘息"
+              ],
+              "drugs": [
+                "布洛芬"
+              ],
+              "examinations": [
+                "肺功能",
+                "血常规"
+              ],
+              "treatments": [
+                "对症治疗"
+              ],
+              "complications": [],
+              "evidence_count": 6
+            },
+            {
+              "disease_id": "Disease:胃炎",
+              "disease": "胃炎",
+              "symptoms": [
+                "上腹痛"
+              ],
+              "drugs": [
+                "阿莫西林"
+              ],
+              "examinations": [
+                "CT",
+                "肾功能"
+              ],
+              "treatments": [
+                "抗感染"
+              ],
+              "complications": [],
+              "evidence_count": 5
+            }
+          ],
+          "relation_matrix": [
+            {
+              "disease": "2型糖尿病",
+              "symptom_count": 2,
+              "drug_count": 2,
+              "examination_count": 2,
+              "treatment_count": 1,
+              "complication_count": 0
+            },
+            {
+              "disease": "高血压",
+              "symptom_count": 2,
+              "drug_count": 2,
+              "examination_count": 2,
+              "treatment_count": 1,
+              "complication_count": 0
+            },
+            {
+              "disease": "冠心病",
+              "symptom_count": 3,
+              "drug_count": 2,
+              "examination_count": 1,
+              "treatment_count": 0,
+              "complication_count": 0
+            },
+            {
+              "disease": "心力衰竭",
+              "symptom_count": 3,
+              "drug_count": 2,
+              "examination_count": 1,
+              "treatment_count": 0,
+              "complication_count": 0
+            },
+            {
+              "disease": "支气管哮喘急性发作",
+              "symptom_count": 2,
+              "drug_count": 1,
+              "examination_count": 2,
+              "treatment_count": 1,
+              "complication_count": 0
+            },
+            {
+              "disease": "胃炎",
+              "symptom_count": 1,
+              "drug_count": 1,
+              "examination_count": 2,
+              "treatment_count": 1,
+              "complication_count": 0
+            }
+          ],
+          "top_associations": [
+            {
+              "disease_id": "Disease:2型糖尿病",
+              "disease": "2型糖尿病",
+              "symptoms": [
+                "口渴",
+                "多尿"
+              ],
+              "drugs": [
+                "二甲双胍",
+                "辛伐他汀"
+              ],
+              "examinations": [
+                "尿常规",
+                "血糖"
+              ],
+              "treatments": [
+                "调节血脂"
+              ],
+              "complications": [],
+              "evidence_count": 7
+            },
+            {
+              "disease_id": "Disease:高血压",
+              "disease": "高血压",
+              "symptoms": [
+                "头晕",
+                "头痛"
+              ],
+              "drugs": [
+                "氨氯地平",
+                "阿司匹林"
+              ],
+              "examinations": [
+                "肝功能",
+                "血常规"
+              ],
+              "treatments": [
+                "继续服用"
+              ],
+              "complications": [],
+              "evidence_count": 7
+            },
+            {
+              "disease_id": "Disease:冠心病",
+              "disease": "冠心病",
+              "symptoms": [
+                "气短",
+                "水肿",
+                "胸闷"
+              ],
+              "drugs": [
+                "奥美拉唑",
+                "甲硝唑"
+              ],
+              "examinations": [
+                "心电图"
+              ],
+              "treatments": [],
+              "complications": [],
+              "evidence_count": 6
+            },
+            {
+              "disease_id": "Disease:心力衰竭",
+              "disease": "心力衰竭",
+              "symptoms": [
+                "气短",
+                "水肿",
+                "胸闷"
+              ],
+              "drugs": [
+                "奥美拉唑",
+                "甲硝唑"
+              ],
+              "examinations": [
+                "心电图"
+              ],
+              "treatments": [],
+              "complications": [],
+              "evidence_count": 6
+            },
+            {
+              "disease_id": "Disease:支气管哮喘急性发作",
+              "disease": "支气管哮喘急性发作",
+              "symptoms": [
+                "呼吸困难",
+                "喘息"
+              ],
+              "drugs": [
+                "布洛芬"
+              ],
+              "examinations": [
+                "肺功能",
+                "血常规"
+              ],
+              "treatments": [
+                "对症治疗"
+              ],
+              "complications": [],
+              "evidence_count": 6
+            }
+          ]
+        },
+        "trends": {
+          "status": "completed",
+          "axis": "record_sequence",
+          "record_trends": [
+            {
+              "record_id": "record_1",
+              "entity_count": 8,
+              "edge_count": 7,
+              "relation_counts": {
+                "diagnosed_by": 2,
+                "has_symptom": 2,
+                "recommended_treatment": 1,
+                "treated_by": 2
+              },
+              "entity_type_counts": {
+                "Disease": 1,
+                "Drug": 2,
+                "Examination": 2,
+                "Symptom": 2,
+                "Treatment": 1
+              }
+            },
+            {
+              "record_id": "record_2",
+              "entity_count": 8,
+              "edge_count": 7,
+              "relation_counts": {
+                "diagnosed_by": 2,
+                "has_symptom": 2,
+                "recommended_treatment": 1,
+                "treated_by": 2
+              },
+              "entity_type_counts": {
+                "Disease": 1,
+                "Drug": 2,
+                "Examination": 2,
+                "Symptom": 2,
+                "Treatment": 1
+              }
+            },
+            {
+              "record_id": "record_3",
+              "entity_count": 7,
+              "edge_count": 6,
+              "relation_counts": {
+                "diagnosed_by": 2,
+                "has_symptom": 2,
+                "recommended_treatment": 1,
+                "treated_by": 1
+              },
+              "entity_type_counts": {
+                "Disease": 1,
+                "Drug": 1,
+                "Examination": 2,
+                "Symptom": 2,
+                "Treatment": 1
+              }
+            },
+            {
+              "record_id": "record_4",
+              "entity_count": 8,
+              "edge_count": 12,
+              "relation_counts": {
+                "diagnosed_by": 2,
+                "has_symptom": 6,
+                "treated_by": 4
+              },
+              "entity_type_counts": {
+                "Disease": 2,
+                "Drug": 2,
+                "Examination": 1,
+                "Symptom": 3
+              }
+            },
+            {
+              "record_id": "record_5",
+              "entity_count": 6,
+              "edge_count": 5,
+              "relation_counts": {
+                "diagnosed_by": 2,
+                "has_symptom": 1,
+                "recommended_treatment": 1,
+                "treated_by": 1
+              },
+              "entity_type_counts": {
+                "Disease": 1,
+                "Drug": 1,
+                "Examination": 2,
+                "Symptom": 1,
+                "Treatment": 1
+              }
+            }
+          ],
+          "peak_record": {
+            "record_id": "record_4",
+            "entity_count": 8,
+            "edge_count": 12,
+            "relation_counts": {
+              "diagnosed_by": 2,
+              "has_symptom": 6,
+              "treated_by": 4
+            },
+            "entity_type_counts": {
+              "Disease": 2,
+              "Drug": 2,
+              "Examination": 1,
+              "Symptom": 3
+            }
+          }
+        },
+        "centrality": {
+          "status": "completed",
+          "node_count": 36,
+          "top_hubs": [
+            {
+              "id": "Disease:2型糖尿病",
+              "name": "2型糖尿病",
+              "type": "Disease",
+              "degree": 7,
+              "degree_centrality": 0.2
+            },
+            {
+              "id": "Disease:高血压",
+              "name": "高血压",
+              "type": "Disease",
+              "degree": 7,
+              "degree_centrality": 0.2
+            },
+            {
+              "id": "Disease:冠心病",
+              "name": "冠心病",
+              "type": "Disease",
+              "degree": 6,
+              "degree_centrality": 0.1714
+            },
+            {
+              "id": "Disease:心力衰竭",
+              "name": "心力衰竭",
+              "type": "Disease",
+              "degree": 6,
+              "degree_centrality": 0.1714
+            },
+            {
+              "id": "Disease:支气管哮喘急性发作",
+              "name": "支气管哮喘急性发作",
+              "type": "Disease",
+              "degree": 6,
+              "degree_centrality": 0.1714
+            },
+            {
+              "id": "Disease:胃炎",
+              "name": "胃炎",
+              "type": "Disease",
+              "degree": 5,
+              "degree_centrality": 0.1429
+            },
+            {
+              "id": "Drug:奥美拉唑",
+              "name": "奥美拉唑",
+              "type": "Drug",
+              "degree": 2,
+              "degree_centrality": 0.0571
+            },
+            {
+              "id": "Drug:甲硝唑",
+              "name": "甲硝唑",
+              "type": "Drug",
+              "degree": 2,
+              "degree_centrality": 0.0571
+            },
+            {
+              "id": "Examination:心电图",
+              "name": "心电图",
+              "type": "Examination",
+              "degree": 2,
+              "degree_centrality": 0.0571
+            },
+            {
+              "id": "Examination:血常规",
+              "name": "血常规",
+              "type": "Examination",
+              "degree": 2,
+              "degree_centrality": 0.0571
+            }
+          ],
+          "top_hubs_backend": "python",
+          "top_hubs_npu_reason": "NPU device is unavailable: torch.cuda is available",
+          "type_centrality": {
+            "Disease": {
+              "count": 6,
+              "avg_degree": 6.17,
+              "max_degree": 7,
+              "top_node": "2型糖尿病"
+            },
+            "Drug": {
+              "count": 8,
+              "avg_degree": 1.25,
+              "max_degree": 2,
+              "top_node": "奥美拉唑"
+            },
+            "Examination": {
+              "count": 8,
+              "avg_degree": 1.25,
+              "max_degree": 2,
+              "top_node": "心电图"
+            },
+            "Symptom": {
+              "count": 10,
+              "avg_degree": 1.3,
+              "max_degree": 2,
+              "top_node": "气短"
+            },
+            "Treatment": {
+              "count": 4,
+              "avg_degree": 1.0,
+              "max_degree": 1,
+              "top_node": "对症治疗"
+            }
+          }
+        },
+        "graph_analytics": {
+          "status": "completed",
+          "start_hub": "Disease:2型糖尿病",
+          "communities": {
+            "status": "completed",
+            "community_count": 4,
+            "communities": [
+              {
+                "community_id": "Examination:血常规",
+                "size": 14,
+                "type_distribution": {
+                  "Disease": 2,
+                  "Drug": 3,
+                  "Examination": 3,
+                  "Symptom": 4,
+                  "Treatment": 2
+                },
+                "members": [
+                  {
+                    "id": "Disease:支气管哮喘急性发作",
+                    "name": "支气管哮喘急性发作",
+                    "type": "Disease"
+                  },
+                  {
+                    "id": "Disease:高血压",
+                    "name": "高血压",
+                    "type": "Disease"
+                  },
+                  {
+                    "id": "Drug:布洛芬",
+                    "name": "布洛芬",
+                    "type": "Drug"
+                  },
+                  {
+                    "id": "Drug:氨氯地平",
+                    "name": "氨氯地平",
+                    "type": "Drug"
+                  },
+                  {
+                    "id": "Drug:阿司匹林",
+                    "name": "阿司匹林",
+                    "type": "Drug"
+                  },
+                  {
+                    "id": "Examination:肝功能",
+                    "name": "肝功能",
+                    "type": "Examination"
+                  },
+                  {
+                    "id": "Examination:肺功能",
+                    "name": "肺功能",
+                    "type": "Examination"
+                  },
+                  {
+                    "id": "Examination:血常规",
+                    "name": "血常规",
+                    "type": "Examination"
+                  },
+                  {
+                    "id": "Symptom:呼吸困难",
+                    "name": "呼吸困难",
+                    "type": "Symptom"
+                  },
+                  {
+                    "id": "Symptom:喘息",
+                    "name": "喘息",
+                    "type": "Symptom"
+                  }
+                ]
+              },
+              {
+                "community_id": "Examination:尿常规",
+                "size": 8,
+                "type_distribution": {
+                  "Disease": 1,
+                  "Drug": 2,
+                  "Examination": 2,
+                  "Symptom": 2,
+                  "Treatment": 1
+                },
+                "members": [
+                  {
+                    "id": "Disease:2型糖尿病",
+                    "name": "2型糖尿病",
+                    "type": "Disease"
+                  },
+                  {
+                    "id": "Drug:二甲双胍",
+                    "name": "二甲双胍",
+                    "type": "Drug"
+                  },
+                  {
+                    "id": "Drug:辛伐他汀",
+                    "name": "辛伐他汀",
+                    "type": "Drug"
+                  },
+                  {
+                    "id": "Examination:尿常规",
+                    "name": "尿常规",
+                    "type": "Examination"
+                  },
+                  {
+                    "id": "Examination:血糖",
+                    "name": "血糖",
+                    "type": "Examination"
+                  },
+                  {
+                    "id": "Symptom:口渴",
+                    "name": "口渴",
+                    "type": "Symptom"
+                  },
+                  {
+                    "id": "Symptom:多尿",
+                    "name": "多尿",
+                    "type": "Symptom"
+                  },
+                  {
+                    "id": "Treatment:调节血脂",
+                    "name": "调节血脂",
+                    "type": "Treatment"
+                  }
+                ]
+              },
+              {
+                "community_id": "Symptom:胸闷",
+                "size": 8,
+                "type_distribution": {
+                  "Disease": 2,
+                  "Drug": 2,
+                  "Examination": 1,
+                  "Symptom": 3
+                },
+                "members": [
+                  {
+                    "id": "Disease:冠心病",
+                    "name": "冠心病",
+                    "type": "Disease"
+                  },
+                  {
+                    "id": "Disease:心力衰竭",
+                    "name": "心力衰竭",
+                    "type": "Disease"
+                  },
+                  {
+                    "id": "Drug:奥美拉唑",
+                    "name": "奥美拉唑",
+                    "type": "Drug"
+                  },
+                  {
+                    "id": "Drug:甲硝唑",
+                    "name": "甲硝唑",
+                    "type": "Drug"
+                  },
+                  {
+                    "id": "Examination:心电图",
+                    "name": "心电图",
+                    "type": "Examination"
+                  },
+                  {
+                    "id": "Symptom:气短",
+                    "name": "气短",
+                    "type": "Symptom"
+                  },
+                  {
+                    "id": "Symptom:水肿",
+                    "name": "水肿",
+                    "type": "Symptom"
+                  },
+                  {
+                    "id": "Symptom:胸闷",
+                    "name": "胸闷",
+                    "type": "Symptom"
+                  }
+                ]
+              },
+              {
+                "community_id": "Examination:肾功能",
+                "size": 6,
+                "type_distribution": {
+                  "Disease": 1,
+                  "Drug": 1,
+                  "Examination": 2,
+                  "Symptom": 1,
+                  "Treatment": 1
+                },
+                "members": [
+                  {
+                    "id": "Disease:胃炎",
+                    "name": "胃炎",
+                    "type": "Disease"
+                  },
+                  {
+                    "id": "Drug:阿莫西林",
+                    "name": "阿莫西林",
+                    "type": "Drug"
+                  },
+                  {
+                    "id": "Examination:CT",
+                    "name": "CT",
+                    "type": "Examination"
+                  },
+                  {
+                    "id": "Examination:肾功能",
+                    "name": "肾功能",
+                    "type": "Examination"
+                  },
+                  {
+                    "id": "Symptom:上腹痛",
+                    "name": "上腹痛",
+                    "type": "Symptom"
+                  },
+                  {
+                    "id": "Treatment:抗感染",
+                    "name": "抗感染",
+                    "type": "Treatment"
+                  }
+                ]
+              }
+            ]
+          },
+          "shortest_paths": {
+            "status": "reachable",
+            "start_entity": "Disease:2型糖尿病",
+            "reachable_count": 8,
+            "max_depth": 4,
+            "nodes": [
+              {
+                "id": "Disease:2型糖尿病",
+                "name": "2型糖尿病",
+                "type": "Disease",
+                "distance": 0
+              },
+              {
+                "id": "Examination:尿常规",
+                "name": "尿常规",
+                "type": "Examination",
+                "distance": 1
+              },
+              {
+                "id": "Examination:血糖",
+                "name": "血糖",
+                "type": "Examination",
+                "distance": 1
+              },
+              {
+                "id": "Symptom:口渴",
+                "name": "口渴",
+                "type": "Symptom",
+                "distance": 1
+              },
+              {
+                "id": "Symptom:多尿",
+                "name": "多尿",
+                "type": "Symptom",
+                "distance": 1
+              },
+              {
+                "id": "Treatment:调节血脂",
+                "name": "调节血脂",
+                "type": "Treatment",
+                "distance": 1
+              },
+              {
+                "id": "Drug:二甲双胍",
+                "name": "二甲双胍",
+                "type": "Drug",
+                "distance": 1
+              },
+              {
+                "id": "Drug:辛伐他汀",
+                "name": "辛伐他汀",
+                "type": "Drug",
+                "distance": 1
+              }
+            ]
+          }
+        },
+        "nl2sql": {
+          "status": "completed",
+          "intent": "top_disease_symptoms",
+          "sql": "SELECT n.name AS disease, COUNT(*) AS symptom_count FROM edges e JOIN nodes n ON e.source = n.id WHERE e.predicate = 'has_symptom' AND n.type = 'Disease' GROUP BY n.name ORDER BY symptom_count DESC, disease ASC LIMIT 10",
+          "rows": [
+            {
+              "disease": "冠心病",
+              "symptom_count": 3
+            },
+            {
+              "disease": "心力衰竭",
+              "symptom_count": 3
+            },
+            {
+              "disease": "2型糖尿病",
+              "symptom_count": 2
+            },
+            {
+              "disease": "支气管哮喘急性发作",
+              "symptom_count": 2
+            },
+            {
+              "disease": "高血压",
+              "symptom_count": 2
+            },
+            {
+              "disease": "胃炎",
+              "symptom_count": 1
+            }
+          ],
+          "translator": "template"
+        },
+        "visualizations": {
+          "status": "completed",
+          "charts": {
+            "entity_distribution": {
+              "type": "bar",
+              "title": "Entity type distribution",
+              "encoding": {
+                "x": "category",
+                "y": "value"
+              },
+              "data": [
+                {
+                  "category": "Disease",
+                  "value": 6
+                },
+                {
+                  "category": "Drug",
+                  "value": 8
+                },
+                {
+                  "category": "Examination",
+                  "value": 8
+                },
+                {
+                  "category": "Symptom",
+                  "value": 10
+                },
+                {
+                  "category": "Treatment",
+                  "value": 4
+                }
+              ]
+            },
+            "relation_distribution": {
+              "type": "bar",
+              "title": "Relation type distribution",
+              "encoding": {
+                "x": "category",
+                "y": "value"
+              },
+              "data": [
+                {
+                  "category": "diagnosed_by",
+                  "value": 10
+                },
+                {
+                  "category": "has_symptom",
+                  "value": 13
+                },
+                {
+                  "category": "recommended_treatment",
+                  "value": 4
+                },
+                {
+                  "category": "treated_by",
+                  "value": 10
+                }
+              ]
+            },
+            "record_trend": {
+              "type": "line",
+              "title": "Record sequence trend",
+              "encoding": {
+                "x": "record_id",
+                "y": "edge_count"
+              },
+              "data": [
+                {
+                  "record_id": "record_1",
+                  "edge_count": 7
+                },
+                {
+                  "record_id": "record_2",
+                  "edge_count": 7
+                },
+                {
+                  "record_id": "record_3",
+                  "edge_count": 6
+                },
+                {
+                  "record_id": "record_4",
+                  "edge_count": 12
+                },
+                {
+                  "record_id": "record_5",
+                  "edge_count": 5
+                }
+              ]
+            },
+            "disease_network": {
+              "type": "network",
+              "title": "Disease-centered relation network",
+              "nodes": [
+                {
+                  "id": "2型糖尿病",
+                  "label": "2型糖尿病",
+                  "type": "Disease"
+                },
+                {
+                  "id": "口渴",
+                  "label": "口渴",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "多尿",
+                  "label": "多尿",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "二甲双胍",
+                  "label": "二甲双胍",
+                  "type": "Drug"
+                },
+                {
+                  "id": "辛伐他汀",
+                  "label": "辛伐他汀",
+                  "type": "Drug"
+                },
+                {
+                  "id": "尿常规",
+                  "label": "尿常规",
+                  "type": "Examination"
+                },
+                {
+                  "id": "血糖",
+                  "label": "血糖",
+                  "type": "Examination"
+                },
+                {
+                  "id": "调节血脂",
+                  "label": "调节血脂",
+                  "type": "Treatment"
+                },
+                {
+                  "id": "高血压",
+                  "label": "高血压",
+                  "type": "Disease"
+                },
+                {
+                  "id": "头晕",
+                  "label": "头晕",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "头痛",
+                  "label": "头痛",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "氨氯地平",
+                  "label": "氨氯地平",
+                  "type": "Drug"
+                },
+                {
+                  "id": "阿司匹林",
+                  "label": "阿司匹林",
+                  "type": "Drug"
+                },
+                {
+                  "id": "肝功能",
+                  "label": "肝功能",
+                  "type": "Examination"
+                },
+                {
+                  "id": "血常规",
+                  "label": "血常规",
+                  "type": "Examination"
+                },
+                {
+                  "id": "继续服用",
+                  "label": "继续服用",
+                  "type": "Treatment"
+                },
+                {
+                  "id": "冠心病",
+                  "label": "冠心病",
+                  "type": "Disease"
+                },
+                {
+                  "id": "气短",
+                  "label": "气短",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "水肿",
+                  "label": "水肿",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "胸闷",
+                  "label": "胸闷",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "奥美拉唑",
+                  "label": "奥美拉唑",
+                  "type": "Drug"
+                },
+                {
+                  "id": "甲硝唑",
+                  "label": "甲硝唑",
+                  "type": "Drug"
+                },
+                {
+                  "id": "心电图",
+                  "label": "心电图",
+                  "type": "Examination"
+                },
+                {
+                  "id": "心力衰竭",
+                  "label": "心力衰竭",
+                  "type": "Disease"
+                },
+                {
+                  "id": "支气管哮喘急性发作",
+                  "label": "支气管哮喘急性发作",
+                  "type": "Disease"
+                },
+                {
+                  "id": "呼吸困难",
+                  "label": "呼吸困难",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "喘息",
+                  "label": "喘息",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "布洛芬",
+                  "label": "布洛芬",
+                  "type": "Drug"
+                },
+                {
+                  "id": "肺功能",
+                  "label": "肺功能",
+                  "type": "Examination"
+                },
+                {
+                  "id": "对症治疗",
+                  "label": "对症治疗",
+                  "type": "Treatment"
+                },
+                {
+                  "id": "胃炎",
+                  "label": "胃炎",
+                  "type": "Disease"
+                },
+                {
+                  "id": "上腹痛",
+                  "label": "上腹痛",
+                  "type": "Symptom"
+                },
+                {
+                  "id": "阿莫西林",
+                  "label": "阿莫西林",
+                  "type": "Drug"
+                },
+                {
+                  "id": "CT",
+                  "label": "CT",
+                  "type": "Examination"
+                },
+                {
+                  "id": "肾功能",
+                  "label": "肾功能",
+                  "type": "Examination"
+                },
+                {
+                  "id": "抗感染",
+                  "label": "抗感染",
+                  "type": "Treatment"
+                }
+              ],
+              "edges": [
+                {
+                  "source": "2型糖尿病",
+                  "target": "口渴",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "2型糖尿病",
+                  "target": "多尿",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "2型糖尿病",
+                  "target": "二甲双胍",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "2型糖尿病",
+                  "target": "辛伐他汀",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "2型糖尿病",
+                  "target": "尿常规",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "2型糖尿病",
+                  "target": "血糖",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "2型糖尿病",
+                  "target": "调节血脂",
+                  "relation": "treatments"
+                },
+                {
+                  "source": "高血压",
+                  "target": "头晕",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "高血压",
+                  "target": "头痛",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "高血压",
+                  "target": "氨氯地平",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "高血压",
+                  "target": "阿司匹林",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "高血压",
+                  "target": "肝功能",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "高血压",
+                  "target": "血常规",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "高血压",
+                  "target": "继续服用",
+                  "relation": "treatments"
+                },
+                {
+                  "source": "冠心病",
+                  "target": "气短",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "冠心病",
+                  "target": "水肿",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "冠心病",
+                  "target": "胸闷",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "冠心病",
+                  "target": "奥美拉唑",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "冠心病",
+                  "target": "甲硝唑",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "冠心病",
+                  "target": "心电图",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "心力衰竭",
+                  "target": "气短",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "心力衰竭",
+                  "target": "水肿",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "心力衰竭",
+                  "target": "胸闷",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "心力衰竭",
+                  "target": "奥美拉唑",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "心力衰竭",
+                  "target": "甲硝唑",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "心力衰竭",
+                  "target": "心电图",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "支气管哮喘急性发作",
+                  "target": "呼吸困难",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "支气管哮喘急性发作",
+                  "target": "喘息",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "支气管哮喘急性发作",
+                  "target": "布洛芬",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "支气管哮喘急性发作",
+                  "target": "肺功能",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "支气管哮喘急性发作",
+                  "target": "血常规",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "支气管哮喘急性发作",
+                  "target": "对症治疗",
+                  "relation": "treatments"
+                },
+                {
+                  "source": "胃炎",
+                  "target": "上腹痛",
+                  "relation": "symptoms"
+                },
+                {
+                  "source": "胃炎",
+                  "target": "阿莫西林",
+                  "relation": "drugs"
+                },
+                {
+                  "source": "胃炎",
+                  "target": "CT",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "胃炎",
+                  "target": "肾功能",
+                  "relation": "examinations"
+                },
+                {
+                  "source": "胃炎",
+                  "target": "抗感染",
+                  "relation": "treatments"
+                }
+              ]
+            }
+          }
+        },
+        "export": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task3\\task3_analysis_report.json",
+        "insight_report": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task3\\task3_analysis_dashboard.html",
+        "echarts_dashboard": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task3\\task3_interactive_dashboard.html",
+        "quality_report": {
+          "status": "passed",
+          "readiness": {
+            "graph_loaded": true,
+            "statistics_ready": true,
+            "associations_ready": true,
+            "trends_ready": true,
+            "nl2sql_answered": true,
+            "visualizations_ready": true,
+            "insight_report_exported": true,
+            "dashboard_exported": true
+          },
+          "metrics": {
+            "node_count": 36,
+            "edge_count": 37,
+            "chart_count": 4,
+            "nl2sql_row_count": 6,
+            "disease_profile_count": 6
+          }
+        },
+        "run_state": {
+          "status": "completed",
+          "steps": [
+            {
+              "name": "load_graph",
+              "status": "completed",
+              "message": "Loaded task-2 graph artifact.",
+              "artifacts": {
+                "node_count": 36,
+                "edge_count": 37,
+                "triple_count": 37,
+                "record_count": 5
+              }
+            },
+            {
+              "name": "plan_analysis",
+              "status": "completed",
+              "message": "Planned graph analysis operators using graph context.",
+              "artifacts": {}
+            },
+            {
+              "name": "generate_statistics",
+              "status": "completed",
+              "message": "Generated graph statistics.",
+              "artifacts": {
+                "status": "completed"
+              }
+            },
+            {
+              "name": "generate_associations",
+              "status": "completed",
+              "message": "Generated disease-centered associations.",
+              "artifacts": {
+                "status": "completed"
+              }
+            },
+            {
+              "name": "generate_trends",
+              "status": "completed",
+              "message": "Generated record-sequence trends.",
+              "artifacts": {
+                "status": "completed"
+              }
+            },
+            {
+              "name": "prepare_degree_tensor_cache",
+              "status": "completed",
+              "message": "Prepared reusable graph-degree tensor cache for NPU top-hubs when available.",
+              "artifacts": {
+                "status": "unavailable"
+              }
+            },
+            {
+              "name": "compute_centrality",
+              "status": "completed",
+              "message": "Computed node degree centrality.",
+              "artifacts": {
+                "status": "completed",
+                "node_count": 36
+              }
+            },
+            {
+              "name": "extended_graph_analytics",
+              "status": "completed",
+              "message": "Computed communities and hub-anchored shortest paths.",
+              "artifacts": {
+                "status": "completed"
+              }
+            },
+            {
+              "name": "build_sqlite",
+              "status": "completed",
+              "message": "Built in-memory SQLite analytics schema.",
+              "artifacts": {}
+            },
+            {
+              "name": "translate_and_execute_sql",
+              "status": "completed",
+              "message": "Translated question to SQL and executed.",
+              "artifacts": {
+                "status": "completed",
+                "row_count": 6
+              }
+            },
+            {
+              "name": "build_visualizations",
+              "status": "completed",
+              "message": "Built BI visualization specifications.",
+              "artifacts": {
+                "status": "completed",
+                "chart_count": 4
+              }
+            },
+            {
+              "name": "export_analysis",
+              "status": "completed",
+              "message": "Exported task-3 analysis report.",
+              "artifacts": {
+                "status": "completed",
+                "output_path": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain\\task3\\task3_analysis_report.json"
+              }
+            },
+            {
+              "name": "export_insight_report",
+              "status": "completed",
+              "message": "Exported human-readable task-3 insight report.",
+              "artifacts": {
+                "status": "completed"
+              }
+            },
+            {
+              "name": "export_echarts_dashboard",
+              "status": "completed",
+              "message": "Exported ECharts interactive dashboard.",
+              "artifacts": {
+                "status": "completed"
+              }
+            },
+            {
+              "name": "build_quality_report",
+              "status": "completed",
+              "message": "Built task-3 quality report.",
+              "artifacts": {
+                "status": "passed"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "output_root": "outputs\\competition_evidence\\20260703-105plus\\generated_outputs\\nexent_toolchain"
+}

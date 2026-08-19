@@ -1,0 +1,110 @@
+{
+  "mode": "probe",
+  "write_allowed": false,
+  "integration": {
+    "stack_status": "partial",
+    "datamate": {
+      "status": "unavailable",
+      "base_url": "http://localhost:8080",
+      "health": {
+        "status": "unavailable",
+        "message": "HTTP 500 : {\"code\":\"sys.0002\",\"message\":\"系统繁忙，请稍后重试\",\"data\":null}",
+        "http_status": 500,
+        "body": "{\"code\":\"sys.0002\",\"message\":\"系统繁忙，请稍后重试\",\"data\":null}"
+      },
+      "operator_sample": {
+        "status": "unavailable",
+        "message": "HTTP 500 : {\"timestamp\":\"2026-06-14T13:26:32.823+00:00\",\"path\":\"/api/operators/list\",\"status\":500,\"error\":\"Internal Server Error\",\"requestId\":\"3e47e927\"}",
+        "http_status": 500,
+        "body": "{\"timestamp\":\"2026-06-14T13:26:32.823+00:00\",\"path\":\"/api/operators/list\",\"status\":500,\"error\":\"Internal Server Error\",\"requestId\":\"3e47e927\"}"
+      },
+      "template_sample": {
+        "status": "unavailable",
+        "message": "HTTP 500 : {\"timestamp\":\"2026-06-14T13:26:36.852+00:00\",\"path\":\"/api/cleaning/templates\",\"status\":500,\"error\":\"Internal Server Error\",\"requestId\":\"207f0b5f\"}",
+        "http_status": 500,
+        "body": "{\"timestamp\":\"2026-06-14T13:26:36.852+00:00\",\"path\":\"/api/cleaning/templates\",\"status\":500,\"error\":\"Internal Server Error\",\"requestId\":\"207f0b5f\"}"
+      },
+      "task_sample": {
+        "status": "unavailable",
+        "message": "HTTP 500 : {\"timestamp\":\"2026-06-14T13:26:40.884+00:00\",\"path\":\"/api/cleaning/tasks\",\"status\":500,\"error\":\"Internal Server Error\",\"requestId\":\"178e18be\"}",
+        "http_status": 500,
+        "body": "{\"timestamp\":\"2026-06-14T13:26:40.884+00:00\",\"path\":\"/api/cleaning/tasks\",\"status\":500,\"error\":\"Internal Server Error\",\"requestId\":\"178e18be\"}"
+      },
+      "write_mode": "probe_only_no_submit"
+    },
+    "nexent": {
+      "status": "available",
+      "url": "http://localhost:3000",
+      "http_status": 200,
+      "server_header": "",
+      "x_powered_by": "Next.js",
+      "detected_service": "nexent",
+      "body_preview": "<!DOCTYPE html><html lang=\"zh\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-s",
+      "api_confirmation": {
+        "endpoint": "/api/tool/openapi_services",
+        "http_status": 200,
+        "is_nexent": true,
+        "response_preview": "{\"message\":\"success\",\"data\":[]}"
+      }
+    }
+  },
+  "task_api_health": {
+    "task1": {
+      "status": "unexpected_response",
+      "url": "http://localhost:8000/health",
+      "http_status": 200,
+      "response": {
+        "status": "ok"
+      }
+    },
+    "task2": {
+      "status": "available",
+      "url": "http://localhost:8002/health",
+      "http_status": 200,
+      "response": {
+        "status": "healthy",
+        "service": "task2_medical_kg_agent",
+        "version": "2.0.0"
+      }
+    },
+    "task3": {
+      "status": "available",
+      "url": "http://localhost:8003/health",
+      "http_status": 200,
+      "response": {
+        "status": "healthy",
+        "service": "task3_graph_analysis_agent",
+        "version": "2.0.0",
+        "llm_enabled": false
+      }
+    }
+  },
+  "nexent_openapi_services": {
+    "status": "available",
+    "base_url": "http://localhost:3000",
+    "service_count": 0,
+    "service_names": [],
+    "services": []
+  },
+  "service_specs": [
+    {
+      "service_name": "nexent_dkm_task1",
+      "server_url": "http://host.docker.internal:8000",
+      "path_count": 5,
+      "operation_count": 5
+    },
+    {
+      "service_name": "nexent_dkm_task2",
+      "server_url": "http://host.docker.internal:8002",
+      "path_count": 9,
+      "operation_count": 9
+    },
+    {
+      "service_name": "nexent_dkm_task3",
+      "server_url": "http://host.docker.internal:8003",
+      "path_count": 9,
+      "operation_count": 9
+    }
+  ],
+  "status": "partial"
+}

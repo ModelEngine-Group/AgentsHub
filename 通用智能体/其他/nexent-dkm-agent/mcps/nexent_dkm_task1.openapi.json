@@ -1,0 +1,376 @@
+{
+  "info": {
+    "title": "Task 1 Data Processing Agent API",
+    "version": "1.0.0",
+    "description": "REST interface for the Nexent-based data processing agent."
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Health Check Health Get",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "operationId": "health_check_health_get"
+      }
+    },
+    "/api/task1/process": {
+      "post": {
+        "summary": "Submit Task",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "operationId": "submit_task_api_task1_process_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/task1/operators": {
+      "get": {
+        "summary": "List Operators",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response List Operators Api Task1 Operators Get",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "operationId": "list_operators_api_task1_operators_get"
+      }
+    },
+    "/api/task1/report/{task_id}": {
+      "get": {
+        "summary": "Get Report",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Report Api Task1 Report  Task Id  Get",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "get_report_api_task1_report__task_id__get"
+      }
+    },
+    "/api/task1/status/{task_id}": {
+      "get": {
+        "summary": "Get Status",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Status Api Task1 Status  Task Id  Get",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "get_status_api_task1_status__task_id__get"
+      }
+    }
+  },
+  "openapi": "3.1.0",
+  "servers": [
+    {
+      "url": "http://host.docker.internal:8000"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "TaskResponse": {
+        "type": "object",
+        "title": "TaskResponse",
+        "required": [
+          "task_id",
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          }
+        }
+      },
+      "ProcessRequest": {
+        "type": "object",
+        "title": "ProcessRequest",
+        "properties": {
+          "task": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task"
+          },
+          "use_llm": {
+            "type": "boolean",
+            "title": "Use Llm",
+            "default": false
+          },
+          "env_file": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Env File"
+          },
+          "input_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input Path"
+          },
+          "output_dir": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output Dir"
+          },
+          "datamate_url": {
+            "type": "string",
+            "title": "Datamate Url",
+            "default": "http://localhost:18000"
+          },
+          "datamate_mode": {
+            "enum": [
+              "dry_run",
+              "submit"
+            ],
+            "type": "string",
+            "title": "Datamate Mode",
+            "default": "dry_run"
+          },
+          "src_dataset_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Src Dataset Id"
+          },
+          "llm_config_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Llm Config Path"
+          },
+          "local_model_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Local Model Path"
+          },
+          "src_dataset_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Src Dataset Name"
+          },
+          "dest_dataset_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dest Dataset Name"
+          }
+        }
+      },
+      "ValidationError": {
+        "type": "object",
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "properties": {
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          },
+          "loc": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "type": "object",
+        "title": "HTTPValidationError",
+        "properties": {
+          "detail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail"
+          }
+        }
+      }
+    }
+  }
+}

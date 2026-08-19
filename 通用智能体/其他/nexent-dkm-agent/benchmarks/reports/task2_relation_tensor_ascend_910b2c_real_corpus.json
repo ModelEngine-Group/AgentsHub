@@ -1,0 +1,254 @@
+{
+  "task": "task2_relation_tensor_scoring",
+  "input": {
+    "candidate_count": 34,
+    "feature_dim": 16,
+    "relation_count": 5,
+    "iterations": 50,
+    "seed": 42,
+    "source": "real_corpus:task2_medical_notes.txt"
+  },
+  "cpu": {
+    "iterations": 50,
+    "latency_ms_avg": 33.0839,
+    "latency_ms_min": 13.9822,
+    "latency_ms_max": 57.9836,
+    "throughput_candidates_per_sec": 1027.6893,
+    "status": "completed",
+    "backend": "torch",
+    "device": "cpu"
+  },
+  "npu": {
+    "iterations": 50,
+    "latency_ms_avg": 31.3218,
+    "latency_ms_min": 13.0572,
+    "latency_ms_max": 50.0119,
+    "throughput_candidates_per_sec": 1085.5044,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "runtime": {
+      "kind": "npu",
+      "device": "npu:0",
+      "module": "torch_npu",
+      "reason": "torch_npu and torch.npu are available"
+    }
+  },
+  "speedup": 1.0563,
+  "correctness": {
+    "status": "passed",
+    "score_close": true,
+    "prediction_equal": true,
+    "max_abs_diff": 0.0,
+    "tolerance": 0.0001
+  },
+  "runtime": {
+    "selected_device": {
+      "kind": "npu",
+      "device": "npu:0",
+      "module": "torch_npu",
+      "reason": "torch_npu and torch.npu are available"
+    },
+    "relation_types": [
+      "has_symptom",
+      "treated_by",
+      "diagnosed_by",
+      "recommended_treatment",
+      "complication_of"
+    ]
+  },
+  "notes": [
+    "This benchmark measures a tensorized Task-2 relation-candidate scoring operator.",
+    "Synthetic features stand in for pair embeddings from a medical relation extractor.",
+    "CPU and NPU paths use the same feature, weight, and bias tensors.",
+    "NPU latency includes moving feature, weight, and bias tensors to the selected NPU device and copying logits back to CPU."
+  ],
+  "mode_benchmarks": [
+    {
+      "name": "baseline_full_logits",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 50,
+      "latency_ms_avg": 24.2485,
+      "latency_ms_min": 13.3233,
+      "latency_ms_max": 33.7841,
+      "throughput_candidates_per_sec": 1402.1467,
+      "speedup_vs_cpu": 1.3644,
+      "speedup_vs_npu_end_to_end": 1.2917,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "uses_cached_tensors": false,
+      "skips_full_logits_copy": false,
+      "includes_h2d_transfer": true,
+      "includes_full_format": true,
+      "correctness": {
+        "status": "passed",
+        "prediction_equal": true,
+        "scores_close": true,
+        "max_score_diff": 0.0,
+        "tolerance": 0.001
+      },
+      "top_relation": "has_symptom"
+    },
+    {
+      "name": "cached_full_logits",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 50,
+      "latency_ms_avg": 24.9085,
+      "latency_ms_min": 11.299,
+      "latency_ms_max": 39.9947,
+      "throughput_candidates_per_sec": 1364.997,
+      "speedup_vs_cpu": 1.3282,
+      "speedup_vs_npu_end_to_end": 1.2575,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "uses_cached_tensors": true,
+      "skips_full_logits_copy": false,
+      "includes_h2d_transfer": false,
+      "includes_full_format": true,
+      "prepare_latency_ms": 5.0788,
+      "correctness": {
+        "status": "passed",
+        "prediction_equal": true,
+        "scores_close": true,
+        "max_score_diff": 0.0,
+        "tolerance": 0.001
+      },
+      "correctness_check_included_in_timing": false,
+      "top_relation": "has_symptom"
+    },
+    {
+      "name": "cached_argmax_labels",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 50,
+      "latency_ms_avg": 0.5182,
+      "latency_ms_min": 0.3437,
+      "latency_ms_max": 1.2763,
+      "throughput_candidates_per_sec": 65616.645,
+      "speedup_vs_cpu": 63.8439,
+      "speedup_vs_npu_end_to_end": 60.4435,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "uses_cached_tensors": true,
+      "skips_full_logits_copy": true,
+      "includes_h2d_transfer": false,
+      "includes_full_format": false,
+      "prepare_latency_ms": 5.0788,
+      "correctness": {
+        "status": "passed",
+        "prediction_equal": true,
+        "scores_close": true,
+        "max_score_diff": 0.0,
+        "tolerance": 0.001
+      },
+      "correctness_check_included_in_timing": false,
+      "top_relation": "has_symptom"
+    },
+    {
+      "name": "cached_topk_labels",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 50,
+      "latency_ms_avg": 1.0245,
+      "latency_ms_min": 0.8849,
+      "latency_ms_max": 1.3407,
+      "throughput_candidates_per_sec": 33185.4525,
+      "speedup_vs_cpu": 32.2927,
+      "speedup_vs_npu_end_to_end": 30.5728,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "uses_cached_tensors": true,
+      "skips_full_logits_copy": true,
+      "skips_full_format": true,
+      "includes_h2d_transfer": false,
+      "includes_full_format": false,
+      "prepare_latency_ms": 5.0788,
+      "top_k": 10,
+      "correctness": {
+        "status": "passed",
+        "topk_indices_match": true,
+        "scores_close": true,
+        "max_score_diff": 0.0,
+        "tolerance": 0.001,
+        "top_k": 10
+      },
+      "correctness_check_included_in_timing": false,
+      "top_relation": "has_symptom"
+    },
+    {
+      "name": "cpu_topk_labels",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 50,
+      "latency_ms_avg": 22.5444,
+      "latency_ms_min": 15.1863,
+      "latency_ms_max": 32.0038,
+      "throughput_candidates_per_sec": 1508.1343,
+      "speedup_vs_cpu": 1.4675,
+      "speedup_vs_npu_end_to_end": 1.3893,
+      "backend": "torch",
+      "device": "cpu",
+      "uses_cached_tensors": false,
+      "skips_full_logits_copy": false,
+      "skips_full_format": true,
+      "includes_h2d_transfer": false,
+      "includes_full_format": false,
+      "top_k": 10,
+      "correctness": {
+        "status": "passed",
+        "topk_indices_match": true,
+        "scores_close": true,
+        "max_score_diff": 0.0,
+        "tolerance": 0.001,
+        "top_k": 10
+      },
+      "correctness_check_included_in_timing": false,
+      "top_relation": "has_symptom"
+    }
+  ],
+  "npu_utilization": {
+    "available": true,
+    "npu_id": 1,
+    "chip_id": 0,
+    "sample_count": 7,
+    "sample_interval_s": 0.2,
+    "tool": "npu-smi",
+    "aicube_pct": {
+      "min": 0.0,
+      "avg": 0.0,
+      "max": 0.0
+    },
+    "npu_utilization_pct": {
+      "min": 0.0,
+      "avg": 0.0,
+      "max": 0.0
+    },
+    "aivector_pct": {
+      "min": 0.0,
+      "avg": 0.0,
+      "max": 0.0
+    },
+    "hbm_pct": {
+      "min": 5.0,
+      "avg": 5.0,
+      "max": 5.0
+    },
+    "aicore_pct": {
+      "min": 0.0,
+      "avg": 0.0,
+      "max": 0.0
+    },
+    "hbm_bandwidth_pct": {
+      "min": 0.0,
+      "avg": 0.0,
+      "max": 0.0
+    },
+    "power_w": {
+      "min": 89.4,
+      "avg": 94.643,
+      "max": 96.9
+    }
+  }
+}

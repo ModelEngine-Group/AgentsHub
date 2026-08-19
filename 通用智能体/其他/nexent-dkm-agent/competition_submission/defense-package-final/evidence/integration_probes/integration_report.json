@@ -1,0 +1,11 @@
+{
+  "stack_status": "offline",
+  "datamate": {
+    "status": "skipped",
+    "reason": "datamate-url=none"
+  },
+  "nexent": {
+    "status": "skipped",
+    "reason": "nexent-url=none"
+  }
+}

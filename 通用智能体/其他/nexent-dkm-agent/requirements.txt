@@ -1,0 +1,32 @@
+# ============================================================
+# 通用依赖 (general) — 运行任务一/二/三主链路所需
+# 适用于 CPU 或 CUDA GPU 环境。NPU 环境请改用 requirements-npu.txt。
+# 安装: pip install -r requirements.txt
+# ============================================================
+
+# --- 数据处理 (任务一) ---
+pandas>=2.0
+
+# --- REST API 服务 (各任务 --serve 模式) ---
+fastapi>=0.110
+uvicorn>=0.29
+httpx>=0.27
+
+# --- 知识图谱与 LLM (任务二/三, 均为可选增强) ---
+neo4j>=5.0          # 可选: Neo4j 图谱持久化, 未部署时自动跳过
+openai>=1.0         # 可选: LLM 增强抽取/规划/NL2SQL, 未配置时回退规则/模板
+
+# --- 本地微调小模型: 训练与推理 (任务一/二/三, QLoRA) ---
+# CPU 可做推理; GPU 训练需 CUDA 版 torch (本仓库验证环境: CUDA 12.8 / torch 2.11)。
+# NPU 环境的 torch/torch_npu 见 requirements-npu.txt。
+torch>=2.0
+transformers>=4.40
+peft>=0.10
+datasets>=2.18
+accelerate>=0.28
+safetensors>=0.4
+
+# 可选: 任务一微调脚本支持 4-bit (QLoRA) 量化, 需 CUDA + 以下包; 缺失时自动降级为全精度。
+# bitsandbytes>=0.43
+# 可选: 若安装 trl 则使用 SFTTrainer, 否则自动回退到 transformers.Trainer。
+# trl>=0.8

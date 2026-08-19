@@ -1,0 +1,626 @@
+{
+  "collected_at": "2026-06-16T06:16:44.236197+00:00",
+  "host": "windows_final_online_check",
+  "environment_type": "bare_metal_or_vm",
+  "environment_facts": {
+    "is_container": false,
+    "pid1": "",
+    "environment_type": "bare_metal_or_vm",
+    "java_installed": false,
+    "node_installed": false,
+    "docker_installed": true,
+    "podman_installed": false,
+    "python_version": "3.12.10",
+    "torch_version": "2.11.0+cu128",
+    "torch_npu_available": false,
+    "npu_model": "unknown",
+    "ram_gb": "unknown",
+    "disk_gb": "unknown"
+  },
+  "runtime_dependency_analysis": {
+    "neo4j_requires": "Java 11+ (JVM) 或容器运行时",
+    "datamate_requires": "Java (Spring Boot) 或容器运行时",
+    "nexent_requires": "Node.js 或容器运行时",
+    "node_has": "Python 3.12.10 + Docker",
+    "conclusion": "存在容器运行能力，服务状态需以协议探测为准"
+  },
+  "method": "protocol-level：Neo4j 走 Bolt 握手(check_neo4j_connection)；DataMate 走 health 与核心业务 API(probe_datamate)；Nexent 经 HTTP GET 并用 Server 头+响应体指纹识别 Nexent 或排除非 Nexent 服务；系统级记录 Java/Node.js/容器运行时可用性",
+  "endpoints": {
+    "neo4j": "bolt://localhost:7687",
+    "datamate": "http://localhost:18000",
+    "nexent": "http://localhost:3000"
+  },
+  "results": {
+    "neo4j": {
+      "status": "connected",
+      "uri": "bolt://localhost:7687"
+    },
+    "datamate": {
+      "status": "available",
+      "readiness_basis": "health_and_core_api_probes",
+      "successful_core_probes": 3,
+      "core_probe_count": 3,
+      "base_url": "http://localhost:18000",
+      "health": {
+        "status": "healthy",
+        "endpoint": "http://localhost:18000/api/health",
+        "service": "Label Studio Adapter",
+        "version": "1.0.0",
+        "raw_code": "0"
+      },
+      "operator_sample": {
+        "code": "0",
+        "message": "success",
+        "data": {
+          "page": 0,
+          "size": 5,
+          "totalElements": 210,
+          "totalPages": 42,
+          "content": [
+            {
+              "id": "audio_duration_filter",
+              "name": "音频时长过滤器",
+              "description": "Keep data samples whose audio durations are within a specified range. 保留音频持续时间在指定范围内的数据样本。",
+              "version": "1.4.4",
+              "inputs": "audio",
+              "outputs": "audio",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "42dd9392-73e4-458c-81ff-41751ada47b5",
+                "8c09476a-a922-418f-a908-733f8a0de521",
+                "79b385b4-fde8-4617-bcba-02a176938996",
+                "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                "96a3b07a-3439-4557-a835-525faad60ca3"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            },
+            {
+              "id": "audio_ffmpeg_wrapped_mapper",
+              "name": "音频FFmpeg封装映射器",
+              "description": "Wraps FFmpeg audio filters for processing audio files in a dataset. 包装FFmpeg音频过滤器，用于处理数据集中的音频文件。",
+              "version": "1.4.4",
+              "inputs": "audio",
+              "outputs": "audio",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "42dd9392-73e4-458c-81ff-41751ada47b5",
+                "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                "8c09476a-a922-418f-a908-733f8a0de521",
+                "96a3b07a-3439-4557-a835-525faad60ca3",
+                "79b385b4-fde8-4617-bcba-02a176938996"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            },
+            {
+              "id": "alphanumeric_filter",
+              "name": "字母数字过滤器",
+              "description": "Filter to keep samples with an alphabet/numeric ratio within a specific range. 过滤器，以保持具有特定范围内的字母/数字比率的样本。",
+              "version": "1.4.4",
+              "inputs": "text",
+              "outputs": "text",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "8c09476a-a922-418f-a908-733f8a0de521",
+                "79b385b4-fde8-4617-bcba-02a176938996",
+                "96a3b07a-3439-4557-a835-525faad60ca3",
+                "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                "9eda9d5d-072b-499b-916c-797a0a8750e1"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            },
+            {
+              "id": "audio_add_gaussian_noise_mapper",
+              "name": "音频高斯噪声添加映射器",
+              "description": "Mapper to add Gaussian noise to audio samples. 映射器将高斯噪声添加到音频样本。",
+              "version": "1.4.4",
+              "inputs": "audio",
+              "outputs": "audio",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                "42dd9392-73e4-458c-81ff-41751ada47b5",
+                "96a3b07a-3439-4557-a835-525faad60ca3",
+                "79b385b4-fde8-4617-bcba-02a176938996",
+                "8c09476a-a922-418f-a908-733f8a0de521"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            },
+            {
+              "id": "audio_nmf_snr_filter",
+              "name": "音频NMF信噪比过滤器",
+              "description": "Keep data samples whose audio Signal-to-Noise Ratios (SNRs) are within a specified range. 保留音频信噪比 (snr) 在指定范围内的数据样本。",
+              "version": "1.4.4",
+              "inputs": "audio",
+              "outputs": "audio",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "79b385b4-fde8-4617-bcba-02a176938996",
+                "8c09476a-a922-418f-a908-733f8a0de521",
+                "96a3b07a-3439-4557-a835-525faad60ca3",
+                "42dd9392-73e4-458c-81ff-41751ada47b5",
+                "9eda9d5d-072b-499b-916c-797a0a8750e1"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            }
+          ]
+        }
+      },
+      "template_sample": {
+        "code": "0",
+        "message": "success",
+        "data": {
+          "page": 0,
+          "size": 3,
+          "totalElements": 7,
+          "totalPages": 3,
+          "content": [
+            {
+              "id": "403500e7-7252-4a45-a4a5-d04f9b7ac85b",
+              "name": "task1-data-cleaning-template-20260528044329036266",
+              "description": "DataMate cleaning template generated from task 1 local plan.",
+              "instance": [
+                {
+                  "id": "DuplicateFilesFilter",
+                  "name": "相似文档去除",
+                  "description": "相似文档去除。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": "{\"fileDuplicateThreshold\": {\"name\": \"文档相似度\", \"description\": \"基于MinHash算法和Jaccard相似度，计算当前文档与数据集中其它文档相似性，超过设定值，该文档被去除。\", \"type\": \"slider\", \"defaultVal\": 0.5, \"min\": 0, \"max\": 1, \"step\": 0.1}}",
+                  "overrides": {}
+                },
+                {
+                  "id": "DuplicateSentencesFilter",
+                  "name": "文档局部内容去重",
+                  "description": "文档局部内容去重。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "UnicodeSpaceCleaner",
+                  "name": "空格标准化",
+                  "description": "将文档中不同的 unicode 空格，如 u2008，转换为正常空格\\\\u0020。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "ExtraSpaceCleaner",
+                  "name": "多余空格去除",
+                  "description": "移除文档首尾、句中或标点符号附近多余空格和 tab 等。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "8c09476a-a922-418f-a908-733f8a0de521"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                }
+              ],
+              "createdAt": "2026-05-28T12:43:29.061337",
+              "updatedAt": "2026-05-28T12:43:29.061337"
+            },
+            {
+              "id": "335b8534-f37d-46dc-8789-451c849a8c74",
+              "name": "task1-data-cleaning-template",
+              "description": "DataMate cleaning template generated from task 1 local plan.",
+              "instance": [
+                {
+                  "id": "DuplicateFilesFilter",
+                  "name": "相似文档去除",
+                  "description": "相似文档去除。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": "{\"fileDuplicateThreshold\": {\"name\": \"文档相似度\", \"description\": \"基于MinHash算法和Jaccard相似度，计算当前文档与数据集中其它文档相似性，超过设定值，该文档被去除。\", \"type\": \"slider\", \"defaultVal\": 0.5, \"min\": 0, \"max\": 1, \"step\": 0.1}}",
+                  "overrides": {}
+                },
+                {
+                  "id": "DuplicateSentencesFilter",
+                  "name": "文档局部内容去重",
+                  "description": "文档局部内容去重。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "UnicodeSpaceCleaner",
+                  "name": "空格标准化",
+                  "description": "将文档中不同的 unicode 空格，如 u2008，转换为正常空格\\\\u0020。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "ExtraSpaceCleaner",
+                  "name": "多余空格去除",
+                  "description": "移除文档首尾、句中或标点符号附近多余空格和 tab 等。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "8c09476a-a922-418f-a908-733f8a0de521"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                }
+              ],
+              "createdAt": "2026-05-28T12:36:19.562145",
+              "updatedAt": "2026-05-28T12:36:19.562145"
+            },
+            {
+              "id": "772a0611-a4bd-63f6-c938-668877660003",
+              "name": "RAG知识库构建预处理模板",
+              "description": "专为RAG场景设计。重点去除目录、图注、XML/HTML标签等对向量检索无意义的噪声，并进行段落级去重以优化切片质量。",
+              "instance": [
+                {
+                  "id": "HtmlTagCleaner",
+                  "name": "HTML标签去除",
+                  "description": "移除文档中HTML标签，如 <html>、<dev>、<p> 等。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34"
+                  ],
+                  "settings": "{\"removeTableTags\":{\"name\":\"是否去除表格标签\",\"description\":\"若为是，则会去除表格标签<tr><td>等。\",\"type\":\"switch\",\"defaultVal\":\"false\",\"required\":false,\"checkedLabel\":\"是\",\"unCheckedLabel\":\"否\"}}",
+                  "overrides": {
+                    "removeTableTags": "false"
+                  }
+                },
+                {
+                  "id": "ContentCleaner",
+                  "name": "文档目录去除",
+                  "description": "去除文档中的目录。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "LegendCleaner",
+                  "name": "图注表注去除",
+                  "description": "去除文档中的图注、表注等内容。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "XMLTagCleaner",
+                  "name": "XML标签去除",
+                  "description": "去除XML中的标签。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "UnicodeSpaceCleaner",
+                  "name": "空格标准化",
+                  "description": "将文档中不同的 unicode 空格，如 u2008，转换为正常空格\\\\u0020。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "ExtraSpaceCleaner",
+                  "name": "多余空格去除",
+                  "description": "移除文档首尾、句中或标点符号附近多余空格和 tab 等。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "8c09476a-a922-418f-a908-733f8a0de521"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "DuplicateSentencesFilter",
+                  "name": "文档局部内容去重",
+                  "description": "文档局部内容去重。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "FileWithShortOrLongLengthFilter",
+                  "name": "文档字数检查",
+                  "description": "字数不在指定范围会被过滤掉。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": "{\"fileLength\": {\"name\": \"文档字数\", \"description\": \"过滤字数不在指定范围内的文档，如[10,10000000]。若输入为空，则不对字数上/下限做限制。\", \"type\": \"range\", \"defaultVal\": [10, 10000000], \"min\": 0, \"max\": 10000000000000000, \"step\": 1}}",
+                  "overrides": {
+                    "fileLength": [
+                      20,
+                      100000
+                    ]
+                  }
+                }
+              ],
+              "createdAt": "2026-05-27T22:08:36.104157",
+              "updatedAt": "2026-05-27T22:08:36.104157"
+            }
+          ]
+        }
+      },
+      "task_sample": {
+        "code": "0",
+        "message": "success",
+        "data": {
+          "page": 0,
+          "size": 3,
+          "totalElements": 3,
+          "totalPages": 1,
+          "content": [
+            {
+              "id": "c0ae877b-a640-4349-99a9-82b6b3e60493",
+              "name": "task1_submit_smoke-task1-cleaning-20260528044329071763",
+              "description": "DataMate cleaning task generated from task 1 plan.",
+              "srcDatasetId": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+              "srcDatasetName": "task1_submit_smoke",
+              "destDatasetId": "379c3938-ce08-4111-9bda-e7dbe1f988c3",
+              "destDatasetName": "task1_submit_smoke_cleaned_repeatable",
+              "beforeSize": 121,
+              "afterSize": 117,
+              "fileCount": 1,
+              "retryCount": 0,
+              "status": "COMPLETED",
+              "templateId": null,
+              "instance": null,
+              "progress": {
+                "process": 100.0,
+                "successRate": 100.0,
+                "totalFileNum": 1,
+                "succeedFileNum": 1,
+                "failedFileNum": 0,
+                "finishedFileNum": 1
+              },
+              "createdAt": "2026-05-28T12:43:29.101509",
+              "startedAt": "2026-05-28T12:43:29.127668",
+              "finishedAt": "2026-05-28T12:43:39.362434"
+            },
+            {
+              "id": "c82c7f4f-4041-42d8-98f2-f59d8aa94ff8",
+              "name": "task1_submit_smoke_loaded-task1-cleaning",
+              "description": "DataMate cleaning task generated from task 1 plan.",
+              "srcDatasetId": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+              "srcDatasetName": "task1_submit_smoke_loaded",
+              "destDatasetId": "170f756b-d6f3-443a-8783-f081ec980402",
+              "destDatasetName": "task1_submit_smoke_cleaned_loaded",
+              "beforeSize": 121,
+              "afterSize": 117,
+              "fileCount": 1,
+              "retryCount": 0,
+              "status": "COMPLETED",
+              "templateId": null,
+              "instance": null,
+              "progress": {
+                "process": 100.0,
+                "successRate": 100.0,
+                "totalFileNum": 1,
+                "succeedFileNum": 1,
+                "failedFileNum": 0,
+                "finishedFileNum": 1
+              },
+              "createdAt": "2026-05-28T12:42:09.665921",
+              "startedAt": "2026-05-28T12:42:09.698858",
+              "finishedAt": "2026-05-28T12:42:23.156885"
+            },
+            {
+              "id": "c3365305-8d5a-4ebe-bc5e-6ec85a6d4fce",
+              "name": "task1_submit_smoke-task1-cleaning",
+              "description": "DataMate cleaning task generated from task 1 plan.",
+              "srcDatasetId": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+              "srcDatasetName": "task1_submit_smoke",
+              "destDatasetId": "accb1214-c534-4eea-9b82-ec18cb522f62",
+              "destDatasetName": "task1_submit_smoke_cleaned",
+              "beforeSize": 0,
+              "afterSize": 0,
+              "fileCount": 0,
+              "retryCount": 0,
+              "status": "FAILED",
+              "templateId": null,
+              "instance": null,
+              "progress": {
+                "process": 0.0,
+                "successRate": 0.0,
+                "totalFileNum": 0,
+                "succeedFileNum": 0,
+                "failedFileNum": 0,
+                "finishedFileNum": 0
+              },
+              "createdAt": "2026-05-28T12:36:19.603845",
+              "startedAt": "2026-05-28T12:36:19.649286",
+              "finishedAt": "2026-05-28T12:36:32.066031"
+            }
+          ]
+        }
+      },
+      "write_mode": "probe_only_no_submit"
+    },
+    "nexent": {
+      "status": "available",
+      "url": "http://localhost:3000",
+      "http_status": 200,
+      "server_header": "",
+      "x_powered_by": "Next.js",
+      "detected_service": "nexent",
+      "body_preview": "<!DOCTYPE html><html lang=\"zh\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-s",
+      "api_confirmation": {
+        "endpoint": "/api/tool/openapi_services",
+        "http_status": 200,
+        "is_nexent": true,
+        "response_preview": "{\"message\":\"success\",\"data\":[{\"id\":1,\"mcp_service_name\":\"nexent_dkm_task1\",\"description\":\"DKM task 1 data processing API\",\"openapi_json\":{\"info\":{\"title\":\"Task 1 Data Processing Agent API\",\"version\":\""
+      }
+    }
+  },
+  "summary": {
+    "neo4j": "connected",
+    "datamate": "available",
+    "nexent": "available"
+  },
+  "reachable": {
+    "neo4j": true,
+    "datamate": true,
+    "nexent": true
+  }
+}

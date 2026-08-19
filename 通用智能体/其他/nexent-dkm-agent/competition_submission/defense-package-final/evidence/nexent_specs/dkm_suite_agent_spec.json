@@ -1,0 +1,66 @@
+{
+  "agent_spec": {
+    "name": "dkm_end_to_end_agent",
+    "description": "Nexent-compatible DKM suite agent that chains data processing, medical knowledge graph generation, and graph-driven analysis.",
+    "tools": [
+      {
+        "class_name": "DataProcessingAgentTool",
+        "name": "task1_data_processing",
+        "description": "Understand, plan, execute, and track a CSV data-cleaning workflow. It profiles structured data, runs deterministic local cleaning, and prepares DataMate cleaning template/task payloads.",
+        "inputs": "{\"task_request\": {\"type\": \"string\", \"description\": \"Free-form data-processing request.\", \"description_zh\": \"自然语言数据处理需求。\", \"nullable\": true}, \"input_path\": {\"type\": \"string\", \"description\": \"Input CSV path. Uses the bundled sample if omitted.\", \"description_zh\": \"输入CSV路径；为空时使用内置样例。\", \"nullable\": true}, \"datamate_mode\": {\"type\": \"string\", \"description\": \"dry_run prepares payloads; submit posts to DataMate.\", \"description_zh\": \"dry_run只生成payload；submit会提交到DataMate。\", \"default\": \"dry_run\", \"nullable\": true}}",
+        "output_type": "string",
+        "params": {
+          "datamate_base_url": "http://localhost:18000",
+          "output_dir": null
+        },
+        "source": "local",
+        "metadata": {
+          "task": "task1",
+          "framework": "nexent",
+          "default_datamate_mode": "dry_run"
+        }
+      },
+      {
+        "class_name": "MedicalKGAgentTool",
+        "name": "task2_medical_kg",
+        "description": "Extract medical entities and relations from text, build a JSON knowledge graph, validate triples, and answer graph-backed questions.",
+        "inputs": "{\"input_path\": {\"type\": \"string\", \"description\": \"Medical text input path. Uses bundled sample if omitted.\", \"nullable\": true}, \"question\": {\"type\": \"string\", \"description\": \"Question to answer from the generated graph.\", \"nullable\": true}}",
+        "output_type": "string",
+        "params": {
+          "output_dir": null
+        },
+        "source": "local",
+        "metadata": {
+          "task": "task2",
+          "framework": "nexent",
+          "graph_output": "outputs/task2/medical_kg.json"
+        }
+      },
+      {
+        "class_name": "GraphAnalysisAgentTool",
+        "name": "task3_graph_analysis",
+        "description": "Analyze a medical knowledge graph with LLM-enhanced NL2SQL, graph analytics (centrality, paths, communities), statistics, association analysis, trends, and interactive visualization.",
+        "inputs": "{\"graph_file\": {\"type\": \"string\", \"description\": \"Task-2 graph JSON path. If missing, bootstraps the sample graph.\", \"nullable\": true}, \"question\": {\"type\": \"string\", \"description\": \"Natural-language analysis question for NL2SQL.\", \"nullable\": true}, \"task_request\": {\"type\": \"string\", \"description\": \"Free-form analysis request (e.g., '统计分析', '关联分析').\", \"nullable\": true}, \"llm_config\": {\"type\": \"object\", \"description\": \"LLM config with base_url, api_key, model_name for NL2SQL enhancement.\", \"nullable\": true}}",
+        "output_type": "string",
+        "params": {
+          "output_dir": null
+        },
+        "source": "local",
+        "metadata": {
+          "task": "task3",
+          "framework": "nexent",
+          "analysis_output": "outputs/task3/task3_analysis_report.json"
+        }
+      }
+    ],
+    "max_steps": 12,
+    "model_name": "main_model",
+    "provide_run_summary": true,
+    "instructions": "You orchestrate the medical DKM workflow. 1) Call task1_data_processing to clean structured or text inputs and prepare DataMate payloads (keep datamate_mode=dry_run unless submit is requested). 2) Call task2_medical_kg on the cleaned text to build medical_kg.json. 3) Call task3_graph_analysis on the graph artifact for statistics, NL2SQL, and BI/insight visualizations. Reuse each stage output as the next stage input.",
+    "metadata": {
+      "framework": "nexent",
+      "workflow": "data_knowledge_insight",
+      "default_datamate_mode": "dry_run"
+    }
+  }
+}

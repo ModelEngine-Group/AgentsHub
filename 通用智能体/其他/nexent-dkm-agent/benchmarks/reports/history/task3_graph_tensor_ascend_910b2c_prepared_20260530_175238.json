@@ -1,0 +1,66 @@
+{
+  "task": "task3_graph_tensor_degree",
+  "graph": {
+    "node_count": 1000,
+    "edge_count": 10000,
+    "seed": 42
+  },
+  "cpu": {
+    "iterations": 20,
+    "latency_ms_avg": 2.41,
+    "latency_ms_min": 2.3564,
+    "latency_ms_max": 2.48,
+    "throughput_edges_per_sec": 4149298.456,
+    "status": "completed",
+    "backend": "python",
+    "device": "cpu",
+    "top_degree": 34
+  },
+  "npu": {
+    "iterations": 20,
+    "latency_ms_avg": 5.4706,
+    "latency_ms_min": 5.2331,
+    "latency_ms_max": 6.1834,
+    "throughput_edges_per_sec": 1827938.0346,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "measurement_mode": "end_to_end",
+    "includes_tensor_setup": true,
+    "includes_result_copy": true,
+    "top_degree": 34
+  },
+  "npu_prepared": {
+    "iterations": 20,
+    "latency_ms_avg": 1.4552,
+    "latency_ms_min": 1.3927,
+    "latency_ms_max": 1.551,
+    "throughput_edges_per_sec": 6871723.1607,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "measurement_mode": "prepared_kernel",
+    "includes_tensor_setup": false,
+    "includes_result_copy": false,
+    "prepare_latency_ms": 2.6933,
+    "top_degree": 34
+  },
+  "correctness": {
+    "status": "passed",
+    "degree_vector_equal": true,
+    "max_abs_diff": 0
+  },
+  "prepared_correctness": {
+    "status": "passed",
+    "degree_vector_equal": true,
+    "max_abs_diff": 0
+  },
+  "speedup": 0.4405,
+  "prepared_speedup": 1.6561,
+  "notes": [
+    "CPU measures Python list-based undirected degree centrality.",
+    "NPU end_to_end measures graph index parsing, device tensor creation, index_add_, synchronization, and result copy.",
+    "NPU prepared_kernel measures repeated zero_ + index_add_ execution after tensors are already on npu:0.",
+    "Synthetic graph generation is excluded from CPU/NPU timing."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "task": "task1_datamate_submit",
+  "input": "data/samples/task1_patients.csv",
+  "base_url": "http://localhost:18000",
+  "requested_mode": "submit",
+  "resolved_mode": "submit",
+  "mode_resolution": {
+    "requested_mode": "submit",
+    "resolved_mode": "submit",
+    "auto_selected": false
+  },
+  "health_status": "healthy",
+  "status": "completed",
+  "pipeline_status": "completed",
+  "passed": true,
+  "src_dataset_id": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+  "datamate_mode_resolution": {
+    "requested_mode": "submit",
+    "resolved_mode": "submit",
+    "auto_selected": false
+  },
+  "submit_evidence": {
+    "template_status": "verified",
+    "template_resource_id": "26e46754-ca64-4550-b0b0-4c54dcdd19cf",
+    "template_verified": true,
+    "task_status": "verified",
+    "task_resource_id": "912914ff-83f3-407e-8005-9747cfb07dab",
+    "task_verified": true,
+    "verified": true
+  },
+  "quality_report_status": "warning",
+  "output_dir": "outputs/task1_datamate_submit_benchmark"
+}

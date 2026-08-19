@@ -1,0 +1,212 @@
+{
+  "record_count": 30,
+  "backend": "cpu",
+  "overall": {
+    "tp": 145,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "per_predicate": {
+    "has_symptom": {
+      "tp": 57,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "treated_by": {
+      "tp": 34,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "diagnosed_by": {
+      "tp": 38,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "recommended_treatment": {
+      "tp": 14,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "complication_of": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "records": [
+    {
+      "record_id": "holdout_1",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_2",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_3",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_4",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_5",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_6",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_7",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_8",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_9",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_10",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_11",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_12",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_13",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_14",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_15",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_16",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_17",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_18",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_19",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_20",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_21",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_22",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_23",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_24",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_25",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_26",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_27",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_28",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_29",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_30",
+      "false_positives": [],
+      "false_negatives": []
+    }
+  ],
+  "benchmark": "benchmarks/data/kg_relation_gold.json",
+  "thresholds": {
+    "precision": 0.9,
+    "recall": 0.95
+  },
+  "passed": true
+}

@@ -1,0 +1,32 @@
+{
+  "task": "task3_analysis_agent",
+  "input": {
+    "node_count": 26,
+    "edge_count": 31,
+    "iterations": 20,
+    "path": "/data/nexent-dkm-agent/nexent-dkm-agent/outputs/task2/medical_kg.json"
+  },
+  "cpu": {
+    "status": "completed",
+    "backend": "python",
+    "iterations": 20,
+    "latency_ms_avg": 0.43,
+    "latency_ms_min": 0.3766,
+    "latency_ms_max": 0.5392,
+    "throughput_edges_per_sec": 72095.3474,
+    "chart_count": 4,
+    "sql_row_count": 4,
+    "disease_profile_count": 4
+  },
+  "npu": {
+    "status": "available",
+    "backend": "Ascend PyTorch NPU",
+    "module": "torch_npu",
+    "platform": "Linux-5.15.0-113-generic-x86_64-with-glibc2.38",
+    "energy_metrics": "requires device-specific profiler"
+  },
+  "notes": [
+    "CPU numbers are measured locally with deterministic graph-analysis operators.",
+    "NPU speedup and energy metrics are reported only when a supported NPU runtime is detected."
+  ]
+}

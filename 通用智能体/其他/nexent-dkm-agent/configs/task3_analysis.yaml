@@ -1,0 +1,20 @@
+task: task3_analysis_agent
+description: Graph-driven analysis agent configuration.
+input:
+  graph_file: outputs/task2/medical_kg.json
+analysis:
+  - statistical_analysis
+  - association_analysis
+  - trend_analysis
+  - nl2sql
+visualization:
+  - bar_chart
+  - line_chart
+  - relation_graph
+output:
+  report_file: outputs/task3/task3_analysis_report.json
+  markdown_report: outputs/task3/task3_insight_report.md
+  html_report: outputs/task3/task3_insight_report.html
+  dashboard_report: outputs/task3/task3_analysis_dashboard.html
+nl2sql:
+  default_question: 哪些疾病关联最多症状？

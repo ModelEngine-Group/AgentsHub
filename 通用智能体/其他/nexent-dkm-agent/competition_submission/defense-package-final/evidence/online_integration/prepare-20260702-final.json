@@ -1,0 +1,2206 @@
+{
+  "mode": "prepare",
+  "write_allowed": false,
+  "integration": {
+    "stack_status": "ready",
+    "datamate": {
+      "status": "available",
+      "readiness_basis": "health_and_core_api_probes",
+      "successful_core_probes": 3,
+      "core_probe_count": 3,
+      "base_url": "http://localhost:18000",
+      "health": {
+        "status": "healthy",
+        "endpoint": "http://localhost:18000/api/health",
+        "service": "Label Studio Adapter",
+        "version": "1.0.0",
+        "raw_code": "0"
+      },
+      "operator_sample": {
+        "code": "0",
+        "message": "success",
+        "data": {
+          "page": 0,
+          "size": 5,
+          "totalElements": 210,
+          "totalPages": 42,
+          "content": [
+            {
+              "id": "audio_duration_filter",
+              "name": "音频时长过滤器",
+              "description": "Keep data samples whose audio durations are within a specified range. 保留音频持续时间在指定范围内的数据样本。",
+              "version": "1.4.4",
+              "inputs": "audio",
+              "outputs": "audio",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "42dd9392-73e4-458c-81ff-41751ada47b5",
+                "8c09476a-a922-418f-a908-733f8a0de521",
+                "79b385b4-fde8-4617-bcba-02a176938996",
+                "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                "96a3b07a-3439-4557-a835-525faad60ca3"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            },
+            {
+              "id": "audio_ffmpeg_wrapped_mapper",
+              "name": "音频FFmpeg封装映射器",
+              "description": "Wraps FFmpeg audio filters for processing audio files in a dataset. 包装FFmpeg音频过滤器，用于处理数据集中的音频文件。",
+              "version": "1.4.4",
+              "inputs": "audio",
+              "outputs": "audio",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "42dd9392-73e4-458c-81ff-41751ada47b5",
+                "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                "8c09476a-a922-418f-a908-733f8a0de521",
+                "96a3b07a-3439-4557-a835-525faad60ca3",
+                "79b385b4-fde8-4617-bcba-02a176938996"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            },
+            {
+              "id": "alphanumeric_filter",
+              "name": "字母数字过滤器",
+              "description": "Filter to keep samples with an alphabet/numeric ratio within a specific range. 过滤器，以保持具有特定范围内的字母/数字比率的样本。",
+              "version": "1.4.4",
+              "inputs": "text",
+              "outputs": "text",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "8c09476a-a922-418f-a908-733f8a0de521",
+                "79b385b4-fde8-4617-bcba-02a176938996",
+                "96a3b07a-3439-4557-a835-525faad60ca3",
+                "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                "9eda9d5d-072b-499b-916c-797a0a8750e1"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            },
+            {
+              "id": "audio_add_gaussian_noise_mapper",
+              "name": "音频高斯噪声添加映射器",
+              "description": "Mapper to add Gaussian noise to audio samples. 映射器将高斯噪声添加到音频样本。",
+              "version": "1.4.4",
+              "inputs": "audio",
+              "outputs": "audio",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                "42dd9392-73e4-458c-81ff-41751ada47b5",
+                "96a3b07a-3439-4557-a835-525faad60ca3",
+                "79b385b4-fde8-4617-bcba-02a176938996",
+                "8c09476a-a922-418f-a908-733f8a0de521"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            },
+            {
+              "id": "audio_nmf_snr_filter",
+              "name": "音频NMF信噪比过滤器",
+              "description": "Keep data samples whose audio Signal-to-Noise Ratios (SNRs) are within a specified range. 保留音频信噪比 (snr) 在指定范围内的数据样本。",
+              "version": "1.4.4",
+              "inputs": "audio",
+              "outputs": "audio",
+              "runtime": null,
+              "settings": null,
+              "fileName": null,
+              "fileSize": null,
+              "metrics": null,
+              "usageCount": 0,
+              "isStar": false,
+              "categories": [
+                "79b385b4-fde8-4617-bcba-02a176938996",
+                "8c09476a-a922-418f-a908-733f8a0de521",
+                "96a3b07a-3439-4557-a835-525faad60ca3",
+                "42dd9392-73e4-458c-81ff-41751ada47b5",
+                "9eda9d5d-072b-499b-916c-797a0a8750e1"
+              ],
+              "overrides": null,
+              "requirements": null,
+              "readme": null,
+              "releases": null,
+              "createdAt": "2026-05-27T22:08:36.828987",
+              "updatedAt": "2026-05-27T22:08:36.828987"
+            }
+          ]
+        }
+      },
+      "template_sample": {
+        "code": "0",
+        "message": "success",
+        "data": {
+          "page": 0,
+          "size": 3,
+          "totalElements": 16,
+          "totalPages": 6,
+          "content": [
+            {
+              "id": "a0af304f-b25b-40d1-9805-ec8e8064da16",
+              "name": "task1-data-cleaning-template-20260702130430062752",
+              "description": "DataMate cleaning template generated from task 1 local plan.",
+              "instance": [
+                {
+                  "id": "DuplicateFilesFilter",
+                  "name": "相似文档去除",
+                  "description": "相似文档去除。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": "{\"fileDuplicateThreshold\": {\"name\": \"文档相似度\", \"description\": \"基于MinHash算法和Jaccard相似度，计算当前文档与数据集中其它文档相似性，超过设定值，该文档被去除。\", \"type\": \"slider\", \"defaultVal\": 0.5, \"min\": 0, \"max\": 1, \"step\": 0.1}}",
+                  "overrides": {}
+                },
+                {
+                  "id": "DuplicateSentencesFilter",
+                  "name": "文档局部内容去重",
+                  "description": "文档局部内容去重。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "UnicodeSpaceCleaner",
+                  "name": "空格标准化",
+                  "description": "将文档中不同的 unicode 空格，如 u2008，转换为正常空格\\\\u0020。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "ExtraSpaceCleaner",
+                  "name": "多余空格去除",
+                  "description": "移除文档首尾、句中或标点符号附近多余空格和 tab 等。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "8c09476a-a922-418f-a908-733f8a0de521"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                }
+              ],
+              "createdAt": "2026-07-02T21:04:29.656171",
+              "updatedAt": "2026-07-02T21:04:29.656171"
+            },
+            {
+              "id": "71176cb8-5c67-4d9d-b24b-f0bdcd151a2f",
+              "name": "task1-data-cleaning-template-20260624092938219530",
+              "description": "DataMate cleaning template generated from task 1 local plan.",
+              "instance": [
+                {
+                  "id": "DuplicateFilesFilter",
+                  "name": "相似文档去除",
+                  "description": "相似文档去除。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": "{\"fileDuplicateThreshold\": {\"name\": \"文档相似度\", \"description\": \"基于MinHash算法和Jaccard相似度，计算当前文档与数据集中其它文档相似性，超过设定值，该文档被去除。\", \"type\": \"slider\", \"defaultVal\": 0.5, \"min\": 0, \"max\": 1, \"step\": 0.1}}",
+                  "overrides": {}
+                },
+                {
+                  "id": "DuplicateSentencesFilter",
+                  "name": "文档局部内容去重",
+                  "description": "文档局部内容去重。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "UnicodeSpaceCleaner",
+                  "name": "空格标准化",
+                  "description": "将文档中不同的 unicode 空格，如 u2008，转换为正常空格\\\\u0020。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "ExtraSpaceCleaner",
+                  "name": "多余空格去除",
+                  "description": "移除文档首尾、句中或标点符号附近多余空格和 tab 等。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "8c09476a-a922-418f-a908-733f8a0de521"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                }
+              ],
+              "createdAt": "2026-06-24T17:29:38.043898",
+              "updatedAt": "2026-06-24T17:29:38.043898"
+            },
+            {
+              "id": "0ea4e6a4-2bf4-47b2-93a1-460b5c3d65e7",
+              "name": "task1-data-cleaning-template-20260618140727475724",
+              "description": "DataMate cleaning template generated from task 1 local plan.",
+              "instance": [
+                {
+                  "id": "DuplicateFilesFilter",
+                  "name": "相似文档去除",
+                  "description": "相似文档去除。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": "{\"fileDuplicateThreshold\": {\"name\": \"文档相似度\", \"description\": \"基于MinHash算法和Jaccard相似度，计算当前文档与数据集中其它文档相似性，超过设定值，该文档被去除。\", \"type\": \"slider\", \"defaultVal\": 0.5, \"min\": 0, \"max\": 1, \"step\": 0.1}}",
+                  "overrides": {}
+                },
+                {
+                  "id": "DuplicateSentencesFilter",
+                  "name": "文档局部内容去重",
+                  "description": "文档局部内容去重。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "UnicodeSpaceCleaner",
+                  "name": "空格标准化",
+                  "description": "将文档中不同的 unicode 空格，如 u2008，转换为正常空格\\\\u0020。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "8c09476a-a922-418f-a908-733f8a0de521",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                },
+                {
+                  "id": "ExtraSpaceCleaner",
+                  "name": "多余空格去除",
+                  "description": "移除文档首尾、句中或标点符号附近多余空格和 tab 等。",
+                  "inputs": "text",
+                  "outputs": "text",
+                  "categories": [
+                    "96a3b07a-3439-4557-a835-525faad60ca3",
+                    "431e7798-5426-4e1a-aae6-b9905a836b34",
+                    "d8a5df7a-52a9-42c2-83c4-01062e60f597",
+                    "9eda9d5d-072b-499b-916c-797a0a8750e1",
+                    "8c09476a-a922-418f-a908-733f8a0de521"
+                  ],
+                  "settings": null,
+                  "overrides": {}
+                }
+              ],
+              "createdAt": "2026-06-18T22:07:26.868695",
+              "updatedAt": "2026-06-18T22:07:26.868695"
+            }
+          ]
+        }
+      },
+      "task_sample": {
+        "code": "0",
+        "message": "success",
+        "data": {
+          "page": 0,
+          "size": 3,
+          "totalElements": 12,
+          "totalPages": 4,
+          "content": [
+            {
+              "id": "ce83ff2b-68da-4d49-be9e-6f82484958e4",
+              "name": "task1_submit_smoke-task1-cleaning-20260702130430162020",
+              "description": "DataMate cleaning task generated from task 1 plan.",
+              "srcDatasetId": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+              "srcDatasetName": "task1_submit_smoke",
+              "destDatasetId": "b3b5c1b2-f45a-453c-a979-5cd960e85cb4",
+              "destDatasetName": "task1_submit_smoke_cleaned_20260702210429",
+              "beforeSize": 121,
+              "afterSize": null,
+              "fileCount": 1,
+              "retryCount": 0,
+              "status": "RUNNING",
+              "templateId": null,
+              "instance": null,
+              "progress": {
+                "process": 0.0,
+                "successRate": 0.0,
+                "totalFileNum": 1,
+                "succeedFileNum": 0,
+                "failedFileNum": 0,
+                "finishedFileNum": 0
+              },
+              "createdAt": "2026-07-02T21:04:29.796291",
+              "startedAt": "2026-07-02T21:04:29.890751",
+              "finishedAt": null
+            },
+            {
+              "id": "cae5362e-0687-430d-a69c-62dbdf749623",
+              "name": "task1_submit_smoke-task1-cleaning-20260624092938312151",
+              "description": "DataMate cleaning task generated from task 1 plan.",
+              "srcDatasetId": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+              "srcDatasetName": "task1_submit_smoke",
+              "destDatasetId": "3817ed55-d280-4c99-b2eb-c12abc763af3",
+              "destDatasetName": "task1_submit_smoke_cleaned_20260624172937",
+              "beforeSize": 121,
+              "afterSize": 117,
+              "fileCount": 1,
+              "retryCount": 0,
+              "status": "COMPLETED",
+              "templateId": null,
+              "instance": null,
+              "progress": {
+                "process": 100.0,
+                "successRate": 100.0,
+                "totalFileNum": 1,
+                "succeedFileNum": 1,
+                "failedFileNum": 0,
+                "finishedFileNum": 1
+              },
+              "createdAt": "2026-06-24T17:29:38.169862",
+              "startedAt": "2026-06-24T17:29:38.271009",
+              "finishedAt": "2026-06-24T17:30:10.073982"
+            },
+            {
+              "id": "d600535c-3034-4425-a9d7-0f96549a77ea",
+              "name": "task1_submit_smoke-task1-cleaning-20260618140727536900",
+              "description": "DataMate cleaning task generated from task 1 plan.",
+              "srcDatasetId": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+              "srcDatasetName": "task1_submit_smoke",
+              "destDatasetId": "9ab7e6f5-d541-41fa-af8f-5456702346ed",
+              "destDatasetName": "task1_submit_smoke_cleaned_20260618140727",
+              "beforeSize": 121,
+              "afterSize": 117,
+              "fileCount": 1,
+              "retryCount": 0,
+              "status": "COMPLETED",
+              "templateId": null,
+              "instance": null,
+              "progress": {
+                "process": 100.0,
+                "successRate": 100.0,
+                "totalFileNum": 1,
+                "succeedFileNum": 1,
+                "failedFileNum": 0,
+                "finishedFileNum": 1
+              },
+              "createdAt": "2026-06-18T22:07:26.959128",
+              "startedAt": "2026-06-18T22:07:27.013042",
+              "finishedAt": "2026-06-18T22:07:47.485949"
+            }
+          ]
+        }
+      },
+      "write_mode": "probe_only_no_submit"
+    },
+    "nexent": {
+      "status": "available",
+      "url": "http://localhost:3000",
+      "http_status": 200,
+      "server_header": "",
+      "x_powered_by": "Next.js",
+      "detected_service": "nexent",
+      "body_preview": "<!DOCTYPE html><html lang=\"zh\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-s",
+      "api_confirmation": {
+        "endpoint": "/api/tool/openapi_services",
+        "is_nexent": true,
+        "service_count": 3,
+        "service_names": [
+          "nexent_dkm_task1",
+          "nexent_dkm_task2",
+          "nexent_dkm_task3"
+        ]
+      }
+    }
+  },
+  "task_api_health": {
+    "task1": {
+      "status": "available",
+      "url": "http://localhost:8000/health",
+      "http_status": 200,
+      "response": {
+        "status": "healthy",
+        "service": "task1_data_processing_agent"
+      }
+    },
+    "task2": {
+      "status": "available",
+      "url": "http://localhost:8002/health",
+      "http_status": 200,
+      "response": {
+        "status": "healthy",
+        "service": "task2_medical_kg_agent",
+        "version": "2.0.0"
+      }
+    },
+    "task3": {
+      "status": "available",
+      "url": "http://localhost:8003/health",
+      "http_status": 200,
+      "response": {
+        "status": "healthy",
+        "service": "task3_graph_analysis_agent",
+        "version": "2.0.0",
+        "llm_enabled": false
+      }
+    }
+  },
+  "nexent_openapi_services": {
+    "status": "available",
+    "base_url": "http://localhost:3000",
+    "service_count": 3,
+    "service_names": [
+      "nexent_dkm_task1",
+      "nexent_dkm_task2",
+      "nexent_dkm_task3"
+    ],
+    "services": [
+      {
+        "id": 1,
+        "mcp_service_name": "nexent_dkm_task1",
+        "description": "DKM task 1 data processing API",
+        "openapi_json": {
+          "info": {
+            "title": "Task 1 Data Processing Agent API",
+            "version": "1.0.0",
+            "description": "REST interface for the Nexent-based data processing agent."
+          },
+          "paths": {
+            "/health": {
+              "get": {
+                "summary": "Health Check",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Health Check Health Get",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  }
+                },
+                "operationId": "health_check_health_get"
+              }
+            },
+            "/api/task1/process": {
+              "post": {
+                "summary": "Submit Task",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/TaskResponse"
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "operationId": "submit_task_api_task1_process_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProcessRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task1/operators": {
+              "get": {
+                "summary": "List Operators",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response List Operators Api Task1 Operators Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  }
+                },
+                "operationId": "list_operators_api_task1_operators_get"
+              }
+            },
+            "/api/task1/report/{task_id}": {
+              "get": {
+                "summary": "Get Report",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Get Report Api Task1 Report  Task Id  Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "task_id",
+                    "schema": {
+                      "type": "string",
+                      "title": "Task Id"
+                    },
+                    "required": true
+                  }
+                ],
+                "operationId": "get_report_api_task1_report__task_id__get"
+              }
+            },
+            "/api/task1/status/{task_id}": {
+              "get": {
+                "summary": "Get Status",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Get Status Api Task1 Status  Task Id  Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "task_id",
+                    "schema": {
+                      "type": "string",
+                      "title": "Task Id"
+                    },
+                    "required": true
+                  }
+                ],
+                "operationId": "get_status_api_task1_status__task_id__get"
+              }
+            }
+          },
+          "openapi": "3.1.0",
+          "servers": [
+            {
+              "url": "http://host.docker.internal:8000"
+            }
+          ],
+          "components": {
+            "schemas": {
+              "TaskResponse": {
+                "type": "object",
+                "title": "TaskResponse",
+                "required": [
+                  "task_id",
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "title": "Status"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "title": "Task Id"
+                  }
+                }
+              },
+              "ProcessRequest": {
+                "type": "object",
+                "title": "ProcessRequest",
+                "properties": {
+                  "task": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Task"
+                  },
+                  "use_llm": {
+                    "type": "boolean",
+                    "title": "Use Llm",
+                    "default": false
+                  },
+                  "env_file": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Env File"
+                  },
+                  "input_path": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Input Path"
+                  },
+                  "output_dir": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Output Dir"
+                  },
+                  "datamate_url": {
+                    "type": "string",
+                    "title": "Datamate Url",
+                    "default": "http://localhost:18000"
+                  },
+                  "datamate_mode": {
+                    "enum": [
+                      "dry_run",
+                      "submit"
+                    ],
+                    "type": "string",
+                    "title": "Datamate Mode",
+                    "default": "dry_run"
+                  },
+                  "src_dataset_id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Src Dataset Id"
+                  },
+                  "llm_config_path": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Llm Config Path"
+                  },
+                  "local_model_path": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Local Model Path"
+                  },
+                  "src_dataset_name": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Src Dataset Name"
+                  },
+                  "dest_dataset_name": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Dest Dataset Name"
+                  }
+                }
+              },
+              "ValidationError": {
+                "type": "object",
+                "title": "ValidationError",
+                "required": [
+                  "loc",
+                  "msg",
+                  "type"
+                ],
+                "properties": {
+                  "ctx": {
+                    "type": "object",
+                    "title": "Context"
+                  },
+                  "loc": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "title": "Location"
+                  },
+                  "msg": {
+                    "type": "string",
+                    "title": "Message"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "Error Type"
+                  },
+                  "input": {
+                    "title": "Input"
+                  }
+                }
+              },
+              "HTTPValidationError": {
+                "type": "object",
+                "title": "HTTPValidationError",
+                "properties": {
+                  "detail": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ValidationError"
+                    },
+                    "title": "Detail"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "server_url": "http://host.docker.internal:8000",
+        "headers_template": null,
+        "tenant_id": "tenant_id",
+        "is_available": true,
+        "create_time": "2026-06-14T13:47:46.679742",
+        "update_time": "2026-07-02T13:01:39.049270",
+        "created_by": "user_id",
+        "updated_by": "1cb11c10-22b8-4441-b17c-ca03eaaab4fc",
+        "delete_flag": "N"
+      },
+      {
+        "id": 2,
+        "mcp_service_name": "nexent_dkm_task2",
+        "description": "DKM task 2 medical knowledge graph API",
+        "openapi_json": {
+          "info": {
+            "title": "Task 2 Medical Knowledge Graph Agent API",
+            "version": "2.0.0",
+            "description": "REST interface for medical KG generation, QA, multi-hop reasoning, and graph querying."
+          },
+          "paths": {
+            "/health": {
+              "get": {
+                "summary": "Health Check",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Health Check Health Get",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  }
+                },
+                "operationId": "health_check_health_get"
+              }
+            },
+            "/api/task2/query": {
+              "post": {
+                "summary": "Query Task Graph",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Query Task Graph Api Task2 Query Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "operationId": "query_task_graph_api_task2_query_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/QueryRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task2/process": {
+              "post": {
+                "summary": "Submit Task",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/TaskResponse"
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "operationId": "submit_task_api_task2_process_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProcessRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task2/multi-hop": {
+              "post": {
+                "summary": "Multi Hop Query Endpoint",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Multi Hop Query Endpoint Api Task2 Multi Hop Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "operationId": "multi_hop_query_endpoint_api_task2_multi_hop_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/MultiHopRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task2/operators": {
+              "get": {
+                "summary": "List Operators",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response List Operators Api Task2 Operators Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  }
+                },
+                "operationId": "list_operators_api_task2_operators_get"
+              }
+            },
+            "/api/task2/evidence-qa": {
+              "post": {
+                "summary": "Evidence Qa Endpoint",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Evidence Qa Endpoint Api Task2 Evidence Qa Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "operationId": "evidence_qa_endpoint_api_task2_evidence_qa_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EvidenceQARequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task2/evidence-chain": {
+              "post": {
+                "summary": "Evidence Chain Endpoint",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Evidence Chain Endpoint Api Task2 Evidence Chain Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "operationId": "evidence_chain_endpoint_api_task2_evidence_chain_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/EvidenceQARequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task2/report/{task_id}": {
+              "get": {
+                "summary": "Get Report",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Get Report Api Task2 Report  Task Id  Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "task_id",
+                    "schema": {
+                      "type": "string",
+                      "title": "Task Id"
+                    },
+                    "required": true
+                  }
+                ],
+                "operationId": "get_report_api_task2_report__task_id__get"
+              }
+            },
+            "/api/task2/status/{task_id}": {
+              "get": {
+                "summary": "Get Status",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Get Status Api Task2 Status  Task Id  Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "task_id",
+                    "schema": {
+                      "type": "string",
+                      "title": "Task Id"
+                    },
+                    "required": true
+                  }
+                ],
+                "operationId": "get_status_api_task2_status__task_id__get"
+              }
+            }
+          },
+          "openapi": "3.1.0",
+          "servers": [
+            {
+              "url": "http://host.docker.internal:8002"
+            }
+          ],
+          "components": {
+            "schemas": {
+              "QueryRequest": {
+                "type": "object",
+                "title": "QueryRequest",
+                "required": [
+                  "task_id",
+                  "entity"
+                ],
+                "properties": {
+                  "limit": {
+                    "type": "integer",
+                    "title": "Limit",
+                    "default": 20,
+                    "maximum": 100.0,
+                    "minimum": 1.0
+                  },
+                  "entity": {
+                    "type": "string",
+                    "title": "Entity"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "title": "Task Id"
+                  },
+                  "relation": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Relation"
+                  },
+                  "direction": {
+                    "type": "string",
+                    "title": "Direction",
+                    "default": "out",
+                    "pattern": "^(out|in|both)$"
+                  }
+                }
+              },
+              "TaskResponse": {
+                "type": "object",
+                "title": "TaskResponse",
+                "required": [
+                  "task_id",
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "title": "Status"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "title": "Task Id"
+                  }
+                }
+              },
+              "ProcessRequest": {
+                "type": "object",
+                "title": "ProcessRequest",
+                "properties": {
+                  "question": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Question"
+                  },
+                  "input_path": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Input Path"
+                  },
+                  "output_dir": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Output Dir"
+                  },
+                  "task_request": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Task Request"
+                  },
+                  "llm_config_path": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Llm Config Path"
+                  },
+                  "local_model_path": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Local Model Path"
+                  }
+                }
+              },
+              "MultiHopRequest": {
+                "type": "object",
+                "title": "MultiHopRequest",
+                "required": [
+                  "task_id",
+                  "start_entity"
+                ],
+                "properties": {
+                  "task_id": {
+                    "type": "string",
+                    "title": "Task Id"
+                  },
+                  "max_hops": {
+                    "type": "integer",
+                    "title": "Max Hops",
+                    "default": 3,
+                    "maximum": 5.0,
+                    "minimum": 1.0
+                  },
+                  "max_paths": {
+                    "type": "integer",
+                    "title": "Max Paths",
+                    "default": 5,
+                    "maximum": 20.0,
+                    "minimum": 1.0
+                  },
+                  "start_entity": {
+                    "type": "string",
+                    "title": "Start Entity"
+                  },
+                  "target_entity": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Target Entity"
+                  }
+                }
+              },
+              "ValidationError": {
+                "type": "object",
+                "title": "ValidationError",
+                "required": [
+                  "loc",
+                  "msg",
+                  "type"
+                ],
+                "properties": {
+                  "ctx": {
+                    "type": "object",
+                    "title": "Context"
+                  },
+                  "loc": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "title": "Location"
+                  },
+                  "msg": {
+                    "type": "string",
+                    "title": "Message"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "Error Type"
+                  },
+                  "input": {
+                    "title": "Input"
+                  }
+                }
+              },
+              "EvidenceQARequest": {
+                "type": "object",
+                "title": "EvidenceQARequest",
+                "required": [
+                  "task_id",
+                  "question"
+                ],
+                "properties": {
+                  "task_id": {
+                    "type": "string",
+                    "title": "Task Id"
+                  },
+                  "max_hops": {
+                    "type": "integer",
+                    "title": "Max Hops",
+                    "default": 2,
+                    "maximum": 4.0,
+                    "minimum": 1.0
+                  },
+                  "question": {
+                    "type": "string",
+                    "title": "Question"
+                  }
+                }
+              },
+              "HTTPValidationError": {
+                "type": "object",
+                "title": "HTTPValidationError",
+                "properties": {
+                  "detail": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ValidationError"
+                    },
+                    "title": "Detail"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "server_url": "http://host.docker.internal:8002",
+        "headers_template": null,
+        "tenant_id": "tenant_id",
+        "is_available": true,
+        "create_time": "2026-06-14T13:47:47.772288",
+        "update_time": "2026-07-02T13:01:39.850992",
+        "created_by": "user_id",
+        "updated_by": "1cb11c10-22b8-4441-b17c-ca03eaaab4fc",
+        "delete_flag": "N"
+      },
+      {
+        "id": 3,
+        "mcp_service_name": "nexent_dkm_task3",
+        "description": "DKM task 3 graph analysis API",
+        "openapi_json": {
+          "info": {
+            "title": "Task 3 Graph Analysis Agent API",
+            "version": "2.0.0",
+            "description": "REST interface for graph-driven statistics, NL2SQL, graph analytics, and visualization."
+          },
+          "paths": {
+            "/health": {
+              "get": {
+                "summary": "Health Check",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Health Check Health Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  }
+                },
+                "operationId": "health_check_health_get"
+              }
+            },
+            "/api/nl2sql": {
+              "post": {
+                "summary": "Run Nl2Sql Query",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Run Nl2Sql Query Api Nl2Sql Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "description": "Stateless NL2SQL endpoint for interactive dashboard queries.",
+                "operationId": "run_nl2sql_query_api_nl2sql_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Nl2SqlRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task3/sql": {
+              "post": {
+                "summary": "Run Sql Query",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Run Sql Query Api Task3 Sql Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "operationId": "run_sql_query_api_task3_sql_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/SqlRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task3/paths": {
+              "post": {
+                "summary": "Find Paths",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Find Paths Api Task3 Paths Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "description": "Find shortest paths between entities in a graph.",
+                "operationId": "find_paths_api_task3_paths_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/PathRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task3/process": {
+              "post": {
+                "summary": "Submit Task",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/TaskResponse"
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "operationId": "submit_task_api_task3_process_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProcessRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task3/operators": {
+              "get": {
+                "summary": "List Operators",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response List Operators Api Task3 Operators Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  }
+                },
+                "operationId": "list_operators_api_task3_operators_get"
+              }
+            },
+            "/api/task3/centrality": {
+              "post": {
+                "summary": "Get Centrality",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Get Centrality Api Task3 Centrality Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "description": "Compute centrality analysis for a graph.",
+                "operationId": "get_centrality_api_task3_centrality_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProcessRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task3/communities": {
+              "post": {
+                "summary": "Find Communities",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Find Communities Api Task3 Communities Post",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "description": "Detect communities in a graph.",
+                "operationId": "find_communities_api_task3_communities_post",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProcessRequest"
+                      }
+                    }
+                  },
+                  "required": true
+                }
+              }
+            },
+            "/api/task3/report/{task_id}": {
+              "get": {
+                "summary": "Get Report",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Get Report Api Task3 Report  Task Id  Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "task_id",
+                    "schema": {
+                      "type": "string",
+                      "title": "Task Id"
+                    },
+                    "required": true
+                  }
+                ],
+                "operationId": "get_report_api_task3_report__task_id__get"
+              }
+            },
+            "/api/task3/status/{task_id}": {
+              "get": {
+                "summary": "Get Status",
+                "responses": {
+                  "200": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "title": "Response Get Status Api Task3 Status  Task Id  Get",
+                          "additionalProperties": true
+                        }
+                      }
+                    },
+                    "description": "Successful Response"
+                  },
+                  "422": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/HTTPValidationError"
+                        }
+                      }
+                    },
+                    "description": "Validation Error"
+                  }
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "task_id",
+                    "schema": {
+                      "type": "string",
+                      "title": "Task Id"
+                    },
+                    "required": true
+                  }
+                ],
+                "operationId": "get_status_api_task3_status__task_id__get"
+              }
+            }
+          },
+          "openapi": "3.1.0",
+          "servers": [
+            {
+              "url": "http://host.docker.internal:8003"
+            }
+          ],
+          "components": {
+            "schemas": {
+              "SqlRequest": {
+                "type": "object",
+                "title": "SqlRequest",
+                "required": [
+                  "task_id"
+                ],
+                "properties": {
+                  "task_id": {
+                    "type": "string",
+                    "title": "Task Id"
+                  },
+                  "question": {
+                    "type": "string",
+                    "title": "Question",
+                    "default": "哪些疾病关联最多症状？"
+                  }
+                }
+              },
+              "PathRequest": {
+                "type": "object",
+                "title": "PathRequest",
+                "required": [
+                  "task_id",
+                  "start_entity"
+                ],
+                "properties": {
+                  "task_id": {
+                    "type": "string",
+                    "title": "Task Id"
+                  },
+                  "max_depth": {
+                    "type": "integer",
+                    "title": "Max Depth",
+                    "default": 4,
+                    "maximum": 10.0,
+                    "minimum": 1.0
+                  },
+                  "end_entity": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "End Entity"
+                  },
+                  "start_entity": {
+                    "type": "string",
+                    "title": "Start Entity"
+                  }
+                }
+              },
+              "TaskResponse": {
+                "type": "object",
+                "title": "TaskResponse",
+                "required": [
+                  "task_id",
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "title": "Status"
+                  },
+                  "task_id": {
+                    "type": "string",
+                    "title": "Task Id"
+                  }
+                }
+              },
+              "Nl2SqlRequest": {
+                "type": "object",
+                "title": "Nl2SqlRequest",
+                "properties": {
+                  "question": {
+                    "type": "string",
+                    "title": "Question",
+                    "default": "哪些疾病关联最多症状？"
+                  },
+                  "graph_file": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Graph File"
+                  }
+                }
+              },
+              "ProcessRequest": {
+                "type": "object",
+                "title": "ProcessRequest",
+                "properties": {
+                  "question": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Question"
+                  },
+                  "graph_file": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Graph File"
+                  },
+                  "output_dir": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Output Dir"
+                  },
+                  "task_request": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "title": "Task Request"
+                  }
+                }
+              },
+              "ValidationError": {
+                "type": "object",
+                "title": "ValidationError",
+                "required": [
+                  "loc",
+                  "msg",
+                  "type"
+                ],
+                "properties": {
+                  "ctx": {
+                    "type": "object",
+                    "title": "Context"
+                  },
+                  "loc": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ]
+                    },
+                    "title": "Location"
+                  },
+                  "msg": {
+                    "type": "string",
+                    "title": "Message"
+                  },
+                  "type": {
+                    "type": "string",
+                    "title": "Error Type"
+                  },
+                  "input": {
+                    "title": "Input"
+                  }
+                }
+              },
+              "HTTPValidationError": {
+                "type": "object",
+                "title": "HTTPValidationError",
+                "properties": {
+                  "detail": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ValidationError"
+                    },
+                    "title": "Detail"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "server_url": "http://host.docker.internal:8003",
+        "headers_template": null,
+        "tenant_id": "tenant_id",
+        "is_available": true,
+        "create_time": "2026-06-14T13:47:47.924674",
+        "update_time": "2026-07-02T13:01:40.014378",
+        "created_by": "user_id",
+        "updated_by": "1cb11c10-22b8-4441-b17c-ca03eaaab4fc",
+        "delete_flag": "N"
+      }
+    ]
+  },
+  "service_specs": [
+    {
+      "service_name": "nexent_dkm_task1",
+      "server_url": "http://host.docker.internal:8000",
+      "path_count": 5,
+      "operation_count": 5
+    },
+    {
+      "service_name": "nexent_dkm_task2",
+      "server_url": "http://host.docker.internal:8002",
+      "path_count": 9,
+      "operation_count": 9
+    },
+    {
+      "service_name": "nexent_dkm_task3",
+      "server_url": "http://host.docker.internal:8003",
+      "path_count": 10,
+      "operation_count": 10
+    }
+  ],
+  "imports": [
+    {
+      "status": "prepared",
+      "submitted": false,
+      "endpoint": "/api/tool/openapi_service",
+      "payload_summary": {
+        "service_name": "nexent_dkm_task1",
+        "server_url": "http://host.docker.internal:8000",
+        "force_update": false
+      }
+    },
+    {
+      "status": "prepared",
+      "submitted": false,
+      "endpoint": "/api/tool/openapi_service",
+      "payload_summary": {
+        "service_name": "nexent_dkm_task2",
+        "server_url": "http://host.docker.internal:8002",
+        "force_update": false
+      }
+    },
+    {
+      "status": "prepared",
+      "submitted": false,
+      "endpoint": "/api/tool/openapi_service",
+      "payload_summary": {
+        "service_name": "nexent_dkm_task3",
+        "server_url": "http://host.docker.internal:8003",
+        "force_update": false
+      }
+    }
+  ],
+  "status": "prepared"
+}

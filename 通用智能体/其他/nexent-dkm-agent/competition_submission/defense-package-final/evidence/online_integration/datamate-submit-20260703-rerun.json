@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-07-03T20:06:04.544713",
+  "base_url": "http://localhost:18000",
+  "src_dataset_id": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+  "src_dataset_name": "task1_submit_smoke",
+  "dest_dataset_name": "task1_submit_smoke_cleaned_20260703200604",
+  "template_status": "verified",
+  "template_resource_id": "781217a6-8240-49b3-9fd5-edc6656d56d2",
+  "task_status": "verified",
+  "task_resource_id": "1b10ae42-6f9f-4ec3-b0b1-dcc90e3b9c98",
+  "verified": true
+}

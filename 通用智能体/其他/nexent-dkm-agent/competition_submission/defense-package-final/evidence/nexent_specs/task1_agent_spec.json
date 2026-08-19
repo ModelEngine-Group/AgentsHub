@@ -1,0 +1,27 @@
+{
+  "name": "task1_data_processing_agent",
+  "description": "Nexent-compatible task-1 agent for structured CSV data cleaning, operator planning, DataMate payload preparation, and run-state tracking.",
+  "tools": [
+    {
+      "class_name": "DataProcessingAgentTool",
+      "name": "task1_data_processing",
+      "description": "Understand, plan, execute, and track a CSV data-cleaning workflow. It profiles structured data, runs deterministic local cleaning, and prepares DataMate cleaning template/task payloads.",
+      "inputs": "{\"task_request\": {\"type\": \"string\", \"description\": \"Free-form data-processing request.\", \"description_zh\": \"自然语言数据处理需求。\", \"nullable\": true}, \"input_path\": {\"type\": \"string\", \"description\": \"Input CSV path. Uses the bundled sample if omitted.\", \"description_zh\": \"输入CSV路径；为空时使用内置样例。\", \"nullable\": true}, \"datamate_mode\": {\"type\": \"string\", \"description\": \"dry_run prepares payloads; submit posts to DataMate.\", \"description_zh\": \"dry_run只生成payload；submit会提交到DataMate。\", \"default\": \"dry_run\", \"nullable\": true}}",
+      "output_type": "string",
+      "params": {
+        "datamate_base_url": "http://localhost:18000",
+        "output_dir": null
+      },
+      "source": "local",
+      "metadata": {
+        "task": "task1",
+        "framework": "nexent",
+        "default_datamate_mode": "dry_run"
+      }
+    }
+  ],
+  "max_steps": 6,
+  "model_name": "main_model",
+  "provide_run_summary": true,
+  "instructions": "Understand the user's data-processing request first, then call the task1_data_processing tool. Keep datamate_mode=dry_run unless the user explicitly requests a DataMate submission."
+}
