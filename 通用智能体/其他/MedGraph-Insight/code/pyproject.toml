@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "med-graph-insight"
+version = "0.1.0"
+description = "数据→知识→洞察：基于 Nexent 与 DataMate 的医疗数据处理、知识图谱与分析智能体全链路实现"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "networkx>=3.0",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+nexent = ["nexent"]
+llm = ["openai>=1.0"]
+dev = ["pytest>=7.0", "ruff>=0.4"]
+
+[project.scripts]
+mgi = "mgi.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mgi*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
