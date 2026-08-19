@@ -1,0 +1,8 @@
+# Optional small-model/LoRA support. Not required for the baseline demo.
+torch>=2.5
+transformers>=4.57
+peft>=0.19
+datasets>=5.0
+accelerate>=1.14
+safetensors>=0.4
+sentencepiece>=0.2

@@ -1,0 +1,3 @@
+{"id":"bad-001","title":"重复记录A","source":"synthetic_invalid","text":"患者咳嗽、发热，建议完善血常规。"}
+{"id":"bad-001","title":"重复记录B","source":"synthetic_invalid","text":"患者咳嗽伴咽痛，需要对症治疗。"}
+{"id":"bad-003","title":"空文本记录","source":"synthetic_invalid","text":""}

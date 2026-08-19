@@ -1,0 +1,24 @@
+{
+  "name": "medical_kg_datamate_import",
+  "created_at": "2026-07-06T16:46:30+08:00",
+  "purpose": "Upload these files into a DataMate DOCUMENT knowledge base, then sync the knowledge base into Nexent and enable datamate_search.",
+  "source_artifacts": {
+    "processed_documents": "data/processed/documents.jsonl",
+    "entities": "graph/entities.jsonl",
+    "triples": "graph/triples.jsonl",
+    "graph_snapshot": "graph/graph_snapshot.json",
+    "validation_report": "graph/kg_validation_report.json"
+  },
+  "counts": {
+    "documents": 320,
+    "entities": 4468,
+    "triples": 3403,
+    "graph_nodes": 4468,
+    "graph_edges": 3403,
+    "import_rows": 3403
+  },
+  "files": {
+    "markdown": "demo/integration/datamate_import/medical_kg_knowledge.md",
+    "jsonl": "demo/integration/datamate_import/medical_kg_documents.jsonl"
+  }
+}

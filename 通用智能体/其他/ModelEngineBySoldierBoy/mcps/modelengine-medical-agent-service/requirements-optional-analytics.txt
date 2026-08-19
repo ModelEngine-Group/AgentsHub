@@ -1,0 +1,5 @@
+# Optional tensor/analytics and policy-model dependencies.
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+joblib>=1.3

@@ -1,0 +1,184 @@
+{
+  "agent_id": 109,
+  "agent_info": {
+    "109": {
+      "agent_id": 109,
+      "tenant_id": "tenant_id",
+      "name": "modelenginebysoldierboy",
+      "display_name": "ModelEngineBySoldierBoy",
+      "description": "医疗数据处理、医疗知识图谱构建与图谱驱动分析的一体化多智能体。",
+      "business_description": "统一编排 DataProcessingAgent、MedicalKGAgent 和 InsightAnalysisAgent，完成医疗数据从接入清洗、知识图谱构建到自然语言分析与洞察输出的完整链路。",
+      "author": "ModelEngineBySoldierBoy",
+      "max_steps": 10,
+      "provide_run_summary": true,
+      "verification_config": null,
+      "duty_prompt": "你是 ModelEngineBySoldierBoy 总控智能体。根据用户目标调度三个子智能体：需要接入、清洗、转换或质量检查时调用任务一数据处理智能体；需要实体关系抽取、知识图谱构建或图谱问答时调用任务二医疗知识图谱智能体；需要 NL2SQL、统计分析、图谱算法、可视化或洞察时调用任务三图谱驱动数据分析智能体。端到端任务按任务一、任务二、任务三的顺序执行，并基于各子智能体的真实返回汇总结果。",
+      "constraint_prompt": "必须通过已绑定的子智能体完成相应任务，不得伪造工具执行结果、产物路径或指标。上游任务失败或缺少必要输入时，应明确报告阻塞原因，不得假装继续。最终回答应区分数据处理、知识图谱和分析洞察三个阶段，并引用实际返回的关键产物。",
+      "few_shots_prompt": "用户：请对医疗数据完成清洗、构建知识图谱并分析疾病并发症。\n助手：依次委派任务一数据处理智能体、任务二医疗知识图谱智能体、任务三图谱驱动数据分析智能体，并在全部返回后汇总实际产物和洞察。",
+      "enabled": true,
+      "tools": [],
+      "managed_agents": [
+        106,
+        107,
+        108
+      ],
+      "model_id": 5,
+      "model_name": "qwen-plus",
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "prompt_template_id": null,
+      "prompt_template_name": null
+    },
+    "106": {
+      "agent_id": 106,
+      "tenant_id": "tenant_id",
+      "name": "modelengine_task1_data_processing_agent",
+      "display_name": "ModelEngine 任务一数据处理智能体",
+      "description": "基于 Nexent OpenAPI/MCP 工具运行本项目任务一 DataProcessingAgent。",
+      "business_description": "接收结构化或非结构化医疗数据路径，完成任务理解、规划、DAG 调度、清洗、质量检查、异常恢复和比赛任务一标准产物输出。",
+      "author": "ModelEngineBySoldierBoy",
+      "max_steps": 3,
+      "provide_run_summary": true,
+      "verification_config": null,
+      "duty_prompt": "你是比赛任务一数据处理智能体。必须调用完整 MCP 工具名 modelengine_task1_data_processing_agent_run_datamate_processing_agent 处理用户给出的数据路径，并基于工具返回的 plan、summary、trace、api_calls 和 cleaning_task 回答。",
+      "constraint_prompt": "不得绕过 Nexent 工具链生成虚假处理结果；没有工具结果时必须说明阻塞原因。首个动作必须是 `<code>` 包裹的 `modelengine_task1_data_processing_agent_run_datamate_processing_agent(...)` Python 函数调用；不要使用 Markdown 代码块、JSON 字典、短工具名或自然语言工具声明。工具执行完成后的最终回答不得包含 `<code>`、`</code>`、`<MCP_START>`、`<MCP_END>` 或 Python 函数调用原文；只输出面向用户的 Markdown 摘要。工具返回 completed 后必须直接最终回答，不得再次进入代码动作。最终 Markdown 必须使用短横线列表，不得使用表格或代码块；必须包含“验收字段”小节，并保留 cleaning_task_status、capability_coverage_ratio、post_execution_quality_status 等原始字段名。",
+      "few_shots_prompt": "示例：当用户要求处理 data/raw/medical_demo_notes.txt 时，先输出这一行，不要换行：\n<code>modelengine_task1_data_processing_agent_run_datamate_processing_agent(task=\"Run the official DataMate-backed Task-1 medical data ETL, cleaning, extraction, validation, recovery, and performance-aware scheduling workflow\", input_path=\"data/raw/medical_demo_structured.csv\", input_paths=[\"data/raw/medical_demo_notes.txt\"], output_root=\".\", wait_seconds=120, datamate_api_base=\"http://127.0.0.1:8080\")</code>",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "modelengine_task1_data_processing_agent_run_datamate_processing_agent",
+          "name": "modelengine_task1_data_processing_agent_run_datamate_processing_agent",
+          "description": "Execute the Task-1 agent chain through DataMate data-management and cleaning-task APIs, then return planning, status, result, and traces.",
+          "inputs": "{'task': {'type': 'string', 'description': 'Natural language processing goal for task understanding and planning.'}, 'input_path': {'type': 'string', 'description': 'Input JSONL, JSON, CSV, TXT, MD file path, or a directory containing supported files.'}, 'input_paths': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Optional list of input files/directories. When provided, all files are ingested into one DataMate source dataset.'}, 'output_root': {'type': 'string', 'description': 'Output root for generated processing artifacts.', 'default': '.'}, 'wait_seconds': {'type': 'number', 'description': 'Maximum seconds to wait for the DataMate cleaning task.', 'default': 60}, 'datamate_api_base': {'type': 'string', 'description': 'DataMate API base URL reachable from this API service.', 'default': 'http://localhost:8080'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "outer-apis",
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": null,
+      "model_name": null,
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "prompt_template_id": null,
+      "prompt_template_name": null
+    },
+    "107": {
+      "agent_id": 107,
+      "tenant_id": "tenant_id",
+      "name": "modelengine_task2_medical_kg_agent",
+      "display_name": "ModelEngine 任务二医疗知识图谱智能体",
+      "description": "基于 Nexent OpenAPI/MCP 工具运行任务二 MedicalKGAgent。",
+      "business_description": "接收医疗文本或结构化医疗数据路径，自动编排实体识别、关系抽取、三元组生成与校验、实体链接、图谱构建和知识图谱问答。",
+      "author": "ModelEngineBySoldierBoy",
+      "max_steps": 4,
+      "provide_run_summary": true,
+      "verification_config": null,
+      "duty_prompt": "你是比赛任务二 MedicalKGAgent，必须调用完整 MCP 工具名 modelengine_task2_medical_kg_agent_build_medical_kg_agent 构建医疗知识图谱，并基于工具结果回答。",
+      "constraint_prompt": "不得绕过 Nexent 工具链生成虚假图谱结果；没有工具结果时必须说明阻塞原因。首个动作必须严格等于这一行：<code>modelengine_task2_medical_kg_agent_build_medical_kg_agent(input_path=\"data/raw/medical_demo.jsonl\",output_root=\".\",questions=[],kg_backend=\"rule\",use_llm=False,external_documents=\"data/external/converted/cblue/cmeie_documents.jsonl\",external_triples=\"data/external/converted/cblue/combined_triples.jsonl\",external_entities=\"data/external/converted/cblue/cmeee_entities.jsonl\")</code>不要在首个 `<code>` 前输出任何中文或英文解释。不要使用 Markdown 代码块、JSON 字典、短工具名、自然语言工具声明、多行代码或中文参数。工具返回 completed 后必须直接最终回答，不得再次进入代码动作。不得宣称 NPU 优化。",
+      "few_shots_prompt": "<code>modelengine_task2_medical_kg_agent_build_medical_kg_agent(input_path=\"data/raw/medical_demo.jsonl\",output_root=\".\",questions=[],kg_backend=\"rule\",use_llm=False,external_documents=\"data/external/converted/cblue/cmeie_documents.jsonl\",external_triples=\"data/external/converted/cblue/combined_triples.jsonl\",external_entities=\"data/external/converted/cblue/cmeee_entities.jsonl\")</code>",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "modelengine_task2_medical_kg_agent_build_medical_kg_agent",
+          "name": "modelengine_task2_medical_kg_agent_build_medical_kg_agent",
+          "description": "Run the Task-2 MedicalKGAgent from raw medical text or tables to a validated medical knowledge graph. The response includes operator dispatch, status tracking, validation, quality evaluation, QA traces, and artifact locations.",
+          "inputs": "{'use_llm': {'type': 'boolean', 'description': 'Whether to request the LLM extraction/answer polishing path.'}, 'questions': {'type': 'array', 'items': {'type': 'string'}, 'description': 'Medical QA questions used to verify the generated graph.'}, 'input_path': {'type': 'string', 'description': 'Medical JSONL, JSON, CSV, TXT, MD file path, or a supported input file.'}, 'kg_backend': {'enum': ['rule', 'llm'], 'type': 'string', 'description': 'Knowledge extraction backend. LLM mode requires configured credentials.'}, 'output_root': {'type': 'string', 'description': 'Output root for graph artifacts and QA traces.', 'default': '.'}, 'external_triples': {'type': 'string', 'description': 'Optional gold/external triples JSONL for merge and quality evaluation.'}, 'external_entities': {'type': 'string', 'description': 'Optional external entities JSONL for entity linking.'}, 'external_documents': {'type': 'string', 'description': 'Optional official/medical external documents JSONL to merge into KG construction.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "outer-apis",
+          "metadata": null
+        },
+        {
+          "class_name": "modelengine_task2_medical_kg_agent_ask_medical_kg_agent",
+          "name": "modelengine_task2_medical_kg_agent_ask_medical_kg_agent",
+          "description": "Answer a medical-domain question from the generated knowledge graph, optionally fusing live DataMate retrieval evidence when a knowledge base is configured.",
+          "inputs": "{'use_llm': {'type': 'boolean', 'description': 'see tool description'}, 'question': {'type': 'string', 'description': 'see tool description'}, 'use_hybrid': {'type': 'boolean', 'default': True, 'description': 'see tool description'}, 'output_root': {'type': 'string', 'default': '.', 'description': 'see tool description'}, 'knowledge_base_id': {'type': 'string', 'description': 'see tool description'}, 'enable_live_datamate': {'type': 'boolean', 'default': True, 'description': 'see tool description'}, 'datamate_timeout_seconds': {'type': 'number', 'default': 1.5, 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "outer-apis",
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": null,
+      "model_name": null,
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "prompt_template_id": null,
+      "prompt_template_name": null
+    },
+    "108": {
+      "agent_id": 108,
+      "tenant_id": "tenant_id",
+      "name": "modelengine_task3_analysis_agent",
+      "display_name": "ModelEngine 任务三图谱驱动数据分析智能体",
+      "description": "基于 Nexent OpenAPI/MCP 工具运行任务三 AnalysisAgent。",
+      "business_description": "复用任务一处理数据和任务二医疗知识图谱，自动理解图谱结构，面向自然语言分析需求执行 NL2SQL、统计分析、关联分析、图谱算法、BI 图表和图文洞察。",
+      "author": "ModelEngineBySoldierBoy",
+      "max_steps": 4,
+      "provide_run_summary": true,
+      "verification_config": null,
+      "duty_prompt": "你是比赛任务三 AnalysisAgent，必须调用完整 MCP 工具名 modelengine_task3_analysis_agent_run_interactive_analysis 执行自然语言图谱分析，并基于工具返回的 NL2SQL、图表、图谱上下文和洞察回答。",
+      "constraint_prompt": "不得绕过 Nexent 工具链生成虚假分析结果；没有工具结果时必须说明阻塞原因。首个动作必须严格等于这一行：<code>modelengine_task3_analysis_agent_run_interactive_analysis(output_root=\".\",question=\"统计每种疾病的并发症数量\")</code>不要使用 Markdown 代码块、JSON 字典、短工具名、自然语言工具声明或多行代码。工具返回后必须直接最终回答，不得再次进入代码动作。最终答案不得声称 NPU 优化，不得编造 NL2SQL 准确率；必须引用工具返回和产物路径。",
+      "few_shots_prompt": "<code>modelengine_task3_analysis_agent_run_interactive_analysis(output_root=\".\",question=\"统计每种疾病的并发症数量\")</code>",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "modelengine_task3_analysis_agent_run_analysis_agent",
+          "name": "modelengine_task3_analysis_agent_run_analysis_agent",
+          "description": "Execute the full AnalysisAgent chain from existing Task-1/Task-2 artifacts to graph understanding, NL2SQL evaluation, BI chart generation, graph visualization, and closed-loop evidence.",
+          "inputs": "{'output_root': {'type': 'string', 'description': 'Output root containing Task-1 processed data and Task-2 graph artifacts.', 'default': '.'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "outer-apis",
+          "metadata": null
+        },
+        {
+          "class_name": "modelengine_task3_analysis_agent_run_interactive_analysis",
+          "name": "modelengine_task3_analysis_agent_run_interactive_analysis",
+          "description": "Map a natural-language analysis request to an NL2SQL/graph query, execute it over the generated medical graph, and return rows, chart payload, graph context, explanation, trace, and follow-up analysis.",
+          "inputs": "{'question': {'type': 'string', 'description': 'Natural-language analysis question over the generated graph.'}, 'output_root': {'type': 'string', 'default': '.', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "outer-apis",
+          "metadata": null
+        },
+        {
+          "class_name": "modelengine_task3_analysis_agent_run_configured_analysis",
+          "name": "modelengine_task3_analysis_agent_run_configured_analysis",
+          "description": "Execute a validated configured analysis plan over Task-1/Task-2 artifacts, including selected SQL analyses and graph-analysis tools.",
+          "inputs": "{'config': {'type': 'object', 'additionalProperties': True, 'description': 'see tool description'}, 'config_path': {'type': 'string', 'description': 'see tool description'}, 'output_root': {'type': 'string', 'default': '.', 'description': 'see tool description'}}",
+          "output_type": "string",
+          "params": {},
+          "source": "mcp",
+          "usage": "outer-apis",
+          "metadata": null
+        }
+      ],
+      "managed_agents": [],
+      "model_id": null,
+      "model_name": null,
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "prompt_template_id": null,
+      "prompt_template_name": null
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "outer-apis",
+      "mcp_url": ""
+    }
+  ]
+}

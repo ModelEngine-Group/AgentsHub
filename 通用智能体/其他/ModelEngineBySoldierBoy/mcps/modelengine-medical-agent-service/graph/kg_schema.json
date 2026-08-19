@@ -1,0 +1,392 @@
+{
+  "version": "0.2.0",
+  "entity_types": {
+    "Disease": {
+      "label": "疾病",
+      "description": "疾病、综合征、并发症",
+      "examples": [
+        "2型糖尿病",
+        "高血压",
+        "冠心病"
+      ]
+    },
+    "Symptom": {
+      "label": "症状体征",
+      "description": "主诉、症状、体征",
+      "examples": [
+        "多饮",
+        "胸痛",
+        "发热"
+      ]
+    },
+    "Drug": {
+      "label": "药物",
+      "description": "药品、药物类别",
+      "examples": [
+        "二甲双胍",
+        "胰岛素",
+        "ACEI"
+      ]
+    },
+    "Test": {
+      "label": "检查检验",
+      "description": "影像、化验、量表等",
+      "examples": [
+        "空腹血糖",
+        "糖化血红蛋白",
+        "心电图"
+      ]
+    },
+    "Treatment": {
+      "label": "治疗方式",
+      "description": "非药物治疗、手术、管理方案",
+      "examples": [
+        "饮食控制",
+        "运动治疗",
+        "支架植入"
+      ]
+    },
+    "Department": {
+      "label": "科室",
+      "description": "临床科室",
+      "examples": [
+        "内分泌科",
+        "心内科",
+        "呼吸科"
+      ]
+    },
+    "RiskFactor": {
+      "label": "危险因素",
+      "description": "疾病相关病因、高危因素、暴露因素或机制因素",
+      "examples": [
+        "吸烟",
+        "病毒感染",
+        "幽门螺杆菌"
+      ]
+    },
+    "Anatomy": {
+      "label": "解剖部位",
+      "description": "疾病或症状发生的身体部位、器官或组织",
+      "examples": [
+        "胃部",
+        "卵巢",
+        "膀胱"
+      ]
+    },
+    "ClinicalStage": {
+      "label": "临床阶段或分型",
+      "description": "疾病分期、病理分型、急慢性阶段等",
+      "examples": [
+        "急性期",
+        "临床分期",
+        "病理分型"
+      ]
+    },
+    "PatientGroup": {
+      "label": "患者人群",
+      "description": "年龄、性别、职业、易感或多发人群",
+      "examples": [
+        "中老年",
+        "儿童",
+        "女性"
+      ]
+    },
+    "History": {
+      "label": "病史因素",
+      "description": "既往史、家族史、暴露史或操作史",
+      "examples": [
+        "人工流产史",
+        "宫腔操作史",
+        "疾病病史"
+      ]
+    },
+    "TransmissionRoute": {
+      "label": "传播途径",
+      "description": "疾病传播路径或感染方式",
+      "examples": [
+        "飞沫传播",
+        "接触传播",
+        "血液传播"
+      ]
+    },
+    "Epidemiology": {
+      "label": "流行病学特征",
+      "description": "发病率、死亡率、流行季节等统计特征",
+      "examples": [
+        "冬春季高发",
+        "发病率升高",
+        "死亡率"
+      ]
+    }
+  },
+  "relation_types": {
+    "has_symptom": {
+      "label": "具有症状",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Symptom"
+      ],
+      "examples": [
+        [
+          "2型糖尿病",
+          "has_symptom",
+          "多饮"
+        ]
+      ]
+    },
+    "treated_by": {
+      "label": "治疗方式",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Drug",
+        "Treatment"
+      ],
+      "examples": [
+        [
+          "2型糖尿病",
+          "treated_by",
+          "二甲双胍"
+        ]
+      ]
+    },
+    "diagnosed_by": {
+      "label": "诊断检查",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Test"
+      ],
+      "examples": [
+        [
+          "2型糖尿病",
+          "diagnosed_by",
+          "糖化血红蛋白"
+        ]
+      ]
+    },
+    "has_complication": {
+      "label": "并发症",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Disease"
+      ],
+      "examples": [
+        [
+          "2型糖尿病",
+          "has_complication",
+          "糖尿病肾病"
+        ]
+      ]
+    },
+    "belongs_to_department": {
+      "label": "所属科室",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Department"
+      ],
+      "examples": [
+        [
+          "2型糖尿病",
+          "belongs_to_department",
+          "内分泌科"
+        ]
+      ]
+    },
+    "contraindicated_for": {
+      "label": "禁忌或慎用",
+      "subject_types": [
+        "Drug"
+      ],
+      "object_types": [
+        "Disease",
+        "Symptom"
+      ],
+      "examples": [
+        [
+          "二甲双胍",
+          "contraindicated_for",
+          "严重肾功能不全"
+        ]
+      ]
+    },
+    "has_risk_factor": {
+      "label": "危险因素",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Disease",
+        "Symptom",
+        "Treatment",
+        "RiskFactor"
+      ],
+      "examples": [
+        [
+          "慢性阻塞性肺疾病",
+          "has_risk_factor",
+          "吸烟"
+        ]
+      ]
+    },
+    "prevented_by": {
+      "label": "预防或管理",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Treatment"
+      ],
+      "examples": [
+        [
+          "骨质疏松",
+          "prevented_by",
+          "防跌倒干预"
+        ]
+      ]
+    },
+    "causes": {
+      "label": "因果导致",
+      "subject_types": [
+        "Disease",
+        "RiskFactor",
+        "Treatment"
+      ],
+      "object_types": [
+        "Disease",
+        "Symptom"
+      ],
+      "examples": [
+        [
+          "幽门螺杆菌",
+          "causes",
+          "消化性溃疡"
+        ]
+      ]
+    },
+    "located_in": {
+      "label": "发病部位",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Anatomy"
+      ],
+      "examples": [
+        [
+          "胃溃疡",
+          "located_in",
+          "胃部"
+        ]
+      ]
+    },
+    "has_stage": {
+      "label": "临床阶段或分型",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "ClinicalStage"
+      ],
+      "examples": [
+        [
+          "肩周炎",
+          "has_stage",
+          "急性期"
+        ]
+      ]
+    },
+    "has_patient_group": {
+      "label": "相关人群",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "PatientGroup"
+      ],
+      "examples": [
+        [
+          "骨质疏松",
+          "has_patient_group",
+          "老年人"
+        ]
+      ]
+    },
+    "has_history": {
+      "label": "相关病史",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "History"
+      ],
+      "examples": [
+        [
+          "月经量少",
+          "has_history",
+          "宫腔操作史"
+        ]
+      ]
+    },
+    "spreads_via": {
+      "label": "传播途径",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "TransmissionRoute"
+      ],
+      "examples": [
+        [
+          "上呼吸道感染",
+          "spreads_via",
+          "飞沫传播"
+        ]
+      ]
+    },
+    "has_epidemiology": {
+      "label": "流行病学特征",
+      "subject_types": [
+        "Disease"
+      ],
+      "object_types": [
+        "Epidemiology"
+      ],
+      "examples": [
+        [
+          "流感",
+          "has_epidemiology",
+          "冬春季高发"
+        ]
+      ]
+    }
+  },
+  "triple_constraints": {
+    "required_fields": [
+      "triple_id",
+      "subject",
+      "subject_type",
+      "predicate",
+      "object",
+      "object_type",
+      "source_doc_id",
+      "evidence",
+      "confidence"
+    ],
+    "dedup_key": [
+      "subject",
+      "predicate",
+      "object",
+      "source_doc_id"
+    ],
+    "default_confidence_threshold": 0.6
+  }
+}

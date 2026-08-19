@@ -1,0 +1,3 @@
+{"id":"schema-001","title":"无标准文本字段记录A","source":"schema_drift","description":"患者头痛头晕，需要评估血压和神经系统体征。"}
+{"id":"schema-002","title":"无标准文本字段记录B","source":"schema_drift","content":"患者餐后反酸烧心，建议饮食调整并评估胃食管反流。"}
+{"id":"schema-003","title":"无标准文本字段记录C","source":"schema_drift","summary":""}
