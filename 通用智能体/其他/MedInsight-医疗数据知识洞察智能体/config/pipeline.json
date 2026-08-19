@@ -1,0 +1,20 @@
+{
+  "task1": {
+    "raw_cblue_dir": "data/task2/raw/cblue",
+    "max_records": 30,
+    "output_dir": "artifacts/pipeline/task1"
+  },
+  "task2": {
+    "output_dir": "artifacts/pipeline/task2",
+    "shared_output_dir": "data/shared/knowledge_graph",
+    "question": "肺炎有什么症状？"
+  },
+  "task3": {
+    "output_dir": "artifacts/pipeline/task3",
+    "task": "复用任务一处理报告和任务二知识图谱，生成图谱驱动数据分析、BI 看板和洞察报告。"
+  },
+  "outputs": {
+    "dir": "outputs",
+    "evaluation_report": "outputs/evaluation_report.json"
+  }
+}

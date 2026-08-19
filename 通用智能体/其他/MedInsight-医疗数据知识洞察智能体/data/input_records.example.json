@@ -1,0 +1,11 @@
+{
+  "records": [
+    {
+      "doc_id": "example-001",
+      "title": "请替换为有授权的医疗文本标题",
+      "text": "请在运行前替换为用户有权处理的医疗文本。",
+      "source": "user_provided",
+      "license": "user_responsible"
+    }
+  ]
+}

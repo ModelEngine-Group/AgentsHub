@@ -1,0 +1,13 @@
+{
+  "entity_types": ["疾病", "症状", "药物", "治疗方法", "医学检查项目", "病因", "科室"],
+  "relations": [
+    {"subject_type": "疾病", "predicate": "临床表现", "object_type": "症状"},
+    {"subject_type": "疾病", "predicate": "药物治疗", "object_type": "药物"},
+    {"subject_type": "疾病", "predicate": "辅助治疗", "object_type": "治疗方法"},
+    {"subject_type": "疾病", "predicate": "辅助检查", "object_type": "医学检查项目"},
+    {"subject_type": "疾病", "predicate": "并发症", "object_type": "疾病"},
+    {"subject_type": "疾病", "predicate": "病因", "object_type": "病因"},
+    {"subject_type": "疾病", "predicate": "病理分型", "object_type": "疾病"},
+    {"subject_type": "疾病", "predicate": "就诊科室", "object_type": "科室"}
+  ]
+}
