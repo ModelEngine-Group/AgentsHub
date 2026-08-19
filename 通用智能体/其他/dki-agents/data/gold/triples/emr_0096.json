@@ -1,0 +1,51 @@
+[
+ {
+  "head": "肝性脑病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "意识障碍",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "肝性脑病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "扑翼样震颤",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "肝性脑病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "行为异常",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "肝性脑病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "血氨检测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "肝性脑病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "肝功能检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "肝性脑病",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "消化内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "肝性脑病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "乳果糖",
+  "tail_type": "Drug"
+ }
+]

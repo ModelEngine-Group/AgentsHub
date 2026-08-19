@@ -1,0 +1,56 @@
+[
+ {
+  "name": "心悸",
+  "type": "Symptom",
+  "mention": "心悸",
+  "span": null
+ },
+ {
+  "name": "头痛",
+  "type": "Symptom",
+  "mention": "头痛",
+  "span": null
+ },
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "头晕",
+  "span": null
+ },
+ {
+  "name": "耳鸣",
+  "type": "Symptom",
+  "mention": "耳鸣",
+  "span": null
+ },
+ {
+  "name": "心电图",
+  "type": "Exam",
+  "mention": "心电图",
+  "span": null
+ },
+ {
+  "name": "高血压",
+  "type": "Disease",
+  "mention": "高血压病",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "冠心病",
+  "type": "Disease",
+  "mention": "冠心病",
+  "span": null
+ },
+ {
+  "name": "氨氯地平",
+  "type": "Drug",
+  "mention": "氨氯地平",
+  "span": null
+ }
+]

@@ -1,0 +1,77 @@
+name: '医疗实体识别算子'
+description: '识别病历中的疾病/症状/药物/检查/治疗方式/科室实体并归一到规范名。dict 后端复用 DataMate AC 自动机；可选 llm、bert、CMeEE PyTorch 与 schema-v3 CMeEE OM 后端。'
+language: 'python'
+vendor: 'dki'
+raw_id: 'MedicalEntityExtractor'
+version: '0.1.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+release:
+  - '首次发布：dict/llm/bert 三后端'
+metrics:
+  - name: '吞吐量'
+    metric: '见 outputs/bench/operator_bench.md（CPU 实测）'
+  - name: '抽取质量'
+    metric: '见 outputs/eval/kg_extraction_eval.json（vs 金标准）'
+runtime:
+  memory: 52428800
+  cpu: 0.1
+  gpu: 0
+  npu: 0        # bert 后端 + accelerator=npu 时由平台调度 NPU 资源
+settings:
+  backend:
+    name: '抽取后端'
+    description: 'dict=词典AC匹配；llm=大模型增强；bert=Token NER；cmeee_gp=PyTorch GlobalPointer；cmeee_om=证据绑定的OM'
+    type: 'select'
+    defaultVal: 'dict'
+    required: false
+    options:
+      - label: '词典匹配'
+        value: 'dict'
+      - label: 'LLM增强'
+        value: 'llm'
+      - label: 'BERT(NPU可选)'
+        value: 'bert'
+      - label: 'CMeEE GlobalPointer'
+        value: 'cmeee_gp'
+      - label: 'CMeEE OM(NPU)'
+        value: 'cmeee_om'
+  dictPath:
+    name: '词典路径'
+    description: '医疗词典 JSON 路径（默认使用包内词典）'
+    type: 'input'
+    defaultVal: ''
+    required: false
+  modelPath:
+    name: '模型目录'
+    description: 'BERT/CMeEE checkpoint 目录；cmeee_om 时必填'
+    type: 'input'
+    defaultVal: ''
+    required: false
+  omPath:
+    name: 'OM 路径'
+    description: 'cmeee_om 的目标机 OM'
+    type: 'input'
+    defaultVal: ''
+    required: false
+  manifestPath:
+    name: 'OM 清单'
+    description: 'cmeee_om 的 schema-v3 manifest'
+    type: 'input'
+    defaultVal: ''
+    required: false
+  exportReceiptPath:
+    name: '导出回执'
+    description: 'checkpoint 到 ONNX 的 create-once 回执'
+    type: 'input'
+    defaultVal: ''
+    required: false
+  atcLogPath:
+    name: 'ATC 日志'
+    description: 'manifest 绑定的完整 ATC 日志'
+    type: 'input'
+    defaultVal: ''
+    required: false

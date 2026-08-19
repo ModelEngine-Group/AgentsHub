@@ -1,0 +1,80 @@
+[
+ {
+  "name": "食欲不振",
+  "type": "Symptom",
+  "mention": "食欲不振",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "腹胀",
+  "type": "Symptom",
+  "mention": "腹胀",
+  "span": null
+ },
+ {
+  "name": "失眠症",
+  "type": "Disease",
+  "mention": "失眠症",
+  "span": null
+ },
+ {
+  "name": "病毒性肝炎",
+  "type": "Disease",
+  "mention": "病毒性肝炎",
+  "span": null
+ },
+ {
+  "name": "幽门螺杆菌检测",
+  "type": "Exam",
+  "mention": "Hp检测",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜",
+  "span": null
+ },
+ {
+  "name": "慢性胃炎",
+  "type": "Disease",
+  "mention": "慢性胃炎",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "奥美拉唑",
+  "type": "Drug",
+  "mention": "奥美拉唑",
+  "span": null
+ },
+ {
+  "name": "甲氨蝶呤",
+  "type": "Drug",
+  "mention": "甲氨蝶呤",
+  "span": null
+ },
+ {
+  "name": "病毒性肝炎",
+  "type": "Disease",
+  "mention": "病毒性肝炎",
+  "span": null
+ }
+]

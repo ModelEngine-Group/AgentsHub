@@ -1,0 +1,50 @@
+[
+ {
+  "name": "呼吸困难",
+  "type": "Symptom",
+  "mention": "呼吸困难",
+  "span": null
+ },
+ {
+  "name": "咳痰",
+  "type": "Symptom",
+  "mention": "咳痰",
+  "span": null
+ },
+ {
+  "name": "肺功能检查",
+  "type": "Exam",
+  "mention": "肺功能",
+  "span": null
+ },
+ {
+  "name": "慢性阻塞性肺疾病",
+  "type": "Disease",
+  "mention": "慢阻肺",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "呼吸衰竭",
+  "type": "Disease",
+  "mention": "呼吸衰竭",
+  "span": null
+ },
+ {
+  "name": "布地奈德",
+  "type": "Drug",
+  "mention": "布地奈德",
+  "span": null
+ },
+ {
+  "name": "沙美特罗",
+  "type": "Drug",
+  "mention": "沙美特罗",
+  "span": null
+ }
+]

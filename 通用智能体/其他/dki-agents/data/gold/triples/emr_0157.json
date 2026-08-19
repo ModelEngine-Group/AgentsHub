@@ -1,0 +1,58 @@
+[
+ {
+  "head": "反流性食管炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "烧心",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "反流性食管炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "胸骨后疼痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "反流性食管炎",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "反酸",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "反流性食管炎",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "胃镜检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "反流性食管炎",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "食管pH监测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "反流性食管炎",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "消化内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "反流性食管炎",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "莫沙必利",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "反流性食管炎",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "奥美拉唑",
+  "tail_type": "Drug"
+ }
+]

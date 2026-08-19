@@ -1,0 +1,74 @@
+[
+ {
+  "name": "呼吸困难",
+  "type": "Symptom",
+  "mention": "呼吸困难",
+  "span": null
+ },
+ {
+  "name": "夜间阵发性呼吸困难",
+  "type": "Symptom",
+  "mention": "夜间阵发性呼吸困难",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "下肢水肿",
+  "type": "Symptom",
+  "mention": "下肢水肿",
+  "span": null
+ },
+ {
+  "name": "骨折",
+  "type": "Disease",
+  "mention": "骨折",
+  "span": null
+ },
+ {
+  "name": "BNP检测",
+  "type": "Exam",
+  "mention": "BNP检测",
+  "span": null
+ },
+ {
+  "name": "胸部X线",
+  "type": "Exam",
+  "mention": "胸部X线",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心衰",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "CKD",
+  "span": null
+ },
+ {
+  "name": "美托洛尔",
+  "type": "Drug",
+  "mention": "倍他乐克",
+  "span": null
+ },
+ {
+  "name": "螺内酯",
+  "type": "Drug",
+  "mention": "螺内酯",
+  "span": null
+ }
+]

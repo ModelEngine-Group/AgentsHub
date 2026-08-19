@@ -1,0 +1,68 @@
+[
+ {
+  "name": "黄疸",
+  "type": "Symptom",
+  "mention": "黄疸",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "疲乏",
+  "span": null
+ },
+ {
+  "name": "腹胀",
+  "type": "Symptom",
+  "mention": "腹胀",
+  "span": null
+ },
+ {
+  "name": "上呼吸道感染",
+  "type": "Disease",
+  "mention": "上呼吸道感染",
+  "span": null
+ },
+ {
+  "name": "腹部超声",
+  "type": "Exam",
+  "mention": "腹部超声",
+  "span": null
+ },
+ {
+  "name": "肝功能检查",
+  "type": "Exam",
+  "mention": "肝功能检查",
+  "span": null
+ },
+ {
+  "name": "肝硬化",
+  "type": "Disease",
+  "mention": "肝硬化",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "肝癌",
+  "type": "Disease",
+  "mention": "原发性肝癌",
+  "span": null
+ },
+ {
+  "name": "螺内酯",
+  "type": "Drug",
+  "mention": "螺内酯",
+  "span": null
+ },
+ {
+  "name": "呋塞米",
+  "type": "Drug",
+  "mention": "速尿",
+  "span": null
+ }
+]

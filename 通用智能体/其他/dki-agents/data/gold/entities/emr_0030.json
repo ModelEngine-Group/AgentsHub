@@ -1,0 +1,62 @@
+[
+ {
+  "name": "畏寒",
+  "type": "Symptom",
+  "mention": "畏寒",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "体重增加",
+  "type": "Symptom",
+  "mention": "体重增加",
+  "span": null
+ },
+ {
+  "name": "便秘",
+  "type": "Symptom",
+  "mention": "便秘",
+  "span": null
+ },
+ {
+  "name": "失眠症",
+  "type": "Disease",
+  "mention": "失眠症",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能检查",
+  "type": "Exam",
+  "mention": "甲状腺功能检查",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能减退症",
+  "type": "Disease",
+  "mention": "甲减",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "高脂血症",
+  "type": "Disease",
+  "mention": "血脂异常",
+  "span": null
+ },
+ {
+  "name": "左甲状腺素钠",
+  "type": "Drug",
+  "mention": "左甲状腺素钠",
+  "span": null
+ }
+]

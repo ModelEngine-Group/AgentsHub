@@ -1,0 +1,56 @@
+[
+ {
+  "name": "流涕",
+  "type": "Symptom",
+  "mention": "流鼻涕",
+  "span": null
+ },
+ {
+  "name": "咽痛",
+  "type": "Symptom",
+  "mention": "咽喉疼痛",
+  "span": null
+ },
+ {
+  "name": "咳嗽",
+  "type": "Symptom",
+  "mention": "咳嗽",
+  "span": null
+ },
+ {
+  "name": "血常规",
+  "type": "Exam",
+  "mention": "血常规",
+  "span": null
+ },
+ {
+  "name": "上呼吸道感染",
+  "type": "Disease",
+  "mention": "上呼吸道感染",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "肺炎",
+  "type": "Disease",
+  "mention": "社区获得性肺炎",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬",
+  "span": null
+ },
+ {
+  "name": "对乙酰氨基酚",
+  "type": "Drug",
+  "mention": "对乙酰氨基酚",
+  "span": null
+ }
+]

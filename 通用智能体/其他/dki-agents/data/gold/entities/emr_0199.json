@@ -1,0 +1,56 @@
+[
+ {
+  "name": "抽搐",
+  "type": "Symptom",
+  "mention": "抽搐",
+  "span": null
+ },
+ {
+  "name": "口吐白沫",
+  "type": "Symptom",
+  "mention": "口吐白沫",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心衰",
+  "span": null
+ },
+ {
+  "name": "脑电图",
+  "type": "Exam",
+  "mention": "脑电图",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅MRI",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "癫痫",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "丙戊酸钠",
+  "type": "Drug",
+  "mention": "德巴金",
+  "span": null
+ },
+ {
+  "name": "卡马西平",
+  "type": "Drug",
+  "mention": "卡马西平",
+  "span": null
+ }
+]

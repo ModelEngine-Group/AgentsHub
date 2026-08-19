@@ -1,0 +1,28 @@
+name: '病历章节分段算子'
+description: '将病历文本按章节（主诉/现病史/既往史/辅助检查/诊断/治疗方案/医嘱等）切分为结构化 JSON，为下游实体/关系抽取提供章节上下文。'
+language: 'python'
+vendor: 'dki'
+raw_id: 'MedicalSectionSplitter'
+version: '0.1.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+release:
+  - '首次发布'
+metrics:
+  - name: '吞吐量'
+    metric: '见 outputs/bench/operator_bench.md（CPU 实测）'
+runtime:
+  memory: 10485760
+  cpu: 0.05
+  gpu: 0
+  npu: 0
+settings:
+  sections:
+    name: '章节名列表'
+    description: '识别的章节头名称，逗号分隔'
+    type: 'input'
+    defaultVal: '基本信息,主诉,现病史,既往史,查体,辅助检查,诊断,治疗方案,医嘱'
+    required: false

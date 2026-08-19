@@ -1,0 +1,68 @@
+[
+ {
+  "name": "体重下降",
+  "type": "Symptom",
+  "mention": "体重下降",
+  "span": null
+ },
+ {
+  "name": "盗汗",
+  "type": "Symptom",
+  "mention": "盗汗",
+  "span": null
+ },
+ {
+  "name": "结核菌素试验",
+  "type": "Exam",
+  "mention": "结核菌素试验",
+  "span": null
+ },
+ {
+  "name": "痰涂片检查",
+  "type": "Exam",
+  "mention": "痰涂片检查",
+  "span": null
+ },
+ {
+  "name": "胸部CT",
+  "type": "Exam",
+  "mention": "胸部CT",
+  "span": null
+ },
+ {
+  "name": "肺结核",
+  "type": "Disease",
+  "mention": "肺结核",
+  "span": null
+ },
+ {
+  "name": "感染科",
+  "type": "Department",
+  "mention": "感染科",
+  "span": null
+ },
+ {
+  "name": "呼吸衰竭",
+  "type": "Disease",
+  "mention": "呼吸衰竭",
+  "span": null
+ },
+ {
+  "name": "利福平",
+  "type": "Drug",
+  "mention": "利福平",
+  "span": null
+ },
+ {
+  "name": "异烟肼",
+  "type": "Drug",
+  "mention": "异烟肼",
+  "span": null
+ },
+ {
+  "name": "吡嗪酰胺",
+  "type": "Drug",
+  "mention": "吡嗪酰胺",
+  "span": null
+ }
+]

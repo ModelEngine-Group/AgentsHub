@@ -1,0 +1,50 @@
+[
+ {
+  "name": "腰痛",
+  "type": "Symptom",
+  "mention": "腰痛",
+  "span": null
+ },
+ {
+  "name": "下肢放射痛",
+  "type": "Symptom",
+  "mention": "下肢放射痛",
+  "span": null
+ },
+ {
+  "name": "下肢麻木",
+  "type": "Symptom",
+  "mention": "下肢麻木",
+  "span": null
+ },
+ {
+  "name": "腰椎CT",
+  "type": "Exam",
+  "mention": "腰椎CT",
+  "span": null
+ },
+ {
+  "name": "腰椎间盘突出症",
+  "type": "Disease",
+  "mention": "腰椎间盘突出症",
+  "span": null
+ },
+ {
+  "name": "骨科",
+  "type": "Department",
+  "mention": "骨科",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬缓释胶囊",
+  "span": null
+ },
+ {
+  "name": "甲钴胺",
+  "type": "Drug",
+  "mention": "甲钴胺",
+  "span": null
+ }
+]

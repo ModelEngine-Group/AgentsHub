@@ -1,0 +1,92 @@
+[
+ {
+  "name": "呼吸困难",
+  "type": "Symptom",
+  "mention": "呼吸困难",
+  "span": null
+ },
+ {
+  "name": "胸痛",
+  "type": "Symptom",
+  "mention": "胸部疼痛",
+  "span": null
+ },
+ {
+  "name": "咯血",
+  "type": "Symptom",
+  "mention": "咯血",
+  "span": null
+ },
+ {
+  "name": "晕厥",
+  "type": "Symptom",
+  "mention": "晕厥",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾脏病",
+  "span": null
+ },
+ {
+  "name": "尿路结石",
+  "type": "Disease",
+  "mention": "尿路结石",
+  "span": null
+ },
+ {
+  "name": "D-二聚体检测",
+  "type": "Exam",
+  "mention": "D-二聚体检测",
+  "span": null
+ },
+ {
+  "name": "肺动脉CTA",
+  "type": "Exam",
+  "mention": "肺动脉CTA",
+  "span": null
+ },
+ {
+  "name": "肺栓塞",
+  "type": "Disease",
+  "mention": "肺血栓栓塞症",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "呼吸衰竭",
+  "type": "Disease",
+  "mention": "呼吸衰竭",
+  "span": null
+ },
+ {
+  "name": "利伐沙班",
+  "type": "Drug",
+  "mention": "拜瑞妥",
+  "span": null
+ },
+ {
+  "name": "低分子肝素",
+  "type": "Drug",
+  "mention": "低分子肝素",
+  "span": null
+ },
+ {
+  "name": "秋水仙碱",
+  "type": "Drug",
+  "mention": "秋水仙碱",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾脏病",
+  "span": null
+ }
+]

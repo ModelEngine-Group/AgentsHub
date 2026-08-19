@@ -1,0 +1,80 @@
+[
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "大汗",
+  "type": "Symptom",
+  "mention": "大汗",
+  "span": null
+ },
+ {
+  "name": "濒死感",
+  "type": "Symptom",
+  "mention": "濒死感",
+  "span": null
+ },
+ {
+  "name": "上呼吸道感染",
+  "type": "Disease",
+  "mention": "上呼吸道感染",
+  "span": null
+ },
+ {
+  "name": "肌钙蛋白检测",
+  "type": "Exam",
+  "mention": "肌钙蛋白检测",
+  "span": null
+ },
+ {
+  "name": "心肌酶谱",
+  "type": "Exam",
+  "mention": "心肌酶谱",
+  "span": null
+ },
+ {
+  "name": "心电图",
+  "type": "Exam",
+  "mention": "ECG",
+  "span": null
+ },
+ {
+  "name": "心肌梗死",
+  "type": "Disease",
+  "mention": "心肌梗死",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "氯吡格雷",
+  "type": "Drug",
+  "mention": "波立维",
+  "span": null
+ },
+ {
+  "name": "阿司匹林",
+  "type": "Drug",
+  "mention": "阿司匹林",
+  "span": null
+ },
+ {
+  "name": "阿托伐他汀",
+  "type": "Drug",
+  "mention": "阿托伐他汀钙片",
+  "span": null
+ },
+ {
+  "name": "溶栓治疗",
+  "type": "Treatment",
+  "mention": "溶栓治疗",
+  "span": null
+ }
+]

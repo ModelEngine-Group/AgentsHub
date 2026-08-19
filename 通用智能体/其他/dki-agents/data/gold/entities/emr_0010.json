@@ -1,0 +1,74 @@
+[
+ {
+  "name": "呕吐",
+  "type": "Symptom",
+  "mention": "呕吐",
+  "span": null
+ },
+ {
+  "name": "畏光",
+  "type": "Symptom",
+  "mention": "畏光",
+  "span": null
+ },
+ {
+  "name": "头痛",
+  "type": "Symptom",
+  "mention": "头痛",
+  "span": null
+ },
+ {
+  "name": "深静脉血栓形成",
+  "type": "Disease",
+  "mention": "深静脉血栓形成",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "羊癫疯",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅MRI",
+  "span": null
+ },
+ {
+  "name": "偏头痛",
+  "type": "Disease",
+  "mention": "偏头痛",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬",
+  "span": null
+ },
+ {
+  "name": "佐米曲普坦",
+  "type": "Drug",
+  "mention": "佐米曲普坦",
+  "span": null
+ },
+ {
+  "name": "左氧氟沙星",
+  "type": "Drug",
+  "mention": "左氧氟沙星",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "羊癫疯",
+  "span": null
+ }
+]

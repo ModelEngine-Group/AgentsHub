@@ -1,0 +1,44 @@
+[
+ {
+  "name": "运动迟缓",
+  "type": "Symptom",
+  "mention": "运动迟缓",
+  "span": null
+ },
+ {
+  "name": "肌强直",
+  "type": "Symptom",
+  "mention": "肌强直",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅MRI",
+  "span": null
+ },
+ {
+  "name": "帕金森病",
+  "type": "Disease",
+  "mention": "震颤麻痹",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "普拉克索",
+  "type": "Drug",
+  "mention": "普拉克索",
+  "span": null
+ },
+ {
+  "name": "康复训练",
+  "type": "Treatment",
+  "mention": "康复训练",
+  "span": null
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "name": "静止性震颤",
+  "type": "Symptom",
+  "mention": "静止性震颤",
+  "span": null
+ },
+ {
+  "name": "运动迟缓",
+  "type": "Symptom",
+  "mention": "运动迟缓",
+  "span": null
+ },
+ {
+  "name": "糖尿病肾病",
+  "type": "Disease",
+  "mention": "糖尿病肾病",
+  "span": null
+ },
+ {
+  "name": "脑卒中",
+  "type": "Disease",
+  "mention": "脑卒中",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅磁共振",
+  "span": null
+ },
+ {
+  "name": "帕金森病",
+  "type": "Disease",
+  "mention": "震颤麻痹",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "抑郁症",
+  "type": "Disease",
+  "mention": "抑郁障碍",
+  "span": null
+ },
+ {
+  "name": "左旋多巴",
+  "type": "Drug",
+  "mention": "左旋多巴",
+  "span": null
+ },
+ {
+  "name": "脑深部电刺激术",
+  "type": "Treatment",
+  "mention": "脑深部电刺激术",
+  "span": null
+ }
+]

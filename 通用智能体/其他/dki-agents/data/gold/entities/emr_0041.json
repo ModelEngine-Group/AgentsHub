@@ -1,0 +1,74 @@
+[
+ {
+  "name": "面色苍白",
+  "type": "Symptom",
+  "mention": "面色苍白",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "心悸",
+  "type": "Symptom",
+  "mention": "心慌",
+  "span": null
+ },
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "眩晕",
+  "span": null
+ },
+ {
+  "name": "帕金森病",
+  "type": "Disease",
+  "mention": "帕金森病",
+  "span": null
+ },
+ {
+  "name": "铁代谢检查",
+  "type": "Exam",
+  "mention": "铁代谢检查",
+  "span": null
+ },
+ {
+  "name": "血常规",
+  "type": "Exam",
+  "mention": "血常规",
+  "span": null
+ },
+ {
+  "name": "贫血",
+  "type": "Disease",
+  "mention": "缺铁性贫血",
+  "span": null
+ },
+ {
+  "name": "血液科",
+  "type": "Department",
+  "mention": "血液科",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心力衰竭",
+  "span": null
+ },
+ {
+  "name": "琥珀酸亚铁",
+  "type": "Drug",
+  "mention": "速力菲",
+  "span": null
+ },
+ {
+  "name": "叶酸",
+  "type": "Drug",
+  "mention": "叶酸",
+  "span": null
+ }
+]

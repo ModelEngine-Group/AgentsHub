@@ -1,0 +1,65 @@
+[
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "恶心",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "腰痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "血尿",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "泌尿系超声",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "腹部CT",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "泌尿外科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "尿路感染",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "坦索罗辛",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "尿路结石",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "体外冲击波碎石术",
+  "tail_type": "Treatment"
+ }
+]

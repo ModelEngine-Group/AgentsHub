@@ -1,0 +1,58 @@
+[
+ {
+  "head": "上呼吸道感染",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "流涕",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "上呼吸道感染",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "咽痛",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "上呼吸道感染",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "咳嗽",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "上呼吸道感染",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "血常规",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "上呼吸道感染",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "呼吸内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "上呼吸道感染",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "肺炎",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "上呼吸道感染",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "布洛芬",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "上呼吸道感染",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "对乙酰氨基酚",
+  "tail_type": "Drug"
+ }
+]

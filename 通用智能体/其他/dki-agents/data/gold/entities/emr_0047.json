@@ -1,0 +1,62 @@
+[
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "眩晕",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "乏力",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心力衰竭",
+  "span": null
+ },
+ {
+  "name": "血脂检查",
+  "type": "Exam",
+  "mention": "血脂检查",
+  "span": null
+ },
+ {
+  "name": "高脂血症",
+  "type": "Disease",
+  "mention": "高脂血症",
+  "span": null
+ },
+ {
+  "name": "内分泌科",
+  "type": "Department",
+  "mention": "内分泌科",
+  "span": null
+ },
+ {
+  "name": "冠心病",
+  "type": "Disease",
+  "mention": "冠心病",
+  "span": null
+ },
+ {
+  "name": "非诺贝特",
+  "type": "Drug",
+  "mention": "非诺贝特",
+  "span": null
+ },
+ {
+  "name": "阿托伐他汀",
+  "type": "Drug",
+  "mention": "阿托伐他汀",
+  "span": null
+ },
+ {
+  "name": "运动疗法",
+  "type": "Treatment",
+  "mention": "运动疗法",
+  "span": null
+ }
+]

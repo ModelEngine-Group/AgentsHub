@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }}</title>
+{% if echarts_js %}<script>{{ echarts_js }}</script>{% endif %}
+<style>
+  :root { --primary: #2563eb; --bg: #f6f8fb; --card: #ffffff; --text: #1f2937; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+         background: var(--bg); color: var(--text); line-height: 1.7; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 32px 20px 60px; }
+  header { text-align: center; margin-bottom: 8px; }
+  header h1 { font-size: 26px; color: #111827; padding: 18px 0 6px; }
+  header .meta { color: #6b7280; font-size: 13px; margin-bottom: 20px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+           gap: 14px; margin-bottom: 28px; }
+  .card { background: var(--card); border-radius: 8px; padding: 16px 18px;
+          box-shadow: 0 1px 3px rgba(0,0,0,.08); text-align: center; }
+  .card .num { font-size: 26px; font-weight: 700; color: var(--primary); }
+  .card .label { font-size: 13px; color: #6b7280; margin-top: 2px; }
+  section.chart-block { padding: 22px 0 26px; border-bottom: 1px solid #e5e7eb;
+          margin-bottom: 10px; }
+  section.chart-block h2 { font-size: 17px; margin-bottom: 10px; color: #111827;
+          border-left: 4px solid var(--primary); padding-left: 10px; }
+  .chart { width: 100%; height: 360px; }
+  .chart.tall { height: 560px; }
+  .desc { color: #374151; font-size: 14px; margin-top: 10px; background: #f9fafb;
+          border-radius: 8px; padding: 10px 14px; }
+  .provenance { color: #6b7280; font-size: 12px; margin-top: 8px; overflow-wrap: anywhere; }
+  .summary { padding: 24px 0; }
+  .summary h2 { font-size: 18px; margin: 14px 0 8px; }
+  .summary h3 { font-size: 15px; margin: 12px 0 6px; }
+  .summary ul { padding-left: 22px; }
+  .summary li { margin: 4px 0; }
+  footer { text-align: center; color: #9ca3af; font-size: 12px; margin-top: 30px; }
+  @media print { .chart { height: 300px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>{{ title }}</h1>
+    <div class="meta">数据—知识—洞察 · 由 dki InsightAgent 生成 · {{ generated_at }}</div>
+  </header>
+
+  {% if overview %}
+  <div class="cards">
+    {% for label, num in overview.items() %}
+    <div class="card"><div class="num">{{ num }}</div><div class="label">{{ label }}</div></div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% for chart in charts %}
+  <section class="chart-block">
+    <h2>{{ chart.title }}</h2>
+    <div id="chart_{{ loop.index }}" class="chart {{ 'tall' if chart.type == 'graph' else '' }}"></div>
+    {% if chart.description %}<div class="desc">{{ chart.description }}</div>{% endif %}
+    {% if chart.provenance %}<div class="provenance">{{ chart.provenance }}</div>{% endif %}
+  </section>
+  {% endfor %}
+
+  {% if summary_html %}
+  <section class="summary">
+    {{ summary_html }}
+  </section>
+  {% endif %}
+
+  <footer>基于 Nexent 智能体框架 与 DataMate 数据处理算子体系 · dki-agents</footer>
+</div>
+
+<script>
+const CHARTS = {{ charts_json }};
+CHARTS.forEach((c, i) => {
+  const el = document.getElementById("chart_" + (i + 1));
+  if (!el) return;
+  if (typeof echarts === "undefined") {
+    el.textContent = "本报告未包含 ECharts 资产，无法渲染交互图表。";
+    return;
+  }
+  const chart = echarts.init(el);
+  let option = {};
+  if (c.type === "bar" || c.type === "line") {
+    option = {
+      tooltip: { trigger: "axis" },
+      grid: { left: 60, right: 30, bottom: 70, top: 40 },
+      xAxis: { type: "category", data: c.data.categories,
+               axisLabel: { interval: 0, rotate: c.data.categories.length > 8 ? 35 : 0 } },
+      yAxis: { type: "value" },
+      series: (c.data.series || []).map(s => ({
+        name: s.name, type: c.type, data: s.values,
+        smooth: c.type === "line",
+        itemStyle: { color: "#2563eb" },
+        areaStyle: c.type === "line" ? { opacity: 0.08 } : undefined,
+        label: { show: c.data.categories.length <= 12, position: "top", fontSize: 11 }
+      })),
+      legend: { show: (c.data.series || []).length > 1, top: 6 }
+    };
+  } else if (c.type === "pie") {
+    const s = (c.data.series || [])[0] || { values: [] };
+    option = {
+      tooltip: { trigger: "item", formatter: "{b}: {c} ({d}%)" },
+      legend: { orient: "vertical", left: "left", top: "middle" },
+      series: [{
+        type: "pie", radius: ["35%", "65%"], center: ["58%", "50%"],
+        data: c.data.categories.map((name, k) => ({ name, value: s.values[k] })),
+        label: { formatter: "{b}\n{d}%" }
+      }]
+    };
+  } else if (c.type === "graph") {
+    option = {
+      tooltip: { formatter: p => p.dataType === "edge" ? p.value : p.name },
+      legend: { data: (c.data.categories || []).map(x => x.name), top: 6, type: "scroll" },
+      series: [{
+        type: "graph", layout: "force", roam: true, draggable: true,
+        data: c.data.nodes, links: c.data.links, categories: c.data.categories,
+        force: { repulsion: 220, edgeLength: 90, gravity: 0.08 },
+        label: { show: true, fontSize: 11 },
+        edgeSymbol: ["none", "arrow"], edgeSymbolSize: 6,
+        lineStyle: { opacity: 0.55, curveness: 0.12 },
+        emphasis: { focus: "adjacency", lineStyle: { width: 3 } }
+      }]
+    };
+  } else if (c.type === "heatmap") {
+    const vals = (c.data.data || []).map(d => d[2]);
+    option = {
+      tooltip: { position: "top",
+        formatter: p => `${c.data.ycats[p.value[1]]} / ${c.data.xcats[p.value[0]]}: ${p.value[2]}` },
+      grid: { left: 90, right: 30, bottom: 80, top: 20 },
+      xAxis: { type: "category", data: c.data.xcats, splitArea: { show: true },
+               axisLabel: { interval: 0, rotate: c.data.xcats.length > 6 ? 30 : 0 } },
+      yAxis: { type: "category", data: c.data.ycats, splitArea: { show: true } },
+      visualMap: { min: 0, max: Math.max(1, ...vals), calculable: true, orient: "horizontal",
+                   left: "center", bottom: 10, inRange: { color: ["#eff6ff", "#2563eb", "#1e3a8a"] } },
+      series: [{ type: "heatmap", data: c.data.data,
+                 label: { show: true, fontSize: 10 },
+                 emphasis: { itemStyle: { shadowBlur: 8, shadowColor: "rgba(0,0,0,.3)" } } }]
+    };
+  } else if (c.type === "sankey") {
+    option = {
+      tooltip: { trigger: "item", triggerOn: "mousemove" },
+      series: [{
+        type: "sankey", data: c.data.nodes, links: c.data.links,
+        emphasis: { focus: "adjacency" },
+        label: { fontSize: 11 },
+        lineStyle: { color: "gradient", opacity: 0.5, curveness: 0.5 }
+      }]
+    };
+  }
+  chart.setOption(option);
+  window.addEventListener("resize", () => chart.resize());
+});
+</script>
+</body>
+</html>

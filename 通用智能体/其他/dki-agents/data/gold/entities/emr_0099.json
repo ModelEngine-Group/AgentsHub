@@ -1,0 +1,62 @@
+[
+ {
+  "name": "疼痛",
+  "type": "Symptom",
+  "mention": "疼痛",
+  "span": null
+ },
+ {
+  "name": "活动受限",
+  "type": "Symptom",
+  "mention": "活动受限",
+  "span": null
+ },
+ {
+  "name": "慢性胃炎",
+  "type": "Disease",
+  "mention": "慢性胃炎",
+  "span": null
+ },
+ {
+  "name": "深静脉血栓形成",
+  "type": "Disease",
+  "mention": "深静脉血栓形成",
+  "span": null
+ },
+ {
+  "name": "X线检查",
+  "type": "Exam",
+  "mention": "X线检查",
+  "span": null
+ },
+ {
+  "name": "骨折",
+  "type": "Disease",
+  "mention": "骨折",
+  "span": null
+ },
+ {
+  "name": "骨科",
+  "type": "Department",
+  "mention": "骨科",
+  "span": null
+ },
+ {
+  "name": "肺炎",
+  "type": "Disease",
+  "mention": "社区获得性肺炎",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬",
+  "span": null
+ },
+ {
+  "name": "石膏固定",
+  "type": "Treatment",
+  "mention": "石膏固定",
+  "span": null
+ }
+]

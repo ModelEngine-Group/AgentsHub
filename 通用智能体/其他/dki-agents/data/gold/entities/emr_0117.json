@@ -1,0 +1,68 @@
+[
+ {
+  "name": "蛋白尿",
+  "type": "Symptom",
+  "mention": "蛋白尿",
+  "span": null
+ },
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "倦怠",
+  "span": null
+ },
+ {
+  "name": "下肢水肿",
+  "type": "Symptom",
+  "mention": "下肢水肿",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能减退症",
+  "type": "Disease",
+  "mention": "甲状腺功能减退症",
+  "span": null
+ },
+ {
+  "name": "尿微量白蛋白检测",
+  "type": "Exam",
+  "mention": "尿微量白蛋白检测",
+  "span": null
+ },
+ {
+  "name": "糖尿病肾病",
+  "type": "Disease",
+  "mention": "糖尿病肾病",
+  "span": null
+ },
+ {
+  "name": "肾内科",
+  "type": "Department",
+  "mention": "肾内科",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾功能不全",
+  "span": null
+ },
+ {
+  "name": "缬沙坦",
+  "type": "Drug",
+  "mention": "缬沙坦",
+  "span": null
+ },
+ {
+  "name": "胰岛素",
+  "type": "Drug",
+  "mention": "门冬胰岛素",
+  "span": null
+ },
+ {
+  "name": "饮食控制",
+  "type": "Treatment",
+  "mention": "饮食控制",
+  "span": null
+ }
+]

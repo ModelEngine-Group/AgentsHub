@@ -1,0 +1,86 @@
+[
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "疲乏",
+  "span": null
+ },
+ {
+  "name": "夜间阵发性呼吸困难",
+  "type": "Symptom",
+  "mention": "夜间阵发性呼吸困难",
+  "span": null
+ },
+ {
+  "name": "呼吸困难",
+  "type": "Symptom",
+  "mention": "呼吸困难",
+  "span": null
+ },
+ {
+  "name": "下肢水肿",
+  "type": "Symptom",
+  "mention": "下肢水肿",
+  "span": null
+ },
+ {
+  "name": "尿路结石",
+  "type": "Disease",
+  "mention": "肾结石",
+  "span": null
+ },
+ {
+  "name": "心脏超声",
+  "type": "Exam",
+  "mention": "心脏超声",
+  "span": null
+ },
+ {
+  "name": "BNP检测",
+  "type": "Exam",
+  "mention": "BNP检测",
+  "span": null
+ },
+ {
+  "name": "胸部X线",
+  "type": "Exam",
+  "mention": "胸片",
+  "span": null
+ },
+ {
+  "name": "心力衰竭",
+  "type": "Disease",
+  "mention": "心力衰竭",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "慢性肾脏病",
+  "type": "Disease",
+  "mention": "慢性肾脏病",
+  "span": null
+ },
+ {
+  "name": "美托洛尔",
+  "type": "Drug",
+  "mention": "美托洛尔",
+  "span": null
+ },
+ {
+  "name": "螺内酯",
+  "type": "Drug",
+  "mention": "螺内酯",
+  "span": null
+ },
+ {
+  "name": "限盐限水",
+  "type": "Treatment",
+  "mention": "限盐限水",
+  "span": null
+ }
+]

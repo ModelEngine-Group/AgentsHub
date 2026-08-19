@@ -1,0 +1,56 @@
+[
+ {
+  "name": "咳嗽",
+  "type": "Symptom",
+  "mention": "咳嗽",
+  "span": null
+ },
+ {
+  "name": "呼吸困难",
+  "type": "Symptom",
+  "mention": "呼吸困难",
+  "span": null
+ },
+ {
+  "name": "呼吸衰竭",
+  "type": "Disease",
+  "mention": "呼吸衰竭",
+  "span": null
+ },
+ {
+  "name": "过敏原检测",
+  "type": "Exam",
+  "mention": "过敏原检测",
+  "span": null
+ },
+ {
+  "name": "支气管哮喘",
+  "type": "Disease",
+  "mention": "哮喘",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "慢性阻塞性肺疾病",
+  "type": "Disease",
+  "mention": "慢性阻塞性肺疾病",
+  "span": null
+ },
+ {
+  "name": "沙丁胺醇",
+  "type": "Drug",
+  "mention": "沙丁胺醇",
+  "span": null
+ },
+ {
+  "name": "布地奈德",
+  "type": "Drug",
+  "mention": "布地奈德",
+  "span": null
+ }
+]

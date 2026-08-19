@@ -1,0 +1,79 @@
+[
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "意识障碍",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "偏瘫",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "言语不清",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "口角歪斜",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "头颅CT",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "头颅MRI",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "神经内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "肺炎",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "阿司匹林",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "脑卒中",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "氯吡格雷",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "左氧氟沙星",
+  "head_type": "Drug",
+  "relation": "CONTRAINDICATED_FOR",
+  "tail": "癫痫",
+  "tail_type": "Disease"
+ }
+]

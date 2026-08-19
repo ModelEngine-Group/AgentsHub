@@ -1,0 +1,62 @@
+[
+ {
+  "name": "黑便",
+  "type": "Symptom",
+  "mention": "黑便",
+  "span": null
+ },
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "头晕",
+  "span": null
+ },
+ {
+  "name": "病毒性肝炎",
+  "type": "Disease",
+  "mention": "病毒性肝炎",
+  "span": null
+ },
+ {
+  "name": "血常规",
+  "type": "Exam",
+  "mention": "血常规",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "上消化道出血",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "贫血",
+  "type": "Disease",
+  "mention": "贫血",
+  "span": null
+ },
+ {
+  "name": "奥美拉唑",
+  "type": "Drug",
+  "mention": "洛赛克",
+  "span": null
+ },
+ {
+  "name": "异烟肼",
+  "type": "Drug",
+  "mention": "异烟肼",
+  "span": null
+ },
+ {
+  "name": "病毒性肝炎",
+  "type": "Disease",
+  "mention": "病毒性肝炎",
+  "span": null
+ }
+]

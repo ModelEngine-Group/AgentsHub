@@ -1,0 +1,65 @@
+[
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "早醒",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "多梦",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "入睡困难",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "多导睡眠监测",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "精神心理科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "抑郁症",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "佐匹克隆",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "艾司唑仑",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "失眠症",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "认知行为治疗",
+  "tail_type": "Treatment"
+ }
+]

@@ -1,0 +1,44 @@
+{"id": 1, "question": "一共有多少条就诊记录？", "gold_sql": "SELECT COUNT(*) FROM visits"}
+{"id": 2, "question": "患者总数是多少", "gold_sql": "SELECT COUNT(*) FROM patients"}
+{"id": 3, "question": "高血压的就诊次数有多少", "gold_sql": "SELECT COUNT(*) FROM visits WHERE disease='高血压'"}
+{"id": 4, "question": "得了2型糖尿病的有多少位患者", "gold_sql": "SELECT COUNT(DISTINCT patient_id) FROM visits WHERE disease='2型糖尿病'"}
+{"id": 5, "question": "心血管内科的就诊量是多少", "gold_sql": "SELECT COUNT(*) FROM visits WHERE department='心血管内科'"}
+{"id": 6, "question": "按科室统计就诊量", "gold_sql": "SELECT department, COUNT(*) AS n FROM visits GROUP BY department ORDER BY n DESC"}
+{"id": 7, "question": "各疾病的就诊量分布", "gold_sql": "SELECT disease, COUNT(*) AS n FROM visits GROUP BY disease ORDER BY n DESC"}
+{"id": 8, "question": "哪个科室就诊量最多", "gold_sql": "SELECT department, COUNT(*) AS n FROM visits GROUP BY department ORDER BY n DESC LIMIT 1"}
+{"id": 9, "question": "就诊量前5的疾病是哪些", "gold_sql": "SELECT disease, COUNT(*) AS n FROM visits GROUP BY disease ORDER BY n DESC LIMIT 5"}
+{"id": 10, "question": "就诊次数最多的前三个科室", "gold_sql": "SELECT department, COUNT(*) AS n FROM visits GROUP BY department ORDER BY n DESC LIMIT 3"}
+{"id": 11, "question": "总费用是多少", "gold_sql": "SELECT ROUND(SUM(cost),2) FROM visits"}
+{"id": 12, "question": "平均费用是多少", "gold_sql": "SELECT ROUND(AVG(cost),2) FROM visits"}
+{"id": 13, "question": "高血压患者的平均费用", "gold_sql": "SELECT ROUND(AVG(cost),2) FROM visits WHERE disease='高血压'"}
+{"id": 14, "question": "各科室的平均费用", "gold_sql": "SELECT department, ROUND(AVG(cost),2) AS v FROM visits GROUP BY department ORDER BY v DESC"}
+{"id": 15, "question": "平均费用最高的科室是哪个", "gold_sql": "SELECT department, ROUND(AVG(cost),2) AS v FROM visits GROUP BY department ORDER BY v DESC LIMIT 1"}
+{"id": 16, "question": "骨折的平均住院天数", "gold_sql": "SELECT ROUND(AVG(los_days),2) FROM visits WHERE disease='骨折'"}
+{"id": 17, "question": "费用最高的一次就诊花了多少钱", "gold_sql": "SELECT MAX(cost) FROM visits"}
+{"id": 18, "question": "按月统计就诊量趋势", "gold_sql": "SELECT strftime('%Y-%m', visit_date) AS m, COUNT(*) AS n FROM visits GROUP BY m ORDER BY m"}
+{"id": 19, "question": "按年统计就诊量", "gold_sql": "SELECT strftime('%Y', visit_date) AS y, COUNT(*) AS n FROM visits GROUP BY y ORDER BY y"}
+{"id": 20, "question": "2025年的就诊总数", "gold_sql": "SELECT COUNT(*) FROM visits WHERE strftime('%Y', visit_date)='2025'"}
+{"id": 21, "question": "2026年上半年就诊了多少次", "gold_sql": "SELECT COUNT(*) FROM visits WHERE visit_date >= '2026-01-01' AND visit_date <= '2026-06-30'"}
+{"id": 22, "question": "近6个月的就诊量", "gold_sql": "SELECT COUNT(*) FROM visits WHERE visit_date >= date((SELECT MAX(visit_date) FROM visits), '-6 months')"}
+{"id": 23, "question": "2025年按月统计就诊量", "gold_sql": "SELECT strftime('%Y-%m', visit_date) AS m, COUNT(*) AS n FROM visits WHERE strftime('%Y', visit_date)='2025' GROUP BY m ORDER BY m"}
+{"id": 24, "question": "男性患者的就诊次数", "gold_sql": "SELECT COUNT(*) FROM visits v JOIN patients p ON v.patient_id=p.patient_id WHERE p.gender='男'"}
+{"id": 25, "question": "女性患者的平均费用", "gold_sql": "SELECT ROUND(AVG(cost),2) FROM visits v JOIN patients p ON v.patient_id=p.patient_id WHERE p.gender='女'"}
+{"id": 26, "question": "按性别统计就诊量", "gold_sql": "SELECT p.gender, COUNT(*) AS n FROM visits v JOIN patients p ON v.patient_id=p.patient_id GROUP BY p.gender ORDER BY n DESC"}
+{"id": 27, "question": "各地区的就诊量分布", "gold_sql": "SELECT p.region, COUNT(*) AS n FROM visits v JOIN patients p ON v.patient_id=p.patient_id GROUP BY p.region ORDER BY n DESC"}
+{"id": 28, "question": "按年龄段统计就诊量", "gold_sql": "SELECT CASE WHEN p.age<=18 THEN '0-18' WHEN p.age<=40 THEN '19-40' WHEN p.age<=60 THEN '41-60' ELSE '60+' END AS g, COUNT(*) AS n FROM visits v JOIN patients p ON v.patient_id=p.patient_id GROUP BY g ORDER BY n DESC"}
+{"id": 29, "question": "60岁以上患者的就诊量", "gold_sql": "SELECT COUNT(*) FROM visits v JOIN patients p ON v.patient_id=p.patient_id WHERE p.age > 60"}
+{"id": 30, "question": "上海患者的就诊次数", "gold_sql": "SELECT COUNT(*) FROM visits v JOIN patients p ON v.patient_id=p.patient_id WHERE p.region='上海'"}
+{"id": 31, "question": "内分泌科女性患者的就诊量", "gold_sql": "SELECT COUNT(*) FROM visits v JOIN patients p ON v.patient_id=p.patient_id WHERE p.gender='女' AND v.department='内分泌科'"}
+{"id": 32, "question": "2型糖尿病患者的平均年龄", "gold_sql": "SELECT ROUND(AVG(p.age),2) FROM visits v JOIN patients p ON v.patient_id=p.patient_id WHERE v.disease='2型糖尿病'"}
+{"id": 33, "question": "处方最多的前5种药物", "gold_sql": "SELECT drug_prescribed, COUNT(*) AS n FROM visits WHERE drug_prescribed!='' GROUP BY drug_prescribed ORDER BY n DESC LIMIT 5"}
+{"id": 34, "question": "各检查项目的使用次数", "gold_sql": "SELECT exam, COUNT(*) AS n FROM visits WHERE exam!='' GROUP BY exam ORDER BY n DESC"}
+{"id": 35, "question": "呼吸内科就诊量最多的疾病", "gold_sql": "SELECT disease, COUNT(*) AS n FROM visits WHERE department='呼吸内科' GROUP BY disease ORDER BY n DESC LIMIT 1"}
+{"id": 36, "question": "图谱里高血压有哪些症状", "gold_sql": "SELECT tail FROM kg_triples WHERE relation='HAS_SYMPTOM' AND head='高血压' ORDER BY confidence DESC"}
+{"id": 37, "question": "2型糖尿病的治疗药物有哪些", "gold_sql": "SELECT tail FROM kg_triples WHERE relation='TREATED_BY_DRUG' AND head='2型糖尿病' ORDER BY confidence DESC"}
+{"id": 38, "question": "冠心病需要做什么检查", "gold_sql": "SELECT tail FROM kg_triples WHERE relation='DIAGNOSED_BY' AND head='冠心病' ORDER BY confidence DESC"}
+{"id": 39, "question": "高血压有什么并发症", "gold_sql": "SELECT tail FROM kg_triples WHERE relation='HAS_COMPLICATION' AND head='高血压' ORDER BY confidence DESC"}
+{"id": 40, "question": "阿司匹林的禁忌", "gold_sql": "SELECT head, tail FROM kg_triples WHERE relation='CONTRAINDICATED_FOR' AND (head='阿司匹林' OR tail='阿司匹林') ORDER BY confidence DESC"}
+{"id": 41, "question": "图谱三元组总数是多少", "gold_sql": "SELECT COUNT(*) FROM kg_triples"}
+{"id": 42, "question": "图谱各类关系的数量分布", "gold_sql": "SELECT relation_zh, COUNT(*) AS n FROM kg_triples GROUP BY relation_zh ORDER BY n DESC"}
+{"id": 43, "question": "提及次数最多的疾病有哪些", "gold_sql": "SELECT name, mention_count FROM kg_entities WHERE type='Disease' ORDER BY mention_count DESC LIMIT 10"}
+{"id": 44, "question": "心梗用什么药", "gold_sql": "SELECT tail FROM kg_triples WHERE relation='TREATED_BY_DRUG' AND head='心肌梗死' ORDER BY confidence DESC"}

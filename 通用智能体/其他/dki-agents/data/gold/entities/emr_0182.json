@@ -1,0 +1,68 @@
+[
+ {
+  "name": "烧心",
+  "type": "Symptom",
+  "mention": "烧心",
+  "span": null
+ },
+ {
+  "name": "胸骨后疼痛",
+  "type": "Symptom",
+  "mention": "胸骨后疼痛",
+  "span": null
+ },
+ {
+  "name": "反酸",
+  "type": "Symptom",
+  "mention": "反酸",
+  "span": null
+ },
+ {
+  "name": "尿路感染",
+  "type": "Disease",
+  "mention": "泌尿系感染",
+  "span": null
+ },
+ {
+  "name": "高血压",
+  "type": "Disease",
+  "mention": "高血压",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜检查",
+  "span": null
+ },
+ {
+  "name": "食管pH监测",
+  "type": "Exam",
+  "mention": "食管pH监测",
+  "span": null
+ },
+ {
+  "name": "反流性食管炎",
+  "type": "Disease",
+  "mention": "反流性食管炎",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "莫沙必利",
+  "type": "Drug",
+  "mention": "莫沙必利",
+  "span": null
+ },
+ {
+  "name": "奥美拉唑",
+  "type": "Drug",
+  "mention": "奥美拉唑",
+  "span": null
+ }
+]

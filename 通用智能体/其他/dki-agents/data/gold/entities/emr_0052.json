@@ -1,0 +1,68 @@
+[
+ {
+  "name": "大汗",
+  "type": "Symptom",
+  "mention": "大汗",
+  "span": null
+ },
+ {
+  "name": "剧烈胸痛",
+  "type": "Symptom",
+  "mention": "剧烈胸痛",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "濒死感",
+  "type": "Symptom",
+  "mention": "濒死感",
+  "span": null
+ },
+ {
+  "name": "肺结核",
+  "type": "Disease",
+  "mention": "肺结核",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "心电图",
+  "type": "Exam",
+  "mention": "心电图",
+  "span": null
+ },
+ {
+  "name": "心肌梗死",
+  "type": "Disease",
+  "mention": "心肌梗死",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "阿司匹林",
+  "type": "Drug",
+  "mention": "阿司匹林",
+  "span": null
+ },
+ {
+  "name": "经皮冠状动脉介入治疗",
+  "type": "Treatment",
+  "mention": "经皮冠状动脉介入治疗",
+  "span": null
+ }
+]

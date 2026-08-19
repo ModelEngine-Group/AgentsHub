@@ -1,0 +1,24 @@
+# Opt-in Release A: 权威 dict 输出 + BERT-INT8 OM 异步 shadow。
+# formal_microbatch=false，直到目标 DataMate map_batches 验收通过。
+name: medical-kg-build-shadow-om
+export_path: outputs/kg_pipeline_shadow_om
+process:
+  - MedicalTextCleaner:
+      maskPii: true
+  - MedicalSectionSplitter: {}
+  - MedicalEntityExtractorOmShadow:
+      primaryBackend: dict
+      # Candidate config stays disabled until target-host pyACL adapter + OM,
+      # tokenizer and label hashes have passed the promotion gates. Enabling
+      # without shadowRuntimeFactory fails closed instead of silently no-oping.
+      shadowEnabled: false
+      queueDepth: 4
+      shadowTimeoutMs: 1000
+      # 开启时必须在环境变量 DKI_SHADOW_HASH_KEY 提供 HMAC 密钥；
+      # sidecar 不记录裸 SHA-256，以避免低熵病历短语被字典反查。
+      shadowHashSecretEnv: DKI_SHADOW_HASH_KEY
+      sidecarPath: outputs/shadow/medical_ner_om.jsonl
+  - MedicalRelationExtractor:
+      useLlm: false
+  - TripleBuilderValidator:
+      minConfidence: 0.55

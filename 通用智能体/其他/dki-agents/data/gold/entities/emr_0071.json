@@ -1,0 +1,62 @@
+[
+ {
+  "name": "静止性震颤",
+  "type": "Symptom",
+  "mention": "静止性震颤",
+  "span": null
+ },
+ {
+  "name": "肌强直",
+  "type": "Symptom",
+  "mention": "肌强直",
+  "span": null
+ },
+ {
+  "name": "急性胰腺炎",
+  "type": "Disease",
+  "mention": "急性胰腺炎",
+  "span": null
+ },
+ {
+  "name": "肺炎",
+  "type": "Disease",
+  "mention": "肺炎",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅MRI",
+  "span": null
+ },
+ {
+  "name": "帕金森病",
+  "type": "Disease",
+  "mention": "帕金森病",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "左旋多巴",
+  "type": "Drug",
+  "mention": "左旋多巴",
+  "span": null
+ },
+ {
+  "name": "普拉克索",
+  "type": "Drug",
+  "mention": "普拉克索",
+  "span": null
+ },
+ {
+  "name": "脑深部电刺激术",
+  "type": "Treatment",
+  "mention": "脑深部电刺激术",
+  "span": null
+ }
+]

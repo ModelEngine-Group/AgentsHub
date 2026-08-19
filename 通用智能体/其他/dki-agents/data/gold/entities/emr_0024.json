@@ -1,0 +1,56 @@
+[
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "倦怠",
+  "span": null
+ },
+ {
+  "name": "腰背疼痛",
+  "type": "Symptom",
+  "mention": "腰背疼痛",
+  "span": null
+ },
+ {
+  "name": "肺结核",
+  "type": "Disease",
+  "mention": "肺结核",
+  "span": null
+ },
+ {
+  "name": "骨密度检测",
+  "type": "Exam",
+  "mention": "骨密度检测",
+  "span": null
+ },
+ {
+  "name": "骨质疏松症",
+  "type": "Disease",
+  "mention": "骨质疏松症",
+  "span": null
+ },
+ {
+  "name": "骨科",
+  "type": "Department",
+  "mention": "骨科",
+  "span": null
+ },
+ {
+  "name": "骨折",
+  "type": "Disease",
+  "mention": "骨折",
+  "span": null
+ },
+ {
+  "name": "阿仑膦酸钠",
+  "type": "Drug",
+  "mention": "阿仑膦酸钠",
+  "span": null
+ },
+ {
+  "name": "运动疗法",
+  "type": "Treatment",
+  "mention": "运动疗法",
+  "span": null
+ }
+]

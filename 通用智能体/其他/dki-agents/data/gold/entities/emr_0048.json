@@ -1,0 +1,62 @@
+[
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "腰痛",
+  "type": "Symptom",
+  "mention": "腰痛",
+  "span": null
+ },
+ {
+  "name": "血尿",
+  "type": "Symptom",
+  "mention": "血尿",
+  "span": null
+ },
+ {
+  "name": "骨折",
+  "type": "Disease",
+  "mention": "骨折",
+  "span": null
+ },
+ {
+  "name": "腹部CT",
+  "type": "Exam",
+  "mention": "腹部CT",
+  "span": null
+ },
+ {
+  "name": "尿路结石",
+  "type": "Disease",
+  "mention": "肾结石",
+  "span": null
+ },
+ {
+  "name": "泌尿外科",
+  "type": "Department",
+  "mention": "泌尿外科",
+  "span": null
+ },
+ {
+  "name": "尿路感染",
+  "type": "Disease",
+  "mention": "尿路感染",
+  "span": null
+ },
+ {
+  "name": "坦索罗辛",
+  "type": "Drug",
+  "mention": "坦索罗辛",
+  "span": null
+ },
+ {
+  "name": "体外冲击波碎石术",
+  "type": "Treatment",
+  "mention": "体外冲击波碎石术",
+  "span": null
+ }
+]

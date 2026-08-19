@@ -1,0 +1,74 @@
+[
+ {
+  "name": "咳嗽",
+  "type": "Symptom",
+  "mention": "咳嗽",
+  "span": null
+ },
+ {
+  "name": "气短",
+  "type": "Symptom",
+  "mention": "气短",
+  "span": null
+ },
+ {
+  "name": "咳痰",
+  "type": "Symptom",
+  "mention": "咳痰",
+  "span": null
+ },
+ {
+  "name": "胸痛",
+  "type": "Symptom",
+  "mention": "胸部疼痛",
+  "span": null
+ },
+ {
+  "name": "胸部X线",
+  "type": "Exam",
+  "mention": "胸部X线",
+  "span": null
+ },
+ {
+  "name": "血常规",
+  "type": "Exam",
+  "mention": "血常规",
+  "span": null
+ },
+ {
+  "name": "肺炎",
+  "type": "Disease",
+  "mention": "肺炎",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "呼吸衰竭",
+  "type": "Disease",
+  "mention": "呼吸衰竭",
+  "span": null
+ },
+ {
+  "name": "阿莫西林",
+  "type": "Drug",
+  "mention": "阿莫西林胶囊",
+  "span": null
+ },
+ {
+  "name": "左氧氟沙星",
+  "type": "Drug",
+  "mention": "左氧氟沙星",
+  "span": null
+ },
+ {
+  "name": "氧疗",
+  "type": "Treatment",
+  "mention": "吸氧治疗",
+  "span": null
+ }
+]

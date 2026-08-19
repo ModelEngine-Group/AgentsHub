@@ -1,0 +1,68 @@
+[
+ {
+  "name": "气短",
+  "type": "Symptom",
+  "mention": "气促",
+  "span": null
+ },
+ {
+  "name": "咳痰",
+  "type": "Symptom",
+  "mention": "咳痰",
+  "span": null
+ },
+ {
+  "name": "慢性咳嗽",
+  "type": "Symptom",
+  "mention": "慢性咳嗽",
+  "span": null
+ },
+ {
+  "name": "胸部CT",
+  "type": "Exam",
+  "mention": "胸部CT",
+  "span": null
+ },
+ {
+  "name": "肺功能检查",
+  "type": "Exam",
+  "mention": "肺功能",
+  "span": null
+ },
+ {
+  "name": "慢性阻塞性肺疾病",
+  "type": "Disease",
+  "mention": "慢性阻塞性肺疾病",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "沙美特罗",
+  "type": "Drug",
+  "mention": "沙美特罗",
+  "span": null
+ },
+ {
+  "name": "布地奈德",
+  "type": "Drug",
+  "mention": "普米克",
+  "span": null
+ },
+ {
+  "name": "噻托溴铵",
+  "type": "Drug",
+  "mention": "噻托溴铵",
+  "span": null
+ },
+ {
+  "name": "戒烟干预",
+  "type": "Treatment",
+  "mention": "戒烟干预",
+  "span": null
+ }
+]

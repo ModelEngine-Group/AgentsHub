@@ -1,0 +1,44 @@
+[
+ {
+  "name": "尿频",
+  "type": "Symptom",
+  "mention": "尿频",
+  "span": null
+ },
+ {
+  "name": "尿急",
+  "type": "Symptom",
+  "mention": "尿急",
+  "span": null
+ },
+ {
+  "name": "尿培养",
+  "type": "Exam",
+  "mention": "尿培养",
+  "span": null
+ },
+ {
+  "name": "尿路感染",
+  "type": "Disease",
+  "mention": "尿路感染",
+  "span": null
+ },
+ {
+  "name": "泌尿外科",
+  "type": "Department",
+  "mention": "泌尿外科",
+  "span": null
+ },
+ {
+  "name": "左氧氟沙星",
+  "type": "Drug",
+  "mention": "左氧氟沙星",
+  "span": null
+ },
+ {
+  "name": "头孢克肟",
+  "type": "Drug",
+  "mention": "头孢克肟",
+  "span": null
+ }
+]

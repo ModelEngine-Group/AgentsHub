@@ -1,0 +1,72 @@
+name: '医疗关系抽取算子'
+description: '规则、CMeIE 句内实体对分类或 hybrid 关系抽取；所有模型候选均通过图谱 schema 校验并保留来源证据。'
+language: 'python'
+vendor: 'dki'
+raw_id: 'MedicalRelationExtractor'
+version: '0.1.0'
+modal: 'text'
+inputs: 'text'
+outputs: 'text'
+types:
+  - 'cleaning'
+release:
+  - '首次发布：模式规则+章节先验双级抽取'
+metrics:
+  - name: '吞吐量'
+    metric: '见 outputs/bench/operator_bench.md（CPU 实测）'
+  - name: '抽取质量'
+    metric: '见 outputs/eval/kg_extraction_eval.json（vs 金标准）'
+runtime:
+  memory: 20971520
+  cpu: 0.05
+  gpu: 0
+  npu: 0
+settings:
+  backend:
+    name: '抽取后端'
+    description: 'rule 为章节规则；cmeie 使用冻结 CMeIE checkpoint；hybrid 合并两者。'
+    type: 'select'
+    defaultVal: 'rule'
+    options: ['rule', 'cmeie', 'hybrid']
+  cmeieModelPath:
+    name: 'CMeIE 模型目录'
+    description: 'backend=cmeie/hybrid 时使用，目录须包含模型文件和 predicates.json。'
+    type: 'input'
+    defaultVal: ''
+  cmeieThreshold:
+    name: 'CMeIE 置信度阈值'
+    description: '留空时读取 checkpoint 的 relation_config.json；仅允许用独立评测冻结的值覆盖。'
+    type: 'input'
+    defaultVal: ''
+  cmeieBatchSize:
+    name: 'CMeIE 推理批大小'
+    description: '句内候选对的批量推理大小。'
+    type: 'slider'
+    defaultVal: 16
+    min: 1
+    max: 64
+    step: 1
+  useLlm:
+    name: 'LLM 复核'
+    description: '对低置信关系调用大模型复核（需配置 LLM 环境变量）'
+    type: 'switch'
+    defaultVal: 'false'
+    required: false
+    checkedLabel: '开启'
+    unCheckedLabel: '关闭'
+  lowConfidence:
+    name: '共现置信度'
+    description: '章节先验共现（无触发词）关系的基础置信度'
+    type: 'slider'
+    defaultVal: 0.6
+    min: 0
+    max: 1
+    step: 0.05
+  highConfidence:
+    name: '模式置信度'
+    description: '命中触发词模式关系的置信度'
+    type: 'slider'
+    defaultVal: 0.9
+    min: 0
+    max: 1
+    step: 0.05

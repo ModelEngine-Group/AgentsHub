@@ -1,0 +1,32 @@
+[
+ {
+  "name": "视物模糊",
+  "type": "Symptom",
+  "mention": "视力下降",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "消化道出血",
+  "span": null
+ },
+ {
+  "name": "眼底检查",
+  "type": "Exam",
+  "mention": "眼底检查",
+  "span": null
+ },
+ {
+  "name": "糖尿病视网膜病变",
+  "type": "Disease",
+  "mention": "糖尿病视网膜病变",
+  "span": null
+ },
+ {
+  "name": "眼科",
+  "type": "Department",
+  "mention": "眼科",
+  "span": null
+ }
+]

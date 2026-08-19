@@ -1,0 +1,56 @@
+[
+ {
+  "name": "反酸",
+  "type": "Symptom",
+  "mention": "反酸",
+  "span": null
+ },
+ {
+  "name": "嗳气",
+  "type": "Symptom",
+  "mention": "嗳气",
+  "span": null
+ },
+ {
+  "name": "偏头痛",
+  "type": "Disease",
+  "mention": "偏头痛",
+  "span": null
+ },
+ {
+  "name": "脂肪肝",
+  "type": "Disease",
+  "mention": "脂肪肝",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜检查",
+  "span": null
+ },
+ {
+  "name": "幽门螺杆菌检测",
+  "type": "Exam",
+  "mention": "幽门螺杆菌检测",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "克拉霉素",
+  "type": "Drug",
+  "mention": "克拉霉素",
+  "span": null
+ }
+]

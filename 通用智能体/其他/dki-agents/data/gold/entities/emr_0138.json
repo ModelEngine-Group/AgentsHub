@@ -1,0 +1,56 @@
+[
+ {
+  "name": "肿胀",
+  "type": "Symptom",
+  "mention": "肿胀",
+  "span": null
+ },
+ {
+  "name": "疼痛",
+  "type": "Symptom",
+  "mention": "疼痛",
+  "span": null
+ },
+ {
+  "name": "活动受限",
+  "type": "Symptom",
+  "mention": "活动受限",
+  "span": null
+ },
+ {
+  "name": "帕金森病",
+  "type": "Disease",
+  "mention": "帕金森病",
+  "span": null
+ },
+ {
+  "name": "甲状腺功能减退症",
+  "type": "Disease",
+  "mention": "甲状腺功能减退症",
+  "span": null
+ },
+ {
+  "name": "X线检查",
+  "type": "Exam",
+  "mention": "X线检查",
+  "span": null
+ },
+ {
+  "name": "骨折",
+  "type": "Disease",
+  "mention": "骨折",
+  "span": null
+ },
+ {
+  "name": "骨科",
+  "type": "Department",
+  "mention": "骨科",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬缓释胶囊",
+  "span": null
+ }
+]

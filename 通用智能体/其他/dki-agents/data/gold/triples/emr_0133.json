@@ -1,0 +1,51 @@
+[
+ {
+  "head": "慢性阻塞性肺疾病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "呼吸困难",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "慢性阻塞性肺疾病",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "咳痰",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "慢性阻塞性肺疾病",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "肺功能检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "慢性阻塞性肺疾病",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "呼吸内科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "慢性阻塞性肺疾病",
+  "head_type": "Disease",
+  "relation": "HAS_COMPLICATION",
+  "tail": "呼吸衰竭",
+  "tail_type": "Disease"
+ },
+ {
+  "head": "慢性阻塞性肺疾病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "布地奈德",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "慢性阻塞性肺疾病",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "沙美特罗",
+  "tail_type": "Drug"
+ }
+]

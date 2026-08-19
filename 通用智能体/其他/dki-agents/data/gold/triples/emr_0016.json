@@ -1,0 +1,23 @@
+[
+ {
+  "head": "糖尿病视网膜病变",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "视物模糊",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "糖尿病视网膜病变",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "眼底检查",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "糖尿病视网膜病变",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "眼科",
+  "tail_type": "Department"
+ }
+]

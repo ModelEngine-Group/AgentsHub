@@ -1,0 +1,38 @@
+[
+ {
+  "name": "肿胀",
+  "type": "Symptom",
+  "mention": "肿胀",
+  "span": null
+ },
+ {
+  "name": "疼痛",
+  "type": "Symptom",
+  "mention": "疼痛",
+  "span": null
+ },
+ {
+  "name": "X线检查",
+  "type": "Exam",
+  "mention": "X光检查",
+  "span": null
+ },
+ {
+  "name": "骨折",
+  "type": "Disease",
+  "mention": "骨折",
+  "span": null
+ },
+ {
+  "name": "骨科",
+  "type": "Department",
+  "mention": "骨科",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "芬必得",
+  "span": null
+ }
+]

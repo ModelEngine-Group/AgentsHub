@@ -1,0 +1,56 @@
+[
+ {
+  "name": "上腹痛",
+  "type": "Symptom",
+  "mention": "上腹部疼痛",
+  "span": null
+ },
+ {
+  "name": "食欲不振",
+  "type": "Symptom",
+  "mention": "食欲不振",
+  "span": null
+ },
+ {
+  "name": "腹胀",
+  "type": "Symptom",
+  "mention": "腹胀",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "胃镜检查",
+  "type": "Exam",
+  "mention": "胃镜检查",
+  "span": null
+ },
+ {
+  "name": "慢性胃炎",
+  "type": "Disease",
+  "mention": "慢性胃炎",
+  "span": null
+ },
+ {
+  "name": "消化内科",
+  "type": "Department",
+  "mention": "消化内科",
+  "span": null
+ },
+ {
+  "name": "铝碳酸镁",
+  "type": "Drug",
+  "mention": "达喜",
+  "span": null
+ },
+ {
+  "name": "奥美拉唑",
+  "type": "Drug",
+  "mention": "洛赛克",
+  "span": null
+ }
+]

@@ -1,0 +1,68 @@
+[
+ {
+  "name": "发热",
+  "type": "Symptom",
+  "mention": "发热",
+  "span": null
+ },
+ {
+  "name": "胸痛",
+  "type": "Symptom",
+  "mention": "胸部疼痛",
+  "span": null
+ },
+ {
+  "name": "贫血",
+  "type": "Disease",
+  "mention": "缺铁性贫血",
+  "span": null
+ },
+ {
+  "name": "胸部X线",
+  "type": "Exam",
+  "mention": "胸片",
+  "span": null
+ },
+ {
+  "name": "血常规",
+  "type": "Exam",
+  "mention": "血常规",
+  "span": null
+ },
+ {
+  "name": "胸部CT",
+  "type": "Exam",
+  "mention": "胸部CT",
+  "span": null
+ },
+ {
+  "name": "肺炎",
+  "type": "Disease",
+  "mention": "肺炎",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "头孢曲松",
+  "type": "Drug",
+  "mention": "头孢曲松",
+  "span": null
+ },
+ {
+  "name": "阿莫西林",
+  "type": "Drug",
+  "mention": "阿莫西林",
+  "span": null
+ },
+ {
+  "name": "氧疗",
+  "type": "Treatment",
+  "mention": "氧疗",
+  "span": null
+ }
+]

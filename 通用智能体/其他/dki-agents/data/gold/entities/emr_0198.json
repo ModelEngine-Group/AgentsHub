@@ -1,0 +1,50 @@
+[
+ {
+  "name": "视物模糊",
+  "type": "Symptom",
+  "mention": "视物模糊",
+  "span": null
+ },
+ {
+  "name": "反流性食管炎",
+  "type": "Disease",
+  "mention": "反流性食管炎",
+  "span": null
+ },
+ {
+  "name": "肝性脑病",
+  "type": "Disease",
+  "mention": "肝性脑病",
+  "span": null
+ },
+ {
+  "name": "眼底检查",
+  "type": "Exam",
+  "mention": "眼底检查",
+  "span": null
+ },
+ {
+  "name": "糖尿病视网膜病变",
+  "type": "Disease",
+  "mention": "糖尿病视网膜病变",
+  "span": null
+ },
+ {
+  "name": "眼科",
+  "type": "Department",
+  "mention": "眼科",
+  "span": null
+ },
+ {
+  "name": "阿仑膦酸钠",
+  "type": "Drug",
+  "mention": "阿仑膦酸钠",
+  "span": null
+ },
+ {
+  "name": "反流性食管炎",
+  "type": "Disease",
+  "mention": "反流性食管炎",
+  "span": null
+ }
+]

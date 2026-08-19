@@ -1,0 +1,92 @@
+[
+ {
+  "name": "意识障碍",
+  "type": "Symptom",
+  "mention": "意识障碍",
+  "span": null
+ },
+ {
+  "name": "偏瘫",
+  "type": "Symptom",
+  "mention": "偏瘫",
+  "span": null
+ },
+ {
+  "name": "言语不清",
+  "type": "Symptom",
+  "mention": "言语不清",
+  "span": null
+ },
+ {
+  "name": "口角歪斜",
+  "type": "Symptom",
+  "mention": "口角歪斜",
+  "span": null
+ },
+ {
+  "name": "2型糖尿病",
+  "type": "Disease",
+  "mention": "2型糖尿病",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "癫痫",
+  "span": null
+ },
+ {
+  "name": "头颅CT",
+  "type": "Exam",
+  "mention": "头颅CT",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "颅脑磁共振",
+  "span": null
+ },
+ {
+  "name": "脑卒中",
+  "type": "Disease",
+  "mention": "脑卒中",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "肺炎",
+  "type": "Disease",
+  "mention": "社区获得性肺炎",
+  "span": null
+ },
+ {
+  "name": "阿司匹林",
+  "type": "Drug",
+  "mention": "阿司匹林",
+  "span": null
+ },
+ {
+  "name": "氯吡格雷",
+  "type": "Drug",
+  "mention": "波立维",
+  "span": null
+ },
+ {
+  "name": "左氧氟沙星",
+  "type": "Drug",
+  "mention": "左氧氟沙星",
+  "span": null
+ },
+ {
+  "name": "癫痫",
+  "type": "Disease",
+  "mention": "癫痫",
+  "span": null
+ }
+]

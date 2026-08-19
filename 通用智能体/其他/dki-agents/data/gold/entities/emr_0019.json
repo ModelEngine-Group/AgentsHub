@@ -1,0 +1,44 @@
+[
+ {
+  "name": "黄疸",
+  "type": "Symptom",
+  "mention": "黄疸",
+  "span": null
+ },
+ {
+  "name": "食欲不振",
+  "type": "Symptom",
+  "mention": "食欲不振",
+  "span": null
+ },
+ {
+  "name": "乙肝五项检测",
+  "type": "Exam",
+  "mention": "乙肝五项检测",
+  "span": null
+ },
+ {
+  "name": "病毒性肝炎",
+  "type": "Disease",
+  "mention": "乙型肝炎",
+  "span": null
+ },
+ {
+  "name": "感染科",
+  "type": "Department",
+  "mention": "感染科",
+  "span": null
+ },
+ {
+  "name": "替诺福韦",
+  "type": "Drug",
+  "mention": "替诺福韦",
+  "span": null
+ },
+ {
+  "name": "恩替卡韦",
+  "type": "Drug",
+  "mention": "恩替卡韦",
+  "span": null
+ }
+]

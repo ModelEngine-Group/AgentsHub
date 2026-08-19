@@ -1,0 +1,86 @@
+[
+ {
+  "name": "畏光",
+  "type": "Symptom",
+  "mention": "畏光",
+  "span": null
+ },
+ {
+  "name": "呕吐",
+  "type": "Symptom",
+  "mention": "呕吐",
+  "span": null
+ },
+ {
+  "name": "恶心",
+  "type": "Symptom",
+  "mention": "恶心",
+  "span": null
+ },
+ {
+  "name": "头痛",
+  "type": "Symptom",
+  "mention": "头痛",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "消化道出血",
+  "span": null
+ },
+ {
+  "name": "抑郁症",
+  "type": "Disease",
+  "mention": "抑郁症",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅磁共振",
+  "span": null
+ },
+ {
+  "name": "偏头痛",
+  "type": "Disease",
+  "mention": "偏头痛",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "脑卒中",
+  "type": "Disease",
+  "mention": "中风",
+  "span": null
+ },
+ {
+  "name": "佐米曲普坦",
+  "type": "Drug",
+  "mention": "佐米曲普坦",
+  "span": null
+ },
+ {
+  "name": "布洛芬",
+  "type": "Drug",
+  "mention": "布洛芬",
+  "span": null
+ },
+ {
+  "name": "利伐沙班",
+  "type": "Drug",
+  "mention": "利伐沙班",
+  "span": null
+ },
+ {
+  "name": "消化道出血",
+  "type": "Disease",
+  "mention": "消化道出血",
+  "span": null
+ }
+]

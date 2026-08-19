@@ -1,0 +1,51 @@
+[
+ {
+  "head": "抑郁症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "失眠",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "抑郁症",
+  "head_type": "Disease",
+  "relation": "HAS_SYMPTOM",
+  "tail": "乏力",
+  "tail_type": "Symptom"
+ },
+ {
+  "head": "抑郁症",
+  "head_type": "Disease",
+  "relation": "DIAGNOSED_BY",
+  "tail": "心理评估量表",
+  "tail_type": "Exam"
+ },
+ {
+  "head": "抑郁症",
+  "head_type": "Disease",
+  "relation": "BELONGS_TO_DEPT",
+  "tail": "精神心理科",
+  "tail_type": "Department"
+ },
+ {
+  "head": "抑郁症",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "舍曲林",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "抑郁症",
+  "head_type": "Disease",
+  "relation": "TREATED_BY_DRUG",
+  "tail": "氟西汀",
+  "tail_type": "Drug"
+ },
+ {
+  "head": "抑郁症",
+  "head_type": "Disease",
+  "relation": "TREATED_BY",
+  "tail": "心理治疗",
+  "tail_type": "Treatment"
+ }
+]

@@ -1,0 +1,86 @@
+[
+ {
+  "name": "乏力",
+  "type": "Symptom",
+  "mention": "疲乏",
+  "span": null
+ },
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "头晕",
+  "span": null
+ },
+ {
+  "name": "心悸",
+  "type": "Symptom",
+  "mention": "心悸",
+  "span": null
+ },
+ {
+  "name": "晕厥",
+  "type": "Symptom",
+  "mention": "晕厥",
+  "span": null
+ },
+ {
+  "name": "急性胰腺炎",
+  "type": "Disease",
+  "mention": "急性胰腺炎",
+  "span": null
+ },
+ {
+  "name": "胃溃疡",
+  "type": "Disease",
+  "mention": "胃溃疡",
+  "span": null
+ },
+ {
+  "name": "心电图",
+  "type": "Exam",
+  "mention": "心电图",
+  "span": null
+ },
+ {
+  "name": "动态心电图",
+  "type": "Exam",
+  "mention": "Holter",
+  "span": null
+ },
+ {
+  "name": "心律失常",
+  "type": "Disease",
+  "mention": "心律失常",
+  "span": null
+ },
+ {
+  "name": "心血管内科",
+  "type": "Department",
+  "mention": "心血管内科",
+  "span": null
+ },
+ {
+  "name": "脑卒中",
+  "type": "Disease",
+  "mention": "脑梗死",
+  "span": null
+ },
+ {
+  "name": "美托洛尔",
+  "type": "Drug",
+  "mention": "酒石酸美托洛尔",
+  "span": null
+ },
+ {
+  "name": "胺碘酮",
+  "type": "Drug",
+  "mention": "胺碘酮",
+  "span": null
+ },
+ {
+  "name": "射频消融术",
+  "type": "Treatment",
+  "mention": "射频消融术",
+  "span": null
+ }
+]

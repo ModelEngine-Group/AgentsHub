@@ -1,0 +1,38 @@
+[
+ {
+  "name": "喘息",
+  "type": "Symptom",
+  "mention": "喘息",
+  "span": null
+ },
+ {
+  "name": "胸闷",
+  "type": "Symptom",
+  "mention": "胸闷",
+  "span": null
+ },
+ {
+  "name": "肺功能检查",
+  "type": "Exam",
+  "mention": "肺功能",
+  "span": null
+ },
+ {
+  "name": "支气管哮喘",
+  "type": "Disease",
+  "mention": "支气管哮喘",
+  "span": null
+ },
+ {
+  "name": "呼吸内科",
+  "type": "Department",
+  "mention": "呼吸内科",
+  "span": null
+ },
+ {
+  "name": "沙丁胺醇",
+  "type": "Drug",
+  "mention": "万托林",
+  "span": null
+ }
+]

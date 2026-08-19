@@ -1,0 +1,31 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+outputs/
+data/work/
+.env
+dist/
+build/
+*.egg-info/
+.claude/worktrees/
+_verify_datamate.py
+# 含服务器凭据的交接文档，严禁随仓库提交/交付
+HANDOFF_NPU_GPT5.md
+# 微调模型权重（~389MB，靠确定性弱标注+训练可重生）；label_list/metrics 另行保留
+models/
+# NER 弱标注与 LLM 质量增强数据集（可确定性重建）
+data/ner/
+data/ood_train/
+data/ood_train_v2/
+data/ood_blind/
+# CBLUE 真实医疗基准（第三方许可，禁止随仓库/交付包重分发；用 scripts/download_cblue.py 复现）
+data/cblue/
+# 本地临时诊断产物
+outputs_quality_predictions.json
+_probe_npu_server.py
+# 本地 pytest 调试偶尔产生的根目录输出
+pytest
+# Notebook 执行产物
+notebooks/executed_demo.ipynb
+notebooks/.ipynb_checkpoints/

@@ -1,0 +1,9 @@
+# 任务一示例流程：医疗文本 ETL（清洗→过滤→脱敏→导出）
+# 结构与 DataMate /flow/<task_id>/process.yaml 完全同构，可被平台执行器直接理解
+name: medical-text-etl
+export_path: outputs/processed/staging_clean
+process:
+  - MedicalTextCleaner:        # 本项目组合清洗算子（内部复用 DataMate 内置算子）
+      maskPii: true
+  - FileWithShortOrLongLengthFilter:   # DataMate 内置：长度过滤
+      fileLength: [30, 1000000]

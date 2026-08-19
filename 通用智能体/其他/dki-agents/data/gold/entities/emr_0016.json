@@ -1,0 +1,26 @@
+[
+ {
+  "name": "视物模糊",
+  "type": "Symptom",
+  "mention": "视物模糊",
+  "span": null
+ },
+ {
+  "name": "眼底检查",
+  "type": "Exam",
+  "mention": "眼底检查",
+  "span": null
+ },
+ {
+  "name": "糖尿病视网膜病变",
+  "type": "Disease",
+  "mention": "糖尿病视网膜病变",
+  "span": null
+ },
+ {
+  "name": "眼科",
+  "type": "Department",
+  "mention": "眼科",
+  "span": null
+ }
+]

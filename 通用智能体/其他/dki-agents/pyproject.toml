@@ -1,0 +1,57 @@
+[project]
+name = "dki-agents"
+version = "0.1.0"
+description = "数据—知识—洞察：基于 Nexent 与 DataMate 的医疗数据处理 / 知识图谱 / 数据分析智能体"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = { text = "MIT" }
+dependencies = [
+    # Nexent 智能体框架 SDK（官方包，亦可从本仓库同级 nexent/sdk 安装）
+    "nexent==0.1.2",
+    # 本项目自身的轻量依赖
+    "pyyaml>=6.0",
+    "jinja2>=3.1",
+    "python-dotenv>=1.0",
+    "pandas>=2.0",
+    "sqlglot>=25.0",
+    # OpenAI-compatible client used by the optional NL2SQL Agent fallback.
+    "openai==2.50.0",
+]
+
+[project.optional-dependencies]
+# 深度集成 DataMate runtime（datamate 包来自 datamate/runtime/python-executor）
+datamate = [
+    "opencv-python-headless",
+    "numpy",
+    "loguru",
+    "pytz",
+    "unstructured==0.18.15",
+    "sqlalchemy",
+    "requests",
+    "emoji",
+    "zhconv",
+    "beautifulsoup4",
+    "xmltodict",
+    "datasketch",
+]
+dev = ["pytest>=8.0"]
+npu = ["torch", "transformers", "onnx>=1.16"]
+notebook = ["jupyter", "matplotlib"]
+demo = ["streamlit==1.54.0"]
+
+[project.scripts]
+dki = "dki.cli:main"
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["dki*"]
+
+[tool.setuptools.package-data]
+"dki" = ["**/*.yaml", "**/*.yml", "**/*.json", "**/*.html", "**/*.j2", "**/*.js", "**/*.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,68 @@
+[
+ {
+  "name": "头晕",
+  "type": "Symptom",
+  "mention": "眩晕",
+  "span": null
+ },
+ {
+  "name": "口角歪斜",
+  "type": "Symptom",
+  "mention": "口角歪斜",
+  "span": null
+ },
+ {
+  "name": "言语不清",
+  "type": "Symptom",
+  "mention": "构音障碍",
+  "span": null
+ },
+ {
+  "name": "意识障碍",
+  "type": "Symptom",
+  "mention": "神志不清",
+  "span": null
+ },
+ {
+  "name": "头颅CT",
+  "type": "Exam",
+  "mention": "头颅CT",
+  "span": null
+ },
+ {
+  "name": "头颅MRI",
+  "type": "Exam",
+  "mention": "头颅MRI",
+  "span": null
+ },
+ {
+  "name": "脑卒中",
+  "type": "Disease",
+  "mention": "中风",
+  "span": null
+ },
+ {
+  "name": "神经内科",
+  "type": "Department",
+  "mention": "神经内科",
+  "span": null
+ },
+ {
+  "name": "肺炎",
+  "type": "Disease",
+  "mention": "肺炎",
+  "span": null
+ },
+ {
+  "name": "阿司匹林",
+  "type": "Drug",
+  "mention": "阿司匹林",
+  "span": null
+ },
+ {
+  "name": "溶栓治疗",
+  "type": "Treatment",
+  "mention": "溶栓治疗",
+  "span": null
+ }
+]

@@ -1,0 +1,62 @@
+[
+ {
+  "name": "盗汗",
+  "type": "Symptom",
+  "mention": "盗汗",
+  "span": null
+ },
+ {
+  "name": "咯血",
+  "type": "Symptom",
+  "mention": "咯血",
+  "span": null
+ },
+ {
+  "name": "腰椎间盘突出症",
+  "type": "Disease",
+  "mention": "腰椎间盘突出症",
+  "span": null
+ },
+ {
+  "name": "深静脉血栓形成",
+  "type": "Disease",
+  "mention": "下肢深静脉血栓",
+  "span": null
+ },
+ {
+  "name": "胸部CT",
+  "type": "Exam",
+  "mention": "胸部CT",
+  "span": null
+ },
+ {
+  "name": "结核菌素试验",
+  "type": "Exam",
+  "mention": "结核菌素试验",
+  "span": null
+ },
+ {
+  "name": "肺结核",
+  "type": "Disease",
+  "mention": "肺结核",
+  "span": null
+ },
+ {
+  "name": "感染科",
+  "type": "Department",
+  "mention": "感染科",
+  "span": null
+ },
+ {
+  "name": "吡嗪酰胺",
+  "type": "Drug",
+  "mention": "吡嗪酰胺",
+  "span": null
+ },
+ {
+  "name": "异烟肼",
+  "type": "Drug",
+  "mention": "异烟肼",
+  "span": null
+ }
+]

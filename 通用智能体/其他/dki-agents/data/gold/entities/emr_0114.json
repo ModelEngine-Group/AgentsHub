@@ -1,0 +1,62 @@
+[
+ {
+  "name": "发热",
+  "type": "Symptom",
+  "mention": "发烧",
+  "span": null
+ },
+ {
+  "name": "关节红肿",
+  "type": "Symptom",
+  "mention": "关节红肿",
+  "span": null
+ },
+ {
+  "name": "关节疼痛",
+  "type": "Symptom",
+  "mention": "关节疼痛",
+  "span": null
+ },
+ {
+  "name": "心律失常",
+  "type": "Disease",
+  "mention": "心律失常",
+  "span": null
+ },
+ {
+  "name": "关节超声",
+  "type": "Exam",
+  "mention": "关节超声",
+  "span": null
+ },
+ {
+  "name": "血尿酸检测",
+  "type": "Exam",
+  "mention": "血尿酸",
+  "span": null
+ },
+ {
+  "name": "痛风",
+  "type": "Disease",
+  "mention": "痛风",
+  "span": null
+ },
+ {
+  "name": "风湿免疫科",
+  "type": "Department",
+  "mention": "风湿免疫科",
+  "span": null
+ },
+ {
+  "name": "秋水仙碱",
+  "type": "Drug",
+  "mention": "秋水仙碱",
+  "span": null
+ },
+ {
+  "name": "别嘌醇",
+  "type": "Drug",
+  "mention": "别嘌醇",
+  "span": null
+ }
+]
