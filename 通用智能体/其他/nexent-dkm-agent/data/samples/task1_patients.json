@@ -1,0 +1,9 @@
+{
+  "records": [
+    {"patient_id": "P001", "age": 34, "diagnosis": "hypertension", "cost": 120.5},
+    {"patient_id": "P002", "age": null, "diagnosis": "diabetes", "cost": 88},
+    {"patient_id": "P003", "age": 41, "diagnosis": "", "cost": 95.2},
+    {"patient_id": "P003", "age": 41, "diagnosis": "", "cost": 95.2},
+    {"patient_id": "P004", "age": 29, "diagnosis": "asthma", "cost": 76}
+  ]
+}

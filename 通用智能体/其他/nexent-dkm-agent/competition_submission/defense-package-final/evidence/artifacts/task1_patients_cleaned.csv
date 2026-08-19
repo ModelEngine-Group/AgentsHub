@@ -1,0 +1,5 @@
+patient_id,age,diagnosis,cost
+P001,34,hypertension,120.5
+P002,0,diabetes,88.0
+P003,41,unknown,95.2
+P004,29,asthma,76.0

@@ -1,0 +1,10 @@
+{
+  "src_dataset_id": "1162c3fb-b7a6-4f85-88ca-897a30b5221e",
+  "src_dataset_name": "task1_submit_smoke",
+  "dest_dataset_name": "task1_submit_smoke_cleaned_20260702210429",
+  "template_status": "verified",
+  "template_resource_id": "a0af304f-b25b-40d1-9805-ec8e8064da16",
+  "task_status": "verified",
+  "task_resource_id": "ce83ff2b-68da-4d49-be9e-6f82484958e4",
+  "verified": true
+}

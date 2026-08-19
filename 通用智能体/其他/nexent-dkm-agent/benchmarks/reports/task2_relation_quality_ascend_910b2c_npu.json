@@ -1,0 +1,112 @@
+{
+  "record_count": 10,
+  "backend": "npu",
+  "overall": {
+    "tp": 46,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+  },
+  "per_predicate": {
+    "has_symptom": {
+      "tp": 18,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "treated_by": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "diagnosed_by": {
+      "tp": 14,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "recommended_treatment": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "complication_of": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "records": [
+    {
+      "record_id": "holdout_1",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_2",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_3",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_4",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_5",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_6",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_7",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_8",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_9",
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "record_id": "holdout_10",
+      "false_positives": [],
+      "false_negatives": []
+    }
+  ],
+  "benchmark": "benchmarks/data/kg_relation_gold.json",
+  "thresholds": {
+    "precision": 0.9,
+    "recall": 0.95
+  },
+  "passed": true
+}

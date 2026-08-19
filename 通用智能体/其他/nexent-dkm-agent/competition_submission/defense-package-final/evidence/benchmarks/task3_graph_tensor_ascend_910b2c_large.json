@@ -1,0 +1,230 @@
+{
+  "task": "task3_graph_tensor_degree",
+  "graph": {
+    "node_count": 5000,
+    "edge_count": 50000,
+    "seed": 42
+  },
+  "cpu": {
+    "iterations": 20,
+    "latency_ms_avg": 45.0038,
+    "latency_ms_min": 43.4806,
+    "latency_ms_max": 50.9864,
+    "throughput_edges_per_sec": 1111016.2245,
+    "status": "completed",
+    "backend": "python",
+    "device": "cpu",
+    "top_degree": 38
+  },
+  "npu": {
+    "iterations": 20,
+    "latency_ms_avg": 67.7915,
+    "latency_ms_min": 64.7811,
+    "latency_ms_max": 72.5178,
+    "throughput_edges_per_sec": 737555.6362,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "measurement_mode": "end_to_end",
+    "includes_tensor_setup": true,
+    "includes_result_copy": true,
+    "top_degree": 38
+  },
+  "npu_prepared": {
+    "iterations": 20,
+    "latency_ms_avg": 5.6426,
+    "latency_ms_min": 5.456,
+    "latency_ms_max": 5.9893,
+    "throughput_edges_per_sec": 8861141.8542,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "measurement_mode": "prepared_kernel",
+    "includes_tensor_setup": false,
+    "includes_result_copy": false,
+    "prepare_latency_ms": 46.504,
+    "top_degree": 38
+  },
+  "correctness": {
+    "status": "passed",
+    "degree_vector_equal": true,
+    "max_abs_diff": 0
+  },
+  "prepared_correctness": {
+    "status": "passed",
+    "degree_vector_equal": true,
+    "max_abs_diff": 0
+  },
+  "speedup": 0.6639,
+  "prepared_speedup": 7.9757,
+  "amortized": {
+    "runs": [
+      1,
+      2,
+      5,
+      10,
+      20
+    ],
+    "cpu_total_ms": [
+      45.0038,
+      90.0076,
+      225.019,
+      450.038,
+      900.076
+    ],
+    "npu_prepared_total_ms": [
+      52.1466,
+      57.7892,
+      74.717,
+      102.93,
+      159.356
+    ],
+    "speedup": [
+      0.863,
+      1.5575,
+      3.0116,
+      4.3723,
+      5.6482
+    ],
+    "breakeven_runs": 2
+  },
+  "notes": [
+    "CPU measures Python list-based undirected degree centrality.",
+    "NPU end_to_end measures graph index parsing, device tensor creation, index_add_, synchronization, and result copy.",
+    "NPU prepared_kernel measures repeated zero_ + index_add_ execution after tensors are already on npu:0.",
+    "Amortized totals estimate one NPU tensor preparation plus repeated prepared-kernel runs on the same graph.",
+    "Synthetic graph generation is excluded from CPU/NPU timing."
+  ],
+  "breakdown": {
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "measurement_mode": "breakdown_profile",
+    "node_count": 5000,
+    "edge_count": 50000,
+    "total_profiled_ms": 69.6753,
+    "steps": {
+      "graph_access_ms": 0.0016,
+      "node_index_build_ms": 1.0542,
+      "edge_index_build_ms": 25.2568,
+      "tensor_create_cpu_ms": 16.6898,
+      "h2d_transfer_ms": 3.6752,
+      "npu_buffer_alloc_ms": 0.3591,
+      "kernel_zero_ms": 0.0786,
+      "kernel_index_add_ms": 5.6141,
+      "d2h_copy_ms": 0.1545,
+      "tolist_ms": 0.0844,
+      "format_result_ms": 16.6333
+    },
+    "top_degree": 38
+  },
+  "mode_benchmarks": [
+    {
+      "name": "baseline_index_add_full_format",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 20,
+      "latency_ms_avg": 68.9097,
+      "latency_ms_min": 65.9673,
+      "latency_ms_max": 72.0897,
+      "throughput_edges_per_sec": 725587.2829,
+      "speedup_vs_cpu": 0.6531,
+      "speedup_vs_npu_end_to_end": 0.9838,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "kernel": "index_add",
+      "uses_cached_tensors": false,
+      "result_mode": "full_format",
+      "includes_edge_index_build": true,
+      "includes_tensor_create": true,
+      "includes_full_result_format": true,
+      "correctness": {
+        "status": "passed",
+        "degree_vector_equal": true,
+        "max_abs_diff": 0
+      },
+      "top_degree": 38
+    },
+    {
+      "name": "cached_index_add_full_format",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 20,
+      "latency_ms_avg": 20.2927,
+      "latency_ms_min": 20.0574,
+      "latency_ms_max": 20.8113,
+      "throughput_edges_per_sec": 2463935.9248,
+      "speedup_vs_cpu": 2.2177,
+      "speedup_vs_npu_end_to_end": 3.3407,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "kernel": "index_add",
+      "uses_cached_tensors": true,
+      "result_mode": "full_format",
+      "includes_edge_index_build": false,
+      "includes_tensor_create": false,
+      "includes_full_result_format": true,
+      "correctness": {
+        "status": "passed",
+        "degree_vector_equal": true,
+        "max_abs_diff": 0
+      },
+      "correctness_check_included_in_timing": false,
+      "top_degree": 38
+    },
+    {
+      "name": "cached_index_add_topk",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 20,
+      "latency_ms_avg": 5.9057,
+      "latency_ms_min": 5.8476,
+      "latency_ms_max": 6.0455,
+      "throughput_edges_per_sec": 8466372.2909,
+      "speedup_vs_cpu": 7.6204,
+      "speedup_vs_npu_end_to_end": 11.479,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "kernel": "index_add",
+      "uses_cached_tensors": true,
+      "result_mode": "topk",
+      "includes_edge_index_build": false,
+      "includes_tensor_create": false,
+      "includes_full_result_format": false,
+      "correctness": {
+        "status": "passed",
+        "degree_vector_equal": true,
+        "max_abs_diff": 0
+      },
+      "correctness_check_included_in_timing": false,
+      "top_degree": 38
+    },
+    {
+      "name": "cached_bincount_topk",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 20,
+      "latency_ms_avg": 1.6206,
+      "latency_ms_min": 1.465,
+      "latency_ms_max": 1.7659,
+      "throughput_edges_per_sec": 30852057.8328,
+      "speedup_vs_cpu": 27.7698,
+      "speedup_vs_npu_end_to_end": 41.8311,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "kernel": "bincount",
+      "uses_cached_tensors": true,
+      "result_mode": "topk",
+      "includes_edge_index_build": false,
+      "includes_tensor_create": false,
+      "includes_full_result_format": false,
+      "correctness": {
+        "status": "passed",
+        "degree_vector_equal": true,
+        "max_abs_diff": 0
+      },
+      "correctness_check_included_in_timing": false,
+      "top_degree": 38
+    }
+  ]
+}

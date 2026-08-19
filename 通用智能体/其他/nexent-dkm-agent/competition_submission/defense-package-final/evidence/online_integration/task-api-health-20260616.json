@@ -1,0 +1,23 @@
+[
+  {
+    "name": "task1",
+    "url": "http://localhost:8000/health",
+    "status": "available",
+    "http_status": 200,
+    "body": "{\"status\":\"healthy\",\"service\":\"task1_data_processing_agent\"}"
+  },
+  {
+    "name": "task2",
+    "url": "http://localhost:8002/health",
+    "status": "available",
+    "http_status": 200,
+    "body": "{\"status\":\"healthy\",\"service\":\"task2_medical_kg_agent\",\"version\":\"2.0.0\"}"
+  },
+  {
+    "name": "task3",
+    "url": "http://localhost:8003/health",
+    "status": "available",
+    "http_status": 200,
+    "body": "{\"status\":\"healthy\",\"service\":\"task3_graph_analysis_agent\",\"version\":\"2.0.0\",\"llm_enabled\":false}"
+  }
+]

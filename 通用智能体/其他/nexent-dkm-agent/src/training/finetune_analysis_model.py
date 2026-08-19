@@ -1,0 +1,237 @@
+"""QLoRA fine-tuning script for the task-3 analysis agent.
+
+Fine-tunes a small language model (e.g. Qwen2.5-0.5B) on either:
+
+- ``planning``: analysis request -> operator-plan JSON, or
+- ``nl2sql``: analysis question -> read-only SQL,
+
+using data produced by ``data/training/generate_analysis_training_data.py``.
+
+Usage::
+
+    python -m src.training.finetune_analysis_model \
+        --task nl2sql \
+        --train-data data/training/analysis_nl2sql_train.jsonl \
+        --val-data data/training/analysis_nl2sql_val.jsonl \
+        --model-path models/qwen2.5-0.5b-instruct \
+        --output-dir data/training/analysis_nl2sql_model_output \
+        --epochs 3
+
+Dependencies (transformers/peft/trl/datasets/torch) and a GPU are required for
+actual training; the script exits cleanly with guidance when they are missing.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.operators.analysis_ops.analysis_prompts import NL2SQL_SYSTEM, PLANNING_SYSTEM
+
+_SYSTEM_PROMPTS = {
+    "planning": PLANNING_SYSTEM,
+    "nl2sql": NL2SQL_SYSTEM,
+}
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Fine-tune the task-3 analysis model")
+    parser.add_argument("--task", choices=["planning", "nl2sql"], required=True)
+    parser.add_argument("--train-data", required=True)
+    parser.add_argument("--val-data", default=None)
+    parser.add_argument("--model-path", required=True, help="Base model path or HuggingFace ID")
+    parser.add_argument("--output-dir", default="data/training/analysis_model_output")
+    parser.add_argument("--epochs", type=int, default=3)
+    parser.add_argument("--batch-size", type=int, default=4)
+    parser.add_argument("--lr", type=float, default=2e-4)
+    parser.add_argument("--max-length", type=int, default=512)
+    parser.add_argument("--lora-r", type=int, default=16)
+    parser.add_argument("--lora-alpha", type=int, default=32)
+    return parser.parse_args()
+
+
+def load_jsonl(path: str) -> list[dict]:
+    data = []
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                data.append(json.loads(line))
+    return data
+
+
+def tokenize_fn(examples, tokenizer, max_length, system_prompt):
+    """Build supervised causal-LM examples (prompt masked, response learned).
+
+    The prompt and response are concatenated into one sequence; prompt tokens
+    (and padding) get label ``-100`` so loss is computed only over the response
+    plus its EOS. Tokenizing prompt and response separately (as a previous
+    version did) misaligns inputs and labels and destroys the supervision
+    signal, leaving the model to emit empty/garbage outputs.
+    """
+    input_ids_list = []
+    attention_list = []
+    labels_list = []
+    pad_id = tokenizer.pad_token_id
+    eos = tokenizer.eos_token or ""
+
+    for instr, inp, out in zip(
+        examples["instruction"], examples["input"], examples["output"]
+    ):
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": f"{instr}\n\n{inp}"},
+        ]
+        prompt_text = tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
+        prompt_ids = tokenizer(prompt_text, add_special_tokens=False)["input_ids"]
+        response_ids = tokenizer(out + eos, add_special_tokens=False)["input_ids"]
+
+        input_ids = (prompt_ids + response_ids)[:max_length]
+        labels = ([-100] * len(prompt_ids) + response_ids)[:max_length]
+        attention = [1] * len(input_ids)
+
+        pad_len = max_length - len(input_ids)
+        if pad_len > 0:
+            input_ids = input_ids + [pad_id] * pad_len
+            attention = attention + [0] * pad_len
+            labels = labels + [-100] * pad_len
+
+        input_ids_list.append(input_ids)
+        attention_list.append(attention)
+        labels_list.append(labels)
+
+    return {
+        "input_ids": input_ids_list,
+        "attention_mask": attention_list,
+        "labels": labels_list,
+    }
+
+
+def main():
+    args = parse_args()
+    system_prompt = _SYSTEM_PROMPTS[args.task]
+
+    try:
+        from datasets import Dataset
+        from peft import LoraConfig, TaskType, get_peft_model
+        from transformers import (
+            AutoModelForCausalLM,
+            AutoTokenizer,
+            TrainingArguments,
+        )
+    except ImportError as e:
+        print(f"Missing dependency: {e}")
+        print("Install with: pip install -r requirements.txt")
+        return 1
+
+    try:
+        from trl import SFTTrainer
+    except ImportError:
+        from transformers import Trainer as SFTTrainer
+        print("Note: trl not installed, using basic Trainer.")
+
+    print(f"Loading tokenizer from {args.model_path}...")
+    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+
+    print(f"Loading model from {args.model_path}...")
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_path,
+        trust_remote_code=True,
+        device_map="auto" if _has_cuda() else "cpu",
+    )
+
+    lora_config = LoraConfig(
+        task_type=TaskType.CAUSAL_LM,
+        r=args.lora_r,
+        lora_alpha=args.lora_alpha,
+        lora_dropout=0.05,
+        target_modules=["q_proj", "v_proj"],
+    )
+    model = get_peft_model(model, lora_config)
+    model.print_trainable_parameters()
+
+    print(f"Loading training data from {args.train_data}...")
+    train_data = load_jsonl(args.train_data)
+    train_ds = Dataset.from_dict({
+        "instruction": [s["instruction"] for s in train_data],
+        "input": [s["input"] for s in train_data],
+        "output": [s["output"] for s in train_data],
+    })
+
+    val_ds = None
+    if args.val_data:
+        val_data = load_jsonl(args.val_data)
+        val_ds = Dataset.from_dict({
+            "instruction": [s["instruction"] for s in val_data],
+            "input": [s["input"] for s in val_data],
+            "output": [s["output"] for s in val_data],
+        })
+
+    train_ds = train_ds.map(
+        lambda x: tokenize_fn(x, tokenizer, args.max_length, system_prompt),
+        batched=True,
+        remove_columns=train_ds.column_names,
+    )
+    if val_ds:
+        val_ds = val_ds.map(
+            lambda x: tokenize_fn(x, tokenizer, args.max_length, system_prompt),
+            batched=True,
+            remove_columns=val_ds.column_names,
+        )
+
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    training_args = TrainingArguments(
+        output_dir=str(output_dir),
+        num_train_epochs=args.epochs,
+        per_device_train_batch_size=args.batch_size,
+        learning_rate=args.lr,
+        logging_steps=50,
+        save_steps=500,
+        eval_strategy="steps" if val_ds else "no",
+        eval_steps=500 if val_ds else None,
+        save_total_limit=2,
+        report_to="none",
+        fp16=_has_cuda(),
+        gradient_accumulation_steps=4,
+        warmup_steps=100,
+    )
+
+    trainer = SFTTrainer(
+        model=model,
+        args=training_args,
+        train_dataset=train_ds,
+        eval_dataset=val_ds,
+    )
+
+    print("Starting training...")
+    trainer.train()
+
+    print(f"Saving model to {output_dir / 'final'}...")
+    model.save_pretrained(str(output_dir / "final"))
+    tokenizer.save_pretrained(str(output_dir / "final"))
+    print("Done!")
+    return 0
+
+
+def _has_cuda():
+    try:
+        import torch
+        return torch.cuda.is_available()
+    except ImportError:
+        return False
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

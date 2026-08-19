@@ -1,0 +1,580 @@
+{
+  "info": {
+    "title": "Task 3 Graph Analysis Agent API",
+    "version": "2.0.0",
+    "description": "REST interface for graph-driven statistics, NL2SQL, graph analytics, and visualization."
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Health Check Health Get",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "operationId": "health_check_health_get"
+      }
+    },
+    "/api/nl2sql": {
+      "post": {
+        "summary": "Run Nl2Sql Query",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Run Nl2Sql Query Api Nl2Sql Post",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "description": "Stateless NL2SQL endpoint for interactive dashboard queries.",
+        "operationId": "run_nl2sql_query_api_nl2sql_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Nl2SqlRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/task3/sql": {
+      "post": {
+        "summary": "Run Sql Query",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Run Sql Query Api Task3 Sql Post",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "operationId": "run_sql_query_api_task3_sql_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SqlRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/task3/paths": {
+      "post": {
+        "summary": "Find Paths",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Find Paths Api Task3 Paths Post",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "description": "Find shortest paths between entities in a graph.",
+        "operationId": "find_paths_api_task3_paths_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PathRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/task3/process": {
+      "post": {
+        "summary": "Submit Task",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "operationId": "submit_task_api_task3_process_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/task3/operators": {
+      "get": {
+        "summary": "List Operators",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response List Operators Api Task3 Operators Get",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "operationId": "list_operators_api_task3_operators_get"
+      }
+    },
+    "/api/task3/centrality": {
+      "post": {
+        "summary": "Get Centrality",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Centrality Api Task3 Centrality Post",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "description": "Compute centrality analysis for a graph.",
+        "operationId": "get_centrality_api_task3_centrality_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/task3/communities": {
+      "post": {
+        "summary": "Find Communities",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Find Communities Api Task3 Communities Post",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "description": "Detect communities in a graph.",
+        "operationId": "find_communities_api_task3_communities_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/task3/report/{task_id}": {
+      "get": {
+        "summary": "Get Report",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Report Api Task3 Report  Task Id  Get",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "get_report_api_task3_report__task_id__get"
+      }
+    },
+    "/api/task3/status/{task_id}": {
+      "get": {
+        "summary": "Get Status",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Response Get Status Api Task3 Status  Task Id  Get",
+                  "additionalProperties": true
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "get_status_api_task3_status__task_id__get"
+      }
+    }
+  },
+  "openapi": "3.1.0",
+  "servers": [
+    {
+      "url": "http://host.docker.internal:8003"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "SqlRequest": {
+        "type": "object",
+        "title": "SqlRequest",
+        "required": [
+          "task_id"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question",
+            "default": "哪些疾病关联最多症状？"
+          }
+        }
+      },
+      "PathRequest": {
+        "type": "object",
+        "title": "PathRequest",
+        "required": [
+          "task_id",
+          "start_entity"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "max_depth": {
+            "type": "integer",
+            "title": "Max Depth",
+            "default": 4,
+            "maximum": 10.0,
+            "minimum": 1.0
+          },
+          "end_entity": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Entity"
+          },
+          "start_entity": {
+            "type": "string",
+            "title": "Start Entity"
+          }
+        }
+      },
+      "TaskResponse": {
+        "type": "object",
+        "title": "TaskResponse",
+        "required": [
+          "task_id",
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          }
+        }
+      },
+      "Nl2SqlRequest": {
+        "type": "object",
+        "title": "Nl2SqlRequest",
+        "properties": {
+          "question": {
+            "type": "string",
+            "title": "Question",
+            "default": "哪些疾病关联最多症状？"
+          },
+          "graph_file": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Graph File"
+          }
+        }
+      },
+      "ProcessRequest": {
+        "type": "object",
+        "title": "ProcessRequest",
+        "properties": {
+          "question": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question"
+          },
+          "graph_file": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Graph File"
+          },
+          "output_dir": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output Dir"
+          },
+          "task_request": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Request"
+          }
+        }
+      },
+      "ValidationError": {
+        "type": "object",
+        "title": "ValidationError",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "properties": {
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          },
+          "loc": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          }
+        }
+      },
+      "HTTPValidationError": {
+        "type": "object",
+        "title": "HTTPValidationError",
+        "properties": {
+          "detail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail"
+          }
+        }
+      }
+    }
+  }
+}

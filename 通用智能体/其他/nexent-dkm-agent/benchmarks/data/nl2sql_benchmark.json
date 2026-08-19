@@ -1,0 +1,98 @@
+{
+  "description": "Labeled NL2SQL intent benchmark for the task-3 analysis agent. Each canonical intent maps to exactly one SQL template (see src/operators/analysis_ops/nl2sql.py INTENT_SQL), so intent-classification accuracy equals SQL-correctness on the task-2 medical KG schema.",
+  "schema": {
+    "node_types": ["Disease", "Symptom", "Drug", "Examination", "Treatment"],
+    "predicates": ["has_symptom", "treated_by", "diagnosed_by", "recommended_treatment", "complication_of"]
+  },
+  "cases": [
+    {"question": "哪些疾病关联最多症状？", "expected_intent": "top_disease_symptoms"},
+    {"question": "症状最多的疾病有哪些", "expected_intent": "top_disease_symptoms"},
+    {"question": "每种疾病有多少症状", "expected_intent": "top_disease_symptoms"},
+    {"question": "各疾病的临床表现数量排名", "expected_intent": "top_disease_symptoms"},
+    {"question": "disease symptom counts", "expected_intent": "top_disease_symptoms"},
+
+    {"question": "哪些疾病用药种类最多", "expected_intent": "top_disease_drugs"},
+    {"question": "高血压用什么药", "expected_intent": "top_disease_drugs"},
+    {"question": "疾病的治疗药物有多少种", "expected_intent": "top_disease_drugs"},
+    {"question": "each disease medication count", "expected_intent": "top_disease_drugs"},
+
+    {"question": "哪些疾病需要的检查项目最多", "expected_intent": "top_disease_exams"},
+    {"question": "每种疾病做哪些化验", "expected_intent": "top_disease_exams"},
+    {"question": "疾病的检测手段统计", "expected_intent": "top_disease_exams"},
+    {"question": "which examinations diagnose each disease", "expected_intent": "top_disease_exams"},
+
+    {"question": "各疾病推荐的治疗方案", "expected_intent": "top_disease_treatments"},
+    {"question": "高血压怎么治疗", "expected_intent": "top_disease_treatments"},
+    {"question": "疾病的疗法分别有哪些", "expected_intent": "top_disease_treatments"},
+    {"question": "recommended treatment per disease", "expected_intent": "top_disease_treatments"},
+
+    {"question": "哪些疾病的并发症最多", "expected_intent": "disease_complications"},
+    {"question": "疾病之间的并发关系", "expected_intent": "disease_complications"},
+    {"question": "list complications of diseases", "expected_intent": "disease_complications"},
+
+    {"question": "图谱中有哪些关系", "expected_intent": "relation_distribution"},
+    {"question": "知识图谱里关系数量怎么分布", "expected_intent": "relation_distribution"},
+    {"question": "what relation types exist", "expected_intent": "relation_distribution"},
+
+    {"question": "列出所有疾病", "expected_intent": "list_diseases"},
+    {"question": "图谱里有哪些疾病", "expected_intent": "list_diseases"},
+    {"question": "which diseases are in the graph", "expected_intent": "list_diseases"},
+
+    {"question": "提及次数最多的实体", "expected_intent": "top_mentioned_entities"},
+    {"question": "哪些实体出现最频繁", "expected_intent": "top_mentioned_entities"},
+    {"question": "most mentioned entities in the kg", "expected_intent": "top_mentioned_entities"},
+    {"question": "频次最高的节点是什么", "expected_intent": "top_mentioned_entities"},
+
+    {"question": "各类实体的数量分布", "expected_intent": "entity_distribution"},
+    {"question": "节点类型的统计", "expected_intent": "entity_distribution"},
+    {"question": "entity type distribution", "expected_intent": "entity_distribution"},
+    {"question": "知识图谱实体分布情况", "expected_intent": "entity_distribution"},
+
+    {"question": "病人通常有哪些不适", "expected_intent": "top_disease_symptoms"},
+    {"question": "各疾病的体征表现", "expected_intent": "top_disease_symptoms"},
+    {"question": "糖尿病患者需要服用哪些药", "expected_intent": "top_disease_drugs"},
+    {"question": "得了高血压要吃什么药", "expected_intent": "top_disease_drugs"},
+    {"question": "冠心病的处理办法有哪些", "expected_intent": "top_disease_treatments"},
+    {"question": "疾病的干预措施分别是什么", "expected_intent": "top_disease_treatments"},
+    {"question": "统计每类节点的数量", "expected_intent": "entity_distribution"},
+    {"question": "知识图谱里都有什么关系类型", "expected_intent": "relation_distribution"},
+    {"question": "列举所有疾病名称", "expected_intent": "list_diseases"},
+    {"question": "病情最严重的并发情况", "expected_intent": "disease_complications"},
+    {"question": "哪些病出现得最频繁", "expected_intent": "top_mentioned_entities"},
+    {"question": "帮我看看哪些病最常见", "expected_intent": "list_diseases"},
+    {"question": "top 3 diseases by symptom count", "expected_intent": "top_disease_symptoms"},
+    {"question": "按症状数量排名前几名疾病", "expected_intent": "top_disease_symptoms"},
+    {"question": "给我统计一下关系类型分布", "expected_intent": "relation_distribution"},
+    {"question": "show me the most common diseases", "expected_intent": "list_diseases"},
+    {"question": "what drugs treat each disease", "expected_intent": "top_disease_drugs"},
+    {"question": "帮我查一下每种病要做什么检查", "expected_intent": "top_disease_exams"},
+    {"question": "列出并发关系最多的疾病", "expected_intent": "disease_complications"},
+    {"question": "图谱里出现频率最高的实体是哪些", "expected_intent": "top_mentioned_entities"},
+    {"question": "count nodes by entity type", "expected_intent": "entity_distribution"},
+    {"question": "高血压相关的治疗方案有哪些", "expected_intent": "top_disease_treatments"},
+    {"question": "帮我看看病人常见的不适症状", "expected_intent": "top_disease_symptoms"},
+    {"question": "disease medication ranking", "expected_intent": "top_disease_drugs"},
+    {"question": "请把所有疾病名称列出来", "expected_intent": "list_diseases"},
+    {"question": "每种关系有多少条边", "expected_intent": "relation_distribution"},
+
+    {"question": "图谱里连接度最高的枢纽节点", "expected_intent": "graph_hub_nodes"},
+    {"question": "哪些节点是网络中心", "expected_intent": "graph_hub_nodes"},
+    {"question": "找出度最高的核心节点", "expected_intent": "graph_hub_nodes"},
+    {"question": "most connected hub nodes", "expected_intent": "graph_hub_nodes"},
+
+    {"question": "哪些疾病会出现头晕症状", "expected_intent": "symptom_to_diseases"},
+    {"question": "具有头痛症状的疾病有哪些", "expected_intent": "symptom_to_diseases"},
+    {"question": "哪些病有咳嗽这个症状", "expected_intent": "symptom_to_diseases"},
+    {"question": "diseases with chest tightness symptom", "expected_intent": "symptom_to_diseases"},
+    {"question": "会出现胸闷症状的疾病", "expected_intent": "symptom_to_diseases"},
+
+    {"question": "哪些疾病用阿司匹林治疗", "expected_intent": "drug_to_diseases"},
+    {"question": "用该药的疾病有哪些", "expected_intent": "drug_to_diseases"},
+    {"question": "diseases treated by metformin", "expected_intent": "drug_to_diseases"},
+    {"question": "服用二甲双胍的适应疾病", "expected_intent": "drug_to_diseases"},
+
+    {"question": "哪些疾病采用运动疗法", "expected_intent": "treatment_to_diseases"},
+    {"question": "用此疗法的疾病有哪些", "expected_intent": "treatment_to_diseases"},
+    {"question": "diseases using low-salt diet treatment", "expected_intent": "treatment_to_diseases"}
+  ]
+}

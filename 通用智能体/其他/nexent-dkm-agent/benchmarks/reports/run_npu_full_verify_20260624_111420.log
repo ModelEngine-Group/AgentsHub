@@ -1,0 +1,167 @@
+
+==========================================
+  [1/16] Preflight: NPU runtime and project root
+==========================================
+  NPU OK: npu:0
+  project: /data/nexent-dkm-agent/nexent-dkm-agent
+  python:  Python 3.11.14
++------------------------------------------------------------------------------------------------+
+| npu-smi 25.5.0                   Version: 25.5.0                                               |
++---------------------------+---------------+----------------------------------------------------+
+| NPU   Name                | Health        | Power(W)    Temp(C)           Hugepages-Usage(page)|
+| Chip                      | Bus-Id        | AICore(%)   Memory-Usage(MB)  HBM-Usage(MB)        |
++===========================+===============+====================================================+
+| 0     910B3               | OK            | 100.3       33                0    / 0             |
+| 0                         | 0000:C1:00.0  | 0           0    / 0          3441 / 65536         |
+
+==========================================
+  [2/16] Environment snapshot (collect_env.sh)
+==========================================
+
+# ModelScope / HuggingFace cache on persistent /data volume
+export MODELSCOPE_CACHE=/data/modelscope_cache
+export HF_HOME=/data/huggingface_home
+export HF_ENDPOINT=https://hf-mirror.com
+
+# Project source root (git clone: /data/nexent-dkm-agent/nexent-dkm-agent)
+export NEXENT_DKM_ROOT=/data/nexent-dkm-agent/nexent-dkm-agent/nexent-dkm-agent
+export PYTHONPATH="${NEXENT_DKM_ROOT}/src:${PYTHONPATH:-}"
+
+=== Project status ===
+60a644e docs: link defense document with task docs and refresh finetune metrics
+1e6a4b8 docs: streamline NPU reports and consolidate benchmark commands
+d47c11b chore(gitignore): ignore pytest tmpnexent basetemp directories
+1d77c9f docs(evidence): align 2026-06-18 defense package and pytest 385
+ebf67ac docs: wrap task mermaid diagrams in centered containers
+
+==========================================
+  Collection complete
+==========================================
+
+==========================================
+  [3/16] Task 1 demo (CSV baseline)
+==========================================
+validation: passed / duplicates_ok=True / missing_ok=True
+quality_report: warning / operators=7 / datamate_ops=0
+  readiness: task_understanding, multi_operator_plan, local_execution, quality_validation, datamate_task_ready_or_waiting, datamate_submission_safe
+datamate: unavailable
+run_state: completed_with_warnings [understand_task:completed, validate_runtime_config:completed, profile_schema:completed, plan_operators:completed, execute_local_cleaning:completed, validate_cleaning_result:completed, inspect_datamate:completed, build_quality_report:completed]
+
+==========================================
+  [4/16] Task 2 demo (rule relation backend)
+==========================================
+
+  [QA] answered
+  [Answer] 高血压相关信息：症状: 头晕、头痛、气短、胸闷；用药: 氨氯地平、阿司匹林。
+
+  [Plan] [rule] extract_medical_entities -> extract_relations -> validate_triples -> build_medical_graph -> answer_graph_question
+
+  [Steps] completed [load_input:completed, extract_entities:completed, extract_relations:completed, validate_triples:completed, build_graph:completed, export_graph:completed, answer_question:completed, build_quality_report:completed]
+============================================================
+
+==========================================
+  [5/16] Task 2 demo (NPU relation backend)
+==========================================
+
+  [QA] answered
+  [Answer] 高血压相关信息：症状: 头晕、头痛、气短、胸闷；用药: 氨氯地平、阿司匹林。
+
+  [Plan] [rule] extract_medical_entities -> extract_relations -> validate_triples -> build_medical_graph -> answer_graph_question
+
+  [Steps] completed [load_input:completed, extract_entities:completed, extract_relations:completed, validate_triples:completed, build_graph:completed, export_graph:completed, answer_question:completed, build_quality_report:completed]
+============================================================
+
+==========================================
+  [6/16] Task 3 demo (graph analytics; expect top_hubs_backend=torch_npu when NPU available)
+==========================================
+  [Charts] entity_distribution, relation_distribution, record_trend, disease_network
+
+  [Quality] passed
+
+  [Output] outputs/npu/task3/task3_analysis_report.json
+  [Report] outputs/npu/task3/task3_insight_report.html
+  [Dashboard] outputs/npu/task3/task3_analysis_dashboard.html
+============================================================
+
+==========================================
+  [7/16] Full pytest
+==========================================
+  /usr/local/python3.11.14/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+770 passed, 1 warning in 369.30s (0:06:09)
+
+==========================================
+  [8/16] NPU-focused pytest subset
+==========================================
+...........................................                              [100%]
+43 passed in 21.60s
+
+==========================================
+  [9/16] Task 1 data quality benchmark
+==========================================
+    "DataMate is disabled for benchmark determinism; integration payloads are covered by task-1 demo/tests."
+  ]
+}
+
+==========================================
+  [10/16] Task 2 relation tensor benchmark (4k, all modes, NPU preferred)
+==========================================
+    }
+  ]
+}
+
+==========================================
+  [11/16] Task 2 relation tensor benchmark (65k, profile breakdown)
+==========================================
+    }
+  ]
+}
+
+==========================================
+  [12/16] Task 2 relation tensor benchmark (131072 xlarge + NPU monitor)
+==========================================
+      "avg": 106.952,
+      "max": 111.5
+    }
+  }
+}
+
+==========================================
+  [13/16] Task 2 relation quality benchmark (NPU backend)
+==========================================
+  },
+  "passed": true
+}
+
+==========================================
+  [14/16] Task 3 graph tensor benchmark (5k/50k, NPU preferred)
+==========================================
+    }
+  ]
+}
+
+==========================================
+  [15/16] Task 3 centrality benchmark (5k/50k, cached NPU path)
+==========================================
+    "When NPU is unavailable, optimized and cached paths fall back to CPU and speedup should be interpreted as fallback overhead."
+  ]
+}
+
+==========================================
+  [16/16] Service reachability probe (NPU node; external services may be unavailable)
+==========================================
+    "nexent": "skipped"
+  },
+  "reachable": {
+    "neo4j": false,
+    "datamate": false,
+    "nexent": false
+  }
+}
+
+==========================================
+  NPU full verification completed.
+  Reports: benchmarks/reports/
+==========================================

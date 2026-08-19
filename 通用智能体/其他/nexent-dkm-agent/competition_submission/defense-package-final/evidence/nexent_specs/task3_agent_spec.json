@@ -1,0 +1,26 @@
+{
+  "name": "task3_graph_analysis_agent",
+  "description": "Nexent-compatible task-3 agent for graph-driven statistics, association analysis, trends, NL2SQL, and BI visualizations.",
+  "tools": [
+    {
+      "class_name": "GraphAnalysisAgentTool",
+      "name": "task3_graph_analysis",
+      "description": "Analyze a medical knowledge graph with LLM-enhanced NL2SQL, graph analytics (centrality, paths, communities), statistics, association analysis, trends, and interactive visualization.",
+      "inputs": "{\"graph_file\": {\"type\": \"string\", \"description\": \"Task-2 graph JSON path. If missing, bootstraps the sample graph.\", \"nullable\": true}, \"question\": {\"type\": \"string\", \"description\": \"Natural-language analysis question for NL2SQL.\", \"nullable\": true}, \"task_request\": {\"type\": \"string\", \"description\": \"Free-form analysis request (e.g., '统计分析', '关联分析').\", \"nullable\": true}, \"llm_config\": {\"type\": \"object\", \"description\": \"LLM config with base_url, api_key, model_name for NL2SQL enhancement.\", \"nullable\": true}}",
+      "output_type": "string",
+      "params": {
+        "output_dir": null
+      },
+      "source": "local",
+      "metadata": {
+        "task": "task3",
+        "framework": "nexent",
+        "analysis_output": "outputs/task3/task3_analysis_report.json"
+      }
+    }
+  ],
+  "max_steps": 8,
+  "model_name": "main_model",
+  "provide_run_summary": true,
+  "instructions": "Use task3_graph_analysis after a task-2 graph is available. Answer with graph-backed metrics, SQL evidence, and visualization specs."
+}

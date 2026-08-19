@@ -1,0 +1,1 @@
+﻿{"ready": true, "status": "available", "readiness_basis": "health_and_core_api_probes", "successful_core_probes": 3, "core_probe_count": 3, "health_status": "healthy", "base_url": "http://localhost:18000"}

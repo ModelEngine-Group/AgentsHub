@@ -1,0 +1,57 @@
+{
+  "collected_at": "2026-06-24T11:28:47.189797+00:00",
+  "host": "ascend_910b2c",
+  "environment_type": "npu_compute_container",
+  "environment_facts": {
+    "is_container": true,
+    "pid1": "entrypoint.sh",
+    "environment_type": "npu_compute_container",
+    "java_installed": false,
+    "node_installed": false,
+    "docker_installed": false,
+    "podman_installed": false,
+    "python_version": "3.11.14",
+    "torch_version": "2.9.0+cpu",
+    "torch_npu_available": true,
+    "torch_npu_version": "unknown",
+    "npu_model": "Ascend (model not parsed)",
+    "ram_gb": 64
+  },
+  "runtime_dependency_analysis": {
+    "neo4j_requires": "Java 11+ (JVM) 或容器运行时",
+    "datamate_requires": "Java (Spring Boot) 或容器运行时",
+    "nexent_requires": "Node.js 或容器运行时",
+    "node_has": "Python 3.11.14 + torch_npu + Ascend (model not parsed)",
+    "conclusion": "缺少 Java/Node.js/容器运行时，三服务无法在本节点直接启动"
+  },
+  "method": "protocol-level：Neo4j 走 Bolt 握手(check_neo4j_connection)；DataMate 走 health 与核心业务 API(probe_datamate)；Nexent 经 HTTP GET 并用 Server 头+响应体指纹识别 Nexent 或排除非 Nexent 服务；系统级记录 Java/Node.js/容器运行时可用性",
+  "endpoints": {
+    "neo4j": "none",
+    "datamate": "none",
+    "nexent": "none"
+  },
+  "results": {
+    "neo4j": {
+      "status": "skipped",
+      "reason": "neo4j-uri=none"
+    },
+    "datamate": {
+      "status": "skipped",
+      "reason": "datamate-url=none"
+    },
+    "nexent": {
+      "status": "skipped",
+      "reason": "nexent-url=none"
+    }
+  },
+  "summary": {
+    "neo4j": "skipped",
+    "datamate": "skipped",
+    "nexent": "skipped"
+  },
+  "reachable": {
+    "neo4j": false,
+    "datamate": false,
+    "nexent": false
+  }
+}

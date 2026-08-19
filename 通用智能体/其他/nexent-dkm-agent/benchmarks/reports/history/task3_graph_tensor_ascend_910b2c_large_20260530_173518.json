@@ -1,0 +1,41 @@
+{
+  "task": "task3_graph_tensor_degree",
+  "graph": {
+    "node_count": 5000,
+    "edge_count": 50000,
+    "seed": 42
+  },
+  "cpu": {
+    "iterations": 20,
+    "latency_ms_avg": 14.4597,
+    "latency_ms_min": 14.0472,
+    "latency_ms_max": 16.0049,
+    "throughput_edges_per_sec": 3457878.1505,
+    "status": "completed",
+    "backend": "python",
+    "device": "cpu",
+    "top_degree": 38
+  },
+  "npu": {
+    "iterations": 20,
+    "latency_ms_avg": 27.302,
+    "latency_ms_min": 25.4797,
+    "latency_ms_max": 45.0679,
+    "throughput_edges_per_sec": 1831368.9791,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "top_degree": 38
+  },
+  "correctness": {
+    "status": "passed",
+    "degree_vector_equal": true,
+    "max_abs_diff": 0
+  },
+  "speedup": 0.5296,
+  "notes": [
+    "CPU measures Python list-based undirected degree centrality.",
+    "NPU measures torch tensor index_add_ degree centrality on npu:0 when available.",
+    "Synthetic graph generation is excluded from CPU/NPU timing."
+  ]
+}

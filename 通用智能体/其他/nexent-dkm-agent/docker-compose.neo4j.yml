@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  neo4j:
+    image: neo4j:5-community
+    container_name: nexent-neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: "${NEO4J_AUTH:?Set NEO4J_AUTH in .env before starting Neo4j}"
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_server_memory_pagecache_size: 256M
+      NEO4J_server_memory_heap_initial__size: 512M
+      NEO4J_server_memory_heap_max__size: 512M
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    restart: unless-stopped
+
+volumes:
+  neo4j_data:
+  neo4j_logs:

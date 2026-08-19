@@ -1,0 +1,26 @@
+{
+  "name": "task2_medical_kg_agent",
+  "description": "Nexent-compatible task-2 agent for medical entity extraction, relation extraction, KG construction, triple validation, and QA.",
+  "tools": [
+    {
+      "class_name": "MedicalKGAgentTool",
+      "name": "task2_medical_kg",
+      "description": "Extract medical entities and relations from text, build a JSON knowledge graph, validate triples, and answer graph-backed questions.",
+      "inputs": "{\"input_path\": {\"type\": \"string\", \"description\": \"Medical text input path. Uses bundled sample if omitted.\", \"nullable\": true}, \"question\": {\"type\": \"string\", \"description\": \"Question to answer from the generated graph.\", \"nullable\": true}}",
+      "output_type": "string",
+      "params": {
+        "output_dir": null
+      },
+      "source": "local",
+      "metadata": {
+        "task": "task2",
+        "framework": "nexent",
+        "graph_output": "outputs/task2/medical_kg.json"
+      }
+    }
+  ],
+  "max_steps": 6,
+  "model_name": "main_model",
+  "provide_run_summary": true,
+  "instructions": "Use the task2_medical_kg tool to build a medical knowledge graph before answering disease, symptom, drug, examination, or treatment questions."
+}

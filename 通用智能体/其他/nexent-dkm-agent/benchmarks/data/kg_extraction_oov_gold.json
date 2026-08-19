@@ -1,0 +1,93 @@
+{
+  "description": "Open-domain hold-out corpus with deliberate out-of-vocabulary (OOV) medical entities. Terms here are absent from data/samples/medical_terminology.json and the built-in ENTITY_DICTIONARY, so the rule-based extractor should miss them while keeping precision high.",
+  "records": [
+    {
+      "record_id": "oov_1",
+      "text": "记录: 患儿确诊法布里病，反复肢端灼痛，酶活性测定已送检，建议酶替代治疗随访。",
+      "entities": {
+        "Disease": ["法布里病"],
+        "Symptom": ["肢端灼痛"],
+        "Drug": [],
+        "Examination": ["酶活性测定"],
+        "Treatment": ["酶替代治疗"]
+      }
+    },
+    {
+      "record_id": "oov_2",
+      "text": "记录: 戈谢病脾肿大伴血小板减少，骨髓涂片见特征性巨噬细胞，拟予底物减少治疗。",
+      "entities": {
+        "Disease": ["戈谢病"],
+        "Symptom": [],
+        "Drug": [],
+        "Examination": ["骨髓涂片"],
+        "Treatment": ["底物减少治疗"]
+      }
+    },
+    {
+      "record_id": "oov_3",
+      "text": "记录: 尼曼匹克病患儿肝脾肿大，血清壳三糖苷酶升高，建议神经科联合随访。",
+      "entities": {
+        "Disease": ["尼曼匹克病"],
+        "Symptom": [],
+        "Drug": [],
+        "Examination": ["壳三糖苷酶"],
+        "Treatment": []
+      }
+    },
+    {
+      "record_id": "oov_4",
+      "text": "记录: 胃食管反流病夜间症状明显，予雷尼替丁抑酸，嘱抬高床头。",
+      "entities": {
+        "Disease": ["胃食管反流病"],
+        "Symptom": [],
+        "Drug": ["雷尼替丁"],
+        "Examination": [],
+        "Treatment": []
+      }
+    },
+    {
+      "record_id": "oov_5",
+      "text": "记录: 线粒体脑肌病活动期乏力加重，血乳酸升高，建议避免剧烈运动。",
+      "entities": {
+        "Disease": ["线粒体脑肌病"],
+        "Symptom": ["乏力加重"],
+        "Drug": [],
+        "Examination": ["血乳酸"],
+        "Treatment": []
+      }
+    },
+    {
+      "record_id": "oov_6",
+      "text": "记录: 淀粉样变心肌病舒张功能受限，心脏磁共振提示弥漫性延迟强化。",
+      "entities": {
+        "Disease": ["淀粉样变心肌病"],
+        "Symptom": [],
+        "Drug": [],
+        "Examination": ["心脏磁共振"],
+        "Treatment": []
+      }
+    },
+    {
+      "record_id": "oov_7",
+      "text": "记录: 原发性肾小球硬化蛋白尿增多，肾穿刺病理明确，予免疫抑制方案。",
+      "entities": {
+        "Disease": ["原发性肾小球硬化"],
+        "Symptom": [],
+        "Drug": [],
+        "Examination": ["肾穿刺病理"],
+        "Treatment": ["免疫抑制方案"]
+      }
+    },
+    {
+      "record_id": "oov_8",
+      "text": "记录: 抗磷脂综合征反复血栓事件，抗心磷脂抗体阳性，长期抗凝管理。",
+      "entities": {
+        "Disease": ["抗磷脂综合征"],
+        "Symptom": [],
+        "Drug": [],
+        "Examination": ["抗心磷脂抗体"],
+        "Treatment": ["抗凝管理"]
+      }
+    }
+  ]
+}

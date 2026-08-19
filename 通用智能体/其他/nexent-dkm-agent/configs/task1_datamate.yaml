@@ -1,0 +1,40 @@
+task: task1_data_processing_agent
+description: DataMate/Nexent data processing agent configuration for CSV, JSON, and text processing demos.
+nexent:
+  adapter: src.agents.data_processing_agent.nexent_adapter
+  tool_name: task1_data_processing
+  model_name: main_model
+  datamate_submit_requires_explicit_mode: true
+input:
+  sample_dir: data/samples
+  default_file: data/samples/task1_patients.csv
+output:
+  output_dir: outputs/task1
+datamate:
+  python_backend_url: http://localhost:18000
+  health_endpoint: /api/health
+  operator_list_endpoint: /api/operators/list
+  cleaning_template_endpoint: /api/cleaning/templates
+  cleaning_task_endpoint: /api/cleaning/tasks
+  mode: dry_run
+  # Fill these after creating or importing a DataMate dataset.
+  src_dataset_id:
+  src_dataset_name:
+  dest_dataset_name: task1_patients_cleaned
+  operator_keyword_mapping:
+    drop_duplicate_rows:
+      - duplicate
+      - dedup
+    fill_missing_values:
+      - missing
+      - empty
+    normalize_column_types:
+      - text
+operators:
+  - load_csv
+  - profile_schema
+  - drop_duplicate_rows
+  - fill_missing_values
+  - normalize_column_types
+  - export_clean_dataset
+  - validate_clean_dataset

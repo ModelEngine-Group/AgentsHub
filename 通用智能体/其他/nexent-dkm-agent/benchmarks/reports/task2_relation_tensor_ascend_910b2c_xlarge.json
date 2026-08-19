@@ -1,0 +1,270 @@
+{
+  "task": "task2_relation_tensor_scoring",
+  "input": {
+    "candidate_count": 131072,
+    "feature_dim": 768,
+    "relation_count": 16,
+    "iterations": 30,
+    "seed": 42,
+    "source": "synthetic"
+  },
+  "cpu": {
+    "iterations": 30,
+    "latency_ms_avg": 138.8484,
+    "latency_ms_min": 126.925,
+    "latency_ms_max": 226.1822,
+    "throughput_candidates_per_sec": 943993.7945,
+    "status": "completed",
+    "backend": "torch",
+    "device": "cpu"
+  },
+  "npu": {
+    "iterations": 30,
+    "latency_ms_avg": 352.3117,
+    "latency_ms_min": 233.9237,
+    "latency_ms_max": 639.7569,
+    "throughput_candidates_per_sec": 372034.1631,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "runtime": {
+      "kind": "npu",
+      "device": "npu:0",
+      "module": "torch_npu",
+      "reason": "torch_npu and torch.npu are available"
+    }
+  },
+  "speedup": 0.3941,
+  "correctness": {
+    "status": "passed",
+    "score_close": true,
+    "prediction_equal": true,
+    "max_abs_diff": 0.00017548,
+    "tolerance": 0.0001
+  },
+  "runtime": {
+    "selected_device": {
+      "kind": "npu",
+      "device": "npu:0",
+      "module": "torch_npu",
+      "reason": "torch_npu and torch.npu are available"
+    },
+    "relation_types": [
+      "has_symptom",
+      "treated_by",
+      "diagnosed_by",
+      "recommended_treatment",
+      "complication_of",
+      "relation_5",
+      "relation_6",
+      "relation_7",
+      "relation_8",
+      "relation_9",
+      "relation_10",
+      "relation_11",
+      "relation_12",
+      "relation_13",
+      "relation_14",
+      "relation_15"
+    ]
+  },
+  "notes": [
+    "This benchmark measures a tensorized Task-2 relation-candidate scoring operator.",
+    "Synthetic features stand in for pair embeddings from a medical relation extractor.",
+    "CPU and NPU paths use the same feature, weight, and bias tensors.",
+    "NPU latency includes moving feature, weight, and bias tensors to the selected NPU device and copying logits back to CPU."
+  ],
+  "mode_benchmarks": [
+    {
+      "name": "baseline_full_logits",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 30,
+      "latency_ms_avg": 302.8458,
+      "latency_ms_min": 245.3973,
+      "latency_ms_max": 369.6748,
+      "throughput_candidates_per_sec": 432801.0868,
+      "speedup_vs_cpu": 0.4585,
+      "speedup_vs_npu_end_to_end": 1.1633,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "uses_cached_tensors": false,
+      "skips_full_logits_copy": false,
+      "includes_h2d_transfer": true,
+      "includes_full_format": true,
+      "correctness": {
+        "status": "passed",
+        "prediction_equal": true,
+        "scores_close": true,
+        "max_score_diff": 0.000168,
+        "tolerance": 0.001
+      },
+      "top_relation": "relation_11",
+      "speedup_vs_cpu_full_format": 0.4585
+    },
+    {
+      "name": "cached_full_logits",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 30,
+      "latency_ms_avg": 131.065,
+      "latency_ms_min": 122.9115,
+      "latency_ms_max": 143.8227,
+      "throughput_candidates_per_sec": 1000053.3476,
+      "speedup_vs_cpu": 1.0594,
+      "speedup_vs_npu_end_to_end": 2.6881,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "uses_cached_tensors": true,
+      "skips_full_logits_copy": false,
+      "includes_h2d_transfer": false,
+      "includes_full_format": true,
+      "prepare_latency_ms": 139.8064,
+      "correctness": {
+        "status": "passed",
+        "prediction_equal": true,
+        "scores_close": true,
+        "max_score_diff": 0.000168,
+        "tolerance": 0.001
+      },
+      "correctness_check_included_in_timing": false,
+      "top_relation": "relation_11",
+      "speedup_vs_cpu_full_format": 1.0594
+    },
+    {
+      "name": "cached_argmax_labels",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 30,
+      "latency_ms_avg": 119.1406,
+      "latency_ms_min": 114.2301,
+      "latency_ms_max": 123.232,
+      "throughput_candidates_per_sec": 1100145.9828,
+      "speedup_vs_cpu": 1.1654,
+      "speedup_vs_npu_end_to_end": 2.9571,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "uses_cached_tensors": true,
+      "skips_full_logits_copy": true,
+      "includes_h2d_transfer": false,
+      "includes_full_format": false,
+      "prepare_latency_ms": 139.8064,
+      "correctness": {
+        "status": "passed",
+        "prediction_equal": true,
+        "scores_close": true,
+        "max_score_diff": 0.000168,
+        "tolerance": 0.001
+      },
+      "correctness_check_included_in_timing": false,
+      "top_relation": "relation_11",
+      "speedup_vs_cpu_full_format": 1.1654
+    },
+    {
+      "name": "cached_topk_labels",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 30,
+      "latency_ms_avg": 1.3892,
+      "latency_ms_min": 1.3628,
+      "latency_ms_max": 1.4836,
+      "throughput_candidates_per_sec": 94348773.6471,
+      "speedup_vs_cpu": 99.9485,
+      "speedup_vs_npu_end_to_end": 253.6076,
+      "backend": "torch_npu",
+      "device": "npu:0",
+      "uses_cached_tensors": true,
+      "skips_full_logits_copy": true,
+      "skips_full_format": true,
+      "includes_h2d_transfer": false,
+      "includes_full_format": false,
+      "prepare_latency_ms": 139.8064,
+      "top_k": 10,
+      "correctness": {
+        "status": "passed",
+        "topk_indices_match": true,
+        "scores_close": true,
+        "max_score_diff": 6.1e-05,
+        "tolerance": 0.001,
+        "top_k": 10
+      },
+      "correctness_check_included_in_timing": false,
+      "top_relation": "relation_8",
+      "speedup_vs_cpu_full_format": 99.9485,
+      "comparison_scope": "steady_state_topk",
+      "includes_npu_cache_preparation": false,
+      "steady_state_speedup_vs_cpu_topk": 16.0517,
+      "comparison_note": "Both paths run matmul, max, top-k, and top-k formatting; NPU cache preparation is excluded from the timed steady-state path."
+    },
+    {
+      "name": "cpu_topk_labels",
+      "status": "completed",
+      "measurement_mode": "mode_benchmark",
+      "iterations": 30,
+      "latency_ms_avg": 22.299,
+      "latency_ms_min": 19.5964,
+      "latency_ms_max": 24.9338,
+      "throughput_candidates_per_sec": 5877923.9883,
+      "speedup_vs_cpu": 6.2267,
+      "speedup_vs_npu_end_to_end": 15.7994,
+      "backend": "torch",
+      "device": "cpu",
+      "uses_cached_tensors": false,
+      "skips_full_logits_copy": false,
+      "skips_full_format": true,
+      "includes_h2d_transfer": false,
+      "includes_full_format": false,
+      "top_k": 10,
+      "correctness": {
+        "status": "passed",
+        "topk_indices_match": true,
+        "scores_close": true,
+        "max_score_diff": 0.0,
+        "tolerance": 0.001,
+        "top_k": 10
+      },
+      "correctness_check_included_in_timing": false,
+      "top_relation": "relation_8",
+      "speedup_vs_cpu_full_format": 6.2267,
+      "comparison_scope": "steady_state_topk"
+    }
+  ],
+  "npu_utilization": {
+    "available": true,
+    "npu_id": 0,
+    "chip_id": 0,
+    "sample_count": 44,
+    "sample_interval_s": 0.2,
+    "tool": "npu-smi",
+    "npu_utilization_pct": {
+      "min": 0.0,
+      "avg": 0.068,
+      "max": 3.0
+    },
+    "aicore_pct": {
+      "min": 0.0,
+      "avg": 0.0,
+      "max": 0.0
+    },
+    "aivector_pct": {
+      "min": 0.0,
+      "avg": 0.0,
+      "max": 0.0
+    },
+    "hbm_bandwidth_pct": {
+      "min": 0.0,
+      "avg": 0.0,
+      "max": 0.0
+    },
+    "hbm_pct": {
+      "min": 5.0,
+      "avg": 5.0,
+      "max": 5.0
+    },
+    "power_w": {
+      "min": 101.4,
+      "avg": 106.952,
+      "max": 111.5
+    }
+  }
+}

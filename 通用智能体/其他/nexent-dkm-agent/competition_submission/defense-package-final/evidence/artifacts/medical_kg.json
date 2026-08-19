@@ -1,0 +1,937 @@
+{
+  "nodes": [
+    {
+      "id": "Disease:2型糖尿病",
+      "name": "2型糖尿病",
+      "type": "Disease",
+      "record_ids": [
+        "record_2"
+      ],
+      "mention_count": 7
+    },
+    {
+      "id": "Disease:冠心病",
+      "name": "冠心病",
+      "type": "Disease",
+      "record_ids": [
+        "record_4"
+      ],
+      "mention_count": 6
+    },
+    {
+      "id": "Disease:支气管哮喘急性发作",
+      "name": "支气管哮喘急性发作",
+      "type": "Disease",
+      "record_ids": [
+        "record_3"
+      ],
+      "mention_count": 6
+    },
+    {
+      "id": "Disease:高血压",
+      "name": "高血压",
+      "type": "Disease",
+      "record_ids": [
+        "record_1",
+        "record_4"
+      ],
+      "mention_count": 11
+    },
+    {
+      "id": "Drug:二甲双胍",
+      "name": "二甲双胍",
+      "type": "Drug",
+      "record_ids": [
+        "record_2"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Drug:布洛芬",
+      "name": "布洛芬",
+      "type": "Drug",
+      "record_ids": [
+        "record_3"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Drug:氨氯地平",
+      "name": "氨氯地平",
+      "type": "Drug",
+      "record_ids": [
+        "record_1"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Drug:辛伐他汀",
+      "name": "辛伐他汀",
+      "type": "Drug",
+      "record_ids": [
+        "record_2"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Drug:阿司匹林",
+      "name": "阿司匹林",
+      "type": "Drug",
+      "record_ids": [
+        "record_1"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Examination:尿常规",
+      "name": "尿常规",
+      "type": "Examination",
+      "record_ids": [
+        "record_2"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Examination:心电图",
+      "name": "心电图",
+      "type": "Examination",
+      "record_ids": [
+        "record_4"
+      ],
+      "mention_count": 2
+    },
+    {
+      "id": "Examination:肝功能",
+      "name": "肝功能",
+      "type": "Examination",
+      "record_ids": [
+        "record_1",
+        "record_4"
+      ],
+      "mention_count": 2
+    },
+    {
+      "id": "Examination:肺功能",
+      "name": "肺功能",
+      "type": "Examination",
+      "record_ids": [
+        "record_3"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Examination:血常规",
+      "name": "血常规",
+      "type": "Examination",
+      "record_ids": [
+        "record_1",
+        "record_3"
+      ],
+      "mention_count": 2
+    },
+    {
+      "id": "Examination:血糖",
+      "name": "血糖",
+      "type": "Examination",
+      "record_ids": [
+        "record_2"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Symptom:口渴",
+      "name": "口渴",
+      "type": "Symptom",
+      "record_ids": [
+        "record_2"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Symptom:呼吸困难",
+      "name": "呼吸困难",
+      "type": "Symptom",
+      "record_ids": [
+        "record_3"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Symptom:喘息",
+      "name": "喘息",
+      "type": "Symptom",
+      "record_ids": [
+        "record_3"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Symptom:多尿",
+      "name": "多尿",
+      "type": "Symptom",
+      "record_ids": [
+        "record_2"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Symptom:头晕",
+      "name": "头晕",
+      "type": "Symptom",
+      "record_ids": [
+        "record_1"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Symptom:头痛",
+      "name": "头痛",
+      "type": "Symptom",
+      "record_ids": [
+        "record_1"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Symptom:气短",
+      "name": "气短",
+      "type": "Symptom",
+      "record_ids": [
+        "record_4"
+      ],
+      "mention_count": 2
+    },
+    {
+      "id": "Symptom:胸闷",
+      "name": "胸闷",
+      "type": "Symptom",
+      "record_ids": [
+        "record_4"
+      ],
+      "mention_count": 2
+    },
+    {
+      "id": "Treatment:对症治疗",
+      "name": "对症治疗",
+      "type": "Treatment",
+      "record_ids": [
+        "record_3"
+      ],
+      "mention_count": 1
+    },
+    {
+      "id": "Treatment:继续服用",
+      "name": "继续服用",
+      "type": "Treatment",
+      "record_ids": [
+        "record_1",
+        "record_4"
+      ],
+      "mention_count": 2
+    },
+    {
+      "id": "Treatment:调节血脂",
+      "name": "调节血脂",
+      "type": "Treatment",
+      "record_ids": [
+        "record_2"
+      ],
+      "mention_count": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "Disease:2型糖尿病-diagnosed_by-Examination:尿常规",
+      "source": "Disease:2型糖尿病",
+      "target": "Examination:尿常规",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_2"
+      ],
+      "confidence": 0.85,
+      "evidence": [
+        "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+      ]
+    },
+    {
+      "id": "Disease:2型糖尿病-diagnosed_by-Examination:血糖",
+      "source": "Disease:2型糖尿病",
+      "target": "Examination:血糖",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_2"
+      ],
+      "confidence": 0.83,
+      "evidence": [
+        "。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+      ]
+    },
+    {
+      "id": "Disease:2型糖尿病-has_symptom-Symptom:口渴",
+      "source": "Disease:2型糖尿病",
+      "target": "Symptom:口渴",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_2"
+      ],
+      "confidence": 0.8,
+      "evidence": [
+        "记录 2:\n患者李四，女，52岁。主诉：口渴、多尿 2 周。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+      ]
+    },
+    {
+      "id": "Disease:2型糖尿病-has_symptom-Symptom:多尿",
+      "source": "Disease:2型糖尿病",
+      "target": "Symptom:多尿",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_2"
+      ],
+      "confidence": 0.8,
+      "evidence": [
+        "记录 2:\n患者李四，女，52岁。主诉：口渴、多尿 2 周。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+      ]
+    },
+    {
+      "id": "Disease:2型糖尿病-recommended_treatment-Treatment:调节血脂",
+      "source": "Disease:2型糖尿病",
+      "target": "Treatment:调节血脂",
+      "predicate": "recommended_treatment",
+      "record_ids": [
+        "record_2"
+      ],
+      "confidence": 0.77,
+      "evidence": [
+        "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+      ]
+    },
+    {
+      "id": "Disease:2型糖尿病-treated_by-Drug:二甲双胍",
+      "source": "Disease:2型糖尿病",
+      "target": "Drug:二甲双胍",
+      "predicate": "treated_by",
+      "record_ids": [
+        "record_2"
+      ],
+      "confidence": 0.81,
+      "evidence": [
+        "。主诉：口渴、多尿 2 周。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+      ]
+    },
+    {
+      "id": "Disease:2型糖尿病-treated_by-Drug:辛伐他汀",
+      "source": "Disease:2型糖尿病",
+      "target": "Drug:辛伐他汀",
+      "predicate": "treated_by",
+      "record_ids": [
+        "record_2"
+      ],
+      "confidence": 0.84,
+      "evidence": [
+        "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+      ]
+    },
+    {
+      "id": "Disease:冠心病-complication_of-Disease:高血压",
+      "source": "Disease:冠心病",
+      "target": "Disease:高血压",
+      "predicate": "complication_of",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.78,
+      "evidence": [
+        ":\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+      ]
+    },
+    {
+      "id": "Disease:冠心病-diagnosed_by-Examination:心电图",
+      "source": "Disease:冠心病",
+      "target": "Examination:心电图",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.81,
+      "evidence": [
+        "气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+      ]
+    },
+    {
+      "id": "Disease:冠心病-diagnosed_by-Examination:肝功能",
+      "source": "Disease:冠心病",
+      "target": "Examination:肝功能",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.81,
+      "evidence": [
+        "匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+      ]
+    },
+    {
+      "id": "Disease:冠心病-has_symptom-Symptom:气短",
+      "source": "Disease:冠心病",
+      "target": "Symptom:气短",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.8,
+      "evidence": [
+        "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+      ]
+    },
+    {
+      "id": "Disease:冠心病-has_symptom-Symptom:胸闷",
+      "source": "Disease:冠心病",
+      "target": "Symptom:胸闷",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.8,
+      "evidence": [
+        "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+      ]
+    },
+    {
+      "id": "Disease:冠心病-recommended_treatment-Treatment:继续服用",
+      "source": "Disease:冠心病",
+      "target": "Treatment:继续服用",
+      "predicate": "recommended_treatment",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.83,
+      "evidence": [
+        "匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+      ]
+    },
+    {
+      "id": "Disease:支气管哮喘急性发作-diagnosed_by-Examination:肺功能",
+      "source": "Disease:支气管哮喘急性发作",
+      "target": "Examination:肺功能",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_3"
+      ],
+      "confidence": 0.84,
+      "evidence": [
+        "天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+      ]
+    },
+    {
+      "id": "Disease:支气管哮喘急性发作-diagnosed_by-Examination:血常规",
+      "source": "Disease:支气管哮喘急性发作",
+      "target": "Examination:血常规",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_3"
+      ],
+      "confidence": 0.82,
+      "evidence": [
+        "天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+      ]
+    },
+    {
+      "id": "Disease:支气管哮喘急性发作-has_symptom-Symptom:呼吸困难",
+      "source": "Disease:支气管哮喘急性发作",
+      "target": "Symptom:呼吸困难",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_3"
+      ],
+      "confidence": 0.85,
+      "evidence": [
+        "记录 3:\n患者王五，男，30岁。主诉：喘息、呼吸困难 1 天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+      ]
+    },
+    {
+      "id": "Disease:支气管哮喘急性发作-has_symptom-Symptom:喘息",
+      "source": "Disease:支气管哮喘急性发作",
+      "target": "Symptom:喘息",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_3"
+      ],
+      "confidence": 0.84,
+      "evidence": [
+        "记录 3:\n患者王五，男，30岁。主诉：喘息、呼吸困难 1 天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+      ]
+    },
+    {
+      "id": "Disease:支气管哮喘急性发作-recommended_treatment-Treatment:对症治疗",
+      "source": "Disease:支气管哮喘急性发作",
+      "target": "Treatment:对症治疗",
+      "predicate": "recommended_treatment",
+      "record_ids": [
+        "record_3"
+      ],
+      "confidence": 0.77,
+      "evidence": [
+        "天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+      ]
+    },
+    {
+      "id": "Disease:支气管哮喘急性发作-treated_by-Drug:布洛芬",
+      "source": "Disease:支气管哮喘急性发作",
+      "target": "Drug:布洛芬",
+      "predicate": "treated_by",
+      "record_ids": [
+        "record_3"
+      ],
+      "confidence": 0.82,
+      "evidence": [
+        "天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+      ]
+    },
+    {
+      "id": "Disease:高血压-diagnosed_by-Examination:心电图",
+      "source": "Disease:高血压",
+      "target": "Examination:心电图",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.82,
+      "evidence": [
+        ":\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议"
+      ]
+    },
+    {
+      "id": "Disease:高血压-diagnosed_by-Examination:肝功能",
+      "source": "Disease:高血压",
+      "target": "Examination:肝功能",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_1"
+      ],
+      "confidence": 0.73,
+      "evidence": [
+        "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+      ]
+    },
+    {
+      "id": "Disease:高血压-diagnosed_by-Examination:血常规",
+      "source": "Disease:高血压",
+      "target": "Examination:血常规",
+      "predicate": "diagnosed_by",
+      "record_ids": [
+        "record_1"
+      ],
+      "confidence": 0.74,
+      "evidence": [
+        "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+      ]
+    },
+    {
+      "id": "Disease:高血压-has_symptom-Symptom:头晕",
+      "source": "Disease:高血压",
+      "target": "Symptom:头晕",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_1"
+      ],
+      "confidence": 0.91,
+      "evidence": [
+        "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mm"
+      ]
+    },
+    {
+      "id": "Disease:高血压-has_symptom-Symptom:头痛",
+      "source": "Disease:高血压",
+      "target": "Symptom:头痛",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_1"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mm"
+      ]
+    },
+    {
+      "id": "Disease:高血压-has_symptom-Symptom:气短",
+      "source": "Disease:高血压",
+      "target": "Symptom:气短",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.92,
+      "evidence": [
+        "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改"
+      ]
+    },
+    {
+      "id": "Disease:高血压-has_symptom-Symptom:胸闷",
+      "source": "Disease:高血压",
+      "target": "Symptom:胸闷",
+      "predicate": "has_symptom",
+      "record_ids": [
+        "record_4"
+      ],
+      "confidence": 0.91,
+      "evidence": [
+        "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改"
+      ]
+    },
+    {
+      "id": "Disease:高血压-recommended_treatment-Treatment:继续服用",
+      "source": "Disease:高血压",
+      "target": "Treatment:继续服用",
+      "predicate": "recommended_treatment",
+      "record_ids": [
+        "record_1"
+      ],
+      "confidence": 0.7,
+      "evidence": [
+        "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+      ]
+    },
+    {
+      "id": "Disease:高血压-treated_by-Drug:氨氯地平",
+      "source": "Disease:高血压",
+      "target": "Drug:氨氯地平",
+      "predicate": "treated_by",
+      "record_ids": [
+        "record_1"
+      ],
+      "confidence": 0.86,
+      "evidence": [
+        "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建"
+      ]
+    },
+    {
+      "id": "Disease:高血压-treated_by-Drug:阿司匹林",
+      "source": "Disease:高血压",
+      "target": "Drug:阿司匹林",
+      "predicate": "treated_by",
+      "record_ids": [
+        "record_1"
+      ],
+      "confidence": 0.74,
+      "evidence": [
+        "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+      ]
+    }
+  ],
+  "triples": [
+    {
+      "subject": "高血压",
+      "predicate": "has_symptom",
+      "object": "头晕",
+      "record_id": "record_1",
+      "confidence": 0.91,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mm"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "has_symptom",
+      "object": "头痛",
+      "record_id": "record_1",
+      "confidence": 0.92,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mm"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "treated_by",
+      "object": "氨氯地平",
+      "record_id": "record_1",
+      "confidence": 0.86,
+      "subject_type": "Disease",
+      "object_type": "Drug",
+      "evidence": "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "treated_by",
+      "object": "阿司匹林",
+      "record_id": "record_1",
+      "confidence": 0.74,
+      "subject_type": "Disease",
+      "object_type": "Drug",
+      "evidence": "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "diagnosed_by",
+      "object": "血常规",
+      "record_id": "record_1",
+      "confidence": 0.74,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "diagnosed_by",
+      "object": "肝功能",
+      "record_id": "record_1",
+      "confidence": 0.73,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "recommended_treatment",
+      "object": "继续服用",
+      "record_id": "record_1",
+      "confidence": 0.7,
+      "subject_type": "Disease",
+      "object_type": "Treatment",
+      "evidence": "患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+    },
+    {
+      "subject": "2型糖尿病",
+      "predicate": "has_symptom",
+      "object": "口渴",
+      "record_id": "record_2",
+      "confidence": 0.8,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 2:\n患者李四，女，52岁。主诉：口渴、多尿 2 周。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+    },
+    {
+      "subject": "2型糖尿病",
+      "predicate": "has_symptom",
+      "object": "多尿",
+      "record_id": "record_2",
+      "confidence": 0.8,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 2:\n患者李四，女，52岁。主诉：口渴、多尿 2 周。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+    },
+    {
+      "subject": "2型糖尿病",
+      "predicate": "treated_by",
+      "object": "二甲双胍",
+      "record_id": "record_2",
+      "confidence": 0.81,
+      "subject_type": "Disease",
+      "object_type": "Drug",
+      "evidence": "。主诉：口渴、多尿 2 周。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+    },
+    {
+      "subject": "2型糖尿病",
+      "predicate": "treated_by",
+      "object": "辛伐他汀",
+      "record_id": "record_2",
+      "confidence": 0.84,
+      "subject_type": "Disease",
+      "object_type": "Drug",
+      "evidence": "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+    },
+    {
+      "subject": "2型糖尿病",
+      "predicate": "diagnosed_by",
+      "object": "血糖",
+      "record_id": "record_2",
+      "confidence": 0.83,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": "。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+    },
+    {
+      "subject": "2型糖尿病",
+      "predicate": "diagnosed_by",
+      "object": "尿常规",
+      "record_id": "record_2",
+      "confidence": 0.85,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+    },
+    {
+      "subject": "2型糖尿病",
+      "predicate": "recommended_treatment",
+      "object": "调节血脂",
+      "record_id": "record_2",
+      "confidence": 0.77,
+      "subject_type": "Disease",
+      "object_type": "Treatment",
+      "evidence": "胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+    },
+    {
+      "subject": "支气管哮喘急性发作",
+      "predicate": "has_symptom",
+      "object": "呼吸困难",
+      "record_id": "record_3",
+      "confidence": 0.85,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 3:\n患者王五，男，30岁。主诉：喘息、呼吸困难 1 天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+    },
+    {
+      "subject": "支气管哮喘急性发作",
+      "predicate": "has_symptom",
+      "object": "喘息",
+      "record_id": "record_3",
+      "confidence": 0.84,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 3:\n患者王五，男，30岁。主诉：喘息、呼吸困难 1 天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+    },
+    {
+      "subject": "支气管哮喘急性发作",
+      "predicate": "treated_by",
+      "object": "布洛芬",
+      "record_id": "record_3",
+      "confidence": 0.82,
+      "subject_type": "Disease",
+      "object_type": "Drug",
+      "evidence": "天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+    },
+    {
+      "subject": "支气管哮喘急性发作",
+      "predicate": "diagnosed_by",
+      "object": "肺功能",
+      "record_id": "record_3",
+      "confidence": 0.84,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": "天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+    },
+    {
+      "subject": "支气管哮喘急性发作",
+      "predicate": "diagnosed_by",
+      "object": "血常规",
+      "record_id": "record_3",
+      "confidence": 0.82,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": "天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+    },
+    {
+      "subject": "支气管哮喘急性发作",
+      "predicate": "recommended_treatment",
+      "object": "对症治疗",
+      "record_id": "record_3",
+      "confidence": 0.77,
+      "subject_type": "Disease",
+      "object_type": "Treatment",
+      "evidence": "天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "has_symptom",
+      "object": "胸闷",
+      "record_id": "record_4",
+      "confidence": 0.91,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "has_symptom",
+      "object": "气短",
+      "record_id": "record_4",
+      "confidence": 0.92,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改"
+    },
+    {
+      "subject": "高血压",
+      "predicate": "diagnosed_by",
+      "object": "心电图",
+      "record_id": "record_4",
+      "confidence": 0.82,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": ":\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议"
+    },
+    {
+      "subject": "冠心病",
+      "predicate": "has_symptom",
+      "object": "胸闷",
+      "record_id": "record_4",
+      "confidence": 0.8,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+    },
+    {
+      "subject": "冠心病",
+      "predicate": "has_symptom",
+      "object": "气短",
+      "record_id": "record_4",
+      "confidence": 0.8,
+      "subject_type": "Disease",
+      "object_type": "Symptom",
+      "evidence": "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+    },
+    {
+      "subject": "冠心病",
+      "predicate": "diagnosed_by",
+      "object": "肝功能",
+      "record_id": "record_4",
+      "confidence": 0.81,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": "匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+    },
+    {
+      "subject": "冠心病",
+      "predicate": "diagnosed_by",
+      "object": "心电图",
+      "record_id": "record_4",
+      "confidence": 0.81,
+      "subject_type": "Disease",
+      "object_type": "Examination",
+      "evidence": "气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+    },
+    {
+      "subject": "冠心病",
+      "predicate": "recommended_treatment",
+      "object": "继续服用",
+      "record_id": "record_4",
+      "confidence": 0.83,
+      "subject_type": "Disease",
+      "object_type": "Treatment",
+      "evidence": "匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+    },
+    {
+      "subject": "冠心病",
+      "predicate": "complication_of",
+      "object": "高血压",
+      "record_id": "record_4",
+      "confidence": 0.78,
+      "subject_type": "Disease",
+      "object_type": "Disease",
+      "evidence": ":\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+    }
+  ],
+  "records": [
+    {
+      "record_id": "record_1",
+      "text": "记录 1:\n患者张三，男，45岁。主诉：头晕、头痛 3 天。既往有高血压病史5年，\n长期服用氨氯地平。查体：血压160/95mmHg。初步诊断：高血压。\n建议：血常规、肝功能检查，继续服用阿司匹林。"
+    },
+    {
+      "record_id": "record_2",
+      "text": "记录 2:\n患者李四，女，52岁。主诉：口渴、多尿 2 周。既往有糖尿病病史。\n长期服用二甲双胍。实验室检查：空腹血糖12.5mmol/L。初步诊断：2型糖尿病。\n建议行尿常规、血糖监测，加用辛伐他汀调节血脂。"
+    },
+    {
+      "record_id": "record_3",
+      "text": "记录 3:\n患者王五，男，30岁。主诉：喘息、呼吸困难 1 天。既往有哮喘病史。\n查体：双肺可闻哮鸣音。初步诊断：支气管哮喘急性发作。\n建议肺功能检查、血常规，给予布洛芬对症治疗。"
+    },
+    {
+      "record_id": "record_4",
+      "text": "记录 4:\n患者赵六，男，67岁。主诉：胸闷、气短 1 周。既往高血压 10 年，长期服用阿司匹林。\n心电图提示 ST-T 改变。初步诊断：高血压并发冠心病。\n建议继续服用氨氯地平，完善心电图和肝功能复查。"
+    }
+  ],
+  "statistics": {
+    "node_count": 26,
+    "edge_count": 29,
+    "triple_count": 29,
+    "record_count": 4
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "uri": "bolt://localhost:7687",
+  "user": "neo4j",
+  "input": "data/samples/task2_medical_notes.txt",
+  "question": "高血压有哪些症状和用药？",
+  "connection": {
+    "status": "connected",
+    "uri": "bolt://localhost:7687"
+  },
+  "pipeline_status": "completed",
+  "neo4j_persist": {
+    "status": "completed",
+    "node_count": 26,
+    "edge_count": 29,
+    "uri": "bolt://localhost:7687",
+    "database": "neo4j"
+  },
+  "readback": {
+    "node_count": 26,
+    "edge_count": 29
+  },
+  "cypher_spot_checks": {
+    "node_labels": [
+      {
+        "label": "Symptom",
+        "cnt": 8
+      },
+      {
+        "label": "Examination",
+        "cnt": 6
+      },
+      {
+        "label": "Drug",
+        "cnt": 5
+      },
+      {
+        "label": "Disease",
+        "cnt": 4
+      },
+      {
+        "label": "Treatment",
+        "cnt": 3
+      }
+    ],
+    "hypertension_edges": [
+      {
+        "rel": "DIAGNOSED_BY",
+        "target": "心电图"
+      },
+      {
+        "rel": "DIAGNOSED_BY",
+        "target": "肝功能"
+      },
+      {
+        "rel": "DIAGNOSED_BY",
+        "target": "血常规"
+      },
+      {
+        "rel": "HAS_SYMPTOM",
+        "target": "头晕"
+      },
+      {
+        "rel": "HAS_SYMPTOM",
+        "target": "头痛"
+      },
+      {
+        "rel": "HAS_SYMPTOM",
+        "target": "气短"
+      },
+      {
+        "rel": "HAS_SYMPTOM",
+        "target": "胸闷"
+      },
+      {
+        "rel": "RECOMMENDED_TREATMENT",
+        "target": "继续服用"
+      },
+      {
+        "rel": "TREATED_BY",
+        "target": "氨氯地平"
+      },
+      {
+        "rel": "TREATED_BY",
+        "target": "阿司匹林"
+      }
+    ]
+  },
+  "find_entities": {
+    "status": "matched",
+    "matches": [
+      "高血压"
+    ]
+  },
+  "neo4j_qa": {
+    "status": "answered",
+    "answer": "高血压相关信息（Neo4j）：症状: 气短、头痛、胸闷、头晕；用药: 氨氯地平、阿司匹林。"
+  },
+  "passed": true,
+  "browser_url": "http://localhost:7474",
+  "screenshot_queries": [
+    "MATCH (n) RETURN labels(n), n.name, n.type LIMIT 25",
+    "MATCH (d:Disease {name:'高血压'})-[r]->(t) RETURN d.name, type(r), t.name LIMIT 20"
+  ]
+}

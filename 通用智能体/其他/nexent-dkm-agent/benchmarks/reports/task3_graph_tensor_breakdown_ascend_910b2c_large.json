@@ -1,0 +1,121 @@
+{
+  "task": "task3_graph_tensor_degree",
+  "graph": {
+    "node_count": 5000,
+    "edge_count": 50000,
+    "seed": 42
+  },
+  "cpu": {
+    "iterations": 20,
+    "latency_ms_avg": 13.8441,
+    "latency_ms_min": 13.6445,
+    "latency_ms_max": 14.0457,
+    "throughput_edges_per_sec": 3611644.4542,
+    "status": "completed",
+    "backend": "python",
+    "device": "cpu",
+    "top_degree": 38
+  },
+  "npu": {
+    "iterations": 20,
+    "latency_ms_avg": 26.2955,
+    "latency_ms_min": 25.5515,
+    "latency_ms_max": 28.5551,
+    "throughput_edges_per_sec": 1901468.0697,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "measurement_mode": "end_to_end",
+    "includes_tensor_setup": true,
+    "includes_result_copy": true,
+    "top_degree": 38
+  },
+  "npu_prepared": {
+    "iterations": 20,
+    "latency_ms_avg": 5.4855,
+    "latency_ms_min": 5.3852,
+    "latency_ms_max": 5.8609,
+    "throughput_edges_per_sec": 9115017.1116,
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "measurement_mode": "prepared_kernel",
+    "includes_tensor_setup": false,
+    "includes_result_copy": false,
+    "prepare_latency_ms": 14.102,
+    "top_degree": 38
+  },
+  "correctness": {
+    "status": "passed",
+    "degree_vector_equal": true,
+    "max_abs_diff": 0
+  },
+  "prepared_correctness": {
+    "status": "passed",
+    "degree_vector_equal": true,
+    "max_abs_diff": 0
+  },
+  "speedup": 0.5265,
+  "prepared_speedup": 2.5238,
+  "amortized": {
+    "runs": [
+      1,
+      2,
+      5,
+      10,
+      20
+    ],
+    "cpu_total_ms": [
+      13.8441,
+      27.6882,
+      69.2205,
+      138.441,
+      276.882
+    ],
+    "npu_prepared_total_ms": [
+      19.5875,
+      25.073,
+      41.5295,
+      68.957,
+      123.812
+    ],
+    "speedup": [
+      0.7068,
+      1.1043,
+      1.6668,
+      2.0076,
+      2.2363
+    ],
+    "breakeven_runs": 2
+  },
+  "notes": [
+    "CPU measures Python list-based undirected degree centrality.",
+    "NPU end_to_end measures graph index parsing, device tensor creation, index_add_, synchronization, and result copy.",
+    "NPU prepared_kernel measures repeated zero_ + index_add_ execution after tensors are already on npu:0.",
+    "Amortized totals estimate one NPU tensor preparation plus repeated prepared-kernel runs on the same graph.",
+    "Synthetic graph generation is excluded from CPU/NPU timing."
+  ],
+  "breakdown": {
+    "status": "completed",
+    "backend": "torch_npu",
+    "device": "npu:0",
+    "measurement_mode": "breakdown_profile",
+    "node_count": 5000,
+    "edge_count": 50000,
+    "total_profiled_ms": 26.018,
+    "steps": {
+      "graph_access_ms": 0.0008,
+      "node_index_build_ms": 0.3079,
+      "edge_index_build_ms": 7.5873,
+      "tensor_create_cpu_ms": 5.8915,
+      "h2d_transfer_ms": 0.2613,
+      "npu_buffer_alloc_ms": 0.2337,
+      "kernel_zero_ms": 0.034,
+      "kernel_index_add_ms": 5.4885,
+      "d2h_copy_ms": 0.031,
+      "tolist_ms": 0.0264,
+      "format_result_ms": 6.1375
+    },
+    "top_degree": 38
+  }
+}

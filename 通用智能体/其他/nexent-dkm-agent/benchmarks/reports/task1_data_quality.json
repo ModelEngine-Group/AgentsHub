@@ -1,0 +1,68 @@
+{
+  "task": "task1_data_processing_agent",
+  "benchmark_type": "data_quality",
+  "benchmark": "data/samples/task1_patients.csv",
+  "iterations": 3,
+  "status": "completed",
+  "passed": true,
+  "thresholds": {
+    "max_duplicate_rows_after": 0,
+    "max_missing_values_after": 0,
+    "min_quality_score_after": 1.0
+  },
+  "checks": {
+    "pipeline_completed": true,
+    "validation_passed": true,
+    "duplicates_removed": true,
+    "missing_values_filled": true,
+    "quality_score_met": true,
+    "quality_improved": true
+  },
+  "quality_metrics": {
+    "input_rows": 5,
+    "output_rows": 4,
+    "column_count": 4,
+    "duplicate_rows_before": 1,
+    "duplicate_rows_after": 0,
+    "duplicate_rows_removed": 1,
+    "missing_values_before": 3,
+    "missing_values_after": 0,
+    "missing_values_filled": 2,
+    "row_count_delta": -1,
+    "quality_score_before": 0.8,
+    "quality_score_after": 1.0,
+    "validation_status": "passed",
+    "quality_report_status": "passed"
+  },
+  "timing": {
+    "latency_ms_avg": 4.1621999989729375,
+    "latency_ms_min": 3.4120999989681877,
+    "latency_ms_max": 5.565200001001358
+  },
+  "plan": {
+    "operators": [
+      "load_csv",
+      "profile_schema",
+      "drop_duplicate_rows",
+      "fill_missing_values",
+      "normalize_column_types",
+      "export_clean_dataset",
+      "validate_clean_dataset"
+    ],
+    "confidence": 0.95,
+    "quality_checks": [
+      "row_count",
+      "column_count",
+      "missing_cells",
+      "duplicate_rows",
+      "output_rows",
+      "post_clean_missing_cells",
+      "post_clean_duplicate_rows"
+    ]
+  },
+  "run_state_status": "completed",
+  "notes": [
+    "Task 1 benchmark measures deterministic data-quality improvement, not NPU acceleration.",
+    "DataMate is disabled for benchmark determinism; integration payloads are covered by task-1 demo/tests."
+  ]
+}

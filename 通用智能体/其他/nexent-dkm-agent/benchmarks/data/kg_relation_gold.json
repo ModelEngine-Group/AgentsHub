@@ -1,0 +1,885 @@
+{
+  "description": "Held-out, hand-annotated relation gold for task-2 KG extraction (relation-level precision/recall/F1). Relations are annotated by medical correctness, NOT by mirroring the extractor output: a few medically-unsupported pairs that the co-occurrence extractor over-generates are intentionally omitted (e.g. 心力衰竭 treated_by 阿司匹林/辛伐他汀, which treat the comorbid 冠心病; 支气管哮喘 treated_by 布洛芬, an antipyretic that does not treat asthma). This keeps precision a meaningful signal of over-pairing rather than a closed-loop tautology. Subjects/objects use the canonical dictionary form so the metric is comparable across rule/cpu/npu relation backends.",
+  "predicates": [
+    "has_symptom",
+    "treated_by",
+    "diagnosed_by",
+    "recommended_treatment",
+    "complication_of"
+  ],
+  "records": [
+    {
+      "record_id": "holdout_1",
+      "text": "记录: 男性58岁，确诊高血压三年，近日头晕、头痛明显，长期口服氨氯地平，门诊复查血常规、肝功能及心电图均无明显异常。",
+      "relations": [
+        {
+          "subject": "高血压",
+          "predicate": "has_symptom",
+          "object": "头晕"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "has_symptom",
+          "object": "头痛"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "treated_by",
+          "object": "氨氯地平"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "diagnosed_by",
+          "object": "血常规"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "diagnosed_by",
+          "object": "肝功能"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "diagnosed_by",
+          "object": "心电图"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_2",
+      "text": "记录: 女性46岁，2型糖尿病病史，主诉口渴、多尿，使用二甲双胍控制血糖，建议加强血糖监测。",
+      "relations": [
+        {
+          "subject": "2型糖尿病",
+          "predicate": "has_symptom",
+          "object": "口渴"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "has_symptom",
+          "object": "多尿"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "treated_by",
+          "object": "二甲双胍"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "diagnosed_by",
+          "object": "血糖"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_3",
+      "text": "记录: 患者突发喘息、呼吸困难、胸闷，既往支气管哮喘急性发作，急诊查肺功能，予对症治疗。",
+      "relations": [
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "喘息"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "呼吸困难"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "胸闷"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "diagnosed_by",
+          "object": "肺功能"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "recommended_treatment",
+          "object": "对症治疗"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_4",
+      "text": "记录: 老年男性，冠心病合并心力衰竭，活动后气短，服用阿司匹林及辛伐他汀，行心电图检查。",
+      "relations": [
+        {
+          "subject": "冠心病",
+          "predicate": "has_symptom",
+          "object": "气短"
+        },
+        {
+          "subject": "心力衰竭",
+          "predicate": "has_symptom",
+          "object": "气短"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "treated_by",
+          "object": "阿司匹林"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "treated_by",
+          "object": "辛伐他汀"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "diagnosed_by",
+          "object": "心电图"
+        },
+        {
+          "subject": "心力衰竭",
+          "predicate": "diagnosed_by",
+          "object": "心电图"
+        },
+        {
+          "subject": "心力衰竭",
+          "predicate": "complication_of",
+          "object": "冠心病"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_5",
+      "text": "记录: 中年女性，慢性胃炎，主诉上腹痛、反酸，给予奥美拉唑，建议胃镜复查。",
+      "relations": [
+        {
+          "subject": "胃炎",
+          "predicate": "has_symptom",
+          "object": "上腹痛"
+        },
+        {
+          "subject": "胃炎",
+          "predicate": "has_symptom",
+          "object": "反酸"
+        },
+        {
+          "subject": "胃炎",
+          "predicate": "treated_by",
+          "object": "奥美拉唑"
+        },
+        {
+          "subject": "胃炎",
+          "predicate": "diagnosed_by",
+          "object": "胃镜"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_6",
+      "text": "记录: 患者肺炎，发热、咳嗽，血常规示白细胞升高，予阿莫西林抗感染。",
+      "relations": [
+        {
+          "subject": "肺炎",
+          "predicate": "has_symptom",
+          "object": "发热"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "has_symptom",
+          "object": "咳嗽"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "treated_by",
+          "object": "阿莫西林"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "diagnosed_by",
+          "object": "血常规"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "recommended_treatment",
+          "object": "抗感染"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_7",
+      "text": "记录: 高血压患者血压控制不佳，调整为氨氯地平联合用药，建议低盐饮食并定期复查。",
+      "relations": [
+        {
+          "subject": "高血压",
+          "predicate": "treated_by",
+          "object": "氨氯地平"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "recommended_treatment",
+          "object": "低盐饮食"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_8",
+      "text": "记录: 糖尿病患者出现头晕，加用辛伐他汀调节血脂，复查血糖及尿常规。",
+      "relations": [
+        {
+          "subject": "2型糖尿病",
+          "predicate": "has_symptom",
+          "object": "头晕"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "treated_by",
+          "object": "辛伐他汀"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "diagnosed_by",
+          "object": "血糖"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "diagnosed_by",
+          "object": "尿常规"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "recommended_treatment",
+          "object": "调节血脂"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_9",
+      "text": "记录: 患者哮喘控制不佳，夜间喘息、气短，使用布洛芬退热，复查胸部CT。",
+      "relations": [
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "喘息"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "气短"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "diagnosed_by",
+          "object": "CT"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_10",
+      "text": "记录: 冠心病患者胸闷、头痛，行心电图及MRI检查，长期服用阿司匹林。",
+      "relations": [
+        {
+          "subject": "冠心病",
+          "predicate": "has_symptom",
+          "object": "胸闷"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "has_symptom",
+          "object": "头痛"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "treated_by",
+          "object": "阿司匹林"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "diagnosed_by",
+          "object": "心电图"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "diagnosed_by",
+          "object": "MRI"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_11",
+      "text": "记录: 青年女性，甲亢（Graves病）确诊，主诉消瘦、手抖、心悸，甲巯咪唑控制，复查甲状腺超声。",
+      "relations": [
+        {
+          "subject": "甲亢",
+          "predicate": "has_symptom",
+          "object": "消瘦"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "has_symptom",
+          "object": "手抖"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "has_symptom",
+          "object": "心悸"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "treated_by",
+          "object": "甲巯咪唑"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "diagnosed_by",
+          "object": "甲状腺超声"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_12",
+      "text": "记录: 甲状腺功能减退被明确诊断，患者怕冷、乏力，口服左甲状腺素，定期查血常规。",
+      "relations": [
+        {
+          "subject": "甲状腺功能减退",
+          "predicate": "has_symptom",
+          "object": "怕冷"
+        },
+        {
+          "subject": "甲状腺功能减退",
+          "predicate": "has_symptom",
+          "object": "乏力"
+        },
+        {
+          "subject": "甲状腺功能减退",
+          "predicate": "treated_by",
+          "object": "左甲状腺素"
+        },
+        {
+          "subject": "甲状腺功能减退",
+          "predicate": "diagnosed_by",
+          "object": "血常规"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_13",
+      "text": "记录: 疑似冠心病，行冠脉造影及CTA评估，胸闷气短，长期阿司匹林抗血小板。",
+      "relations": [
+        {
+          "subject": "冠心病",
+          "predicate": "has_symptom",
+          "object": "胸闷"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "has_symptom",
+          "object": "气短"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "treated_by",
+          "object": "阿司匹林"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "diagnosed_by",
+          "object": "冠脉造影"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "diagnosed_by",
+          "object": "CTA"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_14",
+      "text": "记录: 系统性红斑狼疮活动期，关节痛、发热，泼尼松免疫抑制治疗，查抗核抗体。",
+      "relations": [
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "has_symptom",
+          "object": "关节痛"
+        },
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "has_symptom",
+          "object": "发热"
+        },
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "treated_by",
+          "object": "泼尼松"
+        },
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "diagnosed_by",
+          "object": "抗核抗体"
+        },
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "recommended_treatment",
+          "object": "免疫抑制"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_15",
+      "text": "记录: 患者否认糖尿病，但口渴多尿仍被记录；最终按2型糖尿病管理，二甲双胍治疗。",
+      "relations": [
+        {
+          "subject": "2型糖尿病",
+          "predicate": "has_symptom",
+          "object": "口渴"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "has_symptom",
+          "object": "多尿"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "treated_by",
+          "object": "二甲双胍"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_16",
+      "text": "记录: 高血压未被有效控制，头晕头痛反复，氨氯地平加量，建议低盐饮食。",
+      "relations": [
+        {
+          "subject": "高血压",
+          "predicate": "has_symptom",
+          "object": "头晕"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "has_symptom",
+          "object": "头痛"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "treated_by",
+          "object": "氨氯地平"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "recommended_treatment",
+          "object": "低盐饮食"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_17",
+      "text": "记录: 由肺炎引起的咳嗽、发热，血常规异常，阿莫西林抗感染，胸片复查。",
+      "relations": [
+        {
+          "subject": "肺炎",
+          "predicate": "has_symptom",
+          "object": "咳嗽"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "has_symptom",
+          "object": "发热"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "treated_by",
+          "object": "阿莫西林"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "diagnosed_by",
+          "object": "血常规"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "diagnosed_by",
+          "object": "胸片"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "recommended_treatment",
+          "object": "抗感染"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_18",
+      "text": "记录: 慢性胃炎与反流性食管炎并存，上腹痛、反酸，奥美拉唑抑酸，胃镜随访。",
+      "relations": [
+        {"subject": "胃炎", "predicate": "has_symptom", "object": "上腹痛"},
+        {"subject": "胃炎", "predicate": "has_symptom", "object": "反酸"},
+        {"subject": "胃炎", "predicate": "treated_by", "object": "奥美拉唑"},
+        {"subject": "胃炎", "predicate": "diagnosed_by", "object": "胃镜"},
+        {"subject": "反流性食管炎", "predicate": "has_symptom", "object": "上腹痛"},
+        {"subject": "反流性食管炎", "predicate": "has_symptom", "object": "反酸"},
+        {"subject": "反流性食管炎", "predicate": "treated_by", "object": "奥美拉唑"},
+        {"subject": "反流性食管炎", "predicate": "diagnosed_by", "object": "胃镜"}
+      ]
+    },
+    {
+      "record_id": "holdout_19",
+      "text": "记录: 心力衰竭被评估为冠心病的并发症，活动后气短，心电图监测，辛伐他汀调脂。",
+      "relations": [
+        {
+          "subject": "心力衰竭",
+          "predicate": "has_symptom",
+          "object": "气短"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "has_symptom",
+          "object": "气短"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "treated_by",
+          "object": "辛伐他汀"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "diagnosed_by",
+          "object": "心电图"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "recommended_treatment",
+          "object": "调节血脂"
+        },
+        {
+          "subject": "心力衰竭",
+          "predicate": "diagnosed_by",
+          "object": "心电图"
+        },
+        {
+          "subject": "心力衰竭",
+          "predicate": "recommended_treatment",
+          "object": "调节血脂"
+        },
+        {
+          "subject": "心力衰竭",
+          "predicate": "complication_of",
+          "object": "冠心病"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_20",
+      "text": "记录: 支气管哮喘急性发作夜间加重，喘息、呼吸困难，肺功能检查，对症治疗。",
+      "relations": [
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "喘息"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "呼吸困难"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "diagnosed_by",
+          "object": "肺功能"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "recommended_treatment",
+          "object": "对症治疗"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_21",
+      "text": "Record: Male 62y, hypertension and type 2 diabetes, dizziness, on amlodipine and metformin, ECG ordered.",
+      "relations": [
+        {
+          "subject": "高血压",
+          "predicate": "has_symptom",
+          "object": "头晕"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "has_symptom",
+          "object": "头晕"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "treated_by",
+          "object": "氨氯地平"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "treated_by",
+          "object": "二甲双胍"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "treated_by",
+          "object": "氨氯地平"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "treated_by",
+          "object": "二甲双胍"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "diagnosed_by",
+          "object": "心电图"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "diagnosed_by",
+          "object": "心电图"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_22",
+      "text": "Note: CHD patient with chest tightness; aspirin and statin; coronary CTA planned.",
+      "relations": [
+        {
+          "subject": "冠心病",
+          "predicate": "has_symptom",
+          "object": "胸闷"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "treated_by",
+          "object": "阿司匹林"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "treated_by",
+          "object": "辛伐他汀"
+        },
+        {
+          "subject": "冠心病",
+          "predicate": "diagnosed_by",
+          "object": "CTA"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_23",
+      "text": "Summary: hyperthyroidism, weight loss and tremor, methimazole, thyroid ultrasound follow-up.",
+      "relations": [
+        {
+          "subject": "甲亢",
+          "predicate": "has_symptom",
+          "object": "消瘦"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "has_symptom",
+          "object": "手抖"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "treated_by",
+          "object": "甲巯咪唑"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "diagnosed_by",
+          "object": "甲状腺超声"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_24",
+      "text": "Mixed 混合病历: pneumonia 肺炎 with fever 发热, CBC 血常规, amoxicillin 阿莫西林.",
+      "relations": [
+        {
+          "subject": "肺炎",
+          "predicate": "has_symptom",
+          "object": "发热"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "treated_by",
+          "object": "阿莫西林"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "diagnosed_by",
+          "object": "血常规"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_25",
+      "text": "Discharge: asthma exacerbation, wheezing and dyspnea, pulmonary function test, symptomatic care.",
+      "relations": [
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "喘息"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "has_symptom",
+          "object": "呼吸困难"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "diagnosed_by",
+          "object": "肺功能"
+        },
+        {
+          "subject": "支气管哮喘急性发作",
+          "predicate": "recommended_treatment",
+          "object": "对症治疗"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_26",
+      "text": "记录: 脑卒中后遗留头晕，阿司匹林二级预防，MRI评估病灶。",
+      "relations": [
+        {
+          "subject": "脑卒中",
+          "predicate": "has_symptom",
+          "object": "头晕"
+        },
+        {
+          "subject": "脑卒中",
+          "predicate": "treated_by",
+          "object": "阿司匹林"
+        },
+        {
+          "subject": "脑卒中",
+          "predicate": "diagnosed_by",
+          "object": "MRI"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_27",
+      "text": "记录: 多疾病并存——高血压与2型糖尿病同时存在，口渴、头痛，氨氯地平与二甲双胍联用，血糖监测。",
+      "relations": [
+        {
+          "subject": "高血压",
+          "predicate": "has_symptom",
+          "object": "头痛"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "has_symptom",
+          "object": "口渴"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "has_symptom",
+          "object": "头痛"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "has_symptom",
+          "object": "口渴"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "treated_by",
+          "object": "氨氯地平"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "treated_by",
+          "object": "二甲双胍"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "treated_by",
+          "object": "二甲双胍"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "treated_by",
+          "object": "氨氯地平"
+        },
+        {
+          "subject": "2型糖尿病",
+          "predicate": "diagnosed_by",
+          "object": "血糖"
+        },
+        {
+          "subject": "高血压",
+          "predicate": "diagnosed_by",
+          "object": "血糖"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_28",
+      "text": "记录: 若无明显感染证据则不必加用抗生素；当前肺炎证据充分，阿莫西林抗感染。",
+      "relations": [
+        {
+          "subject": "肺炎",
+          "predicate": "treated_by",
+          "object": "阿莫西林"
+        },
+        {
+          "subject": "肺炎",
+          "predicate": "recommended_treatment",
+          "object": "抗感染"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_29",
+      "text": "记录: 甲亢患者碘131治疗后被随访，心悸减轻，复查甲状腺超声及血常规。",
+      "relations": [
+        {
+          "subject": "甲亢",
+          "predicate": "has_symptom",
+          "object": "心悸"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "diagnosed_by",
+          "object": "甲状腺超声"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "diagnosed_by",
+          "object": "血常规"
+        },
+        {
+          "subject": "甲亢",
+          "predicate": "recommended_treatment",
+          "object": "碘131治疗"
+        }
+      ]
+    },
+    {
+      "record_id": "holdout_30",
+      "text": "记录: 系统性红斑狼疮并发肾炎可能，发热、乏力，泼尼松与免疫抑制并用，尿常规异常。",
+      "relations": [
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "has_symptom",
+          "object": "发热"
+        },
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "has_symptom",
+          "object": "乏力"
+        },
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "treated_by",
+          "object": "泼尼松"
+        },
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "diagnosed_by",
+          "object": "尿常规"
+        },
+        {
+          "subject": "系统性红斑狼疮",
+          "predicate": "recommended_treatment",
+          "object": "免疫抑制"
+        }
+      ]
+    }
+  ]
+}
