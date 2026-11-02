@@ -5,7 +5,8 @@
   "input_fields": [
     "query",
     "expected",
-    "actual"
+    "actual",
+    "clarification"
   ],
   "model": "DeepSeek-V4.1-Flash",
   "rubric": [
