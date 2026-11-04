@@ -1,0 +1,293 @@
+{
+  "agent_id": 1,
+  "agent_info": {
+    "1": {
+      "agent_id": 1,
+      "tenant_id": "",
+      "name": "travel_planner",
+      "display_name": "旅游规划助手",
+      "description": "根据目的地、天数、预算生成结构化行程规划",
+      "author": "Community Contributor",
+      "max_steps": 20,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": false,
+      "enable_protocol_repair_retry": false,
+      "verification_config": {
+        "enabled": false,
+        "pass_score": 0.75,
+        "strictness": "balanced",
+        "fail_policy": "repair_then_controlled_summary",
+        "critical_events": [
+          "tool_precheck",
+          "tool_result",
+          "retrieval",
+          "code_execution",
+          "handoff",
+          "final_answer"
+        ],
+        "guardrail_config": {
+          "rules": [],
+          "enabled": false,
+          "default_action": "pass"
+        },
+        "max_final_rounds": 2,
+        "llm_verification_enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true
+      },
+      "context_policy": null,
+      "prompt": "# 角色\n你是「路书」，一位从业十年的旅游规划师。风格务实：宁可少推一个景点，\n也不推荐没把握的。只输出有信息量的内容，不说空话套话。\n\n# 第一铁律：信息不全，只许提问，不许规划\n（本节优先级高于本文其余所有内容）\n\n每次收到用户请求，先对照这张「需求清单」：\n\n| 必填项 | 什么算缺失 |\n| 出发城市 | 没说出出发地即缺失（自驾也要问从哪里出发） |\n| 出行日期 | 至少要知道月份；\"最近\"\"过几天\"\"有空就去\"都算缺失 |\n| 出行天数 | 含几晚 |\n| 人数构成 | 大人几个；有无小孩（年龄或身高）、有无老人 |\n| 总预算 | 是否包含往返交通 |\n\n规则：\n1. 清单里任何一项为空 → 本轮回复**只能是提问**。\n   - 禁止输出行程、Day 表格、时间安排、价格、预算分解、景点推荐\n   - 禁止调用任何工具（天气、搜索、地图这一轮都不要查）\n   - 禁止出现\"假设\"\"按默认\"\"如果你没说我就……\"这类表述\n2. 只问缺的项，用户已经说过的不要重复问（说\"两个年轻人\"就已含人数，不要再问几个人）。\n3. 缺几项就一次问完，用口语的一两句话，不要编号罗列、不要表格盘问。\n4. 提问的回复不超过 60 字，不解释原因、不预告后面要做什么。\n\n正确示例：\n用户：\"两个年轻人去仙女山两天一晚预算五百怎么规划\"\n缺失项：出发城市、出行日期 → 回复只能是：\n\"从哪个城市出发？大概哪几天去（或哪个周末）？\"\n\n错误示例（严禁）：\n\"假设你们从重庆主城出发、11 月出发，按下面方案……\"\n\n# 第二轮：偏好确认\n必填项齐了之后，再检查这几项：交通方式（高铁/自驾/飞机）、住宿偏好（经济/舒适/亲子）、\n必去或不想去的地方、饮食禁忌。\n- 有缺失 → 仍然只提问，一次问完，并允许用户回\"都行/随便/你定\"\n- 用户回\"都行\"或\"直接安排\" → 才可以按常规安排，且在第一行写明：\n  \"按你说'都行'，我按常规处理：经济型住宿、公共交通、无特殊忌口。\"\n- 用户没说\"都行\"、也没回答 → 继续等，不要自己往下走\n\n# 执行规则（信息齐全后才启动）\n- 目的地天气 → maps_weather\n- 景点位置、周边餐饮住宿 → maps_geo / maps_around_search / maps_text_search\n- 门票价格、开放时间、预约要求 → tavily_search；需要看官网原文细节时用 tavily_extract\n- 城际/市内交通 → maps_direction_transit_integrated / maps_direction_driving / maps_direction_walking\n- 打开具体网页取正文 → tavily_extract；crawl / map / research 类已移除，勿调用\n- 查不到的项写\"未查到实时数据，建议出行前核实\"，严禁凭记忆编价格、班次、开放时间\n- 工具结果与你的常识冲突时，一律以工具返回为准\n\n# 工具使用纪律\n- 调用工具只能用 Python 代码，例如：r = tavily_search(query=\"门票价格\", max_results=5)\n- 一轮只调用一个工具，不要并行/批量调用（不要一次发多个调用），\n  等上一个结果返回再决定下一个查什么\n- 严禁在回答正文里输出任何函数调用标记，包括 <|...|>、<｜｜DSML｜｜>、invoke name=、parameter name=。\n  察觉自己正在写这类标记时，立刻停下，改成 Python 代码。\n- 某个工具报错（403、额度不足、超时、参数错误）时：不要重试同一个工具，\n  直接用 Python 代码换下一个可用工具；连续两次都失败就停止检索，\n  用已有信息作答并注明\"部分信息未查到实时数据\"。\n\n# 输出格式（信息齐全后严格遵守）\n## 行程总览\n一句话定调 + 总预算与用户预算的对比（超了说清怎么砍）\n## Day N\n标题带主题（如\"Day 1 上山看草原，步行为主\"）\n| 时间 | 安排 | 花费预估 | 备注（预约/交通） |\n每天一张表，备注写清\"从上一站怎么过去\"\n## 预算分解\n交通/住宿/门票/餐饮四项 + 合计，与预算对比\n## 备选方案\n下雨、排队、太累，各一条\n## 三个提醒\n每条不超过 20 字\n\n# 硬性规则\n- 每天主要景点 ≤3 个，同区域就近安排\n- 有小孩：下午 4 点后不排体力项目；有老人：每天排午休\n- 推荐必须给一句理由，禁止\"著名\"\"必去\"\"网红\"这类空话\n- 超预算时优先砍门票贵的景点和可选项，不砍餐饮与住宿的必要舒适度\n- 用户补充新需求 → 在原行程上微调，不整体推翻重来\n- 用户发图片 → 先 analyze_image 识别，再结合识别结果回答\n- 回答里的价格、时刻、里程，必须能在工具结果里找到出处；找不到就不写具体数字\n- 知识库命中的攻略优先引用并注明来源；与实时查询冲突时以实时数据为准\n\n- 预算口径必须自洽：总览里对预算的结论，必须与「预算分解」表的合计数字一致。\n  合计超预算就直说\"超了 X 元\"，并给出砍到预算内的方案；严禁出现\"卡在预算内\"\n  但表格合计却超了的自相矛盾。\n- 每一项花费都要能加得起来：分项金额之和必须等于合计，不能凑数。\n\n# 输出前自检（每次必做）\n回答前默问三句，任一为\"否\"就重写：\n1. 出发城市、日期、天数、人数、预算，这五项用户是否都明确说了？\n2. 回答里有没有把用户没给过的信息当成已知（比如凭空写出一个出发城市）？\n3. 第一段有没有在解释\"我做了什么假设\"？有就删掉，换成一句提问。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "maps_direction_driving",
+          "name": "maps_direction_driving",
+          "description": "驾车路径规划 API 可以根据用户起终点经纬度坐标规划以小客车、轿车通勤出行的方案，并且返回通勤方案的数据。",
+          "description_zh": null,
+          "inputs": "{'origin': {'type': 'string', 'description': '出发点经纬度，坐标格式为：经度，纬度'}, 'destination': {'type': 'string', 'description': '目的地经纬度，坐标格式为：经度，纬度'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_direction_transit_integrated",
+          "name": "maps_direction_transit_integrated",
+          "description": "根据用户起终点经纬度坐标规划综合各类公共（火车、公交、地铁）交通方式的通勤方案，并且返回通勤方案的数据，跨城场景下必须传起点城市与终点城市",
+          "description_zh": null,
+          "inputs": "{'origin': {'type': 'string', 'description': '出发点经纬度，坐标格式为：经度，纬度'}, 'destination': {'type': 'string', 'description': '目的地经纬度，坐标格式为：经度，纬度'}, 'city': {'type': 'string', 'description': '公共交通规划起点城市'}, 'cityd': {'type': 'string', 'description': '公共交通规划终点城市'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_direction_walking",
+          "name": "maps_direction_walking",
+          "description": "根据输入起点终点经纬度坐标规划100km 以内的步行通勤方案，并且返回通勤方案的数据",
+          "description_zh": null,
+          "inputs": "{'origin': {'type': 'string', 'description': '出发点经度，纬度，坐标格式为：经度，纬度'}, 'destination': {'type': 'string', 'description': '目的地经度，纬度，坐标格式为：经度，纬度'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_distance",
+          "name": "maps_distance",
+          "description": "测量两个经纬度坐标之间的距离,支持驾车、步行以及球面距离测量",
+          "description_zh": null,
+          "inputs": "{'origins': {'type': 'string', 'description': '起点经度，纬度，可以传多个坐标，使用竖线隔离，比如120,30|120,31，坐标格式为：经度，纬度'}, 'destination': {'type': 'string', 'description': '终点经度，纬度，坐标格式为：经度，纬度'}, 'type': {'type': 'string', 'description': '距离测量类型,1代表驾车距离测量，0代表直线距离测量，3步行距离测量'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_geo",
+          "name": "maps_geo",
+          "description": "将详细的结构化地址转换为经纬度坐标。支持对地标性名胜景区、建筑物名称解析为经纬度坐标",
+          "description_zh": null,
+          "inputs": "{'address': {'type': 'string', 'description': '待解析的结构化地址信息'}, 'city': {'type': 'string', 'description': '指定查询的城市'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_regeocode",
+          "name": "maps_regeocode",
+          "description": "将一个高德经纬度坐标转换为行政区划地址信息",
+          "description_zh": null,
+          "inputs": "{'location': {'type': 'string', 'description': '经纬度'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_around_search",
+          "name": "maps_around_search",
+          "description": "周边搜，根据用户传入关键词以及坐标location，搜索出radius半径范围的POI",
+          "description_zh": null,
+          "inputs": "{'keywords': {'type': 'string', 'description': '搜索关键词'}, 'location': {'type': 'string', 'description': '中心点经度纬度'}, 'radius': {'type': 'string', 'description': '搜索半径'}, 'strategy': {'type': 'integer', 'description': '召回策略，0=默认召回策略，1=优先召回扫街榜POI', 'default': 0}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_search_detail",
+          "name": "maps_search_detail",
+          "description": "查询关键词搜或者周边搜获取到的POI ID的详细信息",
+          "description_zh": null,
+          "inputs": "{'id': {'type': 'string', 'description': '关键词搜或者周边搜获取到的POI ID'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_text_search",
+          "name": "maps_text_search",
+          "description": "关键字搜索 API 根据用户输入的关键字进行 POI 搜索，并返回相关的信息",
+          "description_zh": null,
+          "inputs": "{'keywords': {'type': 'string', 'description': '查询关键字'}, 'city': {'type': 'string', 'description': '查询城市'}, 'citylimit': {'type': 'boolean', 'default': False, 'description': '是否限制城市范围内搜索，默认不限制'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "maps_weather",
+          "name": "maps_weather",
+          "description": "根据城市名称或者标准adcode查询指定城市的天气",
+          "description_zh": null,
+          "inputs": "{'city': {'type': 'string', 'description': '城市名称或者adcode'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "amap-maps",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "tavily_search",
+          "name": "tavily_search",
+          "description": "Search the web for current information on any topic. Use for news, facts, or data beyond your knowledge cutoff, and before answering any question about specific facts, figures or recent events. Returns snippets and source URLs. Results are short excerpts; read a page with tavily_extract to confirm what it says.",
+          "description_zh": null,
+          "inputs": "{'query': {'description': 'Search query. Keep it short and specific, in the words the page itself would use; one idea per query.', 'type': 'string'}, 'max_results': {'anyOf': [{'type': 'integer'}, {'type': 'null'}], 'default': None, 'description': 'The maximum number of search results to return. Ask for 10 when looking for a specific fact, page or entity.', 'type': 'string'}, 'search_depth': {'anyOf': [{'enum': ['basic', 'advanced', 'fast', 'ultra-fast'], 'type': 'string'}, {'type': 'null'}], 'default': None, 'description': \"The depth of the search. 'basic' for generic results, 'advanced' for more thorough search, 'fast' for optimized low latency with high relevance, 'ultra-fast' for prioritizing latency above all else. Use 'advanced' when looking for a specific fact, page or entity, or when 'basic' did not find it.\", 'type': 'string'}, 'topic': {'anyOf': [{'enum': ['general', 'news'], 'type': 'string'}, {'type': 'null'}], 'default': None, 'description': \"Search category. Use 'general' for almost all searches, including current events and requests that combine news with other information. Use 'news' only when the user explicitly asks for news, headlines, or news coverage.\", 'type': 'string'}, 'time_range': {'anyOf': [{'enum': ['day', 'week', 'month', 'year'], 'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The time range back from the current date to include in the search results. Filters by when a page was published, not by when the events it describes happened.', 'type': 'string'}, 'include_images': {'anyOf': [{'type': 'boolean'}, {'type': 'null'}], 'default': None, 'description': 'Include a list of query-related images in the response', 'type': 'string'}, 'include_image_descriptions': {'anyOf': [{'type': 'boolean'}, {'type': 'null'}], 'default': None, 'description': 'Include a list of query-related images and their descriptions in the response', 'type': 'string'}, 'include_raw_content': {'anyOf': [{'type': 'boolean'}, {'type': 'null'}], 'default': None, 'description': 'Include the cleaned and parsed HTML content of each search result. Whole pages can make the response too large to read; to read one page, use tavily_extract with a query instead.', 'type': 'string'}, 'include_domains': {'anyOf': [{'items': {'type': 'string'}, 'type': 'array'}, {'type': 'null'}], 'default': None, 'description': \"A list of domains to specifically include in the search results, if the user asks to search on specific sites set this to the domain of the site. Use full domains such as 'en.wikipedia.org' or 'sec.gov', not suffixes such as 'edu'. This is a hard filter: if results come back empty or thin, search again without it.\", 'type': 'string'}, 'exclude_domains': {'anyOf': [{'items': {'type': 'string'}, 'type': 'array'}, {'type': 'null'}], 'default': None, 'description': 'List of domains to specifically exclude, if the user asks to exclude a domain set this to the domain of the site', 'type': 'string'}, 'country': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': \"Boost search results from a specific country. Must be a full country name (e.g., 'United States', 'Japan', 'Germany'). ISO country codes (e.g., 'us', 'jp') are not supported. Available only if topic is general. See https://docs.tavily.com/documentation/api-reference/search for the full list of supported countries.\", 'type': 'string'}, 'include_favicon': {'anyOf': [{'type': 'boolean'}, {'type': 'null'}], 'default': None, 'description': 'Whether to include the favicon URL for each result', 'type': 'string'}, 'start_date': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'Will return all results after the specified start date. Required to be written in the format YYYY-MM-DD. Filters by publish date, not by when events happened; leave it empty when looking for facts about past events.', 'type': 'string'}, 'end_date': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'Will return all results before the specified end date. Required to be written in the format YYYY-MM-DD. Filters by publish date, not by when events happened; leave it empty when looking for facts about past events.', 'type': 'string'}, 'exact_match': {'anyOf': [{'type': 'boolean'}, {'type': 'null'}], 'default': None, 'description': 'Only return results containing the exact phrase(s) in quotes in your query', 'type': 'string'}, 'include_published_date': {'anyOf': [{'type': 'boolean'}, {'type': 'null'}], 'default': None, 'description': 'Include detected publication dates (beta)', 'type': 'string'}, 'filter_by_published_date': {'anyOf': [{'type': 'boolean'}, {'type': 'null'}], 'default': None, 'description': 'Filter results to the requested date window and exclude results with no detected publication date', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "tavily-search",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "tavily_extract",
+          "name": "tavily_extract",
+          "description": "Extract content from URLs. Returns raw page content in markdown or text format. Use it to read a page in full or to confirm a fact found in search results. Pages that could not be read are listed in failed_results; retry a timeout once, then try another source.",
+          "description_zh": null,
+          "inputs": "{'urls': {'description': 'List of URLs to extract content from. Prefer URLs from search results; guessed page URLs often fail.', 'items': {'type': 'string'}, 'type': 'array'}, 'extract_depth': {'default': 'basic', 'description': \"Use 'advanced' for LinkedIn, protected sites, or tables/embedded content\", 'enum': ['basic', 'advanced'], 'type': 'string'}, 'include_images': {'default': False, 'description': 'Include images from pages', 'type': 'boolean'}, 'format': {'default': 'markdown', 'description': 'Output format', 'enum': ['markdown', 'text'], 'type': 'string'}, 'include_favicon': {'default': False, 'description': 'Include favicon URLs', 'type': 'boolean'}, 'query': {'default': '', 'description': 'Query to rerank content chunks by relevance. Set it to get only the relevant passages of a long article or PDF. Leave it empty for tables, lists, data files and API responses, which it can cut short; read those whole, or request a narrower URL.', 'type': 'string'}, 'include_usage': {'anyOf': [{'type': 'boolean'}, {'type': 'null'}], 'default': None, 'description': 'Include credit usage', 'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "tavily-search",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "AnalyzeImageTool",
+          "name": "analyze_image",
+          "description": "This tool uses the configured image understanding model to understand images based on your query and then returns a description of the image.\nIt is used to understand and analyze multiple images, with image sources supporting S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs.\nUse this tool when you want to retrieve information contained in an image and provide the image's URL and your query.",
+          "description_zh": "使用图片理解模型，根据你的提示词来理解图像，并返回图像的描述。可用于理解和分析多张图片，支持 S3 URLs（s3://bucket/key 或 /bucket/key）、HTTP 和 HTTPS URL。",
+          "inputs": "{\"image_urls_list\": {\"type\": \"array\", \"description\": \"List of image URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"列表形式输入图片 URL（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {
+            "selected_model_id": null
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "AnalyzeTextFileTool",
+          "name": "analyze_text_file",
+          "description": "Extract content from text files and analyze them using a large language model based on your query. Supports multiple files from S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs. The tool will extract text content from each file and return an analysis based on your question.",
+          "description_zh": "从文本文件中提取内容，并根据你的问题使用大语言模型进行分析。支持来自 S3、HTTP 和 HTTPS URL 的多个文件。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。该工具将从每个文件中提取文本内容，并根据你的问题返回分析结果。",
+          "inputs": "{\"file_url_list\": {\"type\": \"array\", \"description\": \"List of file URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"文件 URL 列表（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {
+            "selected_model_id": null
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "CreateFileTool",
+          "name": "create_file",
+          "description": "Create a workspace file and write content to it. Missing parent directories are created.",
+          "description_zh": "在工作区创建文件并写入内容；父目录不存在时自动创建。",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path where the file should be created (e.g., 'documents/file.txt')\", \"description_zh\": \"文件创建的相对路径（例如，'documents/file.txt'）\"}, \"content\": {\"type\": \"string\", \"description\": \"Content to write to the file. If empty, creates an empty file\", \"description_zh\": \"写入文件的内容。如果为空，创建空文件\", \"nullable\": true}, \"encoding\": {\"type\": \"string\", \"description\": \"File encoding, defaults to utf-8\", \"description_zh\": \"文件编码，默认为 utf-8\", \"default\": \"utf-8\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "ReadFileTool",
+          "name": "read_file",
+          "description": "Read a workspace file and return its content with file metadata.",
+          "description_zh": "读取工作区文件，返回内容和文件元数据。",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path of the file to read (e.g., 'documents/file.txt')\", \"description_zh\": \"要读取的文件的相对路径（例如，'documents/file.txt'）\"}, \"encoding\": {\"type\": \"string\", \"description\": \"File encoding, defaults to utf-8\", \"description_zh\": \"文件编码，默认为 utf-8\", \"default\": \"utf-8\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        1
+      ],
+      "model_names": [
+        "deepseek-chat"
+      ],
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "model_params_override": {
+        "1": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": "想去哪玩？告诉我三件事：从哪个城市出发、大概哪天走、玩几天。\n说清了，行程、花费、怎么走，我一次给你排明白。",
+      "example_questions": [
+        "成都出发，11月15-17日，两个人，预算3000，帮我排3天2晚",
+        "从重庆出发，这周六日两天一晚，两大一小（孩子6岁），预算1500，去仙女山"
+      ]
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "amap-maps",
+      "mcp_url": "https://mcp.amap.com/mcp?key=<YOUR_AMAP_WEB_SERVICE_KEY>"
+    },
+    {
+      "mcp_server_name": "tavily-search",
+      "mcp_url": "https://mcp.tavily.com/mcp/?tavilyApiKey=<YOUR_TAVILY_API_KEY>"
+    }
+  ]
+}
