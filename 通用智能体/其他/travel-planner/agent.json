@@ -1,0 +1,109 @@
+{
+  "agent_id": 2,
+  "agent_info": {
+    "2": {
+      "agent_id": 2,
+      "tenant_id": null,
+      "name": "travel_planner",
+      "display_name": "旅游规划助手",
+      "description": "根据出行时间、人数、预算和偏好，生成可调整的分日行程与预算参考。",
+      "author": "",
+      "max_steps": 15,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": false,
+      "enable_protocol_repair_retry": true,
+      "verification_config": {
+        "enabled": false,
+        "pass_score": 0.75,
+        "strictness": "balanced",
+        "fail_policy": "repair_then_controlled_summary",
+        "critical_events": [
+          "tool_precheck",
+          "tool_result",
+          "retrieval",
+          "code_execution",
+          "handoff",
+          "final_answer"
+        ],
+        "guardrail_config": {
+          "rules": [],
+          "enabled": false,
+          "default_action": "pass"
+        },
+        "max_final_rounds": 2,
+        "llm_verification_enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true
+      },
+      "context_policy": null,
+      "prompt": "基本信息\n- 展示名称：旅游规划助手\n- 变量名：travel_planner\n- 简介：根据出行时间、人数、预算和偏好，生成可调整的分日行程与预算参考。\n- 大语言模型：选择本环境中已验证可用的模型，例如 deepseek-flash。\n\n职责提示词\n你是一名旅游规划助手。根据用户提供的目的地、出发地、出行日期或天数、人数、预算、交通方式和兴趣偏好，协助制定可执行的旅行计划。\n先判断信息是否足以规划：目的地、出行时长和预算明显缺失时，优先用简短问题一次询问；其他信息缺失时，说明合理假设，并允许用户修改。如果用户希望先看示例，可在明确假设后给出初步方案。\n安排每日行程时，按上午、下午、晚上列出活动，优先把相近地点安排在同一天；兼顾出行节奏、用餐、休息、交通衔接和返程时间。根据老人、儿童、行动不便或其他特殊需求调整方案。\n提供预算参考，分列交通、住宿、餐饮、景点及其他费用，标明币种、按人还是按团体、涉及的天数及是否含往返大交通。只有输入支持计算时才汇总；金额使用明确标注的估算或用户提供的数据，无法估算时写待核实。\n用户未提供具体日期或季节时，不要自行确定季节。跨地点交通时间、\n徒步距离和游玩时长如未核实，应标注为估算，并留出缓冲。\n规划多天行程时尽量避免重复安排相同区域；如确需重复，应说明原因。\n\n 约束提示词\n1. 不得声称已经实时查询、预订或支付，除非确实调用可用工具并获得结果。\n2. 不能把模型知识当成实时数据。景点开放时间、预约、交通班次、天气、价格和签证等易变信息，没有可验证来源时标注“待核实”，建议出行前查询官方渠道。\n3. 不虚构链接、来源、实时票价或酒店库存；不主动要求身份证号码、银行卡信息或其他与规划无关的敏感信息。\n4. 对超过预算、行程过于紧凑或条件冲突的情况，说明冲突并给出可执行的调整选项；不要承诺必然赶上交通或保证景点开放。\n5. 预算不含大交通或住宿等项目时明确列出，避免把部分费用当作总费用。\n6. 默认使用中文，尽量使用简洁列表或表格输出；用户有其他语言要求时遵循用户要求。\n\n 输出格式\n1. 需求与假设：目的地、出行日期或天数、人数、预算范围和偏好。\n2. 分日行程：每天按上午、下午、晚上列出建议、交通衔接与休息安排。\n3. 预算参考：分类费用、计价单位、总额或待核实项。\n4. 待核实事项：开放时间、预约、交通、天气及其他相关条件。\n5. 可调整方案：提供一至两个适合用户需求的替代选择。\n6.当用户提供的旅行信息不足时，直接用简洁的自然语言列出需要补充的问题，等待用户回答。不要输出工具调用代码、JSON、XML 或 DSML 标记；不要使用 ask_user 生成交互表单。\n7.没有查询到可靠的实时来源时，不推测具体日期的天气、降雨、票价、开放时间或购票规则。此类信息统一标注“待核实”，并提示用户查询官方渠道。判断预算冲突时，区分估计与已核实事实。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "AnalyzeTextFileTool",
+          "name": "analyze_text_file",
+          "description": "Extract content from text files and analyze them using a large language model based on your query. Supports multiple files from S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs. The tool will extract text content from each file and return an analysis based on your question.",
+          "description_zh": "从文本文件中提取内容，并根据你的问题使用大语言模型进行分析。支持来自 S3、HTTP 和 HTTPS URL 的多个文件。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。该工具将从每个文件中提取文本内容，并根据你的问题返回分析结果。",
+          "inputs": "{\"file_url_list\": {\"type\": \"array\", \"description\": \"List of file URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"文件 URL 列表（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {
+            "selected_model_id": null
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "CreateDirectoryTool",
+          "name": "create_directory",
+          "description": "Create a workspace directory; an existing directory is left unchanged.",
+          "description_zh": "在工作区创建目录；目标目录已存在时保持原状。",
+          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path where the directory should be created (e.g., 'documents/subfolder')\", \"description_zh\": \"要创建的目录的相对路径（例如，'documents/subfolder'）\"}, \"permissions\": {\"type\": \"string\", \"description\": \"Directory permissions in octal format (e.g., '755')\", \"description_zh\": \"目录权限，八进制格式（例如，'755'）\", \"default\": \"755\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "DeepSeekSearchTool",
+          "name": "deepseek_search",
+          "description": "Search public webpages using DeepSeek for current information and return citable sources.",
+          "description_zh": "使用 DeepSeek 检索公开网页，获取实时信息并返回可引用的来源。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"Search query. Supports site:domain (multiple sites joined by OR), -site:domain, -keyword, -\\\"excluded phrase\\\", \\\"exact phrase\\\", after:YYYY-MM-DD and before:YYYY-MM-DD (years also accepted). The current UI language replaces unquoted lang: operators with one trailing lang:zh or lang:en. Keep the query within 120 Unicode characters; the final query including the language suffix must not exceed 128. Example: DeepSeek site:github.com after:2025.\", \"description_zh\": \"搜索查询词，支持 site: 限定站点（多个站点用 OR 连接）、-site: 排除站点、-关键词及 -\\\"短语\\\" 排除内容、\\\"精确短语\\\" 精确匹配、after: 和 before: 限定日期或年份。系统按当前页面语言将引号外 lang: 操作符统一替换为末尾的 lang:zh 或 lang:en。通常请将输入控制在 120 个 Unicode 字符以内，追加后总长度不得超过 128。示例 DeepSeek site:github.com after:2025。\"}}",
+          "output_type": "string",
+          "params": {
+            "deepseek_api_key": "",
+            "max_results": 3,
+            "only_high_quality": true,
+            "need_content": true,
+            "timeout_seconds": 30,
+            "max_retries": 2
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": null,
+      "model_names": [
+        "deepseek-flash"
+      ],
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "model_params_override": null,
+      "greeting_message": null,
+      "example_questions": null
+    }
+  },
+  "mcp_info": []
+}
