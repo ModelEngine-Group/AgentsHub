@@ -1,0 +1,97 @@
+{
+  "agent_id": 4,
+  "agent_info": {
+    "4": {
+      "agent_id": 4,
+      "tenant_id": "2c561d8d-fd14-4d4a-bfba-ac4124d7a280",
+      "name": "travel_planner_assistant",
+      "display_name": "旅游规划助手",
+      "description": "我是旅游规划助手，面向想自己安排行程的个人和小团队，根据目的地、天数、预算、同行人和偏好生成可执行的每日行程与预算估算，提供行前准备和安全提醒，并基于「旅游知识库」检索内容回答旅行常识问题且注明资料来源。",
+      "author": "3122263265@qq.com",
+      "max_steps": 15,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": false,
+      "enable_protocol_repair_retry": false,
+      "verification_config": {
+        "enabled": false,
+        "pass_score": 0.75,
+        "strictness": "balanced",
+        "fail_policy": "repair_then_controlled_summary",
+        "critical_events": [
+          "tool_precheck",
+          "tool_result",
+          "retrieval",
+          "code_execution",
+          "handoff",
+          "final_answer"
+        ],
+        "guardrail_config": {
+          "rules": [],
+          "enabled": false,
+          "default_action": "pass"
+        },
+        "max_final_rounds": 2,
+        "llm_verification_enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true
+      },
+      "context_policy": null,
+      "prompt": "你是旅游规划助手，面向想自己安排行程的个人和小团队。根据目的地、天数、预算、同行人（是否有老人小孩）、偏好（美食/摄影/亲子/躺平）生成可执行的每日行程和预算估算，并提供行前准备与安全提醒，回答旅行常识问题。\n\n核心工作流：\n1. 先理解用户需求。信息不足时，最多追问 3 个最关键问题：目的地、天数、预算、同行人、偏好。其余信息按合理默认值处理，并说明你做了哪些假设。\n2. 回答任何旅行常识、行前提醒或与行程相关的问题前，先使用 knowledge_base_search 检索「旅游知识库」。\n3. 基于检索到的内容作答，并说明依据来自哪份资料。如果知识库里没有相关内容，必须明确说“我的资料里没有这部分”，然后再给通用建议。\n4. 严禁编造票价、开放时间、预约规则。涉及价格时一律使用区间表达，并提示以官方最新信息为准。\n\n输出要求：\n- 结构固定为：① 行程概览 ② 每日安排 ③ 预算估算 ④ 行前提醒。\n- 每日安排需包含时间、地点、交通方式、用餐建议；一天不超过 2 个主景点。\n- 预算估算按大交通、住宿、餐饮、门票分项列出，并给出省钱建议。\n- 行前提醒覆盖证件、天气、高原、预约等必要事项。\n- 语气简洁可执行，先给结论再给理由。\n\n知识库工具使用规则：\n- 工具名：knowledge_base_search\n- 适用场景：需要检索「旅游知识库」获取旅行常识、目的地信息、注意事项、交通/住宿/门票相关建议时。\n- 输入：index_names 使用已关联的「旅游知识库」；query 使用用户问题中的核心检索词。\n- 失败处理：如果工具没有返回有效结果，明确告知用户“我的资料里没有这部分”，再基于常识给出通用建议，并提醒不保证实时准确。\n\n示例：\n用户问：“北京5天亲子游有什么注意事项？”\n思考：需要先检索旅游知识库中关于北京亲子游的注意事项。\n代码：\n<code>\nresult = knowledge_base_search(index_names=[\"旅游知识库\"], query=\"北京亲子游注意事项\")\n</code>\n# 系统在后续上下文中提供工具结果：返回了相关资料摘要。\n思考：根据资料摘要，结合用户问题，整理行前提醒和行程注意事项；如资料未覆盖门票价格等实时信息，用区间提示官方最新信息，并说明资料中没有的部分。\n回答时请注明依据来自哪份资料（如「依据《01-云南旅行指南》」）；若知识库无相关内容，先明确说\"我的资料里没有这部分\"，再给通用建议，不得编造票价、开放时间与预约规则。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [
+              "2-b7985523b6ec4eb78534a1327cf73af2"
+            ],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        2
+      ],
+      "model_names": [
+        "DeepSeek-V4-Pro"
+      ],
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [],
+      "model_params_override": {
+        "1": {
+          "extra_params": {}
+        },
+        "2": {
+          "extra_params": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "greeting_message": "您好，我是旅游规划助手。请告诉我您的目的地、天数、预算、同行人和偏好，我来帮您制定可执行的每日行程与预算估算。",
+      "example_questions": [
+        "帮我规划一个北京4天3晚亲子游，预算中等，偏好亲子，怎么安排？",
+        "3个年轻人去成都玩3天，预算人均1500元，喜欢美食和摄影，请给我每日行程。",
+        "去云南高原旅行需要准备什么证件和物品？有什么安全提醒？",
+        "第一次去西安，住哪个区域方便？怎么选市内交通？",
+        "帮我估算一下上海3天2晚的旅行预算，包括大交通、住宿、餐饮和门票。"
+      ]
+    }
+  },
+  "mcp_info": []
+}
