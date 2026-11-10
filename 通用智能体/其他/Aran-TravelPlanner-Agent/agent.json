@@ -1,0 +1,235 @@
+{
+  "agent_id": 2,
+  "agent_info": {
+    "2": {
+      "agent_id": 2,
+      "tenant_id": "",
+      "name": "Aran",
+      "display_name": "旅游规划智能体",
+      "description": "我会根据你提供的要求信息为你整理制定一份旅游规划书",
+      "author": "Aran",
+      "max_steps": 15,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": false,
+      "enable_protocol_repair_retry": false,
+      "verification_config": {
+        "enabled": false,
+        "pass_score": 0.75,
+        "strictness": "balanced",
+        "fail_policy": "repair_then_controlled_summary",
+        "critical_events": [
+          "tool_precheck",
+          "tool_result",
+          "retrieval",
+          "code_execution",
+          "handoff",
+          "final_answer"
+        ],
+        "guardrail_config": {
+          "rules": [],
+          "enabled": false,
+          "default_action": "pass"
+        },
+        "max_final_rounds": 2,
+        "llm_verification_enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true
+      },
+      "context_policy": null,
+      "prompt": "你是一个旅游规划助手，然后根据用户输入的旅游地区制作规划书，包括但可不限于当地的著名景点游玩规划，用户在过程中可以先再选择预计的旅游时间（可选，也可不选），然后如果输入了预计时间，就根据用户的输入进行进一步规划，如果没有输入选择，智能体就自行根据网络上的通常的旅行时间进行规划，然后规划内容包括第几天去哪里玩，整一个行动路线，并且行动路线最好是不绕路的，可以一条路走下来，然后包括用户中途的出行方式推荐，以及根据当天的旅游日程做出美食推荐，然后还有就是补充一下，用户最先输入时还要输入大概旅游的日期时间，这样在智能体思考过程中也要考虑季节天气以及当地气候问题，并在规划书最后给出一些穿搭建议，然后穿搭资料可参考国内小红书等网络社交平台的旅游博主的穿搭内容，当然，规划书本身的制定也要参考网络上的规划数据",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "AnalyzeTextFileTool",
+          "name": "analyze_text_file",
+          "description": "Extract content from text files and analyze them using a large language model based on your query. Supports multiple files from S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs. The tool will extract text content from each file and return an analysis based on your question.",
+          "description_zh": "从文本文件中提取内容，并根据你的问题使用大语言模型进行分析。支持来自 S3、HTTP 和 HTTPS URL 的多个文件。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。该工具将从每个文件中提取文本内容，并根据你的问题返回分析结果。",
+          "inputs": "{\"file_url_list\": {\"type\": \"array\", \"description\": \"List of file URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"文件 URL 列表（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {
+            "selected_model_id": null
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "CreateDirectoryTool",
+          "name": "create_directory",
+          "description": "Create a workspace directory; an existing directory is left unchanged.",
+          "description_zh": "在工作区创建目录；目标目录已存在时保持原状。",
+          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path where the directory should be created (e.g., 'documents/subfolder')\", \"description_zh\": \"要创建的目录的相对路径（例如，'documents/subfolder'）\"}, \"permissions\": {\"type\": \"string\", \"description\": \"Directory permissions in octal format (e.g., '755')\", \"description_zh\": \"目录权限，八进制格式（例如，'755'）\", \"default\": \"755\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "CreateFileTool",
+          "name": "create_file",
+          "description": "Create a workspace file and write content to it. Missing parent directories are created.",
+          "description_zh": "在工作区创建文件并写入内容；父目录不存在时自动创建。",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path where the file should be created (e.g., 'documents/file.txt')\", \"description_zh\": \"文件创建的相对路径（例如，'documents/file.txt'）\"}, \"content\": {\"type\": \"string\", \"description\": \"Content to write to the file. If empty, creates an empty file\", \"description_zh\": \"写入文件的内容。如果为空，创建空文件\", \"nullable\": true}, \"encoding\": {\"type\": \"string\", \"description\": \"File encoding, defaults to utf-8\", \"description_zh\": \"文件编码，默认为 utf-8\", \"default\": \"utf-8\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "DeepSeekSearchTool",
+          "name": "deepseek_search",
+          "description": "Search public webpages using DeepSeek for current information and return citable sources.",
+          "description_zh": "使用 DeepSeek 检索公开网页，获取实时信息并返回可引用的来源。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"Search query. Supports site:domain (multiple sites joined by OR), -site:domain, -keyword, -\\\"excluded phrase\\\", \\\"exact phrase\\\", after:YYYY-MM-DD and before:YYYY-MM-DD (years also accepted). The current UI language replaces unquoted lang: operators with one trailing lang:zh or lang:en. Keep the query within 120 Unicode characters; the final query including the language suffix must not exceed 128. Example: DeepSeek site:github.com after:2025.\", \"description_zh\": \"搜索查询词，支持 site: 限定站点（多个站点用 OR 连接）、-site: 排除站点、-关键词及 -\\\"短语\\\" 排除内容、\\\"精确短语\\\" 精确匹配、after: 和 before: 限定日期或年份。系统按当前页面语言将引号外 lang: 操作符统一替换为末尾的 lang:zh 或 lang:en。通常请将输入控制在 120 个 Unicode 字符以内，追加后总长度不得超过 128。示例 DeepSeek site:github.com after:2025。\"}}",
+          "output_type": "string",
+          "params": {
+            "deepseek_api_key": "",
+            "max_results": 10,
+            "only_high_quality": false,
+            "need_content": false,
+            "timeout_seconds": 30,
+            "max_retries": 2,
+            "language": "zh"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "DeleteDirectoryTool",
+          "name": "delete_directory",
+          "description": "Permanently delete a workspace directory and all its contents.",
+          "description_zh": "永久删除工作区目录及其全部内容，此操作不可恢复。",
+          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path of the directory to delete (e.g., 'documents/subfolder')\", \"description_zh\": \"要删除的目录的相对路径（例如，'documents/subfolder'）\"}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "DeleteFileTool",
+          "name": "delete_file",
+          "description": "Delete one workspace file. This action is irreversible and does not delete directories.",
+          "description_zh": "删除单个工作区文件。此操作不可恢复，也不会删除目录。",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path of the file to delete (e.g., 'documents/file.txt')\", \"description_zh\": \"要删除的文件的相对路径（例如，'documents/file.txt'）\"}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "ListDirectoryTool",
+          "name": "list_directory",
+          "description": "List workspace directory contents as a tree with file metadata.",
+          "description_zh": "以树形结构列出工作区目录内容及文件元数据。",
+          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path of the directory to list (e.g., 'documents' or '.' for workspace root)\", \"description_zh\": \"要列出的目录的相对路径（例如，'documents'或'.'表示工作区根目录）\", \"default\": \".\", \"nullable\": true}, \"max_depth\": {\"type\": \"integer\", \"description\": \"Maximum depth to traverse (default: 3, max: 10)\", \"description_zh\": \"遍历的最大深度（默认：3，最大：10）\", \"default\": 3, \"nullable\": true}, \"show_hidden\": {\"type\": \"boolean\", \"description\": \"Whether to show hidden files/directories (starting with .)\", \"description_zh\": \"是否显示隐藏文件/目录（以.开头）\", \"default\": false, \"nullable\": true}, \"show_size\": {\"type\": \"boolean\", \"description\": \"Whether to show file sizes\", \"description_zh\": \"是否显示文件大小\", \"default\": true, \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "MoveItemTool",
+          "name": "move_item",
+          "description": "Move a workspace file or directory. Missing destination parents are created; existing targets are never overwritten.",
+          "description_zh": "移动工作区文件或目录；目标父目录不存在时自动创建，目标已存在时不会覆盖。",
+          "inputs": "{\"source_path\": {\"type\": \"string\", \"description\": \"Relative path of source file or directory to move (e.g., 'documents/file.txt')\", \"description_zh\": \"要移动的源文件或目录的相对路径（例如，'documents/file.txt'）\"}, \"destination_path\": {\"type\": \"string\", \"description\": \"Relative path of destination (e.g., 'backup/file.txt')\", \"description_zh\": \"目标的相对路径（例如，'backup/file.txt'）\"}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "ReadFileTool",
+          "name": "read_file",
+          "description": "Read a workspace file and return its content with file metadata.",
+          "description_zh": "读取工作区文件，返回内容和文件元数据。",
+          "inputs": "{\"file_path\": {\"type\": \"string\", \"description\": \"Relative path of the file to read (e.g., 'documents/file.txt')\", \"description_zh\": \"要读取的文件的相对路径（例如，'documents/file.txt'）\"}, \"encoding\": {\"type\": \"string\", \"description\": \"File encoding, defaults to utf-8\", \"description_zh\": \"文件编码，默认为 utf-8\", \"default\": \"utf-8\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "init_path": "/mnt/nexent"
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "SendEmailTool",
+          "name": "send_email",
+          "description": "Send email to specified recipients. Supports only HTML formatted email content, and can add multiple recipients, CC, and BCC.",
+          "description_zh": "向指定收件人发送 HTML 格式邮件，支持添加多个收件人、抄送和密送。",
+          "inputs": "{\"to\": {\"type\": \"string\", \"description\": \"Recipient email address, multiple recipients separated by commas\", \"description_zh\": \"收件人邮箱地址，多个收件人用逗号分隔\"}, \"subject\": {\"type\": \"string\", \"description\": \"Email subject\", \"description_zh\": \"邮件主题\"}, \"content\": {\"type\": \"string\", \"description\": \"Email content, supports HTML format\", \"description_zh\": \"邮件内容，支持 HTML 格式\"}, \"cc\": {\"type\": \"string\", \"description\": \"CC email address, multiple CCs separated by commas, optional\", \"description_zh\": \"抄送邮箱地址，多个抄送用逗号分隔，可选\", \"nullable\": true}, \"bcc\": {\"type\": \"string\", \"description\": \"BCC email address, multiple BCCs separated by commas, optional\", \"description_zh\": \"密送邮箱地址，多个密送用逗号分隔，可选\", \"nullable\": true}, \"sender_email\": {\"type\": \"string\", \"description\": \"Actual sender email address (From address), optional - defaults to username\", \"description_zh\": \"实际发件人邮箱地址（From字段），可选，默认为username\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "smtp_server": "",
+            "smtp_port": 587,
+            "username": "",
+            "password": "",
+            "use_ssl": true,
+            "sender_email": null,
+            "sender_name": null,
+            "timeout": 30
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": null,
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        1
+      ],
+      "model_names": [
+        "deepseek-ai/DeepSeek-V4.1-Flash"
+      ],
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [
+        "docx",
+        "pdf",
+        "pptx",
+        "xlsx",
+        "canvas-design",
+        "analyze-image"
+      ],
+      "model_params_override": {
+        "1": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": "您好，我是您的旅游规划助手",
+      "example_questions": []
+    }
+  },
+  "mcp_info": []
+}
