@@ -1,0 +1,7 @@
+services:
+  travel-mcp:
+    build: .
+    container_name: travel-mcp
+    ports:
+      - "8765:8765"
+    restart: unless-stopped
