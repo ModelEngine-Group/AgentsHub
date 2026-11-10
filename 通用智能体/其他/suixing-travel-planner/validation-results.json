@@ -1,0 +1,32 @@
+[
+  {
+    "case_id": "missing-requirements",
+    "completed": true,
+    "error_count": 0,
+    "answer_characters": 114,
+    "budget_arithmetic_checked": null,
+    "source_cards": 0,
+    "skill_script_called": false,
+    "tested_at": "2026-11-10T19:54:36.4382754+08:00"
+  },
+  {
+    "case_id": "budget-conflict",
+    "completed": true,
+    "error_count": 0,
+    "answer_characters": 1275,
+    "budget_arithmetic_checked": true,
+    "source_cards": 0,
+    "skill_script_called": true,
+    "tested_at": "2026-11-10T19:54:36.790785+08:00"
+  },
+  {
+    "case_id": "family-hangzhou-live",
+    "completed": true,
+    "error_count": 0,
+    "answer_characters": 2397,
+    "budget_arithmetic_checked": true,
+    "source_cards": 9,
+    "skill_script_called": true,
+    "tested_at": "2026-11-10T19:58:07.5551051+08:00"
+  }
+]
