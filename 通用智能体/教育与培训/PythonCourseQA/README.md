@@ -42,7 +42,7 @@ PythonCourseQA/
 | Skill | 必填。进入「智能体开发 → 选择技能 → 构建技能」，上传 `skills/course-qa-assistant.zip` 后再导入智能体。 |
 | 知识库 | 必填。`agent.json` 中 `knowledge_base_search` 的 `index_names` 为导出环境的知识库索引（`1-f31311e070c04a1da8afec1896042cf2`）。导入后需将其替换为目标环境中自己的课程知识库索引，否则检索不可用。 |
 | MCP | 无（`mcp_info` 为空数组），无需配置 MCP 服务。 |
-| 工具 | 内置 `knowledge_base_search`、`analyze_text_file`、`create_directory`，无需额外安装。 |
+| 工具 | 内置 `knowledge_base_search`、`analyze_text_file`，均为只读/分析类，无需额外安装；按最小权限原则未授予目录创建等写文件系统工具。 |
 
 ## 导入步骤
 

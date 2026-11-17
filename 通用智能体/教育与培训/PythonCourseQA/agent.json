@@ -76,21 +76,6 @@
           "usage": null,
           "metadata": {},
           "labels": null
-        },
-        {
-          "class_name": "CreateDirectoryTool",
-          "name": "create_directory",
-          "description": "Create a workspace directory; an existing directory is left unchanged.",
-          "description_zh": "在工作区创建目录；目标目录已存在时保持原状。",
-          "inputs": "{\"directory_path\": {\"type\": \"string\", \"description\": \"Relative path where the directory should be created (e.g., 'documents/subfolder')\", \"description_zh\": \"要创建的目录的相对路径（例如，'documents/subfolder'）\"}, \"permissions\": {\"type\": \"string\", \"description\": \"Directory permissions in octal format (e.g., '755')\", \"description_zh\": \"目录权限，八进制格式（例如，'755'）\", \"default\": \"755\", \"nullable\": true}}",
-          "output_type": "string",
-          "params": {
-            "init_path": "/mnt/nexent"
-          },
-          "source": "local",
-          "usage": null,
-          "metadata": null,
-          "labels": null
         }
       ],
       "managed_agents": [],
