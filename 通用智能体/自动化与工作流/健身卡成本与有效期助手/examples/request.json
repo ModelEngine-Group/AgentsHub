@@ -1,0 +1,20 @@
+{
+  "pay_per_visit_cents": 5000,
+  "visits": [
+    "2026-11-18",
+    "2026-11-20",
+    "2026-11-22"
+  ],
+  "plans": [
+    {
+      "id": "three-pass",
+      "terms_source": "合成条款示例",
+      "start": "2026-11-18",
+      "validity_days": 30,
+      "price_cents": 12000,
+      "visit_limit": 3,
+      "freeze_extends_validity": false,
+      "freezes": []
+    }
+  ]
+}
