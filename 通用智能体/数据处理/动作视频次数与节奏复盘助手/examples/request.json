@@ -1,0 +1,68 @@
+{
+  "mode": "keypoints",
+  "exercise": "squat",
+  "side": "left",
+  "min_phase_seconds": 0,
+  "frames": [
+    {
+      "time_seconds": 0,
+      "points": [
+        {
+          "x": 0,
+          "y": 0,
+          "visibility": 1
+        },
+        {
+          "x": 0,
+          "y": 0.5,
+          "visibility": 1
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "time_seconds": 0.5,
+      "points": [
+        {
+          "x": 0,
+          "y": 0,
+          "visibility": 1
+        },
+        {
+          "x": 0,
+          "y": 0.5,
+          "visibility": 1
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "visibility": 1
+        }
+      ]
+    },
+    {
+      "time_seconds": 1,
+      "points": [
+        {
+          "x": 0,
+          "y": 0,
+          "visibility": 1
+        },
+        {
+          "x": 0,
+          "y": 0.5,
+          "visibility": 1
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "visibility": 1
+        }
+      ]
+    }
+  ]
+}
