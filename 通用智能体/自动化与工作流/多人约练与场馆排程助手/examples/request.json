@@ -1,0 +1,50 @@
+{
+  "duration_minutes": 60,
+  "budget_cents": 5000,
+  "participants": [
+    {
+      "id": "a",
+      "activities": [
+        "badminton"
+      ],
+      "availability": [
+        {
+          "start": "2026-11-20T18:00:00+08:00",
+          "end": "2026-11-20T21:00:00+08:00"
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "activities": [
+        "badminton"
+      ],
+      "availability": [
+        {
+          "start": "2026-11-20T19:00:00+08:00",
+          "end": "2026-11-20T20:30:00+08:00"
+        }
+      ]
+    }
+  ],
+  "venues": [
+    {
+      "id": "court1",
+      "activity": "badminton",
+      "capacity": 4,
+      "price_cents": 4000,
+      "open": [
+        {
+          "start": "2026-11-20T18:00:00+08:00",
+          "end": "2026-11-20T22:00:00+08:00"
+        }
+      ],
+      "booked": [
+        {
+          "start": "2026-11-20T19:00:00+08:00",
+          "end": "2026-11-20T19:30:00+08:00"
+        }
+      ]
+    }
+  ]
+}
