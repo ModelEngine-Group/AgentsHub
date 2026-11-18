@@ -1,0 +1,38 @@
+{
+  "timezone": "Asia/Shanghai",
+  "start_date": "2026-11-18",
+  "end_date": "2026-11-20",
+  "groups": [
+    {
+      "id": "starter",
+      "points_per_minute": 1,
+      "daily_cap": 60
+    }
+  ],
+  "participants": [
+    {
+      "id": "a",
+      "display_name": "同学A",
+      "group": "starter"
+    },
+    {
+      "id": "b",
+      "display_name": "同学B",
+      "group": "starter"
+    }
+  ],
+  "records": [
+    {
+      "id": "r1",
+      "participant_id": "a",
+      "start": "2026-11-18T18:00:00+08:00",
+      "end": "2026-11-18T18:45:00+08:00"
+    },
+    {
+      "id": "r2",
+      "participant_id": "a",
+      "start": "2026-11-18T18:30:00+08:00",
+      "end": "2026-11-18T19:15:00+08:00"
+    }
+  ]
+}
