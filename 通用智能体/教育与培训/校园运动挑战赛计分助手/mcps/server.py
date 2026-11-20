@@ -1,4 +1,5 @@
 from runtime import *
+from pathlib import Path
 
 from datetime import datetime,time,timedelta,timezone
 from decimal import Decimal
@@ -30,6 +31,7 @@ def analyze(data):
         cursor=start
         while cursor<end:
             local_date=cursor.astimezone(zone).date(); midnight=datetime.combine(local_date+timedelta(days=1),time.min,tzinfo=zone).astimezone(timezone.utc); stop=min(end,midnight)
+            if stop<=cursor: raise ValueError('timezone midnight did not advance; use explicit UTC records or a different timezone')
             if first<=local_date<=last: intervals.setdefault((person,local_date),[]).append((cursor,stop))
             cursor=stop
     daily=[]; total={identity:Decimal(0) for identity in people}
