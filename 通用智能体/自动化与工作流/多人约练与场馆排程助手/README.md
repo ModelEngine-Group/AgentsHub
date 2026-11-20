@@ -33,3 +33,8 @@ python mcps/server.py --host 0.0.0.0 --port 8111 --data-root ./runtime-data
 `display_timezone` 为 IANA 时区名，默认 UTC，示例使用 Asia/Shanghai。答复直接引用工具计算的 display_time（含偏移与时区），start/end 为 UTC 原始值，ICS 也使用 UTC。price_cents 表示本次时段总费用。
 
 工具也支持 `{"use_example":true}` 运行包内虚构示例，并明确返回 input_scope=bundled_example；这不能代替使用者的实际数据。较长 JSON 可放到数据根目录下本助手的 inputs 文件夹，再传 `{"input_json_filename":"request.json"}`。文件大小最多1MiB；不接受目录逃逸，也不接受把输入来源选择器与内联业务字段混合。
+
+## 2026-11-20 审阅修订
+
+JSON 输入文件在读取前限制为 1 MiB；视频文件仍限制为 30 MiB。文件系统错误返回结构化 error，写入失败清理本次未完成产物。新增独立产物生成、下载、越界、载荷上限与 I/O 错误测试。工具 inputs 使用标准 JSON 字符串。
+下载链接面向打开结果的浏览器：默认 127.0.0.1 用于本机访问。容器访问 MCP 的 host.docker.internal 地址与浏览器下载地址用途不同；远程部署时必须设置 FITNESS_PUBLIC_BASE 为浏览器可访问的服务地址。

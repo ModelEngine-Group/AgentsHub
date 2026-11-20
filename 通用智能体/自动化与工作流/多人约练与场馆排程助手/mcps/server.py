@@ -1,6 +1,7 @@
 from runtime import *
+from pathlib import Path
 
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 import hashlib
 from zoneinfo import ZoneInfo,ZoneInfoNotFoundError
 
@@ -18,8 +19,12 @@ def analyze(data):
     candidates=[]; exclusions=[]
     for venue_id,venue in venues.items():
         capacity=integer(venue.get('capacity'),'capacity',1,1000); price=integer(venue.get('price_cents'),'price',0,10000000); activity=text(venue.get('activity'),'activity',100)
-        if capacity<len(people) or price>budget or any(prefs and activity not in prefs for _,_,_,prefs in windows):
-            exclusions.append({'venue_id':venue_id,'reason':'capacity, budget or activity mismatch'}); continue
+        reasons=[]
+        if capacity<len(people): reasons.append('insufficient capacity')
+        if price>budget: reasons.append('budget exceeded')
+        if any(prefs and activity not in prefs for _,_,_,prefs in windows): reasons.append('activity mismatch')
+        if reasons:
+            exclusions.append({'venue_id':venue_id,'reason':'; '.join(reasons),'reasons':reasons}); continue
         available=merge_spans([span(item) for item in rows(venue.get('open'),'open',100)])
         for _,_,intervals,_ in windows:
             available=merge_spans([(max(a,c),min(b,d)) for a,b in available for c,d in intervals if max(a,c)<min(b,d)])
@@ -32,10 +37,11 @@ def analyze(data):
                 display=start.astimezone(display_zone).isoformat()+' – '+finish.astimezone(display_zone).isoformat()+' ['+zone_name+']'
                 candidates.append({'display_time':display,'venue_id':venue_id,'activity':activity,'start':iso(start),'end':iso(finish),'available_until':iso(end),'price_cents':price,'participants':list(people)})
     candidates.sort(key=lambda item:(item['start'],item['price_cents'],item['venue_id']))
+    generated_stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Fitness Group Schedule//EN']
     for item in candidates:
         uid=hashlib.sha256(json.dumps(item,sort_keys=True).encode()).hexdigest()[:24]
-        ics.extend(['BEGIN:VEVENT','UID:'+uid+'@fitness.local','DTSTAMP:'+instant(item['start']).strftime('%Y%m%dT%H%M%SZ'),'DTSTART:'+instant(item['start']).strftime('%Y%m%dT%H%M%SZ'),'DTEND:'+instant(item['end']).strftime('%Y%m%dT%H%M%SZ'),'SUMMARY:Candidate exercise session','STATUS:TENTATIVE','END:VEVENT'])
+        ics.extend(['BEGIN:VEVENT','UID:'+uid+'@fitness.local','DTSTAMP:'+generated_stamp,'DTSTART:'+instant(item['start']).strftime('%Y%m%dT%H%M%SZ'),'DTEND:'+instant(item['end']).strftime('%Y%m%dT%H%M%SZ'),'SUMMARY:Candidate exercise session','STATUS:TENTATIVE','END:VEVENT'])
     ics.append('END:VCALENDAR')
     return {'candidates':candidates,'candidate_count':len(candidates),'display_timezone':zone_name,'excluded_venues':exclusions,'note':'答复时间直接引用 display_time；原始 start/end 为 UTC。所有时段都是待确认候选；工具不预订场馆、不向参与者发送消息。','_artifacts':[('candidate-sessions.ics','\r\n'.join(ics)+'\r\n','text/calendar')]}
 
