@@ -86,6 +86,7 @@ class Runtime:
         if candidate.stat().st_size>30*1024*1024: raise ValueError('input file exceeds 30 MiB')
         return candidate
     def process(self,raw,analyze):
+        created=[]
         try:
             if not isinstance(raw,str) or len(raw.encode('utf-8'))>1024*1024: raise ValueError('payload must be JSON text, maximum 1 MiB')
             data=json.loads(raw,parse_constant=lambda value: (_ for _ in ()).throw(ValueError('non-finite JSON number')))
@@ -100,23 +101,35 @@ class Runtime:
                     if data['use_example'] is not True: raise ValueError('use_example must be true')
                     source=self.package_root/'examples/request.json'; scope='bundled_example'
                 else: source=self.input_file(data['input_json_filename']); scope='provided_json_file'
-                encoded=source.read_text(encoding='utf-8-sig')
-                if len(encoded.encode('utf-8'))>1024*1024: raise ValueError('JSON input file exceeds 1 MiB')
-                data=obj(json.loads(encoded,parse_constant=lambda value: (_ for _ in ()).throw(ValueError('non-finite JSON number'))),'input JSON')
+                if source.stat().st_size>1024*1024: raise ValueError('JSON input file exceeds 1 MiB')
+                with source.open('rb') as stream: encoded=stream.read(1024*1024+1)
+                if len(encoded)>1024*1024: raise ValueError('JSON input file exceeds 1 MiB')
+                data=obj(json.loads(encoded.decode('utf-8-sig'),parse_constant=lambda value: (_ for _ in ()).throw(ValueError('non-finite JSON number'))),'input JSON')
             result=obj(analyze(data),'result')
             result['input_scope']=scope
             pending=result.pop('_artifacts',[]); result['artifacts']=[]
             if save:
+                used=set()
                 for filename,content,media in pending:
-                    if not re.fullmatch(r'[A-Za-z0-9_.-]{1,80}',filename): raise ValueError('invalid artifact filename')
-                    token=uuid.uuid4().hex; folder=self.root/'artifacts'/token; folder.mkdir(parents=True,exist_ok=False)
+                    if filename in ('.','..') or not re.fullmatch(r'[A-Za-z0-9_.-]{1,80}',filename): raise ValueError('invalid artifact filename')
+                    if filename in used: raise ValueError('duplicate artifact filename')
+                    used.add(filename)
                     encoded=content.encode('utf-8') if isinstance(content,str) else content
-                    (folder/filename).write_bytes(encoded)
+                    if not isinstance(encoded,bytes): raise ValueError('artifact content must be text or bytes')
+                    token=uuid.uuid4().hex; folder=self.root/'artifacts'/token; folder.mkdir(parents=True,exist_ok=False)
+                    destination=folder/filename; created.append((folder,destination))
+                    destination.write_bytes(encoded)
                     base=os.environ.get('FITNESS_PUBLIC_BASE','http://127.0.0.1:'+os.environ.get('FITNESS_PORT','8111')).rstrip('/')
                     result['artifacts'].append({'name':filename,'url':f'{base}/artifacts/{self.slug}/{token}/{filename}','media_type':media,'bytes':len(encoded)})
             result['status']='ok'
             return json.dumps(result,ensure_ascii=False,allow_nan=False)
-        except (ValueError,KeyError,TypeError,OverflowError) as error:
+        except (ValueError,KeyError,TypeError,OverflowError,OSError) as error:
+            # Only remove paths created by this call; never recurse through user data.
+            for folder,destination in reversed(created):
+                try:
+                    destination.unlink(missing_ok=True)
+                    folder.rmdir()
+                except OSError: pass
             return json.dumps({'status':'error','message':str(error)[:260]},ensure_ascii=False)
     async def artifact_response(self,request):
         from starlette.responses import FileResponse,JSONResponse

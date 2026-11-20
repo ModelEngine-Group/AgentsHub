@@ -1,4 +1,5 @@
 from runtime import *
+from pathlib import Path
 
 from datetime import timedelta
 from decimal import Decimal,ROUND_HALF_UP
@@ -22,10 +23,10 @@ def analyze(data):
             frozen.append((a,b))
         frozen=merge_spans(frozen); frozen_days=sum((b-a).days for a,b in frozen); expiry=base_expiry+timedelta(days=frozen_days if extend else 0)
         covered=[]; outside=[]
-        for date in visits:
-            eligible=start<=date<expiry and not any(a<=date<b for a,b in frozen)
-            if eligible and (capacity is None or len(covered)<capacity): covered.append(date.isoformat())
-            else: outside.append(date.isoformat())
+        for visit_date in visits:
+            eligible=start<=visit_date<expiry and not any(a<=visit_date<b for a,b in frozen)
+            if eligible and (capacity is None or len(covered)<capacity): covered.append(visit_date.isoformat())
+            else: outside.append(visit_date.isoformat())
         total=cost+len(outside)*paygo; per_visit=float((Decimal(total)/len(visits)).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)) if visits else None
         theoretical=None if paygo==0 else (cost+paygo-1)//paygo
         result.append({'plan_id':identity,'terms_source':source,'start':start.isoformat(),'expiry_exclusive':expiry.isoformat(),'frozen_days':frozen_days,'covered_visit_dates':covered,'paygo_visit_dates':outside,'covered_count':len(covered),'unconsumed_visits':max(0,capacity-len(covered)) if capacity is not None else None,'total_cost_cents':total,'cost_per_attended_visit_cents':per_visit,'break_even_visits_ignoring_validity':theoretical,'break_even_within_capacity':theoretical is not None and (capacity is None or theoretical<=capacity)})
