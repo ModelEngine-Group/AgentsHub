@@ -144,4 +144,3 @@ class SpecificReviewTests(unittest.TestCase):
         self.assertTrue(result['excluded_venues'])
         for venue in result['excluded_venues']:
             self.assertIn('budget exceeded',venue['reasons'])
-
