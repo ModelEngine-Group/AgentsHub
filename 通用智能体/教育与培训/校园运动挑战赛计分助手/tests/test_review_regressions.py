@@ -134,4 +134,3 @@ class SpecificReviewTests(unittest.TestCase):
         data['records']=[{'id':'dst','participant_id':data['participants'][0]['id'],'start':'2026-11-01T05:30:00Z','end':'2026-11-01T07:30:00Z','status':'completed'}]
         result=self.assert_ok(data)
         self.assertEqual(sum(row['unique_minutes'] for row in result['daily_ledger']),120)
-
