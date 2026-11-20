@@ -156,4 +156,3 @@ class SpecificReviewTests(unittest.TestCase):
         for rate in (0,-1,True,float('nan'),16):
             with self.assertRaisesRegex(ValueError,'sample_fps'):
                 decoder.extract('missing.mp4','missing.task','squat','left',rate)
-
