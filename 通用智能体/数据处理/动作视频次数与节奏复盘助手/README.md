@@ -41,3 +41,9 @@ https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_
 关键点模式用于透明的算法测试，points 是所选关节三个点的 x/y/visibility，并可提供 width/height。只有高—低—高完整周期计数，遮挡或采样空缺会重置。实际视频效果受视角、遮挡、镜头运动和采样率影响，须逐段人工复核时间标记。
 
 工具也支持 `{"use_example":true}` 运行包内虚构示例，并明确返回 input_scope=bundled_example；这不能代替使用者的实际数据。较长 JSON 可放到数据根目录下本助手的 inputs 文件夹，再传 `{"input_json_filename":"request.json"}`。文件大小最多1MiB；不接受目录逃逸，也不接受把输入来源选择器与内联业务字段混合。
+
+## 2026-11-20 审阅修订
+
+JSON 输入文件在读取前限制为 1 MiB；视频文件仍限制为 30 MiB。文件系统错误返回结构化 error，写入失败清理本次未完成产物。新增独立产物生成、下载、越界、载荷上限与 I/O 错误测试。工具 inputs 使用标准 JSON 字符串。
+下载链接面向打开结果的浏览器：默认 127.0.0.1 用于本机访问。容器访问 MCP 的 host.docker.internal 地址与浏览器下载地址用途不同；远程部署时必须设置 FITNESS_PUBLIC_BASE 为浏览器可访问的服务地址。
+视频模式的默认 max_gap_seconds 根据实际解码采样间隔确定；显式间隔小于采样间隔时返回可纠正错误。关键点模式保留使用者的间隔阈值，并在间隔导致状态重置时返回 gap_reset_count 与 warnings。

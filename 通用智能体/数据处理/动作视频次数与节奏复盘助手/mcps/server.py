@@ -5,6 +5,13 @@ import importlib.util
 import math
 import os
 
+def load_video(data,exercise,side):
+    file=runtime.input_file(data.get('video_filename')); model=os.environ.get('FITNESS_POSE_MODEL','')
+    if file.suffix.lower() not in ('.mp4','.mov','.avi','.webm'): raise ValueError('unsupported video extension')
+    spec=importlib.util.spec_from_file_location('fitness_pose_extract',Path(__file__).with_name('pose_extract.py'))
+    extractor=importlib.util.module_from_spec(spec); spec.loader.exec_module(extractor)
+    return extractor.extract(file,model,exercise,side,number(data.get('sample_fps',5),'sample fps',1,15))
+
 def analyze(data):
     mode=data.get('mode','keypoints'); exercise=data.get('exercise','squat'); side=data.get('side','left')
     if exercise not in ('squat','curl') or side not in ('left','right'): raise ValueError('supported exercise: squat/curl; side: left/right')
@@ -12,18 +19,22 @@ def analyze(data):
     if low>=high: raise ValueError('angle thresholds inverted')
     phase=number(data.get('min_phase_seconds',.2),'minimum phase seconds',0,5); gap=number(data.get('max_gap_seconds',.6),'max gap seconds',.05,5); confidence=number(data.get('minimum_visibility',.5),'visibility',0,1)
     if mode=='video':
-        file=runtime.input_file(data.get('video_filename')); model=os.environ.get('FITNESS_POSE_MODEL','')
-        if file.suffix.lower() not in ('.mp4','.mov','.avi','.webm'): raise ValueError('unsupported video extension')
-        spec=importlib.util.spec_from_file_location('fitness_pose_extract',Path(__file__).with_name('pose_extract.py')); extractor=importlib.util.module_from_spec(spec); spec.loader.exec_module(extractor)
-        frames,source=extractor.extract(file,model,exercise,side,number(data.get('sample_fps',5),'sample fps',1,15))
-        source['mode']='video'
+        frames,source=load_video(data,exercise,side); source['mode']='video'
+        intervals=[number(b.get('time_seconds'),'frame time',0,120)-number(a.get('time_seconds'),'frame time',0,120) for a,b in zip(frames,frames[1:])]
+        actual_interval=max(intervals,default=0)
+        if 'max_gap_seconds' not in data:
+            gap=number(max(.6,actual_interval+1e-6),'automatic video max gap',.05,5)
+        elif actual_interval>gap+1e-6:
+            raise ValueError('max_gap_seconds is smaller than actual video sampling interval; increase it or use a higher frame rate')
     elif mode=='keypoints': frames=rows(data.get('frames'),'frames',10000); source={'mode':'keypoint_fixture','note':'使用者提供的关键点样例，不是实际视频识别结果。'}
     else: raise ValueError('mode must be video or keypoints')
+    gap_resets=0
     cycles=[]; diagnostics=[]; previous=None; state='need_high'; held_label=None; held_start=None; cycle_start=None; down_time=None
     for frame in frames:
         obj(frame); stamp=number(frame.get('time_seconds'),'frame time',0,120)
         if previous is not None and stamp<=previous: raise ValueError('frame timestamps must strictly increase')
-        if previous is not None and stamp-previous>gap:
+        if previous is not None and stamp-previous>gap+1e-6:
+            gap_resets+=1
             state='need_high'; held_label=None; held_start=None; cycle_start=None; down_time=None
         previous=stamp; points=rows(frame.get('points',[]),'points',3); angle=None
         width=number(frame.get('width',1),'width',1,10000); height=number(frame.get('height',1),'height',1,10000)
@@ -47,7 +58,7 @@ def analyze(data):
                 state='need_low'; cycle_start=held_start; down_time=None
         elif label=='low' and state=='need_low': state='need_return'; down_time=held_start
     values=[row['cycle_seconds'] for row in cycles]
-    return {'source':source,'exercise':exercise,'side':side,'rep_count':len(cycles),'cycles':cycles,'mean_cycle_seconds':round(sum(values)/len(values),6) if values else None,'sample_count':len(frames),'valid_angle_samples':sum(row['angle_degrees'] is not None for row in diagnostics),'thresholds':{'low_angle':low,'high_angle':high,'minimum_phase_seconds':phase,'maximum_gap_seconds':gap,'minimum_visibility':confidence},'note':'只统计所选侧的二维角度周期；阈值是软件计数参数，遮挡或缺点会中断周期，不评价动作标准、伤病或康复。','_artifacts':[('movement-cycles.csv',csv_text(cycles,['start_seconds','low_seconds','end_seconds','cycle_seconds']),'text/csv'),('angle-timeline.csv',csv_text(diagnostics,['time_seconds','angle_degrees']),'text/csv')]}
+    return {'source':source,'exercise':exercise,'side':side,'rep_count':len(cycles),'cycles':cycles,'mean_cycle_seconds':round(sum(values)/len(values),6) if values else None,'sample_count':len(frames),'gap_reset_count':gap_resets,'warnings':(['Sampling gaps interrupted counting; zero counted cycles does not establish absence of movement.'] if gap_resets else []),'valid_angle_samples':sum(row['angle_degrees'] is not None for row in diagnostics),'thresholds':{'low_angle':low,'high_angle':high,'minimum_phase_seconds':phase,'maximum_gap_seconds':gap,'minimum_visibility':confidence},'note':'只统计所选侧的二维角度周期；阈值是软件计数参数，遮挡或缺点会中断周期，不评价动作标准、伤病或康复。','_artifacts':[('movement-cycles.csv',csv_text(cycles,['start_seconds','low_seconds','end_seconds','cycle_seconds']),'text/csv'),('angle-timeline.csv',csv_text(diagnostics,['time_seconds','angle_degrees']),'text/csv')]}
 
 runtime = Runtime('fitness-video-rhythm', '动作视频次数与节奏复盘助手', 'fitness_video_rhythm', '本地提取视频姿态点或读取明确标注的关键点样例，按角度滞回与持续时间统计完整动作周期。', package_root=Path(__file__).resolve().parents[1])
 

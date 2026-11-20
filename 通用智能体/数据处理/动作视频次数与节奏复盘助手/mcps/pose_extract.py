@@ -5,6 +5,8 @@ from pathlib import Path
 import sys
 
 def extract(video,model,exercise,side,sample_fps):
+    if isinstance(sample_fps,bool) or not isinstance(sample_fps,(int,float)) or not math.isfinite(sample_fps) or not 1<=sample_fps<=15:
+        raise ValueError('sample_fps must be a finite number from 1 to 15')
     dependencies=os.environ.get('FITNESS_VIDEO_DEPENDENCIES')
     if dependencies and dependencies not in sys.path: sys.path.insert(0,dependencies)
     try:
@@ -49,4 +51,4 @@ def extract(video,model,exercise,side,sample_fps):
                 results.append({'time_seconds':round(seconds,6),'width':width,'height':height,'points':points})
     finally: capture.release()
     if not results: raise ValueError('video had no decodable frames')
-    return results,{'engine':'MediaPipe Pose Landmarker','model':model.name,'sample_fps':sample_fps,'decoded_frames':position,'timestamp_basis':'decoded frame index / container FPS','sampled_frames':len(results)}
+    return results,{'engine':'MediaPipe Pose Landmarker','model':model.name,'sample_fps':sample_fps,'container_fps':fps,'decoded_frames':position,'timestamp_basis':'decoded frame index / container FPS','sampled_frames':len(results)}
