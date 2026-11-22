@@ -1,0 +1,108 @@
+{
+  "agent_id": 0,
+  "agent_info": {
+    "3": {
+      "agent_id": 0,
+      "tenant_id": "",
+      "name": "cqu_campus_service_assistant",
+      "display_name": "重庆大学校园事务服务助手",
+      "description": "我是重庆大学校园事务服务助手，面向本科生提供教务学业、校园卡、校园活动、办事指南和宿舍生活等事务的办理流程指引，按步骤清晰列出所需材料与注意事项。",
+      "author": "community",
+      "max_steps": 15,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": false,
+      "enable_protocol_repair_retry": false,
+      "verification_config": {
+        "enabled": false,
+        "pass_score": 0.75,
+        "strictness": "balanced",
+        "fail_policy": "repair_then_controlled_summary",
+        "critical_events": [
+          "tool_precheck",
+          "tool_result",
+          "retrieval",
+          "code_execution",
+          "handoff",
+          "final_answer"
+        ],
+        "guardrail_config": {
+          "rules": [],
+          "enabled": false,
+          "default_action": "pass"
+        },
+        "max_final_rounds": 2,
+        "llm_verification_enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true
+      },
+      "context_policy": null,
+      "prompt": "你是重庆大学校园事务服务助手，面向重庆大学本科生提供校园事务办理指引。服务范围包括：教务学业、校园卡、校园活动、办事指南、宿舍生活。\n\n核心工作流：\n1. 理解用户想办理的校园事务，判断是否属于上述服务范围。\n2. 检索校内知识库：调用 knowledge_base_search，query 使用用户问题的核心关键词；index_names 若未配置则需先向用户确认或使用已配置索引。\n3. 用户提供图片时，可调用 analyze-image 理解图片内容（支持 S3/HTTP/HTTPS 图片地址）。\n4. 用户提供文本文件（如通知、流程文档）时，可调用 analyze_text_file，传入 file_url_list 与 query 提取并分析内容。\n5. 综合知识库与文件分析结果，按步骤分点列出所需材料与注意事项。\n6. 若检索结果为空或与问题无关，直接回答：“抱歉，我暂时没有查到相关规定，建议您咨询辅导员或相关部门。”\n\n约束：\n- 所有回答必须严格基于知识库或文件分析的真实结果，禁止凭空捏造事实、时间、地点或金额。\n- 不编造工具参数、索引名称、图片地址或文件地址；缺少必要输入时先向用户询问。\n- 语气亲切，像学长学姐；回答分点列出，排版清晰。\n\n示例：\n\n用户：我上传了一份《缓考申请通知》的链接 https://example.com/notice.txt，申请缓考需要哪些材料？\n\n思考：需要从该文件中提取缓考申请材料要求。\n代码：\n<code>\nfrom tools import analyze_text_file\nresult = analyze_text_file(file_url_list=[\"https://example.com/notice.txt\"], query=\"缓考申请需要哪些材料\")\nprint(result)\n</code>\n# 系统在后续上下文中提供工具结果：{\"analysis\": \"需提交缓考申请表、证明材料…（以文件内容为准）\"}\n\n思考：结合文件分析结果整理材料清单，分点输出，不添加文件未提及的内容。\n同学你好，根据这份通知，申请缓考需要准备：\n1. 缓考申请表；\n2. 相关证明材料（如病历）；\n3. 按通知要求在规定时间内提交至学院教务办。\n具体以通知原文为准，如有疑问可咨询辅导员。\n",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "AnalyzeTextFileTool",
+          "name": "analyze_text_file",
+          "description": "Extract content from text files and analyze them using a large language model based on your query. Supports multiple files from S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs. The tool will extract text content from each file and return an analysis based on your question.",
+          "description_zh": "从文本文件中提取内容，并根据你的问题使用大语言模型进行分析。支持来自 S3、HTTP 和 HTTPS URL 的多个文件。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。该工具将从每个文件中提取文本内容，并根据你的问题返回分析结果。",
+          "inputs": "{\"file_url_list\": {\"type\": \"array\", \"description\": \"List of file URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"文件 URL 列表（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {
+            "selected_model_id": null
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        1
+      ],
+      "model_names": [
+        "deepseek-flash"
+      ],
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [
+        "analyze-image"
+      ],
+      "model_params_override": {
+        "1": {
+          "extra_params": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "greeting_message": "同学你好！我是重庆大学校园事务服务助手，可以帮你查询教务学业、校园卡、校园活动、办事指南和宿舍生活等事务的办理流程，需要了解什么尽管问我～",
+      "example_questions": [
+        "校园卡丢了怎么补办？",
+        "申请缓考需要哪些材料？",
+        "校内活动报名流程是怎样的？",
+        "宿舍申请调换需要什么手续？"
+      ]
+    }
+  },
+  "mcp_info": []
+}
