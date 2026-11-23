@@ -1,0 +1,15 @@
+diff --git a/src/api/user.py b/src/api/user.py
+index 3f1a2b4..9c8d7e6 100644
+--- a/src/api/user.py
++++ b/src/api/user.py
+@@ -1,6 +1,8 @@
+ import sqlite3
+ from flask import request, jsonify
+ 
+ def get_user(db):
+-    uid = request.args.get("id")
+-    return db.execute("SELECT * FROM users WHERE id=?", (uid,)).fetchone()
++    uid = request.args.get("id")
++    sql = f"SELECT * FROM users WHERE id={uid}"
++    row = db.execute(sql).fetchone()
++    return jsonify(dict(row))

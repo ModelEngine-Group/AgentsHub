@@ -1,0 +1,141 @@
+{
+  "version": "1.0",
+  "notes": "5 个最小验收用例。行号以 review_diff.py --mode parse 的输出为准；命中判定允许行号 ±1、级别相差 1 级以内。",
+  "cases": [
+    {
+      "id": "01_sql_injection",
+      "diff": "cases/01_sql_injection.diff",
+      "language": "python",
+      "expected": [
+        {
+          "file": "src/api/user.py",
+          "line": 6,
+          "severity": "P1",
+          "category": "security",
+          "must_mention": ["SQL", "注入", "参数化"]
+        }
+      ],
+      "optional": [
+        {
+          "file": "src/api/user.py",
+          "line": 7,
+          "severity": "P2",
+          "category": "security",
+          "note": "execute(sql) 本身不是问题，指出可作为补充但不计召回"
+        }
+      ]
+    },
+    {
+      "id": "02_mutable_default",
+      "diff": "cases/02_mutable_default.diff",
+      "language": "python",
+      "expected": [
+        {
+          "file": "src/cache.py",
+          "line": 3,
+          "severity": "P1",
+          "category": "correctness",
+          "must_mention": ["默认参数", "共享"]
+        },
+        {
+          "file": "src/cache.py",
+          "line": 9,
+          "severity": "P2",
+          "category": "correctness",
+          "must_mention": ["默认参数", "共享"]
+        }
+      ],
+      "optional": []
+    },
+    {
+      "id": "03_clean",
+      "diff": "cases/03_clean.diff",
+      "language": "python",
+      "expected": [],
+      "optional": [
+        {
+          "file": "src/math_utils.py",
+          "line": 4,
+          "severity": "P3",
+          "category": "test",
+          "note": "缺测试，可作为提示，但不得升为 P1"
+        }
+      ],
+      "expect_verdict": "approve"
+    },
+    {
+      "id": "04_secret_and_debug",
+      "diff": "cases/04_secret_and_debug.diff",
+      "language": "python",
+      "expected": [
+        {
+          "file": "config/settings.py",
+          "line": 4,
+          "severity": "P0",
+          "category": "security",
+          "must_mention": ["AWS", "密钥", "硬编码"]
+        },
+        {
+          "file": "config/settings.py",
+          "line": 5,
+          "severity": "P1",
+          "category": "security",
+          "must_mention": ["口令", "密码", "硬编码"]
+        }
+      ],
+      "optional": [
+        {
+          "file": "config/settings.py",
+          "line": 3,
+          "severity": "P2",
+          "category": "security",
+          "note": "DEBUG=True"
+        },
+        {
+          "file": "config/settings.py",
+          "line": 8,
+          "severity": "P1",
+          "category": "security",
+          "note": "print 输出 DB_PASSWORD，属于日志泄露口令，可升为 P1"
+        }
+      ]
+    },
+    {
+      "id": "05_bare_except_sql",
+      "diff": "cases/05_bare_except_sql.diff",
+      "language": "python",
+      "expected": [
+        {
+          "file": "src/jobs/cleanup.py",
+          "line": 11,
+          "severity": "P2",
+          "category": "correctness",
+          "must_mention": ["except", "异常"]
+        },
+        {
+          "file": "src/jobs/cleanup.py",
+          "line": 16,
+          "severity": "P1",
+          "category": "security",
+          "must_mention": ["SQL", "拼接", "注入"]
+        }
+      ],
+      "optional": [
+        {
+          "file": "src/jobs/cleanup.py",
+          "line": 15,
+          "severity": "P3",
+          "category": "style",
+          "note": "注释掉的代码"
+        },
+        {
+          "file": "src/jobs/cleanup.py",
+          "line": 17,
+          "severity": "P3",
+          "category": "maintainability",
+          "note": "TODO"
+        }
+      ]
+    }
+  ]
+}
