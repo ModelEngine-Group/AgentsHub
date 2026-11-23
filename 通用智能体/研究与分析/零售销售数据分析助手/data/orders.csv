@@ -1,0 +1,14 @@
+order_id,order_date,category,amount_cny,status
+R001,2026-10-28,食品,180.00,completed
+R002,2026-11-01,数码,1000.00,completed
+R003,2026-11-03,食品,300.50,completed
+R004,2026-11-04,家居,450.00,completed
+R005,2026-11-07,数码,200.00,refunded
+R006,2026-11-08,数码,1000.00,cancelled
+R007,2026-11-09,食品,150.00,completed
+R008,2026-11-11,家居,90.00,refunded
+R009,2026-11-13,食品,50.25,refunded
+R010,2026-11-20,数码,420.00,completed
+R011,2026-11-27,家居,120.50,completed
+R012,2026-11-30,服饰,500.00,cancelled
+R013,2026-12-01,家居,299.00,completed
