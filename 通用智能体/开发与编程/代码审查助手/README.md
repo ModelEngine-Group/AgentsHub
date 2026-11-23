@@ -3,6 +3,8 @@
 面向 Python 团队的代码审查智能体：读取 diff（粘贴、patch 文件或 GitHub PR），先用脚本算出真实行号并做确定性扫描，再结合团队规范逐行判断，最后输出**可定位、可验证、可回帖**的审查意见。
 
 > 设计原则：**先确定性，后生成**。行号、密钥、危险调用交给脚本；语义判断交给模型；团队标准放知识库。
+>
+> 作者：张瑞淇（学号 20240264）
 
 ## 功能特性
 
@@ -149,6 +151,16 @@ ZIP 内结构为 `code-review/SKILL.md` + `scripts/` + `references/` + `config/`
 
 `eval/` 提供 5 个最小用例与标注，覆盖：SQL 注入、可变默认参数、无问题、密钥+调试、裸 except+SQL 拼接。
 
+在本机 Nexent 实例（`deepseek-chat`，V3）上实测：
+
+| 用例 | 结果 |
+|---|---|
+| 01_sql_injection | `request_changes`：P0 1 条、P1 1 条 |
+| 02_mutable_default | `request_changes`：P1 2 条、P2 1 条 |
+| 03_clean | `approve`：0 条，不硬凑 |
+| 04_secret_and_debug | `request_changes`：P0 1 条、P1 2 条、P2 1 条 |
+| 05_bare_except_sql | `request_changes`：P1 1 条、P2 1 条 |
+
 | 指标 | 目标 |
 |---|---|
 | 召回率 | ≥ 70% |
@@ -158,7 +170,7 @@ ZIP 内结构为 `code-review/SKILL.md` + `scripts/` + `references/` + `config/`
 
 评分方法见 `eval/rubric.md`。
 
-本地已用脚本验证：5 个用例的 parse/scan/verify 全部通过，密钥输出已打码，非法行号能被拦截。
+本地已用脚本验证：5 个用例的 parse/scan/verify 全部通过，密钥输出已打码，非法行号能被拦截。GitHub MCP（`github-pr`）已在 Nexent 实例接入 4 个工具，并用公开 PR 做过只读验证；仓库内的 `agent.json` 默认不绑定 MCP，按 `mcps/README.md` 配置后再勾选即可。
 
 ## 设计取舍
 
