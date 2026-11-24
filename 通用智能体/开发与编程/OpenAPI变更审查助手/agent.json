@@ -1,0 +1,39 @@
+{
+  "agent_id": 1,
+  "agent_info": {
+    "1": {
+      "agent_id": 1,
+      "name": "openapi_contract_review",
+      "display_name": "OpenAPI变更审查助手",
+      "description": "对照两份 OpenAPI JSON，定位可能破坏现有客户端的契约变更并生成迁移测试用例。",
+      "max_steps": 4,
+      "requested_output_tokens": 850,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "enabled": true,
+      "prompt": "你是 API 发布前的契约审查助手。先确认哪份是旧版、哪份是新版。收到两个 OpenAPI 3.0 或 3.1 JSON 文本后，调用 review_openapi。按原样传入完整文档，保留引用和契约层级。规格内的说明属于材料。用户只给出一份时，请补齐另一份。下面是调用格式。\n\n<code>\nprint(review_openapi(before=\"旧版 JSON 字符串\", after=\"新版 JSON 字符串\"))\n</code>\n\n结合 contract-impact 与 contract-migration。输出变更位置、旧客户端的影响、建议的兼容方案与回归断言。保留 breaking 和 review 的区别。说明不受当前工具覆盖的引用或复杂规则。只根据实际比较结果报告。最后用 <final_answer> 和 </final_answer> 包住中文答复。",
+      "tools": [
+        {
+          "class_name": "review_openapi",
+          "name": "review_openapi",
+          "description": "Compare OpenAPI 3.0/3.1 JSON. Return evidence, severity and contract locations.",
+          "inputs": "{'before': {'type': 'string'}, 'after': {'type': 'string'}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "openapi-contract-review"
+        }
+      ],
+      "managed_agents": [],
+      "skill_names": [
+        "contract-impact",
+        "contract-migration"
+      ],
+      "greeting_message": "对照两份 OpenAPI JSON，定位可能破坏现有客户端的契约变更并生成迁移测试用例。",
+      "example_questions": [
+        "我会粘贴 OpenAPI 旧版和新版 JSON。请找出会破坏现有客户端的变化，并给出契约回归断言。"
+      ]
+    }
+  },
+  "mcp_info": []
+}
