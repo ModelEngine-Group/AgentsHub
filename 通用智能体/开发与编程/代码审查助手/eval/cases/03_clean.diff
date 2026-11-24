@@ -1,0 +1,14 @@
+diff --git a/src/math_utils.py b/src/math_utils.py
+new file mode 100644
+index 0000000..3333333
+--- /dev/null
++++ b/src/math_utils.py
+@@ -0,0 +1,9 @@
++from typing import Iterable
++
++
++def mean(values: Iterable[float]) -> float:
++    items = list(values)
++    if not items:
++        raise ValueError("mean() requires at least one value")
++    return sum(items) / len(items)

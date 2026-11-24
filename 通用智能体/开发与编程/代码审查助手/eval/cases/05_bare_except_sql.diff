@@ -1,0 +1,17 @@
+diff --git a/src/jobs/cleanup.py b/src/jobs/cleanup.py
+index 6666666..7777777 100644
+--- a/src/jobs/cleanup.py
++++ b/src/jobs/cleanup.py
+@@ -8,7 +8,10 @@ import os
+ def cleanup(path):
+     try:
+         os.remove(path)
+-    except FileNotFoundError:
+-        return False
++    except:
++        return False
++
++def purge(table, conn):
++    # conn.execute("DELETE FROM " + table)
++    sql = "DELETE FROM " + table
++    conn.execute(sql)  # TODO: use params

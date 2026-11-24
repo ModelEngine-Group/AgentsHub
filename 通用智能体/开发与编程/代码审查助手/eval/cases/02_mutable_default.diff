@@ -1,0 +1,17 @@
+diff --git a/src/cache.py b/src/cache.py
+index 1111111..2222222 100644
+--- a/src/cache.py
++++ b/src/cache.py
+@@ -1,4 +1,10 @@
+ import time
+ 
+-def get(key, store):
+-    return store.get(key)
++def remember(key, value, store={}):
++    if key in store:
++        return store[key]
++    store[key] = value
++    return value
++
++def clear(store={}):
++    store.clear()

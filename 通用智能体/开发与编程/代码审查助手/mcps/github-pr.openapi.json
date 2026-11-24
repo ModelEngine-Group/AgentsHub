@@ -1,0 +1,422 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GitHub Pull Request Mini API",
+    "version": "1.0.0",
+    "description": "代码审查助手所需的 4 个 GitHub REST 接口，可通过 Nexent 的「API 转 MCP」直接变成工具，无需自建 MCP Server。鉴权使用 Fine-grained PAT（Bearer）。"
+  },
+  "servers": [
+    {
+      "url": "https://api.github.com"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "GitHub Fine-grained Personal Access Token"
+      }
+    },
+    "parameters": {
+      "owner": {
+        "name": "owner",
+        "in": "path",
+        "required": true,
+        "description": "仓库所有者，例如 ModelEngine-Group",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "repo": {
+        "name": "repo",
+        "in": "path",
+        "required": true,
+        "description": "仓库名，例如 nexent",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "pull_number": {
+        "name": "pull_number",
+        "in": "path",
+        "required": true,
+        "description": "Pull Request 编号",
+        "schema": {
+          "type": "integer"
+        }
+      }
+    },
+    "schemas": {
+      "PullRequest": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          },
+          "html_url": {
+            "type": "string"
+          },
+          "changed_files": {
+            "type": "integer"
+          },
+          "additions": {
+            "type": "integer"
+          },
+          "deletions": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "login": {
+                "type": "string"
+              }
+            }
+          },
+          "head": {
+            "type": "object",
+            "properties": {
+              "sha": {
+                "type": "string"
+              },
+              "ref": {
+                "type": "string"
+              }
+            }
+          },
+          "base": {
+            "type": "object",
+            "properties": {
+              "sha": {
+                "type": "string"
+              },
+              "ref": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "PullRequestFile": {
+        "type": "object",
+        "properties": {
+          "sha": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "added / modified / removed / renamed"
+          },
+          "additions": {
+            "type": "integer"
+          },
+          "deletions": {
+            "type": "integer"
+          },
+          "changes": {
+            "type": "integer"
+          },
+          "patch": {
+            "type": "string",
+            "description": "unified diff 片段；大文件可能为空"
+          }
+        }
+      },
+      "ContentFile": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "encoding": {
+            "type": "string",
+            "description": "通常为 base64"
+          },
+          "content": {
+            "type": "string",
+            "description": "base64 编码的文件内容"
+          }
+        }
+      },
+      "ReviewComment": {
+        "type": "object",
+        "required": [
+          "path",
+          "body"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "文件路径，必须与 diff 中的路径一致"
+          },
+          "line": {
+            "type": "integer",
+            "description": "RIGHT 侧行号；必须是 diff 中新增或上下文行"
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "RIGHT"
+            ],
+            "default": "RIGHT"
+          },
+          "start_line": {
+            "type": "integer",
+            "description": "多行评论的起始行"
+          },
+          "start_side": {
+            "type": "string",
+            "enum": [
+              "RIGHT"
+            ]
+          },
+          "body": {
+            "type": "string",
+            "description": "评论正文，建议包含级别、证据、影响、建议"
+          }
+        }
+      },
+      "ReviewRequest": {
+        "type": "object",
+        "required": [
+          "event"
+        ],
+        "properties": {
+          "commit_id": {
+            "type": "string",
+            "description": "可选，默认使用 PR 最新的 head sha"
+          },
+          "body": {
+            "type": "string",
+            "description": "审查总结"
+          },
+          "event": {
+            "type": "string",
+            "enum": [
+              "COMMENT",
+              "APPROVE",
+              "REQUEST_CHANGES"
+            ],
+            "default": "COMMENT",
+            "description": "默认 COMMENT；不要用 REQUEST_CHANGES 阻塞合并，除非用户明确要求"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReviewComment"
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/repos/{owner}/{repo}/pulls/{pull_number}": {
+      "get": {
+        "operationId": "github_get_pr",
+        "summary": "获取 Pull Request 基本信息",
+        "description": "返回 PR 的标题、描述、状态、head/base 分支与 commit sha。审查开始时先调用，用于确认审查范围和拿 commit_id。",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/owner"
+          },
+          {
+            "$ref": "#/components/parameters/repo"
+          },
+          {
+            "$ref": "#/components/parameters/pull_number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PR 信息",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PullRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/repos/{owner}/{repo}/pulls/{pull_number}/files": {
+      "get": {
+        "operationId": "github_list_pr_files",
+        "summary": "列出 PR 变更文件与 patch",
+        "description": "返回每个变更文件的 filename、status、additions、deletions 和 patch（unified diff 片段）。把 patch 按文件拼起来即可得到完整 diff。单页最多 100 个文件，超过时翻页。",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/owner"
+          },
+          {
+            "$ref": "#/components/parameters/repo"
+          },
+          {
+            "$ref": "#/components/parameters/pull_number"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "required": false,
+            "description": "每页数量，最大 100",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "页码，从 1 开始",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "变更文件列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PullRequestFile"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/repos/{owner}/{repo}/contents/{path}": {
+      "get": {
+        "operationId": "github_get_file_content",
+        "summary": "读取仓库文件内容",
+        "description": "按 ref 读取单个文件的 base64 内容，用于补充 diff 之外的上下文。path 含斜杠时需 URL 编码；若当前 MCP 网关不支持，改用官方 GitHub MCP 或让用户粘贴文件。",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/owner"
+          },
+          {
+            "$ref": "#/components/parameters/repo"
+          },
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "description": "文件路径，例如 src/api/user.py",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ref",
+            "in": "query",
+            "required": false,
+            "description": "分支、tag 或 commit sha；默认仓库默认分支",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "文件内容",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentFile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/repos/{owner}/{repo}/pulls/{pull_number}/reviews": {
+      "post": {
+        "operationId": "github_create_review",
+        "summary": "提交 PR 审查（可带逐行评论）",
+        "description": "创建一次 review。comments 中的 line 必须是 diff 的 RIGHT 侧行号。默认 event=COMMENT，不阻塞合并。",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/owner"
+          },
+          {
+            "$ref": "#/components/parameters/repo"
+          },
+          {
+            "$ref": "#/components/parameters/pull_number"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "创建成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "state": {
+                      "type": "string"
+                    },
+                    "html_url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
