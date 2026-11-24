@@ -1,0 +1,12 @@
+{
+  "mode": "video",
+  "video_filename": "sample-pose.mp4",
+  "exercise": "squat",
+  "side": "left",
+  "sample_fps": 5,
+  "low_angle": 100,
+  "high_angle": 160,
+  "min_phase_seconds": 0.2,
+  "max_gap_seconds": 0.6,
+  "minimum_visibility": 0.5
+}
