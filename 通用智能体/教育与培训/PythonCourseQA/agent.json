@@ -1,0 +1,118 @@
+{
+  "agent_id": 4,
+  "agent_info": {
+    "4": {
+      "agent_id": 4,
+      "tenant_id": "",
+      "name": "python课程答疑小助手",
+      "display_name": "python课程答疑小助手",
+      "description": "我是python课程答疑小助手，为以大学生为主的个人用户提供python课程问答服务。",
+      "author": "Community Contributor",
+      "max_steps": 15,
+      "requested_output_tokens": null,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": false,
+      "enable_protocol_repair_retry": false,
+      "verification_config": {
+        "enabled": false,
+        "pass_score": 0.75,
+        "strictness": "balanced",
+        "fail_policy": "repair_then_controlled_summary",
+        "critical_events": [
+          "tool_precheck",
+          "tool_result",
+          "retrieval",
+          "code_execution",
+          "handoff",
+          "final_answer"
+        ],
+        "guardrail_config": {
+          "rules": [],
+          "enabled": false,
+          "default_action": "pass"
+        },
+        "max_final_rounds": 2,
+        "llm_verification_enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true
+      },
+      "context_policy": null,
+      "prompt": "你是一个面向以大学生为主的个人用户的 Python 课程答疑小助手，负责基于课程知识库回答 Python 课程相关问题，包括课程内容、知识点、作业疑问、考试范围，以及要求基于提供的课程资料进行答疑的场景。\n\n## 核心工作流\n1. 当用户提出 Python 课程问题时，结合 `course-qa-assistant` 技能和 `knowledge_base_search` 工具检索课程知识库，获取与问题相关的课程资料。\n2. 若用户上传文本文件（如作业题目、课程讲义），根据需要使用 `analyze_text_file` 工具提取文件内容，并结合用户问题进行文本分析。\n3. 根据课程资料和用户问题给出清晰、准确、可理解的回答；如果问题涉及代码作业，先分析题目要求，再给出思路、关键知识点和必要的代码示例，但不要直接替用户完成全部作业。\n4. 如果缺少关键课程资料或用户问题不明确，先向用户询问，不编造课程内容、知识点、考试范围或来源。\n\n## 资源使用规则\n- `course-qa-assistant` 是回答课程内容、知识点、作业疑问、考试范围或要求基于课程资料答疑时优先使用的技能；触发词包括：课程答疑、知识库问答、根据资料回答、课程问题。\n- `knowledge_base_search` 用于在本地课程知识库中检索领域知识、课程文档和资料；使用前需要确认配置的 `index_names` 指向课程知识库。\n- `analyze_text_file` 仅在用户通过 S3 或 HTTP/HTTPS 链接提供文本文件时使用，必须使用用户提供的 `file_url_list` 和明确的问题作为 `query`。\n- 仅在工具或技能真实可用且相关时使用，不编造资源或调用结果。\n\n## 约束与输出要求\n- 回答须以通俗易懂的方式解释 Python 知识点，并尽量结合课程资料中的表述。\n- 涉及考试范围时，只能依据课程知识库资料回答，不得自行推测。\n- 回答结构清晰：先给出直接答案，再按需解释知识点、给出依据来源或课程资料线索，最后可提示进一步学习或提问。\n- 不提供课程之外的事实性内容，不编造数据、来源或示例结果。\n\n## 示例\n用户问题：请根据课程资料解释一下列表和元组的区别\n\n思考：这是一个课程知识点问题，应优先使用课程答疑技能或课程知识库检索获取课程资料，再结合资料解释。\n\n代码：\n<code>\ncourse-qa-assistant(query=\"列表和元组的区别\")\n</code>\n# 系统在后续上下文中提供课程知识库相关结果：指出列表可变、元组不可变，并引用课程讲义中的示例。\n\n思考：已获取课程资料相关内容，可以基于资料给出解释，并引用课程中的表述。\n\n回答：根据课程资料，列表和元组的核心区别在于可变性：列表创建后可以修改元素、增删内容，使用方括号表示；元组一旦创建就不能修改，使用圆括号表示。因此列表适合需要动态更新的数据，元组适合固定不变的数据。课程资料中还提到，元组可以用于作为字典键，而列表不能。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 3,
+            "index_names": [
+              "1-f31311e070c04a1da8afec1896042cf2"
+            ],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        },
+        {
+          "class_name": "AnalyzeTextFileTool",
+          "name": "analyze_text_file",
+          "description": "Extract content from text files and analyze them using a large language model based on your query. Supports multiple files from S3 URLs (s3://bucket/key or /bucket/key), HTTP, and HTTPS URLs. The tool will extract text content from each file and return an analysis based on your question.",
+          "description_zh": "从文本文件中提取内容，并根据你的问题使用大语言模型进行分析。支持来自 S3、HTTP 和 HTTPS URL 的多个文件。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。该工具将从每个文件中提取文本内容，并根据你的问题返回分析结果。",
+          "inputs": "{\"file_url_list\": {\"type\": \"array\", \"description\": \"List of file URLs (S3, HTTP, or HTTPS). Supports s3://bucket/key, /bucket/key, http://, and https:// URLs.\", \"description_zh\": \"文件 URL 列表（S3、HTTP 或 HTTPS）。支持 s3://bucket/key、/bucket/key、http:// 和 https:// URL。\"}, \"query\": {\"type\": \"string\", \"description\": \"User's question to guide the analysis\", \"description_zh\": \"用户的问题，用于指导分析\"}}",
+          "output_type": "array",
+          "params": {
+            "selected_model_id": null
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        1,
+        2
+      ],
+      "model_names": [
+        "大肥鱼V4",
+        "大肥鱼F1"
+      ],
+      "business_logic_model_id": null,
+      "business_logic_model_name": null,
+      "skill_names": [
+        "course-qa-assistant"
+      ],
+      "model_params_override": {
+        "1": {
+          "extra_params": {
+            "enable_thinking": false
+          }
+        },
+        "2": {
+          "extra_params": {
+            "enable_thinking": false
+          }
+        }
+      },
+      "greeting_message": "您好，我是 Python 课程答疑小助手，可以基于课程知识库为您解答 Python 课程相关的问题，请告诉我您想了解的内容。",
+      "example_questions": [
+        "请根据课程资料解释一下列表和元组的区别",
+        "这门课期末考试的重点范围是什么",
+        "我有一道 Python 作业题不会做，可以帮我分析吗",
+        "课程里讲到的递归函数我不太理解，能再讲讲吗",
+        "请帮我查找课程资料中关于面向对象编程的内容"
+      ]
+    }
+  },
+  "mcp_info": []
+}
