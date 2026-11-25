@@ -1,0 +1,6 @@
+# 验算内核 math_qa_engine 只用标准库。
+# 下列依赖仅供 MCP 服务外壳（math_qa_mcp.py）使用。
+#
+# 注意必须锁 1.x：mcp 2.x 把 FastMCP 更名为 MCPServer，参数与导入路径均不兼容，
+# 装成 2.x 会在启动时报 ModuleNotFoundError: mcp.server.fastmcp。
+mcp>=1.2.0,<2
