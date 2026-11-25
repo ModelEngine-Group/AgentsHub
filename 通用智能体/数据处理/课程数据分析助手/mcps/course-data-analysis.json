@@ -1,0 +1,17 @@
+{
+  "name": "course-data-analysis",
+  "description": "课程数据分析助手的标准库实现：读取本地 CSV，执行统计、相关性和条件查询，不联网、不写入数据文件。",
+  "transport": "streamable-http",
+  "start_command": "python mcps/server.py",
+  "mcp_url": "http://host.docker.internal:8001/mcp",
+  "tools": [
+    "inspect_dataset",
+    "analyze_course_data",
+    "query_course_data"
+  ],
+  "notes": [
+    "命令必须在智能体目录执行，服务仅读取 data/course_records.csv。",
+    "Nexent 运行在 Docker 中时，MCP URL 使用 http://host.docker.internal:8001/mcp。",
+    "若本机测试，可访问 http://localhost:8001/mcp。"
+  ]
+}
