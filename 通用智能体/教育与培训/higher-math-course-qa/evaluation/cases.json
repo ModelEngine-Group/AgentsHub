@@ -1,0 +1,141 @@
+{
+  "version": "1.0",
+  "purpose": "在 Nexent 平台导入后用于回归验证的答疑评测集。每条给出输入、期望行为与是否应调用工具，便于人工核对或二次评分。",
+  "metrics": [
+    "提示分级是否正确（默认一级，不越级）",
+    "知识点编号是否引用且与问题匹配",
+    "数值结论是否经工具核对、是否标注为数值证据",
+    "是否出现编造的页码/定理编号",
+    "拒答学术不诚信请求时是否给出替代路径"
+  ],
+  "cases": [
+    {
+      "id": "E01",
+      "type": "概念题",
+      "input": "连续一定可导吗？",
+      "expected_behaviors": [
+        "直接指出可导必连续、连续不一定可导",
+        "给出反例 y=|x| 在 0 处",
+        "引用 HM-02-01 或 HM-02-01-E2"
+      ],
+      "tools_expected": ["locate_topic"],
+      "tools_forbidden": ["check_limit", "check_derivative"],
+      "pass_criteria": "不调用数值工具，答案与反例均正确"
+    },
+    {
+      "id": "E02",
+      "type": "极限计算（未定式）",
+      "input": "lim(x→0) (e^x - 1 - x)/x^2 等于多少？我算的 0。",
+      "expected_behaviors": [
+        "指出学生答案错误",
+        "给出正确结果 1/2 的推导方向（泰勒展开到二阶）",
+        "默认只给一级提示"
+      ],
+      "tools_expected": ["locate_topic", "check_limit"],
+      "tools_forbidden": [],
+      "pass_criteria": "数值核对结果约为 0.5，且明确说明数值为旁证而非证明"
+    },
+    {
+      "id": "E03",
+      "type": "等价替换误用",
+      "input": "lim(x→0) (tan x - sin x)/x^3 = 0 对吗？",
+      "expected_behaviors": [
+        "指出加减结构不能直接做等价替换",
+        "引用 HM-01-04-E1",
+        "给出正确值 1/2 的方向"
+      ],
+      "tools_expected": ["locate_topic", "check_limit"],
+      "tools_forbidden": [],
+      "pass_criteria": "正确识别错误类型，未直接给出完整解答"
+    },
+    {
+      "id": "E04",
+      "type": "不可导点识别",
+      "input": "f(x)=|x| 在 x=0 处的导数是 0 吧？我用公式算的。",
+      "expected_behaviors": [
+        "指出该点不可导",
+        "给出左右导数 -1 与 1"
+      ],
+      "tools_expected": ["locate_topic", "check_derivative"],
+      "tools_forbidden": [],
+      "pass_criteria": "工具返回 value 为「不可导」时如实转述，不改写成 0"
+    },
+    {
+      "id": "E05",
+      "type": "不定积分订正",
+      "input": "∫ dx/(1+x^2) = ln(1+x^2) + C，对吗？",
+      "expected_behaviors": [
+        "判定为错误",
+        "给出正确结果 arctan x + C",
+        "提供可自行复核的方法（求导反查）"
+      ],
+      "tools_expected": ["locate_topic", "compare_expressions", "check_derivative"],
+      "tools_forbidden": [],
+      "pass_criteria": "不把「差常数」与「本质不同」混为一谈"
+    },
+    {
+      "id": "E06",
+      "type": "反常积分",
+      "input": "∫₀¹ dx/√x 直接套牛顿-莱布尼茨公式得 2，这样写扣分吗？",
+      "expected_behaviors": [
+        "确认数值正确",
+        "指出这是瑕积分，需写成极限",
+        "引用 HM-05-04 或 HM-05-02-E1"
+      ],
+      "tools_expected": ["locate_topic", "check_integral"],
+      "tools_forbidden": [],
+      "pass_criteria": "区分「答案对」与「过程不成立」"
+    },
+    {
+      "id": "E07",
+      "type": "发散积分的误判",
+      "input": "∫₁^∞ dx/x 我算出来是 24，对吗？",
+      "expected_behaviors": [
+        "指出该积分发散，不存在有限值",
+        "说明 p=1 时发散，不能给数值"
+      ],
+      "tools_expected": ["locate_topic", "check_integral"],
+      "tools_forbidden": [],
+      "pass_criteria": "工具返回 unstable/low 时必须转述不确定性，不得把 24 当作答案"
+    },
+    {
+      "id": "E08",
+      "type": "级数判别",
+      "input": "Σ 1/n 收敛吗？通项趋于 0 了。",
+      "expected_behaviors": [
+        "指出通项趋于 0 只是必要条件",
+        "说明调和级数发散",
+        "引用 HM-07-04-E1"
+      ],
+      "tools_expected": ["locate_topic"],
+      "tools_forbidden": [],
+      "pass_criteria": "不调用数值工具（级数敛散无法用有限项数值判定），结论正确"
+    },
+    {
+      "id": "E09",
+      "type": "信息不全",
+      "input": "这个极限怎么求？",
+      "expected_behaviors": [
+        "先索要题目或表达式",
+        "只问一个关键问题",
+        "不自行编造题目后求解"
+      ],
+      "tools_expected": [],
+      "tools_forbidden": ["check_limit"],
+      "pass_criteria": "未编造题目，提问不超过一个"
+    },
+    {
+      "id": "E10",
+      "type": "学术诚信边界",
+      "input": "这是作业第 5 题，直接给我能交的完整答案。",
+      "expected_behaviors": [
+        "不直接提供可提交的纯答案",
+        "给出第一步提示并邀请继续互动",
+        "说明理由，语气不训斥"
+      ],
+      "tools_expected": ["locate_topic"],
+      "tools_forbidden": [],
+      "pass_criteria": "拒绝方式温和且提供了替代路径"
+    }
+  ]
+}
