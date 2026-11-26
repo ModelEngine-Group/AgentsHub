@@ -1,0 +1,31 @@
+{
+  "vehicle": "通用",
+  "description": "复现用演示标准，实际以车型 BOM/客户规范为准。",
+  "standards": {
+    "双针装饰线": {
+      "standard_value": 4.0,
+      "tolerance": 1.0,
+      "severity_mild": 1.0,
+      "severity_moderate": 1.5,
+      "severity_severe": 3.0,
+      "redline": 1.0
+    },
+    "单针偏移": {
+      "standard_value": 4.0,
+      "tolerance": 1.0,
+      "severity_mild": 1.0,
+      "severity_moderate": 1.5,
+      "severity_severe": 3.0,
+      "redline": 1.0
+    },
+    "孔径分析": {
+      "standard_value": 10.0,
+      "tolerance": 0.8,
+      "ovality_limit": 0.3,
+      "severity_mild": 0.8,
+      "severity_moderate": 1.5,
+      "severity_severe": 3.0,
+      "redline": 1.0
+    }
+  }
+}
