@@ -1,0 +1,9 @@
+services:
+  quality-data-mcp:
+    build: .
+    ports:
+      - "5071:5071"
+    volumes:
+      - ./data:/app/data:ro
+      - ./knowledge:/app/knowledge:ro
+    restart: unless-stopped
