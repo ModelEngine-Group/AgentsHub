@@ -10,11 +10,18 @@ python -m venv .venv
 . .venv/Scripts/activate        # Linux/macOS 用 . .venv/bin/activate
 pip install -r requirements.txt
 
-python code_review_mcp_server.py --transport sse --host 0.0.0.0 --port 8766
+# 本机使用：只监听回环地址
+python code_review_mcp_server.py --transport sse --host 127.0.0.1 --port 8766
+# Nexent 在 Docker 里时使用 0.0.0.0，并限定可读仓库根目录（见下方安全边界）
+python code_review_mcp_server.py --transport sse --host 0.0.0.0 --port 8766 --allowed-root /path/to/repos
 # 控制台打印：MCP URL: http://<服务器地址>:8766/sse
 ```
 
 端口用 `--port` 指定。8766 是本机实测空闲的端口（8765 被另一个本地服务占用）；若你的环境里 8766 也被占，换任意空闲端口即可，但**要同步把下面平台里填的 URL 改掉**。
+
+### 安全边界
+
+服务没有鉴权，只应监听可信回环或容器桥接网络，不要暴露到公网。`--allowed-root` 可重复指定，用于把 `repo_path` 限制在特定仓库根目录内；指定后所有工具都拒绝范围外的路径。未指定时保持向后兼容（不限制），本地调试可用，生产部署建议始终指定。
 
 在 Nexent「智能体开发 → 工具 → MCP 配置」里新建一条：
 

@@ -7,7 +7,10 @@
 
 启动（Nexent 平台接入用 SSE）::
 
-    python code_review_mcp_server.py --transport sse --host 0.0.0.0 --port 8766
+    # 服务无鉴权，默认只监听回环地址
+    python code_review_mcp_server.py --transport sse --host 127.0.0.1 --port 8766
+    # Nexent 在 Docker 里时需绑定 0.0.0.0，并限定可读仓库根目录、只暴露给可信网络：
+    python code_review_mcp_server.py --transport sse --host 0.0.0.0 --port 8766 --allowed-root DIR
     # MCP URL: http://<服务器地址>:8766/sse
 
 stdio（MCP Inspector 等本地客户端）::
@@ -29,6 +32,7 @@ if str(HERE) not in sys.path:
 
 from fs_tools import (  # noqa: E402
     ToolError,
+    configure_allowed_roots,
     dumps,
     get_repo_meta as _get_repo_meta,
     list_changed_files as _list_changed_files,
@@ -148,8 +152,17 @@ def main() -> int:
     )
     parser.add_argument("--host", default="127.0.0.1", help="SSE/HTTP 监听地址")
     parser.add_argument("--port", type=int, default=8766, help="SSE/HTTP 监听端口")
+    parser.add_argument(
+        "--allowed-root", action="append", default=[], metavar="DIR",
+        help="允许的仓库根目录，可重复指定；指定后所有工具只接受其下的 repo_path",
+    )
     args = parser.parse_args()
 
+    configure_allowed_roots(args.allowed_root)
+    if args.allowed_root:
+        print(
+            "已限制可读仓库根目录：" + "、".join(args.allowed_root), file=sys.stderr
+        )
     mcp.settings.host = args.host
     mcp.settings.port = args.port
     if args.transport != "stdio":

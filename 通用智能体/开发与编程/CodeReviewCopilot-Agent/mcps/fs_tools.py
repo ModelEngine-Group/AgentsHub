@@ -25,6 +25,26 @@ SENSITIVE_NAMES = {
     "credentials.json", "service-account.json", "secrets.yaml", "secrets.yml",
 }
 
+# 允许的仓库根目录白名单。为空表示不限制（保留本地开发与既有验收流程）；
+# 生产部署应通过 MCP 服务的 --allowed-root 参数显式限定可读范围。
+ALLOWED_ROOTS: list[Path] = []
+
+
+def configure_allowed_roots(roots: list[str] | None) -> None:
+    """设置允许审查的仓库根目录；空列表表示不限制。"""
+    global ALLOWED_ROOTS
+    ALLOWED_ROOTS = [
+        Path(p).expanduser().resolve() for p in (roots or []) if str(p).strip()
+    ]
+
+
+def _within(path: Path, parent: Path) -> bool:
+    try:
+        path.relative_to(parent)
+    except ValueError:
+        return False
+    return True
+
 
 # 扫描范围排除：对齐开源审查工具（PR-Agent 等）的 scope paths 实践，
 # 生成代码 / 第三方代码 / 迁移脚本不该产生噪声候选。
@@ -48,6 +68,11 @@ def _root(repo_path: str) -> Path:
     root = Path(repo_path).expanduser().resolve()
     if not root.is_dir():
         raise ToolError(f"仓库目录不存在或不是目录：{repo_path}")
+    if ALLOWED_ROOTS and not any(_within(root, allowed) for allowed in ALLOWED_ROOTS):
+        allowed = "、".join(str(p) for p in ALLOWED_ROOTS)
+        raise ToolError(
+            f"repo_path 不在允许的仓库根目录内：{root}；本次服务仅允许：{allowed}"
+        )
     return root
 
 
@@ -227,10 +252,12 @@ def _added_lines(diff_text: str) -> set[tuple[str, int]]:
             continue
         if current is None:
             continue
-        if raw.startswith("+") and not raw.startswith("+++"):
+        # 文件头标记统一形如 "+++ b/path" / "--- a/path"（前缀后带空格），
+        # 已在上面按 "+++ " 处理；源码行本身可能以 +++ / --- 开头，不能据此误判。
+        if raw.startswith("+"):
             added.add((current, new_line))
             new_line += 1
-        elif raw.startswith("-") and not raw.startswith("---"):
+        elif raw.startswith("-"):
             continue
         elif raw.startswith("\\ No newline"):
             continue

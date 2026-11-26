@@ -100,7 +100,7 @@ def main() -> int:
         marker = target / ".code_review_fixture"
         if args.recreate and marker.is_file():
             print(f"重建本脚本此前生成的 fixture：{target}")
-            shutil.rmtree(target, onexc=_on_rm_error)
+            shutil.rmtree(target, onerror=_on_rm_error)
         else:
             print(f"目标目录已存在且非空，脚本不会删除任何内容：{target}", file=sys.stderr)
             print("请换一个 --target，或确认是本脚本生成的目录后加 --recreate。", file=sys.stderr)

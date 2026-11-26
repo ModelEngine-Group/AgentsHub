@@ -140,3 +140,17 @@ A/B/C 三组消融跑完后，从平台导出 `code_review_copilot.zip`（含 `a
 - **`工作文档/提交步骤.md`**：开头的「平台实测还没跑完，不要执行」警告改为前置条件已满足；阶段 0 的 5 项核对勾选回填。
 
 功能用例 #1-#8 与 PR 提交仍待完成。
+
+## v0.5.2（2026-11-26，PR #222 自动审视意见修复）
+
+AtomGit AI 审视给出 7 条建议（阻塞 0 / 建议 7），逐条核对后全部处理：
+
+- **`eval/init_fixture_repo.py`**：`shutil.rmtree(..., onexc=...)` 改为 `onerror=...`。`onexc` 是 Python 3.12 才有的参数，且回调签名按旧三元组解包，在 3.12+ 重建 fixture 时会报错。
+- **`mcps/fs_tools.py`**：新增 `configure_allowed_roots()` 与 `ALLOWED_ROOTS`，`_root()` 拒绝白名单外的 `repo_path`；`_added_lines()` 修正 `+++` / `---` 前缀误判——diff 文件头是带空格的 `+++ b/...` / `--- a/...`，已在前面处理，源码行以 `+++` 开头时不能跳过。
+- **`mcps/code_review_mcp_server.py`**：新增 `--allowed-root`（可重复）参数并在启动时调用配置函数；启动示例区分本机回环与 Docker 场景。
+- **`mcps/README.md`**：启动命令默认改为 `127.0.0.1`，新增「安全边界」小节说明无鉴权服务不应暴露公网、`--allowed-root` 的用法与默认行为。Docker 接入仍用 `0.0.0.0`——这是 `host.docker.internal` 访问的实测必需配置，未照建议直接改掉。
+- **`agent.json`**：few_shots 启动示例同步改为本机回环地址，并说明 Docker 场景需加 `--allowed-root`。
+- **`knowledge/豁免清单.md`**：§3 的 `# noqa` 豁免限定为非生产路径，并写明与文末「生产路径一律不豁免」的优先级关系。
+- **`skills/code-review-rules/SKILL.md`**：CR-002 判定特征补上 `.format()`，与《编码规范 v1.2》§3.2 及 `scan.py` 已有实现对齐（实现本就覆盖，仅规则表文字漏写）。zip 已重建，4 文件与明文一致。
+
+未改：平台已导入的 agent（提示词仍在平台侧，不受交付包文字修订影响）；三组消融证据与功能用例状态。

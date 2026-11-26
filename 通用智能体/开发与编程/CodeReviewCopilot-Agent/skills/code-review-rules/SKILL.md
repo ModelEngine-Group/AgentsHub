@@ -27,7 +27,7 @@ compatibility: Requires the code-review-fs MCP server and git. Scripts run on th
 | ID | 名称 | 严重度 | 判定特征 | 最小改法 |
 | --- | --- | --- | --- | --- |
 | CR-001 | 硬编码凭据 | blocker | `api_key` / `password` / `secret` / `token` 一类变量被赋给长度 ≥ 8 的字符串字面量 | 改为读环境变量或密钥服务 |
-| CR-002 | SQL 字符串拼接 | blocker | `execute` 的参数含 f-string、`%` 格式化或 `+` 拼接，且出现 SELECT / INSERT / UPDATE / DELETE | 改用参数化查询占位符 |
+| CR-002 | SQL 字符串拼接 | blocker | `execute` 的参数含 f-string、`%` 格式化、`.format()` 或 `+` 拼接，且出现 SELECT / INSERT / UPDATE / DELETE | 改用参数化查询占位符 |
 | CR-003 | 裸 except / 吞异常 | major | `except:` 或 `except ...: pass`，异常被静默丢弃 | 捕获具体异常，记录日志或向上抛 |
 | CR-004 | 资源未纳入上下文管理 | major | `open(...)` 结果直接赋值，未出现在 `with` 语句中 | 用 `with open(...) as f:` |
 | CR-005 | 日志输出敏感字段 | major | `print` / `logger.*` 的参数含 password / token / secret / id_card 一类字段 | 脱敏或删除该输出 |
