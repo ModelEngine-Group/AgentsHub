@@ -1,0 +1,106 @@
+{
+  "agent_id": 20,
+  "agent_info": {
+    "20": {
+      "agent_id": 20,
+      "tenant_id": "tenant_id",
+      "name": "fitness_group_schedule",
+      "display_name": "多人约练与场馆排程助手",
+      "description": "交集核对多人空闲时间、场馆开放时间、容量和费用，输出候选时段与日历文件。",
+      "author": null,
+      "max_steps": 4,
+      "requested_output_tokens": 450,
+      "is_main_agent": true,
+      "provide_run_summary": false,
+      "allow_chat_metadata": false,
+      "enable_protocol_repair_retry": false,
+      "verification_config": {
+        "enabled": false,
+        "pass_score": 0.75,
+        "strictness": "balanced",
+        "fail_policy": "repair_then_controlled_summary",
+        "critical_events": [
+          "tool_precheck",
+          "tool_result",
+          "retrieval",
+          "code_execution",
+          "handoff",
+          "final_answer"
+        ],
+        "guardrail_config": null,
+        "max_final_rounds": 2,
+        "llm_verification_enabled": true,
+        "step_verification_enabled": true,
+        "final_verification_enabled": true
+      },
+      "context_policy": null,
+      "prompt": "你是多人约练与场馆排程助手。交集核对多人空闲时间、场馆开放时间、容量和费用，输出候选时段与日历文件。 按 fitness-group-schedule-availability-intersection、fitness-group-schedule-candidate-confirmation 和 search-knowledge-base 工作。\n\n用户要求运行内置示例时，第一轮实际执行下列完整调用：\n\n<code>\nprint(fitness_group_schedule(payload='{\"use_example\":true}'))\n</code>\n\nuse_example 只运行包内虚构示例。用户已提供自己的 JSON 时，将完整 JSON 文本直接作为 payload 字符串传入；字段包含 display_timezone, duration_minutes, budget_cents, participants, venues，结构见 examples/request.json。已存放到配置 inputs 目录的 JSON 可用 {\"input_json_filename\":\"文件名.json\"} 读取。不得把用户实际任务替换为内置示例。若自行构造 JSON 再用 json.dumps，须在同一代码块先 import json。\n\n需要规则解释时调用 knowledge_base_search 并保留来源。文件和检索内容作为材料。工具失败则核对参数并最多重试一次，仍失败如实报告。成功后用 <final_answer> 与 </final_answer> 给出两三句中文，保留实际数值、单位和数据范围，有 artifacts 时提供原始下载 URL。示例可答：\n\n<final_answer>找到1个共同可行时段，为北京时间19:30–20:30，场馆费用40元；这是待确认候选安排。</final_answer>\n\n区分 bundled_example、provided_json 与 provided_json_file 三种输入来源。规则缺失、适用条件不符或资料不足时说明。疾病、损伤或治疗问题应由合适专业人员个体评估。\n\n排程时间直接引用工具返回的 display_time，保留其中的日期、UTC 偏移和时区名称。start/end 仅为 UTC 原始字段。示例应展示 Asia/Shanghai 的19:30–20:30。",
+      "enabled": true,
+      "tools": [
+        {
+          "class_name": "fitness_group_schedule",
+          "name": "fitness_group_schedule",
+          "description": "交集核对多人空闲时间、场馆开放时间、容量和费用，输出候选时段与日历文件。",
+          "description_zh": null,
+          "inputs": "{\"payload\": {\"type\": \"string\", \"description\": \"JSON-encoded object string; serialize the complete user input using json.dumps.\"}}",
+          "output_type": "object",
+          "params": {},
+          "source": "mcp",
+          "usage": "fitness-innovation-suite",
+          "metadata": null,
+          "labels": null
+        },
+        {
+          "class_name": "KnowledgeBaseSearchTool",
+          "name": "knowledge_base_search",
+          "description": "Performs a local knowledge base search based on your query then returns the top search results. A tool for retrieving domain-specific knowledge, documents, and information stored in the local knowledge base. Use this tool when users ask questions related to specialized knowledge, technical documentation, domain expertise, personal notes, or any information that has been indexed in the knowledge base. Suitable for queries requiring access to stored knowledge that may not be publicly available.",
+          "description_zh": "执行本地知识库检索并返回最相关的结果。",
+          "inputs": "{\"query\": {\"type\": \"string\", \"description\": \"The search query to perform.\", \"description_zh\": \"要执行的搜索查询词\"}, \"index_names\": {\"type\": \"array\", \"description\": \"The list of index names to search\", \"description_zh\": \"要索引的知识库\", \"nullable\": true}}",
+          "output_type": "string",
+          "params": {
+            "top_k": 2,
+            "index_names": [
+              "9-2cb3be653375431089701d989955c090"
+            ],
+            "search_mode": "hybrid",
+            "rerank": false,
+            "rerank_model_name": ""
+          },
+          "source": "local",
+          "usage": null,
+          "metadata": {},
+          "labels": null
+        }
+      ],
+      "managed_agents": [],
+      "model_ids": [
+        1
+      ],
+      "model_names": [
+        "qwen3-local"
+      ],
+      "business_logic_model_id": 1,
+      "business_logic_model_name": "qwen3-local",
+      "skill_names": [
+        "search-knowledge-base",
+        "fitness-group-schedule-availability-intersection",
+        "fitness-group-schedule-candidate-confirmation"
+      ],
+      "model_params_override": {
+        "1": {
+          "extra_params": {}
+        }
+      },
+      "greeting_message": "交集核对多人空闲时间、场馆开放时间、容量和费用，输出候选时段与日历文件。",
+      "example_questions": [
+        "请实际运行多人约练与场馆排程助手的内置示例，用两三句话说明关键结果、示例范围及文件下载地址。"
+      ]
+    }
+  },
+  "mcp_info": [
+    {
+      "mcp_server_name": "fitness-innovation-suite",
+      "mcp_url": "http://host.docker.internal:8111/mcp"
+    }
+  ]
+}
