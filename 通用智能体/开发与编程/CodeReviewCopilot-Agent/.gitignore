@@ -1,0 +1,9 @@
+# MCP 服务的本地虚拟环境：只在本机运行，不进版本库
+mcps/.venv/
+
+# Python 缓存与本机生成物
+__pycache__/
+*.pyc
+
+# SARIF 导出结果（CI 生成物）
+results.sarif
