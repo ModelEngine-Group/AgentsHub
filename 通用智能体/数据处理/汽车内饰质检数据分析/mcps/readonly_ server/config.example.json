@@ -1,0 +1,9 @@
+{
+  "transport": "streamable-http",
+  "host": "127.0.0.1",
+  "port": 5071,
+  "db_path": "./data/demo.db",
+  "knowledge_dir": "./knowledge",
+  "local_url": "http://127.0.0.1:5071/mcp",
+  "nexent_docker_url": "http://host.docker.internal:5071/mcp"
+}

@@ -1,0 +1,52 @@
+{
+  "name": "autodetect-mcp",
+  "display_name": "汽车内饰质检数据 MCP（只读复现版）",
+  "description": "自带可运行代码与演示库的只读 MCP：检测记录、OK/NG 统计、趋势、车型/工位、双针/单针/孔径专项统计与标准查询。",
+  "transport": "streamable-http",
+  "server_mode": "read-only",
+  "url": "http://host.docker.internal:5071/mcp",
+  "host_url": "http://127.0.0.1:5071/mcp",
+  "code": "readonly_server/server.py",
+  "demo_database": "readonly_server/data/demo.db",
+  "knowledge_dir": "readonly_server/knowledge/",
+  "startup": "python server.py --host 127.0.0.1 --port 5071",
+  "docker": "docker compose up --build",
+  "read_only_tools": [
+    "query_records",
+    "get_record",
+    "get_stats",
+    "get_daily_trend",
+    "get_vehicle_stats",
+    "list_vehicles",
+    "query_standards",
+    "query_stitch_records",
+    "get_stitch_stats",
+    "query_single_stitch_records",
+    "get_single_stitch_stats",
+    "query_single_stitch_standards",
+    "query_hole_records",
+    "get_hole_stats",
+    "query_hole_standards",
+    "analyze_stitch",
+    "analyze_single_stitch",
+    "analyze_hole"
+  ],
+  "excluded_write_tools": [
+    "create_record",
+    "update_record",
+    "delete_record",
+    "restore_record",
+    "save_stitch_record",
+    "save_single_stitch_record",
+    "save_hole_record",
+    "save_knowledge",
+    "delete_knowledge",
+    "import_knowledge",
+    "start_image_inspection"
+  ],
+  "security": {
+    "auth": "none",
+    "default_bind": "127.0.0.1",
+    "note": "只读服务，无写工具；默认本机监听。Docker/Nexent 场景使用 0.0.0.0 时请确保只在受控内网。"
+  }
+}
